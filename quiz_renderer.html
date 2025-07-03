@@ -462,11 +462,19 @@
                     const isHistogram = chartData.chartType === 'histogram';
                     const categoryPercentage = isHistogram ? 1.0 : 0.8;
                     const barPercentage = isHistogram ? 1.0 : 0.9;
+                    
+                    // Handle x-axis labels - support both range and bound labeling
+                    let displayLabels = chartData.xLabels;
+                    if (xAxisConfig.labelType === 'upperBound' && xAxisConfig.labels) {
+                        displayLabels = xAxisConfig.labels;
+                    } else if (xAxisConfig.labelType === 'range' && chartData.xLabels) {
+                        displayLabels = chartData.xLabels;
+                    }
 
                     const chart = new Chart(ctx, {
                         type: 'bar',
                         data: {
-                            labels: chartData.xLabels,
+                            labels: displayLabels,
                             datasets: datasets
                         },
                         options: {

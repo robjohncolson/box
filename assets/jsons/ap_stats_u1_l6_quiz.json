@@ -30,10 +30,10 @@
 {
   "id": "U1-L6-Q02",
   "type": "multiple-choice",
-  "prompt": "The following histogram summarizes the amount spent on plane tickets to travel home, in dollars, for a group of 30 college students. If the interval size is decreased from $200 to $100, which of the following must remain the same on the new histogram?",
+  "prompt": "If the interval size is decreased from $200 to $100, which of the following must remain the same on the new histogram?",
   "attachments": {
-    "chartType": "bar",
-    "xLabels": ["0-200", "200-400", "400-600", "600-800", "800-1000", "1000-1200"],
+    "chartType": "histogram",
+    "xLabels": ["200", "400", "600", "800", "1000", "1200"],
     "series": [
       {
         "name": "Number of Students",
@@ -48,10 +48,15 @@
         "title": "Number of Students"
       },
       "xAxis": {
-        "title": "Amount Spent (Dollars)"
+        "title": "Amount Spent (Dollars)",
+        "labelType": "upperBound",
+        "labels": [200, 400, 600, 800, 1000, 1200]
       },
-      "gridLines": true,
-      "description": "Histogram showing amount spent on plane tickets with intervals of $200"
+      "gridLines": {
+        "horizontal": false,
+        "vertical": false
+      },
+      "description": "Histogram showing spending distribution with upper bound labels"
     }
   },
   "choices": [
@@ -82,43 +87,22 @@
 {
   "id": "U1-L6-Q03",
   "type": "multiple-choice",
-  "prompt": "The following dotplot shows the scores of 25 people who played an online trivia game. Which of the following statements is the best description of the distribution of scores?",
+  "prompt": "Which of the following statements is the best description of the distribution of scores?",
   "attachments": {
-    "chartType": "scatter",
-    "points": [
-      {"x": 55, "y": 1},
-      {"x": 60, "y": 1},
-      {"x": 60, "y": 2},
-      {"x": 60, "y": 3},
-      {"x": 60, "y": 4},
-      {"x": 65, "y": 1},
-      {"x": 65, "y": 2},
-      {"x": 65, "y": 3},
-      {"x": 70, "y": 1},
-      {"x": 70, "y": 2},
-      {"x": 70, "y": 3},
-      {"x": 70, "y": 4},
-      {"x": 75, "y": 1},
-      {"x": 80, "y": 1},
-      {"x": 85, "y": 1},
-      {"x": 90, "y": 1},
-      {"x": 95, "y": 1}
-    ],
+    "chartType": "dotplot",
+    "values": [55, 60, 60, 60, 60, 65, 65, 65, 70, 70, 70, 70, 75, 75, 80, 85, 90, 95],
     "chartConfig": {
       "xAxis": {
-        "min": 45,
-        "max": 105,
+        "min": 50,
+        "max": 100,
         "tickInterval": 5,
         "title": "Score"
       },
-      "yAxis": {
-        "min": 0,
-        "max": 5,
-        "tickInterval": 1,
-        "title": "Frequency"
+      "gridLines": {
+        "horizontal": false,
+        "vertical": false
       },
-      "gridLines": true,
-      "description": "Dotplot showing distribution of trivia game scores for 25 people"
+      "description": "Dotplot showing distribution of scores with dots stacked vertically"
     }
   },
   "choices": [

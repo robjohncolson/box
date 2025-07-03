@@ -40,7 +40,7 @@ You are tasked with converting AP Statistics quiz questions from uploaded PDF do
     
     // For histograms (continuous data with NO gaps between bars):
     "chartType": "histogram",
-    "xLabels": ["0-10", "10-20", "20-30", ...],  // Continuous ranges
+    "xLabels": ["0-10", "10-20", "20-30", ...],  // Use ranges if PDF shows "0-10, 10-20, 20-30"
     "series": [
       {"name": "Frequency", "values": [5, 12, 8, 3, ...]},
     ],
@@ -52,13 +52,39 @@ You are tasked with converting AP Statistics quiz questions from uploaded PDF do
         "title": "Frequency"
       },
       "xAxis": {
-        "title": "Score Range"
+        "title": "Score Range",
+        "labelType": "range"  // Use "range" when PDF shows "0-10, 10-20, 20-30"
       },
       "gridLines": {
-        "horizontal": true,
+        "horizontal": false,  // CAREFULLY observe - many histograms have NO grid lines
         "vertical": false
       },
       "description": "Histogram showing score distribution with no gaps between bars"
+    }
+    
+    // Alternative histogram format (when PDF shows upper bounds like "200, 400, 600"):
+    "chartType": "histogram",
+    "xLabels": ["200", "400", "600", "800", "1000", "1200"],  // Single values when PDF shows upper bounds
+    "series": [
+      {"name": "Number of Students", "values": [4, 6, 9, 7, 3, 1]},
+    ],
+    "chartConfig": {
+      "yAxis": {
+        "min": 0,
+        "max": 10,
+        "tickInterval": 1,
+        "title": "Number of Students"
+      },
+      "xAxis": {
+        "title": "Amount Spent (Dollars)",
+        "labelType": "upperBound",  // Use "upperBound" when PDF shows single values like "200, 400, 600"
+        "labels": [200, 400, 600, 800, 1000, 1200]  // Numeric values for precise labeling
+      },
+      "gridLines": {
+        "horizontal": false,  // CAREFULLY observe - many histograms have NO grid lines
+        "vertical": false
+      },
+      "description": "Histogram showing spending distribution with upper bound labels"
     }
     
     // For pie charts:
@@ -141,7 +167,10 @@ You are tasked with converting AP Statistics quiz questions from uploaded PDF do
 
 **Histograms (for continuous data):**
 - **Visual cues**: NO gaps between bars - bars touch each other
-- **X-axis labels**: Continuous ranges (e.g., "0-10", "10-20", "20-30")
+- **X-axis labels**: Can be either:
+  - **Ranges**: "0-10", "10-20", "20-30" (use `labelType: "range"`)
+  - **Upper bounds**: "200", "400", "600" (use `labelType: "upperBound"`)
+- **Grid lines**: Often NO grid lines - observe carefully!
 - **Data type**: Continuous/quantitative variables
 - **Use chartType**: "histogram"
 
@@ -180,6 +209,10 @@ You are tasked with converting AP Statistics quiz questions from uploaded PDF do
 - **Pay special attention to chart types** - look for gaps between bars to distinguish bar charts from histograms
 - **Look for stacked dots** - identify dotplots showing single variable distributions vs scatter plots showing two-variable relationships
 - **Examine grid lines carefully** - note whether horizontal and/or vertical grid lines are present
+- **For histograms, observe x-axis labels precisely**:
+  - If PDF shows "0-10, 10-20, 20-30" → use range labels with `labelType: "range"`
+  - If PDF shows "200, 400, 600" → use upper bound labels with `labelType: "upperBound"`
+- **Grid line detection is critical** - many AP Statistics histograms have NO grid lines at all
 - Convert each question following the exact format above
 - Include all visual elements as structured data in attachments
 - Preserve exact wording from the original questions
@@ -188,4 +221,5 @@ You are tasked with converting AP Statistics quiz questions from uploaded PDF do
 Create a single code artifact containing all converted questions as separate JSON objects.
 
 ## Backward Compatibility Note:
-The old format `"gridLines": true` is still supported, but the new format `"gridLines": {"horizontal": true, "vertical": false}` is preferred for better precision.
+- The old format `"gridLines": true` is still supported, but the new format `"gridLines": {"horizontal": true, "vertical": false}` is preferred for better precision.
+- For histograms, the new `"labelType"` field enables precise x-axis labeling: use `"range"` for interval labels or `"upperBound"` for boundary labels.
