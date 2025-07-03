@@ -35,7 +35,7 @@ A standalone HTML application with Chart.js integration for rendering and valida
   "type": "multiple-choice", 
   "prompt": "Question text here",
   "attachments": {
-    "chartType": "bar|pie|scatter",
+    "chartType": "bar|histogram|pie|scatter|dotplot",
     "chartConfig": {
       "yAxis": {
         "min": 0,
@@ -68,6 +68,7 @@ A standalone HTML application with Chart.js integration for rendering and valida
 - **Histograms**: Continuous data visualization, no gaps between bars, custom tick intervals
 - **Pie Charts**: Percentage tooltips, custom colors, legend positioning
 - **Scatter Plots**: Linear scaling, custom axis ranges, point styling
+- **Dotplots**: Single variable distribution, stacked dots, frequency visualization
 
 #### Advanced Chart Configuration
 ```javascript
@@ -184,7 +185,7 @@ A standalone HTML application with Chart.js integration for rendering and valida
 2. Implement server-side JSON schema validation
 3. Create automated testing suite for chart rendering accuracy
 4. Develop content management interface using conversion workflow
-5. Add support for additional chart types (histograms, box plots) as needed
+5. Add support for additional chart types (box plots, stem-and-leaf plots) as needed
 
 ## References
 

@@ -351,6 +351,7 @@
             const histograms = questions.filter(q => q.attachments && q.attachments.chartType === 'histogram').length;
             const pieCharts = questions.filter(q => q.attachments && q.attachments.chartType === 'pie').length;
             const scatterCharts = questions.filter(q => q.attachments && q.attachments.chartType === 'scatter').length;
+            const dotplots = questions.filter(q => q.attachments && q.attachments.chartType === 'dotplot').length;
             
             let chartBreakdown = '';
             if (hasCharts > 0) {
@@ -359,6 +360,7 @@
                 if (histograms > 0) chartTypes.push(`📈 Histogram: ${histograms}`);
                 if (pieCharts > 0) chartTypes.push(`🥧 Pie: ${pieCharts}`);
                 if (scatterCharts > 0) chartTypes.push(`📈 Scatter: ${scatterCharts}`);
+                if (dotplots > 0) chartTypes.push(`🔘 Dotplot: ${dotplots}`);
                 chartBreakdown = ` (${chartTypes.join(', ')})`;
             }
             
@@ -629,6 +631,114 @@
                             plugins: {
                                 legend: {
                                     display: false
+                                }
+                            }
+                        }
+                    });
+                    chartInstances.push(chart);
+                
+                } else if (chartData.chartType === 'dotplot') {
+                    const config = chartData.chartConfig || {};
+                    const xAxisConfig = config.xAxis || {};
+                    
+                    // Handle grid lines - dotplots typically have no grid lines
+                    let showHorizontalGrid = false;
+                    let showVerticalGrid = false;
+                    
+                    if (config.gridLines !== undefined) {
+                        if (typeof config.gridLines === 'boolean') {
+                            showHorizontalGrid = config.gridLines;
+                            showVerticalGrid = config.gridLines;
+                        } else if (typeof config.gridLines === 'object') {
+                            showHorizontalGrid = config.gridLines.horizontal === true;
+                            showVerticalGrid = config.gridLines.vertical === true;
+                        }
+                    }
+                    
+                    // Convert raw values to frequency data for dotplot
+                    const valueFrequency = {};
+                    chartData.values.forEach(value => {
+                        valueFrequency[value] = (valueFrequency[value] || 0) + 1;
+                    });
+                    
+                    // Create stacked dots data
+                    const dotplotData = [];
+                    for (const [value, frequency] of Object.entries(valueFrequency)) {
+                        for (let i = 1; i <= frequency; i++) {
+                            dotplotData.push({
+                                x: parseFloat(value),
+                                y: i
+                            });
+                        }
+                    }
+                    
+                    // Find max frequency for y-axis
+                    const maxFrequency = Math.max(...Object.values(valueFrequency));
+                    
+                    const chart = new Chart(ctx, {
+                        type: 'scatter',
+                        data: {
+                            datasets: [{
+                                label: 'Data Points',
+                                data: dotplotData,
+                                backgroundColor: getScatterPointColor(),
+                                borderColor: getScatterPointColor(),
+                                pointRadius: 6,
+                                pointHoverRadius: 8,
+                                showLine: false
+                            }]
+                        },
+                        options: {
+                            responsive: true,
+                            maintainAspectRatio: false,
+                            scales: {
+                                x: {
+                                    type: 'linear',
+                                    position: 'bottom',
+                                    min: xAxisConfig.min,
+                                    max: xAxisConfig.max,
+                                    title: {
+                                        display: true,
+                                        text: xAxisConfig.title || 'Value'
+                                    },
+                                    grid: {
+                                        display: showVerticalGrid,
+                                        color: getGridColor()
+                                    },
+                                    ticks: {
+                                        stepSize: xAxisConfig.tickInterval
+                                    }
+                                },
+                                y: {
+                                    type: 'linear',
+                                    min: 0,
+                                    max: maxFrequency + 1,
+                                    title: {
+                                        display: false  // Dotplots don't typically show y-axis labels
+                                    },
+                                    grid: {
+                                        display: showHorizontalGrid,
+                                        color: getGridColor()
+                                    },
+                                    ticks: {
+                                        display: false,  // Hide y-axis tick labels
+                                        stepSize: 1
+                                    }
+                                }
+                            },
+                            plugins: {
+                                legend: {
+                                    display: false
+                                },
+                                tooltip: {
+                                    callbacks: {
+                                        title: function(context) {
+                                            return `Value: ${context[0].parsed.x}`;
+                                        },
+                                        label: function(context) {
+                                            return `Count: ${valueFrequency[context.parsed.x]}`;
+                                        }
+                                    }
                                 }
                             }
                         }
@@ -938,7 +1048,7 @@
 
         // Load sample data on page load
         window.onload = function() {
-            showMessage('Ready to load quiz JSON files! Supports tables, bar/histogram/pie/scatter charts with detailed tick intervals, axis ranges, grid line controls, dark mode, and JSON with // comments.', 'success');
+            showMessage('Ready to load quiz JSON files! Supports tables, bar/histogram/pie/scatter/dotplot charts with detailed tick intervals, axis ranges, grid line controls, dark mode, and JSON with // comments.', 'success');
         };
     </script>
 </body>

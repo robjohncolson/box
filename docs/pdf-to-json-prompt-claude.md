@@ -96,6 +96,20 @@ You are tasked with converting AP Statistics quiz questions from uploaded PDF do
       "description": "Scatter plot with specific axis ranges and tick intervals"
     }
     
+    // For dotplots (distribution of single variable):
+    "chartType": "dotplot",
+    "values": [55, 60, 60, 60, 60, 65, 65, 65, 70, 70, 70, 75, 75, 80, 85, 90, 95],
+    "chartConfig": {
+      "xAxis": {
+        "min": 50, "max": 100, "tickInterval": 5, "title": "Score"
+      },
+      "gridLines": {
+        "horizontal": false,
+        "vertical": false
+      },
+      "description": "Dotplot showing distribution of scores with dots stacked vertically"
+    }
+    
     "choices": [
       { "key": "A", "value": "Choice A text" },
       { "key": "B", "value": "Choice B text" },
@@ -146,10 +160,25 @@ You are tasked with converting AP Statistics quiz questions from uploaded PDF do
 
 **Important**: Many AP Statistics charts show horizontal grid lines but NOT vertical grid lines. Pay careful attention to what is actually visible in the image.
 
+**Dotplots (for single variable distribution):**
+- **Visual cues**: Dots stacked vertically at each value, showing frequency
+- **X-axis**: Shows the variable values (continuous scale)
+- **Y-axis**: No explicit labels - height represents frequency/count
+- **Data type**: Single quantitative variable
+- **Use chartType**: "dotplot"
+
+**Scatter Plots (for two variable relationships):**
+- **Visual cues**: Dots scattered across both dimensions
+- **X-axis**: One quantitative variable
+- **Y-axis**: Another quantitative variable with explicit labels
+- **Data type**: Two quantitative variables showing relationship
+- **Use chartType**: "scatter"
+
 ## Instructions:
 - Analyze the uploaded PDF carefully
 - Identify unit and lesson numbers from document headers/titles
 - **Pay special attention to chart types** - look for gaps between bars to distinguish bar charts from histograms
+- **Look for stacked dots** - identify dotplots showing single variable distributions vs scatter plots showing two-variable relationships
 - **Examine grid lines carefully** - note whether horizontal and/or vertical grid lines are present
 - Convert each question following the exact format above
 - Include all visual elements as structured data in attachments
