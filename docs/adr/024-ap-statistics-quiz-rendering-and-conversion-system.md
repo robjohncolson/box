@@ -64,7 +64,8 @@ A standalone HTML application with Chart.js integration for rendering and valida
 - **Dynamic chart rendering**: Real-time Chart.js integration with custom configurations
 
 #### Chart Support
-- **Bar Charts**: Multi-series support, custom tick intervals, horizontal grid lines
+- **Bar Charts**: Multi-series support, custom tick intervals, gaps between bars for categorical data
+- **Histograms**: Continuous data visualization, no gaps between bars, custom tick intervals
 - **Pie Charts**: Percentage tooltips, custom colors, legend positioning
 - **Scatter Plots**: Linear scaling, custom axis ranges, point styling
 
@@ -75,7 +76,10 @@ A standalone HTML application with Chart.js integration for rendering and valida
     "tickInterval": 0.25,  // Precise tick spacing
     "min": 0, "max": 1.0   // Exact axis ranges
   },
-  "gridLines": true,       // Visual grid references
+  "gridLines": {
+    "horizontal": true,    // Horizontal grid lines
+    "vertical": false      // Vertical grid lines
+  },
   "description": "..."     // Contextual information
 }
 ```
@@ -142,11 +146,12 @@ A standalone HTML application with Chart.js integration for rendering and valida
 ### Benefits
 
 1. **High Fidelity Conversion**: Detailed chart configurations ensure visual accuracy to original PDFs
-2. **Immediate Validation**: Interactive renderer provides instant feedback on conversion quality
-3. **Accessibility Compliance**: Dark mode and responsive design improve usability
-4. **Educational Accuracy**: Precise chart controls maintain statistical significance of visual elements
-5. **Development Efficiency**: Standalone validation tool accelerates content creation workflow
-6. **Future-Proof Architecture**: Modular design enables easy integration into larger platforms
+2. **Statistical Accuracy**: Proper distinction between bar charts (gaps) and histograms (no gaps) for AP Statistics pedagogy
+3. **Immediate Validation**: Interactive renderer provides instant feedback on conversion quality
+4. **Accessibility Compliance**: Dark mode and responsive design improve usability
+5. **Educational Accuracy**: Precise chart controls and grid line configurations maintain statistical significance
+6. **Development Efficiency**: Standalone validation tool accelerates content creation workflow
+7. **Future-Proof Architecture**: Modular design enables easy integration into larger platforms
 
 ### Trade-offs
 

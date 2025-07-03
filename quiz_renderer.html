@@ -348,6 +348,7 @@
             const hasCharts = questions.filter(q => q.attachments && q.attachments.chartType).length;
             const hasTables = questions.filter(q => q.attachments && q.attachments.table).length;
             const barCharts = questions.filter(q => q.attachments && q.attachments.chartType === 'bar').length;
+            const histograms = questions.filter(q => q.attachments && q.attachments.chartType === 'histogram').length;
             const pieCharts = questions.filter(q => q.attachments && q.attachments.chartType === 'pie').length;
             const scatterCharts = questions.filter(q => q.attachments && q.attachments.chartType === 'scatter').length;
             
@@ -355,6 +356,7 @@
             if (hasCharts > 0) {
                 const chartTypes = [];
                 if (barCharts > 0) chartTypes.push(`📊 Bar: ${barCharts}`);
+                if (histograms > 0) chartTypes.push(`📈 Histogram: ${histograms}`);
                 if (pieCharts > 0) chartTypes.push(`🥧 Pie: ${pieCharts}`);
                 if (scatterCharts > 0) chartTypes.push(`📈 Scatter: ${scatterCharts}`);
                 chartBreakdown = ` (${chartTypes.join(', ')})`;
@@ -424,7 +426,7 @@
 
                 const ctx = canvas.getContext('2d');
                 
-                if (chartData.chartType === 'bar') {
+                if (chartData.chartType === 'bar' || chartData.chartType === 'histogram') {
                     const datasets = chartData.series.map((series, index) => ({
                         label: series.name,
                         data: series.values,
@@ -437,6 +439,27 @@
                     const config = chartData.chartConfig || {};
                     const yAxisConfig = config.yAxis || {};
                     const xAxisConfig = config.xAxis || {};
+                    
+                    // Handle grid lines - support both old and new formats
+                    let showHorizontalGrid = true;
+                    let showVerticalGrid = false;
+                    
+                    if (config.gridLines !== undefined) {
+                        if (typeof config.gridLines === 'boolean') {
+                            // Old format: gridLines: true/false
+                            showHorizontalGrid = config.gridLines;
+                            showVerticalGrid = false;
+                        } else if (typeof config.gridLines === 'object') {
+                            // New format: gridLines: {horizontal: true, vertical: false}
+                            showHorizontalGrid = config.gridLines.horizontal !== false;
+                            showVerticalGrid = config.gridLines.vertical === true;
+                        }
+                    }
+                    
+                    // Configure bar spacing - gaps for bar charts, no gaps for histograms
+                    const isHistogram = chartData.chartType === 'histogram';
+                    const categoryPercentage = isHistogram ? 1.0 : 0.8;
+                    const barPercentage = isHistogram ? 1.0 : 0.9;
 
                     const chart = new Chart(ctx, {
                         type: 'bar',
@@ -447,6 +470,8 @@
                         options: {
                             responsive: true,
                             maintainAspectRatio: false,
+                            categoryPercentage: categoryPercentage,
+                            barPercentage: barPercentage,
                             scales: {
                                 y: {
                                     beginAtZero: yAxisConfig.min !== undefined ? false : true,
@@ -457,7 +482,7 @@
                                         text: yAxisConfig.title || 'Value'
                                     },
                                     grid: {
-                                        display: config.gridLines !== false,
+                                        display: showHorizontalGrid,
                                         color: getGridColor(),
                                         lineWidth: 1,
                                         drawBorder: true,
@@ -476,7 +501,8 @@
                                         text: xAxisConfig.title || 'Category'
                                     },
                                     grid: {
-                                        display: false
+                                        display: showVerticalGrid,
+                                        color: getGridColor()
                                     }
                                 }
                             },
@@ -535,6 +561,22 @@
                     const xAxisConfig = config.xAxis || {};
                     const yAxisConfig = config.yAxis || {};
                     
+                    // Handle grid lines - support both old and new formats
+                    let showHorizontalGrid = true;
+                    let showVerticalGrid = true; // Scatter plots often show both grids
+                    
+                    if (config.gridLines !== undefined) {
+                        if (typeof config.gridLines === 'boolean') {
+                            // Old format: gridLines: true/false
+                            showHorizontalGrid = config.gridLines;
+                            showVerticalGrid = config.gridLines;
+                        } else if (typeof config.gridLines === 'object') {
+                            // New format: gridLines: {horizontal: true, vertical: false}
+                            showHorizontalGrid = config.gridLines.horizontal !== false;
+                            showVerticalGrid = config.gridLines.vertical !== false;
+                        }
+                    }
+                    
                     const chart = new Chart(ctx, {
                         type: 'scatter',
                         data: {
@@ -561,7 +603,7 @@
                                         text: xAxisConfig.title || 'X Variable'
                                     },
                                     grid: {
-                                        display: config.gridLines !== false,
+                                        display: showVerticalGrid,
                                         color: getGridColor()
                                     },
                                     ticks: {
@@ -576,7 +618,7 @@
                                         text: yAxisConfig.title || 'Y Variable'
                                     },
                                     grid: {
-                                        display: config.gridLines !== false,
+                                        display: showHorizontalGrid,
                                         color: getGridColor()
                                     },
                                     ticks: {
@@ -896,7 +938,7 @@
 
         // Load sample data on page load
         window.onload = function() {
-            showMessage('Ready to load quiz JSON files! Supports tables, bar/pie/scatter charts with detailed tick intervals, axis ranges, dark mode, and JSON with // comments.', 'success');
+            showMessage('Ready to load quiz JSON files! Supports tables, bar/histogram/pie/scatter charts with detailed tick intervals, axis ranges, grid line controls, dark mode, and JSON with // comments.', 'success');
         };
     </script>
 </body>

@@ -1,7 +1,7 @@
 # AP Statistics Quiz to JSON Conversion Task
 
 You are tasked with converting AP Statistics quiz questions from uploaded PDF documents into a specific JSON format. Each question should be converted to a separate JSON object following this structure:
-##
+
 ## JSON Format Template:
 ```json
 {
@@ -14,7 +14,7 @@ You are tasked with converting AP Statistics quiz questions from uploaded PDF do
     // For tables:
     "table": [["Header1","Header2"],["data1","data2"],...]
     
-    // For bar charts:
+    // For bar charts (categorical data with gaps between bars):
     "chartType": "bar",
     "xLabels": ["Category1", "Category2", ...],
     "series": [
@@ -31,8 +31,34 @@ You are tasked with converting AP Statistics quiz questions from uploaded PDF do
       "xAxis": {
         "title": "Grade"    // X-axis label
       },
-      "gridLines": true,    // Whether horizontal grid lines are shown
-      "description": "Bar chart showing relative frequency by grade level with tick marks every 0.25"
+      "gridLines": {
+        "horizontal": true,  // Whether horizontal grid lines are shown
+        "vertical": false    // Whether vertical grid lines are shown
+      },
+      "description": "Bar chart showing relative frequency by grade level with gaps between bars"
+    }
+    
+    // For histograms (continuous data with NO gaps between bars):
+    "chartType": "histogram",
+    "xLabels": ["0-10", "10-20", "20-30", ...],  // Continuous ranges
+    "series": [
+      {"name": "Frequency", "values": [5, 12, 8, 3, ...]},
+    ],
+    "chartConfig": {
+      "yAxis": {
+        "min": 0,
+        "max": 15,
+        "tickInterval": 5,
+        "title": "Frequency"
+      },
+      "xAxis": {
+        "title": "Score Range"
+      },
+      "gridLines": {
+        "horizontal": true,
+        "vertical": false
+      },
+      "description": "Histogram showing score distribution with no gaps between bars"
     }
     
     // For pie charts:
@@ -63,7 +89,10 @@ You are tasked with converting AP Statistics quiz questions from uploaded PDF do
       "yAxis": {
         "min": 0, "max": 10, "tickInterval": 2, "title": "Y Variable"
       },
-      "gridLines": true,
+      "gridLines": {
+        "horizontal": true,
+        "vertical": true
+      },
       "description": "Scatter plot with specific axis ranges and tick intervals"
     }
     
@@ -86,12 +115,48 @@ You are tasked with converting AP Statistics quiz questions from uploaded PDF do
 4. **Answer Keys**: Include the correct answer from the scoring guide
 5. **Complete Output**: Provide all questions as separate JSON objects in a single code artifact
 
+## Critical Chart Type Identification:
+
+### Bar Charts vs. Histograms - This Distinction is Essential for AP Statistics!
+
+**Bar Charts (for categorical data):**
+- **Visual cues**: Clear gaps/spaces between bars
+- **X-axis labels**: Discrete categories (e.g., "Freshman", "Sophomore", "Junior", "Senior")
+- **Data type**: Categorical variables
+- **Use chartType**: "bar"
+
+**Histograms (for continuous data):**
+- **Visual cues**: NO gaps between bars - bars touch each other
+- **X-axis labels**: Continuous ranges (e.g., "0-10", "10-20", "20-30")
+- **Data type**: Continuous/quantitative variables
+- **Use chartType**: "histogram"
+
+### Grid Line Detection:
+
+**Horizontal Grid Lines:**
+- Look for light lines running horizontally across the chart
+- These help readers align data points with y-axis values
+- Usually present in most statistical charts
+
+**Vertical Grid Lines:**
+- Look for light lines running vertically down the chart
+- These help readers align data points with x-axis categories/values
+- Less common in most statistical charts
+- More often seen in scatter plots and time series
+
+**Important**: Many AP Statistics charts show horizontal grid lines but NOT vertical grid lines. Pay careful attention to what is actually visible in the image.
+
 ## Instructions:
-- Analyze the uploaded PDF
+- Analyze the uploaded PDF carefully
 - Identify unit and lesson numbers from document headers/titles
+- **Pay special attention to chart types** - look for gaps between bars to distinguish bar charts from histograms
+- **Examine grid lines carefully** - note whether horizontal and/or vertical grid lines are present
 - Convert each question following the exact format above
 - Include all visual elements as structured data in attachments
 - Preserve exact wording from the original questions
 - Extract correct answers from the provided answer key/scoring guide
 
 Create a single code artifact containing all converted questions as separate JSON objects.
+
+## Backward Compatibility Note:
+The old format `"gridLines": true` is still supported, but the new format `"gridLines": {"horizontal": true, "vertical": false}` is preferred for better precision.
