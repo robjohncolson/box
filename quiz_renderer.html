@@ -3,21 +3,103 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AP Stats Unit 1 Lesson 2 Quiz - Rendered from JSON</title>
+    <title>Interactive AP Stats Quiz Renderer</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
-            max-width: 800px;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            max-width: 900px;
             margin: 0 auto;
             padding: 20px;
+            background-color: #f5f5f5;
             line-height: 1.6;
         }
-        .quiz-container {
-            border: 1px solid #ddd;
-            border-radius: 8px;
-            padding: 20px;
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            margin-bottom: 20px;
+        }
+        h1 {
+            color: #2c3e50;
+            text-align: center;
             margin-bottom: 30px;
-            background-color: #f9f9f9;
+        }
+        .upload-section {
+            background: #f8f9fa;
+            border: 2px dashed #dee2e6;
+            border-radius: 8px;
+            padding: 25px;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+        .json-input {
+            width: 100%;
+            height: 200px;
+            font-family: monospace;
+            font-size: 14px;
+            border: 2px solid #ddd;
+            border-radius: 6px;
+            padding: 15px;
+            margin-bottom: 15px;
+            resize: vertical;
+            box-sizing: border-box;
+        }
+        .load-button {
+            background: #28a745;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: bold;
+            transition: background 0.3s ease;
+            margin: 5px;
+        }
+        .load-button:hover {
+            background: #218838;
+        }
+        .clear-button {
+            background: #6c757d;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: bold;
+            transition: background 0.3s ease;
+            margin: 5px;
+        }
+        .clear-button:hover {
+            background: #545b62;
+        }
+        .file-input {
+            margin-bottom: 15px;
+            padding: 10px;
+            border: 2px solid #ddd;
+            border-radius: 6px;
+            font-size: 16px;
+            width: 100%;
+            box-sizing: border-box;
+        }
+        .quiz-container {
+            background: white;
+            border: 2px solid #3498db;
+            border-radius: 8px;
+            padding: 25px;
+            margin-bottom: 30px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        .question-header {
+            background: #3498db;
+            color: white;
+            padding: 10px 15px;
+            margin: -25px -25px 20px -25px;
+            border-radius: 6px 6px 0 0;
+            font-weight: bold;
+            font-size: 18px;
         }
         .question-id {
             color: #666;
@@ -28,6 +110,7 @@
             font-weight: bold;
             margin-bottom: 15px;
             font-size: 1.1em;
+            color: #2c3e50;
         }
         .table-container {
             margin: 15px 0;
@@ -37,137 +120,400 @@
             border-collapse: collapse;
             width: 100%;
             margin: 10px 0;
+            background: #f8f9fa;
         }
         th, td {
             border: 1px solid #ddd;
-            padding: 8px;
+            padding: 12px 15px;
             text-align: left;
         }
         th {
-            background-color: #f2f2f2;
+            background-color: #343a40;
+            color: white;
             font-weight: bold;
+        }
+        tr:nth-child(even) {
+            background-color: #f8f9fa;
         }
         .choices {
             margin-top: 15px;
         }
         .choice {
+            background: #f8f9fa;
+            border: 2px solid #e9ecef;
+            border-radius: 6px;
+            padding: 12px 15px;
             margin: 8px 0;
-            padding: 5px;
+            transition: all 0.3s ease;
+        }
+        .choice:hover {
+            background: #e3f2fd;
+            border-color: #2196f3;
         }
         .choice-key {
             font-weight: bold;
             display: inline-block;
             width: 30px;
+            color: #495057;
         }
         .answer-key {
-            background-color: #d4edda;
-            border: 1px solid #c3e6cb;
-            border-radius: 4px;
-            padding: 10px;
+            background: #d4edda;
+            border: 2px solid #28a745;
+            border-radius: 6px;
+            padding: 15px;
             margin-top: 15px;
-        }
-        .answer-label {
             font-weight: bold;
             color: #155724;
+        }
+        .error {
+            background: #f8d7da;
+            border: 2px solid #dc3545;
+            color: #721c24;
+            padding: 15px;
+            border-radius: 6px;
+            margin: 20px 0;
+        }
+        .success {
+            background: #d4edda;
+            border: 2px solid #28a745;
+            color: #155724;
+            padding: 15px;
+            border-radius: 6px;
+            margin: 20px 0;
+        }
+        .stats {
+            background: #e7f3ff;
+            border: 2px solid #0066cc;
+            border-radius: 6px;
+            padding: 15px;
+            margin: 20px 0;
+            text-align: center;
         }
     </style>
 </head>
 <body>
-    <h1>AP Statistics Unit 1 Lesson 2 Quiz</h1>
-    <p><em>Rendered from JSON data: ap_stats_u1_l2_quiz.json</em></p>
-
-    <!-- Question 1 -->
-    <div class="quiz-container">
-        <div class="question-id">Question ID: U1-L2-Q01</div>
-        <div class="question-id">Type: Multiple Choice</div>
+    <div class="container">
+        <h1>🧮 Interactive AP Stats Quiz Renderer</h1>
         
-        <div class="question-prompt">
-            The following table shows data for the 8 longest roller coasters in the world as of 2015. Which of the following variables is categorical?
+        <div class="upload-section">
+            <h3>📁 Load Quiz JSON File</h3>
+            <input type="file" id="jsonFile" accept=".json" class="file-input">
+            <button class="load-button" onclick="loadFromFile()">📂 Load from File</button>
+            
+            <div style="margin: 20px 0; color: #666; font-weight: bold;">
+                — OR —
+            </div>
+            
+            <h3>📝 Paste JSON Data</h3>
+            <textarea class="json-input" id="jsonInput" placeholder="Paste your JSON quiz data here..."></textarea>
+            <button class="load-button" onclick="loadFromText()">📋 Load from Text</button>
+            <button class="clear-button" onclick="clearAll()">🗑️ Clear All</button>
         </div>
-
-        <div class="table-container">
-            <table>
-                <thead>
-                    <tr>
-                        <th>Length (feet)</th>
-                        <th>Type</th>
-                        <th>Speed (miles per hour)</th>
-                        <th>Height (feet)</th>
-                        <th>Drop (feet)</th>
-                        <th>Continent</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr><td>8,133</td><td>Steel</td><td>95</td><td>318</td><td>310</td><td>Asia</td></tr>
-                    <tr><td>7,442</td><td>Steel</td><td>50</td><td>107</td><td>102</td><td>Europe</td></tr>
-                    <tr><td>7,359</td><td>Wood</td><td>65</td><td>110</td><td>135</td><td>North America</td></tr>
-                    <tr><td>6,709</td><td>Steel</td><td>81</td><td>259</td><td>230</td><td>Asia</td></tr>
-                    <tr><td>6,602</td><td>Steel</td><td>95</td><td>325</td><td>320</td><td>North America</td></tr>
-                    <tr><td>6,595</td><td>Steel</td><td>93</td><td>310</td><td>300</td><td>North America</td></tr>
-                    <tr><td>6,562</td><td>Steel</td><td>149</td><td>171</td><td>168</td><td>Asia</td></tr>
-                    <tr><td>6,442</td><td>Wood</td><td>67</td><td>163</td><td>154</td><td>North America</td></tr>
-                </tbody>
-            </table>
-        </div>
-
-        <div class="choices">
-            <div class="choice"><span class="choice-key">A.</span> Length</div>
-            <div class="choice"><span class="choice-key">B.</span> Type</div>
-            <div class="choice"><span class="choice-key">C.</span> Speed</div>
-            <div class="choice"><span class="choice-key">D.</span> Height</div>
-            <div class="choice"><span class="choice-key">E.</span> Drop</div>
-        </div>
-
-        <div class="answer-key">
-            <span class="answer-label">Answer:</span> B
-        </div>
+        
+        <div id="messageContainer"></div>
+        <div id="statsContainer"></div>
+        <div id="questionsContainer"></div>
     </div>
 
-    <!-- Question 2 -->
-    <div class="quiz-container">
-        <div class="question-id">Question ID: U1-L2-Q02</div>
-        <div class="question-id">Type: Multiple Choice</div>
-        
-        <div class="question-prompt">
-            Which of the following questions about cars in a school parking lot will allow for the collection of a set of categorical data?
-        </div>
+    <script>
+        function clearAll() {
+            document.getElementById('messageContainer').innerHTML = '';
+            document.getElementById('questionsContainer').innerHTML = '';
+            document.getElementById('statsContainer').innerHTML = '';
+            document.getElementById('jsonInput').value = '';
+            document.getElementById('jsonFile').value = '';
+        }
 
-        <div class="choices">
-            <div class="choice"><span class="choice-key">A.</span> How many blue cars are in the lot?</div>
-            <div class="choice"><span class="choice-key">B.</span> What are the gas mileages, in miles per gallon, of the cars in the lot?</div>
-            <div class="choice"><span class="choice-key">C.</span> What are the weights, in pounds, of the cars in the lot?</div>
-            <div class="choice"><span class="choice-key">D.</span> What is the number of cars in the lot with out-of-state license plates?</div>
-            <div class="choice"><span class="choice-key">E.</span> What are the colors of the cars in the lot?</div>
-        </div>
+        function showMessage(message, type = 'error') {
+            const messageContainer = document.getElementById('messageContainer');
+            const className = type === 'success' ? 'success' : 'error';
+            messageContainer.innerHTML = `<div class="${className}"><strong>${type === 'success' ? 'Success' : 'Error'}:</strong> ${message}</div>`;
+        }
 
-        <div class="answer-key">
-            <span class="answer-label">Answer:</span> E
-        </div>
-    </div>
+        function showStats(questions) {
+            const statsContainer = document.getElementById('statsContainer');
+            const totalQuestions = questions.length;
+            const mcQuestions = questions.filter(q => q.type === 'multiple-choice').length;
+            const hasAnswers = questions.filter(q => q.answerKey).length;
+            
+            statsContainer.innerHTML = `
+                <div class="stats">
+                    <strong>📊 Quiz Statistics:</strong><br>
+                    Total Questions: ${totalQuestions} | 
+                    Multiple Choice: ${mcQuestions} | 
+                    With Answer Keys: ${hasAnswers}
+                </div>
+            `;
+        }
 
-    <!-- Question 3 -->
-    <div class="quiz-container">
-        <div class="question-id">Question ID: U1-L2-Q03</div>
-        <div class="question-id">Type: Multiple Choice</div>
-        
-        <div class="question-prompt">
-            Data were collected on 100 United States coins minted in 2018. Which of the following represents a quantitative variable for the data collected?
-        </div>
+        function renderTable(tableData) {
+            if (!tableData || !Array.isArray(tableData) || tableData.length === 0) return '';
+            
+            const headers = tableData[0];
+            const rows = tableData.slice(1);
+            
+            let tableHtml = '<div class="table-container"><table>';
+            
+            // Headers
+            tableHtml += '<thead><tr>';
+            headers.forEach(header => {
+                tableHtml += `<th>${header}</th>`;
+            });
+            tableHtml += '</tr></thead>';
+            
+            // Rows
+            tableHtml += '<tbody>';
+            rows.forEach(row => {
+                tableHtml += '<tr>';
+                row.forEach(cell => {
+                    tableHtml += `<td>${cell}</td>`;
+                });
+                tableHtml += '</tr>';
+            });
+            tableHtml += '</tbody></table></div>';
+            
+            return tableHtml;
+        }
 
-        <div class="choices">
-            <div class="choice"><span class="choice-key">A.</span> The type of metal used in the coin</div>
-            <div class="choice"><span class="choice-key">B.</span> The value of the coin</div>
-            <div class="choice"><span class="choice-key">C.</span> The color of the coin</div>
-            <div class="choice"><span class="choice-key">D.</span> The person depicted on the face of the coin</div>
-            <div class="choice"><span class="choice-key">E.</span> The location where the coin was minted</div>
-        </div>
+        function renderChoices(choices) {
+            if (!choices || !Array.isArray(choices)) return '';
+            
+            let choicesHtml = '<div class="choices">';
+            choices.forEach(choice => {
+                choicesHtml += `
+                    <div class="choice">
+                        <span class="choice-key">${choice.key}.</span> ${choice.value}
+                    </div>
+                `;
+            });
+            choicesHtml += '</div>';
+            
+            return choicesHtml;
+        }
 
-        <div class="answer-key">
-            <span class="answer-label">Answer:</span> B
-        </div>
-    </div>
+        function renderQuestion(question, index) {
+            const questionNumber = index + 1;
+            let questionHtml = `
+                <div class="quiz-container">
+                    <div class="question-header">Question ${questionNumber}</div>
+                    <div class="question-id">ID: ${question.id || 'N/A'}</div>
+                    <div class="question-id">Type: ${question.type || 'N/A'}</div>
+                    
+                    <div class="question-prompt">
+                        ${question.prompt || 'No prompt provided'}
+                    </div>
+            `;
 
-    <hr>
-    <p><em>This rendering is based on the JSON data structure from ap_stats_u1_l2_quiz.json. Compare this with the original PDF to verify conversion fidelity.</em></p>
+            // Handle attachments
+            if (question.attachments) {
+                // Render table if present
+                if (question.attachments.table) {
+                    questionHtml += renderTable(question.attachments.table);
+                }
+                
+                // Render choices if present
+                if (question.attachments.choices) {
+                    questionHtml += renderChoices(question.attachments.choices);
+                }
+            }
+
+            // Render answer key if present
+            if (question.answerKey) {
+                questionHtml += `
+                    <div class="answer-key">
+                        <strong>Answer:</strong> ${question.answerKey}
+                    </div>
+                `;
+            }
+
+            questionHtml += '</div>';
+            return questionHtml;
+        }
+
+        function renderQuiz(data) {
+            try {
+                let questions = [];
+                
+                // Handle different JSON structures
+                if (Array.isArray(data)) {
+                    questions = data;
+                } else if (data.questions && Array.isArray(data.questions)) {
+                    questions = data.questions;
+                } else if (typeof data === 'object') {
+                    // Check if it's a single question object
+                    if (data.id && data.prompt) {
+                        questions = [data];
+                    } else {
+                        // Try to extract questions from object properties
+                        questions = Object.values(data).filter(item => 
+                            typeof item === 'object' && item.id && item.prompt
+                        );
+                    }
+                }
+
+                if (questions.length === 0) {
+                    showMessage('No valid questions found in the JSON data. Please check the format.');
+                    return;
+                }
+
+                showStats(questions);
+                
+                const questionsContainer = document.getElementById('questionsContainer');
+                let questionsHtml = '';
+                
+                questions.forEach((question, index) => {
+                    questionsHtml += renderQuestion(question, index);
+                });
+                
+                questionsContainer.innerHTML = questionsHtml;
+                showMessage(`Successfully loaded ${questions.length} question(s)!`, 'success');
+                
+            } catch (error) {
+                showMessage(`Error rendering quiz: ${error.message}`);
+            }
+        }
+
+        function loadFromFile() {
+            const fileInput = document.getElementById('jsonFile');
+            const file = fileInput.files[0];
+            
+            if (!file) {
+                showMessage('Please select a JSON file first.');
+                return;
+            }
+            
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                try {
+                    const cleanedJson = cleanJsonText(e.target.result);
+                    const jsonData = JSON.parse(cleanedJson);
+                    renderQuiz(jsonData);
+                } catch (error) {
+                    showMessage(`Invalid JSON file: ${error.message}`);
+                }
+            };
+            reader.readAsText(file);
+        }
+
+        function cleanJsonText(text) {
+            try {
+                // Step 1: Remove all comment lines and empty lines
+                const lines = text.split('\n');
+                const cleanedLines = lines.filter(line => {
+                    const trimmed = line.trim();
+                    return !trimmed.startsWith('//') && trimmed !== '';
+                });
+                
+                // Step 2: Join and fix basic JSON issues
+                let cleanedText = cleanedLines.join('\n');
+                cleanedText = cleanedText.replace(/,(\s*[}\]])/g, '$1'); // Fix trailing commas
+                
+                // Step 3: Try to parse as-is first (might be valid JSON already)
+                try {
+                    JSON.parse(cleanedText);
+                    return cleanedText; // Already valid JSON
+                } catch (e) {
+                    // Continue with multi-object processing
+                }
+                
+                // Step 4: Handle multiple JSON objects
+                const jsonObjects = [];
+                let currentObject = '';
+                let braceCount = 0;
+                let inString = false;
+                let escapeNext = false;
+                
+                for (let i = 0; i < cleanedText.length; i++) {
+                    const char = cleanedText[i];
+                    currentObject += char;
+                    
+                    if (escapeNext) {
+                        escapeNext = false;
+                        continue;
+                    }
+                    
+                    if (char === '\\') {
+                        escapeNext = true;
+                        continue;
+                    }
+                    
+                    if (char === '"') {
+                        inString = !inString;
+                        continue;
+                    }
+                    
+                    if (!inString) {
+                        if (char === '{') {
+                            braceCount++;
+                        } else if (char === '}') {
+                            braceCount--;
+                            
+                            // When braceCount reaches 0, we have a complete object
+                            if (braceCount === 0) {
+                                const trimmedObject = currentObject.trim();
+                                if (trimmedObject) {
+                                    // Validate this individual object
+                                    try {
+                                        JSON.parse(trimmedObject);
+                                        jsonObjects.push(trimmedObject);
+                                    } catch (e) {
+                                        console.warn('Skipping invalid JSON object:', e.message);
+                                    }
+                                }
+                                currentObject = '';
+                            }
+                        }
+                    }
+                }
+                
+                // Handle any remaining content
+                if (currentObject.trim()) {
+                    try {
+                        JSON.parse(currentObject.trim());
+                        jsonObjects.push(currentObject.trim());
+                    } catch (e) {
+                        console.warn('Skipping invalid remaining JSON:', e.message);
+                    }
+                }
+                
+                if (jsonObjects.length === 0) {
+                    throw new Error('No valid JSON objects found');
+                }
+                
+                // If we have multiple objects, wrap in array
+                if (jsonObjects.length > 1) {
+                    return '[' + jsonObjects.join(',') + ']';
+                } else {
+                    return jsonObjects[0];
+                }
+                
+            } catch (error) {
+                throw new Error(`JSON sanitization failed: ${error.message}`);
+            }
+        }
+
+        function loadFromText() {
+            const jsonInput = document.getElementById('jsonInput');
+            const jsonText = jsonInput.value.trim();
+            
+            if (!jsonText) {
+                showMessage('Please paste some JSON data first.');
+                return;
+            }
+            
+            try {
+                const cleanedJson = cleanJsonText(jsonText);
+                const jsonData = JSON.parse(cleanedJson);
+                renderQuiz(jsonData);
+            } catch (error) {
+                showMessage(`Invalid JSON format: ${error.message}`);
+            }
+        }
+
+        // Load sample data on page load
+        window.onload = function() {
+            showMessage('Ready to load quiz JSON files! Supports standard JSON and JSON with // comments.', 'success');
+        };
+    </script>
 </body>
 </html> 
