@@ -1,0 +1,147 @@
+{
+  "id": "U1-L6-Q01",
+  "type": "multiple-choice",
+  "prompt": "Which of the following statements is true about a distribution that appears to have a gap when displayed as a histogram?",
+  "choices": [
+    {
+      "key": "A",
+      "value": "The distribution must have an outlier."
+    },
+    {
+      "key": "B",
+      "value": "The distribution has a region between two data values where no data were observed."
+    },
+    {
+      "key": "C",
+      "value": "The distribution is approximately normal."
+    },
+    {
+      "key": "D",
+      "value": "The distribution cannot be symmetric."
+    },
+    {
+      "key": "E",
+      "value": "The distribution must be bimodal."
+    }
+  ],
+  "answerKey": "B"
+}
+
+{
+  "id": "U1-L6-Q02",
+  "type": "multiple-choice",
+  "prompt": "The following histogram summarizes the amount spent on plane tickets to travel home, in dollars, for a group of 30 college students. If the interval size is decreased from $200 to $100, which of the following must remain the same on the new histogram?",
+  "attachments": {
+    "chartType": "bar",
+    "xLabels": ["0-200", "200-400", "400-600", "600-800", "800-1000", "1000-1200"],
+    "series": [
+      {
+        "name": "Number of Students",
+        "values": [4, 6, 9, 7, 3, 1]
+      }
+    ],
+    "chartConfig": {
+      "yAxis": {
+        "min": 0,
+        "max": 10,
+        "tickInterval": 1,
+        "title": "Number of Students"
+      },
+      "xAxis": {
+        "title": "Amount Spent (Dollars)"
+      },
+      "gridLines": true,
+      "description": "Histogram showing amount spent on plane tickets with intervals of $200"
+    }
+  },
+  "choices": [
+    {
+      "key": "A",
+      "value": "The heights of the bars"
+    },
+    {
+      "key": "B",
+      "value": "The widths of the bars"
+    },
+    {
+      "key": "C",
+      "value": "The number of bars"
+    },
+    {
+      "key": "D",
+      "value": "The sum of the frequencies"
+    },
+    {
+      "key": "E",
+      "value": "The shape of the distribution"
+    }
+  ],
+  "answerKey": "D"
+}
+
+{
+  "id": "U1-L6-Q03",
+  "type": "multiple-choice",
+  "prompt": "The following dotplot shows the scores of 25 people who played an online trivia game. Which of the following statements is the best description of the distribution of scores?",
+  "attachments": {
+    "chartType": "scatter",
+    "points": [
+      {"x": 55, "y": 1},
+      {"x": 60, "y": 1},
+      {"x": 60, "y": 2},
+      {"x": 60, "y": 3},
+      {"x": 60, "y": 4},
+      {"x": 65, "y": 1},
+      {"x": 65, "y": 2},
+      {"x": 65, "y": 3},
+      {"x": 70, "y": 1},
+      {"x": 70, "y": 2},
+      {"x": 70, "y": 3},
+      {"x": 70, "y": 4},
+      {"x": 75, "y": 1},
+      {"x": 80, "y": 1},
+      {"x": 85, "y": 1},
+      {"x": 90, "y": 1},
+      {"x": 95, "y": 1}
+    ],
+    "chartConfig": {
+      "xAxis": {
+        "min": 45,
+        "max": 105,
+        "tickInterval": 5,
+        "title": "Score"
+      },
+      "yAxis": {
+        "min": 0,
+        "max": 5,
+        "tickInterval": 1,
+        "title": "Frequency"
+      },
+      "gridLines": true,
+      "description": "Dotplot showing distribution of trivia game scores for 25 people"
+    }
+  },
+  "choices": [
+    {
+      "key": "A",
+      "value": "The distribution is roughly symmetric."
+    },
+    {
+      "key": "B",
+      "value": "The distribution is roughly uniform."
+    },
+    {
+      "key": "C",
+      "value": "The distribution is skewed left."
+    },
+    {
+      "key": "D",
+      "value": "The distribution is skewed right."
+    },
+    {
+      "key": "E",
+      "value": "The distribution is bimodal."
+    }
+  ],
+  "answerKey": "D"
+}

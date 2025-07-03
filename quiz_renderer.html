@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Interactive AP Stats Quiz Renderer</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
     <style>
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -135,6 +136,25 @@
         tr:nth-child(even) {
             background-color: #f8f9fa;
         }
+        .chart-container {
+            margin: 20px 0;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            border: 2px solid #e9ecef;
+        }
+        .chart-title {
+            text-align: center;
+            margin-bottom: 15px;
+            font-weight: bold;
+            color: #495057;
+        }
+        .chart-canvas {
+            position: relative;
+            height: 400px;
+            width: 100%;
+        }
         .choices {
             margin-top: 15px;
         }
@@ -189,6 +209,90 @@
             margin: 20px 0;
             text-align: center;
         }
+        
+        /* Dark mode adaptations */
+        @media (prefers-color-scheme: dark) {
+            body {
+                background-color: #1a1a1a;
+                color: #e0e0e0;
+            }
+            
+            .container {
+                background: #2d2d2d;
+                color: #e0e0e0;
+            }
+            
+            .upload-section {
+                background: #333333;
+                border-color: #555555;
+                color: #e0e0e0;
+            }
+            
+            .quiz-container {
+                background: #2d2d2d;
+                border-color: #5BC0EB;
+                color: #e0e0e0;
+            }
+            
+            .question-header {
+                background: #5BC0EB;
+                color: #1a1a1a;
+            }
+            
+            .chart-container {
+                background: #2d2d2d;
+                border-color: #555555;
+            }
+            
+            .choice {
+                background: #333333;
+                border-color: #555555;
+                color: #e0e0e0;
+            }
+            
+            .choice:hover {
+                background: #404040;
+                border-color: #5BC0EB;
+            }
+            
+            .answer-key {
+                background: #2d4a2d;
+                border-color: #4a7c59;
+                color: #90ee90;
+            }
+            
+            .stats {
+                background: #1a2332;
+                border-color: #5BC0EB;
+                color: #e0e0e0;
+            }
+            
+            .json-input {
+                background: #333333;
+                border-color: #555555;
+                color: #e0e0e0;
+            }
+            
+            .file-input {
+                background: #333333;
+                border-color: #555555;
+                color: #e0e0e0;
+            }
+            
+            table {
+                background: #2d2d2d;
+                color: #e0e0e0;
+            }
+            
+            th {
+                background-color: #404040;
+                color: #e0e0e0;
+            }
+            
+            tr:nth-child(even) {
+                background-color: #333333;
+            }
+        }
     </style>
 </head>
 <body>
@@ -216,12 +320,18 @@
     </div>
 
     <script>
+        let chartInstances = [];
+
         function clearAll() {
             document.getElementById('messageContainer').innerHTML = '';
             document.getElementById('questionsContainer').innerHTML = '';
             document.getElementById('statsContainer').innerHTML = '';
             document.getElementById('jsonInput').value = '';
             document.getElementById('jsonFile').value = '';
+            
+            // Destroy existing charts
+            chartInstances.forEach(chart => chart.destroy());
+            chartInstances = [];
         }
 
         function showMessage(message, type = 'error') {
@@ -235,15 +345,257 @@
             const totalQuestions = questions.length;
             const mcQuestions = questions.filter(q => q.type === 'multiple-choice').length;
             const hasAnswers = questions.filter(q => q.answerKey).length;
+            const hasCharts = questions.filter(q => q.attachments && q.attachments.chartType).length;
+            const hasTables = questions.filter(q => q.attachments && q.attachments.table).length;
+            const barCharts = questions.filter(q => q.attachments && q.attachments.chartType === 'bar').length;
+            const pieCharts = questions.filter(q => q.attachments && q.attachments.chartType === 'pie').length;
+            const scatterCharts = questions.filter(q => q.attachments && q.attachments.chartType === 'scatter').length;
+            
+            let chartBreakdown = '';
+            if (hasCharts > 0) {
+                const chartTypes = [];
+                if (barCharts > 0) chartTypes.push(`📊 Bar: ${barCharts}`);
+                if (pieCharts > 0) chartTypes.push(`🥧 Pie: ${pieCharts}`);
+                if (scatterCharts > 0) chartTypes.push(`📈 Scatter: ${scatterCharts}`);
+                chartBreakdown = ` (${chartTypes.join(', ')})`;
+            }
             
             statsContainer.innerHTML = `
                 <div class="stats">
                     <strong>📊 Quiz Statistics:</strong><br>
                     Total Questions: ${totalQuestions} | 
                     Multiple Choice: ${mcQuestions} | 
-                    With Answer Keys: ${hasAnswers}
+                    With Answer Keys: ${hasAnswers}<br>
+                    📈 Charts: ${hasCharts}${chartBreakdown} | 📋 Tables: ${hasTables}
                 </div>
             `;
+        }
+
+        function isDarkMode() {
+            return window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+        }
+
+        function generateChartColors(count) {
+            const lightColors = [
+                '#FF6384', '#36A2EB', '#FFCE56', '#4BC0C0', 
+                '#9966FF', '#FF9F40', '#FF6384', '#C9CBCF',
+                '#4BC0C0', '#FF6384', '#36A2EB', '#FFCE56'
+            ];
+            
+            const darkColors = [
+                '#FF8FA3', '#5BC0EB', '#FFE066', '#6BE6E6', 
+                '#B366FF', '#FFB366', '#FF8FA3', '#E9EBEF',
+                '#6BE6E6', '#FF8FA3', '#5BC0EB', '#FFE066'
+            ];
+            
+            const colors = isDarkMode() ? darkColors : lightColors;
+            return colors.slice(0, count);
+        }
+
+        function getGridColor() {
+            return isDarkMode() ? '#555555' : '#e9ecef';
+        }
+
+        function getScatterPointColor() {
+            return isDarkMode() ? '#5BC0EB' : '#36A2EB';
+        }
+
+        function renderChart(chartData, questionId) {
+            const chartId = `chart-${questionId}`;
+            const config = chartData.chartConfig || {};
+            const chartTitle = config.description ? 
+                `📊 ${chartData.chartType.toUpperCase()} CHART` : 
+                `📊 ${chartData.chartType.toUpperCase()} CHART`;
+            
+            let chartHtml = `
+                <div class="chart-container">
+                    <div class="chart-title">${chartTitle}</div>
+                    ${config.description ? `<div style="font-size: 0.9em; color: #666; text-align: center; margin-bottom: 10px; font-style: italic;">${config.description}</div>` : ''}
+                    <div class="chart-canvas">
+                        <canvas id="${chartId}"></canvas>
+                    </div>
+                </div>
+            `;
+
+            // Return HTML first, then we'll create the chart after the DOM is updated
+            setTimeout(() => {
+                const canvas = document.getElementById(chartId);
+                if (!canvas) return;
+
+                const ctx = canvas.getContext('2d');
+                
+                if (chartData.chartType === 'bar') {
+                    const datasets = chartData.series.map((series, index) => ({
+                        label: series.name,
+                        data: series.values,
+                        backgroundColor: generateChartColors(series.values.length)[index] || '#36A2EB',
+                        borderColor: generateChartColors(series.values.length)[index] || '#36A2EB',
+                        borderWidth: 1
+                    }));
+
+                    // Use chartConfig if available, otherwise use defaults
+                    const config = chartData.chartConfig || {};
+                    const yAxisConfig = config.yAxis || {};
+                    const xAxisConfig = config.xAxis || {};
+
+                    const chart = new Chart(ctx, {
+                        type: 'bar',
+                        data: {
+                            labels: chartData.xLabels,
+                            datasets: datasets
+                        },
+                        options: {
+                            responsive: true,
+                            maintainAspectRatio: false,
+                            scales: {
+                                y: {
+                                    beginAtZero: yAxisConfig.min !== undefined ? false : true,
+                                    min: yAxisConfig.min,
+                                    max: yAxisConfig.max,
+                                    title: {
+                                        display: true,
+                                        text: yAxisConfig.title || 'Value'
+                                    },
+                                    grid: {
+                                        display: config.gridLines !== false,
+                                        color: getGridColor(),
+                                        lineWidth: 1,
+                                        drawBorder: true,
+                                        drawOnChartArea: true,
+                                        drawTicks: true
+                                    },
+                                    ticks: {
+                                        stepSize: yAxisConfig.tickInterval,
+                                        maxTicksLimit: yAxisConfig.tickInterval ? undefined : 10,
+                                        precision: 2
+                                    }
+                                },
+                                x: {
+                                    title: {
+                                        display: true,
+                                        text: xAxisConfig.title || 'Category'
+                                    },
+                                    grid: {
+                                        display: false
+                                    }
+                                }
+                            },
+                            plugins: {
+                                legend: {
+                                    display: datasets.length > 1
+                                }
+                            }
+                        }
+                    });
+                    chartInstances.push(chart);
+                
+                } else if (chartData.chartType === 'pie') {
+                    const seriesData = chartData.series[0].values;
+                    const labels = seriesData.map(item => item.name);
+                    const values = seriesData.map(item => item.value);
+                    
+                    const chart = new Chart(ctx, {
+                        type: 'pie',
+                        data: {
+                            labels: labels,
+                            datasets: [{
+                                data: values,
+                                backgroundColor: generateChartColors(values.length),
+                                borderWidth: 2,
+                                borderColor: '#fff'
+                            }]
+                        },
+                        options: {
+                            responsive: true,
+                            maintainAspectRatio: false,
+                            plugins: {
+                                legend: {
+                                    position: 'bottom',
+                                    labels: {
+                                        padding: 20,
+                                        usePointStyle: true
+                                    }
+                                },
+                                tooltip: {
+                                    callbacks: {
+                                        label: function(context) {
+                                            const total = values.reduce((a, b) => a + b, 0);
+                                            const percentage = ((context.parsed / total) * 100).toFixed(1);
+                                            return `${context.label}: ${context.parsed} (${percentage}%)`;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    });
+                    chartInstances.push(chart);
+                
+                } else if (chartData.chartType === 'scatter') {
+                    const config = chartData.chartConfig || {};
+                    const xAxisConfig = config.xAxis || {};
+                    const yAxisConfig = config.yAxis || {};
+                    
+                    const chart = new Chart(ctx, {
+                        type: 'scatter',
+                        data: {
+                            datasets: [{
+                                label: 'Data Points',
+                                data: chartData.points,
+                                backgroundColor: getScatterPointColor(),
+                                borderColor: getScatterPointColor(),
+                                pointRadius: 4,
+                                pointHoverRadius: 6
+                            }]
+                        },
+                        options: {
+                            responsive: true,
+                            maintainAspectRatio: false,
+                            scales: {
+                                x: {
+                                    type: 'linear',
+                                    position: 'bottom',
+                                    min: xAxisConfig.min,
+                                    max: xAxisConfig.max,
+                                    title: {
+                                        display: true,
+                                        text: xAxisConfig.title || 'X Variable'
+                                    },
+                                    grid: {
+                                        display: config.gridLines !== false,
+                                        color: getGridColor()
+                                    },
+                                    ticks: {
+                                        stepSize: xAxisConfig.tickInterval
+                                    }
+                                },
+                                y: {
+                                    min: yAxisConfig.min,
+                                    max: yAxisConfig.max,
+                                    title: {
+                                        display: true,
+                                        text: yAxisConfig.title || 'Y Variable'
+                                    },
+                                    grid: {
+                                        display: config.gridLines !== false,
+                                        color: getGridColor()
+                                    },
+                                    ticks: {
+                                        stepSize: yAxisConfig.tickInterval
+                                    }
+                                }
+                            },
+                            plugins: {
+                                legend: {
+                                    display: false
+                                }
+                            }
+                        }
+                    });
+                    chartInstances.push(chart);
+                }
+            }, 100);
+
+            return chartHtml;
         }
 
         function renderTable(tableData) {
@@ -306,15 +658,25 @@
 
             // Handle attachments
             if (question.attachments) {
+                // Render chart if present
+                if (question.attachments.chartType) {
+                    questionHtml += renderChart(question.attachments, question.id);
+                }
+                
                 // Render table if present
                 if (question.attachments.table) {
                     questionHtml += renderTable(question.attachments.table);
                 }
                 
-                // Render choices if present
+                // Render choices if present (in attachments)
                 if (question.attachments.choices) {
                     questionHtml += renderChoices(question.attachments.choices);
                 }
+            }
+
+            // Handle choices at top level (new format)
+            if (question.choices) {
+                questionHtml += renderChoices(question.choices);
             }
 
             // Render answer key if present
@@ -328,71 +690,6 @@
 
             questionHtml += '</div>';
             return questionHtml;
-        }
-
-        function renderQuiz(data) {
-            try {
-                let questions = [];
-                
-                // Handle different JSON structures
-                if (Array.isArray(data)) {
-                    questions = data;
-                } else if (data.questions && Array.isArray(data.questions)) {
-                    questions = data.questions;
-                } else if (typeof data === 'object') {
-                    // Check if it's a single question object
-                    if (data.id && data.prompt) {
-                        questions = [data];
-                    } else {
-                        // Try to extract questions from object properties
-                        questions = Object.values(data).filter(item => 
-                            typeof item === 'object' && item.id && item.prompt
-                        );
-                    }
-                }
-
-                if (questions.length === 0) {
-                    showMessage('No valid questions found in the JSON data. Please check the format.');
-                    return;
-                }
-
-                showStats(questions);
-                
-                const questionsContainer = document.getElementById('questionsContainer');
-                let questionsHtml = '';
-                
-                questions.forEach((question, index) => {
-                    questionsHtml += renderQuestion(question, index);
-                });
-                
-                questionsContainer.innerHTML = questionsHtml;
-                showMessage(`Successfully loaded ${questions.length} question(s)!`, 'success');
-                
-            } catch (error) {
-                showMessage(`Error rendering quiz: ${error.message}`);
-            }
-        }
-
-        function loadFromFile() {
-            const fileInput = document.getElementById('jsonFile');
-            const file = fileInput.files[0];
-            
-            if (!file) {
-                showMessage('Please select a JSON file first.');
-                return;
-            }
-            
-            const reader = new FileReader();
-            reader.onload = function(e) {
-                try {
-                    const cleanedJson = cleanJsonText(e.target.result);
-                    const jsonData = JSON.parse(cleanedJson);
-                    renderQuiz(jsonData);
-                } catch (error) {
-                    showMessage(`Invalid JSON file: ${error.message}`);
-                }
-            };
-            reader.readAsText(file);
         }
 
         function cleanJsonText(text) {
@@ -492,6 +789,78 @@
             }
         }
 
+        function renderQuiz(data) {
+            try {
+                // Store data for dark mode re-rendering
+                window.lastLoadedData = data;
+                
+                // Clear existing charts first
+                chartInstances.forEach(chart => chart.destroy());
+                chartInstances = [];
+                
+                let questions = [];
+                
+                // Handle different JSON structures
+                if (Array.isArray(data)) {
+                    questions = data;
+                } else if (data.questions && Array.isArray(data.questions)) {
+                    questions = data.questions;
+                } else if (typeof data === 'object') {
+                    // Check if it's a single question object
+                    if (data.id && data.prompt) {
+                        questions = [data];
+                    } else {
+                        // Try to extract questions from object properties
+                        questions = Object.values(data).filter(item => 
+                            typeof item === 'object' && item.id && item.prompt
+                        );
+                    }
+                }
+
+                if (questions.length === 0) {
+                    showMessage('No valid questions found in the JSON data. Please check the format.');
+                    return;
+                }
+
+                showStats(questions);
+                
+                const questionsContainer = document.getElementById('questionsContainer');
+                let questionsHtml = '';
+                
+                questions.forEach((question, index) => {
+                    questionsHtml += renderQuestion(question, index);
+                });
+                
+                questionsContainer.innerHTML = questionsHtml;
+                showMessage(`Successfully loaded ${questions.length} question(s) with tables and charts! Advanced chart configurations and dark mode support enabled.`, 'success');
+                
+            } catch (error) {
+                showMessage(`Error rendering quiz: ${error.message}`);
+            }
+        }
+
+        function loadFromFile() {
+            const fileInput = document.getElementById('jsonFile');
+            const file = fileInput.files[0];
+            
+            if (!file) {
+                showMessage('Please select a JSON file first.');
+                return;
+            }
+            
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                try {
+                    const cleanedJson = cleanJsonText(e.target.result);
+                    const jsonData = JSON.parse(cleanedJson);
+                    renderQuiz(jsonData);
+                } catch (error) {
+                    showMessage(`Invalid JSON file: ${error.message}`);
+                }
+            };
+            reader.readAsText(file);
+        }
+
         function loadFromText() {
             const jsonInput = document.getElementById('jsonInput');
             const jsonText = jsonInput.value.trim();
@@ -510,9 +879,24 @@
             }
         }
 
+        // Dark mode change listener
+        if (window.matchMedia) {
+            window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', function(e) {
+                // Re-render all charts when dark mode changes
+                const questionsContainer = document.getElementById('questionsContainer');
+                if (questionsContainer.innerHTML.trim() !== '') {
+                    // If we have loaded questions, re-render them
+                    const currentData = window.lastLoadedData;
+                    if (currentData) {
+                        renderQuiz(currentData);
+                    }
+                }
+            });
+        }
+
         // Load sample data on page load
         window.onload = function() {
-            showMessage('Ready to load quiz JSON files! Supports standard JSON and JSON with // comments.', 'success');
+            showMessage('Ready to load quiz JSON files! Supports tables, bar/pie/scatter charts with detailed tick intervals, axis ranges, dark mode, and JSON with // comments.', 'success');
         };
     </script>
 </body>
