@@ -879,6 +879,9 @@
                     const yAxisConfig = config.yAxis || {};
                     const xAxisConfig = config.xAxis || {};
                     
+                    // Check if this is a horizontal bar chart
+                    const isHorizontal = config.orientation === 'horizontal';
+                    
                     // Handle grid lines - support both old and new formats
                     let showHorizontalGrid = true;
                     let showVerticalGrid = false;
@@ -900,15 +903,20 @@
                     const categoryPercentage = isHistogram ? 1.0 : 0.8;
                     const barPercentage = isHistogram ? 1.0 : 0.9;
                     
-                    // Handle x-axis labels - support both range and bound labeling
-                    let displayLabels = chartData.xLabels;
-                    if (xAxisConfig.labelType === 'upperBound' && xAxisConfig.labels) {
-                        displayLabels = xAxisConfig.labels;
-                    } else if (xAxisConfig.labelType === 'range' && chartData.xLabels) {
+                    // Handle labels - support both horizontal and vertical orientations
+                    let displayLabels;
+                    if (isHorizontal) {
+                        displayLabels = chartData.yLabels || chartData.xLabels;
+                    } else {
                         displayLabels = chartData.xLabels;
-                    } else if (xAxisConfig.labelType === 'lowerBound') {
-                        // Use provided labels (prefer xAxisConfig.labels, fallback to chartData.xLabels)
-                        displayLabels = xAxisConfig.labels || chartData.xLabels;
+                        if (xAxisConfig.labelType === 'upperBound' && xAxisConfig.labels) {
+                            displayLabels = xAxisConfig.labels;
+                        } else if (xAxisConfig.labelType === 'range' && chartData.xLabels) {
+                            displayLabels = chartData.xLabels;
+                        } else if (xAxisConfig.labelType === 'lowerBound') {
+                            // Use provided labels (prefer xAxisConfig.labels, fallback to chartData.xLabels)
+                            displayLabels = xAxisConfig.labels || chartData.xLabels;
+                        }
                     }
 
                     const chart = new Chart(ctx, {
@@ -920,9 +928,50 @@
                         options: {
                             responsive: true,
                             maintainAspectRatio: false,
+                            indexAxis: isHorizontal ? 'y' : 'x',
                             categoryPercentage: categoryPercentage,
                             barPercentage: barPercentage,
-                            scales: {
+                            scales: isHorizontal ? {
+                                x: {
+                                    beginAtZero: xAxisConfig.min !== undefined ? false : true,
+                                    min: xAxisConfig.min,
+                                    max: xAxisConfig.max,
+                                    title: {
+                                        display: true,
+                                        text: xAxisConfig.title || 'Value',
+                                        color: getTextColor()
+                                    },
+                                    grid: {
+                                        display: showVerticalGrid,
+                                        color: getGridColor(),
+                                        lineWidth: 1,
+                                        drawBorder: true,
+                                        drawOnChartArea: true,
+                                        drawTicks: true
+                                    },
+                                    ticks: {
+                                        stepSize: xAxisConfig.tickInterval,
+                                        maxTicksLimit: xAxisConfig.tickInterval ? undefined : 10,
+                                        precision: 2,
+                                        color: getTextColor()
+                                    }
+                                },
+                                y: {
+                                    title: {
+                                        display: true,
+                                        text: yAxisConfig.title || 'Category',
+                                        color: getTextColor()
+                                    },
+                                    grid: {
+                                        display: showHorizontalGrid,
+                                        color: getGridColor()
+                                    },
+                                    ticks: {
+                                        color: getTextColor()
+                                    },
+                                    offset: true
+                                }
+                            } : {
                                 y: {
                                     beginAtZero: yAxisConfig.min !== undefined ? false : true,
                                     min: yAxisConfig.min,

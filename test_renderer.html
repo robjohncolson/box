@@ -3,76 +3,112 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Test Quiz Renderer</title>
+    <title>Test Quiz Renderer - Bar Chart Ordering</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
     <style>
         body { font-family: Arial, sans-serif; margin: 20px; }
         .result { margin: 10px 0; padding: 10px; border: 1px solid #ccc; }
         .success { background-color: #d4edda; border-color: #c3e6cb; }
         .error { background-color: #f8d7da; border-color: #f5c6cb; }
+        .chart-container { margin: 20px 0; }
+        canvas { max-width: 600px; height: 400px; }
     </style>
 </head>
 <body>
-    <h1>Quiz Renderer Test</h1>
+    <h1>Bar Chart Ordering Test</h1>
+    <p>Testing the updated JSON data structure for U1-PC-MCQ-A-Q11</p>
     <div id="results"></div>
-    <div id="quiz-container"></div>
+    <div id="chart-container" class="chart-container"></div>
     
     <script>
-        async function testRenderer() {
+        async function testBarChart() {
             const resultsDiv = document.getElementById('results');
             
             try {
                 // Load the JSON file
-                const response = await fetch('assets/jsons/ap_stats_u1_l9_quiz.json');
+                const response = await fetch('assets/jsons/u1_mcq_part_a.json');
                 const data = await response.json();
                 
-                resultsDiv.innerHTML += `<div class="result success">✓ JSON loaded successfully - ${data.length} questions found</div>`;
+                // Find the specific question
+                const question = data.find(q => q.id === 'U1-PC-MCQ-A-Q11');
                 
-                // Test each question
-                data.forEach((question, index) => {
-                    try {
-                        if (question.attachments && question.attachments.chartType === 'boxplot') {
-                            const boxplotData = question.attachments.chartConfig.boxplotData;
-                            if (Array.isArray(boxplotData)) {
-                                resultsDiv.innerHTML += `<div class="result success">✓ Question ${index + 1}: Multiple boxplots detected - ${boxplotData.length} boxplots</div>`;
-                            } else {
-                                resultsDiv.innerHTML += `<div class="result success">✓ Question ${index + 1}: Single boxplot detected</div>`;
-                            }
-                        } else if (question.attachments && question.attachments.charts && Array.isArray(question.attachments.charts)) {
-                            resultsDiv.innerHTML += `<div class="result success">✓ Question ${index + 1}: Multiple separate charts detected - ${question.attachments.charts.length} charts</div>`;
-                            question.attachments.charts.forEach((chart, chartIndex) => {
-                                resultsDiv.innerHTML += `<div class="result success">  - Chart ${chartIndex + 1}: ${chart.chartType} - ${chart.title || 'No title'}</div>`;
-                            });
-                        } else if (question.attachments && question.attachments.chartType === 'histogram') {
-                            const series = question.attachments.series;
-                            if (series && series.length > 1) {
-                                resultsDiv.innerHTML += `<div class="result success">✓ Question ${index + 1}: Multiple histogram series detected - ${series.length} series</div>`;
-                            } else {
-                                resultsDiv.innerHTML += `<div class="result success">✓ Question ${index + 1}: Single histogram series detected</div>`;
-                            }
-                        } else {
-                            resultsDiv.innerHTML += `<div class="result success">✓ Question ${index + 1}: ${question.attachments ? question.attachments.chartType || 'no chart' : 'no attachments'}</div>`;
-                        }
-                    } catch (error) {
-                        resultsDiv.innerHTML += `<div class="result error">✗ Question ${index + 1}: Error - ${error.message}</div>`;
-                    }
-                });
-                
-                // Test the first boxplot question rendering
-                const boxplotQuestion = data.find(q => q.attachments && q.attachments.chartType === 'boxplot');
-                if (boxplotQuestion) {
-                    resultsDiv.innerHTML += `<div class="result success">✓ Found boxplot question: ${boxplotQuestion.id}</div>`;
-                    
-                    // Create a canvas for testing
-                    const canvas = document.createElement('canvas');
-                    canvas.id = 'test-canvas';
-                    canvas.width = 400;
-                    canvas.height = 300;
-                    document.getElementById('quiz-container').appendChild(canvas);
-                    
-                    // This would normally be done by the renderer
-                    resultsDiv.innerHTML += `<div class="result success">✓ Canvas created for boxplot rendering test</div>`;
+                if (!question) {
+                    resultsDiv.innerHTML += `<div class="result error">✗ Question U1-PC-MCQ-A-Q11 not found</div>`;
+                    return;
                 }
+                
+                resultsDiv.innerHTML += `<div class="result success">✓ Found question U1-PC-MCQ-A-Q11</div>`;
+                
+                // Check the data structure
+                const attachments = question.attachments;
+                resultsDiv.innerHTML += `<div class="result success">✓ Y-Labels: ${JSON.stringify(attachments.yLabels)}</div>`;
+                resultsDiv.innerHTML += `<div class="result success">✓ Series Order: ${attachments.series.map(s => s.name).join(', ')}</div>`;
+                resultsDiv.innerHTML += `<div class="result success">✓ Grade 8 values: ${JSON.stringify(attachments.series[0].values)}</div>`;
+                resultsDiv.innerHTML += `<div class="result success">✓ Grade 7 values: ${JSON.stringify(attachments.series[1].values)}</div>`;
+                
+                // Create chart
+                const canvas = document.createElement('canvas');
+                canvas.id = 'test-chart';
+                document.getElementById('chart-container').appendChild(canvas);
+                
+                const ctx = canvas.getContext('2d');
+                
+                // Create the chart using the JSON data
+                const chartData = {
+                    labels: attachments.yLabels,
+                    datasets: attachments.series.map((series, index) => ({
+                        label: series.name,
+                        data: series.values,
+                        backgroundColor: index === 0 ? 'rgba(54, 162, 235, 0.8)' : 'rgba(255, 99, 132, 0.8)',
+                        borderColor: index === 0 ? 'rgba(54, 162, 235, 1)' : 'rgba(255, 99, 132, 1)',
+                        borderWidth: 1
+                    }))
+                };
+                
+                const config = {
+                    type: 'bar',
+                    data: chartData,
+                    options: {
+                        indexAxis: 'y', // This makes it horizontal
+                        responsive: true,
+                        plugins: {
+                            title: {
+                                display: true,
+                                text: 'Updated Bar Chart - Should match grayscale reference'
+                            },
+                            legend: {
+                                display: true
+                            }
+                        },
+                        scales: {
+                            x: {
+                                beginAtZero: true,
+                                max: 60,
+                                ticks: {
+                                    stepSize: 10
+                                },
+                                title: {
+                                    display: true,
+                                    text: 'Number of Students'
+                                }
+                            },
+                            y: {
+                                title: {
+                                    display: true,
+                                    text: 'School Subject'
+                                }
+                            }
+                        }
+                    }
+                };
+                
+                new Chart(ctx, config);
+                
+                resultsDiv.innerHTML += `<div class="result success">✓ Chart rendered successfully</div>`;
+                
+                // Show expected ordering
+                resultsDiv.innerHTML += `<div class="result success">✓ Expected: Art at top, Language Arts at bottom</div>`;
+                resultsDiv.innerHTML += `<div class="result success">✓ Expected: Grade 8 (blue) bars in front, Grade 7 (red) bars behind</div>`;
                 
             } catch (error) {
                 resultsDiv.innerHTML += `<div class="result error">✗ Error: ${error.message}</div>`;
@@ -80,7 +116,7 @@
         }
         
         // Run the test when page loads
-        testRenderer();
+        testBarChart();
     </script>
 </body>
 </html> 

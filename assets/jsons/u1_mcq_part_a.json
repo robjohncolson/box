@@ -225,7 +225,7 @@
       "series": [
         {
           "name": "In Favor of Proposal",
-          "values": [0.4, 0.71, 0.56, 0.64, 0.46]
+          "values": [0.4, 0.71, 0.55, 0.63, 0.46]
         }
       ],
       "chartConfig": {
@@ -280,7 +280,7 @@
       "series": [
         {
           "name": "Price per Gallon",
-          "values": [1.6, 1.7, 1.8, 1.9, 2.0, 2.05, 1.95, 2.0, 1.95, 2.05, 2.0, 1.9]
+          "values": [1.6, 1.7, 1.8, 1.85, 2.0, 2.1, 1.9, 1.95, 1.85, 2.1, 2.0, 1.8]
         }
       ],
       "chartConfig": {
@@ -422,32 +422,33 @@
     "prompt": "A group of middle school students were asked which school subject was their favorite. The results are displayed by grade of student in the following bar chart.\n\nWhich of the following statements is supported by the bar chart?",
     "attachments": {
       "chartType": "bar",
-      "xLabels": ["Language Arts", "Math", "Science", "Social Studies", "Art"],
+      "yLabels": ["Art", "Social Studies", "Science", "Math", "Language Arts"],
       "series": [
         {
-          "name": "Grade 7",
-          "values": [25, 30, 55, 15, 5]
+          "name": "Grade 8", 
+          "values": [17, 26, 43, 23, 36]
         },
         {
-          "name": "Grade 8", 
-          "values": [35, 20, 40, 25, 16]
+          "name": "Grade 7",
+          "values": [6, 16, 54, 32, 26]
         }
       ],
       "chartConfig": {
-        "yAxis": {
+        "orientation": "horizontal",
+        "xAxis": {
           "min": 0,
           "max": 60,
           "tickInterval": 10,
           "title": "Number of Students"
         },
-        "xAxis": {
+        "yAxis": {
           "title": "School Subject"
         },
         "gridLines": {
-          "horizontal": true,
-          "vertical": false
+          "horizontal": false,
+          "vertical": true
         },
-        "description": "Bar chart showing favorite school subjects by grade level"
+        "description": "Horizontal bar chart showing favorite school subjects by grade level"
       }
     },
     "choices": [
@@ -485,11 +486,11 @@
       "series": [
         {
           "name": "Before",
-          "values": [0.27, 0.52, 0.16, 0.05]
+          "values": [0.26, 0.53, 0.16, 0.06]
         },
         {
           "name": "After",
-          "values": [0.34, 0.49, 0.09, 0.08]
+          "values": [0.33, 0.48, 0.1, 0.08]
         }
       ],
       "chartConfig": {
