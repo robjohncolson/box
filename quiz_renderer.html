@@ -440,7 +440,6 @@
                     }));
 
                     // Use chartConfig if available, otherwise use defaults
-                    const config = chartData.chartConfig || {};
                     const yAxisConfig = config.yAxis || {};
                     const xAxisConfig = config.xAxis || {};
                     
@@ -825,19 +824,30 @@
                             },
                             // Whisker caps (vertical)
                             {
-                                label: 'Whisker Caps',
+                                label: 'Lower Whisker Cap',
                                 data: [
                                     { x: Math.max(min, lowerFence), y: -0.1 },
-                                    { x: Math.max(min, lowerFence), y: 0.1 },
+                                    { x: Math.max(min, lowerFence), y: 0.1 }
+                                ],
+                                backgroundColor: '#36A2EB',
+                                borderColor: '#36A2EB',
+                                borderWidth: 2,
+                                pointRadius: 0,
+                                showLine: true,
+                                type: 'line'
+                            },
+                            {
+                                label: 'Upper Whisker Cap',
+                                data: [
                                     { x: Math.min(max, upperFence), y: -0.1 },
                                     { x: Math.min(max, upperFence), y: 0.1 }
                                 ],
                                 backgroundColor: '#36A2EB',
                                 borderColor: '#36A2EB',
                                 borderWidth: 2,
-                                pointRadius: 2,
-                                showLine: false,
-                                type: 'scatter'
+                                pointRadius: 0,
+                                showLine: true,
+                                type: 'line'
                             }
                         ];
                         
@@ -896,19 +906,30 @@
                             },
                             // Whisker caps (horizontal)
                             {
-                                label: 'Whisker Caps',
+                                label: 'Lower Whisker Cap',
                                 data: [
                                     { x: -0.1, y: Math.max(min, lowerFence) },
-                                    { x: 0.1, y: Math.max(min, lowerFence) },
+                                    { x: 0.1, y: Math.max(min, lowerFence) }
+                                ],
+                                backgroundColor: '#36A2EB',
+                                borderColor: '#36A2EB',
+                                borderWidth: 2,
+                                pointRadius: 0,
+                                showLine: true,
+                                type: 'line'
+                            },
+                            {
+                                label: 'Upper Whisker Cap',
+                                data: [
                                     { x: -0.1, y: Math.min(max, upperFence) },
                                     { x: 0.1, y: Math.min(max, upperFence) }
                                 ],
                                 backgroundColor: '#36A2EB',
                                 borderColor: '#36A2EB',
                                 borderWidth: 2,
-                                pointRadius: 2,
-                                showLine: false,
-                                type: 'scatter'
+                                pointRadius: 0,
+                                showLine: true,
+                                type: 'line'
                             }
                         ];
                         
