@@ -645,11 +645,11 @@
     "prompt": "Relative humidity is a measure, expressed as a percentage, of the amount of water vapor present in air. The following histogram summarizes the relative humidity, at noon, for a random sample of 100 days for a certain city.\n\nBased on the histogram, which of the following is the best description of the distribution?",
     "attachments": {
       "chartType": "histogram",
-      "xLabels": ["40", "45", "50", "55", "60", "65", "70", "75", "80", "85", "90", "95"],
+      "xLabels": ["40-45", "45-50", "50-55", "55-60", "60-65", "65-70", "70-75", "75-80", "80-85", "85-90", "90-95", "95-100"],
       "series": [
         {
           "name": "Relative Frequency",
-          "values": [0.02, 0.0, 0.0, 0.11, 0.14, 0.18, 0.17, 0.10, 0.08, 0.06, 0.0, 0.0]
+          "values": [0.01, 0.0, 0.0, 0.11, 0.14, 0.18, 0.15, 0.10, 0.17, 0.1, 0.08, 0.06]
         }
       ],
       "chartConfig": {
