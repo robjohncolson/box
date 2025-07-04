@@ -540,7 +540,7 @@
         
         <div class="upload-section">
             <h3>📁 Load Quiz JSON File</h3>
-            <input type="file" id="jsonFile" accept=".json" class="file-input">
+            <input type="file" id="jsonFile" accept=".json" class="file-input" onchange="if(this.files.length > 0) { playTone(440, 0.1, 'sine', 0.06); }">
             <button class="load-button" onclick="loadFromFile()">📂 Load from File</button>
             
             <div style="margin: 20px 0; color: #666; font-weight: bold;">
@@ -552,6 +552,7 @@
             <button class="load-button" onclick="loadFromText()">📋 Load from Text</button>
             <button class="clear-button" onclick="clearAll()">🗑️ Clear All</button>
             <button class="debug-button" id="themeToggle" onclick="toggleTheme()">🌙 Switch to Dark</button>
+            <button class="debug-button" id="audioToggle" onclick="toggleAudio()">🔊 Audio On</button>
         </div>
         
         <div id="messageContainer"></div>
@@ -562,8 +563,102 @@
     <script>
         let chartInstances = [];
         let currentTheme = 'light'; // Default to light theme
+        let audioContext = null;
+        let audioEnabled = true; // Audio feedback enabled by default
+        
+        // Initialize audio context (must be done after user interaction)
+        function initAudioContext() {
+            if (!audioContext) {
+                try {
+                    audioContext = new (window.AudioContext || window.webkitAudioContext)();
+                } catch (e) {
+                    console.warn('Web Audio API not supported:', e);
+                }
+            }
+            return audioContext;
+        }
+        
+        // Generate a synthesized tone
+        function playTone(frequency, duration = 0.2, type = 'sine', volume = 0.1) {
+            if (!audioEnabled) return; // Check if audio is enabled
+            
+            const ctx = initAudioContext();
+            if (!ctx) return;
+            
+            try {
+                // Create oscillator for the tone
+                const oscillator = ctx.createOscillator();
+                const gainNode = ctx.createGain();
+                
+                // Connect the nodes
+                oscillator.connect(gainNode);
+                gainNode.connect(ctx.destination);
+                
+                // Configure the tone
+                oscillator.frequency.setValueAtTime(frequency, ctx.currentTime);
+                oscillator.type = type;
+                
+                // Configure volume envelope (prevents clicks)
+                gainNode.gain.setValueAtTime(0, ctx.currentTime);
+                gainNode.gain.linearRampToValueAtTime(volume, ctx.currentTime + 0.01);
+                gainNode.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + duration);
+                
+                // Start and stop the tone
+                oscillator.start(ctx.currentTime);
+                oscillator.stop(ctx.currentTime + duration);
+                
+            } catch (e) {
+                console.warn('Audio playback failed:', e);
+            }
+        }
+        
+        // Generate a chord (multiple tones)
+        function playChord(frequencies, duration = 0.3, type = 'sine', volume = 0.08) {
+            frequencies.forEach(freq => {
+                playTone(freq, duration, type, volume);
+            });
+        }
+        
+        // Different tones for different button actions
+        const buttonTones = {
+            load: () => playTone(523.25, 0.2, 'sine', 0.12), // C5 - pleasant load sound
+            loadText: () => playTone(659.25, 0.2, 'sine', 0.12), // E5 - slightly higher for text
+            clear: () => playTone(392.00, 0.3, 'sine', 0.1), // G4 - lower, longer for clear
+            theme: () => playChord([261.63, 329.63, 392.00], 0.15, 'sine', 0.06), // C4-E4-G4 chord for theme
+            success: () => {
+                // Success sound - ascending notes
+                setTimeout(() => playTone(523.25, 0.15, 'sine', 0.08), 0);
+                setTimeout(() => playTone(659.25, 0.15, 'sine', 0.08), 100);
+                setTimeout(() => playTone(783.99, 0.15, 'sine', 0.08), 200);
+            },
+            error: () => playTone(220.00, 0.4, 'sawtooth', 0.08) // A3 - lower, different waveform for errors
+        };
+
+        function toggleAudio() {
+            audioEnabled = !audioEnabled;
+            
+            // Save preference to localStorage
+            localStorage.setItem('quizRendererAudio', audioEnabled);
+            
+            // Update button text
+            const audioButton = document.getElementById('audioToggle');
+            audioButton.textContent = audioEnabled ? '🔊 Audio On' : '🔇 Audio Off';
+            
+            // Play a test tone if audio was just enabled
+            if (audioEnabled) {
+                // Quick test tone to confirm audio is working
+                setTimeout(() => playTone(440, 0.1, 'sine', 0.08), 100);
+            }
+            
+            // Show feedback message without playing tone (since we're toggling audio)
+            const messageContainer = document.getElementById('messageContainer');
+            messageContainer.innerHTML = `<div class="success"><strong>Success:</strong> Audio feedback ${audioEnabled ? 'enabled' : 'disabled'}.</div>`;
+        }
 
         function clearAll() {
+            // Play clear tone
+            buttonTones.clear();
+            
             document.getElementById('messageContainer').innerHTML = '';
             document.getElementById('questionsContainer').innerHTML = '';
             document.getElementById('statsContainer').innerHTML = '';
@@ -576,6 +671,13 @@
         }
 
         function showMessage(message, type = 'error') {
+            // Play appropriate tone
+            if (type === 'success') {
+                buttonTones.success();
+            } else {
+                buttonTones.error();
+            }
+            
             const messageContainer = document.getElementById('messageContainer');
             const className = type === 'success' ? 'success' : 'error';
             messageContainer.innerHTML = `<div class="${className}"><strong>${type === 'success' ? 'Success' : 'Error'}:</strong> ${message}</div>`;
@@ -640,6 +742,9 @@
         }
 
         function toggleTheme() {
+            // Play theme toggle tone
+            buttonTones.theme();
+            
             currentTheme = currentTheme === 'light' ? 'dark' : 'light';
             
             // Save preference to localStorage
@@ -652,8 +757,9 @@
             const themeButton = document.getElementById('themeToggle');
             themeButton.textContent = currentTheme === 'dark' ? '☀️ Switch to Light' : '🌙 Switch to Dark';
             
-            // Show feedback message
-            showMessage(`Switched to ${currentTheme} mode. Re-rendering charts...`, 'success');
+            // Show feedback message (but don't play success tone since we already played theme tone)
+            const messageContainer = document.getElementById('messageContainer');
+            messageContainer.innerHTML = `<div class="success"><strong>Success:</strong> Switched to ${currentTheme} mode. Re-rendering charts...</div>`;
             
             // Re-render charts with new theme
             forceChartRerender();
@@ -671,6 +777,16 @@
             const themeButton = document.getElementById('themeToggle');
             if (themeButton) {
                 themeButton.textContent = currentTheme === 'dark' ? '☀️ Switch to Light' : '🌙 Switch to Dark';
+            }
+            
+            // Load saved audio preference or default to enabled
+            const savedAudio = localStorage.getItem('quizRendererAudio');
+            audioEnabled = savedAudio !== null ? savedAudio === 'true' : true;
+            
+            // Update audio button text
+            const audioButton = document.getElementById('audioToggle');
+            if (audioButton) {
+                audioButton.textContent = audioEnabled ? '🔊 Audio On' : '🔇 Audio Off';
             }
         }
 
@@ -1869,6 +1985,9 @@
         }
 
         function loadFromFile() {
+            // Play load tone
+            buttonTones.load();
+            
             const fileInput = document.getElementById('jsonFile');
             const file = fileInput.files[0];
             
@@ -1891,6 +2010,9 @@
         }
 
         function loadFromText() {
+            // Play load text tone
+            buttonTones.loadText();
+            
             const jsonInput = document.getElementById('jsonInput');
             const jsonText = jsonInput.value.trim();
             
@@ -1911,7 +2033,7 @@
         // Load sample data on page load
         window.onload = function() {
             initTheme();
-            showMessage('Ready to load quiz JSON files! Supports tables, bar/histogram/pie/scatter/dotplot/boxplot charts with detailed tick intervals, axis ranges, grid line controls, manual theme switching, JSON with // comments, and comprehensive free response solutions with scoring rubrics. Use the theme toggle button to switch between light and dark modes.', 'success');
+            showMessage('🎵 Ready to load quiz JSON files! Now featuring audio feedback with synthesized tones for each button! Supports tables, bar/histogram/pie/scatter/dotplot/boxplot charts with detailed tick intervals, axis ranges, grid line controls, manual theme switching, JSON with // comments, and comprehensive free response solutions with scoring rubrics. Use the theme toggle button to switch between light and dark modes.', 'success');
         };
     </script>
 </body>
