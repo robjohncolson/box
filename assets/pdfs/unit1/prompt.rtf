@@ -191,6 +191,7 @@ You are tasked with converting AP Statistics quiz questions from uploaded PDF do
 - **X-axis labels**: Can be either:
   - **Ranges**: "0-10", "10-20", "20-30" (use `labelType: "range"`)
   - **Upper bounds**: "200", "400", "600" (use `labelType: "upperBound"`)
+  - **Lower bounds**: "0, 10, 20" (use `labelType: "lowerBound"`)
 - **Grid lines**: Often NO grid lines - observe carefully!
 - **Data type**: Continuous/quantitative variables
 - **Use chartType**: "histogram"
@@ -244,6 +245,7 @@ You are tasked with converting AP Statistics quiz questions from uploaded PDF do
 - **For histograms, observe x-axis labels precisely**:
   - If PDF shows "0-10, 10-20, 20-30" → use range labels with `labelType: "range"`
   - If PDF shows "200, 400, 600" → use upper bound labels with `labelType: "upperBound"`
+  - If PDF shows "0, 10, 20" → use lower bound labels with `labelType: "lowerBound"`
 - **For boxplots, extract the five-number summary** - identify min, Q1, median, Q3, max values from the visual
 - **Grid line detection is critical** - many AP Statistics charts have NO grid lines at all
 - Convert each question following the exact format above
@@ -255,5 +257,5 @@ Create a single code artifact containing all converted questions as separate JSO
 
 ## Backward Compatibility Note:
 - The old format `"gridLines": true` is still supported, but the new format `"gridLines": {"horizontal": true, "vertical": false}` is preferred for better precision.
-- For histograms, the new `"labelType"` field enables precise x-axis labeling: use `"range"` for interval labels or `"upperBound"` for boundary labels.
+- For histograms, the new `"labelType"` field enables precise x-axis labeling: use `"range"` for interval labels, `"upperBound"` for boundary labels, or `"lowerBound"` for lower bound labels.
 - Boxplots use the `"boxplotData"` structure to store the five-number summary for accurate statistical visualization.

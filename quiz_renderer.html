@@ -470,6 +470,9 @@
                         displayLabels = xAxisConfig.labels;
                     } else if (xAxisConfig.labelType === 'range' && chartData.xLabels) {
                         displayLabels = chartData.xLabels;
+                    } else if (xAxisConfig.labelType === 'lowerBound') {
+                        // Use provided labels (prefer xAxisConfig.labels, fallback to chartData.xLabels)
+                        displayLabels = xAxisConfig.labels || chartData.xLabels;
                     }
 
                     const chart = new Chart(ctx, {
@@ -514,7 +517,8 @@
                                     grid: {
                                         display: showVerticalGrid,
                                         color: getGridColor()
-                                    }
+                                    },
+                                    offset: true
                                 }
                             },
                             plugins: {
