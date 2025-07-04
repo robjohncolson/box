@@ -3,6 +3,8 @@
 You are tasked with converting AP Statistics quiz questions from uploaded PDF documents into a specific JSON format. Each question should be converted to a separate JSON object following this structure:
 
 ## JSON Format Template:
+
+### For Multiple Choice Questions:
 ```json
 {
   "id": "U#-L#-Q##",
@@ -147,8 +149,9 @@ You are tasked with converting AP Statistics quiz questions from uploaded PDF do
         "Q1": 32,
         "Q3": 38,
         "median": 35,
-        "min": 30,
-        "max": 42
+        "whiskerMin": 30,  // End of lower whisker (most extreme non-outlier value)
+        "whiskerMax": 42,  // End of upper whisker (most extreme non-outlier value)
+        "outliers": []     // Array of outlier values (empty if no outliers)
       },
       "gridLines": {
         "horizontal": false,
@@ -170,23 +173,25 @@ You are tasked with converting AP Statistics quiz questions from uploaded PDF do
           "Q1": 2.5,
           "Q3": 5.0,
           "median": 3.5,
-          "min": 1.5,
-          "max": 7.5
+          "whiskerMin": 1.5,     // End of lower whisker
+          "whiskerMax": 7.5,     // End of upper whisker
+          "outliers": [0.8, 10.2]  // Explicit outlier values (if any)
         },
         {
           "name": "League B",
           "Q1": 2.5,
           "Q3": 5.0,
           "median": 4.0,
-          "min": 0.5,
-          "max": 12.0
+          "whiskerMin": 1.2,     // End of lower whisker
+          "whiskerMax": 8.5,     // End of upper whisker
+          "outliers": [0.4, 12.0]  // Explicit outlier values (if any)
         }
       ],
       "gridLines": {
         "horizontal": false,
         "vertical": false
       },
-      "description": "Boxplots comparing ERA for pitchers in leagues A and B"
+      "description": "Boxplots comparing ERA for pitchers in leagues A and B, showing outliers marked with asterisks"
     }
     
     "choices": [
@@ -197,7 +202,92 @@ You are tasked with converting AP Statistics quiz questions from uploaded PDF do
       { "key": "E", "value": "Choice E text" }
     ]
   },
-  "answerKey": "B"
+  "answerKey": "B",
+  "reasoning": "Detailed explanation of why the correct answer is correct. This should include the mathematical reasoning, conceptual understanding, or step-by-step solution process that leads to the correct answer. Extract this information from the answer key, scoring guide, or solution manual provided with the quiz."
+}
+```
+
+### For Free Response Questions:
+```json
+{
+  "id": "U#-L#-Q##",
+  "type": "free-response",
+  "prompt": "Question text here, including all sub-parts (a), (b), (c), etc.",
+  "attachments": {
+    // Include visual data from the QUESTION itself (tables, charts, etc.)
+    "table": [["Header1","Header2"],["data1","data2"],...]
+    // Use same chart formats as above for question visuals
+  },
+  "solution": {
+    "parts": [
+      {
+        "partId": "a-i",
+        "description": "Use the data in the table to create a histogram showing the distribution of the amounts of the orders.",
+        "response": "Complete solution explanation for this part.",
+        "attachments": {
+          // Include visual data from the SOLUTION (charts, graphs created as part of the answer)
+          "chartType": "histogram",
+          "xLabels": ["0-5", "5-10", "10-15", "15-20", "20-25", "25-30"],
+          "series": [
+            {"name": "Frequency", "values": [8, 14, 25, 27, 12, 5]}
+          ],
+          "chartConfig": {
+            "yAxis": {"min": 0, "max": 30, "tickInterval": 5, "title": "Frequency"},
+            "xAxis": {"title": "Amounts (in dollars)", "labelType": "range"},
+            "gridLines": {"horizontal": true, "vertical": false},
+            "description": "Histogram showing distribution of order amounts"
+          }
+        }
+      },
+      {
+        "partId": "a-ii",
+        "description": "Describe the shape of the distribution of amounts.",
+        "response": "The distribution of the amounts of the orders appears to be roughly symmetric and mound shaped or approximately normal."
+      },
+      {
+        "partId": "b",
+        "description": "Identify a possible amount for the median of the distribution. Justify your answer.",
+        "response": "The median could be any value from $10 up to but not including $15. In a distribution of 91 values, the median value is the 46th value when all 91 values are ordered. The frequency of the first three bars sums to 47: 8 + 14 + 25 = 47. The 46th value corresponds to a value in the third bar of the histogram.",
+        "calculations": [
+          "Total values: 91",
+          "Median position: (91+1)/2 = 46th value",
+          "Cumulative frequency: 8 + 14 + 25 = 47",
+          "46th value falls in the $10-$15 interval"
+        ]
+      }
+    ],
+    "scoring": {
+      "totalPoints": 4,
+      "rubric": [
+        {
+          "part": "a-i",
+          "maxPoints": 2,
+          "criteria": [
+            "The histogram contains six bars with approximately correct heights of the bars",
+            "The horizontal axis is labeled with correct numbers and a correct verbal description",
+            "The vertical axis is labeled with correct numbers and a correct verbal description"
+          ],
+          "scoringNotes": "Essentially correct (E) if the response contains all components. Partially correct (P) if the response satisfies 3 of the 4 components. Incorrect (I) if the response does not satisfy the criteria for E or P."
+        },
+        {
+          "part": "a-ii",
+          "maxPoints": 1,
+          "criteria": [
+            "The shape of the distribution is described as roughly symmetric and mound shaped or approximately normal"
+          ]
+        },
+        {
+          "part": "b",
+          "maxPoints": 1,
+          "criteria": [
+            "Response correctly identifies a value for the median that is contained within the interval from $10 up to but not including $15 AND provides a reasonable justification for how the median was determined"
+          ],
+          "scoringNotes": "Essentially correct (E) if both criteria met. Partially correct (P) if identifies correct interval BUT provides weak justification. Incorrect (I) if response does not satisfy criteria for E or P."
+        }
+      ]
+    }
+  },
+  "reasoning": "Overall explanation of the solution approach and key statistical concepts being tested."
 }
 ```
 
@@ -206,7 +296,8 @@ You are tasked with converting AP Statistics quiz questions from uploaded PDF do
 2. **Visual Data**: Extract and format any tables, charts, or graphs according to the specifications above
 3. **Clean Prompts**: Remove table formatting from prompt text when table data is included in attachments
 4. **Answer Keys**: Include the correct answer from the scoring guide
-5. **Complete Output**: Provide all questions as separate JSON objects in a single code artifact
+5. **Reasoning**: Extract the explanation for why the answer is correct from the answer key, scoring guide, or solution manual
+6. **Complete Output**: Provide all questions as separate JSON objects in a single code artifact
 
 ## Critical Chart Type Identification:
 
@@ -261,11 +352,17 @@ You are tasked with converting AP Statistics quiz questions from uploaded PDF do
 - **Visual cues**: Rectangular box with whiskers extending from both ends
 - **Components**: Box (Q1 to Q3), median line inside box, whiskers (to min/max or fences), possible outlier points
 - **Purpose**: Shows distribution shape, spread, and identifies outliers
-- **Data needed**: Five-number summary (min, Q1, median, Q3, max)
+- **Data needed**: Five-number summary PLUS explicit outlier handling
 - **Orientation**: 
   - **Horizontal**: Box extends left-right, values on x-axis (use `"orientation": "horizontal"`)
   - **Vertical**: Box extends up-down, values on y-axis (use `"orientation": "vertical"`)
 - **Multiple boxplots**: When comparing groups, use an array of boxplot objects in `boxplotData`
+- **CRITICAL - Outlier Handling**: 
+  - **whiskerMin/whiskerMax**: These are the endpoints of the whiskers (most extreme NON-outlier values)
+  - **outliers**: Array of explicit outlier values that appear as separate points (asterisks/dots)
+  - **DO NOT use min/max** - this is ambiguous about whether extreme values are outliers or whisker endpoints
+  - **Visual identification**: Look for asterisks (*) or dots beyond the whiskers - these are outliers
+  - **Fidelity**: This approach ensures exact match to reference images rather than auto-calculated outliers
 - **Use chartType**: "boxplot"
 
 ## Multiple Charts Strategy:
@@ -340,10 +437,49 @@ Example of separate histograms:
 - Include all visual elements as structured data in attachments
 - Preserve exact wording from the original questions
 - Extract correct answers from the provided answer key/scoring guide
+- **Extract reasoning for each answer** - Look for explanations in the answer key, scoring guide, or solution manual that explain WHY the correct answer is correct. Include the mathematical reasoning, conceptual understanding, statistical principles, or step-by-step solution process. This reasoning should be comprehensive enough to help students understand the solution approach.
+
+### **Special Instructions for Free Response Questions:**
+- **Capture complete solutions** - Free response questions often have detailed, multi-part solutions that include visual elements, step-by-step calculations, and comprehensive explanations
+- **Extract solution visuals** - If the solution includes charts, graphs, or other visualizations (like sample histograms, boxplots, etc.), capture these in the solution's attachments using the same format as question visuals
+- **Preserve part structure** - Maintain the exact part numbering (a-i, a-ii, b, c, etc.) from the original solution
+- **Include scoring rubrics** - Extract the complete scoring criteria, point values, and scoring notes (E/P/I designations) from the scoring guide
+- **Capture calculations** - If the solution shows mathematical work, include step-by-step calculations in the calculations array
+- **Distinguish question vs solution visuals** - Question attachments go in the main attachments field, while solution visuals go in the solution.parts[].attachments field
+- **Extract complete scoring criteria** - Include all requirements for "Essentially correct," "Partially correct," and "Incorrect" classifications
+- **Preserve exact wording** - Maintain the precise language from scoring guides and solutions, as AP terminology is specific and important
 
 Create a single code artifact containing all converted questions as separate JSON objects.
 
 ## Backward Compatibility Note:
 - The old format `"gridLines": true` is still supported, but the new format `"gridLines": {"horizontal": true, "vertical": false}` is preferred for better precision.
 - For histograms, the new `"labelType"` field enables precise x-axis labeling: use `"range"` for interval labels, `"upperBound"` for boundary labels, or `"lowerBound"` for lower bound labels.
-- Boxplots use the `"boxplotData"` structure to store the five-number summary for accurate statistical visualization.
+- **Boxplots**: The old `"min"/"max"` format is deprecated. Use `"whiskerMin"/"whiskerMax"` + `"outliers"` array for precise outlier handling.
+
+## Boxplot Outlier Identification Guide:
+When converting boxplots from PDF images, follow these steps:
+
+1. **Identify the box components**: 
+   - Q1 (left/bottom edge of box)
+   - Q3 (right/top edge of box) 
+   - Median (line inside box)
+
+2. **Locate whisker endpoints**:
+   - Follow the whisker lines to their endpoints
+   - These endpoints are `whiskerMin` and `whiskerMax`
+   - These are NOT necessarily the true min/max of the dataset
+
+3. **Identify outliers**:
+   - Look for separate points (dots, asterisks *) beyond the whiskers
+   - These isolated points are outliers
+   - Extract their approximate values for the `outliers` array
+
+4. **Avoid auto-calculation**:
+   - Do NOT calculate outliers using IQR * 1.5 rule
+   - Use only the visual information from the reference image
+   - This ensures exact fidelity to the original visualization
+
+**Example**: If you see a boxplot with whiskers ending at 8.5 and 1.2, but separate dots at 12.0 and 0.4, then:
+- `whiskerMax: 8.5` (not 12.0)
+- `whiskerMin: 1.2` (not 0.4)  
+- `outliers: [0.4, 12.0]`

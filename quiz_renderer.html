@@ -197,6 +197,120 @@
             font-weight: bold;
             color: #155724;
         }
+        .reasoning {
+            background: #e7f3ff;
+            border: 2px solid #007bff;
+            border-radius: 6px;
+            padding: 15px;
+            margin-top: 15px;
+            color: #004085;
+            line-height: 1.6;
+        }
+        .reasoning strong {
+            color: #0056b3;
+        }
+        .solution {
+            background: #f8f9fa;
+            border: 2px solid #6c757d;
+            border-radius: 8px;
+            padding: 20px;
+            margin-top: 20px;
+        }
+        .solution-title {
+            color: #495057;
+            font-size: 1.2em;
+            font-weight: bold;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #dee2e6;
+        }
+        .solution-part {
+            background: white;
+            border: 1px solid #dee2e6;
+            border-radius: 6px;
+            padding: 15px;
+            margin-bottom: 15px;
+        }
+        .solution-part-id {
+            color: #6c757d;
+            font-weight: bold;
+            font-size: 0.9em;
+            margin-bottom: 8px;
+        }
+        .solution-description {
+            color: #495057;
+            font-style: italic;
+            margin-bottom: 10px;
+        }
+        .solution-response {
+            color: #212529;
+            line-height: 1.6;
+            margin-bottom: 10px;
+        }
+        .solution-calculations {
+            background: #e9ecef;
+            border-radius: 4px;
+            padding: 10px;
+            margin-top: 10px;
+        }
+        .solution-calculations-title {
+            font-weight: bold;
+            color: #495057;
+            margin-bottom: 8px;
+        }
+        .calculation-step {
+            font-family: monospace;
+            color: #6c757d;
+            margin-bottom: 4px;
+        }
+        .scoring-rubric {
+            background: #fff3cd;
+            border: 2px solid #ffc107;
+            border-radius: 8px;
+            padding: 20px;
+            margin-top: 20px;
+        }
+        .scoring-title {
+            color: #856404;
+            font-size: 1.1em;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+        .scoring-part {
+            background: white;
+            border: 1px solid #ffeaa7;
+            border-radius: 6px;
+            padding: 15px;
+            margin-bottom: 15px;
+        }
+        .scoring-part-header {
+            color: #856404;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        .scoring-criteria {
+            margin-bottom: 10px;
+        }
+        .scoring-criterion {
+            color: #495057;
+            margin-bottom: 5px;
+            padding-left: 20px;
+            position: relative;
+        }
+        .scoring-criterion::before {
+            content: "•";
+            color: #ffc107;
+            position: absolute;
+            left: 0;
+        }
+        .scoring-notes {
+            background: #f8f9fa;
+            border-radius: 4px;
+            padding: 10px;
+            margin-top: 10px;
+            font-style: italic;
+            color: #6c757d;
+        }
         .error {
             background: #f8d7da;
             border: 2px solid #dc3545;
@@ -271,6 +385,91 @@
                 background: #2d4a2d;
                 border-color: #4a7c59;
                 color: #90ee90;
+            }
+            
+            .reasoning {
+                background: #1e3a5f;
+                border-color: #5BC0EB;
+                color: #b3d9ff;
+            }
+            
+            .reasoning strong {
+                color: #87ceeb;
+            }
+            
+            .solution {
+                background: #333333;
+                border-color: #666666;
+                color: #e0e0e0;
+            }
+            
+            .solution-title {
+                color: #e0e0e0;
+                border-bottom-color: #666666;
+            }
+            
+            .solution-part {
+                background: #404040;
+                border-color: #666666;
+                color: #e0e0e0;
+            }
+            
+            .solution-part-id {
+                color: #b0b0b0;
+            }
+            
+            .solution-description {
+                color: #c0c0c0;
+            }
+            
+            .solution-response {
+                color: #e0e0e0;
+            }
+            
+            .solution-calculations {
+                background: #404040;
+                color: #e0e0e0;
+            }
+            
+            .solution-calculations-title {
+                color: #e0e0e0;
+            }
+            
+            .calculation-step {
+                color: #b0b0b0;
+            }
+            
+            .scoring-rubric {
+                background: #3d3d00;
+                border-color: #ffcc00;
+                color: #e0e0e0;
+            }
+            
+            .scoring-title {
+                color: #ffcc00;
+            }
+            
+            .scoring-part {
+                background: #404040;
+                border-color: #666600;
+                color: #e0e0e0;
+            }
+            
+            .scoring-part-header {
+                color: #ffcc00;
+            }
+            
+            .scoring-criterion {
+                color: #e0e0e0;
+            }
+            
+            .scoring-criterion::before {
+                color: #ffcc00;
+            }
+            
+            .scoring-notes {
+                background: #404040;
+                color: #c0c0c0;
             }
             
             .stats {
@@ -356,9 +555,20 @@
             const statsContainer = document.getElementById('statsContainer');
             const totalQuestions = questions.length;
             const mcQuestions = questions.filter(q => q.type === 'multiple-choice').length;
+            const frQuestions = questions.filter(q => q.type === 'free-response').length;
             const hasAnswers = questions.filter(q => q.answerKey).length;
+            const hasReasoning = questions.filter(q => q.reasoning).length;
+            const hasSolutions = questions.filter(q => q.solution).length;
+            const hasScoring = questions.filter(q => q.solution && q.solution.scoring).length;
             const hasCharts = questions.filter(q => q.attachments && q.attachments.chartType).length;
             const hasTables = questions.filter(q => q.attachments && q.attachments.table).length;
+            
+            // Count solution charts (charts in solution parts)
+            const hasSolutionCharts = questions.filter(q => 
+                q.solution && q.solution.parts && 
+                q.solution.parts.some(part => part.attachments && part.attachments.chartType)
+            ).length;
+            
             const barCharts = questions.filter(q => q.attachments && q.attachments.chartType === 'bar').length;
             const histograms = questions.filter(q => q.attachments && q.attachments.chartType === 'histogram').length;
             const pieCharts = questions.filter(q => q.attachments && q.attachments.chartType === 'pie').length;
@@ -383,8 +593,14 @@
                     <strong>📊 Quiz Statistics:</strong><br>
                     Total Questions: ${totalQuestions} | 
                     Multiple Choice: ${mcQuestions} | 
-                    With Answer Keys: ${hasAnswers}<br>
-                    📈 Charts: ${hasCharts}${chartBreakdown} | 📋 Tables: ${hasTables}
+                    Free Response: ${frQuestions}<br>
+                    With Answer Keys: ${hasAnswers} | 
+                    With Reasoning: ${hasReasoning} | 
+                    With Solutions: ${hasSolutions} | 
+                    With Scoring: ${hasScoring}<br>
+                    📈 Question Charts: ${hasCharts}${chartBreakdown} | 
+                    📋 Tables: ${hasTables} | 
+                    🎯 Solution Charts: ${hasSolutionCharts}
                 </div>
             `;
         }
@@ -805,13 +1021,17 @@
                     let overallMax = -Infinity;
                     
                     boxplots.forEach(boxplot => {
-                        const { Q1, Q3, median, min, max } = boxplot;
-                        const IQR = Q3 - Q1;
-                        const lowerFence = Q1 - 1.5 * IQR;
-                        const upperFence = Q3 + 1.5 * IQR;
+                        const { Q1, Q3, median, min, max, whiskerMin, whiskerMax, outliers } = boxplot;
                         
-                        overallMin = Math.min(overallMin, Math.min(min, lowerFence));
-                        overallMax = Math.max(overallMax, Math.max(max, upperFence));
+                        // Support both old format (min/max) and new format (whiskerMin/whiskerMax + outliers)
+                        const actualWhiskerMin = whiskerMin !== undefined ? whiskerMin : min;
+                        const actualWhiskerMax = whiskerMax !== undefined ? whiskerMax : max;
+                        const actualOutliers = outliers || [];
+                        
+                        // Calculate overall range including outliers
+                        const allValues = [actualWhiskerMin, actualWhiskerMax, ...actualOutliers];
+                        overallMin = Math.min(overallMin, Math.min(...allValues));
+                        overallMax = Math.max(overallMax, Math.max(...allValues));
                                          });
                     
                     // Create boxplot visualization with orientation support
@@ -821,10 +1041,12 @@
                     const boxplotColors = generateChartColors(boxplots.length);
                     
                     boxplots.forEach((boxplot, index) => {
-                        const { Q1, Q3, median, min, max, name } = boxplot;
-                        const IQR = Q3 - Q1;
-                        const lowerFence = Q1 - 1.5 * IQR;
-                        const upperFence = Q3 + 1.5 * IQR;
+                        const { Q1, Q3, median, min, max, whiskerMin, whiskerMax, outliers, name } = boxplot;
+                        
+                        // Support both old format (min/max) and new format (whiskerMin/whiskerMax + outliers)
+                        const actualWhiskerMin = whiskerMin !== undefined ? whiskerMin : min;
+                        const actualWhiskerMax = whiskerMax !== undefined ? whiskerMax : max;
+                        const actualOutliers = outliers || [];
                         
                         // Calculate position for multiple boxplots
                         const boxplotSpacing = 0.8; // Space between boxplots
@@ -851,7 +1073,7 @@
                                 // Lower whisker (horizontal)
                                 {
                                     label: `${boxplotName} Lower Whisker`,
-                                    data: [{ x: Math.max(min, lowerFence), y: yPos }, { x: Q1, y: yPos }],
+                                    data: [{ x: actualWhiskerMin, y: yPos }, { x: Q1, y: yPos }],
                                     backgroundColor: color,
                                     borderColor: color,
                                     borderWidth: 2,
@@ -862,7 +1084,7 @@
                                 // Upper whisker (horizontal)
                                 {
                                     label: `${boxplotName} Upper Whisker`,
-                                    data: [{ x: Q3, y: yPos }, { x: Math.min(max, upperFence), y: yPos }],
+                                    data: [{ x: Q3, y: yPos }, { x: actualWhiskerMax, y: yPos }],
                                     backgroundColor: color,
                                     borderColor: color,
                                     borderWidth: 2,
@@ -874,8 +1096,8 @@
                                 {
                                     label: `${boxplotName} Lower Cap`,
                                     data: [
-                                        { x: Math.max(min, lowerFence), y: yPos - 0.1 },
-                                        { x: Math.max(min, lowerFence), y: yPos + 0.1 }
+                                        { x: actualWhiskerMin, y: yPos - 0.1 },
+                                        { x: actualWhiskerMin, y: yPos + 0.1 }
                                     ],
                                     backgroundColor: color,
                                     borderColor: color,
@@ -887,8 +1109,8 @@
                                 {
                                     label: `${boxplotName} Upper Cap`,
                                     data: [
-                                        { x: Math.min(max, upperFence), y: yPos - 0.1 },
-                                        { x: Math.min(max, upperFence), y: yPos + 0.1 }
+                                        { x: actualWhiskerMax, y: yPos - 0.1 },
+                                        { x: actualWhiskerMax, y: yPos + 0.1 }
                                     ],
                                     backgroundColor: color,
                                     borderColor: color,
@@ -900,14 +1122,11 @@
                             );
                             
                             // Add outliers if any
-                            const outliers = [];
-                            if (min < lowerFence) outliers.push({ x: min, y: yPos });
-                            if (max > upperFence) outliers.push({ x: max, y: yPos });
-                            
-                            if (outliers.length > 0) {
+                            if (actualOutliers.length > 0) {
+                                const outlierData = actualOutliers.map(outlierValue => ({ x: outlierValue, y: yPos }));
                                 datasets.push({
                                     label: `${boxplotName} Outliers`,
-                                    data: outliers,
+                                    data: outlierData,
                                     backgroundColor: color,
                                     borderColor: color,
                                     borderWidth: 2,
@@ -933,7 +1152,7 @@
                                 // Lower whisker (vertical)
                                 {
                                     label: `${boxplotName} Lower Whisker`,
-                                    data: [{ x: xPos, y: Math.max(min, lowerFence) }, { x: xPos, y: Q1 }],
+                                    data: [{ x: xPos, y: actualWhiskerMin }, { x: xPos, y: Q1 }],
                                     backgroundColor: color,
                                     borderColor: color,
                                     borderWidth: 2,
@@ -944,7 +1163,7 @@
                                 // Upper whisker (vertical)
                                 {
                                     label: `${boxplotName} Upper Whisker`,
-                                    data: [{ x: xPos, y: Q3 }, { x: xPos, y: Math.min(max, upperFence) }],
+                                    data: [{ x: xPos, y: Q3 }, { x: xPos, y: actualWhiskerMax }],
                                     backgroundColor: color,
                                     borderColor: color,
                                     borderWidth: 2,
@@ -956,8 +1175,8 @@
                                 {
                                     label: `${boxplotName} Lower Cap`,
                                     data: [
-                                        { x: xPos - 0.1, y: Math.max(min, lowerFence) },
-                                        { x: xPos + 0.1, y: Math.max(min, lowerFence) }
+                                        { x: xPos - 0.1, y: actualWhiskerMin },
+                                        { x: xPos + 0.1, y: actualWhiskerMin }
                                     ],
                                     backgroundColor: color,
                                     borderColor: color,
@@ -969,8 +1188,8 @@
                                 {
                                     label: `${boxplotName} Upper Cap`,
                                     data: [
-                                        { x: xPos - 0.1, y: Math.min(max, upperFence) },
-                                        { x: xPos + 0.1, y: Math.min(max, upperFence) }
+                                        { x: xPos - 0.1, y: actualWhiskerMax },
+                                        { x: xPos + 0.1, y: actualWhiskerMax }
                                     ],
                                     backgroundColor: color,
                                     borderColor: color,
@@ -982,14 +1201,11 @@
                             );
                             
                             // Add outliers if any
-                            const outliers = [];
-                            if (min < lowerFence) outliers.push({ x: xPos, y: min });
-                            if (max > upperFence) outliers.push({ x: xPos, y: max });
-                            
-                            if (outliers.length > 0) {
+                            if (actualOutliers.length > 0) {
+                                const outlierData = actualOutliers.map(outlierValue => ({ x: xPos, y: outlierValue }));
                                 datasets.push({
                                     label: `${boxplotName} Outliers`,
-                                    data: outliers,
+                                    data: outlierData,
                                     backgroundColor: color,
                                     borderColor: color,
                                     borderWidth: 2,
@@ -1108,16 +1324,22 @@
                                             return dataset.label;
                                         },
                                         label: function(context) {
-                                            const value = context.parsed.y;
                                             const dataset = context.dataset;
                                             
-                                            if (dataset.label === 'Median') {
+                                            if (dataset.label.includes('Median')) {
+                                                const value = isHorizontal ? context.parsed.x : context.parsed.y;
                                                 return `Median: ${value}`;
-                                            } else if (dataset.label === 'Box') {
-                                                return `Q1: ${Q1}, Q3: ${Q3}`;
-                                            } else if (dataset.label === 'Outliers') {
+                                            } else if (dataset.label.includes('Outliers')) {
+                                                const value = isHorizontal ? context.parsed.x : context.parsed.y;
                                                 return `Outlier: ${value}`;
+                                            } else if (dataset.label.includes('Whisker')) {
+                                                const value = isHorizontal ? context.parsed.x : context.parsed.y;
+                                                return `Whisker endpoint: ${value}`;
+                                            } else if (dataset.label.includes('Cap')) {
+                                                const value = isHorizontal ? context.parsed.x : context.parsed.y;
+                                                return `Whisker cap: ${value}`;
                                             }
+                                            const value = isHorizontal ? context.parsed.x : context.parsed.y;
                                             return `Value: ${value}`;
                                         }
                                     }
@@ -1221,6 +1443,101 @@
             return choicesHtml;
         }
 
+        function renderSolutionPart(part, questionId) {
+            let partHtml = `
+                <div class="solution-part">
+                    <div class="solution-part-id">Part ${part.partId}</div>
+                    <div class="solution-description">${part.description}</div>
+                    <div class="solution-response">${part.response}</div>
+            `;
+            
+            // Render solution attachments (charts, tables, etc.)
+            if (part.attachments) {
+                if (part.attachments.chartType) {
+                    partHtml += renderChart(part.attachments, `${questionId}-solution-${part.partId}`);
+                }
+                if (part.attachments.table) {
+                    partHtml += renderTable(part.attachments.table);
+                }
+            }
+            
+            // Render calculations if present
+            if (part.calculations && Array.isArray(part.calculations)) {
+                partHtml += `
+                    <div class="solution-calculations">
+                        <div class="solution-calculations-title">Calculations:</div>
+                `;
+                part.calculations.forEach(calc => {
+                    partHtml += `<div class="calculation-step">${calc}</div>`;
+                });
+                partHtml += `</div>`;
+            }
+            
+            partHtml += `</div>`;
+            return partHtml;
+        }
+
+        function renderScoringRubric(scoring) {
+            if (!scoring || !scoring.rubric) return '';
+            
+            let rubricHtml = `
+                <div class="scoring-rubric">
+                    <div class="scoring-title">Scoring Rubric (Total: ${scoring.totalPoints} points)</div>
+            `;
+            
+            scoring.rubric.forEach(rubricPart => {
+                rubricHtml += `
+                    <div class="scoring-part">
+                        <div class="scoring-part-header">
+                            Part ${rubricPart.part} (${rubricPart.maxPoints} point${rubricPart.maxPoints !== 1 ? 's' : ''})
+                        </div>
+                        <div class="scoring-criteria">
+                `;
+                
+                if (rubricPart.criteria && Array.isArray(rubricPart.criteria)) {
+                    rubricPart.criteria.forEach(criterion => {
+                        rubricHtml += `<div class="scoring-criterion">${criterion}</div>`;
+                    });
+                }
+                
+                rubricHtml += `</div>`;
+                
+                if (rubricPart.scoringNotes) {
+                    rubricHtml += `<div class="scoring-notes">${rubricPart.scoringNotes}</div>`;
+                }
+                
+                rubricHtml += `</div>`;
+            });
+            
+            rubricHtml += `</div>`;
+            return rubricHtml;
+        }
+
+        function renderSolution(solution, questionId) {
+            if (!solution) return '';
+            
+            let solutionHtml = `
+                <div class="solution">
+                    <div class="solution-title">📝 Solution</div>
+            `;
+            
+            // Render solution parts
+            if (solution.parts && Array.isArray(solution.parts)) {
+                solution.parts.forEach(part => {
+                    solutionHtml += renderSolutionPart(part, questionId);
+                });
+            }
+            
+            solutionHtml += `</div>`;
+            
+            // Render scoring rubric separately
+            if (solution.scoring) {
+                solutionHtml += renderScoringRubric(solution.scoring);
+            }
+            
+            return solutionHtml;
+        }
+
         function renderQuestion(question, index) {
             const questionNumber = index + 1;
             let questionHtml = `
@@ -1272,6 +1589,20 @@
                         <strong>Answer:</strong> ${question.answerKey}
                     </div>
                 `;
+            }
+
+            // Render reasoning if present
+            if (question.reasoning) {
+                questionHtml += `
+                    <div class="reasoning">
+                        <strong>Reasoning:</strong> ${question.reasoning}
+                    </div>
+                `;
+            }
+
+            // Render solution if present (for free response questions)
+            if (question.solution) {
+                questionHtml += renderSolution(question.solution, question.id);
             }
 
             questionHtml += '</div>';
@@ -1482,7 +1813,7 @@
 
         // Load sample data on page load
         window.onload = function() {
-            showMessage('Ready to load quiz JSON files! Supports tables, bar/histogram/pie/scatter/dotplot/boxplot charts with detailed tick intervals, axis ranges, grid line controls, dark mode, and JSON with // comments.', 'success');
+            showMessage('Ready to load quiz JSON files! Supports tables, bar/histogram/pie/scatter/dotplot/boxplot charts with detailed tick intervals, axis ranges, grid line controls, dark mode, JSON with // comments, and comprehensive free response solutions with scoring rubrics.', 'success');
         };
     </script>
 </body>

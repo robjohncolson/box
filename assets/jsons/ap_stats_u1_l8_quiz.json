@@ -114,7 +114,7 @@
     "series": [
       {
         "name": "Frequency",
-        "values": [3, 4, 5, 10, 19, 12, 8]
+        "values": [2, 3, 5, 10, 20, 12, 8]
       }
     ],
     "chartConfig": {

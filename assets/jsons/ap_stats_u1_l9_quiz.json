@@ -15,20 +15,22 @@
       },
       "boxplotData": [
         {
-          "name": "League A",
-          "Q1": 2.5,
+          "name": "League B",
+          "Q1": 3,
           "Q3": 5.0,
-          "median": 3.5,
-          "min": 1.5,
-          "max": 7.5
+          "median": 3.75,
+          "whiskerMin": 1.2,
+          "whiskerMax": 7.2,
+          "outliers": [0, 8, 9, 11, 12.5]
         },
         {
-          "name": "League B",
-          "Q1": 2.5,
+          "name": "League A",
+          "Q1": 3,
           "Q3": 5.0,
-          "median": 4.0,
-          "min": 0.5,
-          "max": 12.0
+          "median": 4.3,
+          "whiskerMin": 1.2,
+          "whiskerMax": 7.4,
+          "outliers": [8, 9]
         }
       ],
       "gridLines": {
@@ -71,11 +73,11 @@
       {
         "chartType": "histogram",
         "title": "Earthquake Disturbances",
-        "xLabels": ["0.2", "0.4", "0.6", "0.8", "1.0", "1.2", "1.4", "1.6"],
+        "xLabels": ["0 - 0.2", "0.2 - 0.4", "0.4 - 0.6", "0.6 - 0.8", "0.8 - 1.0", "1.0 - 1.2", "1.2 - 1.4", "1.4 - 1.6"],
         "series": [
           {
             "name": "Earthquake Disturbances",
-            "values": [0.35, 0.20, 0.10, 0.10, 0.08, 0.06, 0.06, 0.05]
+            "values": [0.35, 0.20, 0.10, 0.10, 0.0875, 0.075, 0.0625, 0.025]
           }
         ],
         "chartConfig": {
@@ -87,8 +89,7 @@
           },
           "xAxis": {
             "title": "Root Mean Square Time",
-            "labelType": "upperBound",
-            "labels": [0.2, 0.4, 0.6, 0.8, 1.0, 1.2, 1.4, 1.6]
+            "labelType": "range",
           },
           "gridLines": {
             "horizontal": true,
@@ -99,11 +100,11 @@
       {
         "chartType": "histogram",
         "title": "Mining Disturbances",
-        "xLabels": ["0.2", "0.4", "0.6", "0.8", "1.0", "1.2", "1.4", "1.6"],
+        "xLabels": ["0 - 0.2", "0.2 - 0.4", "0.4 - 0.6", "0.6 - 0.8", "0.8 - 1.0", "1.0 - 1.2", "1.2 - 1.4", "1.4 - 1.6"],
         "series": [
           {
             "name": "Mining Disturbances",
-            "values": [0.0, 0.22, 0.35, 0.25, 0.10, 0.08, 0.0, 0.0]
+            "values": [0.0, 0, 0.22, 0.35, 0.24, 0.09, 0.11, 0.0]
           }
         ],
         "chartConfig": {
@@ -115,8 +116,7 @@
           },
           "xAxis": {
             "title": "Root Mean Square Time",
-            "labelType": "upperBound",
-            "labels": [0.2, 0.4, 0.6, 0.8, 1.0, 1.2, 1.4, 1.6]
+            "labelType": "range",
           },
           "gridLines": {
             "horizontal": true,
