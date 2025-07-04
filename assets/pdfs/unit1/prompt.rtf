@@ -7,7 +7,7 @@ You are tasked with converting AP Statistics quiz questions from uploaded PDF do
 ### For Multiple Choice Questions:
 ```json
 {
-  "id": "U#-L#-Q##",
+  "id": "U#-L#-Q##",  // Use appropriate ID format based on quiz type (see ID Format section)
   "type": "multiple-choice",
   "prompt": "Question text here",
   "attachments": {
@@ -210,7 +210,7 @@ You are tasked with converting AP Statistics quiz questions from uploaded PDF do
 ### For Free Response Questions:
 ```json
 {
-  "id": "U#-L#-Q##",
+  "id": "U#-L#-Q##",  // Use appropriate ID format based on quiz type (see ID Format section)
   "type": "free-response",
   "prompt": "Question text here, including all sub-parts (a), (b), (c), etc.",
   "attachments": {
@@ -292,7 +292,12 @@ You are tasked with converting AP Statistics quiz questions from uploaded PDF do
 ```
 
 ## Key Requirements:
-1. **ID Format**: Use pattern "U#-L#-Q##" where # represents unit, lesson, and question numbers
+1. **ID Format**: Use appropriate pattern based on quiz type:
+   - **Regular Lessons**: "U#-L#-Q##" (e.g., "U1-L2-Q05" for Unit 1, Lesson 2, Question 5)
+   - **Progress Check MCQ**: "U#-PC-MCQ-[PART]-Q##" (e.g., "U1-PC-MCQ-A-Q01" for Unit 1, Progress Check, MCQ Part A, Question 1)
+   - **Progress Check FRQ**: "U#-PC-FRQ-Q##" (e.g., "U1-PC-FRQ-Q01" for Unit 1, Progress Check, FRQ Question 1)
+   - **AP Exam Questions**: "U#-AP-[YEAR]-[TYPE]-Q##" (e.g., "U1-AP-2017-MCQ-Q09" for Unit 1, AP 2017, MCQ Question 9)
+   - **Other Quiz Types**: Adapt pattern to reflect the actual quiz type and source
 2. **Visual Data**: Extract and format any tables, charts, or graphs according to the specifications above
 3. **Clean Prompts**: Remove table formatting from prompt text when table data is included in attachments
 4. **Answer Keys**: Include the correct answer from the scoring guide
@@ -379,4 +384,109 @@ You are tasked with converting AP Statistics quiz questions from uploaded PDF do
 - Use the `charts` array structure within attachments
 - Each histogram gets its own chart space and title
 
-Example of separat
+Example of separate histograms:
+```json
+"attachments": {
+  "charts": [
+    {
+      "chartType": "histogram",
+      "title": "Earthquake Disturbances",
+      "xLabels": ["0.2", "0.4", "0.6", "0.8"],
+      "series": [
+        {"name": "Earthquake Disturbances", "values": [0.35, 0.20, 0.10, 0.10]}
+      ],
+      "chartConfig": {
+        "yAxis": {"min": 0.0, "max": 0.40, "tickInterval": 0.05, "title": "Relative Frequency"},
+        "xAxis": {"title": "Root Mean Square Time", "labelType": "upperBound"},
+        "gridLines": {"horizontal": true, "vertical": false}
+      }
+    },
+    {
+      "chartType": "histogram", 
+      "title": "Mining Disturbances",
+      "xLabels": ["0.2", "0.4", "0.6", "0.8"],
+      "series": [
+        {"name": "Mining Disturbances", "values": [0.0, 0.22, 0.35, 0.25]}
+      ],
+      "chartConfig": {
+        "yAxis": {"min": 0.0, "max": 0.40, "tickInterval": 0.05, "title": "Relative Frequency"},
+        "xAxis": {"title": "Root Mean Square Time", "labelType": "upperBound"},
+        "gridLines": {"horizontal": true, "vertical": false}
+      }
+    }
+  ],
+  "description": "Overall description of the multiple charts"
+}
+```
+
+**Multiple Boxplots (same chart space):**
+- Use when comparing groups (e.g., "League A vs League B")
+- Put multiple boxplot objects in the `boxplotData` array
+- Each boxplot gets its own name and color
+- The renderer will space them appropriately
+
+## Instructions:
+- Analyze the uploaded PDF carefully
+- **Identify quiz type from document headers/titles** - Look for indicators like "Progress Check," "AP Exam," "Lesson," "Section," "Capstone," "MCQ Part A/B," "FRQ," etc.
+- **Apply appropriate ID format** based on quiz type identified (see ID Format section above)
+- Identify unit and lesson numbers from document headers/titles
+- **Pay special attention to chart types** - look for gaps between bars to distinguish bar charts from histograms
+- **Look for stacked dots** - identify dotplots showing single variable distributions vs scatter plots showing two-variable relationships
+- **Identify boxplots** - look for rectangular boxes with whiskers, median lines, and possible outlier points
+- **Examine grid lines carefully** - note whether horizontal and/or vertical grid lines are present
+- **For histograms, observe x-axis labels precisely**:
+  - If PDF shows "0-10, 10-20, 20-30" → use range labels with `labelType: "range"`
+  - If PDF shows "200, 400, 600" → use upper bound labels with `labelType: "upperBound"`
+  - If PDF shows "0, 10, 20" → use lower bound labels with `labelType: "lowerBound"`
+- **For boxplots, extract the five-number summary** - identify min, Q1, median, Q3, max values from the visual
+- **Grid line detection is critical** - many AP Statistics charts have NO grid lines at all
+- Convert each question following the exact format above
+- Include all visual elements as structured data in attachments
+- Preserve exact wording from the original questions
+- Extract correct answers from the provided answer key/scoring guide
+- **Extract reasoning for each answer** - Look for explanations in the answer key, scoring guide, or solution manual that explain WHY the correct answer is correct. Include the mathematical reasoning, conceptual understanding, statistical principles, or step-by-step solution process. This reasoning should be comprehensive enough to help students understand the solution approach.
+
+### **Special Instructions for Free Response Questions:**
+- **Capture complete solutions** - Free response questions often have detailed, multi-part solutions that include visual elements, step-by-step calculations, and comprehensive explanations
+- **Extract solution visuals** - If the solution includes charts, graphs, or other visualizations (like sample histograms, boxplots, etc.), capture these in the solution's attachments using the same format as question visuals
+- **Preserve part structure** - Maintain the exact part numbering (a-i, a-ii, b, c, etc.) from the original solution
+- **Include scoring rubrics** - Extract the complete scoring criteria, point values, and scoring notes (E/P/I designations) from the scoring guide
+- **Capture calculations** - If the solution shows mathematical work, include step-by-step calculations in the calculations array
+- **Distinguish question vs solution visuals** - Question attachments go in the main attachments field, while solution visuals go in the solution.parts[].attachments field
+- **Extract complete scoring criteria** - Include all requirements for "Essentially correct," "Partially correct," and "Incorrect" classifications
+- **Preserve exact wording** - Maintain the precise language from scoring guides and solutions, as AP terminology is specific and important
+
+Create a single code artifact containing all converted questions as separate JSON objects.
+
+## Backward Compatibility Note:
+- The old format `"gridLines": true` is still supported, but the new format `"gridLines": {"horizontal": true, "vertical": false}` is preferred for better precision.
+- For histograms, the new `"labelType"` field enables precise x-axis labeling: use `"range"` for interval labels, `"upperBound"` for boundary labels, or `"lowerBound"` for lower bound labels.
+- **Boxplots**: The old `"min"/"max"` format is deprecated. Use `"whiskerMin"/"whiskerMax"` + `"outliers"` array for precise outlier handling.
+
+## Boxplot Outlier Identification Guide:
+When converting boxplots from PDF images, follow these steps:
+
+1. **Identify the box components**: 
+   - Q1 (left/bottom edge of box)
+   - Q3 (right/top edge of box) 
+   - Median (line inside box)
+
+2. **Locate whisker endpoints**:
+   - Follow the whisker lines to their endpoints
+   - These endpoints are `whiskerMin` and `whiskerMax`
+   - These are NOT necessarily the true min/max of the dataset
+
+3. **Identify outliers**:
+   - Look for separate points (dots, asterisks *) beyond the whiskers
+   - These isolated points are outliers
+   - Extract their approximate values for the `outliers` array
+
+4. **Avoid auto-calculation**:
+   - Do NOT calculate outliers using IQR * 1.5 rule
+   - Use only the visual information from the reference image
+   - This ensures exact fidelity to the original visualization
+
+**Example**: If you see a boxplot with whiskers ending at 8.5 and 1.2, but separate dots at 12.0 and 0.4, then:
+- `whiskerMax: 8.5` (not 12.0)
+- `whiskerMin: 1.2` (not 0.4)  
+- `outliers: [0.4, 12.0]`

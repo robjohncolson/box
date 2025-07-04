@@ -76,6 +76,24 @@
         .clear-button:hover {
             background: #545b62;
         }
+        .debug-button {
+            background: #6f42c1;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            margin: 5px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        }
+        .debug-button:hover {
+            background: #5a2d9c;
+            transform: translateY(-1px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+        }
         .file-input {
             margin-bottom: 15px;
             padding: 10px;
@@ -337,172 +355,182 @@
         }
         
         /* Dark mode adaptations */
-        @media (prefers-color-scheme: dark) {
-            body {
-                background-color: #1a1a1a;
-                color: #e0e0e0;
-            }
-            
-            .container {
-                background: #2d2d2d;
-                color: #e0e0e0;
-            }
-            
-            .upload-section {
-                background: #333333;
-                border-color: #555555;
-                color: #e0e0e0;
-            }
-            
-            .quiz-container {
-                background: #2d2d2d;
-                border-color: #5BC0EB;
-                color: #e0e0e0;
-            }
-            
-            .question-header {
-                background: #5BC0EB;
-                color: #1a1a1a;
-            }
-            
-            .chart-container {
-                background: #2d2d2d;
-                border-color: #555555;
-            }
-            
-            .choice {
-                background: #333333;
-                border-color: #555555;
-                color: #e0e0e0;
-            }
-            
-            .choice:hover {
-                background: #404040;
-                border-color: #5BC0EB;
-            }
-            
-            .answer-key {
-                background: #2d4a2d;
-                border-color: #4a7c59;
-                color: #90ee90;
-            }
-            
-            .reasoning {
-                background: #1e3a5f;
-                border-color: #5BC0EB;
-                color: #b3d9ff;
-            }
-            
-            .reasoning strong {
-                color: #87ceeb;
-            }
-            
-            .solution {
-                background: #333333;
-                border-color: #666666;
-                color: #e0e0e0;
-            }
-            
-            .solution-title {
-                color: #e0e0e0;
-                border-bottom-color: #666666;
-            }
-            
-            .solution-part {
-                background: #404040;
-                border-color: #666666;
-                color: #e0e0e0;
-            }
-            
-            .solution-part-id {
-                color: #b0b0b0;
-            }
-            
-            .solution-description {
-                color: #c0c0c0;
-            }
-            
-            .solution-response {
-                color: #e0e0e0;
-            }
-            
-            .solution-calculations {
-                background: #404040;
-                color: #e0e0e0;
-            }
-            
-            .solution-calculations-title {
-                color: #e0e0e0;
-            }
-            
-            .calculation-step {
-                color: #b0b0b0;
-            }
-            
-            .scoring-rubric {
-                background: #3d3d00;
-                border-color: #ffcc00;
-                color: #e0e0e0;
-            }
-            
-            .scoring-title {
-                color: #ffcc00;
-            }
-            
-            .scoring-part {
-                background: #404040;
-                border-color: #666600;
-                color: #e0e0e0;
-            }
-            
-            .scoring-part-header {
-                color: #ffcc00;
-            }
-            
-            .scoring-criterion {
-                color: #e0e0e0;
-            }
-            
-            .scoring-criterion::before {
-                color: #ffcc00;
-            }
-            
-            .scoring-notes {
-                background: #404040;
-                color: #c0c0c0;
-            }
-            
-            .stats {
-                background: #1a2332;
-                border-color: #5BC0EB;
-                color: #e0e0e0;
-            }
-            
-            .json-input {
-                background: #333333;
-                border-color: #555555;
-                color: #e0e0e0;
-            }
-            
-            .file-input {
-                background: #333333;
-                border-color: #555555;
-                color: #e0e0e0;
-            }
-            
-            table {
-                background: #2d2d2d;
-                color: #e0e0e0;
-            }
-            
-            th {
-                background-color: #404040;
-                color: #e0e0e0;
-            }
-            
-            tr:nth-child(even) {
-                background-color: #333333;
-            }
+        body.dark-theme {
+            background-color: #1a1a1a;
+            color: #e0e0e0;
+        }
+        
+        body.dark-theme .container {
+            background: #2d2d2d;
+            color: #e0e0e0;
+        }
+        
+        body.dark-theme .upload-section {
+            background: #333333;
+            border-color: #555555;
+            color: #e0e0e0;
+        }
+        
+        body.dark-theme .quiz-container {
+            background: #2d2d2d;
+            border-color: #5BC0EB;
+            color: #e0e0e0;
+        }
+        
+        body.dark-theme .question-header {
+            background: #5BC0EB;
+            color: #1a1a1a;
+        }
+        
+        body.dark-theme .chart-container {
+            background: #2d2d2d;
+            border-color: #555555;
+        }
+        
+        body.dark-theme .choice {
+            background: #333333;
+            border-color: #555555;
+            color: #e0e0e0;
+        }
+        
+        body.dark-theme .choice:hover {
+            background: #404040;
+            border-color: #5BC0EB;
+        }
+        
+        body.dark-theme .answer-key {
+            background: #2d4a2d;
+            border-color: #4a7c59;
+            color: #90ee90;
+        }
+        
+        body.dark-theme .reasoning {
+            background: #1e3a5f;
+            border-color: #5BC0EB;
+            color: #b3d9ff;
+        }
+        
+        body.dark-theme .reasoning strong {
+            color: #87ceeb;
+        }
+        
+        body.dark-theme .solution {
+            background: #333333;
+            border-color: #666666;
+            color: #e0e0e0;
+        }
+        
+        body.dark-theme .solution-title {
+            color: #e0e0e0;
+            border-bottom-color: #666666;
+        }
+        
+        body.dark-theme .solution-part {
+            background: #404040;
+            border-color: #666666;
+            color: #e0e0e0;
+        }
+        
+        body.dark-theme .solution-part-id {
+            color: #b0b0b0;
+        }
+        
+        body.dark-theme .solution-description {
+            color: #c0c0c0;
+        }
+        
+        body.dark-theme .solution-response {
+            color: #e0e0e0;
+        }
+        
+        body.dark-theme .solution-calculations {
+            background: #404040;
+            color: #e0e0e0;
+        }
+        
+        body.dark-theme .solution-calculations-title {
+            color: #e0e0e0;
+        }
+        
+        body.dark-theme .calculation-step {
+            color: #b0b0b0;
+        }
+        
+        body.dark-theme .scoring-rubric {
+            background: #3d3d00;
+            border-color: #ffcc00;
+            color: #e0e0e0;
+        }
+        
+        body.dark-theme .scoring-title {
+            color: #ffcc00;
+        }
+        
+        body.dark-theme .scoring-part {
+            background: #404040;
+            border-color: #666600;
+            color: #e0e0e0;
+        }
+        
+        body.dark-theme .scoring-part-header {
+            color: #ffcc00;
+        }
+        
+        body.dark-theme .scoring-criterion {
+            color: #e0e0e0;
+        }
+        
+        body.dark-theme .scoring-criterion::before {
+            color: #ffcc00;
+        }
+        
+        body.dark-theme .scoring-notes {
+            background: #404040;
+            color: #c0c0c0;
+        }
+        
+        body.dark-theme .stats {
+            background: #1a2332;
+            border-color: #5BC0EB;
+            color: #e0e0e0;
+        }
+        
+        body.dark-theme .json-input {
+            background: #333333;
+            border-color: #555555;
+            color: #e0e0e0;
+        }
+        
+        body.dark-theme .file-input {
+            background: #333333;
+            border-color: #555555;
+            color: #e0e0e0;
+        }
+        
+        body.dark-theme .debug-button {
+            background: #9c5ce0;
+            border-color: #9c5ce0;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.4);
+        }
+        
+        body.dark-theme .debug-button:hover {
+            background: #b472e6;
+            transform: translateY(-1px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.5);
+        }
+        
+        body.dark-theme table {
+            background: #2d2d2d;
+            color: #e0e0e0;
+        }
+        
+        body.dark-theme th {
+            background-color: #404040;
+            color: #e0e0e0;
+        }
+        
+        body.dark-theme tr:nth-child(even) {
+            background-color: #333333;
         }
     </style>
 </head>
@@ -523,6 +551,7 @@
             <textarea class="json-input" id="jsonInput" placeholder="Paste your JSON quiz data here..."></textarea>
             <button class="load-button" onclick="loadFromText()">📋 Load from Text</button>
             <button class="clear-button" onclick="clearAll()">🗑️ Clear All</button>
+            <button class="debug-button" id="themeToggle" onclick="toggleTheme()">🌙 Switch to Dark</button>
         </div>
         
         <div id="messageContainer"></div>
@@ -532,6 +561,7 @@
 
     <script>
         let chartInstances = [];
+        let currentTheme = 'light'; // Default to light theme
 
         function clearAll() {
             document.getElementById('messageContainer').innerHTML = '';
@@ -606,7 +636,42 @@
         }
 
         function isDarkMode() {
-            return window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+            return currentTheme === 'dark';
+        }
+
+        function toggleTheme() {
+            currentTheme = currentTheme === 'light' ? 'dark' : 'light';
+            
+            // Save preference to localStorage
+            localStorage.setItem('quizRendererTheme', currentTheme);
+            
+            // Update body class for CSS styling
+            document.body.className = currentTheme === 'dark' ? 'dark-theme' : '';
+            
+            // Update button text
+            const themeButton = document.getElementById('themeToggle');
+            themeButton.textContent = currentTheme === 'dark' ? '☀️ Switch to Light' : '🌙 Switch to Dark';
+            
+            // Show feedback message
+            showMessage(`Switched to ${currentTheme} mode. Re-rendering charts...`, 'success');
+            
+            // Re-render charts with new theme
+            forceChartRerender();
+        }
+
+        function initTheme() {
+            // Load saved theme preference or default to light
+            const savedTheme = localStorage.getItem('quizRendererTheme') || 'light';
+            currentTheme = savedTheme;
+            
+            // Apply theme to body
+            document.body.className = currentTheme === 'dark' ? 'dark-theme' : '';
+            
+            // Update button text
+            const themeButton = document.getElementById('themeToggle');
+            if (themeButton) {
+                themeButton.textContent = currentTheme === 'dark' ? '☀️ Switch to Light' : '🌙 Switch to Dark';
+            }
         }
 
         function generateChartColors(count) {
@@ -633,6 +698,29 @@
         function getScatterPointColor() {
             return isDarkMode() ? '#5BC0EB' : '#36A2EB';
         }
+
+        function getTextColor() {
+            return isDarkMode() ? '#e0e0e0' : '#333333';
+        }
+
+        function forceChartRerender() {
+            // Destroy existing charts
+            chartInstances.forEach(chart => {
+                if (chart && typeof chart.destroy === 'function') {
+                    chart.destroy();
+                }
+            });
+            chartInstances = [];
+            
+            // Re-render if we have data
+            if (window.lastLoadedData) {
+                setTimeout(() => {
+                    renderQuiz(window.lastLoadedData);
+                }, 100);
+            }
+        }
+
+
 
         function renderChart(chartData, questionId) {
             const chartId = `chart-${questionId}`;
@@ -725,7 +813,8 @@
                                     max: yAxisConfig.max,
                                     title: {
                                         display: true,
-                                        text: yAxisConfig.title || 'Value'
+                                        text: yAxisConfig.title || 'Value',
+                                        color: getTextColor()
                                     },
                                     grid: {
                                         display: showHorizontalGrid,
@@ -738,24 +827,32 @@
                                     ticks: {
                                         stepSize: yAxisConfig.tickInterval,
                                         maxTicksLimit: yAxisConfig.tickInterval ? undefined : 10,
-                                        precision: 2
+                                        precision: 2,
+                                        color: getTextColor()
                                     }
                                 },
                                 x: {
                                     title: {
                                         display: true,
-                                        text: xAxisConfig.title || 'Category'
+                                        text: xAxisConfig.title || 'Category',
+                                        color: getTextColor()
                                     },
                                     grid: {
                                         display: showVerticalGrid,
                                         color: getGridColor()
+                                    },
+                                    ticks: {
+                                        color: getTextColor()
                                     },
                                     offset: true
                                 }
                             },
                             plugins: {
                                 legend: {
-                                    display: datasets.length > 1
+                                    display: datasets.length > 1,
+                                    labels: {
+                                        color: getTextColor()
+                                    }
                                 }
                             }
                         }
@@ -775,7 +872,7 @@
                                 data: values,
                                 backgroundColor: generateChartColors(values.length),
                                 borderWidth: 2,
-                                borderColor: '#fff'
+                                borderColor: isDarkMode() ? '#2d2d2d' : '#fff'
                             }]
                         },
                         options: {
@@ -786,7 +883,8 @@
                                     position: 'bottom',
                                     labels: {
                                         padding: 20,
-                                        usePointStyle: true
+                                        usePointStyle: true,
+                                        color: getTextColor()
                                     }
                                 },
                                 tooltip: {
@@ -847,14 +945,16 @@
                                     max: xAxisConfig.max,
                                     title: {
                                         display: true,
-                                        text: xAxisConfig.title || 'X Variable'
+                                        text: xAxisConfig.title || 'X Variable',
+                                        color: getTextColor()
                                     },
                                     grid: {
                                         display: showVerticalGrid,
                                         color: getGridColor()
                                     },
                                     ticks: {
-                                        stepSize: xAxisConfig.tickInterval
+                                        stepSize: xAxisConfig.tickInterval,
+                                        color: getTextColor()
                                     }
                                 },
                                 y: {
@@ -862,14 +962,16 @@
                                     max: yAxisConfig.max,
                                     title: {
                                         display: true,
-                                        text: yAxisConfig.title || 'Y Variable'
+                                        text: yAxisConfig.title || 'Y Variable',
+                                        color: getTextColor()
                                     },
                                     grid: {
                                         display: showHorizontalGrid,
                                         color: getGridColor()
                                     },
                                     ticks: {
-                                        stepSize: yAxisConfig.tickInterval
+                                        stepSize: yAxisConfig.tickInterval,
+                                        color: getTextColor()
                                     }
                                 }
                             },
@@ -920,7 +1022,7 @@
                     // Find max frequency for y-axis
                     const maxFrequency = Math.max(...Object.values(valueFrequency));
                     
-                    const chart = new Chart(ctx, {
+                                        const chart = new Chart(ctx, {
                         type: 'scatter',
                         data: {
                             datasets: [{
@@ -944,14 +1046,16 @@
                                     max: xAxisConfig.max,
                                     title: {
                                         display: true,
-                                        text: xAxisConfig.title || 'Value'
+                                        text: xAxisConfig.title || 'Value',
+                                        color: getTextColor()
                                     },
                                     grid: {
                                         display: showVerticalGrid,
                                         color: getGridColor()
                                     },
                                     ticks: {
-                                        stepSize: xAxisConfig.tickInterval
+                                        stepSize: xAxisConfig.tickInterval,
+                                        color: getTextColor()
                                     }
                                 },
                                 y: {
@@ -987,7 +1091,7 @@
                                 }
                             }
                         }
-                                         });
+                    });
                      chartInstances.push(chart);
                 
                 } else if (chartData.chartType === 'boxplot') {
@@ -1244,14 +1348,16 @@
                                     max: xAxisConfig.max || (overallMax + 2),
                                     title: {
                                         display: true,
-                                        text: xAxisConfig.title || 'Value'
+                                        text: xAxisConfig.title || 'Value',
+                                        color: getTextColor()
                                     },
                                     grid: {
                                         display: showVerticalGrid,
                                         color: getGridColor()
                                     },
                                     ticks: {
-                                        stepSize: xAxisConfig.tickInterval
+                                        stepSize: xAxisConfig.tickInterval,
+                                        color: getTextColor()
                                     }
                                 },
                                 y: {
@@ -1261,10 +1367,12 @@
                                     display: boxplots.length > 1,  // Show y-axis labels for multiple boxplots
                                     title: {
                                         display: boxplots.length > 1,
-                                        text: 'Groups'
+                                        text: 'Groups',
+                                        color: getTextColor()
                                     },
                                     ticks: {
                                         display: boxplots.length > 1,
+                                        color: getTextColor(),
                                         callback: function(value, index) {
                                             const boxplotIndex = Math.round(value + (boxplots.length - 1) / 2);
                                             if (boxplotIndex >= 0 && boxplotIndex < boxplots.length) {
@@ -1282,10 +1390,12 @@
                                     display: boxplots.length > 1,  // Show x-axis labels for multiple boxplots
                                     title: {
                                         display: boxplots.length > 1,
-                                        text: 'Groups'
+                                        text: 'Groups',
+                                        color: getTextColor()
                                     },
                                     ticks: {
                                         display: boxplots.length > 1,
+                                        color: getTextColor(),
                                         callback: function(value, index) {
                                             const boxplotIndex = Math.round(value + (boxplots.length - 1) / 2);
                                             if (boxplotIndex >= 0 && boxplotIndex < boxplots.length) {
@@ -1302,14 +1412,16 @@
                                     max: xAxisConfig.max || (overallMax + 2),
                                     title: {
                                         display: true,
-                                        text: xAxisConfig.title || 'Value'
+                                        text: xAxisConfig.title || 'Value',
+                                        color: getTextColor()
                                     },
                                     grid: {
                                         display: showHorizontalGrid,
                                         color: getGridColor()
                                     },
                                     ticks: {
-                                        stepSize: xAxisConfig.tickInterval
+                                        stepSize: xAxisConfig.tickInterval,
+                                        color: getTextColor()
                                     }
                                 }
                             },
@@ -1796,24 +1908,10 @@
             }
         }
 
-        // Dark mode change listener
-        if (window.matchMedia) {
-            window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', function(e) {
-                // Re-render all charts when dark mode changes
-                const questionsContainer = document.getElementById('questionsContainer');
-                if (questionsContainer.innerHTML.trim() !== '') {
-                    // If we have loaded questions, re-render them
-                    const currentData = window.lastLoadedData;
-                    if (currentData) {
-                        renderQuiz(currentData);
-                    }
-                }
-            });
-        }
-
         // Load sample data on page load
         window.onload = function() {
-            showMessage('Ready to load quiz JSON files! Supports tables, bar/histogram/pie/scatter/dotplot/boxplot charts with detailed tick intervals, axis ranges, grid line controls, dark mode, JSON with // comments, and comprehensive free response solutions with scoring rubrics.', 'success');
+            initTheme();
+            showMessage('Ready to load quiz JSON files! Supports tables, bar/histogram/pie/scatter/dotplot/boxplot charts with detailed tick intervals, axis ranges, grid line controls, manual theme switching, JSON with // comments, and comprehensive free response solutions with scoring rubrics. Use the theme toggle button to switch between light and dark modes.', 'success');
         };
     </script>
 </body>

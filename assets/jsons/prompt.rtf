@@ -7,7 +7,7 @@ You are tasked with converting AP Statistics quiz questions from uploaded PDF do
 ### For Multiple Choice Questions:
 ```json
 {
-  "id": "U#-L#-Q##",
+  "id": "U#-L#-Q##",  // Use appropriate ID format based on quiz type (see ID Format section)
   "type": "multiple-choice",
   "prompt": "Question text here",
   "attachments": {
@@ -210,7 +210,7 @@ You are tasked with converting AP Statistics quiz questions from uploaded PDF do
 ### For Free Response Questions:
 ```json
 {
-  "id": "U#-L#-Q##",
+  "id": "U#-L#-Q##",  // Use appropriate ID format based on quiz type (see ID Format section)
   "type": "free-response",
   "prompt": "Question text here, including all sub-parts (a), (b), (c), etc.",
   "attachments": {
@@ -292,7 +292,12 @@ You are tasked with converting AP Statistics quiz questions from uploaded PDF do
 ```
 
 ## Key Requirements:
-1. **ID Format**: Use pattern "U#-L#-Q##" where # represents unit, lesson, and question numbers
+1. **ID Format**: Use appropriate pattern based on quiz type:
+   - **Regular Lessons**: "U#-L#-Q##" (e.g., "U1-L2-Q05" for Unit 1, Lesson 2, Question 5)
+   - **Progress Check MCQ**: "U#-PC-MCQ-[PART]-Q##" (e.g., "U1-PC-MCQ-A-Q01" for Unit 1, Progress Check, MCQ Part A, Question 1)
+   - **Progress Check FRQ**: "U#-PC-FRQ-Q##" (e.g., "U1-PC-FRQ-Q01" for Unit 1, Progress Check, FRQ Question 1)
+   - **AP Exam Questions**: "U#-AP-[YEAR]-[TYPE]-Q##" (e.g., "U1-AP-2017-MCQ-Q09" for Unit 1, AP 2017, MCQ Question 9)
+   - **Other Quiz Types**: Adapt pattern to reflect the actual quiz type and source
 2. **Visual Data**: Extract and format any tables, charts, or graphs according to the specifications above
 3. **Clean Prompts**: Remove table formatting from prompt text when table data is included in attachments
 4. **Answer Keys**: Include the correct answer from the scoring guide
@@ -422,6 +427,8 @@ Example of separate histograms:
 
 ## Instructions:
 - Analyze the uploaded PDF carefully
+- **Identify quiz type from document headers/titles** - Look for indicators like "Progress Check," "AP Exam," "Lesson," "Section," "Capstone," "MCQ Part A/B," "FRQ," etc.
+- **Apply appropriate ID format** based on quiz type identified (see ID Format section above)
 - Identify unit and lesson numbers from document headers/titles
 - **Pay special attention to chart types** - look for gaps between bars to distinguish bar charts from histograms
 - **Look for stacked dots** - identify dotplots showing single variable distributions vs scatter plots showing two-variable relationships
