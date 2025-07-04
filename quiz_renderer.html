@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Interactive AP Stats Quiz Renderer</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
+    <!-- NEW: Chart.js dragData plugin for click-and-drag editing -->
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-dragdata@2"></script>
     <style>
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -354,6 +356,27 @@
             text-align: center;
         }
         
+        .modification-indicator {
+            background: #fff3cd;
+            border: 2px solid #ffc107;
+            border-radius: 6px;
+            padding: 10px 15px;
+            margin: 10px 0;
+            color: #856404;
+            font-weight: bold;
+            text-align: center;
+            transition: opacity 0.3s ease;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        .draggable-histogram {
+            cursor: grab;
+        }
+        
+        .draggable-histogram:active {
+            cursor: grabbing;
+        }
+        
         /* Dark mode adaptations */
         body.dark-theme {
             background-color: #1a1a1a;
@@ -532,6 +555,12 @@
         body.dark-theme tr:nth-child(even) {
             background-color: #333333;
         }
+        
+        body.dark-theme .modification-indicator {
+            background: #3d3d00;
+            border-color: #ffcc00;
+            color: #ffcc00;
+        }
     </style>
 </head>
 <body>
@@ -553,6 +582,8 @@
             <button class="clear-button" onclick="clearAll()">🗑️ Clear All</button>
             <button class="debug-button" id="themeToggle" onclick="toggleTheme()">🌙 Switch to Dark</button>
             <button class="debug-button" id="audioToggle" onclick="toggleAudio()">🔊 Audio On</button>
+            <button class="debug-button" onclick="exportModifiedJson()">💾 Export Modified JSON</button>
+            <button class="debug-button" onclick="resetModifications()">🔄 Reset Changes</button>
         </div>
         
         <div id="messageContainer"></div>
@@ -565,6 +596,15 @@
         let currentTheme = 'light'; // Default to light theme
         let audioContext = null;
         let audioEnabled = true; // Audio feedback enabled by default
+        
+        // Dragging state variables
+        let isDragging = false;
+        let dragChartInstance = null;
+        let dragBarIndex = -1;
+        let dragStartY = 0;
+        let dragStartValue = 0;
+        let originalJsonData = null; // Store original JSON for modifications
+        let modifiedJsonData = null; // Store modified JSON
         
         // Initialize audio context (must be done after user interaction)
         function initAudioContext() {
@@ -625,6 +665,9 @@
             loadText: () => playTone(659.25, 0.2, 'sine', 0.12), // E5 - slightly higher for text
             clear: () => playTone(392.00, 0.3, 'sine', 0.1), // G4 - lower, longer for clear
             theme: () => playChord([261.63, 329.63, 392.00], 0.15, 'sine', 0.06), // C4-E4-G4 chord for theme
+            drag: () => playTone(440.00, 0.05, 'sine', 0.04), // A4 - quick drag feedback
+            dragEnd: () => playTone(523.25, 0.1, 'sine', 0.06), // C5 - drag end confirmation
+            export: () => playChord([523.25, 659.25, 783.99], 0.2, 'sine', 0.08), // C5-E5-G5 chord for export
             success: () => {
                 // Success sound - ascending notes
                 setTimeout(() => playTone(523.25, 0.15, 'sine', 0.08), 0);
@@ -633,6 +676,315 @@
             },
             error: () => playTone(220.00, 0.4, 'sawtooth', 0.08) // A3 - lower, different waveform for errors
         };
+
+        // Convert DOM mouse/touch events into an event object compatible with Chart.js interaction helpers
+        function toChartJSEvent(evt) {
+            if (evt.type && evt.type.startsWith('touch')) {
+                // Use the first touch point
+                const touch = evt.changedTouches ? evt.changedTouches[0] : (evt.touches ? evt.touches[0] : null);
+                if (touch) {
+                    return {
+                        type: 'touch',
+                        clientX: touch.clientX,
+                        clientY: touch.clientY,
+                        x: touch.clientX,
+                        y: touch.clientY,
+                        native: evt // provide reference to original event (used by Chart.js)
+                    };
+                }
+            }
+            // Mouse (or pointer) events – pass through relevant fields plus native reference
+            return {
+                type: 'mouse',
+                clientX: evt.clientX,
+                clientY: evt.clientY,
+                x: evt.clientX,
+                y: evt.clientY,
+                native: evt
+            };
+        }
+
+        // Dragging functions - improved version with touch support
+        function setupHistogramDragging(chart, questionId) {
+            const canvas = chart.canvas;
+            let dragData = {
+                isDragging: false,
+                barIndex: -1,
+                datasetIndex: -1,
+                startY: 0,
+                startValue: 0,
+                chart: chart,
+                questionId: questionId
+            };
+            
+            // Begin drag (mousedown/touchstart)
+            function beginDrag(evt) {
+                const eventPoints = getEventPoints(evt);
+                if (eventPoints.point.length === 0) return false;
+                
+                const point = eventPoints.point[0];
+                const rect = canvas.getBoundingClientRect();
+                const x = point.x - rect.left;
+                const y = point.y - rect.top;
+                
+                // Create a synthetic event for Chart.js getElementsAtEventForMode
+                const syntheticEvent = {
+                    x: x,
+                    y: y,
+                    clientX: point.x,
+                    clientY: point.y
+                };
+                
+                // Check if click/touch is on a histogram bar
+                const points = chart.getElementsAtEventForMode(toChartJSEvent(evt), 'nearest', { intersect: true }, false);
+                if (points.length > 0) {
+                    const chartPoint = points[0];
+                    const datasetIndex = chartPoint.datasetIndex;
+                    const index = chartPoint.index;
+                    
+                    // Only enable dragging for histograms and bar charts
+                    if (chart.config.type === 'bar' && chart.config.data.datasets[datasetIndex]) {
+                        dragData.isDragging = true;
+                        dragData.barIndex = index;
+                        dragData.datasetIndex = datasetIndex;
+                        dragData.startY = y;
+                        dragData.startValue = chart.config.data.datasets[datasetIndex].data[index];
+                        
+                        canvas.style.cursor = 'grabbing';
+                        
+                        // Play drag start sound
+                        buttonTones.drag();
+                        
+                        return true; // Consume the event
+                    }
+                }
+                return false; // Don't consume the event
+            }
+            
+            // During drag (mousemove/touchmove)
+            function duringDrag(evt) {
+                if (!dragData.isDragging) return false;
+                
+                const eventPoints = getEventPoints(evt);
+                if (eventPoints.point.length === 0) return false;
+                
+                const point = eventPoints.point[0];
+                const rect = canvas.getBoundingClientRect();
+                const y = point.y - rect.top;
+                const deltaY = dragData.startY - y; // Invert Y axis
+                
+                // Calculate new value based on mouse/touch movement
+                const yScale = chart.scales.y;
+                const pixelRange = yScale.bottom - yScale.top;
+                const valueRange = yScale.max - yScale.min;
+                const valuePerPixel = valueRange / pixelRange;
+                const deltaValue = deltaY * valuePerPixel;
+                
+                let newValue = dragData.startValue + deltaValue;
+                
+                // Clamp value to reasonable bounds
+                newValue = Math.max(0, Math.min(newValue, yScale.max || 1));
+                
+                // Update the chart data
+                chart.config.data.datasets[dragData.datasetIndex].data[dragData.barIndex] = newValue;
+                chart.update('none'); // Update without animation for smooth dragging
+                
+                // Update the modified JSON data
+                updateModifiedJsonData(dragData.questionId, dragData.barIndex, newValue);
+                
+                // Play subtle drag feedback (throttled)
+                if (Math.abs(deltaValue) > 0.01) {
+                    buttonTones.drag();
+                }
+                
+                return true; // Consume the event
+            }
+            
+            // End drag (mouseup/touchend)
+            function endDrag(evt) {
+                if (!dragData.isDragging) return false;
+                
+                dragData.isDragging = false;
+                canvas.style.cursor = 'default';
+                
+                // Play drag end sound
+                buttonTones.dragEnd();
+                
+                // Show modification indicator
+                showModificationIndicator(dragData.questionId);
+                
+                return true; // Consume the event
+            }
+            
+            // Universal event handler
+            var evtHandler = function(evt) {
+                var cancel = false;
+                switch (evt.type) {
+                    case "mousedown":
+                    case "touchstart":
+                        cancel = beginDrag(evt);
+                        break;
+                    case "mousemove":
+                    case "touchmove":
+                        cancel = duringDrag(evt);
+                        break;
+                    case "mouseup":
+                    case "touchend":
+                        cancel = endDrag(evt);
+                        break;
+                    default:
+                        // Handle other events if needed
+                        break;
+                }
+
+                if (cancel) {
+                    // Prevent the event from bubbling up the DOM
+                    if (evt.cancelable) {
+                        if (evt.preventDefault) {
+                            evt.preventDefault();
+                        }
+                        if (evt.cancelBubble != null) {
+                            evt.cancelBubble = true;
+                        }
+                    }
+                }
+            };
+
+            // Events to subscribe to (both mouse and touch)
+            var events = ['mousedown', 'touchstart', 'mousemove', 'touchmove', 'mouseup', 'touchend'];
+
+            // Subscribe events
+            events.forEach(function (evtName) {
+                canvas.addEventListener(evtName, evtHandler, { passive: false });
+            });
+            
+            // Add hover cursor for draggable bars (mouse only)
+            canvas.addEventListener('mousemove', function(e) {
+                if (!dragData.isDragging) {
+                    const points = chart.getElementsAtEventForMode(e, 'nearest', { intersect: true }, false);
+                    if (points.length > 0) {
+                        canvas.style.cursor = 'grab';
+                    } else {
+                        canvas.style.cursor = 'default';
+                    }
+                }
+            });
+        }
+        
+        function updateModifiedJsonData(questionId, barIndex, newValue) {
+            if (!modifiedJsonData) {
+                modifiedJsonData = JSON.parse(JSON.stringify(originalJsonData));
+            }
+            
+            // Find the question and update its chart data
+            let questions = [];
+            if (Array.isArray(modifiedJsonData)) {
+                questions = modifiedJsonData;
+            } else if (modifiedJsonData.questions && Array.isArray(modifiedJsonData.questions)) {
+                questions = modifiedJsonData.questions;
+            } else if (typeof modifiedJsonData === 'object') {
+                if (modifiedJsonData.id && modifiedJsonData.prompt) {
+                    questions = [modifiedJsonData];
+                } else {
+                    questions = Object.values(modifiedJsonData).filter(item => 
+                        typeof item === 'object' && item.id && item.prompt
+                    );
+                }
+            }
+            
+            const question = questions.find(q => q.id === questionId);
+            if (question && question.attachments && question.attachments.series) {
+                // Update the histogram values
+                question.attachments.series[0].values[barIndex] = newValue;
+                
+                // Mark as modified
+                if (!question._modified) {
+                    question._modified = true;
+                }
+            }
+        }
+        
+        function showModificationIndicator(questionId) {
+            const questionContainer = document.querySelector(`[data-question-id="${questionId}"]`);
+            if (questionContainer) {
+                let indicator = questionContainer.querySelector('.modification-indicator');
+                if (!indicator) {
+                    indicator = document.createElement('div');
+                    indicator.className = 'modification-indicator';
+                    indicator.innerHTML = '🔄 <strong>Modified</strong> - Data has been changed';
+                    questionContainer.appendChild(indicator);
+                }
+                
+                // Fade in effect
+                indicator.style.opacity = '0';
+                setTimeout(() => {
+                    indicator.style.opacity = '1';
+                }, 10);
+            }
+        }
+        
+        function exportModifiedJson() {
+            if (!modifiedJsonData) {
+                showMessage('No modifications to export. Make changes to histogram data first.', 'error');
+                return;
+            }
+            
+            // Play export sound
+            buttonTones.export();
+            
+            // Create a deep copy and remove modification flags
+            const exportData = JSON.parse(JSON.stringify(modifiedJsonData));
+            
+            // Remove _modified flags from questions
+            const cleanData = (obj) => {
+                if (Array.isArray(obj)) {
+                    return obj.map(cleanData);
+                } else if (typeof obj === 'object' && obj !== null) {
+                    const cleaned = {};
+                    for (const [key, value] of Object.entries(obj)) {
+                        if (key !== '_modified') {
+                            cleaned[key] = cleanData(value);
+                        }
+                    }
+                    return cleaned;
+                }
+                return obj;
+            };
+            
+            const cleanedData = cleanData(exportData);
+            
+            // Create and download JSON file
+            const jsonString = JSON.stringify(cleanedData, null, 2);
+            const blob = new Blob([jsonString], { type: 'application/json' });
+            const url = URL.createObjectURL(blob);
+            
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'modified_quiz_data.json';
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+            
+            showMessage('Modified JSON data exported successfully!', 'success');
+        }
+        
+        function resetModifications() {
+            if (!originalJsonData) {
+                showMessage('No original data to reset to.', 'error');
+                return;
+            }
+            
+            // Play clear tone
+            buttonTones.clear();
+            
+            modifiedJsonData = null;
+            
+            // Re-render the quiz with original data
+            renderQuiz(originalJsonData);
+            
+            showMessage('All modifications have been reset to original values.', 'success');
+        }
 
         function toggleAudio() {
             audioEnabled = !audioEnabled;
@@ -668,6 +1020,10 @@
             // Destroy existing charts
             chartInstances.forEach(chart => chart.destroy());
             chartInstances = [];
+            
+            // Clear modification data
+            originalJsonData = null;
+            modifiedJsonData = null;
         }
 
         function showMessage(message, type = 'error') {
@@ -836,8 +1192,6 @@
             }
         }
 
-
-
         function renderChart(chartData, questionId) {
             const chartId = `chart-${questionId}`;
             const config = chartData.chartConfig || {};
@@ -902,6 +1256,18 @@
                     const isHistogram = chartData.chartType === 'histogram';
                     const categoryPercentage = isHistogram ? 1.0 : 0.8;
                     const barPercentage = isHistogram ? 1.0 : 0.9;
+                    
+                    // dragData plugin config (only for histograms)
+                    const dragDataConfig = isHistogram ? {
+                        dragData: {
+                            round: 0,
+                            showTooltip: true,
+                            onDragEnd: (e, datasetIndex, index, value) => {
+                                updateModifiedJsonData(questionId, index, value);
+                                showModificationIndicator(questionId);
+                            }
+                        }
+                    } : {};
                     
                     // Handle labels - support both horizontal and vertical orientations
                     let displayLabels;
@@ -1018,7 +1384,8 @@
                                     labels: {
                                         color: getTextColor()
                                     }
-                                }
+                                },
+                                ...dragDataConfig
                             }
                         }
                     });
@@ -1187,7 +1554,7 @@
                     // Find max frequency for y-axis
                     const maxFrequency = Math.max(...Object.values(valueFrequency));
                     
-                                        const chart = new Chart(ctx, {
+                    const chart = new Chart(ctx, {
                         type: 'scatter',
                         data: {
                             datasets: [{
@@ -1818,7 +2185,7 @@
         function renderQuestion(question, index) {
             const questionNumber = index + 1;
             let questionHtml = `
-                <div class="quiz-container">
+                <div class="quiz-container" data-question-id="${question.id || 'N/A'}">
                     <div class="question-header">Question ${questionNumber}</div>
                     <div class="question-id">ID: ${question.id || 'N/A'}</div>
                     <div class="question-id">Type: ${question.type || 'N/A'}</div>
@@ -1988,6 +2355,11 @@
                 // Store data for dark mode re-rendering
                 window.lastLoadedData = data;
                 
+                // Store original data for modifications (only if not already stored)
+                if (!originalJsonData) {
+                    originalJsonData = JSON.parse(JSON.stringify(data));
+                }
+                
                 // Clear existing charts first
                 chartInstances.forEach(chart => chart.destroy());
                 chartInstances = [];
@@ -2082,7 +2454,7 @@
         // Load sample data on page load
         window.onload = function() {
             initTheme();
-            showMessage('🎵 Ready to load quiz JSON files! Now featuring audio feedback with synthesized tones for each button! Supports tables, bar/histogram/pie/scatter/dotplot/boxplot charts with detailed tick intervals, axis ranges, grid line controls, manual theme switching, JSON with // comments, and comprehensive free response solutions with scoring rubrics. Use the theme toggle button to switch between light and dark modes.', 'success');
+            showMessage('🎵 Ready to load quiz JSON files! Now featuring audio feedback with synthesized tones for each button! Supports tables, bar/histogram/pie/scatter/dotplot/boxplot charts with detailed tick intervals, axis ranges, grid line controls, manual theme switching, JSON with // comments, and comprehensive free response solutions with scoring rubrics. 🖱️ NEW: Click and drag histogram bars to modify values (works on both desktop and mobile/touch devices), then export the modified JSON data! Use the theme toggle button to switch between light and dark modes.', 'success');
         };
     </script>
 </body>
