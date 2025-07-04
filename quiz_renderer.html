@@ -1534,25 +1534,21 @@
                         }
                     }
                     
-                    // Convert raw values to frequency data for dotplot
-                    const valueFrequency = {};
-                    chartData.values.forEach(value => {
-                        valueFrequency[value] = (valueFrequency[value] || 0) + 1;
+                    // Convert raw values to frequency data for dotplot (preserve original order for mapping)
+                    const countMap = {};
+                    const dotplotData = [];
+                    chartData.values.forEach((val, idx) => {
+                        const key = val.toString();
+                        countMap[key] = (countMap[key] || 0) + 1;
+                        dotplotData.push({
+                            x: parseFloat(val),
+                            y: countMap[key],
+                            originalIndex: idx // map back to JSON array position
+                        });
                     });
                     
-                    // Create stacked dots data
-                    const dotplotData = [];
-                    for (const [value, frequency] of Object.entries(valueFrequency)) {
-                        for (let i = 1; i <= frequency; i++) {
-                            dotplotData.push({
-                                x: parseFloat(value),
-                                y: i
-                            });
-                        }
-                    }
-                    
                     // Find max frequency for y-axis
-                    const maxFrequency = Math.max(...Object.values(valueFrequency));
+                    const maxFrequency = Math.max(...Object.values(countMap));
                     
                     const chart = new Chart(ctx, {
                         type: 'scatter',
@@ -1617,14 +1613,49 @@
                                             return `Value: ${context[0].parsed.x}`;
                                         },
                                         label: function(context) {
-                                            return `Count: ${valueFrequency[context.parsed.x]}`;
+                                            return `Count: ${countMap[context.parsed.x]}`;
                                         }
+                                    }
+                                },
+                                // Enable drag-to-edit for individual dots (drag horizontally)
+                                dragData: {
+                                    dragX: true,
+                                    dragY: false,
+                                    round: 0,
+                                    onDragEnd: (e, datasetIndex, pointIndex, value) => {
+                                        const point = chart.data.datasets[datasetIndex].data[pointIndex];
+                                        const origIdx = point.originalIndex;
+                                        updateDotplotJsonData(questionId, origIdx, point.x);
+                                        showModificationIndicator(questionId);
+                                        // Restack after any movement to keep dots aligned
+                                        restackDotplot(chart);
                                     }
                                 }
                             }
                         }
                     });
-                     chartInstances.push(chart);
+                    
+                    // after chartInstances.push(chart); inside dotplot branch
+                    chartInstances.push(chart);
+
+                    // Register double-click handler for adding/removing dots
+                    chart.canvas.addEventListener('dblclick', function(evt) {
+                        const pos = Chart.helpers.getRelativePosition(evt, chart);
+                        const elements = chart.getElementsAtEventForMode(evt, 'nearest', { intersect: true }, false);
+                        if (elements.length > 0) {
+                            // Remove dot
+                            const el = elements[0];
+                            const p = chart.data.datasets[el.datasetIndex].data[el.index];
+                            removeDotplotValue(questionId, p.originalIndex, chart);
+                            showModificationIndicator(questionId);
+                        } else {
+                            // Add dot at clicked x
+                            const xVal = chart.scales.x.getValueForPixel(pos.x);
+                            const rounded = Math.round(xVal);
+                            addDotplotValue(questionId, rounded, chart);
+                            showModificationIndicator(questionId);
+                        }
+                    });
                 
                 } else if (chartData.chartType === 'boxplot') {
                     const config = chartData.chartConfig || {};
@@ -2456,6 +2487,90 @@
             initTheme();
             showMessage('🎵 Ready to load quiz JSON files! Now featuring audio feedback with synthesized tones for each button! Supports tables, bar/histogram/pie/scatter/dotplot/boxplot charts with detailed tick intervals, axis ranges, grid line controls, manual theme switching, JSON with // comments, and comprehensive free response solutions with scoring rubrics. 🖱️ NEW: Click and drag histogram bars to modify values (works on both desktop and mobile/touch devices), then export the modified JSON data! Use the theme toggle button to switch between light and dark modes.', 'success');
         };
+
+        // NEW: update raw values array for dotplot edits
+        function updateDotplotJsonData(questionId, valueIndex, newValue) {
+            if (!modifiedJsonData) {
+                modifiedJsonData = JSON.parse(JSON.stringify(originalJsonData));
+            }
+            let questions = [];
+            if (Array.isArray(modifiedJsonData)) {
+                questions = modifiedJsonData;
+            } else if (modifiedJsonData.questions && Array.isArray(modifiedJsonData.questions)) {
+                questions = modifiedJsonData.questions;
+            } else if (typeof modifiedJsonData === 'object') {
+                if (modifiedJsonData.id && modifiedJsonData.prompt) {
+                    questions = [modifiedJsonData];
+                } else {
+                    questions = Object.values(modifiedJsonData).filter(item => typeof item === 'object' && item.id && item.prompt);
+                }
+            }
+            const question = questions.find(q => q.id === questionId);
+            if (question && question.attachments && Array.isArray(question.attachments.values)) {
+                question.attachments.values[valueIndex] = newValue;
+                if (!question._modified) question._modified = true;
+            }
+        }
+
+        // Helper: restack y positions for all dots in a dotplot after any drag
+        function restackDotplot(chart) {
+            if (!chart || !chart.data || !chart.data.datasets.length) return;
+            const points = chart.data.datasets[0].data;
+            // Build frequency map in insertion order
+            const freq = {};
+            points.forEach(pt => {
+                const key = pt.x.toString();
+                freq[key] = (freq[key] || 0) + 1;
+                pt.y = freq[key];
+            });
+            const newMax = Math.max(...Object.values(freq));
+            const yScale = chart.options.scales && (chart.options.scales.y || chart.options.scales['y']);
+            if (yScale) {
+                yScale.max = newMax + 1;
+            }
+            chart.update('none');
+        }
+
+        // Add a new value to dotplot JSON and chart
+        function addDotplotValue(questionId, newValue, chart) {
+            if (!modifiedJsonData) modifiedJsonData = JSON.parse(JSON.stringify(originalJsonData));
+            // locate question
+            let questions = Array.isArray(modifiedJsonData) ? modifiedJsonData
+                : (modifiedJsonData.questions || (modifiedJsonData.id ? [modifiedJsonData] : Object.values(modifiedJsonData))).filter(q=>q&&q.id);
+            const question = questions.find(q=>q.id===questionId);
+            if(!question || !question.attachments) return;
+            if(!Array.isArray(question.attachments.values)) question.attachments.values=[];
+            question.attachments.values.push(newValue);
+            if(!question._modified) question._modified=true;
+            // add point to chart dataset
+            const freq = {};
+            chart.data.datasets[0].data.forEach(pt => {
+                freq[pt.x] = (freq[pt.x] || 0) + 1;
+            });
+            const y = (freq[newValue] || 0) + 1;
+            const point={x:newValue,y:y,originalIndex:question.attachments.values.length-1};
+            chart.data.datasets[0].data.push(point);
+            restackDotplot(chart);
+        }
+
+        // Remove value from dotplot JSON and chart using originalIndex
+        function removeDotplotValue(questionId, originalIdx, chart) {
+            if (!modifiedJsonData) modifiedJsonData = JSON.parse(JSON.stringify(originalJsonData));
+            let questions = Array.isArray(modifiedJsonData) ? modifiedJsonData
+                : (modifiedJsonData.questions || (modifiedJsonData.id ? [modifiedJsonData] : Object.values(modifiedJsonData))).filter(q=>q&&q.id);
+            const question = questions.find(q=>q.id===questionId);
+            if(!question || !question.attachments || !Array.isArray(question.attachments.values)) return;
+            if(originalIdx<0||originalIdx>=question.attachments.values.length) return;
+            question.attachments.values.splice(originalIdx,1);
+            if(!question._modified) question._modified=true;
+            // remove point from dataset where originalIndex matches
+            const ds=chart.data.datasets[0].data;
+            const idx=ds.findIndex(pt=>pt.originalIndex===originalIdx);
+            if(idx>-1) ds.splice(idx,1);
+            // reindex remaining points
+            ds.forEach((pt,i)=>{pt.originalIndex = i;});
+            restackDotplot(chart);
+        }
     </script>
 </body>
 </html> 
