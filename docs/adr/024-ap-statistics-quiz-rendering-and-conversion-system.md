@@ -20,6 +20,9 @@ The system must handle complex statistical visualizations with specific requirem
 - **Audio Feedback System**: Implemented synthesized audio feedback for user interactions using Web Audio API
 - **Advanced Chart Configuration**: Enhanced chart configuration with precise outlier handling for boxplots, improved grid line controls, and better axis labeling
 - **Theme System**: Added manual theme switching with localStorage persistence alongside automatic dark mode detection
+- **Interactive Editing**: Drag-to-edit histogram bars and dotplot points using **chartjs-plugin-dragdata** (mouse *and* touch). Includes real-time value tool-tips, automatic restacking, and JSON persistence for export.
+- **Dotplot Add / Remove**: Double-click to add a new dot at the clicked x-value or remove an existing dot; display restacks and y-axis rescales automatically.
+- **Modification Tracking & Export**: Changes flag questions as *Modified*, enable one-click export of the updated JSON, and support reset to the original state.
 - **Multiple Chart Rendering**: Support for comparative boxplots and separate histogram layouts using `charts[]` array structure
 - **Enhanced Free Response Solutions**: Complete solution rendering with scoring rubrics, calculations, and solution-specific visualizations
 
@@ -227,22 +230,18 @@ A standalone HTML application with Chart.js integration for rendering and valida
 - **Real-time statistics**: Live count of questions, chart types, and content features
 - **Comprehensive free response rendering**: Complete solution display with scoring rubrics and calculations
 
-#### Chart Support
-- **Bar Charts**: Multi-series support, custom tick intervals, gaps between bars for categorical data
-  - **Vertical Bar Charts**: Traditional orientation with categories on x-axis, values on y-axis
-  - **Horizontal Bar Charts**: Categories on y-axis, values on x-axis with `orientation: "horizontal"`
-- **Histograms**: Continuous data visualization, no gaps between bars, custom tick intervals
-  - **Overlaid histograms**: Multiple series in same chart space for comparison
-  - **Separate histograms**: Side-by-side charts using `charts` array structure
-  - **Flexible x-axis labeling**: Support for ranges, upper bounds, and lower bounds
-- **Pie Charts**: Percentage tooltips, custom colors, legend positioning
-- **Scatter Plots**: Linear scaling, custom axis ranges, point styling
-- **Dotplots**: Single variable distribution, stacked dots, frequency visualization
-- **Boxplots**: Five-number summary visualization with precise outlier handling
-  - **Single boxplots**: Traditional single-group analysis
-  - **Multiple boxplots**: Comparative analysis with multiple groups in same chart space
-  - **Enhanced outlier detection**: Explicit `whiskerMin`/`whiskerMax` + `outliers` array for visual fidelity
-  - **Orientation support**: Both horizontal and vertical boxplot layouts
+#### Chart Support (2024)
+• **Bar Charts** — Multi-series, vertical & horizontal; draggable **histogram** variant for live editing.
+
+• **Histograms** — Gap-less bars, overlaid or separate layouts, integer rounding, **drag-to-edit bar heights**, JSON sync.
+
+• **Pie Charts** — Percentage tool-tips, color-blind-friendly palettes, legend positioning.
+
+• **Scatter Plots** — Linear scaling, custom axis ranges, point styling.
+
+• **Dotplots** — Stacked frequency dots with **drag-to-edit** x-position and **double-click add/remove**; automatic restack & axis rescale.
+
+• **Boxplots** — Single or multiple, horizontal or vertical, whisker & outlier support with exact five-number summaries.
 
 #### Advanced Chart Configuration
 ```javascript
