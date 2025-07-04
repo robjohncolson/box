@@ -90,7 +90,7 @@
   "prompt": "Which of the following statements is the best description of the distribution of scores?",
   "attachments": {
     "chartType": "dotplot",
-    "values": [55, 60, 60, 60, 60, 65, 65, 65, 70, 70, 70, 70, 75, 75, 80, 85, 90, 95],
+    "values": [55, 60, 60, 60, 60, 60, 65, 65, 65, 65, 65, 70, 70, 70, 70, 70, 70, 70, 75, 75, 80, 80, 85, 90, 90, 95],
     "chartConfig": {
       "xAxis": {
         "min": 50,
