@@ -1,0 +1,792 @@
+{
+    "id": "U1-PC-MCQ-B-Q01",
+    "type": "multiple-choice",
+    "prompt": "The following table shows the number of miles a hiker walked on a trail each day for 6 days. What was the mean number of miles the hiker walked for the 6 days?",
+    "attachments": {
+      "table": [
+        ["Day", "1", "2", "3", "4", "5", "6"],
+        ["Number of Miles", "8", "5", "7", "2", "9", "8"]
+      ]
+    },
+    "choices": [
+      {
+        "key": "A",
+        "value": "3.5"
+      },
+      {
+        "key": "B",
+        "value": "4.5"
+      },
+      {
+        "key": "C",
+        "value": "6.5"
+      },
+      {
+        "key": "D",
+        "value": "7.5"
+      },
+      {
+        "key": "E",
+        "value": "8"
+      }
+    ],
+    "answerKey": "C",
+    "reasoning": "The mean number of miles is the sum of the number of miles divided by the number of values. The sum of the number of miles is 8 + 5 + 7 + 2 + 9 + 8 = 39. The sum of the miles divided by the number of values is 39/6 = 6.5 miles."
+  }
+  
+  {
+    "id": "U1-PC-MCQ-B-Q02",
+    "type": "multiple-choice",
+    "prompt": "The following list shows the number of goals scored by a soccer team in each of 9 games. How does the median number of goals scored compare with the mean number of goals scored?",
+    "attachments": {
+      "table": [
+        ["Goals", "0", "0", "1", "1", "1", "3", "3", "4", "5"]
+      ]
+    },
+    "choices": [
+      {
+        "key": "A",
+        "value": "The median is equal to the mean."
+      },
+      {
+        "key": "B",
+        "value": "The median is less than the mean by 1."
+      },
+      {
+        "key": "C",
+        "value": "The median is greater than the mean by 1."
+      },
+      {
+        "key": "D",
+        "value": "The median is less than the mean by 2."
+      },
+      {
+        "key": "E",
+        "value": "The median is greater than the mean by 2."
+      }
+    ],
+    "answerKey": "B",
+    "reasoning": "The median is the middle value of a data set when the data are ordered. The median is the fifth value of the ordered data set, which is equal to 1. The mean is the sum of all data values divided by the number of values, which is equal to 2. The median is less than the mean by 1."
+  }
+  
+  {
+    "id": "U1-PC-MCQ-B-Q03",
+    "type": "multiple-choice",
+    "prompt": "To gather data for a statistics project, a student asked 10 friends how many hours of sleep they got on the previous night. The data are shown in the following list. What is the interquartile range (IQR) of the number of hours of sleep shown in the list?",
+    "attachments": {
+      "table": [
+        ["Hours", "7", "6", "5", "9", "3", "4", "7", "9", "5", "8"]
+      ]
+    },
+    "choices": [
+      {
+        "key": "A",
+        "value": "3 hours"
+      },
+      {
+        "key": "B",
+        "value": "4 hours"
+      },
+      {
+        "key": "C",
+        "value": "6 hours"
+      },
+      {
+        "key": "D",
+        "value": "6.3 hours"
+      },
+      {
+        "key": "E",
+        "value": "6.5 hours"
+      }
+    ],
+    "answerKey": "A",
+    "reasoning": "For the ordered set of data, the third quartile is 8 and the first quartile is 5. The IQR is the difference of 3."
+  }
+  
+  {
+    "id": "U1-PC-MCQ-B-Q04",
+    "type": "multiple-choice",
+    "prompt": "The time, in minutes, it took each of 11 students to complete a puzzle was recorded and is shown in the following list. One of the students who completed the puzzle claimed that there were two outliers in the data set. Based on the 1.5 × IQR rule for outliers, is there evidence to support the student's claim?",
+    "attachments": {
+      "table": [
+        ["Time", "9", "17", "20", "21", "27", "29", "30", "31", "32", "35", "58"]
+      ]
+    },
+    "choices": [
+      {
+        "key": "A",
+        "value": "Yes, there are two outliers. One outlier is 9 minutes and the other outlier is 58 minutes."
+      },
+      {
+        "key": "B",
+        "value": "No, there is only one outlier at 9 minutes."
+      },
+      {
+        "key": "C",
+        "value": "No, there is only one outlier at 58 minutes."
+      },
+      {
+        "key": "D",
+        "value": "No, there are three outliers. One outlier is 9 minutes, one outlier is 35 minutes, and one outlier is 58 minutes."
+      },
+      {
+        "key": "E",
+        "value": "No, there are no outliers."
+      }
+    ],
+    "answerKey": "C",
+    "reasoning": "There is one outlier, 58, since it is more than 1.5 IQRs above the upper quartile (Q3), and all other data values are within 1.5 IQRs of either the first or third quartile (Q1 or Q3)."
+  }
+  
+  {
+    "id": "U1-PC-MCQ-B-Q05",
+    "type": "multiple-choice",
+    "prompt": "A reporter collected data on the purchase prices, in thousands of dollars, of 72 cars sold in a region. The following histogram summarizes the reporter's data. For a presentation on the data collected, the reporter used the median of the distribution to describe the typical purchase price. Which of the following might explain the use of median to describe the typical purchase price?",
+    "attachments": {
+      "chartType": "histogram",
+      "xLabels": ["25", "30", "35", "40", "45", "50", "55", "60", "65", "70", "75", "80", "85"],
+      "series": [
+        {
+          "name": "Frequency",
+          "values": [0, 0, 5, 13, 28, 15, 5, 3, 2, 1, 0, 0, 2]
+        }
+      ],
+      "chartConfig": {
+        "yAxis": {
+          "min": 0,
+          "max": 30,
+          "tickInterval": 5,
+          "title": "Frequency"
+        },
+        "xAxis": {
+          "title": "Price (thousands of dollars)",
+          "labelType": "upperBound"
+        },
+        "gridLines": {
+          "horizontal": true,
+          "vertical": false
+        },
+        "description": "Histogram showing car purchase prices with an outlier between $80,000 and $85,000"
+      }
+    },
+    "choices": [
+      {
+        "key": "A",
+        "value": "There is an outlier between $80,000 and $85,000. Medians are resistant to outliers, while means are not."
+      },
+      {
+        "key": "B",
+        "value": "The number of observations that fall within a given interval is known. However, within each interval, the actual values are not known."
+      },
+      {
+        "key": "C",
+        "value": "The distribution is left skewed."
+      },
+      {
+        "key": "D",
+        "value": "The values represented in the histogram are in the thousands."
+      },
+      {
+        "key": "E",
+        "value": "The distribution is uniform."
+      }
+    ],
+    "answerKey": "A",
+    "reasoning": "Means are not resistant to outliers because their value is influenced by outliers. Medians are considered resistant because outliers do not greatly affect their value. The median better represents the typical purchase price."
+  }
+  
+  {
+    "id": "U1-PC-MCQ-B-Q06",
+    "type": "multiple-choice",
+    "prompt": "The distribution of 27 salaries at a small company has mean $35,000 and standard deviation $2,000. Suppose the company hires a 28th employee at a salary of $120,000. Which of the following claims about the new salary distribution is supported? I. The median is not likely to change. II. The range is not likely to change. III. The mean is likely to increase.",
+    "choices": [
+      {
+        "key": "A",
+        "value": "I only"
+      },
+      {
+        "key": "B",
+        "value": "III only"
+      },
+      {
+        "key": "C",
+        "value": "I and II only"
+      },
+      {
+        "key": "D",
+        "value": "I and III only"
+      },
+      {
+        "key": "E",
+        "value": "I, II, and III"
+      }
+    ],
+    "answerKey": "D",
+    "reasoning": "The new salary of $120,000 is an outlier since it is far above the rest of the data. The median is resistant to outliers, so it is unlikely to change, and the mean is not resistant to outliers, so it is likely to change. The range is not resistant to outliers, so it will likely change."
+  }
+  
+  {
+    "id": "U1-PC-MCQ-B-Q07",
+    "type": "multiple-choice",
+    "prompt": "The following boxplot summarizes the heights of a group of people who participate in a weekend biking club. Which of the following statements is supported by the boxplot?",
+    "attachments": {
+      "chartType": "boxplot",
+      "chartConfig": {
+        "orientation": "horizontal",
+        "xAxis": {
+          "min": 60,
+          "max": 76,
+          "tickInterval": 2,
+          "title": "Height (inches)"
+        },
+        "boxplotData": {
+          "Q1": 62,
+          "Q3": 70,
+          "median": 67,
+          "whiskerMin": 60,
+          "whiskerMax": 74,
+          "outliers": []
+        },
+        "gridLines": {
+          "horizontal": false,
+          "vertical": false
+        },
+        "description": "Boxplot showing heights of weekend biking club participants"
+      }
+    },
+    "choices": [
+      {
+        "key": "A",
+        "value": "The mean height is 67 inches."
+      },
+      {
+        "key": "B",
+        "value": "The number of people with height at least 70 inches is greater than the number of people with height at most 62 inches."
+      },
+      {
+        "key": "C",
+        "value": "The number of people with height at least 67 inches is less than the number of people with height at most 67 inches."
+      },
+      {
+        "key": "D",
+        "value": "Approximately 50% of the people have a height between 62 inches and 70 inches."
+      },
+      {
+        "key": "E",
+        "value": "Approximately 25% of the people have a height greater than 62 inches."
+      }
+    ],
+    "answerKey": "D",
+    "reasoning": "The interquartile range accounts for about 50% of the data. The first quartile is located at 62 and the third quartile is located at 70. Therefore approximately 50% of the people have a height between 62 inches and 70 inches."
+  }
+  
+  {
+    "id": "U1-PC-MCQ-B-Q08",
+    "type": "multiple-choice",
+    "prompt": "The following table shows statistics on the ages, in years, of the people who attended a lecture last week. The data are summarized in the boxplot shown. Which of the following statements is supported by the table and boxplot?",
+    "attachments": {
+      "table": [
+        ["N", "Mean", "StDev", "Minimum", "Q1", "Median", "Q3", "Maximum"],
+        ["45", "43", "12", "20", "33", "44", "53", "65"]
+      ],
+      "chartType": "boxplot",
+      "chartConfig": {
+        "orientation": "horizontal",
+        "xAxis": {
+          "min": 10,
+          "max": 70,
+          "tickInterval": 10,
+          "title": "Age of People Attending Lecture"
+        },
+        "boxplotData": {
+          "Q1": 33,
+          "Q3": 53,
+          "median": 44,
+          "whiskerMin": 20,
+          "whiskerMax": 65,
+          "outliers": []
+        },
+        "gridLines": {
+          "horizontal": false,
+          "vertical": false
+        },
+        "description": "Boxplot showing ages of people attending lecture"
+      }
+    },
+    "choices": [
+      {
+        "key": "A",
+        "value": "The range of the distribution is 20 years."
+      },
+      {
+        "key": "B",
+        "value": "There were 43 people who attended the lecture."
+      },
+      {
+        "key": "C",
+        "value": "At least 50% of the people who attended the lecture were 43 years or younger."
+      },
+      {
+        "key": "D",
+        "value": "At least 75% of the people who attended the lecture were age 53 years or younger."
+      },
+      {
+        "key": "E",
+        "value": "At least 25% of the people who attended the lecture were 33 years old."
+      }
+    ],
+    "answerKey": "D",
+    "reasoning": "The third quartile, Q3, is 53. This indicates that at least 75% of the ages are at or below this value."
+  }
+  
+  {
+    "id": "U1-PC-MCQ-B-Q09",
+    "type": "multiple-choice",
+    "prompt": "The following boxplot summarizes the earnings made on one day at 45 movie theaters. Which of the following best compares the median movie theater earnings with the mean movie theater earnings?",
+    "attachments": {
+      "chartType": "boxplot",
+      "chartConfig": {
+        "orientation": "vertical",
+        "yAxis": {
+          "min": 0,
+          "max": 5000,
+          "tickInterval": 1000,
+          "title": "Earnings"
+        },
+        "boxplotData": {
+          "Q1": 600,
+          "Q3": 1000,
+          "median": 800,
+          "whiskerMin": 200,
+          "whiskerMax": 1800,
+          "outliers": [3000, 4500, 4700]
+        },
+        "gridLines": {
+          "horizontal": false,
+          "vertical": false
+        },
+        "description": "Boxplot showing movie theater earnings with high outliers indicating right skew"
+      }
+    },
+    "choices": [
+      {
+        "key": "A",
+        "value": "The median and mean are equal because the distribution is likely symmetric."
+      },
+      {
+        "key": "B",
+        "value": "The median and mean are equal because the distribution is likely skewed to the right."
+      },
+      {
+        "key": "C",
+        "value": "The median is less than the mean because the distribution is likely symmetric."
+      },
+      {
+        "key": "D",
+        "value": "The median is less than the mean because the distribution is likely skewed to the right."
+      },
+      {
+        "key": "E",
+        "value": "The median is less than the mean because the distribution is likely skewed to the left."
+      }
+    ],
+    "answerKey": "D",
+    "reasoning": "Although complete shape information cannot be determined from a boxplot, the position of the outliers and quartiles appears to indicate the distribution is skewed to the right. In a distribution that is skewed to the right, the median is likely less than the mean."
+  }
+  
+  {
+    "id": "U1-PC-MCQ-B-Q10",
+    "type": "multiple-choice",
+    "prompt": "Researchers studying catfish estimated the number of fingerling catfish and large catfish living in different rivers throughout the country. The following histograms summarize the relative frequency for each type of catfish. Based on the histograms, which of the following is the best comparison of the means and the ranges for the two distributions?",
+    "attachments": {
+      "charts": [
+        {
+          "chartType": "histogram",
+          "title": "Distribution of Fingerling Catfish",
+          "xLabels": ["2,000", "4,000", "6,000", "8,000", "10,000", "12,000"],
+          "series": [
+            {
+              "name": "Fingerling Catfish",
+              "values": [0, 0.07, 0.15, 0.10, 0.28, 0.25, 0]
+            }
+          ],
+          "chartConfig": {
+            "yAxis": {
+              "min": 0,
+              "max": 0.35,
+              "tickInterval": 0.05,
+              "title": "Relative Frequency"
+            },
+            "xAxis": {
+              "title": "Number per River",
+              "labelType": "upperBound"
+            },
+            "gridLines": {
+              "horizontal": true,
+              "vertical": false
+            }
+          }
+        },
+        {
+          "chartType": "histogram",
+          "title": "Distribution of Large Catfish",
+          "xLabels": ["250", "500", "750", "1,000", "1,250", "1,500", "1,750", "2,000", "2,250"],
+          "series": [
+            {
+              "name": "Large Catfish",
+              "values": [0, 0.20, 0.18, 0.18, 0.15, 0.15, 0.08, 0.04, 0.02]
+            }
+          ],
+          "chartConfig": {
+            "yAxis": {
+              "min": 0,
+              "max": 0.35,
+              "tickInterval": 0.05,
+              "title": "Relative Frequency"
+            },
+            "xAxis": {
+              "title": "Number per River",
+              "labelType": "upperBound"
+            },
+            "gridLines": {
+              "horizontal": true,
+              "vertical": false
+            }
+          }
+        }
+      ],
+      "description": "Histograms comparing fingerling catfish and large catfish distributions"
+    },
+    "choices": [
+      {
+        "key": "A",
+        "value": "The mean and range of the fingerling catfish are both equal to those of the large catfish."
+      },
+      {
+        "key": "B",
+        "value": "The mean and range of the fingerling catfish are both less than those of the large catfish."
+      },
+      {
+        "key": "C",
+        "value": "The mean and range of the fingerling catfish are both greater than those of the large catfish."
+      },
+      {
+        "key": "D",
+        "value": "The mean of the fingerling catfish is equal to that of the large catfish, and the range of the fingerling catfish is greater than that of the large catfish."
+      },
+      {
+        "key": "E",
+        "value": "The mean of the fingerling catfish is equal to that of the large catfish, and the range of the fingerling catfish is less than that of the large catfish."
+      }
+    ],
+    "answerKey": "C",
+    "reasoning": "The range of the distribution of fingerling catfish is between 6,000 and 8,000, while the range of the distribution of large catfish is between 1,500 and 2,000. Therefore the range of the distribution of fingerling catfish is greater than the range of the distribution of large catfish. The least value in the distribution of fingerling catfish is more than the greatest value of the distribution of large catfish. Therefore the mean of the distribution of fingerling catfish must be greater than the mean of the distribution of large catfish."
+  }
+  
+  {
+    "id": "U1-PC-MCQ-B-Q11",
+    "type": "multiple-choice",
+    "prompt": "A sociologist studying marriage customs collected data on the length of time, in months, between the proposal and wedding. The following boxplot and table give the five-number summary for couples in which at least one person was getting married for the first time and for couples in which both people had been previously married. Based on the summary statistics, which of the following statements is supported by the boxplots and table?",
+    "attachments": {
+      "table": [
+        ["Period", "Minimum", "Q1", "Median", "Q3", "Maximum"],
+        ["First Time", "0.5", "10", "18", "20", "36"],
+        ["Previously Married", "0.5", "8", "12", "16", "20"]
+      ],
+      "charts": [
+        {
+          "chartType": "boxplot",
+          "title": "First Time Married",
+          "chartConfig": {
+            "orientation": "horizontal",
+            "xAxis": {
+              "min": 0,
+              "max": 40,
+              "tickInterval": 5,
+              "title": "Time (months) Between Proposal and Wedding"
+            },
+            "boxplotData": {
+              "Q1": 10,
+              "Q3": 20,
+              "median": 18,
+              "whiskerMin": 0.5,
+              "whiskerMax": 36,
+              "outliers": []
+            },
+            "gridLines": {
+              "horizontal": false,
+              "vertical": false
+            }
+          }
+        },
+        {
+          "chartType": "boxplot",
+          "title": "Previously Married",
+          "chartConfig": {
+            "orientation": "horizontal",
+            "xAxis": {
+              "min": 0,
+              "max": 40,
+              "tickInterval": 5,
+              "title": "Time (months) Between Proposal and Wedding"
+            },
+            "boxplotData": {
+              "Q1": 8,
+              "Q3": 16,
+              "median": 12,
+              "whiskerMin": 0.5,
+              "whiskerMax": 20,
+              "outliers": []
+            },
+            "gridLines": {
+              "horizontal": false,
+              "vertical": false
+            }
+          }
+        }
+      ],
+      "description": "Comparative boxplots showing time between proposal and wedding for different marriage types"
+    },
+    "choices": [
+      {
+        "key": "A",
+        "value": "The mean length of time for first-time couples is 18 months, and the mean length of time for previously married couples is 12 months."
+      },
+      {
+        "key": "B",
+        "value": "There is a gap between 20 and 36 for the first-time married distribution."
+      },
+      {
+        "key": "C",
+        "value": "Because both distributions have a minimum of 0.5 months, the distributions are skewed to the left."
+      },
+      {
+        "key": "D",
+        "value": "The number of first-time couples in the study is greater than the number of previously married couples in the study."
+      },
+      {
+        "key": "E",
+        "value": "The interquartile range of length of time for first-time couples is greater than that of previously married couples."
+      }
+    ],
+    "answerKey": "E",
+    "reasoning": "The IQR (Q3 minus Q1) of length of time for first-time couples is 10 months (20 minus 10), while that of previously married couples is only 8 months (16 minus 8)."
+  }
+  
+  {
+    "id": "U1-PC-MCQ-B-Q12",
+    "type": "multiple-choice",
+    "prompt": "The following table shows summary statistics, in thousands, for the number of electrical workers and the number of concrete workers in the construction industry each month for the past 5 years. Based on the 1.5 × IQR rule for outliers, which of the following statements is a correct comparison of the two distributions?",
+    "attachments": {
+      "table": [
+        ["Type of Worker", "Minimum", "First Quartile", "Median", "Third Quartile", "Maximum"],
+        ["Electrical", "239", "278", "307", "320", "330"],
+        ["Concrete", "186", "262", "290", "308", "335"]
+      ]
+    },
+    "choices": [
+      {
+        "key": "A",
+        "value": "The electrical and concrete distributions both have high outliers."
+      },
+      {
+        "key": "B",
+        "value": "The electrical and concrete distributions both have lower outliers."
+      },
+      {
+        "key": "C",
+        "value": "Neither the electrical distribution nor concrete distribution has outliers."
+      },
+      {
+        "key": "D",
+        "value": "The concrete distribution has at least one lower outlier, and the electrical distribution has no lower outliers."
+      },
+      {
+        "key": "E",
+        "value": "The concrete distribution has at least one high outlier, and the electrical distribution has no high outliers."
+      }
+    ],
+    "answerKey": "D",
+    "reasoning": "For the concrete distribution, the minimum of 186 is less than the lower bound of 193. For the electrical distribution, the minimum of 239 is not less than the lower bound of 215."
+  }
+  
+  {
+    "id": "U1-PC-MCQ-B-Q13",
+    "type": "multiple-choice",
+    "prompt": "In the Dominican Republic in August, the distribution of daily high temperature is approximately normal with mean 86 degrees Fahrenheit (°F). Approximately 95% of all daily high temperatures are between 83°F and 89°F. What is the standard deviation of the distribution?",
+    "choices": [
+      {
+        "key": "A",
+        "value": "1°F"
+      },
+      {
+        "key": "B",
+        "value": "1.5°F"
+      },
+      {
+        "key": "C",
+        "value": "2°F"
+      },
+      {
+        "key": "D",
+        "value": "3°F"
+      },
+      {
+        "key": "E",
+        "value": "6°F"
+      }
+    ],
+    "answerKey": "B",
+    "reasoning": "The empirical rule states that approximately 95% of the observations in a data set that is approximated by a normal curve will lie within 2 standard deviations of the mean. Since 95% of all daily high temperatures are between 83°F and 89°F, the interval from 83°F to 89°F has a width of 4 standard deviations (2 above the mean and 2 below the mean). So 1 standard deviation is (89-83)/4 = 1.5°F."
+  }
+  
+  {
+    "id": "U1-PC-MCQ-B-Q14",
+    "type": "multiple-choice",
+    "prompt": "Which of the following can be reasonably modeled by a normal distribution?",
+    "choices": [
+      {
+        "key": "A",
+        "value": "The favorite colors of students in a kindergarten class"
+      },
+      {
+        "key": "B",
+        "value": "The heights of tomato plants that were all planted on the same day"
+      },
+      {
+        "key": "C",
+        "value": "The percent of employees from a company who attended a company retreat"
+      },
+      {
+        "key": "D",
+        "value": "The average number of siblings of all students at a particular high school"
+      },
+      {
+        "key": "E",
+        "value": "The parental guidance ratings (G, PG, PG-13, R) of movies filmed in 2019"
+      }
+    ],
+    "answerKey": "B",
+    "reasoning": "The heights of plants is a numeric and continuous variable, with a distribution that is typically symmetrically grouped around the mean with very few heights that are much larger or smaller than the mean."
+  }
+  
+  {
+    "id": "U1-PC-MCQ-B-Q15",
+    "type": "multiple-choice",
+    "prompt": "A family has two cats named Gordo and Flaco. Gordo weighs 15 pounds and Flaco weighs 8 pounds. A cat's weight is classified as unhealthy if the weight is located in the top 5% or bottom 5% of all cat weights. The distribution of cat weights is approximately normal with mean 9.5 pounds and standard deviation 1.5 pounds. Which of the following is the best description of Gordo's and Flaco's weights?",
+    "choices": [
+      {
+        "key": "A",
+        "value": "Neither Gordo's nor Flaco's weight is classified as unhealthy."
+      },
+      {
+        "key": "B",
+        "value": "Gordo's weight is classified as unhealthy but Flaco's weight is not."
+      },
+      {
+        "key": "C",
+        "value": "Flaco's weight is classified as unhealthy but Gordo's weight is not."
+      },
+      {
+        "key": "D",
+        "value": "Flaco's weight and Gordo's weight are both classified as unhealthy."
+      },
+      {
+        "key": "E",
+        "value": "The classification of weight cannot be determined without more information."
+      }
+    ],
+    "answerKey": "B",
+    "reasoning": "Because Gordo's weight is over 3 standard deviations above the mean, his weight is in the top 5% of all weights and is classified as unhealthy. Flaco's weight is less than 2 standard deviations below the mean, so his weight is not in the bottom 5% of all weights and is not classified as unhealthy."
+  }
+  
+  {
+    "id": "U1-PC-MCQ-B-Q16",
+    "type": "multiple-choice",
+    "prompt": "The distribution of the number of transactions performed at a bank each day is approximately normal with mean 478 transactions and standard deviation 64 transactions. Which of the following is closest to the proportion of daily transactions greater than 350?",
+    "choices": [
+      {
+        "key": "A",
+        "value": "0.023"
+      },
+      {
+        "key": "B",
+        "value": "0.046"
+      },
+      {
+        "key": "C",
+        "value": "0.477"
+      },
+      {
+        "key": "D",
+        "value": "0.954"
+      },
+      {
+        "key": "E",
+        "value": "0.977"
+      }
+    ],
+    "answerKey": "E",
+    "reasoning": "The value 0.977 is the total proportion of transactions that are greater than 350. The z-score associated with 350 transactions is −2. The proportion of daily transactions greater than 350 can be found using the z-score and technology, such as a calculator, a standard normal table, or computer-generated output."
+  }
+  
+  {
+    "id": "U1-PC-MCQ-B-Q17",
+    "type": "multiple-choice",
+    "prompt": "The distribution of the amount of a customer's purchase at a convenience store is approximately normal, with mean $15.50 and standard deviation $1.72. Which of the following is closest to the proportion of customer purchase amounts between $14.00 and $16.00?",
+    "choices": [
+      {
+        "key": "A",
+        "value": "0.19"
+      },
+      {
+        "key": "B",
+        "value": "0.39"
+      },
+      {
+        "key": "C",
+        "value": "0.42"
+      },
+      {
+        "key": "D",
+        "value": "0.61"
+      },
+      {
+        "key": "E",
+        "value": "0.81"
+      }
+    ],
+    "answerKey": "C",
+    "reasoning": "The z-score associated with a purchase amount of $14.00 is (14-15.5)/1.72 ≈ -0.872, and the z-score associated with a purchase amount of $16.00 is (16-15.5)/1.72 ≈ 0.291. The area under the standard normal curve between -0.872 and 0.291 is approximately 0.42, so this is the approximate proportion of customer purchase amounts between $14.00 and $16.00."
+  }
+  
+  {
+    "id": "U1-PC-MCQ-B-Q18",
+    "type": "multiple-choice",
+    "prompt": "The distribution of the number of moths captured per night by a certain moth trap is approximately normal with mean 103. If 28 percent of the captures fall below 76 per night, which of the following equations can be used to find σ, the standard deviation of the distribution?",
+    "choices": [
+      {
+        "key": "A",
+        "value": "0.28 = (103-76)/σ"
+      },
+      {
+        "key": "B",
+        "value": "0.28 = (76-103)/σ"
+      },
+      {
+        "key": "C",
+        "value": "-0.58 = (103-76)/σ"
+      },
+      {
+        "key": "D",
+        "value": "-0.58 = (76-103)/σ"
+      },
+      {
+        "key": "E",
+        "value": "0.58 = (76-103)/σ"
+      }
+    ],
+    "answerKey": "D",
+    "reasoning": "Approximately 28% of the area under the standard normal curve is below a z-score of -0.58. Therefore -0.58 = (76-103)/σ, and solving for σ yields σ ≈ 46.5 moths."
+  }

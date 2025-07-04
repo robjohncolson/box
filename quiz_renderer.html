@@ -549,6 +549,29 @@
             background: #355d35;
             border-color: #4a7c59;
         }
+
+        /* Floating Context Finder */
+        .context-finder {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: #ffffff;
+            color: #333333;
+            border: 2px solid #3498db;
+            border-radius: 8px;
+            padding: 15px;
+            font-size: 14px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+            z-index: 1000;
+            max-width: 260px;
+            pointer-events: none; /* so it doesn't block clicks */
+        }
+
+        body.dark-theme .context-finder {
+            background: #2d2d2d;
+            color: #e0e0e0;
+            border-color: #5BC0EB;
+        }
     </style>
 </head>
 <body>
@@ -577,17 +600,30 @@
         <div id="questionsContainer"></div>
     </div>
 
+    <!-- Floating context finder (hidden until questions are rendered) -->
+    <div id="contextFinder" class="context-finder" style="display:none;"></div>
+
     <script>
         let chartInstances = [];
         let currentTheme = 'light'; // Default to light theme
         let audioContext = null;
         let audioEnabled = true; // Audio feedback enabled by default
+        let masterGain = null; // Global gain node for volume control
+        let lastExplicitSound = 0; // Timestamp for last explicitly-triggered sound
+        
+        // Scroll-based tracker for current question context
+        let contextObserver = null; // kept in case we re-use
+        let contextScrollHandlerAttached = false;
         
         // Initialize audio context (must be done after user interaction)
         function initAudioContext() {
             if (!audioContext) {
                 try {
                     audioContext = new (window.AudioContext || window.webkitAudioContext)();
+                    // Create master gain so we can easily tweak overall volume or add global effects later
+                    masterGain = audioContext.createGain();
+                    masterGain.gain.setValueAtTime(0.3, audioContext.currentTime); // 30% volume by default
+                    masterGain.connect(audioContext.destination);
                 } catch (e) {
                     console.warn('Web Audio API not supported:', e);
                 }
@@ -596,34 +632,50 @@
         }
         
         // Generate a synthesized tone
-        function playTone(frequency, duration = 0.2, type = 'sine', volume = 0.1) {
-            if (!audioEnabled) return; // Check if audio is enabled
-            
+        function playTone(frequency, duration = 0.3, type = 'sine', volume = 0.15, detuneCents = 8) {
+            if (!audioEnabled) return;
+
             const ctx = initAudioContext();
-            if (!ctx) return;
-            
+            if (!ctx || !masterGain) return;
+
             try {
-                // Create oscillator for the tone
-                const oscillator = ctx.createOscillator();
+                const now = ctx.currentTime;
+
+                // Gain envelope (ADSR)
                 const gainNode = ctx.createGain();
-                
-                // Connect the nodes
-                oscillator.connect(gainNode);
-                gainNode.connect(ctx.destination);
-                
-                // Configure the tone
-                oscillator.frequency.setValueAtTime(frequency, ctx.currentTime);
-                oscillator.type = type;
-                
-                // Configure volume envelope (prevents clicks)
-                gainNode.gain.setValueAtTime(0, ctx.currentTime);
-                gainNode.gain.linearRampToValueAtTime(volume, ctx.currentTime + 0.01);
-                gainNode.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + duration);
-                
-                // Start and stop the tone
-                oscillator.start(ctx.currentTime);
-                oscillator.stop(ctx.currentTime + duration);
-                
+                gainNode.gain.setValueAtTime(0.0001, now);
+                gainNode.gain.linearRampToValueAtTime(volume, now + 0.02);               // Attack
+                gainNode.gain.linearRampToValueAtTime(volume * 0.7, now + duration * 0.6); // Decay/Sustain
+                gainNode.gain.exponentialRampToValueAtTime(0.0001, now + duration);       // Release
+
+                gainNode.connect(masterGain);
+
+                // Introduce slight random pitch offset for uniqueness (±15 cents)
+                const jitterCents = (Math.random() * 30) - 15;
+                const primaryFreq = frequency * Math.pow(2, jitterCents / 1200);
+
+                // Primary oscillator
+                const osc1 = ctx.createOscillator();
+                osc1.type = type;
+                osc1.frequency.setValueAtTime(primaryFreq, now);
+
+                // Secondary oscillator (slightly detuned) for a richer sound
+                const osc2 = ctx.createOscillator();
+                osc2.type = type;
+                osc2.frequency.setValueAtTime(primaryFreq * Math.pow(2, detuneCents / 1200), now);
+
+                osc1.connect(gainNode);
+                osc2.connect(gainNode);
+
+                osc1.start(now);
+                osc2.start(now);
+
+                osc1.stop(now + duration);
+                osc2.stop(now + duration);
+
+                // Mark explicit sound time so generic handler can avoid double playback
+                lastExplicitSound = Date.now();
+
             } catch (e) {
                 console.warn('Audio playback failed:', e);
             }
@@ -636,19 +688,48 @@
             });
         }
         
-        // Different tones for different button actions
+        // Play a short melodic sequence
+        function playMelody(notes, noteDuration = 0.2, gap = 0.05, type = 'sine', volume = 0.12) {
+            let offset = 0;
+            notes.forEach(freq => {
+                setTimeout(() => playTone(freq, noteDuration, type, volume), offset * 1000);
+                offset += noteDuration + gap;
+            });
+        }
+        
+        // ------------------------------------------------------------
+        // Randomized success and error tones
+        // ------------------------------------------------------------
+        const successPool = [261.63, 329.63, 392.00, 523.25, 659.25, 783.99]; // C major notes C4–G5
+        const errorPool   = [164.81, 196.00, 246.94, 329.63, 392.00, 493.88]; // E minor notes E3–B4
+        
+        function pickRandomDistinct(pool, count = 2) {
+            const copy = [...pool];
+            const selected = [];
+            for (let i = 0; i < count && copy.length > 0; i++) {
+                const idx = Math.floor(Math.random() * copy.length);
+                selected.push(copy.splice(idx, 1)[0]);
+            }
+            return selected;
+        }
+        
+        function playRandomSuccess() {
+            const notes = pickRandomDistinct(successPool, 2).sort((a,b) => a-b); // ascending
+            playMelody(notes, 0.14, 0.03, 'triangle', 0.14);
+        }
+        
+        function playRandomError() {
+            const notes = pickRandomDistinct(errorPool, 2).sort((a,b) => b-a); // descending
+            playMelody(notes, 0.22, 0.04, 'sawtooth', 0.12);
+        }
+        
         const buttonTones = {
-            load: () => playTone(523.25, 0.2, 'sine', 0.12), // C5 - pleasant load sound
-            loadText: () => playTone(659.25, 0.2, 'sine', 0.12), // E5 - slightly higher for text
-            clear: () => playTone(392.00, 0.3, 'sine', 0.1), // G4 - lower, longer for clear
-            theme: () => playChord([261.63, 329.63, 392.00], 0.15, 'sine', 0.06), // C4-E4-G4 chord for theme
-            success: () => {
-                // Success sound - ascending notes
-                setTimeout(() => playTone(523.25, 0.15, 'sine', 0.08), 0);
-                setTimeout(() => playTone(659.25, 0.15, 'sine', 0.08), 100);
-                setTimeout(() => playTone(783.99, 0.15, 'sine', 0.08), 200);
-            },
-            error: () => playTone(220.00, 0.4, 'sawtooth', 0.08) // A3 - lower, different waveform for errors
+            load: () => playMelody([523.25, 659.25], 0.15, 0.03, 'triangle', 0.14),       // "ding-dong" load tone
+            loadText: () => playMelody([659.25, 783.99], 0.15, 0.03, 'triangle', 0.14),  // higher variant
+            clear: () => playChord([392.00, 196.00], 0.35, 'square', 0.12),              // deep boom for clear
+            theme: () => playChord([261.63, 329.63, 392.00, 523.25], 0.2, 'sawtooth', 0.10), // richer theme chord
+            success: () => playRandomSuccess(),
+            error: () => playRandomError()
         };
 
         function toggleAudio() {
@@ -685,6 +766,16 @@
             // Destroy existing charts
             chartInstances.forEach(chart => chart.destroy());
             chartInstances = [];
+            
+            // Hide and reset context finder
+            const contextDiv = document.getElementById('contextFinder');
+            if (contextDiv) {
+                contextDiv.style.display = 'none';
+                contextDiv.innerHTML = '';
+            }
+            if (contextObserver) {
+                contextObserver.disconnect();
+            }
         }
 
         function showMessage(message, type = 'error') {
@@ -1828,7 +1919,7 @@
         function renderQuestion(question, index) {
             const questionNumber = index + 1;
             let questionHtml = `
-                <div class="quiz-container">
+                <div class="quiz-container" data-question-number="${questionNumber}" data-question-id="${question.id || ''}">
                     <div class="question-header">Question ${questionNumber}</div>
                     <div class="question-id">ID: ${question.id || 'N/A'}</div>
                     <div class="question-id">Type: ${question.type || 'N/A'}</div>
@@ -2027,6 +2118,10 @@
                 });
                 
                 questionsContainer.innerHTML = questionsHtml;
+                
+                // Initialize context finder now that questions are in the DOM
+                initContextFinder();
+                
                 showMessage(`Successfully loaded ${questions.length} question(s) with tables and charts! Advanced chart configurations and dark mode support enabled.`, 'success');
                 
             } catch (error) {
@@ -2080,11 +2175,96 @@
             }
         }
 
+        function updateContextFinder() {
+            const contextDiv = document.getElementById('contextFinder');
+            if (!contextDiv) return;
+
+            const questionElements = document.querySelectorAll('.quiz-container');
+            let currentEl = null;
+            let minDistance = Number.POSITIVE_INFINITY;
+
+            questionElements.forEach(el => {
+                const rect = el.getBoundingClientRect();
+                // Distance from viewport center
+                const distance = Math.abs(rect.top + rect.height / 2 - window.innerHeight / 2);
+                if (rect.bottom >= 0 && rect.top <= window.innerHeight) {
+                    // Element is at least partially in viewport
+                    if (distance < minDistance) {
+                        minDistance = distance;
+                        currentEl = el;
+                    }
+                }
+            });
+
+            if (currentEl) {
+                const questionNumber = currentEl.dataset.questionNumber || '?';
+                const questionId = currentEl.dataset.questionId || 'N/A';
+                contextDiv.innerHTML = `<strong>Viewing Question ${questionNumber}</strong><br>ID: ${questionId}`;
+            }
+        }
+
+        function initContextFinder() {
+            const contextDiv = document.getElementById('contextFinder');
+            if (!contextDiv) return;
+
+            // Disconnect previous observer if it exists (not used now but for cleanup)
+            if (contextObserver) {
+                contextObserver.disconnect();
+            }
+
+            // Attach scroll handler once
+            if (!contextScrollHandlerAttached) {
+                window.addEventListener('scroll', () => requestAnimationFrame(updateContextFinder));
+                window.addEventListener('resize', () => requestAnimationFrame(updateContextFinder));
+                contextScrollHandlerAttached = true;
+            }
+
+            // Initial content and display
+            const questionElements = document.querySelectorAll('.quiz-container');
+            if (questionElements.length === 0) {
+                contextDiv.style.display = 'none';
+                return;
+            }
+
+            contextDiv.style.display = 'block';
+            updateContextFinder();
+        }
+
         // Load sample data on page load
         window.onload = function() {
             initTheme();
             showMessage('🎵 Ready to load quiz JSON files! Now featuring audio feedback with synthesized tones for each button! Supports tables, bar/histogram/pie/scatter/dotplot/boxplot charts with detailed tick intervals, axis ranges, grid line controls, manual theme switching, JSON with // comments, and comprehensive free response solutions with scoring rubrics. Use the theme toggle button to switch between light and dark modes.', 'success');
         };
+
+        // ------------------------------------------------------------
+        // Generic click sound for ANY interactive element
+        // ------------------------------------------------------------
+        document.addEventListener('click', function(e) {
+            // Avoid double-triggering if another explicit sound just occurred
+            if (Date.now() - lastExplicitSound < 50) return;
+
+            // Priority: multiple-choice selections
+            const choiceEl = e.target.closest('.choice');
+            if (choiceEl) {
+                if (choiceEl.classList.contains('correct-choice')) {
+                    buttonTones.success(); // triumphant sound for correct answer
+                } else {
+                    buttonTones.error();   // sombre sound for wrong answer
+                }
+                return; // Skip generic click
+            }
+
+            // Generic interactive elements
+            const interactive = e.target.closest('button, input[type="button"], input[type="submit"], a');
+            if (interactive) {
+                // Slight variation for each generic click
+                const clickFreqs = [392.00, 415.30, 440.00, 466.16, 493.88];
+                const wfChoices = ['square', 'triangle'];
+                const freq = clickFreqs[Math.floor(Math.random() * clickFreqs.length)];
+                const wave = wfChoices[Math.floor(Math.random() * wfChoices.length)];
+                playTone(freq, 0.1 + Math.random()*0.05, wave, 0.08);
+            }
+        });
     </script>
 </body>
 </html> 
