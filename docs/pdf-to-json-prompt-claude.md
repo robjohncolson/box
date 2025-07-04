@@ -7,7 +7,7 @@ You are tasked with converting AP Statistics quiz questions from uploaded PDF do
 ### For Multiple Choice Questions:
 ```json
 {
-  "id": "U#-L#-Q##",
+  "id": "U#-L#-Q##",  // Use appropriate ID format based on quiz type (see ID Format section)
   "type": "multiple-choice",
   "prompt": "Question text here",
   "attachments": {
@@ -39,6 +39,37 @@ You are tasked with converting AP Statistics quiz questions from uploaded PDF do
       },
       "description": "Bar chart showing relative frequency by grade level with gaps between bars"
     }
+    
+    // For horizontal bar charts (bars extend horizontally):
+    "chartType": "bar",
+    "yLabels": ["Category1", "Category2", ...],  // Categories on y-axis - ORDERING CRITICAL!
+    "series": [
+      {"name": "Dataset 1", "values": [25, 30, 55, 15, 5]},
+      {"name": "Dataset 2", "values": [35, 20, 40, 25, 16]}
+    ],
+    "chartConfig": {
+      "orientation": "horizontal",  // Specifies horizontal orientation
+      "xAxis": {
+        "min": 0,           // Minimum value on x-axis (value axis)
+        "max": 60,          // Maximum value on x-axis (if specified)
+        "tickInterval": 10, // Step size between tick marks
+        "title": "Number of Students" // X-axis label (value axis)
+      },
+      "yAxis": {
+        "title": "School Subject"    // Y-axis label (category axis)
+      },
+      "gridLines": {
+        "horizontal": true,  // Whether horizontal grid lines are shown
+        "vertical": false    // Whether vertical grid lines are shown
+      },
+      "description": "Horizontal bar chart showing favorite school subjects by grade level"
+    }
+    
+    // ⚠️ CRITICAL ORDERING REQUIREMENTS FOR HORIZONTAL BAR CHARTS:
+    // 1. yLabels array order determines visual ordering from TOP to BOTTOM
+    // 2. series array order determines which dataset appears in FRONT (first = front/left)
+    // 3. values arrays must match the yLabels order exactly
+    // 4. Always match the EXACT ordering shown in the reference image!
     
     // For histograms (continuous data with NO gaps between bars):
     "chartType": "histogram",
@@ -210,7 +241,7 @@ You are tasked with converting AP Statistics quiz questions from uploaded PDF do
 ### For Free Response Questions:
 ```json
 {
-  "id": "U#-L#-Q##",
+  "id": "U#-L#-Q##",  // Use appropriate ID format based on quiz type (see ID Format section)
   "type": "free-response",
   "prompt": "Question text here, including all sub-parts (a), (b), (c), etc.",
   "attachments": {
@@ -292,7 +323,12 @@ You are tasked with converting AP Statistics quiz questions from uploaded PDF do
 ```
 
 ## Key Requirements:
-1. **ID Format**: Use pattern "U#-L#-Q##" where # represents unit, lesson, and question numbers
+1. **ID Format**: Use appropriate pattern based on quiz type:
+   - **Regular Lessons**: "U#-L#-Q##" (e.g., "U1-L2-Q05" for Unit 1, Lesson 2, Question 5)
+   - **Progress Check MCQ**: "U#-PC-MCQ-[PART]-Q##" (e.g., "U1-PC-MCQ-A-Q01" for Unit 1, Progress Check, MCQ Part A, Question 1)
+   - **Progress Check FRQ**: "U#-PC-FRQ-Q##" (e.g., "U1-PC-FRQ-Q01" for Unit 1, Progress Check, FRQ Question 1)
+   - **AP Exam Questions**: "U#-AP-[YEAR]-[TYPE]-Q##" (e.g., "U1-AP-2017-MCQ-Q09" for Unit 1, AP 2017, MCQ Question 9)
+   - **Other Quiz Types**: Adapt pattern to reflect the actual quiz type and source
 2. **Visual Data**: Extract and format any tables, charts, or graphs according to the specifications above
 3. **Clean Prompts**: Remove table formatting from prompt text when table data is included in attachments
 4. **Answer Keys**: Include the correct answer from the scoring guide
@@ -305,7 +341,13 @@ You are tasked with converting AP Statistics quiz questions from uploaded PDF do
 
 **Bar Charts (for categorical data):**
 - **Visual cues**: Clear gaps/spaces between bars
-- **X-axis labels**: Discrete categories (e.g., "Freshman", "Sophomore", "Junior", "Senior")
+- **Orientation**: Can be vertical (bars extend upward) or horizontal (bars extend rightward)
+- **Vertical Bar Charts**: Categories on x-axis, values on y-axis
+  - **X-axis labels**: Discrete categories (e.g., "Freshman", "Sophomore", "Junior", "Senior")
+  - **Use**: `"xLabels": [...categories...]` and standard axis configuration
+- **Horizontal Bar Charts**: Categories on y-axis, values on x-axis
+  - **Y-axis labels**: Discrete categories (e.g., "Language Arts", "Math", "Science")
+  - **Use**: `"yLabels": [...categories...]` and `"orientation": "horizontal"` in chartConfig
 - **Data type**: Categorical variables
 - **Use chartType**: "bar"
 
@@ -333,6 +375,21 @@ You are tasked with converting AP Statistics quiz questions from uploaded PDF do
 - More often seen in scatter plots and time series
 
 **Important**: Many AP Statistics charts show horizontal grid lines but NOT vertical grid lines. Pay careful attention to what is actually visible in the image.
+
+### Bar Chart Orientation Detection:
+
+**Vertical Bar Charts (standard):**
+- Categories listed horizontally along the bottom (x-axis)
+- Values shown vertically on the left (y-axis)
+- Bars extend upward from the x-axis
+- Use `"xLabels"` for categories and standard axis configuration
+
+**Horizontal Bar Charts:**
+- Categories listed vertically along the left side (y-axis)
+- Values shown horizontally along the bottom (x-axis)
+- Bars extend rightward from the y-axis
+- Use `"yLabels"` for categories and `"orientation": "horizontal"` in chartConfig
+- Swap axis configurations: value axis becomes x-axis, category axis becomes y-axis
 
 **Dotplots (for single variable distribution):**
 - **Visual cues**: Dots stacked vertically at each value, showing frequency
@@ -422,8 +479,11 @@ Example of separate histograms:
 
 ## Instructions:
 - Analyze the uploaded PDF carefully
+- **Identify quiz type from document headers/titles** - Look for indicators like "Progress Check," "AP Exam," "Lesson," "Section," "Capstone," "MCQ Part A/B," "FRQ," etc.
+- **Apply appropriate ID format** based on quiz type identified (see ID Format section above)
 - Identify unit and lesson numbers from document headers/titles
 - **Pay special attention to chart types** - look for gaps between bars to distinguish bar charts from histograms
+- **Check bar chart orientation** - determine if bars extend upward (vertical) or rightward (horizontal)
 - **Look for stacked dots** - identify dotplots showing single variable distributions vs scatter plots showing two-variable relationships
 - **Identify boxplots** - look for rectangular boxes with whiskers, median lines, and possible outlier points
 - **Examine grid lines carefully** - note whether horizontal and/or vertical grid lines are present
