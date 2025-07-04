@@ -157,6 +157,38 @@ You are tasked with converting AP Statistics quiz questions from uploaded PDF do
       "description": "Boxplot showing the heights of a sample of 100 trees growing on a tree farm"
     }
     
+    // For MULTIPLE boxplots in the same chart (comparative boxplots):
+    "chartType": "boxplot",
+    "chartConfig": {
+      "orientation": "horizontal",  // "horizontal" or "vertical" - controls boxplot orientation
+      "xAxis": {
+        "min": 0, "max": 12.5, "tickInterval": 2.5, "title": "ERA"
+      },
+      "boxplotData": [
+        {
+          "name": "League A",
+          "Q1": 2.5,
+          "Q3": 5.0,
+          "median": 3.5,
+          "min": 1.5,
+          "max": 7.5
+        },
+        {
+          "name": "League B",
+          "Q1": 2.5,
+          "Q3": 5.0,
+          "median": 4.0,
+          "min": 0.5,
+          "max": 12.0
+        }
+      ],
+      "gridLines": {
+        "horizontal": false,
+        "vertical": false
+      },
+      "description": "Boxplots comparing ERA for pitchers in leagues A and B"
+    }
+    
     "choices": [
       { "key": "A", "value": "Choice A text" },
       { "key": "B", "value": "Choice B text" },
@@ -233,7 +265,63 @@ You are tasked with converting AP Statistics quiz questions from uploaded PDF do
 - **Orientation**: 
   - **Horizontal**: Box extends left-right, values on x-axis (use `"orientation": "horizontal"`)
   - **Vertical**: Box extends up-down, values on y-axis (use `"orientation": "vertical"`)
+- **Multiple boxplots**: When comparing groups, use an array of boxplot objects in `boxplotData`
 - **Use chartType**: "boxplot"
+
+## Multiple Charts Strategy:
+
+**Overlaid Histograms (same chart, different colors):**
+- Use when comparing distributions side-by-side
+- Both distributions use the same x-axis scale
+- Good for showing relative differences
+- Use multiple series in the same histogram JSON
+
+**Separate Histograms (different charts):**
+- Use when distributions have very different scales
+- When the question explicitly shows them as separate charts
+- Use the `charts` array structure within attachments
+- Each histogram gets its own chart space and title
+
+Example of separate histograms:
+```json
+"attachments": {
+  "charts": [
+    {
+      "chartType": "histogram",
+      "title": "Earthquake Disturbances",
+      "xLabels": ["0.2", "0.4", "0.6", "0.8"],
+      "series": [
+        {"name": "Earthquake Disturbances", "values": [0.35, 0.20, 0.10, 0.10]}
+      ],
+      "chartConfig": {
+        "yAxis": {"min": 0.0, "max": 0.40, "tickInterval": 0.05, "title": "Relative Frequency"},
+        "xAxis": {"title": "Root Mean Square Time", "labelType": "upperBound"},
+        "gridLines": {"horizontal": true, "vertical": false}
+      }
+    },
+    {
+      "chartType": "histogram", 
+      "title": "Mining Disturbances",
+      "xLabels": ["0.2", "0.4", "0.6", "0.8"],
+      "series": [
+        {"name": "Mining Disturbances", "values": [0.0, 0.22, 0.35, 0.25]}
+      ],
+      "chartConfig": {
+        "yAxis": {"min": 0.0, "max": 0.40, "tickInterval": 0.05, "title": "Relative Frequency"},
+        "xAxis": {"title": "Root Mean Square Time", "labelType": "upperBound"},
+        "gridLines": {"horizontal": true, "vertical": false}
+      }
+    }
+  ],
+  "description": "Overall description of the multiple charts"
+}
+```
+
+**Multiple Boxplots (same chart space):**
+- Use when comparing groups (e.g., "League A vs League B")
+- Put multiple boxplot objects in the `boxplotData` array
+- Each boxplot gets its own name and color
+- The renderer will space them appropriately
 
 ## Instructions:
 - Analyze the uploaded PDF carefully

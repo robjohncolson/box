@@ -155,6 +155,18 @@
             height: 400px;
             width: 100%;
         }
+        .multiple-charts-container {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin: 20px 0;
+        }
+        .multiple-charts-container .chart-container {
+            flex: 1;
+            min-width: 300px;
+            max-width: 450px;
+        }
         .choices {
             margin-top: 15px;
         }
@@ -409,9 +421,13 @@
         function renderChart(chartData, questionId) {
             const chartId = `chart-${questionId}`;
             const config = chartData.chartConfig || {};
-            const chartTitle = config.description ? 
-                `📊 ${chartData.chartType.toUpperCase()} CHART` : 
-                `📊 ${chartData.chartType.toUpperCase()} CHART`;
+            
+            // Use the chart's title if available, otherwise use the chart type
+            const chartTitle = chartData.title ? 
+                chartData.title : 
+                (config.description ? 
+                    `📊 ${chartData.chartType.toUpperCase()} CHART` : 
+                    `📊 ${chartData.chartType.toUpperCase()} CHART`);
             
             let chartHtml = `
                 <div class="chart-container">
@@ -777,184 +793,213 @@
                         }
                     }
                     
-                    // Extract boxplot statistics
-                    const { Q1, Q3, median, min, max } = boxplotData;
-                    const IQR = Q3 - Q1;
-                    const lowerFence = Q1 - 1.5 * IQR;
-                    const upperFence = Q3 + 1.5 * IQR;
+                    // Handle multiple boxplots (array) or single boxplot (object)
+                    const boxplots = Array.isArray(boxplotData) ? boxplotData : [boxplotData];
                     
                     // Check orientation from config (default to horizontal)
                     const orientation = config.orientation || 'horizontal';
                     const isHorizontal = orientation === 'horizontal';
                     
+                    // Find overall min/max for axis scaling
+                    let overallMin = Infinity;
+                    let overallMax = -Infinity;
+                    
+                    boxplots.forEach(boxplot => {
+                        const { Q1, Q3, median, min, max } = boxplot;
+                        const IQR = Q3 - Q1;
+                        const lowerFence = Q1 - 1.5 * IQR;
+                        const upperFence = Q3 + 1.5 * IQR;
+                        
+                        overallMin = Math.min(overallMin, Math.min(min, lowerFence));
+                        overallMax = Math.max(overallMax, Math.max(max, upperFence));
+                                         });
+                    
                     // Create boxplot visualization with orientation support
                     let datasets = [];
                     
-                    if (isHorizontal) {
-                        // Horizontal boxplot
-                        datasets = [
-                            // Median line (vertical in horizontal boxplot)
-                            {
-                                label: 'Median',
-                                data: [{ x: median, y: -0.2 }, { x: median, y: 0.2 }],
-                                backgroundColor: '#FF6384',
-                                borderColor: '#FF6384',
-                                borderWidth: 3,
-                                pointRadius: 0,
-                                showLine: true,
-                                type: 'line'
-                            },
-                            // Lower whisker (horizontal)
-                            {
-                                label: 'Lower Whisker',
-                                data: [{ x: Math.max(min, lowerFence), y: 0 }, { x: Q1, y: 0 }],
-                                backgroundColor: '#36A2EB',
-                                borderColor: '#36A2EB',
-                                borderWidth: 2,
-                                pointRadius: 0,
-                                showLine: true,
-                                type: 'line'
-                            },
-                            // Upper whisker (horizontal)
-                            {
-                                label: 'Upper Whisker',
-                                data: [{ x: Q3, y: 0 }, { x: Math.min(max, upperFence), y: 0 }],
-                                backgroundColor: '#36A2EB',
-                                borderColor: '#36A2EB',
-                                borderWidth: 2,
-                                pointRadius: 0,
-                                showLine: true,
-                                type: 'line'
-                            },
-                            // Whisker caps (vertical)
-                            {
-                                label: 'Lower Whisker Cap',
-                                data: [
-                                    { x: Math.max(min, lowerFence), y: -0.1 },
-                                    { x: Math.max(min, lowerFence), y: 0.1 }
-                                ],
-                                backgroundColor: '#36A2EB',
-                                borderColor: '#36A2EB',
-                                borderWidth: 2,
-                                pointRadius: 0,
-                                showLine: true,
-                                type: 'line'
-                            },
-                            {
-                                label: 'Upper Whisker Cap',
-                                data: [
-                                    { x: Math.min(max, upperFence), y: -0.1 },
-                                    { x: Math.min(max, upperFence), y: 0.1 }
-                                ],
-                                backgroundColor: '#36A2EB',
-                                borderColor: '#36A2EB',
-                                borderWidth: 2,
-                                pointRadius: 0,
-                                showLine: true,
-                                type: 'line'
+                    // Generate colors for multiple boxplots
+                    const boxplotColors = generateChartColors(boxplots.length);
+                    
+                    boxplots.forEach((boxplot, index) => {
+                        const { Q1, Q3, median, min, max, name } = boxplot;
+                        const IQR = Q3 - Q1;
+                        const lowerFence = Q1 - 1.5 * IQR;
+                        const upperFence = Q3 + 1.5 * IQR;
+                        
+                        // Calculate position for multiple boxplots
+                        const boxplotSpacing = 0.8; // Space between boxplots
+                        const yPos = isHorizontal ? (index - (boxplots.length - 1) / 2) * boxplotSpacing : 0;
+                        const xPos = !isHorizontal ? (index - (boxplots.length - 1) / 2) * boxplotSpacing : 0;
+                        
+                        const color = boxplotColors[index];
+                        const boxplotName = name || `Boxplot ${index + 1}`;
+                        
+                        if (isHorizontal) {
+                            // Horizontal boxplot
+                            datasets.push(
+                                // Median line (vertical in horizontal boxplot)
+                                {
+                                    label: `${boxplotName} Median`,
+                                    data: [{ x: median, y: yPos - 0.2 }, { x: median, y: yPos + 0.2 }],
+                                    backgroundColor: color,
+                                    borderColor: color,
+                                    borderWidth: 3,
+                                    pointRadius: 0,
+                                    showLine: true,
+                                    type: 'line'
+                                },
+                                // Lower whisker (horizontal)
+                                {
+                                    label: `${boxplotName} Lower Whisker`,
+                                    data: [{ x: Math.max(min, lowerFence), y: yPos }, { x: Q1, y: yPos }],
+                                    backgroundColor: color,
+                                    borderColor: color,
+                                    borderWidth: 2,
+                                    pointRadius: 0,
+                                    showLine: true,
+                                    type: 'line'
+                                },
+                                // Upper whisker (horizontal)
+                                {
+                                    label: `${boxplotName} Upper Whisker`,
+                                    data: [{ x: Q3, y: yPos }, { x: Math.min(max, upperFence), y: yPos }],
+                                    backgroundColor: color,
+                                    borderColor: color,
+                                    borderWidth: 2,
+                                    pointRadius: 0,
+                                    showLine: true,
+                                    type: 'line'
+                                },
+                                // Whisker caps (vertical)
+                                {
+                                    label: `${boxplotName} Lower Cap`,
+                                    data: [
+                                        { x: Math.max(min, lowerFence), y: yPos - 0.1 },
+                                        { x: Math.max(min, lowerFence), y: yPos + 0.1 }
+                                    ],
+                                    backgroundColor: color,
+                                    borderColor: color,
+                                    borderWidth: 2,
+                                    pointRadius: 0,
+                                    showLine: true,
+                                    type: 'line'
+                                },
+                                {
+                                    label: `${boxplotName} Upper Cap`,
+                                    data: [
+                                        { x: Math.min(max, upperFence), y: yPos - 0.1 },
+                                        { x: Math.min(max, upperFence), y: yPos + 0.1 }
+                                    ],
+                                    backgroundColor: color,
+                                    borderColor: color,
+                                    borderWidth: 2,
+                                    pointRadius: 0,
+                                    showLine: true,
+                                    type: 'line'
+                                }
+                            );
+                            
+                            // Add outliers if any
+                            const outliers = [];
+                            if (min < lowerFence) outliers.push({ x: min, y: yPos });
+                            if (max > upperFence) outliers.push({ x: max, y: yPos });
+                            
+                            if (outliers.length > 0) {
+                                datasets.push({
+                                    label: `${boxplotName} Outliers`,
+                                    data: outliers,
+                                    backgroundColor: color,
+                                    borderColor: color,
+                                    borderWidth: 2,
+                                    pointRadius: 5,
+                                    showLine: false,
+                                    type: 'scatter'
+                                });
                             }
-                        ];
-                        
-                        // Add outliers if any
-                        const outliers = [];
-                        if (min < lowerFence) outliers.push({ x: min, y: 0 });
-                        if (max > upperFence) outliers.push({ x: max, y: 0 });
-                        
-                        if (outliers.length > 0) {
-                            datasets.push({
-                                label: 'Outliers',
-                                data: outliers,
-                                backgroundColor: '#FF6384',
-                                borderColor: '#FF6384',
-                                borderWidth: 2,
-                                pointRadius: 5,
-                                showLine: false,
-                                type: 'scatter'
-                            });
-                        }
-                    } else {
-                        // Vertical boxplot
-                        datasets = [
-                            // Median line (horizontal in vertical boxplot)
-                            {
-                                label: 'Median',
-                                data: [{ x: -0.2, y: median }, { x: 0.2, y: median }],
-                                backgroundColor: '#FF6384',
-                                borderColor: '#FF6384',
-                                borderWidth: 3,
-                                pointRadius: 0,
-                                showLine: true,
-                                type: 'line'
-                            },
-                            // Lower whisker (vertical)
-                            {
-                                label: 'Lower Whisker',
-                                data: [{ x: 0, y: Math.max(min, lowerFence) }, { x: 0, y: Q1 }],
-                                backgroundColor: '#36A2EB',
-                                borderColor: '#36A2EB',
-                                borderWidth: 2,
-                                pointRadius: 0,
-                                showLine: true,
-                                type: 'line'
-                            },
-                            // Upper whisker (vertical)
-                            {
-                                label: 'Upper Whisker',
-                                data: [{ x: 0, y: Q3 }, { x: 0, y: Math.min(max, upperFence) }],
-                                backgroundColor: '#36A2EB',
-                                borderColor: '#36A2EB',
-                                borderWidth: 2,
-                                pointRadius: 0,
-                                showLine: true,
-                                type: 'line'
-                            },
-                            // Whisker caps (horizontal)
-                            {
-                                label: 'Lower Whisker Cap',
-                                data: [
-                                    { x: -0.1, y: Math.max(min, lowerFence) },
-                                    { x: 0.1, y: Math.max(min, lowerFence) }
-                                ],
-                                backgroundColor: '#36A2EB',
-                                borderColor: '#36A2EB',
-                                borderWidth: 2,
-                                pointRadius: 0,
-                                showLine: true,
-                                type: 'line'
-                            },
-                            {
-                                label: 'Upper Whisker Cap',
-                                data: [
-                                    { x: -0.1, y: Math.min(max, upperFence) },
-                                    { x: 0.1, y: Math.min(max, upperFence) }
-                                ],
-                                backgroundColor: '#36A2EB',
-                                borderColor: '#36A2EB',
-                                borderWidth: 2,
-                                pointRadius: 0,
-                                showLine: true,
-                                type: 'line'
+                        } else {
+                            // Vertical boxplot
+                            datasets.push(
+                                // Median line (horizontal in vertical boxplot)
+                                {
+                                    label: `${boxplotName} Median`,
+                                    data: [{ x: xPos - 0.2, y: median }, { x: xPos + 0.2, y: median }],
+                                    backgroundColor: color,
+                                    borderColor: color,
+                                    borderWidth: 3,
+                                    pointRadius: 0,
+                                    showLine: true,
+                                    type: 'line'
+                                },
+                                // Lower whisker (vertical)
+                                {
+                                    label: `${boxplotName} Lower Whisker`,
+                                    data: [{ x: xPos, y: Math.max(min, lowerFence) }, { x: xPos, y: Q1 }],
+                                    backgroundColor: color,
+                                    borderColor: color,
+                                    borderWidth: 2,
+                                    pointRadius: 0,
+                                    showLine: true,
+                                    type: 'line'
+                                },
+                                // Upper whisker (vertical)
+                                {
+                                    label: `${boxplotName} Upper Whisker`,
+                                    data: [{ x: xPos, y: Q3 }, { x: xPos, y: Math.min(max, upperFence) }],
+                                    backgroundColor: color,
+                                    borderColor: color,
+                                    borderWidth: 2,
+                                    pointRadius: 0,
+                                    showLine: true,
+                                    type: 'line'
+                                },
+                                // Whisker caps (horizontal)
+                                {
+                                    label: `${boxplotName} Lower Cap`,
+                                    data: [
+                                        { x: xPos - 0.1, y: Math.max(min, lowerFence) },
+                                        { x: xPos + 0.1, y: Math.max(min, lowerFence) }
+                                    ],
+                                    backgroundColor: color,
+                                    borderColor: color,
+                                    borderWidth: 2,
+                                    pointRadius: 0,
+                                    showLine: true,
+                                    type: 'line'
+                                },
+                                {
+                                    label: `${boxplotName} Upper Cap`,
+                                    data: [
+                                        { x: xPos - 0.1, y: Math.min(max, upperFence) },
+                                        { x: xPos + 0.1, y: Math.min(max, upperFence) }
+                                    ],
+                                    backgroundColor: color,
+                                    borderColor: color,
+                                    borderWidth: 2,
+                                    pointRadius: 0,
+                                    showLine: true,
+                                    type: 'line'
+                                }
+                            );
+                            
+                            // Add outliers if any
+                            const outliers = [];
+                            if (min < lowerFence) outliers.push({ x: xPos, y: min });
+                            if (max > upperFence) outliers.push({ x: xPos, y: max });
+                            
+                            if (outliers.length > 0) {
+                                datasets.push({
+                                    label: `${boxplotName} Outliers`,
+                                    data: outliers,
+                                    backgroundColor: color,
+                                    borderColor: color,
+                                    borderWidth: 2,
+                                    pointRadius: 5,
+                                    showLine: false,
+                                    type: 'scatter'
+                                });
                             }
-                        ];
-                        
-                        // Add outliers if any
-                        const outliers = [];
-                        if (min < lowerFence) outliers.push({ x: 0, y: min });
-                        if (max > upperFence) outliers.push({ x: 0, y: max });
-                        
-                        if (outliers.length > 0) {
-                            datasets.push({
-                                label: 'Outliers',
-                                data: outliers,
-                                backgroundColor: '#FF6384',
-                                borderColor: '#FF6384',
-                                borderWidth: 2,
-                                pointRadius: 5,
-                                showLine: false,
-                                type: 'scatter'
-                            });
                         }
-                    }
+                    }); // End of boxplots.forEach
                     
                     // High DPI canvas resize for crisp rendering
                     const dpr = window.devicePixelRatio || 1;
@@ -979,8 +1024,8 @@
                                 x: {
                                     type: 'linear',
                                     position: 'bottom',
-                                    min: xAxisConfig.min || (min - 2),
-                                    max: xAxisConfig.max || (max + 2),
+                                    min: xAxisConfig.min || (overallMin - 2),
+                                    max: xAxisConfig.max || (overallMax + 2),
                                     title: {
                                         display: true,
                                         text: xAxisConfig.title || 'Value'
@@ -995,22 +1040,50 @@
                                 },
                                 y: {
                                     type: 'linear',
-                                    min: -0.5,
-                                    max: 0.5,
-                                    display: false  // Hide y-axis for horizontal boxplot
+                                    min: -(boxplots.length) * 0.5,
+                                    max: (boxplots.length) * 0.5,
+                                    display: boxplots.length > 1,  // Show y-axis labels for multiple boxplots
+                                    title: {
+                                        display: boxplots.length > 1,
+                                        text: 'Groups'
+                                    },
+                                    ticks: {
+                                        display: boxplots.length > 1,
+                                        callback: function(value, index) {
+                                            const boxplotIndex = Math.round(value + (boxplots.length - 1) / 2);
+                                            if (boxplotIndex >= 0 && boxplotIndex < boxplots.length) {
+                                                return boxplots[boxplotIndex].name || `Group ${boxplotIndex + 1}`;
+                                            }
+                                            return '';
+                                        }
+                                    }
                                 }
                             } : {
                                 x: {
                                     type: 'linear',
-                                    min: -0.5,
-                                    max: 0.5,
-                                    display: false  // Hide x-axis for vertical boxplot
+                                    min: -(boxplots.length) * 0.5,
+                                    max: (boxplots.length) * 0.5,
+                                    display: boxplots.length > 1,  // Show x-axis labels for multiple boxplots
+                                    title: {
+                                        display: boxplots.length > 1,
+                                        text: 'Groups'
+                                    },
+                                    ticks: {
+                                        display: boxplots.length > 1,
+                                        callback: function(value, index) {
+                                            const boxplotIndex = Math.round(value + (boxplots.length - 1) / 2);
+                                            if (boxplotIndex >= 0 && boxplotIndex < boxplots.length) {
+                                                return boxplots[boxplotIndex].name || `Group ${boxplotIndex + 1}`;
+                                            }
+                                            return '';
+                                        }
+                                    }
                                 },
                                 y: {
                                     type: 'linear',
                                     position: 'left',
-                                    min: xAxisConfig.min || (min - 2),
-                                    max: xAxisConfig.max || (max + 2),
+                                    min: xAxisConfig.min || (overallMin - 2),
+                                    max: xAxisConfig.max || (overallMax + 2),
                                     title: {
                                         display: true,
                                         text: xAxisConfig.title || 'Value'
@@ -1057,26 +1130,41 @@
                                 const ctx = chart.ctx;
                                 const chartArea = chart.chartArea;
                                 ctx.save();
-                                ctx.fillStyle = isDarkMode() ? 'rgba(91, 192, 235, 0.2)' : 'rgba(54, 162, 235, 0.2)';
-                                ctx.strokeStyle = isDarkMode() ? '#5BC0EB' : '#36A2EB';
-                                ctx.lineWidth = 2;
-                                if (isHorizontal) {
-                                    const xScale = chart.scales.x;
-                                    const boxHeight = 40;
-                                    const centerY = chartArea.top + (chartArea.bottom - chartArea.top) / 2;
-                                    const q1X = xScale.getPixelForValue(Q1);
-                                    const q3X = xScale.getPixelForValue(Q3);
-                                    ctx.fillRect(q1X, centerY - boxHeight/2, q3X - q1X, boxHeight);
-                                    ctx.strokeRect(q1X, centerY - boxHeight/2, q3X - q1X, boxHeight);
-                                } else {
-                                    const yScale = chart.scales.y;
-                                    const boxWidth = 40;
-                                    const centerX = chartArea.left + (chartArea.right - chartArea.left) / 2;
-                                    const q1Y = yScale.getPixelForValue(Q1);
-                                    const q3Y = yScale.getPixelForValue(Q3);
-                                    ctx.fillRect(centerX - boxWidth/2, q3Y, boxWidth, q1Y - q3Y);
-                                    ctx.strokeRect(centerX - boxWidth/2, q3Y, boxWidth, q1Y - q3Y);
-                                }
+                                
+                                // Draw boxes for each boxplot
+                                const boxplotSpacing = 0.8; // Space between boxplots
+                                boxplots.forEach((boxplot, index) => {
+                                    const { Q1, Q3, name } = boxplot;
+                                    const color = boxplotColors[index];
+                                    
+                                    // Set fill and stroke styles
+                                    ctx.fillStyle = color + '33'; // Add transparency
+                                    ctx.strokeStyle = color;
+                                    ctx.lineWidth = 2;
+                                    
+                                    if (isHorizontal) {
+                                        const xScale = chart.scales.x;
+                                        const yScale = chart.scales.y;
+                                        const boxHeight = 30;
+                                        const yPos = (index - (boxplots.length - 1) / 2) * boxplotSpacing;
+                                        const centerY = yScale.getPixelForValue(yPos);
+                                        const q1X = xScale.getPixelForValue(Q1);
+                                        const q3X = xScale.getPixelForValue(Q3);
+                                        ctx.fillRect(q1X, centerY - boxHeight/2, q3X - q1X, boxHeight);
+                                        ctx.strokeRect(q1X, centerY - boxHeight/2, q3X - q1X, boxHeight);
+                                    } else {
+                                        const xScale = chart.scales.x;
+                                        const yScale = chart.scales.y;
+                                        const boxWidth = 30;
+                                        const xPos = (index - (boxplots.length - 1) / 2) * boxplotSpacing;
+                                        const centerX = xScale.getPixelForValue(xPos);
+                                        const q1Y = yScale.getPixelForValue(Q1);
+                                        const q3Y = yScale.getPixelForValue(Q3);
+                                        ctx.fillRect(centerX - boxWidth/2, q3Y, boxWidth, q1Y - q3Y);
+                                        ctx.strokeRect(centerX - boxWidth/2, q3Y, boxWidth, q1Y - q3Y);
+                                    }
+                                });
+                                
                                 ctx.restore();
                             }
                         }]
@@ -1148,8 +1236,16 @@
 
             // Handle attachments
             if (question.attachments) {
-                // Render chart if present
-                if (question.attachments.chartType) {
+                // Render multiple charts if present
+                if (question.attachments.charts && Array.isArray(question.attachments.charts)) {
+                    questionHtml += '<div class="multiple-charts-container">';
+                    question.attachments.charts.forEach((chart, chartIndex) => {
+                        questionHtml += renderChart(chart, `${question.id}-chart-${chartIndex}`);
+                    });
+                    questionHtml += '</div>';
+                }
+                // Render single chart if present
+                else if (question.attachments.chartType) {
                     questionHtml += renderChart(question.attachments, question.id);
                 }
                 

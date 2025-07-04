@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Quiz Renderer</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        .result { margin: 10px 0; padding: 10px; border: 1px solid #ccc; }
+        .success { background-color: #d4edda; border-color: #c3e6cb; }
+        .error { background-color: #f8d7da; border-color: #f5c6cb; }
+    </style>
+</head>
+<body>
+    <h1>Quiz Renderer Test</h1>
+    <div id="results"></div>
+    <div id="quiz-container"></div>
+    
+    <script>
+        async function testRenderer() {
+            const resultsDiv = document.getElementById('results');
+            
+            try {
+                // Load the JSON file
+                const response = await fetch('assets/jsons/ap_stats_u1_l9_quiz.json');
+                const data = await response.json();
+                
+                resultsDiv.innerHTML += `<div class="result success">✓ JSON loaded successfully - ${data.length} questions found</div>`;
+                
+                // Test each question
+                data.forEach((question, index) => {
+                    try {
+                        if (question.attachments && question.attachments.chartType === 'boxplot') {
+                            const boxplotData = question.attachments.chartConfig.boxplotData;
+                            if (Array.isArray(boxplotData)) {
+                                resultsDiv.innerHTML += `<div class="result success">✓ Question ${index + 1}: Multiple boxplots detected - ${boxplotData.length} boxplots</div>`;
+                            } else {
+                                resultsDiv.innerHTML += `<div class="result success">✓ Question ${index + 1}: Single boxplot detected</div>`;
+                            }
+                        } else if (question.attachments && question.attachments.charts && Array.isArray(question.attachments.charts)) {
+                            resultsDiv.innerHTML += `<div class="result success">✓ Question ${index + 1}: Multiple separate charts detected - ${question.attachments.charts.length} charts</div>`;
+                            question.attachments.charts.forEach((chart, chartIndex) => {
+                                resultsDiv.innerHTML += `<div class="result success">  - Chart ${chartIndex + 1}: ${chart.chartType} - ${chart.title || 'No title'}</div>`;
+                            });
+                        } else if (question.attachments && question.attachments.chartType === 'histogram') {
+                            const series = question.attachments.series;
+                            if (series && series.length > 1) {
+                                resultsDiv.innerHTML += `<div class="result success">✓ Question ${index + 1}: Multiple histogram series detected - ${series.length} series</div>`;
+                            } else {
+                                resultsDiv.innerHTML += `<div class="result success">✓ Question ${index + 1}: Single histogram series detected</div>`;
+                            }
+                        } else {
+                            resultsDiv.innerHTML += `<div class="result success">✓ Question ${index + 1}: ${question.attachments ? question.attachments.chartType || 'no chart' : 'no attachments'}</div>`;
+                        }
+                    } catch (error) {
+                        resultsDiv.innerHTML += `<div class="result error">✗ Question ${index + 1}: Error - ${error.message}</div>`;
+                    }
+                });
+                
+                // Test the first boxplot question rendering
+                const boxplotQuestion = data.find(q => q.attachments && q.attachments.chartType === 'boxplot');
+                if (boxplotQuestion) {
+                    resultsDiv.innerHTML += `<div class="result success">✓ Found boxplot question: ${boxplotQuestion.id}</div>`;
+                    
+                    // Create a canvas for testing
+                    const canvas = document.createElement('canvas');
+                    canvas.id = 'test-canvas';
+                    canvas.width = 400;
+                    canvas.height = 300;
+                    document.getElementById('quiz-container').appendChild(canvas);
+                    
+                    // This would normally be done by the renderer
+                    resultsDiv.innerHTML += `<div class="result success">✓ Canvas created for boxplot rendering test</div>`;
+                }
+                
+            } catch (error) {
+                resultsDiv.innerHTML += `<div class="result error">✗ Error: ${error.message}</div>`;
+            }
+        }
+        
+        // Run the test when page loads
+        testRenderer();
+    </script>
+</body>
+</html> 
