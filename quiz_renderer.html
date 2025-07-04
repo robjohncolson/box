@@ -532,6 +532,23 @@
         body.dark-theme tr:nth-child(even) {
             background-color: #333333;
         }
+        
+        /* Highlight correct MCQ choice */
+        .choice.correct-choice {
+            background: #d4edda;
+            border-color: #28a745;
+        }
+        
+        body.dark-theme .choice.correct-choice {
+            background: #2d4a2d;
+            border-color: #4a7c59;
+            color: #90ee90;
+        }
+        
+        body.dark-theme .choice.correct-choice:hover {
+            background: #355d35;
+            border-color: #4a7c59;
+        }
     </style>
 </head>
 <body>
@@ -1695,13 +1712,15 @@
             return tableHtml;
         }
 
-        function renderChoices(choices) {
+        function renderChoices(choices, answerKey) {
             if (!choices || !Array.isArray(choices)) return '';
             
+            const normalizedAnswer = (answerKey || '').toString().trim().toUpperCase();
             let choicesHtml = '<div class="choices">';
             choices.forEach(choice => {
+                const isCorrect = choice.key.toString().trim().toUpperCase() === normalizedAnswer;
                 choicesHtml += `
-                    <div class="choice">
+                    <div class="choice ${isCorrect ? 'correct-choice' : ''}">
                         <span class="choice-key">${choice.key}.</span> ${choice.value}
                     </div>
                 `;
@@ -1841,29 +1860,20 @@
                 
                 // Render choices if present (in attachments)
                 if (question.attachments.choices) {
-                    questionHtml += renderChoices(question.attachments.choices);
+                    questionHtml += renderChoices(question.attachments.choices, question.answerKey);
                 }
             }
 
             // Handle choices at top level (new format)
             if (question.choices) {
-                questionHtml += renderChoices(question.choices);
+                questionHtml += renderChoices(question.choices, question.answerKey);
             }
 
-            // Render answer key if present
-            if (question.answerKey) {
-                questionHtml += `
-                    <div class="answer-key">
-                        <strong>Answer:</strong> ${question.answerKey}
-                    </div>
-                `;
-            }
-
-            // Render reasoning if present
+            // Render reasoning/explanation if present
             if (question.reasoning) {
                 questionHtml += `
                     <div class="reasoning">
-                        <strong>Reasoning:</strong> ${question.reasoning}
+                        <strong>Explanation:</strong> ${question.reasoning}
                     </div>
                 `;
             }
