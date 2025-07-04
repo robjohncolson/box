@@ -136,6 +136,27 @@ You are tasked with converting AP Statistics quiz questions from uploaded PDF do
       "description": "Dotplot showing distribution of scores with dots stacked vertically"
     }
     
+    // For boxplots (five-number summary visualization):
+    "chartType": "boxplot",
+    "chartConfig": {
+      "orientation": "horizontal",  // "horizontal" or "vertical" - controls boxplot orientation
+      "xAxis": {
+        "min": 28, "max": 44, "tickInterval": 2, "title": "Tree Height (inches)"
+      },
+      "boxplotData": {
+        "Q1": 32,
+        "Q3": 38,
+        "median": 35,
+        "min": 30,
+        "max": 42
+      },
+      "gridLines": {
+        "horizontal": false,
+        "vertical": false
+      },
+      "description": "Boxplot showing the heights of a sample of 100 trees growing on a tree farm"
+    }
+    
     "choices": [
       { "key": "A", "value": "Choice A text" },
       { "key": "B", "value": "Choice B text" },
@@ -203,16 +224,28 @@ You are tasked with converting AP Statistics quiz questions from uploaded PDF do
 - **Data type**: Two quantitative variables showing relationship
 - **Use chartType**: "scatter"
 
+**Boxplots (for five-number summary visualization):**
+- **Visual cues**: Rectangular box with whiskers extending from both ends
+- **Components**: Box (Q1 to Q3), median line inside box, whiskers (to min/max or fences), possible outlier points
+- **Purpose**: Shows distribution shape, spread, and identifies outliers
+- **Data needed**: Five-number summary (min, Q1, median, Q3, max)
+- **Orientation**: 
+  - **Horizontal**: Box extends left-right, values on x-axis (use `"orientation": "horizontal"`)
+  - **Vertical**: Box extends up-down, values on y-axis (use `"orientation": "vertical"`)
+- **Use chartType**: "boxplot"
+
 ## Instructions:
 - Analyze the uploaded PDF carefully
 - Identify unit and lesson numbers from document headers/titles
 - **Pay special attention to chart types** - look for gaps between bars to distinguish bar charts from histograms
 - **Look for stacked dots** - identify dotplots showing single variable distributions vs scatter plots showing two-variable relationships
+- **Identify boxplots** - look for rectangular boxes with whiskers, median lines, and possible outlier points
 - **Examine grid lines carefully** - note whether horizontal and/or vertical grid lines are present
 - **For histograms, observe x-axis labels precisely**:
   - If PDF shows "0-10, 10-20, 20-30" → use range labels with `labelType: "range"`
   - If PDF shows "200, 400, 600" → use upper bound labels with `labelType: "upperBound"`
-- **Grid line detection is critical** - many AP Statistics histograms have NO grid lines at all
+- **For boxplots, extract the five-number summary** - identify min, Q1, median, Q3, max values from the visual
+- **Grid line detection is critical** - many AP Statistics charts have NO grid lines at all
 - Convert each question following the exact format above
 - Include all visual elements as structured data in attachments
 - Preserve exact wording from the original questions
@@ -223,3 +256,4 @@ Create a single code artifact containing all converted questions as separate JSO
 ## Backward Compatibility Note:
 - The old format `"gridLines": true` is still supported, but the new format `"gridLines": {"horizontal": true, "vertical": false}` is preferred for better precision.
 - For histograms, the new `"labelType"` field enables precise x-axis labeling: use `"range"` for interval labels or `"upperBound"` for boundary labels.
+- Boxplots use the `"boxplotData"` structure to store the five-number summary for accurate statistical visualization.
