@@ -1259,15 +1259,22 @@
                     
                     // dragData plugin config (only for histograms)
                     const dragDataConfig = isHistogram ? {
-                        dragData: {
-                            round: 0,
-                            showTooltip: true,
-                            onDragEnd: (e, datasetIndex, index, value) => {
-                                updateModifiedJsonData(questionId, index, value);
-                                showModificationIndicator(questionId);
-                            }
-                        }
-                    } : {};
+                         dragData: {
+                             round: 0,
+                             showTooltip: true,
+                             dragX: false,
+                             dragY: true,
+                             onDragStart: (e, dsIdx, idx, value) => {
+                                 e.originalValue = value;
+                             },
+                             onDragEnd: (e, datasetIndex, index, value) => {
+                                 // Ignore simple clicks (no actual movement)
+                                 if (value === e.originalValue) return;
+                                 updateModifiedJsonData(questionId, index, value);
+                                 showModificationIndicator(questionId);
+                             }
+                         }
+                     } : {};
                     
                     // Handle labels - support both horizontal and vertical orientations
                     let displayLabels;
