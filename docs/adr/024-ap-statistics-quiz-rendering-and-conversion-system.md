@@ -9,7 +9,7 @@ As part of developing an AP Statistics curriculum platform, we need a robust sys
 
 1. **Converting PDF quiz documents to structured JSON format** with high fidelity
 2. **Rendering interactive quiz content** including tables, charts, and multiple choice questions
-3. **Supporting various chart types** (bar charts, pie charts, scatter plots/dotplots) with precise formatting
+3. **Supporting various chart types** (bar charts, histograms, pie charts, scatter plots, dotplots, boxplots) with precise formatting
 4. **Ensuring accessibility** across both light and dark mode interfaces
 5. **Maintaining visual fidelity** to original PDF documents for educational accuracy
 
@@ -35,7 +35,7 @@ A standalone HTML application with Chart.js integration for rendering and valida
   "type": "multiple-choice", 
   "prompt": "Question text here",
   "attachments": {
-    "chartType": "bar|histogram|pie|scatter|dotplot",
+    "chartType": "bar|histogram|pie|scatter|dotplot|boxplot",
     "chartConfig": {
       "yAxis": {
         "min": 0,
@@ -69,6 +69,7 @@ A standalone HTML application with Chart.js integration for rendering and valida
 - **Pie Charts**: Percentage tooltips, custom colors, legend positioning
 - **Scatter Plots**: Linear scaling, custom axis ranges, point styling
 - **Dotplots**: Single variable distribution, stacked dots, frequency visualization
+- **Boxplots**: Five-number summary visualization, outlier detection, IQR analysis
 
 #### Advanced Chart Configuration
 ```javascript
@@ -147,7 +148,7 @@ A standalone HTML application with Chart.js integration for rendering and valida
 ### Benefits
 
 1. **High Fidelity Conversion**: Detailed chart configurations ensure visual accuracy to original PDFs
-2. **Statistical Accuracy**: Proper distinction between bar charts (gaps) and histograms (no gaps) for AP Statistics pedagogy
+2. **Statistical Accuracy**: Proper distinction between bar charts (gaps), histograms (no gaps), dotplots (stacked dots), and boxplots (five-number summary) for AP Statistics pedagogy
 3. **Immediate Validation**: Interactive renderer provides instant feedback on conversion quality
 4. **Accessibility Compliance**: Dark mode and responsive design improve usability
 5. **Educational Accuracy**: Precise chart controls and grid line configurations maintain statistical significance
