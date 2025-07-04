@@ -836,8 +836,6 @@
             }
         }
 
-
-
         function renderChart(chartData, questionId) {
             const chartId = `chart-${questionId}`;
             const config = chartData.chartConfig || {};
@@ -899,15 +897,20 @@
                     const isHistogram = chartData.chartType === 'histogram';
                     const categoryPercentage = isHistogram ? 1.0 : 0.8;
                     const barPercentage = isHistogram ? 1.0 : 0.9;
-                    
-                    // Handle x-axis labels - support both range and bound labeling
-                    let displayLabels = chartData.xLabels;
+
+                    // NEW: Detect orientation for bar charts (default to vertical)
+                    const orientation = config.orientation || 'vertical';
+                    const isHorizontalBar = orientation === 'horizontal';
+
+                    // Handle labels based on orientation - support both xLabels and yLabels
+                    let displayLabels = isHorizontalBar ? (chartData.yLabels || chartData.xLabels) : (chartData.xLabels || chartData.yLabels);
+
+                    // Preserve existing labelType overrides
                     if (xAxisConfig.labelType === 'upperBound' && xAxisConfig.labels) {
                         displayLabels = xAxisConfig.labels;
                     } else if (xAxisConfig.labelType === 'range' && chartData.xLabels) {
                         displayLabels = chartData.xLabels;
                     } else if (xAxisConfig.labelType === 'lowerBound') {
-                        // Use provided labels (prefer xAxisConfig.labels, fallback to chartData.xLabels)
                         displayLabels = xAxisConfig.labels || chartData.xLabels;
                     }
 
@@ -918,11 +921,48 @@
                             datasets: datasets
                         },
                         options: {
+                            indexAxis: isHorizontalBar ? 'y' : 'x',
                             responsive: true,
                             maintainAspectRatio: false,
                             categoryPercentage: categoryPercentage,
                             barPercentage: barPercentage,
-                            scales: {
+                            scales: isHorizontalBar ? {
+                                x: {
+                                    beginAtZero: xAxisConfig.min !== undefined ? false : true,
+                                    min: xAxisConfig.min,
+                                    max: xAxisConfig.max,
+                                    title: {
+                                        display: true,
+                                        text: xAxisConfig.title || 'Value',
+                                        color: getTextColor()
+                                    },
+                                    grid: {
+                                        display: showVerticalGrid,
+                                        color: getGridColor()
+                                    },
+                                    ticks: {
+                                        stepSize: xAxisConfig.tickInterval,
+                                        maxTicksLimit: xAxisConfig.tickInterval ? undefined : 10,
+                                        precision: 2,
+                                        color: getTextColor()
+                                    }
+                                },
+                                y: {
+                                    title: {
+                                        display: true,
+                                        text: yAxisConfig.title || 'Category',
+                                        color: getTextColor()
+                                    },
+                                    grid: {
+                                        display: showHorizontalGrid,
+                                        color: getGridColor()
+                                    },
+                                    ticks: {
+                                        color: getTextColor()
+                                    },
+                                    offset: true
+                                }
+                            } : {
                                 y: {
                                     beginAtZero: yAxisConfig.min !== undefined ? false : true,
                                     min: yAxisConfig.min,
@@ -1138,7 +1178,7 @@
                     // Find max frequency for y-axis
                     const maxFrequency = Math.max(...Object.values(valueFrequency));
                     
-                                        const chart = new Chart(ctx, {
+                    const chart = new Chart(ctx, {
                         type: 'scatter',
                         data: {
                             datasets: [{
