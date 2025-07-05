@@ -145,11 +145,11 @@
     "prompt": "A reporter collected data on the purchase prices, in thousands of dollars, of 72 cars sold in a region. The following histogram summarizes the reporter's data. For a presentation on the data collected, the reporter used the median of the distribution to describe the typical purchase price. Which of the following might explain the use of median to describe the typical purchase price?",
     "attachments": {
       "chartType": "histogram",
-      "xLabels": ["25", "30", "35", "40", "45", "50", "55", "60", "65", "70", "75", "80", "85"],
+      "xLabels": ["25-30", "30-35", "35-40", "40-45", "45-50", "50-55", "55-60", "60-65", "65-70", "70-75", "75-80", "80-85"],
       "series": [
         {
           "name": "Frequency",
-          "values": [0, 0, 5, 13, 28, 15, 5, 3, 2, 1, 0, 0, 2]
+          "values": [1, 7, 13, 28, 15, 5, 2, 0, 0, 0, 0, 2]
         }
       ],
       "chartConfig": {
@@ -404,11 +404,11 @@
         {
           "chartType": "histogram",
           "title": "Distribution of Fingerling Catfish",
-          "xLabels": ["2,000", "4,000", "6,000", "8,000", "10,000", "12,000"],
+          "xLabels": ["2,000-3,000", "3,000-4,000", "4,000-5,000", "5,000-6,000", "6,000-7,000", "7,000-8,000", "8,000-9,000", "9,000-10,000", "10,000-11,000", "11,000-12,000"],
           "series": [
             {
               "name": "Fingerling Catfish",
-              "values": [0, 0.07, 0.15, 0.10, 0.28, 0.25, 0]
+              "values": [0, 0.07, 0.15, 0.04, 0.1, 0.28, 0.07, 0.04, 0.26, 0]
             }
           ],
           "chartConfig": {
@@ -431,11 +431,11 @@
         {
           "chartType": "histogram",
           "title": "Distribution of Large Catfish",
-          "xLabels": ["250", "500", "750", "1,000", "1,250", "1,500", "1,750", "2,000", "2,250"],
+          "xLabels": ["250-500", "500-750", "750-1,000", "1,000-1,250", "1,250-1,500", "1,500-1,750", "1,750-2,000", "2,000-2,250"],
           "series": [
             {
               "name": "Large Catfish",
-              "values": [0, 0.20, 0.18, 0.18, 0.15, 0.15, 0.08, 0.04, 0.02]
+              "values": [0.2, 0.18, 0.18, 0.15, 0.15, 0.08, 0.03, 0.03]
             }
           ],
           "chartConfig": {

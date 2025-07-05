@@ -25,6 +25,9 @@ The system must handle complex statistical visualizations with specific requirem
 - **Modification Tracking & Export**: Changes flag questions as *Modified*, enable one-click export of the updated JSON, and support reset to the original state.
 - **Multiple Chart Rendering**: Support for comparative boxplots and separate histogram layouts using `charts[]` array structure
 - **Enhanced Free Response Solutions**: Complete solution rendering with scoring rubrics, calculations, and solution-specific visualizations
+- **Floating Context Finder Overlay**: Fixed overlay displays the currently-visible question's number and ID during scrolling for improved navigation.
+- **High-Contrast Choice Hover Highlight**: Answer choice hover now uses a yellow background (light `#fff9c4`, dark `#665c00`) to avoid confusion with the green correct-answer indicator.
+- **Audio System Upgrade**: Randomized melodic success/error tones and global volume control provide richer, balanced feedback.
 
 These enhancements address the need for proper statistical comparison visualizations, improved user experience, and comprehensive educational content rendering commonly found in AP Statistics curriculum.
 
@@ -266,6 +269,8 @@ A standalone HTML application with Chart.js integration for rendering and valida
 - **Musical Chords**: Complex chord progressions for theme changes and successful operations
 - **User Control**: Toggle audio on/off with localStorage persistence
 - **Accessibility**: Non-intrusive audio cues to enhance user experience
+- **Randomized Melodic Variations**: Success and error sounds pick random notes for a less repetitive, more engaging tone palette.
+- **Global Volume Control**: Master gain node manages overall loudness and enables future audio scaling.
 
 ##### Theme System
 - **Dual Theme Support**: Manual theme switching alongside automatic detection
@@ -275,6 +280,10 @@ A standalone HTML application with Chart.js integration for rendering and valida
   - Dark mode: `#5BC0EB` (bright blue)
 - **Real-time chart re-rendering**: Charts automatically update when theme changes
 - **Comprehensive theming**: UI elements, tables, forms, and charts all adapt
+
+##### Interaction Enhancements
+- **Floating Context Finder**: A fixed overlay in the top-right corner continuously shows the question currently in view, aiding orientation in long quizzes.
+- **High-Contrast Hover States**: Multiple-choice options highlight in yellow on hover (light & dark theme variants) to clearly distinguish from correct-answer green.
 
 #### Accessibility Features
 - **High contrast ratios** in both light and dark modes

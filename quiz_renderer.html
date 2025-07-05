@@ -196,9 +196,11 @@
             margin: 8px 0;
             transition: all 0.3s ease;
         }
+        /* Hover state for MCQ choices (light theme) */
         .choice:hover {
-            background: #e3f2fd;
-            border-color: #2196f3;
+            /* Soft yellow highlight to distinguish from correct-answer green */
+            background: #fff9c4; /* light yellow */
+            border-color: #ffd54f; /* vivid yellow border */
         }
         .choice-key {
             font-weight: bold;
@@ -393,9 +395,11 @@
             color: #e0e0e0;
         }
         
+        /* Hover state for MCQ choices (dark theme) */
         body.dark-theme .choice:hover {
-            background: #404040;
-            border-color: #5BC0EB;
+            background: #665c00; /* deep yellow/brown for dark mode */
+            border-color: #ffcc00; /* bright yellow border */
+            color: #fffbe6; /* ensure text remains legible */
         }
         
         body.dark-theme .answer-key {
@@ -720,7 +724,7 @@
         
         function playRandomError() {
             const notes = pickRandomDistinct(errorPool, 2).sort((a,b) => b-a); // descending
-            playMelody(notes, 0.22, 0.04, 'sawtooth', 0.12);
+            playMelody(notes, 0.22, 0.05, 'sine', 0.08);
         }
         
         const buttonTones = {
