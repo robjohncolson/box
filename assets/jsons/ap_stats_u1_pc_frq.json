@@ -1,0 +1,148 @@
+[
+  {
+    "id": "U1-PC-FRQ-Q01",
+    "type": "free-response",
+    "prompt": "Show all your work. Indicate clearly the methods you use, because you will be scored on the correctness of your methods as well as on the accuracy and completeness of your results and explanations.\n\nThe manager of a vacation resort believes that the ages of adult visitors to the resort can be modeled by a normal distribution. The manager surveyed a random sample of visitors and recorded their age. A summary of the responses is shown in the frequency table, where x represents the age of the visitor.\n\n(a) Construct a histogram of the distribution of ages.\n(b) Write a few sentences to describe the distribution of ages of the adult visitors to the resort.\n(c) Does the histogram provide convincing evidence that the surveyed ages come from a normal distribution? Explain your answer.",
+    "attachments": {
+      "table": [
+        ["Age (years)", "Frequency"],
+        ["20 ≤ x < 30", "160"],
+        ["30 ≤ x < 40", "130"],
+        ["40 ≤ x < 50", "100"],
+        ["50 ≤ x < 60", "115"],
+        ["60 ≤ x < 70", "125"],
+        ["70 ≤ x < 80", "135"]
+      ]
+    },
+    "solution": {
+      "parts": [
+        {
+          "partId": "a",
+          "description": "Construct a histogram of the distribution of ages.",
+          "response": "A histogram should be constructed with six bars representing the age ranges. The horizontal axis should be labeled with correct age intervals (20-30, 30-40, 40-50, 50-60, 60-70, 70-80) and titled 'Age (in years)'. The vertical axis should be labeled with frequency values (0, 20, 40, 60, 80, 100, 120, 140, 160, 180) and titled 'Frequency'. The bars should have heights corresponding to the frequencies: 160, 130, 100, 115, 125, and 135 respectively.",
+          "attachments": {
+            "chartType": "histogram",
+            "xLabels": ["20-30", "30-40", "40-50", "50-60", "60-70", "70-80"],
+            "series": [
+              {
+                "name": "Frequency",
+                "values": [160, 130, 100, 115, 125, 135]
+              }
+            ],
+            "chartConfig": {
+              "yAxis": {
+                "min": 0,
+                "max": 180,
+                "tickInterval": 20,
+                "title": "Frequency"
+              },
+              "xAxis": {
+                "title": "Age (in years)",
+                "labelType": "range"
+              },
+              "gridLines": {
+                "horizontal": true,
+                "vertical": false
+              },
+              "description": "Histogram showing distribution of ages of adult visitors to resort"
+            }
+          }
+        },
+        {
+          "partId": "b",
+          "description": "Write a few sentences to describe the distribution of ages of the adult visitors to the resort.",
+          "response": "The distribution of ages of the adult visitors to the resort appears to be roughly symmetric. The distribution has a median between 40 and 50 years. The ages of adult visitors vary from a minimum value between 20 and 30 years to a maximum value between 70 and 80 years. The range in the ages of adult visitors could be between 40 and 60 years. From the frequency table and histogram, outliers and gaps cannot be identified."
+        },
+        {
+          "partId": "c",
+          "description": "Does the histogram provide convincing evidence that the surveyed ages come from a normal distribution? Explain your answer.",
+          "response": "The histogram does not suggest that the data come from a normal distribution. A normal distribution is symmetric and mound-shaped. In the histogram above, values farther from the mean are more frequent than values near the mean, which is not likely if the data had come from a normal distribution."
+        }
+      ],
+      "scoring": {
+        "totalPoints": 4,
+        "rubric": [
+          {
+            "part": "a",
+            "maxPoints": 1,
+            "criteria": [
+              "The histogram contains six bars with approximately correct values",
+              "The horizontal axis is labeled with correct numbers",
+              "The horizontal axis is labeled with a correct verbal description",
+              "The vertical axis is labeled with correct numbers",
+              "The vertical axis is labeled with a correct verbal description"
+            ],
+            "scoringNotes": "Essentially correct (E) if the histogram contains six bars with approximately correct values and contains all four axis labeling components. Partially correct (P) if the histogram contains six bars with approximately correct values and contains two or three of the four components. Incorrect (I) if the response does not satisfy the criteria for E or P."
+          },
+          {
+            "part": "b",
+            "maxPoints": 1,
+            "criteria": [
+              "Shape",
+              "Center", 
+              "Variability",
+              "Context"
+            ],
+            "scoringNotes": "Essentially correct (E) if the response includes reasonable comments on all 4 components: Shape, Center, Variability, Context. Partially correct (P) if the response includes 2 or 3 of the 4 components. Incorrect (I) if the response does not satisfy the criteria for E or P."
+          },
+          {
+            "part": "c",
+            "maxPoints": 1,
+            "criteria": [
+              "Response indicates that the histogram does not suggest that the data come from a normal distribution",
+              "Provides strong justification for this conclusion"
+            ],
+            "scoringNotes": "Essentially correct (E) if the response indicates that the histogram does not suggest that the data come from a normal distribution and provides strong justification. Partially correct (P) if the response indicates that the histogram does not suggest that the data come from a normal distribution and provides weak justification. Incorrect (I) if the response does not satisfy the criteria for E or P."
+          }
+        ]
+      },
+      "reasoning": "This question assesses students' ability to create histograms from frequency data, describe distributions using shape, center, variability and context, and evaluate whether a distribution appears normal. The key insight is recognizing that this distribution is not mound-shaped like a normal distribution, as the frequencies at the extremes are higher than those near the center."
+    }
+  },
+  {
+    "id": "U1-PC-FRQ-Q02",
+    "type": "free-response",
+    "prompt": "Show all your work. Indicate clearly the methods you use, because you will be scored on the correctness of your methods as well as on the accuracy and completeness of your results and explanations.\n\nA certain type of bird lives in two regions of a state. The distribution of weight for birds of this type in the northern region is approximately normal with mean 10 ounces and standard deviation 3 ounces. The distribution of weight for birds of this type in the southern region is approximately normal with mean 16 ounces and standard deviation 2.5 ounces.\n\n(a) Calculate the z-scores for a weight of 13 ounces for a bird living in the northern region and for a weight of 13 ounces for a bird living in the southern region.\n(b) Is it more likely that a bird of this type with a weight greater than 13 ounces lives in the northern region or the southern region? Justify your answer.",
+    "solution": {
+      "parts": [
+        {
+          "partId": "a",
+          "description": "Calculate the z-scores for a weight of 13 ounces for a bird living in the northern region and for a weight of 13 ounces for a bird living in the southern region.",
+          "response": "For the northern region: z_n = (x - μ)/σ = (13 - 10)/3 = 1\n\nFor the southern region: z_s = (x - μ)/σ = (13 - 16)/2.5 = -1.2",
+          "calculations": [
+            "Northern region: z_n = (13 - 10)/3 = 3/3 = 1",
+            "Southern region: z_s = (13 - 16)/2.5 = -3/2.5 = -1.2"
+          ]
+        },
+        {
+          "partId": "b",
+          "description": "Is it more likely that a bird of this type with a weight greater than 13 ounces lives in the northern region or the southern region? Justify your answer.",
+          "response": "A bird with a weight of 13 ounces is 1 standard deviation above the mean if the bird is from the northern region. Approximately 16% of the birds from the northern region have a weight greater than 13 ounces. A bird with a weight of 13 ounces is 1.2 standard deviations below the mean if the bird is from the southern region. Approximately 88% of the birds from the southern region have a weight greater than 13 ounces. Therefore, it is more likely that a bird of this type with a weight greater than 13 ounces lives in the southern region."
+        }
+      ],
+      "scoring": {
+        "totalPoints": 4,
+        "rubric": [
+          {
+            "part": "a",
+            "maxPoints": 2,
+            "criteria": [
+              "The correct z-scores are listed with supporting calculations and appropriate labeling"
+            ],
+            "scoringNotes": "Essentially correct (E) if the correct z-scores are listed with supporting calculations and appropriate labeling. Partially correct (P) if the correct z-scores are listed but without supporting calculations or appropriate labeling. Incorrect (I) if the response does not satisfy the criteria for E or P. Note: Including the general formula for z-score is not necessary to earn an E."
+          },
+          {
+            "part": "b",
+            "maxPoints": 2,
+            "criteria": [
+              "Response concludes that it is more likely that a bird of this type with a weight greater than 13 ounces lives in the southern region",
+              "Directly compares the two z-scores calculated in part (a) or the proportions based on the standard normal curve"
+            ],
+            "scoringNotes": "Essentially correct (E) if the response concludes that it is more likely that a bird of this type with a weight greater than 13 ounces lives in the southern region AND directly compares the two z-scores calculated in part (a) or the proportions based on the standard normal curve. Partially correct (P) if the response correctly calculates the proportions based on the standard normal curve but fails to make a comparison. Incorrect (I) if the response does not satisfy the criteria for E or P."
+          }
+        ]
+      },
+      "reasoning": "This question tests students' ability to calculate z-scores and use them to compare probabilities across different normal distributions. The key insight is that a weight of 13 ounces is above the mean in the northern region (z = 1) but below the mean in the southern region (z = -1.2), making it much more likely that a bird weighing more than 13 ounces comes from the southern region where 88% exceed this weight compared to only 16% in the northern region."
+    }
+  }
+]
