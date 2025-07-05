@@ -155,7 +155,7 @@ You are tasked with converting AP Statistics quiz questions from uploaded PDF do
       "description": "Scatter plot with specific axis ranges and tick intervals"
     }
     
-    // For dotplots (distribution of single variable):
+    // For dotplots (for single or comparative distributions):
     "chartType": "dotplot",
     "values": [55, 60, 60, 60, 60, 65, 65, 65, 70, 70, 70, 75, 75, 80, 85, 90, 95],
     "chartConfig": {
@@ -391,11 +391,12 @@ You are tasked with converting AP Statistics quiz questions from uploaded PDF do
 - Use `"yLabels"` for categories and `"orientation": "horizontal"` in chartConfig
 - Swap axis configurations: value axis becomes x-axis, category axis becomes y-axis
 
-**Dotplots (for single variable distribution):**
+**Dotplots (for single or comparative distributions):**
 - **Visual cues**: Dots stacked vertically at each value, showing frequency
 - **X-axis**: Shows the variable values (continuous scale)
 - **Y-axis**: No explicit labels - height represents frequency/count
-- **Data type**: Single quantitative variable
+- **Data type**: Quantitative variable (single group) or multiple groups of the same variable
+- **Multiple groups**: When comparing groups, list each group as a separate object in a `"series"` array (see Multiple Dotplots under Multiple Charts Strategy)
 - **Use chartType**: "dotplot"
 
 **Scatter Plots (for two variable relationships):**
@@ -476,6 +477,27 @@ Example of separate histograms:
 - Put multiple boxplot objects in the `boxplotData` array
 - Each boxplot gets its own name and color
 - The renderer will space them appropriately
+
+**Multiple Dotplots (same chart space):**
+- Use when comparing two or more distributions of the same quantitative variable (e.g., first-time vs previously married couples)
+- Provide a `"series"` array where each object has `"name"` and `"values"` keys
+- All groups share the same x-axis scale; the renderer should automatically offset or color each group's dots to avoid overlap
+
+Example:
+```json
+"attachments": {
+  "chartType": "dotplot",
+  "series": [
+    { "name": "First Time", "values": [0.5, 10, 18, 20, 36] },
+    { "name": "Previously Married", "values": [0.5, 8, 12, 16, 20] }
+  ],
+  "chartConfig": {
+    "xAxis": { "min": 0, "max": 40, "tickInterval": 5, "title": "Time (months) Between Proposal and Wedding" },
+    "gridLines": { "horizontal": false, "vertical": false },
+    "description": "Overlaid dotplot comparing time between proposal and wedding for two marriage types"
+  }
+}
+```
 
 ## Instructions:
 - Analyze the uploaded PDF carefully
