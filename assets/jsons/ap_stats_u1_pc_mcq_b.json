@@ -1,4 +1,5 @@
-{
+[
+  {
     "id": "U1-PC-MCQ-B-Q01",
     "type": "multiple-choice",
     "prompt": "The following table shows the number of miles a hiker walked on a trail each day for 6 days. What was the mean number of miles the hiker walked for the 6 days?",
@@ -32,7 +33,7 @@
     ],
     "answerKey": "C",
     "reasoning": "The mean number of miles is the sum of the number of miles divided by the number of values. The sum of the number of miles is 8 + 5 + 7 + 2 + 9 + 8 = 39. The sum of the miles divided by the number of values is 39/6 = 6.5 miles."
-  }
+  },
   
   {
     "id": "U1-PC-MCQ-B-Q02",
@@ -67,7 +68,7 @@
     ],
     "answerKey": "B",
     "reasoning": "The median is the middle value of a data set when the data are ordered. The median is the fifth value of the ordered data set, which is equal to 1. The mean is the sum of all data values divided by the number of values, which is equal to 2. The median is less than the mean by 1."
-  }
+  },
   
   {
     "id": "U1-PC-MCQ-B-Q03",
@@ -102,7 +103,7 @@
     ],
     "answerKey": "A",
     "reasoning": "For the ordered set of data, the third quartile is 8 and the first quartile is 5. The IQR is the difference of 3."
-  }
+  },
   
   {
     "id": "U1-PC-MCQ-B-Q04",
@@ -137,7 +138,7 @@
     ],
     "answerKey": "C",
     "reasoning": "There is one outlier, 58, since it is more than 1.5 IQRs above the upper quartile (Q3), and all other data values are within 1.5 IQRs of either the first or third quartile (Q1 or Q3)."
-  }
+  },
   
   {
     "id": "U1-PC-MCQ-B-Q05",
@@ -194,7 +195,7 @@
     ],
     "answerKey": "A",
     "reasoning": "Means are not resistant to outliers because their value is influenced by outliers. Medians are considered resistant because outliers do not greatly affect their value. The median better represents the typical purchase price."
-  }
+  },
   
   {
     "id": "U1-PC-MCQ-B-Q06",
@@ -224,7 +225,7 @@
     ],
     "answerKey": "D",
     "reasoning": "The new salary of $120,000 is an outlier since it is far above the rest of the data. The median is resistant to outliers, so it is unlikely to change, and the mean is not resistant to outliers, so it is likely to change. The range is not resistant to outliers, so it will likely change."
-  }
+  },
   
   {
     "id": "U1-PC-MCQ-B-Q07",
@@ -279,7 +280,7 @@
     ],
     "answerKey": "D",
     "reasoning": "The interquartile range accounts for about 50% of the data. The first quartile is located at 62 and the third quartile is located at 70. Therefore approximately 50% of the people have a height between 62 inches and 70 inches."
-  }
+  },
   
   {
     "id": "U1-PC-MCQ-B-Q08",
@@ -338,7 +339,7 @@
     ],
     "answerKey": "D",
     "reasoning": "The third quartile, Q3, is 53. This indicates that at least 75% of the ages are at or below this value."
-  }
+  },
   
   {
     "id": "U1-PC-MCQ-B-Q09",
@@ -393,7 +394,7 @@
     ],
     "answerKey": "D",
     "reasoning": "Although complete shape information cannot be determined from a boxplot, the position of the outliers and quartiles appears to indicate the distribution is skewed to the right. In a distribution that is skewed to the right, the median is likely less than the mean."
-  }
+  },
   
   {
     "id": "U1-PC-MCQ-B-Q10",
@@ -482,71 +483,45 @@
     ],
     "answerKey": "C",
     "reasoning": "The range of the distribution of fingerling catfish is between 6,000 and 8,000, while the range of the distribution of large catfish is between 1,500 and 2,000. Therefore the range of the distribution of fingerling catfish is greater than the range of the distribution of large catfish. The least value in the distribution of fingerling catfish is more than the greatest value of the distribution of large catfish. Therefore the mean of the distribution of fingerling catfish must be greater than the mean of the distribution of large catfish."
-  }
+  },
   
   {
     "id": "U1-PC-MCQ-B-Q11",
     "type": "multiple-choice",
-    "prompt": "A sociologist studying marriage customs collected data on the length of time, in months, between the proposal and wedding. The following boxplot and table give the five-number summary for couples in which at least one person was getting married for the first time and for couples in which both people had been previously married. Based on the summary statistics, which of the following statements is supported by the boxplots and table?",
+    "prompt": "A sociologist studying marriage customs collected data on the length of time, in months, between the proposal and wedding. The following boxplots and table give the five-number summary for couples in which at least one person was getting married for the first time and for couples in which both people had been previously married. Based on the summary statistics, which of the following statements is supported by the boxplots and table?",
     "attachments": {
       "table": [
         ["Period", "Minimum", "Q1", "Median", "Q3", "Maximum"],
         ["First Time", "0.5", "10", "18", "20", "36"],
         ["Previously Married", "0.5", "8", "12", "16", "20"]
       ],
-      "charts": [
-        {
-          "chartType": "boxplot",
-          "title": "First Time Married",
-          "chartConfig": {
-            "orientation": "horizontal",
-            "xAxis": {
-              "min": 0,
-              "max": 40,
-              "tickInterval": 5,
-              "title": "Time (months) Between Proposal and Wedding"
-            },
-            "boxplotData": {
-              "Q1": 10,
-              "Q3": 20,
-              "median": 18,
-              "whiskerMin": 0.5,
-              "whiskerMax": 36,
-              "outliers": []
-            },
-            "gridLines": {
-              "horizontal": false,
-              "vertical": false
-            }
+      "chartType": "boxplot",
+      "chartConfig": {
+        "orientation": "horizontal",
+        "xAxis": { "min": 0, "max": 40, "tickInterval": 5, "title": "Time (months) Between Proposal and Wedding" },
+        "boxplotData": [
+          {
+            "name": "First Time Married",
+            "Q1": 10,
+            "Q3": 20,
+            "median": 18,
+            "whiskerMin": 0.5,
+            "whiskerMax": 36,
+            "outliers": []
+          },
+          {
+            "name": "Previously Married",
+            "Q1": 8,
+            "Q3": 16,
+            "median": 12,
+            "whiskerMin": 0.5,
+            "whiskerMax": 20,
+            "outliers": []
           }
-        },
-        {
-          "chartType": "boxplot",
-          "title": "Previously Married",
-          "chartConfig": {
-            "orientation": "horizontal",
-            "xAxis": {
-              "min": 0,
-              "max": 40,
-              "tickInterval": 5,
-              "title": "Time (months) Between Proposal and Wedding"
-            },
-            "boxplotData": {
-              "Q1": 8,
-              "Q3": 16,
-              "median": 12,
-              "whiskerMin": 0.5,
-              "whiskerMax": 20,
-              "outliers": []
-            },
-            "gridLines": {
-              "horizontal": false,
-              "vertical": false
-            }
-          }
-        }
-      ],
-      "description": "Comparative boxplots showing time between proposal and wedding for different marriage types"
+        ],
+        "gridLines": { "horizontal": false, "vertical": false },
+        "description": "Comparative boxplots showing time between proposal and wedding for first-time vs previously married couples"
+      }
     },
     "choices": [
       {
@@ -572,7 +547,7 @@
     ],
     "answerKey": "E",
     "reasoning": "The IQR (Q3 minus Q1) of length of time for first-time couples is 10 months (20 minus 10), while that of previously married couples is only 8 months (16 minus 8)."
-  }
+  },
   
   {
     "id": "U1-PC-MCQ-B-Q12",
@@ -609,7 +584,7 @@
     ],
     "answerKey": "D",
     "reasoning": "For the concrete distribution, the minimum of 186 is less than the lower bound of 193. For the electrical distribution, the minimum of 239 is not less than the lower bound of 215."
-  }
+  },
   
   {
     "id": "U1-PC-MCQ-B-Q13",
@@ -639,7 +614,7 @@
     ],
     "answerKey": "B",
     "reasoning": "The empirical rule states that approximately 95% of the observations in a data set that is approximated by a normal curve will lie within 2 standard deviations of the mean. Since 95% of all daily high temperatures are between 83°F and 89°F, the interval from 83°F to 89°F has a width of 4 standard deviations (2 above the mean and 2 below the mean). So 1 standard deviation is (89-83)/4 = 1.5°F."
-  }
+  },
   
   {
     "id": "U1-PC-MCQ-B-Q14",
@@ -669,7 +644,7 @@
     ],
     "answerKey": "B",
     "reasoning": "The heights of plants is a numeric and continuous variable, with a distribution that is typically symmetrically grouped around the mean with very few heights that are much larger or smaller than the mean."
-  }
+  },
   
   {
     "id": "U1-PC-MCQ-B-Q15",
@@ -699,7 +674,7 @@
     ],
     "answerKey": "B",
     "reasoning": "Because Gordo's weight is over 3 standard deviations above the mean, his weight is in the top 5% of all weights and is classified as unhealthy. Flaco's weight is less than 2 standard deviations below the mean, so his weight is not in the bottom 5% of all weights and is not classified as unhealthy."
-  }
+  },
   
   {
     "id": "U1-PC-MCQ-B-Q16",
@@ -729,7 +704,7 @@
     ],
     "answerKey": "E",
     "reasoning": "The value 0.977 is the total proportion of transactions that are greater than 350. The z-score associated with 350 transactions is −2. The proportion of daily transactions greater than 350 can be found using the z-score and technology, such as a calculator, a standard normal table, or computer-generated output."
-  }
+  },
   
   {
     "id": "U1-PC-MCQ-B-Q17",
@@ -759,7 +734,7 @@
     ],
     "answerKey": "C",
     "reasoning": "The z-score associated with a purchase amount of $14.00 is (14-15.5)/1.72 ≈ -0.872, and the z-score associated with a purchase amount of $16.00 is (16-15.5)/1.72 ≈ 0.291. The area under the standard normal curve between -0.872 and 0.291 is approximately 0.42, so this is the approximate proportion of customer purchase amounts between $14.00 and $16.00."
-  }
+  },
   
   {
     "id": "U1-PC-MCQ-B-Q18",
@@ -790,3 +765,4 @@
     "answerKey": "D",
     "reasoning": "Approximately 28% of the area under the standard normal curve is below a z-score of -0.58. Therefore -0.58 = (76-103)/σ, and solving for σ yields σ ≈ 46.5 moths."
   }
+]
