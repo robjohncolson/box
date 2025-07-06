@@ -1,0 +1,55 @@
+                } else if (chartData.chartType === 'scatter') {
+                    const config = chartData.chartConfig || {};
+                    const xAxisConfig = config.xAxis || {};
+                    const yAxisConfig = config.yAxis || {};
+                    // ... existing code ...
+                    // Build primary dataset (actual scatter points)
+                    const datasets = [{
+                        label: 'Data Points',
+                        data: chartData.points,
+                        backgroundColor: getScatterPointColor(),
+                        borderColor: getScatterPointColor(),
+                        pointRadius: 4,
+                        pointHoverRadius: 6
+                    }];
+
+                    // --------------------------------------------------
+                    // Optional reference line(s) – e.g. y = 0 for residual plots
+                    // Enable by adding `"referenceLineAtZero": true` inside chartConfig
+                    // --------------------------------------------------
+                    if (config.referenceLineAtZero) {
+                        // Determine horizontal span of the scatter data (fallback to axis min/max)
+                        let minX = typeof xAxisConfig.min === 'number' ? xAxisConfig.min : undefined;
+                        let maxX = typeof xAxisConfig.max === 'number' ? xAxisConfig.max : undefined;
+                        if (minX === undefined || maxX === undefined) {
+                            const xs = chartData.points.map(p => p.x);
+                            if (minX === undefined) minX = Math.min(...xs);
+                            if (maxX === undefined) maxX = Math.max(...xs);
+                        }
+
+                        datasets.push({
+                            label: 'Reference Line y = 0',
+                            type: 'line',
+                            data: [
+                                { x: minX, y: 0 },
+                                { x: maxX, y: 0 }
+                            ],
+                            borderColor: isDarkMode() ? '#FF6666' : '#CC0000',
+                            borderDash: [6, 4],
+                            borderWidth: 2,
+                            fill: false,
+                            pointRadius: 0,
+                            order: 0
+                        });
+                    }
+
+                    const chart = new Chart(ctx, {
+                        type: 'scatter',
+                        data: {
+                            datasets: datasets
+                        },
+                        options: {
+                            // ... existing code ...
+                        }
+                    });
+                } 

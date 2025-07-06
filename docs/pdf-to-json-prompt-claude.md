@@ -203,7 +203,8 @@ You are tasked with converting AP Statistics quiz questions from uploaded PDF do
         "horizontal": true,
         "vertical": true
       },
-      "description": "Scatter plot with specific axis ranges and tick intervals"
+      "referenceLineAtZero": true,  // NEW: draw a dashed reference line at y = 0 (useful for residual plots)
+      "description": "Scatter plot with specific axis ranges, tick intervals, and a y=0 reference line"
     }
     
     // For dotplots (for single or comparative distributions):
@@ -630,3 +631,6 @@ When converting boxplots from PDF images, follow these steps:
 - `whiskerMax: 8.5` (not 12.0)
 - `whiskerMin: 1.2` (not 0.4)  
 - `outliers: [0.4, 12.0]`
+
+
+Finally, nomenclature of filenames are subject_unit#_lesson#_type, for example "ap_stats_u2_l5_quiz.json" is for ap stats, unit 2, lesason 5, quiz
