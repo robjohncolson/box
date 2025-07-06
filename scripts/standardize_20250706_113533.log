@@ -1,0 +1,7 @@
+2025-07-06 11:35:33,015 - INFO - Building reference patterns from: ..\assets\pdfs\unit2
+2025-07-06 11:35:33,016 - INFO - Built 12 reference patterns
+2025-07-06 11:35:33,016 - INFO - Starting standardization of: ..\assets\pdfs\unit3
+2025-07-06 11:35:33,016 - INFO - Analyzing target directory: ..\assets\pdfs\unit3
+2025-07-06 11:35:33,016 - INFO - Analysis complete: 3 keep, 13 delete, 0 unknown
+2025-07-06 11:35:33,017 - INFO - Dry run mode - no files will be modified
+2025-07-06 11:35:33,018 - INFO - Standardization complete: ..\assets\pdfs\unit3
