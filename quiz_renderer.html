@@ -1014,6 +1014,9 @@
                     const orientation = config.orientation || 'vertical';
                     const isHorizontalBar = orientation === 'horizontal';
 
+                    // NEW: Detect if bars should be stacked (applies only to bar charts)
+                    const isStacked = config.stacked === true || config.stacked === 'true';
+
                     // Handle labels based on orientation - support both xLabels and yLabels
                     let displayLabels = isHorizontalBar ? (chartData.yLabels || chartData.xLabels) : (chartData.xLabels || chartData.yLabels);
 
@@ -1052,6 +1055,7 @@
                                         display: showVerticalGrid,
                                         color: getGridColor()
                                     },
+                                    stacked: isStacked,
                                     ticks: {
                                         stepSize: xAxisConfig.tickInterval,
                                         maxTicksLimit: xAxisConfig.tickInterval ? undefined : 10,
@@ -1092,6 +1096,7 @@
                                         drawOnChartArea: true,
                                         drawTicks: true
                                     },
+                                    stacked: isStacked,
                                     ticks: {
                                         stepSize: yAxisConfig.tickInterval,
                                         maxTicksLimit: yAxisConfig.tickInterval ? undefined : 10,
@@ -1109,6 +1114,7 @@
                                         display: showVerticalGrid,
                                         color: getGridColor()
                                     },
+                                    stacked: isStacked,
                                     ticks: {
                                         color: getTextColor()
                                     },
