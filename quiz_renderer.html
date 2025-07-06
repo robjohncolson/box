@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Interactive AP Stats Quiz Renderer</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
+    <!-- MathJax for rendering LaTeX/TeX notation in prompts, choices, and explanations -->
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" id="MathJax-script" async></script>
     <style>
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -2273,6 +2275,11 @@
                 initContextFinder();
                 
                 showMessage(`Successfully loaded ${questions.length} question(s) with tables and charts! Advanced chart configurations and dark mode support enabled.`, 'success');
+                
+                // Trigger MathJax typesetting for dynamically inserted content
+                if (window.MathJax && typeof MathJax.typesetPromise === 'function') {
+                    MathJax.typesetPromise();
+                }
                 
             } catch (error) {
                 showMessage(`Error rendering quiz: ${error.message}`);
