@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Interactive AP Stats Quiz Renderer</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
+    <!-- Chart.js DataLabels plugin for point labeling -->
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2"></script>
     <!-- MathJax for rendering LaTeX/TeX notation in prompts, choices, and explanations -->
     <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" id="MathJax-script" async></script>
     <style>
@@ -1237,6 +1239,14 @@
                                     labels: {
                                         color: getTextColor()
                                     }
+                                },
+                                // Enable data labels for bar/histogram charts when requested via chartConfig.showPointLabels
+                                datalabels: {
+                                    display: config.showPointLabels === true,
+                                    color: getTextColor(),
+                                    anchor: isHorizontalBar ? 'center' : 'end',
+                                    align: isHorizontalBar ? 'right' : 'top',
+                                    formatter: (value) => value
                                 }
                             }
                         }
@@ -1269,6 +1279,16 @@
                                         padding: 20,
                                         usePointStyle: true,
                                         color: getTextColor()
+                                    }
+                                },
+                                // Optional data labels for pie charts (percentages) when chartConfig.showPointLabels is true
+                                datalabels: {
+                                    display: (config.showPointLabels === true),
+                                    color: getTextColor(),
+                                    formatter: function(value, context) {
+                                        const total = values.reduce((a, b) => a + b, 0);
+                                        const percentage = ((value / total) * 100).toFixed(1);
+                                        return percentage + '%';
                                     }
                                 },
                                 tooltip: {
@@ -1315,6 +1335,61 @@
                         pointRadius: 4,
                         pointHoverRadius: 6
                     }];
+
+                    // Determine if we should render point labels
+                    const hasPointLabels = (chartData.points || []).some(pt => pt.label !== undefined);
+
+                    // --------------------------------------------------
+                    // Optional regression line (least-squares)            <-- ADD
+                    // --------------------------------------------------
+                    if (config.regressionLine) {
+                        const pts = chartData.points || [];
+                        if (Array.isArray(pts) && pts.length >= 2) {
+                            // Compute least-squares slope and intercept
+                            let sumX = 0, sumY = 0, sumXY = 0, sumXX = 0;
+                            pts.forEach(p => {
+                                sumX += p.x;
+                                sumY += p.y;
+                                sumXY += p.x * p.y;
+                                sumXX += p.x * p.x;
+                            });
+                            const n = pts.length;
+                            const denominator = n * sumXX - sumX * sumX;
+                            if (denominator !== 0) {
+                                const slope = (n * sumXY - sumX * sumY) / denominator;
+                                const intercept = (sumY - slope * sumX) / n;
+
+                                // Determine the horizontal span for the line
+                                let minX = typeof xAxisConfig.min === 'number' ? xAxisConfig.min : undefined;
+                                let maxX = typeof xAxisConfig.max === 'number' ? xAxisConfig.max : undefined;
+                                if (minX === undefined || maxX === undefined) {
+                                    const xs = pts.map(p => p.x);
+                                    if (minX === undefined) minX = Math.min(...xs);
+                                    if (maxX === undefined) maxX = Math.max(...xs);
+                                }
+
+                                // Style overrides (optional)
+                                const regColor = config.regressionLineColor || getTextColor();
+                                const regDash  = config.regressionLineDash  || [];
+
+                                datasets.push({
+                                    label: 'Regression Line',
+                                    type: 'line',
+                                    data: [
+                                        { x: minX, y: slope * minX + intercept },
+                                        { x: maxX, y: slope * maxX + intercept }
+                                    ],
+                                    borderColor: regColor,
+                                    borderDash: regDash,
+                                    borderWidth: 2,
+                                    fill: false,
+                                    pointRadius: 0,
+                                    tension: 0,
+                                    order: 0
+                                });
+                            }
+                        }
+                    }
 
                     // --------------------------------------------------
                     // Optional reference line at y = 0 (useful for residual plots)
@@ -1394,11 +1469,65 @@
                             plugins: {
                                 legend: {
                                     display: false
+                                },
+                                datalabels: {
+                                    display: (ctx) => {
+                                        const d = ctx.dataset.data[ctx.dataIndex];
+                                        // Show label if point has 'label' or global chartConfig requests labels
+                                        return (d && d.label !== undefined) || config.showPointLabels === true;
+                                    },
+                                    align: 'top',
+                                    anchor: 'center',
+                                    color: getTextColor(),
+                                    formatter: (value) => {
+                                        // If value has explicit label use that, otherwise display y
+                                        if (value.label !== undefined) return value.label;
+                                        if (config.showPointLabels === true) {
+                                            return `(${value.x}, ${value.y})`;
+                                        }
+                                        return '';
+                                    },
+                                    font: {
+                                        size: 12
+                                    }
                                 }
                             }
                         }
                     });
                     chartInstances.push(chart);
+
+                    // Add point label plugin AFTER chart creation to ensure meta is available
+                    if (false && (hasPointLabels || config.showPointLabels)) {
+                        // Create inline plugin specific to this chart instance
+                        const labelPlugin = {
+                            id: 'scatterPointLabels',
+                            afterDatasetsDraw: (c) => {
+                                if (c !== chart) return; // Only draw for this chart instance
+                                const ctx = c.ctx;
+                                ctx.save();
+                                c.data.datasets.forEach((ds, dsi) => {
+                                    // Only annotate the point dataset (assumed first) or explicitly marked datasets
+                                    if (dsi !== 0) return;
+                                    const meta = c.getDatasetMeta(dsi);
+                                    meta.data.forEach((elem, idx) => {
+                                        const pointData = ds.data[idx];
+                                        const lbl = pointData && pointData.label;
+                                        if (lbl === undefined) return;
+                                        const {x, y} = elem.getCenterPoint();
+                                        ctx.fillStyle = getTextColor();
+                                        ctx.font = '12px sans-serif';
+                                        ctx.textAlign = 'center';
+                                        ctx.textBaseline = 'bottom';
+                                        ctx.fillText(lbl, x, y - 6);
+                                    });
+                                });
+                                ctx.restore();
+                            }
+                        };
+                        chart.options.plugins = chart.options.plugins || [];
+                        chart.options.plugins.push(labelPlugin);
+                        chart.update();
+                    }
                 
                 } else if (chartData.chartType === 'dotplot') {
                     const config = chartData.chartConfig || {};
@@ -1494,6 +1623,14 @@
                             plugins: {
                                 legend: {
                                     display: false
+                                },
+                                datalabels: {
+                                    display: () => config.showPointLabels === true,
+                                    align: 'top',
+                                    anchor: 'center',
+                                    color: getTextColor(),
+                                    formatter: (value) => value.y,
+                                    font: { size: 12 }
                                 },
                                 tooltip: {
                                     callbacks: {
@@ -2422,6 +2559,11 @@
                 playTone(freq, 0.1 + Math.random()*0.05, wave, 0.08);
             }
         });
+
+        // Register the Chart.js DataLabels plugin if available
+        if (typeof Chart !== 'undefined' && typeof ChartDataLabels !== 'undefined') {
+            Chart.register(ChartDataLabels);
+        }
     </script>
 </body>
 </html> 

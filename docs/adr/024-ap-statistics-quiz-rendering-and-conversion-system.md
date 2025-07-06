@@ -28,6 +28,7 @@ The system must handle complex statistical visualizations with specific requirem
 - **Floating Context Finder Overlay**: Fixed overlay displays the currently-visible question's number and ID during scrolling for improved navigation.
 - **High-Contrast Choice Hover Highlight**: Answer choice hover now uses a yellow background (light `#fff9c4`, dark `#665c00`) to avoid confusion with the green correct-answer indicator.
 - **Audio System Upgrade**: Randomized melodic success/error tones and global volume control provide richer, balanced feedback.
+- **Point Labeling via Chart.js DataLabels**: Integrated the official **chartjs-plugin-datalabels** for automatic point labels on scatter and dotplot charts (and optional labels for bar/histogram/pie). This replaces the custom inline label renderer for greater stability and customization.
 
 These enhancements address the need for proper statistical comparison visualizations, improved user experience, and comprehensive educational content rendering commonly found in AP Statistics curriculum.
 
@@ -240,9 +241,9 @@ A standalone HTML application with Chart.js integration for rendering and valida
 
 • **Pie Charts** — Percentage tool-tips, color-blind-friendly palettes, legend positioning.
 
-• **Scatter Plots** — Linear scaling, custom axis ranges, point styling.
+• **Scatter Plots** — Linear scaling, custom axis ranges, point styling, **automatic point labels** via Chart.js DataLabels plugin.
 
-• **Dotplots** — Stacked frequency dots with **drag-to-edit** x-position and **double-click add/remove**; automatic restack & axis rescale.
+• **Dotplots** — Stacked frequency dots with **drag-to-edit** x-position and **double-click add/remove**; automatic restack & axis rescale, **optional point labels** (counts or explicit labels) powered by DataLabels.
 
 • **Boxplots** — Single or multiple, horizontal or vertical, whisker & outlier support with exact five-number summaries.
 
