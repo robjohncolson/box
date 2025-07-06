@@ -554,6 +554,79 @@
             border-color: #4a7c59;
         }
 
+        /* Volume Slider */
+        .volume-slider {
+            width: 120px;
+            height: 6px;
+            border-radius: 3px;
+            background: #ddd;
+            outline: none;
+            opacity: 0.7;
+            transition: opacity 0.2s ease;
+            cursor: pointer;
+        }
+
+        .volume-slider:hover {
+            opacity: 1;
+        }
+
+        .volume-slider::-webkit-slider-thumb {
+            appearance: none;
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            background: #3498db;
+            cursor: pointer;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+            transition: all 0.2s ease;
+        }
+
+        .volume-slider::-webkit-slider-thumb:hover {
+            background: #2980b9;
+            transform: scale(1.1);
+        }
+
+        .volume-slider::-moz-range-thumb {
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            background: #3498db;
+            cursor: pointer;
+            border: none;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+            transition: all 0.2s ease;
+        }
+
+        .volume-slider::-moz-range-thumb:hover {
+            background: #2980b9;
+            transform: scale(1.1);
+        }
+
+        body.dark-theme .volume-slider {
+            background: #555;
+        }
+
+        body.dark-theme .volume-slider::-webkit-slider-thumb {
+            background: #5BC0EB;
+        }
+
+        body.dark-theme .volume-slider::-webkit-slider-thumb:hover {
+            background: #87ceeb;
+        }
+
+        body.dark-theme .volume-slider::-moz-range-thumb {
+            background: #5BC0EB;
+        }
+
+        body.dark-theme .volume-slider::-moz-range-thumb:hover {
+            background: #87ceeb;
+        }
+
+        body.dark-theme label[for="volumeSlider"],
+        body.dark-theme #volumeDisplay {
+            color: #e0e0e0 !important;
+        }
+
         /* Floating Context Finder */
         .context-finder {
             position: fixed;
@@ -597,6 +670,12 @@
             <button class="clear-button" onclick="clearAll()">🗑️ Clear All</button>
             <button class="debug-button" id="themeToggle" onclick="toggleTheme()">🌙 Switch to Dark</button>
             <button class="debug-button" id="audioToggle" onclick="toggleAudio()">🔊 Audio On</button>
+            
+            <div style="margin-top: 15px; display: flex; align-items: center; gap: 10px; justify-content: center;">
+                <label for="volumeSlider" style="font-weight: bold; color: #666;">🔊 Volume:</label>
+                <input type="range" id="volumeSlider" min="0" max="100" value="70" class="volume-slider" oninput="adjustVolume(this.value)">
+                <span id="volumeDisplay" style="font-weight: bold; color: #666; min-width: 35px;">70%</span>
+            </div>
         </div>
         
         <div id="messageContainer"></div>
@@ -626,7 +705,8 @@
                     audioContext = new (window.AudioContext || window.webkitAudioContext)();
                     // Create master gain so we can easily tweak overall volume or add global effects later
                     masterGain = audioContext.createGain();
-                    masterGain.gain.setValueAtTime(0.3, audioContext.currentTime); // 30% volume by default
+                    const savedVolume = localStorage.getItem('quizRendererVolume') || '70';
+                    masterGain.gain.setValueAtTime(parseFloat(savedVolume) / 100, audioContext.currentTime);
                     masterGain.connect(audioContext.destination);
                 } catch (e) {
                     console.warn('Web Audio API not supported:', e);
@@ -636,7 +716,7 @@
         }
         
         // Generate a synthesized tone
-        function playTone(frequency, duration = 0.3, type = 'sine', volume = 0.15, detuneCents = 8) {
+        function playTone(frequency, duration = 0.3, type = 'sine', volume = 1, detuneCents = 8) {
             if (!audioEnabled) return;
 
             const ctx = initAudioContext();
@@ -755,6 +835,25 @@
             // Show feedback message without playing tone (since we're toggling audio)
             const messageContainer = document.getElementById('messageContainer');
             messageContainer.innerHTML = `<div class="success"><strong>Success:</strong> Audio feedback ${audioEnabled ? 'enabled' : 'disabled'}.</div>`;
+        }
+
+        function adjustVolume(value) {
+            // Save volume to localStorage
+            localStorage.setItem('quizRendererVolume', value);
+            
+            // Update volume display
+            const volumeDisplay = document.getElementById('volumeDisplay');
+            volumeDisplay.textContent = `${value}%`;
+            
+            // Update master gain if audio context exists
+            if (masterGain) {
+                masterGain.gain.setValueAtTime(parseFloat(value) / 100, audioContext.currentTime);
+            }
+            
+            // Play a test tone to give immediate feedback
+            if (audioEnabled && parseFloat(value) > 0) {
+                setTimeout(() => playTone(523.25, 0.12, 'triangle', 0.15), 50);
+            }
         }
 
         function clearAll() {
@@ -899,6 +998,15 @@
             const audioButton = document.getElementById('audioToggle');
             if (audioButton) {
                 audioButton.textContent = audioEnabled ? '🔊 Audio On' : '🔇 Audio Off';
+            }
+            
+            // Load saved volume preference or default to 70%
+            const savedVolume = localStorage.getItem('quizRendererVolume') || '70';
+            const volumeSlider = document.getElementById('volumeSlider');
+            const volumeDisplay = document.getElementById('volumeDisplay');
+            if (volumeSlider && volumeDisplay) {
+                volumeSlider.value = savedVolume;
+                volumeDisplay.textContent = `${savedVolume}%`;
             }
         }
 
@@ -2243,7 +2351,7 @@
         // Load sample data on page load
         window.onload = function() {
             initTheme();
-            showMessage('🎵 Ready to load quiz JSON files! Now featuring audio feedback with synthesized tones for each button! Supports tables, bar/histogram/pie/scatter/dotplot/boxplot charts with detailed tick intervals, axis ranges, grid line controls, manual theme switching, JSON with // comments, and comprehensive free response solutions with scoring rubrics. Use the theme toggle button to switch between light and dark modes.', 'success');
+            showMessage('🎵 Ready to load quiz JSON files! Now featuring enhanced audio feedback with synthesized tones and volume control! Supports tables, bar/histogram/pie/scatter/dotplot/boxplot charts with detailed tick intervals, axis ranges, grid line controls, manual theme switching, JSON with // comments, and comprehensive free response solutions with scoring rubrics. Use the volume slider to adjust audio levels and the theme toggle to switch between light and dark modes.', 'success');
         };
 
         // ------------------------------------------------------------
