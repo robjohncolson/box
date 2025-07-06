@@ -40,6 +40,31 @@ You are tasked with converting AP Statistics quiz questions from uploaded PDF do
       "description": "Bar chart showing relative frequency by grade level with gaps between bars"
     }
     
+    // For STACKED bar charts (segmented bars showing parts of a whole):
+    "chartType": "bar",
+    "xLabels": ["Ninth", "Tenth", "Eleventh", "Twelfth"],
+    "series": [
+      {"name": "Yes", "values": [0.6, 0.75, 0.75, 0.5]},
+      {"name": "No", "values": [0.4, 0.25, 0.25, 0.5]}
+    ],
+    "chartConfig": {
+      "stacked": true,      // CRITICAL: Enable stacking for segmented bars
+      "yAxis": {
+        "min": 0,
+        "max": 1.0,
+        "tickInterval": 0.2,
+        "title": "Relative Frequency"
+      },
+      "xAxis": {
+        "title": "Grade Level"
+      },
+      "gridLines": {
+        "horizontal": true,
+        "vertical": false
+      },
+      "description": "Stacked bar chart showing relative frequency of yes/no responses by grade level"
+    }
+    
     // For horizontal bar charts (bars extend horizontally):
     "chartType": "bar",
     "yLabels": ["Category1", "Category2", ...],  // Categories on y-axis - ORDERING CRITICAL!
@@ -63,6 +88,32 @@ You are tasked with converting AP Statistics quiz questions from uploaded PDF do
         "vertical": false    // Whether vertical grid lines are shown
       },
       "description": "Horizontal bar chart showing favorite school subjects by grade level"
+    }
+    
+    // For STACKED horizontal bar charts (segmented horizontal bars):
+    "chartType": "bar",
+    "yLabels": ["Airport R", "Airport S", "Airport T"],
+    "series": [
+      {"name": "On time", "values": [100, 100, 200]},
+      {"name": "Delayed", "values": [50, 100, 300]}
+    ],
+    "chartConfig": {
+      "orientation": "horizontal",  // Horizontal orientation
+      "stacked": true,             // CRITICAL: Enable stacking for segmented bars
+      "xAxis": {
+        "min": 0,
+        "max": 600,
+        "tickInterval": 200,
+        "title": "Number of Flights"
+      },
+      "yAxis": {
+        "title": "Airport"
+      },
+      "gridLines": {
+        "horizontal": true,
+        "vertical": false
+      },
+      "description": "Segmented bar chart showing on-time and delayed flights by airport with stacked bars"
     }
     
     // ⚠️ CRITICAL ORDERING REQUIREMENTS FOR HORIZONTAL BAR CHARTS:
@@ -351,6 +402,18 @@ You are tasked with converting AP Statistics quiz questions from uploaded PDF do
 - **Data type**: Categorical variables
 - **Use chartType**: "bar"
 
+**STACKED Bar Charts (segmented bars showing parts of a whole):**
+- **Visual cues**: Bars are divided into colored segments that stack on top of each other
+- **Purpose**: Show both the total and the composition (e.g., "Yes" and "No" responses stacked to show 100%)
+- **Key identifier**: Multiple data series with bars that appear as segments within each category
+- **Common in AP Stats**: Relative frequency charts, survey response breakdowns, conditional distributions
+- **CRITICAL**: Must include `"stacked": true` in chartConfig
+- **Example patterns**: 
+  - Survey responses by grade level (Yes/No stacked to 100%)
+  - Flight status by airport (On-time/Delayed stacked)
+  - Gender breakdown by school year (Male/Female stacked)
+- **Use chartType**: "bar" with `"stacked": true` in chartConfig
+
 **Histograms (for continuous data):**
 - **Visual cues**: NO gaps between bars - bars touch each other
 - **X-axis labels**: Can be either:
@@ -505,10 +568,12 @@ Example:
 - **Apply appropriate ID format** based on quiz type identified (see ID Format section above)
 - Identify unit and lesson numbers from document headers/titles
 - **Pay special attention to chart types** - look for gaps between bars to distinguish bar charts from histograms
+- **Identify stacked/segmented bars** - look for bars divided into colored segments that show parts of a whole (common in relative frequency and survey data)
 - **Check bar chart orientation** - determine if bars extend upward (vertical) or rightward (horizontal)
 - **Look for stacked dots** - identify dotplots showing single variable distributions vs scatter plots showing two-variable relationships
 - **Identify boxplots** - look for rectangular boxes with whiskers, median lines, and possible outlier points
 - **Examine grid lines carefully** - note whether horizontal and/or vertical grid lines are present
+- **For stacked bar charts** - when bars show segmented data (like Yes/No responses or On-time/Delayed flights), add `"stacked": true` to chartConfig
 - **For histograms, observe x-axis labels precisely**:
   - If PDF shows "0-10, 10-20, 20-30" → use range labels with `labelType: "range"`
   - If PDF shows "200, 400, 600" → use upper bound labels with `labelType: "upperBound"`
