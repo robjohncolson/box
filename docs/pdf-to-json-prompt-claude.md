@@ -191,7 +191,7 @@ You are tasked with converting AP Statistics quiz questions from uploaded PDF do
     
     // For scatter plots:
     "chartType": "scatter",
-    "points": [{"x": 1.2, "y": 3.4}, {"x": 2.1, "y": 4.7}, ...],
+    "points": [{"x": 1.2, "y": 3.4, "label": "A"}, {"x": 2.1, "y": 4.7, "label": "B"}, ...],
     "chartConfig": {
       "xAxis": {
         "min": 0, "max": 10, "tickInterval": 1, "title": "X Variable"
@@ -204,7 +204,11 @@ You are tasked with converting AP Statistics quiz questions from uploaded PDF do
         "vertical": true
       },
       "referenceLineAtZero": true,  // NEW: draw a dashed reference line at y = 0 (useful for residual plots)
-      "description": "Scatter plot with specific axis ranges, tick intervals, and a y=0 reference line"
+      "regressionLine": true,       // NEW: include least-squares regression line (auto-computed)
+      "regressionLineColor": "#000000", // OPTIONAL: override line color (defaults adapt to theme)
+      "regressionLineDash": [4, 2],      // OPTIONAL: dash pattern (Chart.js format)
+      "showPointLabels": true,           // OPTIONAL: by default, any point object that includes a "label" field (e.g., {"x": 53, "y": 6100, "label": "A"}) will be rendered with that label on the chart.  Set "showPointLabels": true to force EVERY point to display a label (points without an explicit "label" will fall back to their coordinates).
+      "description": "Scatter plot with axis ranges, tick intervals, an optional y=0 reference line, and an auto-generated least-squares regression line"
     }
     
     // For dotplots (for single or comparative distributions):
@@ -386,6 +390,7 @@ You are tasked with converting AP Statistics quiz questions from uploaded PDF do
 4. **Answer Keys**: Include the correct answer from the scoring guide
 5. **Reasoning**: Extract the explanation for why the answer is correct from the answer key, scoring guide, or solution manual
 6. **Complete Output**: Provide all questions as separate JSON objects in a single code artifact
+7. **LaTeX Math Notation**: Wrap every mathematical expression in LaTeX delimiters (\\( ... \\) for inline or \\[ ... \\] for display) and use commands like \\hat{}, \\bar{}, \\sigma, etc., so MathJax in the renderer displays the notation correctly.
 
 ## Critical Chart Type Identification:
 

@@ -1155,7 +1155,7 @@
                             barPercentage: barPercentage,
                             scales: isHorizontalBar ? {
                                 x: {
-                                    beginAtZero: xAxisConfig.min !== undefined ? false : true,
+                                    beginAtZero: xAxisConfig.min !== undefined ? (xAxisConfig.min === 0) : true,
                                     min: xAxisConfig.min,
                                     max: xAxisConfig.max,
                                     title: {
@@ -1172,7 +1172,21 @@
                                         stepSize: xAxisConfig.tickInterval,
                                         maxTicksLimit: xAxisConfig.tickInterval ? undefined : 10,
                                         precision: 2,
-                                        color: getTextColor()
+                                        color: getTextColor(),
+                                        // Force Chart.js to respect our stepSize by providing a callback
+                                        callback: function(value, index, values) {
+                                            // If we have a specific tickInterval, ensure we only show ticks at those intervals
+                                            if (xAxisConfig.tickInterval) {
+                                                const step = xAxisConfig.tickInterval;
+                                                const min = xAxisConfig.min !== undefined ? xAxisConfig.min : 0;
+                                                const adjustedValue = value - min;
+                                                if (Math.abs(adjustedValue % step) < 0.000001 || Math.abs(adjustedValue % step - step) < 0.000001) {
+                                                    return value;
+                                                }
+                                                return '';
+                                            }
+                                            return value;
+                                        }
                                     }
                                 },
                                 y: {
@@ -1192,7 +1206,7 @@
                                 }
                             } : {
                                 y: {
-                                    beginAtZero: yAxisConfig.min !== undefined ? false : true,
+                                    beginAtZero: yAxisConfig.min !== undefined ? (yAxisConfig.min === 0) : true,
                                     min: yAxisConfig.min,
                                     max: yAxisConfig.max,
                                     title: {
@@ -1213,7 +1227,21 @@
                                         stepSize: yAxisConfig.tickInterval,
                                         maxTicksLimit: yAxisConfig.tickInterval ? undefined : 10,
                                         precision: 2,
-                                        color: getTextColor()
+                                        color: getTextColor(),
+                                        // Force Chart.js to respect our stepSize by providing a callback
+                                        callback: function(value, index, values) {
+                                            // If we have a specific tickInterval, ensure we only show ticks at those intervals
+                                            if (yAxisConfig.tickInterval) {
+                                                const step = yAxisConfig.tickInterval;
+                                                const min = yAxisConfig.min !== undefined ? yAxisConfig.min : 0;
+                                                const adjustedValue = value - min;
+                                                if (Math.abs(adjustedValue % step) < 0.000001 || Math.abs(adjustedValue % step - step) < 0.000001) {
+                                                    return value;
+                                                }
+                                                return '';
+                                            }
+                                            return value;
+                                        }
                                     }
                                 },
                                 x: {
@@ -1321,8 +1349,8 @@
                             showVerticalGrid = config.gridLines;
                         } else if (typeof config.gridLines === 'object') {
                             // New format: gridLines: {horizontal: true, vertical: false}
-                            showHorizontalGrid = config.gridLines.horizontal !== false;
-                            showVerticalGrid = config.gridLines.vertical !== false;
+                            showHorizontalGrid = config.gridLines.horizontal === true;
+                            showVerticalGrid = config.gridLines.vertical === true;
                         }
                     }
                     
@@ -1445,7 +1473,21 @@
                                     },
                                     ticks: {
                                         stepSize: xAxisConfig.tickInterval,
-                                        color: getTextColor()
+                                        color: getTextColor(),
+                                        // Force Chart.js to respect our stepSize by providing a callback
+                                        callback: function(value, index, values) {
+                                            // If we have a specific tickInterval, ensure we only show ticks at those intervals
+                                            if (xAxisConfig.tickInterval) {
+                                                const step = xAxisConfig.tickInterval;
+                                                const min = xAxisConfig.min !== undefined ? xAxisConfig.min : 0;
+                                                const adjustedValue = value - min;
+                                                if (Math.abs(adjustedValue % step) < 0.000001 || Math.abs(adjustedValue % step - step) < 0.000001) {
+                                                    return value;
+                                                }
+                                                return '';
+                                            }
+                                            return value;
+                                        }
                                     }
                                 },
                                 y: {
@@ -1462,7 +1504,21 @@
                                     },
                                     ticks: {
                                         stepSize: yAxisConfig.tickInterval,
-                                        color: getTextColor()
+                                        color: getTextColor(),
+                                        // Force Chart.js to respect our stepSize by providing a callback
+                                        callback: function(value, index, values) {
+                                            // If we have a specific tickInterval, ensure we only show ticks at those intervals
+                                            if (yAxisConfig.tickInterval) {
+                                                const step = yAxisConfig.tickInterval;
+                                                const min = yAxisConfig.min !== undefined ? yAxisConfig.min : 0;
+                                                const adjustedValue = value - min;
+                                                if (Math.abs(adjustedValue % step) < 0.000001 || Math.abs(adjustedValue % step - step) < 0.000001) {
+                                                    return value;
+                                                }
+                                                return '';
+                                            }
+                                            return value;
+                                        }
                                     }
                                 }
                             },

@@ -1,0 +1,856 @@
+[
+{
+  "id": "U2-PC-MCQ-A-Q01",
+  "type": "multiple-choice",
+  "prompt": "The following bar chart shows the number of different types of animals at two county fairs. Fair X had a total of 645 animals, and fair Y had a total of 590 animals.\n\nWhich of the following statements is supported by the bar chart?",
+  "attachments": {"chartType": "bar",
+    "xLabels": ["Cows", "Pigs", "Horses", "Chickens", "Goats", "Rabbits", "Sheep"],
+    "series": [
+      {
+        "name": "Fair X",
+        "values": [50, 60, 80, 90, 100, 125, 140]
+      },
+      {
+        "name": "Fair Y", 
+        "values": [60, 80, 40, 80, 100, 90, 140]
+      }
+    ],
+    "chartConfig": {
+      "yAxis": {
+        "min": 0,
+        "max": 160,
+        "tickInterval": 20,
+        "title": "Frequency"
+      },
+      "xAxis": {
+        "title": "Type of Animal"
+      },
+      "gridLines": {
+        "horizontal": true,
+        "vertical": false
+      },
+      "description": "Bar chart comparing animal counts at two county fairs with grouped bars"
+    }
+  },
+  "choices": [
+    {
+      "key": "A",
+      "value": "The total number of cows, pigs, and horses combined is less at fair X than at fair Y."
+    },
+    {
+      "key": "B", 
+      "value": "Fair X has at least 20 more chickens than fair Y."
+    },
+    {
+      "key": "C",
+      "value": "At fair X, the number of sheep is twice the number of horses."
+    },
+    {
+      "key": "D",
+      "value": "The percentage of all animals at fair Y that are goats is equal to the percentage of all animals at fair X that are goats."
+    },
+    {
+      "key": "E",
+      "value": "The percentage of all animals at fair Y that are goats is greater than the percentage of all animals at fair X that are goats."
+    }
+  ],
+  "answerKey": "E",
+  "reasoning": "The percentage of all animals at fair X that are goats is \\(\\frac{100}{645}\\), or about 15.5%, and the percentage of all animals at fair Y that are goats is \\(\\frac{100}{590}\\), or about 16.9%. Since 16.9% is greater than 15.5%, the percentage of all animals at fair Y that are goats is greater than the percentage of all animals at fair X that are goats."
+},
+
+{
+  "id": "U2-PC-MCQ-A-Q02",
+  "type": "multiple-choice",
+  "prompt": "The following table shows the number of registered voters in three different regions and the political party in which they are registered.\n\nWhich of the following statements is supported by the table?",
+  "attachments": {
+    "table": [
+      ["", "Republican", "Democrat", "Independent", "Total"],
+      ["Region A", "100", "100", "50", "250"],
+      ["Region B", "75", "65", "25", "165"],
+      ["Region C", "200", "300", "100", "600"],
+      ["Total", "375", "465", "175", "1,015"]
+    ]
+  },
+  "choices": [
+    {
+      "key": "A",
+      "value": "The region with the greatest proportion of voters who are registered Democrat is region A."
+    },
+    {
+      "key": "B",
+      "value": "The region with the least proportion of voters who are registered Republican is region A."
+    },
+    {
+      "key": "C",
+      "value": "The region with the greatest proportion of voters who are registered Republican is region B."
+    },
+    {
+      "key": "D",
+      "value": "The proportion of voters who are registered Independent in region A is less than the proportion of voters who are registered Independent in region C."
+    },
+    {
+      "key": "E",
+      "value": "The proportion of voters who are registered Republican in region C is greater than the proportion of voters who are registered Republican in region B."
+    }
+  ],
+  "answerKey": "C",
+  "reasoning": "The proportion of voters who are registered Republican in each region is as follows: region A \\(\\frac{100}{250} = 0.4\\); region B \\(\\frac{75}{165} \\approx 0.45\\); region C \\(\\frac{200}{600} \\approx 0.33\\). Since \\(0.45 > 0.4 > 0.33\\), region B is the region with the greatest proportion of voters who are registered Republican."
+},
+
+{
+  "id": "U2-PC-MCQ-A-Q03",
+  "type": "multiple-choice",
+  "prompt": "The following two-way table shows the responses from a group of people, categorized by age-group, when asked about their favorite types of vacations.\n\nWhich of the following statements is not supported by the table?",
+  "attachments": {
+    "table": [
+      ["", "Nature", "Adventure", "Relaxation", "Sightseeing", "Total"],
+      ["Under 21", "50", "50", "50", "50", "200"],
+      ["21 to 35", "25", "35", "50", "50", "160"],
+      ["36 to 50", "35", "30", "50", "35", "150"],
+      ["51 and over", "25", "25", "50", "25", "125"],
+      ["Total", "135", "140", "200", "160", "635"]
+    ]
+  },
+  "choices": [
+    {
+      "key": "A",
+      "value": "More people chose relaxation than any other vacation type."
+    },
+    {
+      "key": "B",
+      "value": "Each vacation type was selected by the same number of people in the under-21 age-group."
+    },
+    {
+      "key": "C",
+      "value": "In the 21 to 35 age-group, nature was chosen by the least number of people."
+    },
+    {
+      "key": "D",
+      "value": "Of all the vacation types, nature was chosen by the least number of people."
+    },
+    {
+      "key": "E",
+      "value": "The percentage of people that chose relaxation was equal for each age-group."
+    }
+  ],
+  "answerKey": "E",
+  "reasoning": "The statement is not supported because although the numbers are equal (50 people chose relaxation in each age group), the percentages of the total for each age-group are not equal. For example, 50 out of 200 (25%) for Under 21, versus 50 out of 125 (40%) for 51 and over."
+},
+
+{
+  "id": "U2-PC-MCQ-A-Q04",
+  "type": "multiple-choice",
+  "prompt": "The following table shows data collected from a sample consisting of children and adults, who indicated their favorite type of amusement park rides.\n\nWhat proportion of the people indicated that water rides were their favorite type of ride?",
+  "attachments": {
+    "table": [
+      ["", "Coaster", "Water", "Kiddie", "Family", "Total"],
+      ["Children", "600", "500", "50", "150", "1,300"],
+      ["Adults", "400", "100", "50", "150", "700"],
+      ["Total", "1,000", "600", "100", "300", "2,000"]
+    ]
+  },
+  "choices": [
+    {
+      "key": "A",
+      "value": "\\(\\frac{100}{700}\\)"
+    },
+    {
+      "key": "B",
+      "value": "\\(\\frac{500}{1,300}\\)"
+    },
+    {
+      "key": "C",
+      "value": "\\(\\frac{100}{2,000}\\)"
+    },
+    {
+      "key": "D",
+      "value": "\\(\\frac{500}{2,000}\\)"
+    },
+    {
+      "key": "E",
+      "value": "\\(\\frac{600}{2,000}\\)"
+    }
+  ],
+  "answerKey": "E",
+  "reasoning": "The number of people who indicated water rides as their favorite type of ride was 600 out of the total of 2,000 people, so the proportion of all people who indicated water rides as their favorite type of ride is \\(\\frac{600}{2,000}\\)."
+},
+
+{
+  "id": "U2-PC-MCQ-A-Q05",
+  "type": "multiple-choice",
+  "prompt": "The following table shows data collected from a random sample of 2,500 people who recently went on a vacation, who indicated their favorite part of their vacation.\n\nBased on the table, what proportion of the people selected gave a response other than shopping as the favorite part of their vacation?",
+  "attachments": {
+    "table": [
+      ["", "Shows", "Dining", "Activities", "Shopping", "Total"],
+      ["Children", "30", "0", "170", "0", "200"],
+      ["Teens", "150", "75", "250", "25", "500"],
+      ["Adults", "250", "250", "250", "250", "1,000"],
+      ["Seniors", "300", "150", "50", "300", "800"],
+      ["Total", "730", "475", "720", "575", "2,500"]
+    ]
+  },
+  "choices": [
+    {
+      "key": "A",
+      "value": "\\(\\frac{575}{2,500}\\)"
+    },
+    {
+      "key": "B",
+      "value": "\\(\\frac{720}{2,500}\\)"
+    },
+    {
+      "key": "C",
+      "value": "\\(\\frac{1,925}{2,500}\\)"
+    },
+    {
+      "key": "D",
+      "value": "\\(\\frac{475}{2,500}\\)"
+    },
+    {
+      "key": "E",
+      "value": "\\(\\frac{730}{2,500}\\)"
+    }
+  ],
+  "answerKey": "C",
+  "reasoning": "The value 575 represents the number of people surveyed who gave shopping as the response, so \\(2,500 - 575 = 1,925\\) people surveyed gave a response other than shopping. Therefore the proportion of people who gave a response other than shopping as the response is \\(\\frac{1,925}{2,500}\\)."
+},
+
+{
+  "id": "U2-PC-MCQ-A-Q06",
+  "type": "multiple-choice",
+  "prompt": "A random sample of 2,500 people was selected, and the people were asked to give their favorite season. Their responses, along with their age group, are summarized in the two-way table below.\n\nAmong those whose favorite season is spring, what proportion are adults?",
+  "attachments": {
+    "table": [
+      ["", "Winter", "Spring", "Summer", "Fall", "Total"],
+      ["Children", "30", "0", "170", "0", "200"],
+      ["Teens", "150", "75", "250", "25", "500"],
+      ["Adults", "250", "250", "250", "250", "1,000"],
+      ["Seniors", "300", "150", "50", "300", "800"],
+      ["Total", "730", "475", "720", "575", "2,500"]
+    ]
+  },
+  "choices": [
+    {
+      "key": "A",
+      "value": "\\(\\frac{250}{1,000}\\)"
+    },
+    {
+      "key": "B",
+      "value": "\\(\\frac{250}{2,500}\\)"
+    },
+    {
+      "key": "C",
+      "value": "\\(\\frac{475}{2,500}\\)"
+    },
+    {
+      "key": "D",
+      "value": "\\(\\frac{250}{475}\\)"
+    },
+    {
+      "key": "E",
+      "value": "\\(\\frac{225}{475}\\)"
+    }
+  ],
+  "answerKey": "D",
+  "reasoning": "The value 475 is the number of people who gave spring as their favorite season, and of those, 250 people were adults, so the proportion of people who gave spring as their favorite season who are adults is \\(\\frac{250}{475}\\)."
+},
+
+{
+  "id": "U2-PC-MCQ-A-Q07",
+  "type": "multiple-choice",
+  "prompt": "A recent study investigated whether renowned violinists were able to classify the age of a violin. In the study, violins constructed before 1900 and violins constructed after 2010 were used. The violinists played each violin and were asked to classify the violin as old (constructed before 1900) or new (constructed after 2010). The responses are shown in the following table.\n\nWhich of the following statements is supported by the results in the table?",
+  "attachments": {
+    "table": [
+      ["Violin", "Correctly Classified", "Incorrectly Classified", "Total"],
+      ["New (constructed after 2010)", "15", "18", "33"],
+      ["Old (constructed before 1900)", "18", "13", "31"],
+      ["Total", "33", "31", "64"]
+    ]
+  },
+  "choices": [
+    {
+      "key": "A",
+      "value": "The proportion of all new violins that are correctly classified is equal to the proportion of all old violins that are correctly classified."
+    },
+    {
+      "key": "B",
+      "value": "The proportion of all new violins that are incorrectly classified is equal to the proportion of all old violins that are correctly classified."
+    },
+    {
+      "key": "C",
+      "value": "The proportion of all incorrectly classified violins that are old is equal to the proportion of all correctly classified violins that are new."
+    },
+    {
+      "key": "D",
+      "value": "The proportion of all incorrectly classified violins that are new is equal to the proportion of all correctly classified violins that are new."
+    },
+    {
+      "key": "E",
+      "value": "The proportion of all correctly classified violins that are old is equal to the proportion of all new violins that are incorrectly classified."
+    }
+  ],
+  "answerKey": "E",
+  "reasoning": "The proportions are equal. The proportion of correctly classified violins that are old is \\(\\frac{18}{33} \\approx 0.55\\). The proportion of all new violins that are incorrectly classified is \\(\\frac{18}{33} \\approx 0.55\\)."
+},
+
+{
+  "id": "U2-PC-MCQ-A-Q08",
+  "type": "multiple-choice",
+  "prompt": "The following table shows the responses of 45 students from two different classes who were asked which of five amusement rides at a school fair was their favorite.\n\nFor which ride was the proportion of the class who chose it as their favorite the same for both classes?",
+  "attachments": {
+    "table": [
+      ["Amusement Ride", "Carousel", "Roller Coaster", "Ferris Wheel", "Log Ride", "Boat Ride", "Total"],
+      ["Class A", "2", "5", "1", "2", "5", "15"],
+      ["Class B", "3", "5", "3", "9", "10", "30"],
+      ["Total", "5", "10", "4", "11", "15", "45"]
+    ]
+  },
+  "choices": [
+    {
+      "key": "A",
+      "value": "Carousel"
+    },
+    {
+      "key": "B",
+      "value": "Roller coaster"
+    },
+    {
+      "key": "C",
+      "value": "Ferris wheel"
+    },
+    {
+      "key": "D",
+      "value": "Log ride"
+    },
+    {
+      "key": "E",
+      "value": "Boat ride"
+    }
+  ],
+  "answerKey": "E",
+  "reasoning": "The proportion from class A who selected the boat ride as their favorite is \\(\\frac{5}{15} \\approx 0.33\\), and the proportion from class B who selected the boat ride as their favorite is \\(\\frac{10}{30} \\approx 0.33\\)."
+},
+
+{
+  "id": "U2-PC-MCQ-A-Q09",
+  "type": "multiple-choice",
+  "prompt": "A recent survey of wheat growers focused on the characteristics of wheat farmers and their willingness to participate in agricultural research. One of the variables of interest in the survey was the age of the farmer. The following bar chart shows the responses of the farmers, classified by age-group, regarding their willingness to participate.\n\nWhich of the following statements is supported by the bar chart?",
+  "attachments": {
+    "chartType": "bar",
+    "xLabels": ["44 or Younger", "45-54", "55-64", "65 or Older"],
+    "series": [
+      {
+        "name": "No",
+        "values": [0.3, 0.4, 0.45, 0.65]
+      },
+      {
+        "name": "Yes",
+        "values": [0.7, 0.6, 0.55, 0.35]
+      }
+
+    ],
+    "chartConfig": {
+      "stacked": true,
+      "yAxis": {
+        "min": 0,
+        "max": 1,
+        "tickInterval": 0.25,
+        "title": "Relative Frequency"
+      },
+      "xAxis": {
+        "title": "Age-Group (years)"
+      },
+      "gridLines": {
+        "horizontal": true,
+        "vertical": false
+      },
+      "description": "Stacked bar chart showing relative frequency of yes/no responses to willingness to participate by farmer age group"
+    }
+  },
+  "choices": [
+    {
+      "key": "A",
+      "value": "There appears to be a negative association between the age of the farmer and willingness to participate."
+    },
+    {
+      "key": "B",
+      "value": "There appears to be no association between the age of the farmer and willingness to participate."
+    },
+    {
+      "key": "C",
+      "value": "There appears to be a positive association between the age of the farmer and willingness to participate."
+    },
+    {
+      "key": "D",
+      "value": "There appears to be a negative association between the age of the farmer and the total number of farmers surveyed."
+    },
+    {
+      "key": "E",
+      "value": "There appears to be a positive association between the age of the farmer and the total number of farmers surveyed."
+    }
+  ],
+  "answerKey": "A",
+  "reasoning": "The association appears to be negative. As the age-group increases, the proportion of farmers who are willing to participate decreases."
+},
+
+{
+  "id": "U2-PC-MCQ-A-Q10",
+  "type": "multiple-choice",
+  "prompt": "The following scatterplot displays the data collected on the mass, in grams, and the age, in days, for a sample of chameleon eggs.\n\nWhich of the following is the best description of the relationship between the mass and the age of the chameleon eggs?",
+  "attachments": {
+    "chartType": "scatter",
+    "points": [
+      {"x": 4, "y": 1.0}, {"x": 7, "y": 1.1}, {"x": 10, "y": 1.2}, {"x": 13, "y": 1.3},
+      {"x": 20, "y": 1.55}, {"x": 22, "y": 1.6}, {"x": 23, "y": 1.7}, {"x": 25, "y": 1.65},
+      {"x": 26, "y": 1.6}, {"x": 35, "y": 1.8}, {"x": 54, "y": 2.0}, {"x": 60, "y": 1.8},
+      {"x": 62, "y": 1.7}, {"x": 65, "y": 2.05}, {"x": 70, "y": 2.0}, {"x": 72, "y": 1.7},
+      {"x": 78, "y": 2.0}, {"x": 85, "y": 1.6}, {"x": 86, "y": 1.7}, {"x": 88, "y": 2.0},
+      {"x": 90, "y": 1.6}, {"x": 90, "y": 1.7}, {"x": 92, "y": 2.05}, {"x": 94, "y": 2.0},
+      {"x": 98, "y": 2.3}, {"x": 100, "y": 1.85}, {"x": 100, "y": 2.1}, {"x": 100, "y": 2.2},
+      {"x": 102, "y": 2.0}, {"x": 105, "y": 2.05}, {"x": 108, "y": 2.2}, {"x": 110, "y": 2.1},
+      {"x": 113, "y": 2.25}, {"x": 115, "y": 2.0}, {"x": 118, "y": 2.15}, {"x": 120, "y": 2.05},
+      {"x": 122, "y": 2.2}, {"x": 125, "y": 1.9}, {"x": 128, "y": 2.05}, {"x": 135, "y": 1.8},
+      {"x": 138, "y": 2.0}, {"x": 140, "y": 2.15}, {"x": 145, "y": 2.25}, {"x": 148, "y": 2.2},
+      {"x": 158, "y": 2.05}, {"x": 165, "y": 2.2}, {"x": 175, "y": 1.8}
+    ],
+    "chartConfig": {
+      "xAxis": {
+        "min": 0,
+        "max": 200,
+        "tickInterval": 50,
+        "title": "Age (days)"
+      },
+      "yAxis": {
+        "min": 1,
+        "max": 2.5,
+        "tickInterval": 0.5,
+        "title": "Mass (grams)"
+      },
+      "gridLines": {
+        "horizontal": true,
+        "vertical": true
+      },
+      "description": "Scatter plot showing positive nonlinear relationship between chameleon egg age and mass"
+    }
+  },
+  "choices": [
+    {
+      "key": "A",
+      "value": "The association is negative and linear."
+    },
+    {
+      "key": "B",
+      "value": "The association is positive and linear."
+    },
+    {
+      "key": "C",
+      "value": "There is no association between the variables."
+    },
+    {
+      "key": "D",
+      "value": "The association is positive and nonlinear."
+    },
+    {
+      "key": "E",
+      "value": "The association is negative and nonlinear."
+    }
+  ],
+  "answerKey": "D",
+  "reasoning": "The association appears to be positive because mass tends to increase as age increases. A nonlinear, or curved, trend is also apparent."
+},
+
+{
+  "id": "U2-PC-MCQ-A-Q11",
+  "type": "multiple-choice",
+  "prompt": "Biologists conducted a study to investigate the flying velocity of mosquitoes both before and after feeding. The following scatterplot shows the velocity after feeding, in centimeters per second, and the proportional increase in weight after feeding relative to the weight before feeding. For example, 0.5 indicates a 50 percent weight gain after feeding. One point on the graph is labeled \\(M\\).\n\nWhat is unusual about point \\(M\\)?",
+  "attachments": {
+    "chartType": "scatter",
+    "points": [
+      {"x": -0.1, "y": 12.5}, {"x": -0.05, "y": 19.8, "label": "M"}, {"x": 0.0, "y": 8.5}, {"x": 0.05, "y": 6.0},
+      {"x": 0.1, "y": 7.5}, {"x": 0.2, "y": 3.5}, {"x": 0.3, "y": 6.8}, {"x": 0.35, "y": 6.2},
+      {"x": 0.4, "y": 10.0}, {"x": 0.65, "y": 8.2}, {"x": 0.7, "y": 8.0}, {"x": 0.8, "y": 5.7},
+      {"x": 0.9, "y": 8.3}, {"x": 1.0, "y": 6.5}, {"x": 1.2, "y": 5.7}, {"x": 1.25, "y": 8.3},
+      {"x": 1.28, "y": 4.0}, {"x": 1.3, "y": 5.0}, {"x": 1.35, "y": 2.2}, {"x": 1.38, "y": 5.2},
+      {"x": 1.55, "y": 7.0}, {"x": 1.6, "y": 6.2}, {"x": 1.7, "y": 1.2}, {"x": 1.75, "y": 5.2},
+      {"x": 1.78, "y": 8.3}, {"x": 1.9, "y": 8.0}, {"x": 2.0, "y": 6.2}, {"x": 2.1, "y": 8.3}
+    ],
+    "chartConfig": {
+      "xAxis": {
+        "min": -0.25,
+        "max": 2.25,
+        "tickInterval": 0.25,
+        "title": "Proportional Increase in Weight"
+      },
+      "yAxis": {
+        "min": 0,
+        "max": 22,
+        "tickInterval": 5,
+        "title": "Velocity (cm/sec)"
+      },
+      "gridLines": {
+        "horizontal": true,
+        "vertical": true
+      },
+      "showPointLabels": false,
+      "description": "Scatter plot of mosquito velocity vs weight gain with outlier point M labeled"
+    }
+  },
+  "choices": [
+    {
+      "key": "A",
+      "value": "It represents a mosquito that gained the least weight after feeding."
+    },
+    {
+      "key": "B",
+      "value": "It represents a mosquito that gained the most weight after feeding."
+    },
+    {
+      "key": "C",
+      "value": "It represents a mosquito that flew very fast after feeding relative to all other mosquitoes."
+    },
+    {
+      "key": "D",
+      "value": "It makes the linear relationship between the variables appear much stronger."
+    },
+    {
+      "key": "E",
+      "value": "The point must be an error in data entry because weight cannot be less than 0."
+    }
+  ],
+  "answerKey": "C",
+  "reasoning": "The point is unusual because the velocity of the mosquito is substantially greater than all other velocities and is probably an outlier."
+},
+
+{
+  "id": "U2-PC-MCQ-A-Q12",
+  "type": "multiple-choice",
+  "prompt": "The scatterplot below displays the relationship between the percent change in the population of wolves and the moose density, in number of moose per square kilometer, over a 19-year period in a certain region. Notice that the association is negative, and that the points seem to be more spread out at higher moose densities.\n\nSuppose the variables on the scatterplot were reversed, so that moose density was the response variable on the vertical axis, and percent change in wolf population was the explanatory variable on the horizontal axis. Which of the following would be true?",
+  "attachments": {
+    "chartType": "scatter",
+    "points": [
+      { "x": 1.08, "y": 6 },
+      { "x": 1.1, "y": 7.5 },
+      { "x": 1.12, "y": 7 },
+      { "x": 1.15, "y": 4.5 },
+      { "x": 1.22, "y": 2 },
+      { "x": 1.22, "y": 2 },
+      { "x": 1.25, "y": 2.5 },
+      { "x": 1.32, "y": 1.5 },
+      { "x": 1.35, "y": -4 },
+      { "x": 1.4, "y": -5.5 },
+      { "x": 1.5, "y": -1 },
+      { "x": 1.52, "y": -6.5 },
+      { "x": 1.62, "y": -7.5 },
+      { "x": 1.65, "y": -14.5 },
+      { "x": 1.7, "y": -4 },
+      { "x": 1.7, "y": -4 },
+      { "x": 1.8, "y": -20.5 },
+      { "x": 1.85, "y": -17.5 },
+      { "x": 1.95, "y": -10 }
+    ],
+    "chartConfig": {
+      "xAxis": {
+        "min": 1.0,
+        "max": 2.0,
+        "tickInterval": 0.1,
+        "title": "Moose Density (moose/km²)"
+      },
+      "yAxis": {
+        "min": -25,
+        "max": 10,
+        "tickInterval": 5,
+        "title": "Percent Change in Wolf Population"
+      },
+      "gridLines": {
+        "horizontal": false,
+        "vertical": false
+      },
+      "description": "Scatter plot showing negative association between moose density and wolf population change"
+    }
+  },
+  "choices": [
+    {
+      "key": "A",
+      "value": "The association would still be negative, but the strength of the association would increase."
+    },
+    {
+      "key": "B",
+      "value": "The association would be positive, and the strength of the association would increase."
+    },
+    {
+      "key": "C",
+      "value": "The association would still be negative, but the strength of the association would decrease."
+    },
+    {
+      "key": "D",
+      "value": "The association would be positive, but the strength of the association would not change."
+    },
+    {
+      "key": "E",
+      "value": "The direction and strength of the association would not change."
+    }
+  ],
+  "answerKey": "E",
+  "reasoning": "Neither direction nor strength of association would change by swapping the explanatory and response variables."
+},
+
+{
+  "id": "U2-PC-MCQ-A-Q13",
+  "type": "multiple-choice",
+  "prompt": "For which of the following scatterplots is the correlation between \\(x\\) and \\(y\\) closest to \\(-1\\)?",
+  "attachments": {
+    "charts": [
+      {
+        "chartType": "scatter",
+        "title": "Option A",
+        "points": [
+          {"x": 1, "y": 6}, {"x": 2, "y": 12}, {"x": 3, "y": 16}, {"x": 4, "y": 22},
+          {"x": 5, "y": 27}, {"x": 6, "y": 33}, {"x": 7, "y": 37}, {"x": 8, "y": 41}, {"x": 9, "y": 47}
+        ],
+        "chartConfig": {
+          "xAxis": {"min": 0, "max": 10, "title": "x"},
+          "yAxis": {"min": 0, "max": 50, "title": "y"},
+          "gridLines": {"horizontal": false, "vertical": false}
+        }
+      },
+      {
+        "chartType": "scatter",
+        "title": "Option B",
+        "points": [
+          {"x": 1, "y": 1}, {"x": 2, "y": 14}, {"x": 3, "y": 14}, {"x": 4, "y": 25},
+          {"x": 5, "y": 27}, {"x": 6, "y": 18}, {"x": 7, "y": 32}, {"x": 8, "y": 44}, {"x": 9, "y": 38}
+        ],
+        "chartConfig": {
+          "xAxis": {"min": 0, "max": 10, "title": "x"},
+          "yAxis": {"min": 0, "max": 50, "title": "y"},
+          "gridLines": {"horizontal": false, "vertical": false}
+        }
+      },
+      {
+        "chartType": "scatter",
+        "title": "Option C",
+        "points": [
+          {"x": 1, "y": 16}, {"x": 2, "y": 9}, {"x": 3, "y": 4}, {"x": 4, "y": 1},
+          {"x": 5, "y": 0}, {"x": 6, "y": 1}, {"x": 7, "y": 4}, {"x": 8, "y": 9}, {"x": 9, "y": 16}
+        ],
+        "chartConfig": {
+          "xAxis": {"min": 0, "max": 10, "title": "x"},
+          "yAxis": {"min": 0, "max": 18, "title": "y"},
+          "gridLines": {"horizontal": false, "vertical": false}
+        }
+      },
+      {
+        "chartType": "scatter",
+        "title": "Option D",
+        "points": [
+          {"x": 1, "y": 40}, {"x": 2, "y": 31}, {"x": 3, "y": 33}, {"x": 4, "y": 7},
+          {"x": 5, "y": 24}, {"x": 6, "y": 15}, {"x": 7, "y": 14}, {"x": 8, "y": 5}, {"x": 9, "y": 5}
+        ],
+        "chartConfig": {
+          "xAxis": {"min": 0, "max": 10, "title": "x"},
+          "yAxis": {"min": 0, "max": 45, "title": "y"},
+          "gridLines": {"horizontal": false, "vertical": false}
+        }
+      },
+      {
+        "chartType": "scatter",
+        "title": "Option E",
+        "points": [
+          {"x": 1, "y": 45}, {"x": 2, "y": 39}, {"x": 3, "y": 35}, {"x": 4, "y": 30},
+          {"x": 5, "y": 25}, {"x": 6, "y": 20}, {"x": 7, "y": 14}, {"x": 8, "y": 10}, {"x": 9, "y": 4}
+        ],
+        "chartConfig": {
+          "xAxis": {"min": 0, "max": 10, "title": "x"},
+          "yAxis": {"min": 0, "max": 50, "title": "y"},
+          "gridLines": {"horizontal": false, "vertical": false}
+        }
+      }
+    ],
+    "description": "Five scatterplots showing different correlation patterns"
+  },
+  "choices": [
+    {
+      "key": "A",
+      "value": "Option A"
+    },
+    {
+      "key": "B",
+      "value": "Option B"
+    },
+    {
+      "key": "C",
+      "value": "Option C"
+    },
+    {
+      "key": "D",
+      "value": "Option D"
+    },
+    {
+      "key": "E",
+      "value": "Option E"
+    }
+  ],
+  "answerKey": "E",
+  "reasoning": "A correlation of \\(-1\\) indicates a perfect linear and negative relationship (where the value of \\(y\\) decreases as \\(x\\) increases). Option E shows the strongest negative linear relationship among the choices."
+},
+
+{
+  "id": "U2-PC-MCQ-A-Q14",
+  "type": "multiple-choice",
+  "prompt": "A teacher collected information from a class of 25 students about the time, in hours, they spent studying the previous week and the time, in hours, they spent on the Internet the previous week. The value of the correlation coefficient between hours spent studying and hours spent on the Internet was \\(-0.72\\). If the teacher changes the units of each variable from hours to minutes, what will be the value of the correlation coefficient between minutes studying and minutes spent on the Internet?",
+  "attachments": {},
+  "choices": [
+    {
+      "key": "A",
+      "value": "\\(-43.2\\)"
+    },
+    {
+      "key": "B",
+      "value": "\\(-0.72\\)"
+    },
+    {
+      "key": "C",
+      "value": "\\(-0.012\\)"
+    },
+    {
+      "key": "D",
+      "value": "\\(0.72\\)"
+    },
+    {
+      "key": "E",
+      "value": "\\(60.72\\)"
+    }
+  ],
+  "answerKey": "B",
+  "reasoning": "The value of the correlation coefficient does not change when the units of one or both variables are changed."
+},
+
+{
+  "id": "U2-PC-MCQ-A-Q15",
+  "type": "multiple-choice",
+  "prompt": "A food truck owner recorded the temperature at noon, in degrees Fahrenheit, and the number of bowls of soup sold during the lunch hour for a random sample of 5 days. The data are shown in the following table.\n\nThe mean temperature of the sample is 62 degrees Fahrenheit, and the mean number sold is 14. What is the correlation between the temperature and the number sold?",
+  "attachments": {
+    "table": [
+      ["Temperature (degrees Fahrenheit)", "57", "75", "43", "68", "67"],
+      ["Number sold", "17", "12", "20", "8", "13"]
+    ]
+  },
+  "choices": [
+    {
+      "key": "A",
+      "value": "\\(-0.85\\)"
+    },
+    {
+      "key": "B",
+      "value": "\\(-0.68\\)"
+    },
+    {
+      "key": "C",
+      "value": "\\(0.68\\)"
+    },
+    {
+      "key": "D",
+      "value": "\\(0.73\\)"
+    },
+    {
+      "key": "E",
+      "value": "\\(0.85\\)"
+    }
+  ],
+  "answerKey": "A",
+  "reasoning": "Using technology or the formula for correlation correctly results in this answer."
+},
+
+{
+  "id": "U2-PC-MCQ-A-Q16",
+  "type": "multiple-choice",
+  "prompt": "Jacques, an artisan cheese maker, collects data on every step of the cheese-making process for each batch he makes. Jacques noticed that the daily high temperature in his shop on the day he made a batch of cheese was related to the pH of the cheese the next morning. He computed the correlation between the daily high temperature and the pH of the cheese to be \\(-0.64\\). What information does the correlation provide about the relationship between the daily high temperature and the pH of the cheese?",
+  "attachments": {},
+  "choices": [
+    {
+      "key": "A",
+      "value": "The relationship is linear because the correlation is negative."
+    },
+    {
+      "key": "B",
+      "value": "The relationship is not linear because the correlation is negative."
+    },
+    {
+      "key": "C",
+      "value": "The morning pH of the cheese tends to be higher when the daily high temperature in the shop is warmer, compared to when the daily high temperature is cooler."
+    },
+    {
+      "key": "D",
+      "value": "The morning pH of the cheese tends to be higher when the daily high temperature in the shop is cooler, compared to when the daily high temperature is warmer."
+    },
+    {
+      "key": "E",
+      "value": "There is no relationship between the daily high temperature and the pH of the cheese."
+    }
+  ],
+  "answerKey": "D",
+  "reasoning": "A negative correlation suggests that higher values of one variable tend to occur when the values of the other variable are lower. Here, when the temperature is lower, the pH is higher; and when the temperature is higher, the pH is lower."
+},
+
+{
+  "id": "U2-PC-MCQ-A-Q17",
+  "type": "multiple-choice",
+  "prompt": "A certain cell phone plan charges a fee of $1 for each international call made plus $0.02 for each second of talk time for the international call. A business owner tracked the time and cost for each of the calls made by the employees when they traveled internationally for business. What is the appropriate value of the correlation between time and cost for the international calls?",
+  "attachments": {},
+  "choices": [
+    {
+      "key": "A",
+      "value": "The appropriate value is 1.02 because each call takes at least one second."
+    },
+    {
+      "key": "B",
+      "value": "The appropriate value is 1 because there is a perfect linear relationship between the time of the call and how much it costs."
+    },
+    {
+      "key": "C",
+      "value": "The appropriate value is 0.97 because there is a strong positive relationship between the time and cost of a call."
+    },
+    {
+      "key": "D",
+      "value": "The appropriate value is \\(-0.50\\) because the phone company should discount the price for business owners who make many international calls."
+    },
+    {
+      "key": "E",
+      "value": "The appropriate value is 0 because there is no variability in the cost of the calls."
+    }
+  ],
+  "answerKey": "B",
+  "reasoning": "There is a perfect linear relationship between the time of the call \\(x\\), in seconds, and how much it costs \\(y\\), in dollars, because every one-second increase in time is associated with a $0.02 increase in cost."
+},
+
+{
+  "id": "U2-PC-MCQ-A-Q18",
+  "type": "multiple-choice",
+  "prompt": "A certain middle school opens at 7 A.M., and classes begin at 8 A.M. A sociologist gathered data on the number of minutes after 7 A.M. that a student arrives at school and the number of friends the student has on social media. The correlation between the two variables indicated a strong negative relationship. Which of the following is an appropriate interpretation of the correlation?",
+  "attachments": {},
+  "choices": [
+    {
+      "key": "A",
+      "value": "Students who arrive early to school have more friends on social media."
+    },
+    {
+      "key": "B",
+      "value": "Students who arrive late to school have more friends on social media."
+    },
+    {
+      "key": "C",
+      "value": "Having a lot of friends on social media causes a student to arrive late for school."
+    },
+    {
+      "key": "D",
+      "value": "As the number of minutes of arriving after 7 A.M. increases, the number of friends on social media tends to increase."
+    },
+    {
+      "key": "E",
+      "value": "As the number of minutes of arriving after 7 A.M. increases, the number of friends on social media tends to decrease."
+    }
+  ],
+  "answerKey": "E",
+  "reasoning": "Correlation does not imply causation. Also, the negative relationship indicates that as the number of minutes of arriving after 7 A.M. increases, the number of friends on social media tends to decrease."
+}
+]
