@@ -13,6 +13,25 @@ You are tasked with converting AP Statistics quiz questions from uploaded PDF do
   "attachments": {
     // Include visual data if present:
     
+    // For images/diagrams:
+    "image": "assets/pngs/unit3/u3_l3_q1.png",
+    "imageAlt": "Map of the study region showing three distinct areas: a town with grid pattern buildings, a forest with trees, and a lake with irregular shoreline",
+    "imageCaption": "Study region diagram showing the town, forest, and lake areas where salt licks will be placed"
+    
+    // For multiple images:
+    "images": [
+      {
+        "image": "assets/pngs/unit3/u3_l3_q1a.png",
+        "imageAlt": "First diagram description",
+        "imageCaption": "Caption for first diagram"
+      },
+      {
+        "image": "assets/pngs/unit3/u3_l3_q1b.png", 
+        "imageAlt": "Second diagram description",
+        "imageCaption": "Caption for second diagram"
+      }
+    ]
+    
     // For tables:
     "table": [["Header1","Header2"],["data1","data2"],...]
     
@@ -337,7 +356,14 @@ You are tasked with converting AP Statistics quiz questions from uploaded PDF do
         "description": "Use the data in the table to create a histogram showing the distribution of the amounts of the orders.",
         "response": "Complete solution explanation for this part.",
         "attachments": {
-          // Include visual data from the SOLUTION (charts, graphs created as part of the answer)
+          // Include visual data from the SOLUTION (charts, graphs, images created as part of the answer)
+          
+          // For solution images/diagrams:
+          "image": "assets/pngs/unit3/u3_l3_q1_solution.png",
+          "imageAlt": "Solution diagram showing the completed histogram",
+          "imageCaption": "Histogram created from the data table showing distribution of order amounts"
+          
+          // For solution charts:
           "chartType": "histogram",
           "xLabels": ["0-5", "5-10", "10-15", "15-20", "20-25", "25-30"],
           "series": [
@@ -404,18 +430,25 @@ You are tasked with converting AP Statistics quiz questions from uploaded PDF do
 ```
 
 ## Key Requirements:
-1. **ID Format**: Use appropriate pattern based on quiz type:
+1. **Image Handling**: When questions include diagrams, maps, or other visual elements:
+   - Screenshots will be stored in `assets/pngs/unit#/` directory
+   - Files are named using pattern: `u{unit}_{lesson}_q{question}.png` (e.g., `u3_l3_q1.png`)
+   - Include the image reference in attachments with descriptive alt text and optional caption
+   - Remove redundant text from prompt that refers to "the diagram below" or similar
+   - For solution images, use similar naming with `_solution` suffix if needed
+   - Multiple images can be included using the `images` array format
+2. **ID Format**: Use appropriate pattern based on quiz type:
    - **Regular Lessons**: "U#-L#-Q##" (e.g., "U1-L2-Q05" for Unit 1, Lesson 2, Question 5)
    - **Progress Check MCQ**: "U#-PC-MCQ-[PART]-Q##" (e.g., "U1-PC-MCQ-A-Q01" for Unit 1, Progress Check, MCQ Part A, Question 1)
    - **Progress Check FRQ**: "U#-PC-FRQ-Q##" (e.g., "U1-PC-FRQ-Q01" for Unit 1, Progress Check, FRQ Question 1)
    - **AP Exam Questions**: "U#-AP-[YEAR]-[TYPE]-Q##" (e.g., "U1-AP-2017-MCQ-Q09" for Unit 1, AP 2017, MCQ Question 9)
    - **Other Quiz Types**: Adapt pattern to reflect the actual quiz type and source
-2. **Visual Data**: Extract and format any tables, charts, or graphs according to the specifications above
-3. **Clean Prompts**: Remove table formatting from prompt text when table data is included in attachments
-4. **Answer Keys**: Include the correct answer from the scoring guide
-5. **Reasoning**: Extract the explanation for why the answer is correct from the answer key, scoring guide, or solution manual
-6. **Complete Output**: Provide all questions as separate JSON objects in a single code artifact
-7. **LaTeX Math Notation**: Wrap every mathematical expression in LaTeX delimiters (\\( ... \\) for inline or \\[ ... \\] for display) and use commands like \\hat{}, \\bar{}, \\sigma, etc., so MathJax in the renderer displays the notation correctly.
+3. **Visual Data**: Extract and format any tables, charts, graphs, or images according to the specifications above
+4. **Clean Prompts**: Remove table formatting from prompt text when table data is included in attachments; remove references to "diagram below" when image is included
+5. **Answer Keys**: Include the correct answer from the scoring guide
+6. **Reasoning**: Extract the explanation for why the answer is correct from the answer key, scoring guide, or solution manual
+7. **Complete Output**: Provide all questions as separate JSON objects in a single code artifact
+8. **LaTeX Math Notation**: Wrap every mathematical expression in LaTeX delimiters (\\( ... \\) for inline or \\[ ... \\] for display) and use commands like \\hat{}, \\bar{}, \\sigma, etc., so MathJax in the renderer displays the notation correctly.
 
 ## Critical Chart Type Identification:
 
@@ -598,6 +631,7 @@ Example:
 - **Identify quiz type from document headers/titles** - Look for indicators like "Progress Check," "AP Exam," "Lesson," "Section," "Capstone," "MCQ Part A/B," "FRQ," etc.
 - **Apply appropriate ID format** based on quiz type identified (see ID Format section above)
 - Identify unit and lesson numbers from document headers/titles
+- **Extract visual elements** - Look for diagrams, maps, charts, graphs, or other visual content that needs to be preserved
 - **Pay special attention to chart types** - look for gaps between bars to distinguish bar charts from histograms
 - **Identify stacked/segmented bars** - look for bars divided into colored segments that show parts of a whole (common in relative frequency and survey data)
 - **Check bar chart orientation** - determine if bars extend upward (vertical) or rightward (horizontal)
@@ -663,4 +697,10 @@ When converting boxplots from PDF images, follow these steps:
 - `outliers: [0.4, 12.0]`
 
 
-Finally, nomenclature of filenames are subject_unit#_lesson#_type, for example "ap_stats_u2_l5_quiz.json" is for ap stats, unit 2, lesason 5, quiz
+Finally, nomenclature of filenames are subject_unit#_lesson#_type, for example "ap_stats_u2_l5_quiz.json" is for ap stats, unit 2, lesson 5, quiz
+
+**Image File Naming Convention:**
+- Question images: `u{unit}_{lesson}_q{question}.png` (e.g., `u3_l3_q1.png`)
+- Solution images: `u{unit}_{lesson}_q{question}_solution.png` (e.g., `u3_l3_q1_solution.png`)
+- Multiple images for same question: `u{unit}_{lesson}_q{question}a.png`, `u{unit}_{lesson}_q{question}b.png`, etc.
+- Images are stored in `assets/pngs/unit{unit}/` directory
