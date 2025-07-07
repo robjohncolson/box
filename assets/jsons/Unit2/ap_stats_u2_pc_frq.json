@@ -1,0 +1,306 @@
+[
+{
+  "id": "U2-PC-FRQ-Q01",
+  "type": "free-response",
+  "prompt": "Show all your work. Indicate clearly the methods you use, because you will be scored on the correctness of your methods as well as on the accuracy and completeness of your results and explanations.\n\nThe following table shows the annual income, in dollars, and amount spent on vacation, in dollars, for a sample of 8 families.\n\n(a) Create a scatterplot of the data in the table.\n(b) Describe the association shown in the scatterplot created in part (a).\n(c) Calculate the coefficient of determination for the data, and interpret the value in context.",
+  "attachments": {
+    "table": [
+      ["Income", "41,100", "53,000", "27,400", "34,400", "65,800", "98,100", "72,000", "56,700"],
+      ["Vacation", "2,700", "2,400", "1,700", "2,500", "2,800", "5,100", "4,200", "3,200"]
+    ]
+  },
+  "solution": {
+    "parts": [
+      {
+        "partId": "a",
+        "description": "Create a scatterplot of the data in the table.",
+        "response": "Students should create a scatterplot with Income on the x-axis and Vacation spending on the y-axis, plotting all 8 data points from the table. The scatterplot should have properly labeled axes with appropriate scales.",
+        "attachments": {
+          "chartType": "scatter",
+          "points": [
+            {"x": 41100, "y": 2700},
+            {"x": 53000, "y": 2400},
+            {"x": 27400, "y": 1700},
+            {"x": 34400, "y": 2500},
+            {"x": 65800, "y": 2800},
+            {"x": 98100, "y": 5100},
+            {"x": 72000, "y": 4200},
+            {"x": 56700, "y": 3200}
+          ],
+          "chartConfig": {
+            "xAxis": {
+              "min": 20000,
+              "max": 105000,
+              "tickInterval": 10000,
+              "title": "Annual Income (dollars)"
+            },
+            "yAxis": {
+              "min": 1000,
+              "max": 6000,
+              "tickInterval": 1000,
+              "title": "Vacation Spending (dollars)"
+            },
+            "gridLines": {
+              "horizontal": true,
+              "vertical": true
+            },
+            "description": "Scatterplot showing relationship between annual income and vacation spending for 8 families"
+          }
+        }
+      },
+      {
+        "partId": "b",
+        "description": "Describe the association shown in the scatterplot created in part (a).",
+        "response": "The scatterplot shows a positive, moderately strong, linear association between annual income and vacation spending. As income increases, vacation spending tends to increase. The relationship appears to be roughly linear with some variability around the trend."
+      },
+      {
+        "partId": "c",
+        "description": "Calculate the coefficient of determination for the data, and interpret the value in context.",
+        "response": "Students need to calculate \\(r^2\\) for the data. Using technology or statistical calculations, the coefficient of determination is approximately \\(r^2 = 0.85\\) (85%). This means that approximately 85% of the variation in vacation spending can be explained by the linear relationship with annual income. The remaining 15% of the variation is due to other factors not accounted for in this model.",
+        "calculations": [
+          "Calculate correlation coefficient r using the formula or technology",
+          "Square the correlation coefficient to get \\(r^2\\)",
+          "Express as percentage: \\(r^2 \\times 100\\%\\)"
+        ]
+      }
+    ]
+  },
+  "scoring": {
+    "totalPoints": 4,
+    "rubric": [
+      {
+        "part": "a",
+        "maxPoints": 1,
+        "criteria": [
+          "Scatterplot is correctly constructed with income on x-axis and vacation spending on y-axis",
+          "All 8 data points are plotted correctly",
+          "Axes are properly labeled with units"
+        ],
+        "scoringNotes": "Essentially correct (E) if all criteria met. Partially correct (P) if minor errors in plotting or labeling. Incorrect (I) if major errors in construction."
+      },
+      {
+        "part": "b",
+        "maxPoints": 1,
+        "criteria": [
+          "Correctly identifies the direction (positive)",
+          "Correctly identifies the form (linear)",
+          "Correctly identifies the strength (moderate to strong)"
+        ],
+        "scoringNotes": "Essentially correct (E) if describes direction, form, and strength. Partially correct (P) if describes 2 of 3 characteristics correctly."
+      },
+      {
+        "part": "c",
+        "maxPoints": 2,
+        "criteria": [
+          "Correctly calculates coefficient of determination",
+          "Provides correct interpretation in context of the problem"
+        ],
+        "scoringNotes": "Essentially correct (E) if both calculation and interpretation are correct. Partially correct (P) if one component is correct."
+      }
+    ]
+  },
+  "reasoning": "This question tests students' understanding of scatterplots, association description, and the coefficient of determination. Students must demonstrate ability to create appropriate visualizations, describe relationships between variables using statistical language (direction, form, strength), and interpret \\(r^2\\) in context."
+},
+{
+  "id": "U2-PC-FRQ-Q02",
+  "type": "free-response", 
+  "prompt": "Show all your work. Indicate clearly the methods you use, because you will be scored on the correctness of your methods as well as on the accuracy and completeness of your results and explanations.\n\nA random sample of 65 high school seniors was selected from all high school seniors at a certain high school. The following scatterplot shows the height, in centimeters (cm), and the foot length, in cm, for each high school senior from the sample. The least-squares regression line is shown. The computer output from the least-squares regression analysis is also shown.\n\n(a) Calculate and interpret the residual for the high school senior with a foot length of 20 cm and a height of 160 cm.\n(b) The standard deviation of the residuals is \\(s = 5.9\\). Interpret the value in context.\n(c) Assume that the distribution of residuals is approximately normal with mean 0 cm and standard deviation 5.9 cm. What percent of the residuals are greater than 8 cm? Justify your answer.\n(d) Based on your answer to part (c), would it be surprising to randomly select a high school senior from the high school with a foot length of 20 cm and a height greater than 165 cm? Justify your answer.",
+  "attachments": {
+    "chartType": "scatter",
+    "points": [
+      {"x": 20, "y": 150},
+      {"x": 20, "y": 160},
+      {"x": 21, "y": 153},
+      {"x": 21, "y": 167},
+      {"x": 21.5, "y": 172},
+      {"x": 22, "y": 155},
+      {"x": 22, "y": 162},
+      {"x": 22.5, "y": 168},
+      {"x": 23, "y": 153},
+      {"x": 23, "y": 158},
+      {"x": 23, "y": 168},
+      {"x": 23, "y": 170},
+      {"x": 24, "y": 153},
+      {"x": 24, "y": 160},
+      {"x": 24, "y": 163},
+      {"x": 24, "y": 168},
+      {"x": 24, "y": 170},
+      {"x": 24, "y": 175},
+      {"x": 24.5, "y": 165},
+      {"x": 24.5, "y": 169},
+      {"x": 25, "y": 162},
+      {"x": 25, "y": 167},
+      {"x": 25, "y": 171},
+      {"x": 25, "y": 172},
+      {"x": 25.5, "y": 165},
+      {"x": 25.5, "y": 178},
+      {"x": 26, "y": 160},
+      {"x": 26, "y": 167},
+      {"x": 26, "y": 169},
+      {"x": 26, "y": 170},
+      {"x": 26, "y": 172},
+      {"x": 26, "y": 176},
+      {"x": 26, "y": 180},
+      {"x": 26, "y": 189},
+      {"x": 26.5, "y": 177},
+      {"x": 26.5, "y": 184},
+      {"x": 27, "y": 168},
+      {"x": 27, "y": 175},
+      {"x": 27, "y": 178},
+      {"x": 27, "y": 183},
+      {"x": 27, "y": 185},
+      {"x": 27.5, "y": 172},
+      {"x": 28, "y": 170},
+      {"x": 28, "y": 177},
+      {"x": 28, "y": 182},
+      {"x": 28, "y": 185},
+      {"x": 28, "y": 187},
+      {"x": 29, "y": 178},
+      {"x": 29, "y": 184},
+      {"x": 30, "y": 179},
+      {"x": 30, "y": 185},
+      {"x": 30.5, "y": 180},
+      {"x": 32, "y": 179},
+      {"x": 32.5, "y": 182},
+      {"x": 33, "y": 188}
+    ],
+    "chartConfig": {
+      "xAxis": {
+        "min": 18,
+        "max": 34,
+        "tickInterval": 2,
+        "title": "Foot Length (cm)"
+      },
+      "yAxis": {
+        "min": 150,
+        "max": 195,
+        "tickInterval": 10,
+        "title": "Height (cm)"
+      },
+      "gridLines": {
+        "horizontal": true,
+        "vertical": true
+      },
+      "regressionLine": true,
+      "description": "Scatterplot showing relationship between foot length and height for 65 high school seniors with least-squares regression line"
+    },
+    "table": [
+      ["Term", "Coef", "(SE) Coef", "T-Value", "P-Value"],
+      ["Constant", "105.08", "6.00", "17.51", "0.000"],
+      ["Foot length", "2.599", "0.238", "10.92", "0.000"],
+      ["", "", "", "", ""],
+      ["S = 5.90181", "", "R-sq = 65.42%", "", ""]
+    ]
+  },
+  "solution": {
+    "parts": [
+      {
+        "partId": "a",
+        "description": "Calculate and interpret the residual for the high school senior with a foot length of 20 cm and a height of 160 cm.",
+        "response": "Using the regression equation \\(\\hat{y} = 105.08 + 2.599x\\), where x is foot length:\nPredicted height = \\(105.08 + 2.599(20) = 105.08 + 51.98 = 157.06\\) cm\nResidual = Actual - Predicted = \\(160 - 157.06 = 2.94\\) cm\n\nInterpretation: The high school senior with a foot length of 20 cm and height of 160 cm has an actual height that is 2.94 cm greater than what the regression model predicts based on foot length.",
+        "calculations": [
+          "Regression equation: \\(\\hat{y} = 105.08 + 2.599x\\)",
+          "Predicted height: \\(\\hat{y} = 105.08 + 2.599(20) = 157.06\\) cm",
+          "Residual = \\(160 - 157.06 = 2.94\\) cm"
+        ]
+      },
+      {
+        "partId": "b", 
+        "description": "The standard deviation of the residuals is s = 5.9. Interpret the value in context.",
+        "response": "The standard deviation of the residuals is 5.9 cm. This means that the typical difference between the actual heights and the predicted heights from the regression line is approximately 5.9 cm. In other words, the regression predictions are typically off by about 5.9 cm when predicting height from foot length."
+      },
+      {
+        "partId": "c",
+        "description": "Assume that the distribution of residuals is approximately normal with mean 0 cm and standard deviation 5.9 cm. What percent of the residuals are greater than 8 cm? Justify your answer.",
+        "response": "Given: Residuals ~ Normal(0, 5.9)\nTo find P(residual > 8):\nStandardize: \\(z = \\frac{8 - 0}{5.9} = \\frac{8}{5.9} ≈ 1.36\\)\n\nUsing the standard normal distribution:\n\\(P(Z > 1.36) = 1 - P(Z ≤ 1.36) = 1 - 0.9131 = 0.0869\\)\n\nTherefore, approximately 8.69% or about 8.7% of residuals are greater than 8 cm.",
+        "calculations": [
+          "\\(z = \\frac{8 - 0}{5.9} = 1.356\\)",
+          "\\(P(Z > 1.36) = 1 - 0.9131 = 0.0869\\)",
+          "Percentage: 8.69% ≈ 8.7%"
+        ],
+        "attachments": {
+          "chartType": "histogram",
+          "xLabels": ["-17.5", "-12.5", "-7.5", "-2.5", "2.5", "7.5", "12.5", "17.5"],
+          "series": [
+            {
+              "name": "Frequency",
+              "values": [2, 5, 15, 20, 17, 5, 1]
+            }
+          ],
+          "chartConfig": {
+            "yAxis": {
+              "min": 0,
+              "max": 25,
+              "tickInterval": 5,
+              "title": "Frequency"
+            },
+            "xAxis": {
+              "title": "Residual (cm)",
+              "labelType": "upperBound"
+            },
+            "gridLines": {
+              "horizontal": false,
+              "vertical": false
+            },
+            "description": "Histogram of residuals showing approximately normal distribution with 7 bars representing intervals of width 5 cm"
+          }
+        }
+      },
+      {
+        "partId": "d",
+        "description": "Based on your answer to part (c), would it be surprising to randomly select a high school senior from the high school with a foot length of 20 cm and a height greater than 165 cm? Justify your answer.",
+        "response": "For a student with foot length 20 cm:\nPredicted height = 157.06 cm (from part a)\nFor height > 165 cm, the residual would be > \\(165 - 157.06 = 7.94\\) cm\n\nFrom part (c), we found that about 8.7% of residuals are greater than 8 cm. Since 7.94 cm is very close to 8 cm, the probability of a residual greater than 7.94 cm would be slightly higher than 8.7%, probably around 9-10%.\n\nSince this probability is less than 10%, it would be somewhat surprising but not extremely unusual to randomly select a high school senior with foot length 20 cm and height greater than 165 cm. Events with probabilities around 8-10% are uncommon but do occur.",
+        "calculations": [
+          "Required residual: \\(165 - 157.06 = 7.94\\) cm",
+          "P(residual > 7.94) ≈ P(residual > 8) ≈ 8.7%",
+          "Since 8.7% < 10%, this would be somewhat surprising"
+        ]
+      }
+    ]
+  },
+  "scoring": {
+    "totalPoints": 4,
+    "rubric": [
+      {
+        "part": "a",
+        "maxPoints": 1,
+        "criteria": [
+          "Correctly calculates predicted value using regression equation",
+          "Correctly calculates residual as actual - predicted",
+          "Provides appropriate interpretation in context"
+        ],
+        "scoringNotes": "Essentially correct (E) if calculation and interpretation are both correct. Partially correct (P) if calculation is correct but interpretation is weak or missing."
+      },
+      {
+        "part": "b",
+        "maxPoints": 1,
+        "criteria": [
+          "Correctly interprets standard deviation of residuals as typical prediction error",
+          "Interpretation is given in context of the problem"
+        ]
+      },
+      {
+        "part": "c", 
+        "maxPoints": 1,
+        "criteria": [
+          "Correctly standardizes using z-score formula",
+          "Uses normal distribution to find probability",
+          "Provides justification for calculation"
+        ],
+        "scoringNotes": "Must show work for standardization and probability calculation."
+      },
+      {
+        "part": "d",
+        "maxPoints": 1, 
+        "criteria": [
+          "Connects to answer from part (c)",
+          "Correctly calculates required residual", 
+          "Makes appropriate conclusion about whether result would be surprising",
+          "Provides clear justification"
+        ]
+      }
+    ]
+  },
+  "reasoning": "This question tests understanding of residuals, their interpretation, and the use of normal distribution properties. Students must demonstrate ability to calculate residuals, interpret standard deviation of residuals, apply normal distribution calculations, and make statistical conclusions about unusual events."
+}
+]
