@@ -2162,6 +2162,109 @@
                         }]
                     });
                     chartInstances.push(chart);
+                } else if (chartData.chartType === 'normal') {
+                    // --------------------------------------------------
+                    // Normal distribution curve with optional shaded region
+                    // --------------------------------------------------
+                    const mean = (typeof chartData.mean === 'number') ? chartData.mean : 0;
+                    const sd   = (typeof chartData.sd   === 'number' && chartData.sd > 0) ? chartData.sd : 1;
+                    const shade = chartData.shade || null; // {lower: number|null, upper: number|null}
+
+                    const config        = chartData.chartConfig || {};
+                    const xAxisConfig   = config.xAxis || {};
+                    const yAxisConfig   = config.yAxis || {};
+
+                    const xMin = (typeof xAxisConfig.min === 'number') ? xAxisConfig.min : mean - 3 * sd;
+                    const xMax = (typeof xAxisConfig.max === 'number') ? xAxisConfig.max : mean + 3 * sd;
+                    const tickInterval = (typeof xAxisConfig.tickInterval === 'number') ? xAxisConfig.tickInterval : sd;
+
+                    const pdf = (x) => (1 / (sd * Math.sqrt(2 * Math.PI))) * Math.exp(-0.5 * Math.pow((x - mean) / sd, 2));
+
+                    const numPoints = 120;
+                    const curvePoints = [];
+                    const shadePoints = [];
+
+                    const peakY = pdf(mean);
+
+                    for (let i = 0; i <= numPoints; i++) {
+                        const x = xMin + (i / numPoints) * (xMax - xMin);
+                        const rawY = pdf(x);
+                        const y = rawY / peakY; // scale
+                        curvePoints.push({ x, y });
+
+                        if (shade) {
+                            const inLower = (shade.lower == null) || (x >= shade.lower);
+                            const inUpper = (shade.upper == null) || (x <= shade.upper);
+                            shadePoints.push({ x, y: (inLower && inUpper) ? y : null });
+                        }
+                    }
+
+                    const datasets = [{
+                        label: 'Normal Curve',
+                        type: 'line',
+                        data: curvePoints,
+                        borderColor: getTextColor(),
+                        borderWidth: 2,
+                        fill: false,
+                        pointRadius: 0,
+                        tension: 0.15
+                    }];
+
+                    if (shade) {
+                        const shadeColor = isDarkMode() ? 'rgba(200,200,200,0.35)' : 'rgba(0,0,0,0.25)';
+                        datasets.push({
+                            label: 'Shaded Region',
+                            type: 'line',
+                            data: shadePoints,
+                            borderColor: 'transparent',
+                            backgroundColor: shadeColor,
+                            fill: 'origin',
+                            pointRadius: 0,
+                            tension: 0.15,
+                            borderWidth: 0
+                        });
+                    }
+
+                    const chart = new Chart(ctx, {
+                        type: 'line',
+                        data: { datasets },
+                        options: {
+                            responsive: true,
+                            maintainAspectRatio: false,
+                            scales: {
+                                x: {
+                                    type: 'linear',
+                                    position: 'bottom',
+                                    min: xMin,
+                                    max: xMax,
+                                    ticks: {
+                                        stepSize: tickInterval,
+                                        color: getTextColor()
+                                    },
+                                    title: {
+                                        display: true,
+                                        text: xAxisConfig.title || 'Value',
+                                        color: getTextColor()
+                                    },
+                                    grid: { display: false }
+                                },
+                                y: {
+                                    beginAtZero: true,
+                                    display: false,
+                                    min: 0,
+                                    title: {
+                                        display: !!yAxisConfig.title,
+                                        text: yAxisConfig.title || '',
+                                        color: getTextColor()
+                                    },
+                                    grid: { display: false },
+                                    ticks: { display: false }
+                                }
+                            },
+                            plugins: { legend: { display: false }, datalabels: { display: false } }
+                        }
+                    });
+                    chartInstances.push(chart);
                 }
             }, 100);
 

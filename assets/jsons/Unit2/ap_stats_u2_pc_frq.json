@@ -219,30 +219,28 @@
           "Percentage: 8.69% ≈ 8.7%"
         ],
         "attachments": {
-          "chartType": "histogram",
-          "xLabels": ["-17.5", "-12.5", "-7.5", "-2.5", "2.5", "7.5", "12.5", "17.5"],
-          "series": [
-            {
-              "name": "Frequency",
-              "values": [2, 5, 15, 20, 17, 5, 1]
-            }
-          ],
+          "chartType": "normal",
+          "mean": 0,
+          "sd": 5.9,
+          "shade": {
+            "lower": 8,
+            "upper": null
+          },
           "chartConfig": {
-            "yAxis": {
-              "min": 0,
-              "max": 25,
-              "tickInterval": 5,
-              "title": "Frequency"
-            },
             "xAxis": {
-              "title": "Residual (cm)",
-              "labelType": "upperBound"
+              "min": -17.7,
+              "max": 17.7,
+              "tickInterval": 5.9,
+              "title": "Residual (cm)"
+            },
+            "yAxis": {
+              "title": "Density"
             },
             "gridLines": {
               "horizontal": false,
               "vertical": false
             },
-            "description": "Histogram of residuals showing approximately normal distribution with 7 bars representing intervals of width 5 cm"
+            "description": "Normal distribution curve with right-tail shaded to represent P(residual > 8 cm)"
           }
         }
       },

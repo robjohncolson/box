@@ -281,6 +281,31 @@ You are tasked with converting AP Statistics quiz questions from uploaded PDF do
       "description": "Boxplots comparing ERA for pitchers in leagues A and B, showing outliers marked with asterisks"
     }
     
+    // For normal distribution curves (bell curves):
+    "chartType": "normal",
+    "mean": 0,              // Mean (µ) of the normal distribution
+    "sd": 5.9,              // Standard deviation (σ)
+    "shade": {              // OPTIONAL: shaded region under the curve
+      "lower": 8,           // Lower bound of shading (null if none)
+      "upper": null         // Upper bound of shading (null ⇒ extend to +∞).  Provide both bounds to shade an interval.
+    },
+    "chartConfig": {
+      "xAxis": {
+        "min": -17.7,       // Typically µ − 3σ (override as needed)
+        "max": 17.7,        // Typically µ + 3σ
+        "tickInterval": 5.9,
+        "title": "Residual (cm)"
+      },
+      "yAxis": {
+        "title": "Density"  // Density axis – renderer hides it by default
+      },
+      "gridLines": {
+        "horizontal": false,
+        "vertical": false
+      },
+      "description": "Normal distribution curve with right-tail shaded to represent P(residual > 8 cm)"
+    }
+    
     "choices": [
       { "key": "A", "value": "Choice A text" },
       { "key": "B", "value": "Choice B text" },
