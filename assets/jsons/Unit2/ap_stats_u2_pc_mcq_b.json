@@ -1,0 +1,862 @@
+[
+{
+  "id": "U2-PC-MCQ-B-Q01",
+  "type": "multiple-choice",
+  "prompt": "A small business owner has created a linear regression model to predict the number of new customers who will visit a shop based on the number of times the owner has an advertisement played on the radio. What is the explanatory variable and what is the response variable?",
+  "choices": [
+    {
+      "key": "A",
+      "value": "Explanatory: number of new customers; response: number of times the advertisement is played"
+    },
+    {
+      "key": "B",
+      "value": "Explanatory: number of times the advertisement is played; response: number of new customers"
+    },
+    {
+      "key": "C",
+      "value": "Explanatory: number of times the advertisement is played; response: number of purchases made by customers"
+    },
+    {
+      "key": "D",
+      "value": "Explanatory: number of purchases made by customers; response: number of times the advertisement is played"
+    },
+    {
+      "key": "E",
+      "value": "Explanatory: number of previous customers; response: number of new customers"
+    }
+  ],
+  "answerKey": "B",
+  "reasoning": "The explanatory variable is what is being used to predict, which is the number of times the advertisement is played. The response variable is what is to be predicted. In this case, it is the number of new customers who will visit the shop."
+},
+{
+  "id": "U2-PC-MCQ-B-Q02",
+  "type": "multiple-choice",
+  "prompt": "Bankers at a large financial institution created the linear regression model \\(\\hat{d} = 0.37 - 0.0004s\\) to predict the proportion of customers who would default on their loans, \\(d\\), based on the customer's credit score, \\(s\\). For a customer with a credit score of 700, which of the following is true?",
+  "choices": [
+    {
+      "key": "A",
+      "value": "The default proportion is predicted to be 0.09."
+    },
+    {
+      "key": "B",
+      "value": "The default proportion will be 0.09."
+    },
+    {
+      "key": "C",
+      "value": "The default proportion is predicted to be approximately 1.75 million."
+    },
+    {
+      "key": "D",
+      "value": "The default proportion will be approximately 1.75 million."
+    },
+    {
+      "key": "E",
+      "value": "The default proportion is predicted to be 0.28."
+    }
+  ],
+  "answerKey": "A",
+  "reasoning": "The predicted proportion of customers defaulting on their loans is found by substituting 700 for \\(s\\) in the regression equation, getting \\(\\hat{d} = 0.37 - 0.0004(700) = 0.09\\). The default proportion is predicted to be 0.09."
+},
+{
+  "id": "U2-PC-MCQ-B-Q03",
+  "type": "multiple-choice",
+  "prompt": "A marketing consultant, Sofia, has been studying the effect of increasing advertising spending on product sales. Sofia conducts several experiments, each time spending less than $1,000 in advertising. When she analyzed the relationship between \\(x =\\) advertising spending and \\(y =\\) product sales, the relationship was linear with \\(r = 0.90\\). Her boss is thrilled and asks her to estimate product sales for $100,000 in advertising spending. Is it appropriate for her to calculate a predicted amount of product sales with advertising spending of $100,000?",
+  "choices": [
+    {
+      "key": "A",
+      "value": "Yes, because the association is linear."
+    },
+    {
+      "key": "B",
+      "value": "Yes, because the association is positive."
+    },
+    {
+      "key": "C",
+      "value": "Yes, because the association is strong."
+    },
+    {
+      "key": "D",
+      "value": "No, because the value of the correlation is not equal to 1."
+    },
+    {
+      "key": "E",
+      "value": "No, because $100,000 is much greater than the values used in the experiment."
+    }
+  ],
+  "answerKey": "E",
+  "reasoning": "Predicting sales based on a value well beyond the interval that was used to create the model results in less reliable estimates and would not be appropriate. This is called extrapolation."
+},
+{
+  "id": "U2-PC-MCQ-B-Q04",
+  "type": "multiple-choice",
+  "prompt": "A researcher studying koi fish collected data on three variables, \\(A\\), \\(B\\), and \\(C\\). The following residual plots show the residual for a model for predicting each variable from the age of the fish. A conclusion that a linear model between the variable and age is appropriate is supported by which plot or plots?",
+  "attachments": {
+    "charts": [
+      {
+        "chartType": "scatter",
+        "title": "VARIABLE A",
+        "points": [
+          {"x": 1.0, "y": 0.50}, {"x": 1.0, "y": 0.35}, {"x": 1.1, "y": -0.18}, {"x": 1.2, "y": -0.35},
+          {"x": 1.5, "y": -0.20}, {"x": 1.6, "y": 0.15}, {"x": 1.6, "y": 0.25}, {"x": 1.7, "y": 0.18},
+          {"x": 1.8, "y": 0.52}, {"x": 1.9, "y": -0.05}, {"x": 1.9, "y": 0.25}, {"x": 2.1, "y": -0.25},
+          {"x": 2.2, "y": 0.25}, {"x": 2.3, "y": -0.38}, {"x": 2.4, "y": 0.10}, {"x": 2.6, "y": 0.48},
+          {"x": 2.8, "y": -0.05}, {"x": 2.9, "y": 0.05}, {"x": 3.0, "y": 0.45}, {"x": 3.1, "y": -0.32},
+          {"x": 3.1, "y": 0.08}, {"x": 3.2, "y": -0.10}, {"x": 3.3, "y": 0.45}, {"x": 3.4, "y": 0.00},
+          {"x": 3.6, "y": 0.35}, {"x": 3.8, "y": -0.18}, {"x": 3.9, "y": -0.30}, {"x": 3.9, "y": 0.20},
+          {"x": 3.9, "y": -0.05}, {"x": 4.1, "y": -0.15}, {"x": 4.1, "y": -0.25}, {"x": 4.2, "y": 0.10},
+          {"x": 4.2, "y": 0.25}, {"x": 4.3, "y": -0.40}, {"x": 4.6, "y": 0.05}, {"x": 4.7, "y": -0.25},
+          {"x": 4.8, "y": 0.45}, {"x": 5.1, "y": 0.28}
+        ],
+        "chartConfig": {
+          "xAxis": {
+            "min": 0,
+            "max": 6,
+            "tickInterval": 1,
+            "title": "Age (years)"
+          },
+          "yAxis": {
+            "min": -0.6,
+            "max": 0.6,
+            "tickInterval": 0.2,
+            "title": "Residuals"
+          },
+          "gridLines": {
+            "horizontal": true,
+            "vertical": true
+          },
+          "referenceLineAtZero": true
+        },
+        "description": "Residual plot for Variable A showing random scatter around zero"
+      },
+      {
+        "chartType": "scatter",
+        "title": "VARIABLE B",
+        "points": [
+          {"x": 1.0, "y": 0.48}, {"x": 1.1, "y": 0.18}, {"x": 1.1, "y": 0.28}, {"x": 1.2, "y": 0.0},
+          {"x": 1.4, "y": 0.33}, {"x": 1.5, "y": 0.0}, {"x": 1.5, "y": 0.15}, {"x": 1.7, "y": 0.10},
+          {"x": 1.8, "y": -0.22}, {"x": 1.9, "y": 0.09}, {"x": 2.0, "y": -0.35}, {"x": 2.1, "y": -0.30},
+          {"x": 2.2, "y": -0.38}, {"x": 2.2, "y": 0.08}, {"x": 2.5, "y": -0.23}, {"x": 2.6, "y": 0.10},
+          {"x": 2.8, "y": -0.40}, {"x": 3.0, "y": 0.04}, {"x": 3.1, "y": -0.15}, {"x": 3.2, "y": -0.18},
+          {"x": 3.3, "y": -0.42}, {"x": 3.4, "y": -0.15}, {"x": 3.7, "y": 0.10}, {"x": 3.8, "y": 0.05},
+          {"x": 4.0, "y": -0.18}, {"x": 4.1, "y": -0.25}, {"x": 4.1, "y": 0.08}, {"x": 4.2, "y": -0.16},
+          {"x": 4.3, "y": 0.0}, {"x": 4.5, "y": 0.15}, {"x": 4.6, "y": 0.28}, {"x": 4.7, "y": 0.12},
+          {"x": 4.8, "y": 0.35}, {"x": 5.0, "y": 0.02}
+        ],
+        "chartConfig": {
+          "xAxis": {
+            "min": 0,
+            "max": 6,
+            "tickInterval": 1,
+            "title": "Age (years)"
+          },
+          "yAxis": {
+            "min": -0.6,
+            "max": 0.6,
+            "tickInterval": 0.2,
+            "title": "Residuals"
+          },
+          "gridLines": {
+            "horizontal": true,
+            "vertical": true
+          },
+          "referenceLineAtZero": true
+        },
+        "description": "Residual plot for Variable B showing curved pattern"
+      },
+      {
+        "chartType": "scatter",
+        "title": "VARIABLE C",
+        "points": [
+          {"x": 1.1, "y": -0.35}, {"x": 1.1, "y": -0.45}, {"x": 1.2, "y": -0.18}, {"x": 1.5, "y": -0.05},
+          {"x": 1.6, "y": -0.32}, {"x": 1.7, "y": -0.35}, {"x": 1.8, "y": 0.0}, {"x": 1.9, "y": -0.08},
+          {"x": 2.0, "y": -0.25}, {"x": 2.2, "y": 0.22}, {"x": 2.5, "y": -0.15}, {"x": 2.8, "y": 0.04},
+          {"x": 2.9, "y": 0.15}, {"x": 3.0, "y": 0.10}, {"x": 3.1, "y": 0.18}, {"x": 3.2, "y": -0.15},
+          {"x": 3.3, "y": 0.08}, {"x": 3.4, "y": 0.42}, {"x": 3.6, "y": 0.48}, {"x": 3.7, "y": 0.18},
+          {"x": 3.8, "y": 0.25}, {"x": 4.0, "y": 0.0}, {"x": 4.0, "y": 0.52}, {"x": 4.1, "y": 0.40},
+          {"x": 4.3, "y": 0.10}, {"x": 4.3, "y": 0.35}, {"x": 4.5, "y": 0.32}, {"x": 4.6, "y": 0.20},
+          {"x": 4.8, "y": 0.55}, {"x": 4.9, "y": 0.18}, {"x": 5.0, "y": 0.20}
+        ],
+        "chartConfig": {
+          "xAxis": {
+            "min": 0,
+            "max": 6,
+            "tickInterval": 1,
+            "title": "Age (years)"
+          },
+          "yAxis": {
+            "min": -0.6,
+            "max": 0.6,
+            "tickInterval": 0.2,
+            "title": "Residuals"
+          },
+          "gridLines": {
+            "horizontal": true,
+            "vertical": true
+          },
+          "referenceLineAtZero": true
+        },
+        "description": "Residual plot for Variable C showing curved pattern"
+      }
+    ],
+    "description": "Three residual plots showing residuals vs age for variables A, B, and C"
+  },
+  "choices": [
+    {
+      "key": "A",
+      "value": "The plot for variable \\(A\\) only"
+    },
+    {
+      "key": "B",
+      "value": "The plot for variable \\(B\\) only"
+    },
+    {
+      "key": "C",
+      "value": "The plot for variable \\(C\\) only"
+    },
+    {
+      "key": "D",
+      "value": "The plots for variables \\(A\\) and \\(C\\)"
+    },
+    {
+      "key": "E",
+      "value": "The plots for variables \\(B\\) and \\(C\\)"
+    }
+  ],
+  "answerKey": "A",
+  "reasoning": "The residual plot for variable \\(A\\) indicates that a linear model is appropriate for relating variable \\(A\\) to age, since this is the only residual plot in which there is no discernible pattern in the scatter of points."
+},
+{
+  "id": "U2-PC-MCQ-B-Q05",
+  "type": "multiple-choice",
+  "prompt": "A marketing consultant created a linear regression model to predict the number of units sold by a client based on the amount of money spent on marketing by the client. Which of the following is the best graphic to use to evaluate the appropriateness of the model?",
+  "choices": [
+    {
+      "key": "A",
+      "value": "A dotplot"
+    },
+    {
+      "key": "B",
+      "value": "A histogram"
+    },
+    {
+      "key": "C",
+      "value": "A residual plot"
+    },
+    {
+      "key": "D",
+      "value": "A boxplot"
+    },
+    {
+      "key": "E",
+      "value": "A bar chart"
+    }
+  ],
+  "answerKey": "C",
+  "reasoning": "A residual plot can be used to evaluate the appropriateness of the regression model."
+},
+{
+  "id": "U2-PC-MCQ-B-Q06",
+  "type": "multiple-choice",
+  "prompt": "The following is a residual plot from a regression of a variable with the independent variable \\(x\\). Based on the plot, is it reasonable to conclude that a linear model is appropriate?",
+  "attachments": {
+    "chartType": "scatter",
+    "points": [
+      {"x": 1.2, "y": 0.46}, {"x": 1.3, "y": -0.23}, {"x": 1.6, "y": -0.05}, {"x": 1.8, "y": -0.58},
+      {"x": 2.1, "y": 0.22}, {"x": 2.2, "y": 0.12}, {"x": 2.4, "y": -0.08}, {"x": 2.9, "y": 0.29},
+      {"x": 3.1, "y": 0.10}, {"x": 3.3, "y": -0.72}, {"x": 3.8, "y": -0.34}, {"x": 3.9, "y": -0.05},
+      {"x": 4.0, "y": 0.24}, {"x": 4.1, "y": 0.24}, {"x": 4.2, "y": 0.24}, {"x": 4.8, "y": -0.49},
+      {"x": 5.1, "y": 0.21}, {"x": 5.3, "y": 0.48}, {"x": 5.4, "y": 0.41}, {"x": 5.5, "y": 0.08},
+      {"x": 6.0, "y": 0.15}, {"x": 6.1, "y": 0.15}, {"x": 6.5, "y": -0.06}, {"x": 6.9, "y": -0.78}
+    ],
+    "chartConfig": {
+      "xAxis": {
+        "min": 0,
+        "max": 8,
+        "tickInterval": 1,
+        "title": "x"
+      },
+      "yAxis": {
+        "min": -1.0,
+        "max": 0.6,
+        "tickInterval": 0.2,
+        "title": "Residuals"
+      },
+      "gridLines": {
+        "horizontal": true,
+        "vertical": true
+      },
+      "referenceLineAtZero": true
+    },
+    "description": "Residual plot showing random scatter of points around zero"
+  },
+  "choices": [
+    {
+      "key": "A",
+      "value": "Yes, because the plot shows no apparent pattern."
+    },
+    {
+      "key": "B",
+      "value": "Yes, because the points in the plot display less variation as \\(x\\) increases."
+    },
+    {
+      "key": "C",
+      "value": "Yes, because the sum of the residuals is close to zero."
+    },
+    {
+      "key": "D",
+      "value": "No, because the plot shows no apparent pattern."
+    },
+    {
+      "key": "E",
+      "value": "No, because the points in the plot display more variation as \\(x\\) increases."
+    }
+  ],
+  "answerKey": "A",
+  "reasoning": "No pattern in a residual plot is an indication that a linear model is appropriate."
+},
+{
+  "id": "U2-PC-MCQ-B-Q07",
+  "type": "multiple-choice",
+  "prompt": "A grocery store wants to examine the relationship between the sales amounts each day at two different locations, store A and store B. The sales amount each day, in dollars, was recorded for 10 days at each store. The least-squares regression line is \\(\\hat{y} = -3,000 + 1.2x\\), where \\(x\\) represents the sales amounts each day at store A and \\(y\\) represents the sales amounts each day at store B. If the mean of the 10 sales amounts for store B is $45,000, what is the mean of the 10 sales amounts for store A?",
+  "choices": [
+    {
+      "key": "A",
+      "value": "$35,000"
+    },
+    {
+      "key": "B",
+      "value": "$40,000"
+    },
+    {
+      "key": "C",
+      "value": "$42,000"
+    },
+    {
+      "key": "D",
+      "value": "$45,000"
+    },
+    {
+      "key": "E",
+      "value": "$51,000"
+    }
+  ],
+  "answerKey": "B",
+  "reasoning": "A property of the least-squares regression line is that the line always contains the point \\((\\bar{x}, \\bar{y})\\), so the equation for the least-squares regression line is true when \\(\\bar{x}\\) is substituted for \\(x\\) and \\(\\bar{y}\\) is substituted for \\(y\\). This yields \\(\\bar{y} = -3,000 + 1.2\\bar{x}\\). Substituting \\(\\bar{y} = 45,000\\) gives \\(45,000 = -3,000 + 1.2\\bar{x}\\), or \\(1.2\\bar{x} = 48,000\\), so \\(\\bar{x} = \\frac{48,000}{1.2} = 40,000\\). The mean of the 10 sales amounts at store A is $40,000."
+},
+{
+  "id": "U2-PC-MCQ-B-Q08",
+  "type": "multiple-choice",
+  "prompt": "The least-squares regression model \\(\\hat{y} = -3.4 + 5.2x\\) and correlation coefficient \\(r = 0.66\\) were calculated for a set of bivariate data with variables \\(x\\) and \\(y\\). Which of the following is closest to the proportion of the variation in \\(y\\) that cannot be explained by the explanatory variable?",
+  "choices": [
+    {
+      "key": "A",
+      "value": "81%"
+    },
+    {
+      "key": "B",
+      "value": "66%"
+    },
+    {
+      "key": "C",
+      "value": "56%"
+    },
+    {
+      "key": "D",
+      "value": "44%"
+    },
+    {
+      "key": "E",
+      "value": "34%"
+    }
+  ],
+  "answerKey": "C",
+  "reasoning": "The coefficient of determination, \\(r^2\\), is the proportion of the response variable variation that can be explained by the explanatory variable. Thus \\(1 - r^2 = 1 - (-0.66)^2 = 1 - 0.4356 = 0.5644\\) is the proportion of the variation in the response variable that cannot be explained by the explanatory variable."
+},
+{
+  "id": "U2-PC-MCQ-B-Q09",
+  "type": "multiple-choice",
+  "prompt": "A botanist created a linear model to predict plant height from soil acidity (pH level) for a certain type of plant. The slope of the model was 2.5 centimeters per pH level, the standard deviation of the sample of plant heights was 4 centimeters, and the standard deviation of the soil acidities was 1 pH level. What is the value of the correlation coefficient?",
+  "choices": [
+    {
+      "key": "A",
+      "value": "0.015"
+    },
+    {
+      "key": "B",
+      "value": "0.10"
+    },
+    {
+      "key": "C",
+      "value": "0.25"
+    },
+    {
+      "key": "D",
+      "value": "0.625"
+    },
+    {
+      "key": "E",
+      "value": "1.60"
+    }
+  ],
+  "answerKey": "D",
+  "reasoning": "If the equation of the regression line is \\(\\hat{y} = a + bx\\), where \\(b\\) is the slope, then \\(b = r \\frac{s_y}{s_x}\\). Substituting the appropriate values in the formula yields \\(2.5 = r \\left(\\frac{4}{1}\\right)\\), which results in a correlation of 0.625."
+},
+{
+  "id": "U2-PC-MCQ-B-Q10",
+  "type": "multiple-choice",
+  "prompt": "In baseball, two statistics, the ERA (Earned Run Average) and the WHIP (Walks and Hits per Inning Pitched), are used to measure the quality of pitchers. For both measures, smaller values indicate higher quality. The following computer output gives the results from predicting ERA by using WHIP in a least-squares regression for the 2017 baseball season. Which of the following statements is the best interpretation of the value 6.8 shown in the output?",
+  "attachments": {
+    "table": [
+      ["Variable", "DF", "Estimate", "SE", "T"],
+      ["Intercept", "1", "-5.0", "0.26", "-19.3"],
+      ["WHIP", "1", "6.8", "0.14", "47.4"]
+    ]
+  },
+  "choices": [
+    {
+      "key": "A",
+      "value": "ERA is predicted to increase by 6.8 units for each 1 unit increase of WHIP."
+    },
+    {
+      "key": "B",
+      "value": "WHIP is predicted to increase by 6.8 units for each 1 unit increase of ERA."
+    },
+    {
+      "key": "C",
+      "value": "For a pitcher with 0 units of WHIP, the ERA is predicted to be approximately 6.8 units."
+    },
+    {
+      "key": "D",
+      "value": "For a pitcher with 0 units of ERA, the WHIP is predicted to be approximately 6.8 units."
+    },
+    {
+      "key": "E",
+      "value": "Approximately 6.8% of the variability in ERA is due to its linear relationship with WHIP."
+    }
+  ],
+  "answerKey": "A",
+  "reasoning": "The estimated slope is 6.8, which is the change in response (ERA) as the explanatory variable (WHIP) increases by a single unit."
+},
+{
+  "id": "U2-PC-MCQ-B-Q11",
+  "type": "multiple-choice",
+  "prompt": "Jordan is working on a business model for a sandwich shop. Based on past data, he developed the model \\(\\hat{n} = 150 - 3p\\), where \\(\\hat{n}\\) represents the predicted number of turkey sandwiches sold in one day for a price of \\(p\\) dollars per sandwich. Which of the following is the best description of the slope of the model?",
+  "choices": [
+    {
+      "key": "A",
+      "value": "For each increase of $3 in the price of the sandwich, the number sold is predicted to decrease, on average, by 150."
+    },
+    {
+      "key": "B",
+      "value": "For each increase of $3 in the price of the sandwich, the number sold is predicted to increase, on average, by 150."
+    },
+    {
+      "key": "C",
+      "value": "For each increase of $1 in the price of the sandwich, the number sold is predicted to decrease, on average, by 3."
+    },
+    {
+      "key": "D",
+      "value": "For each increase of $1 in the price of the sandwich, the number sold is predicted to increase, on average, by 3."
+    },
+    {
+      "key": "E",
+      "value": "For each increase of $1 in the price of the sandwich, the number sold is predicted to decrease, on average, by 150."
+    }
+  ],
+  "answerKey": "C",
+  "reasoning": "The slope of the line is \\(-3\\), which indicates a one unit increase in the independent variable, price, is associated with a 3 unit decrease in the dependent variable, number sold. Because the number sold is not deterministic, the slope represents an average change in the long run."
+},
+{
+  "id": "U2-PC-MCQ-B-Q12",
+  "type": "multiple-choice",
+  "prompt": "Researchers are investigating how the amount of monthly rainfall, measured in centimeters (cm), affects the monthly growth, in cm, of a certain plant. From a sample of data, the researchers created a least-squares regression line. Computer output is shown in the following table. Which of the following statements is an interpretation of the value 0.75 shown in the table?",
+  "attachments": {
+    "table": [
+      ["Variable", "DF", "Estimate", "SE", "T"],
+      ["Intercept", "1", "0.75", "0.350", "2.14"],
+      ["Rainfall", "1", "0.15", "0.025", "6.00"]
+    ]
+  },
+  "choices": [
+    {
+      "key": "A",
+      "value": "Monthly growth is expected to increase by 0.75 cm when rainfall increases by 1 cm."
+    },
+    {
+      "key": "B",
+      "value": "Rainfall is expected to increase by 0.75 cm when monthly growth increases by 1 cm."
+    },
+    {
+      "key": "C",
+      "value": "For a month with 0 cm of rainfall, the monthly growth is expected to be approximately 0.75 cm."
+    },
+    {
+      "key": "D",
+      "value": "For a plant with 0 cm of monthly growth, the month had an expected rainfall of approximately 0.75 cm."
+    },
+    {
+      "key": "E",
+      "value": "Approximately 75% of the variability in monthly growth is due to its linear relationship with rainfall."
+    }
+  ],
+  "answerKey": "C",
+  "reasoning": "The intercept is the estimated value of the response variable (monthly growth) when the explanatory variable (rainfall) is zero."
+},
+{
+  "id": "U2-PC-MCQ-B-Q13",
+  "type": "multiple-choice",
+  "prompt": "The following scatterplot shows a company's monthly sales, in thousands of dollars, versus monthly advertising dollars spent, in thousands of dollars. Which of the following points is most likely a high-leverage point with respect to a regression of monthly sales versus advertising dollars?",
+  "attachments": {
+    "chartType": "scatter",
+    "points": [
+      {"x": 5.10, "y": 105.0}, {"x": 5.80, "y": 110.0}, {"x": 5.90, "y": 115.0}, {"x": 6.05, "y": 125.0},
+      {"x": 6.20, "y": 117.0}, {"x": 6.30, "y": 116.0}, {"x": 6.40, "y": 121.0}, {"x": 6.45, "y": 118.0},
+      {"x": 6.50, "y": 120.0}, {"x": 6.55, "y": 119.0}, {"x": 6.60, "y": 120.0}, {"x": 6.70, "y": 108.0},
+      {"x": 6.80, "y": 123.0}
+    ],
+    "chartConfig": {
+      "xAxis": {
+        "min": 5.0,
+        "max": 7.0,
+        "tickInterval": 0.1,
+        "title": "Advertising Dollars (thousands)"
+      },
+      "yAxis": {
+        "min": 105,
+        "max": 125,
+        "tickInterval": 5,
+        "title": "Monthly Sales (thousands)"
+      },
+      "gridLines": {
+        "horizontal": false,
+        "vertical": false
+      }
+    },
+    "description": "Scatterplot showing monthly sales vs advertising dollars with one point at x=5.1 far from the others"
+  },
+  "choices": [
+    {
+      "key": "A",
+      "value": "(5.1, 105)"
+    },
+    {
+      "key": "B",
+      "value": "(5.8, 110)"
+    },
+    {
+      "key": "C",
+      "value": "(6.0, 125)"
+    },
+    {
+      "key": "D",
+      "value": "(6.7, 108)"
+    },
+    {
+      "key": "E",
+      "value": "(6.8, 123)"
+    }
+  ],
+  "answerKey": "A",
+  "reasoning": "A high-leverage point in regression has a much larger or much smaller x-value than the other observations. The value of 5.1 along the horizontal axis is substantially farther away from the other values along the axis, which tend to fall between 5.8 and 6.8."
+},
+{
+  "id": "U2-PC-MCQ-B-Q14",
+  "type": "multiple-choice",
+  "prompt": "The following scatterplot shows two variables along with a least-squares regression line. Which of the following points is an outlier for the data?",
+  "attachments": {
+    "chartType": "scatter",
+    "points": [
+      {"x": 1, "y": 22}, {"x": 2, "y": 17}, {"x": 3, "y": 15}, {"x": 4, "y": 13},
+      {"x": 5, "y": 24}, {"x": 6, "y": 8}, {"x": 7, "y": 3}, {"x": 8, "y": 3}
+    ],
+    "chartConfig": {
+      "xAxis": {
+        "min": 0,
+        "max": 9,
+        "tickInterval": 1,
+        "title": "x"
+      },
+      "yAxis": {
+        "min": 0,
+        "max": 26,
+        "tickInterval": 2,
+        "title": "y"
+      },
+      "gridLines": {
+        "horizontal": true,
+        "vertical": true
+      },
+      "regressionLine": true
+    },
+    "description": "Scatterplot with regression line showing one point (5,24) well above the line"
+  },
+  "choices": [
+    {
+      "key": "A",
+      "value": "(1, 22)"
+    },
+    {
+      "key": "B",
+      "value": "(2, 17)"
+    },
+    {
+      "key": "C",
+      "value": "(4, 13)"
+    },
+    {
+      "key": "D",
+      "value": "(5, 24)"
+    },
+    {
+      "key": "E",
+      "value": "(8, 3)"
+    }
+  ],
+  "answerKey": "D",
+  "reasoning": "The point (5, 24) is an outlier because it does not follow the general pattern of the rest of the data. Also, since the observed y-value is much higher than predicted (the least-squares regression line), this point will have a very large residual."
+},
+{
+  "id": "U2-PC-MCQ-B-Q15",
+  "type": "multiple-choice",
+  "prompt": "The following scatterplot shows the ages, in years, of 12 of the wealthiest people in the world along with their net worth, in billions of dollars. The data point at age 83 is labeled \\(Q\\). Suppose point \\(Q\\) is removed from the data set. Which of the following is likely not affected by the removal?",
+  "attachments": {
+    "chartType": "scatter",
+    "points": [
+      {"x": 42, "y": 10}, {"x": 46, "y": 12}, {"x": 50, "y": 19}, {"x": 53, "y": 13}, 
+      {"x": 56, "y": 30}, {"x": 58, "y": 33}, {"x": 60, "y": 48}, {"x": 65, "y": 36}, 
+      {"x": 68, "y": 55}, {"x": 70, "y": 69}, {"x": 83, "y": 14, "label": "Q"}
+    ],
+    "chartConfig": {
+      "xAxis": {
+        "min": 40,
+        "max": 85,
+        "tickInterval": 10,
+        "title": "Age (years)"
+      },
+      "yAxis": {
+        "min": 10,
+        "max": 70,
+        "tickInterval": 10,
+        "title": "Net Worth ($ billions)"
+      },
+      "gridLines": {
+        "horizontal": false,
+        "vertical": false
+      },
+      "showPointLabels": false
+    },
+    "description": "Scatterplot showing ages vs net worth of wealthy people with point Q at (83, 14)"
+  },
+  "choices": [
+    {
+      "key": "A",
+      "value": "The correlation coefficient"
+    },
+    {
+      "key": "B",
+      "value": "The sign of the slope coefficient"
+    },
+    {
+      "key": "C",
+      "value": "The value of the slope coefficient"
+    },
+    {
+      "key": "D",
+      "value": "The sum of the squared residuals"
+    },
+    {
+      "key": "E",
+      "value": "The net worth intercept"
+    }
+  ],
+  "answerKey": "B",
+  "reasoning": "Although removing point Q will change the least squares regression line significantly, there is a positive relationship between the variables whether or not point Q is considered in the data set."
+},
+{
+  "id": "U2-PC-MCQ-B-Q16",
+  "type": "multiple-choice",
+  "prompt": "A real estate agent wants to predict the selling price of single-family homes from the size of each house. A scatterplot created from a sample of houses shows an exponential relationship between price, in thousands of dollars, and size, in 100 square feet. To create a linear model, the natural logarithm of price was taken and the least-squares regression line was given as \\(\\ln(\\widehat{\\text{price}}) = 2.08 + 0.11(\\text{size})\\). Based on the model, which of the following is closest to the predicted selling price for a house with a size of 3,200 square feet?",
+  "choices": [
+    {
+      "key": "A",
+      "value": "$54,500"
+    },
+    {
+      "key": "B",
+      "value": "$270,000"
+    },
+    {
+      "key": "C",
+      "value": "$354,000"
+    },
+    {
+      "key": "D",
+      "value": "$398,000"
+    },
+    {
+      "key": "E",
+      "value": "$560,000"
+    }
+  ],
+  "answerKey": "B",
+  "reasoning": "Since the variable size is in the units of 100 square feet, 32 needs to be the number used for price. Substituting 32 into the equation for price gives \\(\\ln(\\widehat{\\text{price}}) = 5.6\\). The number \\(e\\) raised to the power of 5.6 is about 270. Multiplying the result by 1,000 (because the units for price are in thousands of dollars) gives $270,000."
+},
+{
+  "id": "U2-PC-MCQ-B-Q17",
+  "type": "multiple-choice",
+  "prompt": "Workers at a warehouse of consumer goods gather items from the warehouse to fill customer orders. The number of items in a sample of orders and the time, in minutes, it took the workers to gather the items were recorded. A scatterplot of the recorded data showed a curved pattern, and the square root of the number of items was taken to create a linear pattern. The following table shows computer output from the least-squares regression analysis created to predict the time it takes to gather items from the number of items in an order. Based on the regression output, which of the following is the predicted time, in minutes, that it took to gather the items if the order has 22 items?",
+  "attachments": {
+    "table": [
+      ["Predictor", "Coef"],
+      ["Constant", "3.0979"],
+      ["Square root of items", "2.7633"],
+      ["", "R-Sq = 96.7%"]
+    ]
+  },
+  "choices": [
+    {
+      "key": "A",
+      "value": "7.99"
+    },
+    {
+      "key": "B",
+      "value": "16.06"
+    },
+    {
+      "key": "C",
+      "value": "17.29"
+    },
+    {
+      "key": "D",
+      "value": "27.49"
+    },
+    {
+      "key": "E",
+      "value": "63.89"
+    }
+  ],
+  "answerKey": "B",
+  "reasoning": "The table shows the coefficient of the square root of the items. Substituting 22 into the regression equation \\(\\hat{y} = 3.0979 + 2.7633\\sqrt{x}\\), where \\(x\\) represents the number of items and \\(y\\) represents the time to gather the items, yields 16.06."
+},
+{
+  "id": "U2-PC-MCQ-B-Q18",
+  "type": "multiple-choice",
+  "prompt": "A new town was incorporated in 1960. The size of the town's population was recorded every 5 years after 1960. Using the variables \\(x\\), for number of years since 1960, and \\(y\\), for the size of the population, three models were created to predict the population from the number of years since 1960. Model I predicts \\(y\\) from \\(x\\). Model II predicts \\(\\ln(y)\\), the natural logarithm of \\(y\\), from \\(x\\). Model III predicts \\(\\ln(y)\\) from \\(\\ln(x)\\). The following graphs show the residual plot for each model. Which of the following statements is the best interpretation of the residual plots?",
+  "attachments": {
+    "charts": [
+      {
+        "chartType": "scatter",
+        "title": "Residual Plot for Model I",
+        "points": [
+          {"x": 5, "y": 1300}, {"x": 10, "y": 600}, {"x": 15, "y": -100}, {"x": 20, "y": -500},
+          {"x": 25, "y": -800}, {"x": 30, "y": -1300}, {"x": 35, "y": -900}, {"x": 40, "y": -1000},
+          {"x": 45, "y": 1000}, {"x": 50, "y": 1700}
+        ],
+        "chartConfig": {
+          "xAxis": {
+            "min": 0,
+            "max": 60,
+            "tickInterval": 10,
+            "title": "Years Since 1960"
+          },
+          "yAxis": {
+            "min": -1500,
+            "max": 2000,
+            "tickInterval": 500,
+            "title": "Residual"
+          },
+          "gridLines": {
+            "horizontal": true,
+            "vertical": true
+          },
+          "referenceLineAtZero": true
+        },
+        "description": "Residual plot for Model I showing curved pattern"
+      },
+      {
+        "chartType": "scatter",
+        "title": "Residual Plot for Model II",
+        "points": [
+          {"x": 4, "y": 0.15}, {"x": 11, "y": -0.04}, {"x": 15, "y": -0.03}, {"x": 20, "y": -0.10},
+          {"x": 26, "y": 0.12}, {"x": 32, "y": -0.05}, {"x": 35, "y": 0.10}, {"x": 40, "y": -0.09},
+          {"x": 44, "y": 0.01}, {"x": 50, "y": -0.02}
+        ],
+        "chartConfig": {
+          "xAxis": {
+            "min": 0,
+            "max": 60,
+            "tickInterval": 10,
+            "title": "Years Since 1960"
+          },
+          "yAxis": {
+            "min": -0.20,
+            "max": 0.20,
+            "tickInterval": 0.05,
+            "title": "Residual"
+          },
+          "gridLines": {
+            "horizontal": true,
+            "vertical": true
+          },
+          "referenceLineAtZero": true
+        },
+        "description": "Residual plot for Model II showing random scatter"
+      },
+      {
+        "chartType": "scatter",
+        "title": "Residual Plot for Model III",
+        "points": [
+          {"x": 1.6, "y": 0.7}, {"x": 2.3, "y": -0.2}, {"x": 2.7, "y": -0.4}, {"x": 3.0, "y": -0.3},
+          {"x": 3.2, "y": -0.5}, {"x": 3.4, "y": 0.0}, {"x": 3.6, "y": 0.0}, {"x": 3.7, "y": 0.5},
+          {"x": 3.8, "y": 0.6}
+        ],
+        "chartConfig": {
+          "xAxis": {
+            "min": 0,
+            "max": 5,
+            "tickInterval": 1,
+            "title": "ln (Years Since 1960)"
+          },
+          "yAxis": {
+            "min": -0.6,
+            "max": 0.8,
+            "tickInterval": 0.2,
+            "title": "Residual"
+          },
+          "gridLines": {
+            "horizontal": true,
+            "vertical": true
+          },
+          "referenceLineAtZero": true
+        },
+        "description": "Residual plot for Model III showing curved pattern"
+      }
+    ],
+    "description": "Three residual plots for different population prediction models"
+  },
+  "choices": [
+    {
+      "key": "A",
+      "value": "The residual plot for model I indicates that a quadratic model is the most appropriate among the three models."
+    },
+    {
+      "key": "B",
+      "value": "The residual plots for models I and III indicate that either model is appropriate and better than model II."
+    },
+    {
+      "key": "C",
+      "value": "The residual plot for model II indicates that it is the most appropriate among the three models."
+    },
+    {
+      "key": "D",
+      "value": "All the residual plots indicate that any of the three models are appropriate for the prediction."
+    },
+    {
+      "key": "E",
+      "value": "All the residual plots indicate that none of the three models is appropriate for the prediction."
+    }
+  ],
+  "answerKey": "C",
+  "reasoning": "The residual plot for model II shows no pattern in the scatter of points, indicating that a linear model is appropriate for relating \\(\\ln(y)\\) to \\(x\\). There are discernible patterns that are U-shaped in the residual plots of both model I and model III, indicating that the response and explanatory variables may not be linearly related and a linear model is not appropriate for those models."
+}
+]

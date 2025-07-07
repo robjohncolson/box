@@ -1181,7 +1181,8 @@
                                                 const min = xAxisConfig.min !== undefined ? xAxisConfig.min : 0;
                                                 const adjustedValue = value - min;
                                                 if (Math.abs(adjustedValue % step) < 0.000001 || Math.abs(adjustedValue % step - step) < 0.000001) {
-                                                    return value;
+                                                    // Round to mitigate floating-point artifacts
+                                                    return Number(value.toFixed(6));
                                                 }
                                                 return '';
                                             }
@@ -1236,7 +1237,8 @@
                                                 const min = yAxisConfig.min !== undefined ? yAxisConfig.min : 0;
                                                 const adjustedValue = value - min;
                                                 if (Math.abs(adjustedValue % step) < 0.000001 || Math.abs(adjustedValue % step - step) < 0.000001) {
-                                                    return value;
+                                                    // Round to mitigate floating-point artifacts
+                                                    return Number(value.toFixed(6));
                                                 }
                                                 return '';
                                             }
@@ -1482,7 +1484,8 @@
                                                 const min = xAxisConfig.min !== undefined ? xAxisConfig.min : 0;
                                                 const adjustedValue = value - min;
                                                 if (Math.abs(adjustedValue % step) < 0.000001 || Math.abs(adjustedValue % step - step) < 0.000001) {
-                                                    return value;
+                                                    // Round to mitigate floating-point artifacts
+                                                    return Number(value.toFixed(6));
                                                 }
                                                 return '';
                                             }
@@ -1513,7 +1516,8 @@
                                                 const min = yAxisConfig.min !== undefined ? yAxisConfig.min : 0;
                                                 const adjustedValue = value - min;
                                                 if (Math.abs(adjustedValue % step) < 0.000001 || Math.abs(adjustedValue % step - step) < 0.000001) {
-                                                    return value;
+                                                    // Round to mitigate floating-point artifacts
+                                                    return Number(value.toFixed(6));
                                                 }
                                                 return '';
                                             }
@@ -1656,7 +1660,22 @@
                                     },
                                     ticks: {
                                         stepSize: xAxisConfig.tickInterval,
-                                        color: getTextColor()
+                                        color: getTextColor(),
+                                        // Force Chart.js to respect our stepSize by providing a callback
+                                        callback: function(value, index, values) {
+                                            // If we have a specific tickInterval, ensure we only show ticks at those intervals
+                                            if (xAxisConfig.tickInterval) {
+                                                const step = xAxisConfig.tickInterval;
+                                                const min = xAxisConfig.min !== undefined ? xAxisConfig.min : 0;
+                                                const adjustedValue = value - min;
+                                                if (Math.abs(adjustedValue % step) < 0.000001 || Math.abs(adjustedValue % step - step) < 0.000001) {
+                                                    // Round to mitigate floating-point artifacts
+                                                    return Number(value.toFixed(6));
+                                                }
+                                                return '';
+                                            }
+                                            return value;
+                                        }
                                     }
                                 },
                                 y: {
@@ -1966,7 +1985,22 @@
                                     },
                                     ticks: {
                                         stepSize: xAxisConfig.tickInterval,
-                                        color: getTextColor()
+                                        color: getTextColor(),
+                                        // Force Chart.js to respect our stepSize by providing a callback
+                                        callback: function(value, index, values) {
+                                            // If we have a specific tickInterval, ensure we only show ticks at those intervals
+                                            if (xAxisConfig.tickInterval) {
+                                                const step = xAxisConfig.tickInterval;
+                                                const min = xAxisConfig.min !== undefined ? xAxisConfig.min : 0;
+                                                const adjustedValue = value - min;
+                                                if (Math.abs(adjustedValue % step) < 0.000001 || Math.abs(adjustedValue % step - step) < 0.000001) {
+                                                    // Round to mitigate floating-point artifacts
+                                                    return Number(value.toFixed(6));
+                                                }
+                                                return '';
+                                            }
+                                            return value;
+                                        }
                                     }
                                 },
                                 y: {
@@ -2030,7 +2064,22 @@
                                     },
                                     ticks: {
                                         stepSize: xAxisConfig.tickInterval,
-                                        color: getTextColor()
+                                        color: getTextColor(),
+                                        // Force Chart.js to respect our stepSize by providing a callback
+                                        callback: function(value, index, values) {
+                                            // If we have a specific tickInterval, ensure we only show ticks at those intervals
+                                            if (xAxisConfig.tickInterval) {
+                                                const step = xAxisConfig.tickInterval;
+                                                const min = xAxisConfig.min !== undefined ? xAxisConfig.min : 0;
+                                                const adjustedValue = value - min;
+                                                if (Math.abs(adjustedValue % step) < 0.000001 || Math.abs(adjustedValue % step - step) < 0.000001) {
+                                                    // Round to mitigate floating-point artifacts
+                                                    return Number(value.toFixed(6));
+                                                }
+                                                return '';
+                                            }
+                                            return value;
+                                        }
                                     }
                                 }
                             },
