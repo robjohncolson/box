@@ -1,0 +1,206 @@
+[
+  {
+    "id": "U4-PC-FRQ-Q01",
+    "type": "free-response",
+    "prompt": "Show all your work. Indicate clearly the methods you use, because you will be scored on the correctness of your methods as well as on the accuracy and completeness of your results and explanations.\n\nAt a financial institution, a fraud detection system identifies suspicious transactions and sends them to a specialist for review. The specialist reviews the transaction, the customer profile, and past history. If there is sufficient evidence of fraud, the transaction is blocked. Based on past history, the specialist blocks 40 percent of the suspicious transactions. Assume a suspicious transaction is independent of other suspicious transactions.\n\n(a) Suppose the specialist will review 136 suspicious transactions in one day. What is the expected number of blocked transactions by the specialist? Show your work.\n\n(b) Suppose the specialist wants to know the number of suspicious transactions that will need to be reviewed until reaching the first transaction that will be blocked.\n(i) Define the random variable of interest and state how the variable is distributed.\n(ii) Determine the expected value of the random variable and interpret the expected value in context.\n\n(c) Consider a batch of 10 randomly selected suspicious transactions. Suppose the specialist wants to know the probability that 2 of the transactions will be blocked.\n(i) Define the random variable of interest and state how the variable is distributed.\n(ii) Find the probability that 2 transactions in the batch will be blocked. Show your work.",
+    "solution": {
+      "parts": [
+        {
+          "partId": "a",
+          "description": "Calculate the expected number of blocked transactions when reviewing 136 suspicious transactions.",
+          "response": "If the fraud specialist reviews 136 transactions in a day, the expected number of blocks by the specialist is \\(np = 136(0.4) = 54.4\\) blocks",
+          "calculations": [
+            "Expected value = n × p",
+            "Expected value = 136 × 0.4 = 54.4 blocks"
+          ]
+        },
+        {
+          "partId": "b-i",
+          "description": "Define the random variable of interest and state how the variable is distributed.",
+          "response": "Let the random variable \\(X\\) represent the number of reviews until the first block is found. \\(X\\) follows a geometric distribution."
+        },
+        {
+          "partId": "b-ii",
+          "description": "Determine the expected value of the random variable and interpret the expected value in context.",
+          "response": "The expected value of \\(X\\) is its mean. The mean of a geometric distribution is given by the formula \\(\\frac{1}{p}\\), where \\(p\\) is the probability of success. In this case \\(p = 0.4\\) and \\(\\frac{1}{0.4} = 2.5\\). The specialist can expect to review 2.5 transactions per day, on average, until finding the first transaction that will be blocked.",
+          "calculations": [
+            "Mean of geometric distribution = 1/p",
+            "Mean = 1/0.4 = 2.5 transactions"
+          ]
+        },
+        {
+          "partId": "c-i", 
+          "description": "Define the random variable of interest and state how the variable is distributed.",
+          "response": "Let the random variable \\(Y\\) represent the number of blocked transactions in a batch of 10 suspicious transactions. \\(Y\\) follows a binomial distribution."
+        },
+        {
+          "partId": "c-ii",
+          "description": "Find the probability that 2 transactions in the batch will be blocked. Show your work.",
+          "response": "The probability that \\(Y\\) will equal 2 is given by \\(P(Y = 2) = \\binom{10}{2}(0.4)^2(0.6)^8 ≈ 0.1209\\).",
+          "calculations": [
+            "P(Y = 2) = C(10,2) × (0.4)² × (0.6)⁸",
+            "P(Y = 2) = 45 × 0.16 × 0.01679616",
+            "P(Y = 2) ≈ 0.1209"
+          ]
+        }
+      ],
+      "scoring": {
+        "totalPoints": 4,
+        "rubric": [
+          {
+            "part": "a",
+            "maxPoints": 1,
+            "criteria": [
+              "Correctly calculates the expected 54.4 fraud blocks in context with supporting calculations and appropriate units"
+            ],
+            "scoringNotes": "Essentially correct (E) if the response correctly calculates the expected 54.4 fraud blocks in context with supporting calculations and appropriate units. Partially correct (P) if the response provides an incorrect value for the expected number of fraud blocks in context with supporting calculations and appropriate units; OR if the response provides the correct value for the expected number of fraud blocks without context or supporting calculations or appropriate units. Incorrect (I) if the response does not satisfy the criteria for E or P. Note: The response cannot earn a score of E if the expected value is rounded to an integer value of 54 blocks or 55 blocks."
+          },
+          {
+            "part": "b",
+            "maxPoints": 1,
+            "criteria": [
+              "Defines a variable as representing the number of reviews until the first block is found (any variable name can be used) in part (b-i)",
+              "Identifies the variable as geometric in part (b-i)",
+              "Calculates the correct value for the mean, 1/0.4 = 2.5 in part (b-ii)",
+              "Interprets the value of 2.5 in context in part (b-ii)"
+            ],
+            "scoringNotes": "Essentially correct (E) if the response satisfies all four components. Partially correct (P) if the response satisfies only two or three of the four components. Incorrect (I) if the response does not satisfy the criteria for E or P."
+          },
+          {
+            "part": "c",
+            "maxPoints": 1,
+            "criteria": [
+              "Defines a variable as representing the number of blocked transactions in a batch of 10 suspicious transactions (any variable name can be used) in part (c-i)",
+              "Identifies the variable as binomial in part (c-i)",
+              "Calculates a reasonable probability near 0.1209 in part (c-ii) with supporting work"
+            ],
+            "scoringNotes": "Essentially correct (E) if the response satisfies all three components. Partially correct (P) if the response satisfies only two of the three components. Incorrect (I) if the response does not satisfy the criteria for E or P."
+          }
+        ]
+      }
+    },
+    "reasoning": "This problem tests understanding of expected values, geometric distributions, and binomial distributions. Part (a) uses the basic expected value formula for a binomial situation (np). Part (b) requires recognizing that waiting for the first success follows a geometric distribution with mean 1/p. Part (c) involves applying the binomial probability formula for exactly k successes in n trials."
+  },
+  {
+    "id": "U4-PC-FRQ-Q02",
+    "type": "free-response",
+    "prompt": "Show all your work. Indicate clearly the methods you use, because you will be scored on the correctness of your methods as well as on the accuracy and completeness of your results and explanations.\n\nMiguel is a golfer, and he plays on the same course each week. The following table shows the probability distribution for his score on one particular hole, known as the Water Hole.\n\nLet the random variable \\(X\\) represent Miguel's score on the Water Hole. In golf, lower scores are better.\n\n(a) Suppose one of Miguel's scores from the Water Hole is selected at random. What is the probability that Miguel's score on the Water Hole is at most 5? Show your work.\n\n(b) Calculate and interpret the expected value of \\(X\\). Show your work.\n\nThe name of the Water Hole comes from the small lake that lies between the tee, where the ball is first hit, and the hole. Miguel has two approaches to hitting the ball from the tee, the short hit and the long hit. The short hit results in the ball landing before the lake. The values of \\(X\\) in the table are based on the short hit. The long hit, if successful, results in the ball traveling over the lake and landing on the other side.\n\nA potential issue with the long hit is that the ball might land in the water, which is not a good outcome. Miguel thinks that if the long hit is successful, his expected value improves to 4.2. However, if the long hit fails and the ball lands in the water, his expected value would be worse and increases to 5.4.\n\n(c) Suppose the probability of a successful long hit is 0.4. Which approach, the short hit or the long hit, is better in terms of improving the expected value of the score? Justify your answer.\n\n(d) Let \\(p\\) represent the probability of a successful long hit. What values of \\(p\\) will make the long hit better than the short hit in terms of improving the expected value of the score? Explain your reasoning.",
+    "attachments": {
+      "table": [
+        ["Score", "3", "4", "5", "6", "7"],
+        ["Probability", "0.15", "0.40", "0.25", "0.15", "0.05"]
+      ],
+      "images": [
+        {
+          "image": "assets/pngs/unit4/u4_pc_frq_q2_b.png",
+          "imageAlt": "Golf course diagram showing two approaches from tee to hole: a short hit that lands before a lake, and a long hit that travels over the lake",
+          "imageCaption": "Diagram showing Miguel's two approaches to the Water Hole: short hit (lands before lake) and long hit (travels over lake)"
+        }
+      ]
+    },
+    "solution": {
+      "parts": [
+        {
+          "partId": "a",
+          "description": "Calculate the probability that Miguel's score on the Water Hole is at most 5.",
+          "response": "\\(P(X ≤ 5) = 0.15 + 0.40 + 0.25 = 0.80\\)",
+          "calculations": [
+            "P(X ≤ 5) = P(X = 3) + P(X = 4) + P(X = 5)",
+            "P(X ≤ 5) = 0.15 + 0.40 + 0.25 = 0.80"
+          ]
+        },
+        {
+          "partId": "b",
+          "description": "Calculate and interpret the expected value of X.",
+          "response": "The expected value of \\(X\\) is the mean of \\(X\\). The expected value of \\(X\\) equals, 3 times 0.15, plus, 4 times 0.40, plus, 5 times 0.25, plus, 6 times 0.15, plus, 7 times 0.05, which equals 4.55. \\(E(X) = 3(0.15) + 4(0.40) + 5(0.25) + 6(0.15) + 7(0.05) = 4.55\\). If Miguel plays the hole many times, his average score will be about 4.55.",
+          "calculations": [
+            "E(X) = Σ(x × P(x))",
+            "E(X) = 3(0.15) + 4(0.40) + 5(0.25) + 6(0.15) + 7(0.05)",
+            "E(X) = 0.45 + 1.60 + 1.25 + 0.90 + 0.35 = 4.55"
+          ]
+        },
+        {
+          "partId": "c",
+          "description": "Determine which approach is better when the probability of a successful long hit is 0.4.",
+          "response": "The new expected values each have a probability, as shown in the table. The overall expected value for the long hit is \\(4.2(0.40) + 5.4(0.60) = 4.92\\), which is greater than 4.55. Because lower scores are better in golf, Miguel should use the short hit.",
+          "calculations": [
+            "Expected value for long hit = 4.2(0.4) + 5.4(0.6)",
+            "Expected value for long hit = 1.68 + 3.24 = 4.92",
+            "Since 4.92 > 4.55, the short hit is better"
+          ],
+          "attachments": {
+            "table": [
+              ["E(X)", "4.2", "5.4"],
+              ["Probability", "0.40", "0.60"]
+            ]
+          }
+        },
+        {
+          "partId": "d",
+          "description": "Determine what values of p will make the long hit better than the short hit.",
+          "response": "The overall expected value for the long hit is \\(4.2p + 5.4(1 - p)\\). For the long hit to be a better approach, the expected value must be less than 4.55, or \\(4.2p + 5.4(1 - p) < 4.55\\). Solving the inequality for \\(p\\) gives \\(p > 0.708\\). For the long hit to be a better approach, Miguel needs a probability greater than 0.708 for a successful long hit.",
+          "calculations": [
+            "Expected value for long hit = 4.2p + 5.4(1 - p)",
+            "4.2p + 5.4(1 - p) < 4.55",
+            "4.2p + 5.4 - 5.4p < 4.55",
+            "-1.2p + 5.4 < 4.55",
+            "-1.2p < -0.85",
+            "p > 0.708"
+          ],
+          "attachments": {
+            "table": [
+              ["E(X)", "4.2", "5.4"],
+              ["Probability", "p", "1-p"]
+            ]
+          }
+        }
+      ],
+      "scoring": {
+        "totalPoints": 4,
+        "rubric": [
+          {
+            "part": "a",
+            "maxPoints": 1,
+            "criteria": [
+              "Gives the correct answer of 0.80 and shows work"
+            ],
+            "scoringNotes": "Essentially correct (E) if the response gives the correct answer of 0.80 and shows work. Partially correct (P) if the response gives the correct answer but does not show work; OR if the response calculates P(X < 5) = 0.55 or P(X ≥ 5) = 0.45 or P(X > 5) = 0.20 with work shown. Incorrect (I) if the response does not meet the criteria for E or P."
+          },
+          {
+            "part": "b",
+            "maxPoints": 1,
+            "criteria": [
+              "Correctly calculates the expected value of 4.55",
+              "Shows correct work for the calculation",
+              "Includes the idea of many trials and context in the interpretation",
+              "Includes the concept of mean (or average) in the interpretation"
+            ],
+            "scoringNotes": "Essentially correct (E) if the response satisfies all four components. Partially correct (P) if the response satisfies only two or three of the four components. Incorrect (I) if the response does not meet the criteria for E or P. Note: If the calculation of the expected value is incorrect, components 3 and 4 can still be satisfied using the value calculated in part (b)."
+          },
+          {
+            "part": "c",
+            "maxPoints": 1,
+            "criteria": [
+              "Correctly calculates the expected value for the long hit as 4.92",
+              "Shows work for the calculation",
+              "Concludes that the long hit is not the better approach because 4.92 > 4.55"
+            ],
+            "scoringNotes": "Essentially correct (E) if the response includes all three components. Partially correct (P) if the response satisfies only two of the three components. Incorrect (I) if the response does not meet the criteria for E or P. Note: If the calculation of the expected value was incorrect in part (b) or part (c) or both, component 3 can still be satisfied if a correct decision is made based on a comparison of the expected values in parts (b) and (c)."
+          },
+          {
+            "part": "d",
+            "maxPoints": 1,
+            "criteria": [
+              "Correctly sets up an expression for the expected value in terms of p",
+              "States that the expected value from component 1 should be less than 4.55",
+              "Correctly calculates the value of p",
+              "States the answer as an inequality"
+            ],
+            "scoringNotes": "Essentially correct (E) if the response satisfies all four components. Partially correct (P) if the response satisfies only two or three of the four components. Incorrect (I) if the response does not meet the criteria for E or P. Note: If the calculation of the expected value was incorrect in part (b), components 2 and 3 can still be satisfied if the values are consistent with the expected value found in part (b)."
+          }
+        ]
+      }
+    },
+    "reasoning": "This problem tests understanding of probability calculations, expected value computation and interpretation, and decision-making using expected values. It involves discrete probability distributions, weighted averages, and solving inequalities in a statistical context. The golf scenario provides a real-world application where students must compare strategies using expected value analysis."
+  }
+]
