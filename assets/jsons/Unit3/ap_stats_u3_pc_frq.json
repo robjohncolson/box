@@ -1,0 +1,147 @@
+[
+  {
+    "id": "U3-PC-FRQ-Q01",
+    "type": "free-response",
+    "prompt": "Researchers are investigating whether people who exercise with a training partner have a greater increase, on average, in targeted exercise intensity compared with people who exercise alone. Two methods of collecting data have been proposed.\n\nMethod I: Recruit volunteers who are willing to participate. Randomly assign each participant to exercise with a training partner or to exercise alone.\n\nMethod II: Select a random sample of people from all the people who exercise at a community fitness center. Ask each person in the sample whether they use a training partner, and use the response to create the two groups.\n\n(a) For each method, the researchers will record the change in targeted exercise intensity for each person in the investigation. They will compare the mean change in intensity between those who exercise with a training partner and those who do not.\n\n(i) Describe the population of generalization if method I is used. Explain your answer.\n\n(ii) Describe the population of generalization if method II is used. Explain your answer.\n\n(b) Suppose the investigation produces a result that is statistically significant using both methods. What can be concluded if method I is used that cannot be concluded if method II is used? Explain your answer.",
+    "solution": {
+      "parts": [
+        {
+          "partId": "a-i",
+          "description": "Describe the population of generalization if method I is used. Explain your answer.",
+          "response": "For method I, the results of the study apply to the volunteers and can only be generalized to the population of all people who would volunteer to participate in an exercise intensity study, because there is not random selection from a population of interest."
+        },
+        {
+          "partId": "a-ii", 
+          "description": "Describe the population of generalization if method II is used. Explain your answer.",
+          "response": "For method II, the results of the study can be generalized to all people who exercise at the community fitness center, because the sample was selected at random from all the people who exercise at a community fitness center."
+        },
+        {
+          "partId": "b",
+          "description": "Suppose the investigation produces a result that is statistically significant using both methods. What can be concluded if method I is used that cannot be concluded if method II is used? Explain your answer.",
+          "response": "With method I, the researchers will be able to conclude that exercising with a training partner causes a greater increase in the change in targeted exercise intensity, on average, than exercising alone does. This cause-and-effect conclusion can be made with method I because each volunteer was randomly assigned to one of two treatments. With method II, the participants are not randomly assigned to the treatments. Therefore, a cause-and-effect conclusion is not appropriate."
+        }
+      ],
+      "scoring": {
+        "totalPoints": 4,
+        "rubric": [
+          {
+            "part": "a",
+            "maxPoints": 2,
+            "criteria": [
+              "The correct population for method I",
+              "The correct justification for method I", 
+              "The correct population for method II",
+              "The correct justification for method II"
+            ],
+            "scoringNotes": "Essentially correct (E) if the response contains all four components. Partially correct (P) if the response contains only two or three of the four components. Incorrect (I) if the response does not satisfy the criteria for E or P."
+          },
+          {
+            "part": "b",
+            "maxPoints": 2,
+            "criteria": [
+              "The cause-and-effect conclusion is correctly described in the context of the problem, with justification based on random assignment of treatments"
+            ],
+            "scoringNotes": "Essentially correct (E) if the cause-and-effect conclusion is correctly described in the context of the problem, with justification based on random assignment of treatments. Partially correct (P) if the response indicates that a cause-and-effect conclusion is possible because randomization of treatments was used, but the response does not put the solution in the context of this problem, OR if the response indicates that a cause-and-effect conclusion is possible but does not mention random assignment as the justification. Incorrect (I) if the response does not satisfy the criteria for E or P."
+          }
+        ]
+      }
+    },
+    "reasoning": "This question tests students' understanding of experimental design concepts, specifically the difference between experiments and observational studies. Method I is an experiment because it uses random assignment of treatments, allowing for cause-and-effect conclusions. Method II is an observational study because participants self-select their groups, only allowing for association conclusions. The population of generalization depends on how the sample was selected - Method I can only generalize to volunteers willing to participate, while Method II can generalize to all people at the fitness center due to random sampling."
+  },
+  {
+    "id": "U3-PC-FRQ-Q02",
+    "type": "free-response", 
+    "prompt": "A survey was given to a random sample of 400 people living in a certain community. The people were asked whether they supported the construction of walking trails in the community park. The results are shown in the following table.\n\n| Response | Frequency |\n|----------|----------|\n| Yes, support | 210 |\n| No, do not support | 90 |\n| No opinion | 100 |\n| Total | 400 |\n\n(a) Complete the following segmented bar chart to show the relative frequencies of the results.\n\nA follow-up study will be conducted with a sample of 20 people from the 300 people who responded yes (support) and no (do not support). Two sampling methods have been proposed: a simple random sample and a stratified random sample with the survey response as strata.\n\n(b) If the stratified random sample is used, what is the number of people that will be selected from those who responded yes? Support your answer by showing your work.\n\n(c) Describe a statistical advantage of using the stratified random sample instead of the simple random sample for the follow-up study.",
+    "attachments": {
+      "table": [
+        ["Response", "Frequency"],
+        ["Yes, support", "210"],
+        ["No, do not support", "90"], 
+        ["No opinion", "100"],
+        ["Total", "400"]
+      ]
+    },
+    "solution": {
+      "parts": [
+        {
+          "partId": "a",
+          "description": "Complete the following segmented bar chart to show the relative frequencies of the results.",
+          "response": "The segmented bar chart should show three segments with the following relative frequencies: 'Yes, support' = 210/400 = 0.525 (52.5%), 'No, do not support' = 90/400 = 0.225 (22.5%), and 'No opinion' = 100/400 = 0.25 (25%).",
+          "attachments": {
+            "chartType": "bar",
+            "xLabels": ["Survey Response"],
+            "series": [
+              {"name": "No opinion", "values": [0.25]},
+              {"name": "No, do not support", "values": [0.225]},
+              {"name": "Yes, support", "values": [0.525]}
+            ],
+            "chartConfig": {
+              "stacked": true,
+              "yAxis": {
+                "min": 0,
+                "max": 1.0,
+                "tickInterval": 0.1,
+                "title": "Relative Frequency"
+              },
+              "xAxis": {
+                "title": "Survey Response"
+              },
+              "gridLines": {
+                "horizontal": true,
+                "vertical": false
+              },
+              "description": "Segmented bar chart showing relative frequencies of survey responses about walking trail construction"
+            }
+          }
+        },
+        {
+          "partId": "b",
+          "description": "If the stratified random sample is used, what is the number of people that will be selected from those who responded yes? Support your answer by showing your work.",
+          "response": "The proportion of adults from the sample of 300 adults who responded to the survey and indicated they support the construction of the walking trails is \\(\\frac{210}{300} = 0.7\\). Therefore, to ensure that each adult has an equal chance of being selected for the in-depth study, 14 adults must be selected from those who responded yes, because \\((0.7)(20) = 14\\).",
+          "calculations": [
+            "Total people who responded yes or no: 210 + 90 = 300",
+            "Proportion who responded yes: 210/300 = 0.7",
+            "Sample size for follow-up: 20",
+            "Number from 'yes' group: 0.7 × 20 = 14"
+          ]
+        },
+        {
+          "partId": "c", 
+          "description": "Describe a statistical advantage of using the stratified random sample instead of the simple random sample for the follow-up study.",
+          "response": "A statistical advantage of using the stratified random sample instead of the simple random sample is that it allows for representation of the two survey responses to be in identical proportion to the responses of the 300 people who responded yes (support) and no (do not support). A simple random sample may produce a sample that will not be in identical proportion to the responses of the 300 people who responded yes (support) and no (do not support). For example, a simple random sample may produce a sample of 20 adults who responded the same way."
+        }
+      ],
+      "scoring": {
+        "totalPoints": 4,
+        "rubric": [
+          {
+            "part": "a",
+            "maxPoints": 1,
+            "criteria": [
+              "Lines drawn at appropriate places in the graph",
+              "Appropriate labels provided for segments in the graph"
+            ],
+            "scoringNotes": "Essentially correct (E) if the response includes both components. Partially correct (P) if the response includes only one of the two components. Incorrect (I) if the response does not satisfy the criteria for E or P."
+          },
+          {
+            "part": "b", 
+            "maxPoints": 2,
+            "criteria": [
+              "Response indicates the correct value (14) AND work to support the calculation"
+            ],
+            "scoringNotes": "Essentially correct (E) if the response indicates the correct value AND work to support the calculation. Partially correct (P) if the response indicates the correct value but uses weak work to support the calculation. Incorrect (I) if the response does not indicate a correct value."
+          },
+          {
+            "part": "c",
+            "maxPoints": 1, 
+            "criteria": [
+              "Response provides a reasonable statistical advantage of using the stratified random sample relative to the simple random sample in the context of potential variability across survey responses"
+            ],
+            "scoringNotes": "Essentially correct (E) if the response provides a reasonable statistical advantage of using the stratified random sample relative to the simple random sample in the context of potential variability across survey responses. Partially correct (P) if the response indicates that stratification allows for better representation in the sample but DOES NOT address variation across responses. Incorrect (I) if the response does not satisfy the criteria for E or P, including giving only vague statements such as 'data are more accurate' or 'stratified random sampling is better'."
+          }
+        ]
+      }
+    },
+    "reasoning": "This question tests students' understanding of graphical representations of categorical data and sampling methods. Part (a) requires creating a segmented bar chart showing relative frequencies. Part (b) tests proportional allocation in stratified sampling - the sample must maintain the same proportion as the population (70% yes, 30% no). Part (c) examines the key advantage of stratified sampling: guaranteed representation of all strata in the correct proportions, reducing sampling variability compared to simple random sampling which might over- or under-represent certain groups by chance."
+  }
+]

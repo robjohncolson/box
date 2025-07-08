@@ -1143,13 +1143,21 @@
                 const ctx = canvas.getContext('2d');
                 
                 if (chartData.chartType === 'bar' || chartData.chartType === 'histogram') {
-                    const datasets = chartData.series.map((series, index) => ({
-                        label: series.name,
-                        data: series.values,
-                        backgroundColor: generateChartColors(series.values.length)[index] || '#36A2EB',
-                        borderColor: generateChartColors(series.values.length)[index] || '#36A2EB',
-                        borderWidth: 1
-                    }));
+                    // Ensure every segment in a stacked / segmented bar gets its own visually distinct color
+                    // 1. Compute one shared palette sized to the total number of series.
+                    // 2. Pick the palette entry matching the series index (wrap-around safety for very large N).
+                    const colorPalette = generateChartColors(chartData.series.length);
+
+                    const datasets = chartData.series.map((series, index) => {
+                        const color = colorPalette[index % colorPalette.length] || '#36A2EB';
+                        return {
+                            label: series.name,
+                            data: series.values,
+                            backgroundColor: color,
+                            borderColor: color,
+                            borderWidth: 1
+                        };
+                    });
 
                     // Use chartConfig if available, otherwise use defaults
                     const yAxisConfig = config.yAxis || {};
