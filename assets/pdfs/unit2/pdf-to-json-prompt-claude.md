@@ -325,6 +325,25 @@ You are tasked with converting AP Statistics quiz questions from uploaded PDF do
       "description": "Normal distribution curve with right-tail shaded to represent P(residual > 8 cm)"
     }
     
+    // For number line diagrams (interval ticks along a single axis):
+    "chartType": "numberline",
+    "ticks": [
+      { "x": -2.5, "label": "a", "drawTick": false },     // segment label (no tick)
+      { "x": -2,   "bottomLabel": "\u0305x-2s" },          // tick with value label below line
+      { "x": -1.5, "label": "b", "drawTick": false },
+      { "x": -1,   "bottomLabel": "\u0305x-s" },
+      { "x":  0,   "label": "c", "drawTick": false },      // middle segment label
+      { "x":  1,   "bottomLabel": "\u0305x+s" },
+      { "x":  1.5, "label": "d", "drawTick": false },
+      { "x":  2,   "bottomLabel": "\u0305x+2s" },
+      { "x":  2.5, "label": "e", "drawTick": false }
+    ],
+    //  • "label" / "topLabel": text above the baseline
+    //  • "bottomLabel" / "valueLabel": text below the baseline (e.g., \u0305x ± ks)
+    //  • "drawTick": false —> suppresses the vertical tick mark at that x
+    "xAxis": { "min": -3, "max": 3 },
+    "chartConfig": { "description": "Number line with segment labels above and tick value labels below" }
+    
     "choices": [
       { "key": "A", "value": "Choice A text" },
       { "key": "B", "value": "Choice B text" },
@@ -638,6 +657,7 @@ Example:
 - **Look for stacked dots** - identify dotplots showing single variable distributions vs scatter plots showing two-variable relationships
 - **Identify boxplots** - look for rectangular boxes with whiskers, median lines, and possible outlier points
 - **Examine grid lines carefully** - note whether horizontal and/or vertical grid lines are present
+- **Enable data labels when shown in the PDF** - If the reference image prints the numeric value directly on top of each bar (bar chart or histogram) or next to individual points (scatter plot or dotplot), add `"showPointLabels": true` inside the `chartConfig`. This triggers the renderer's built-in Chart.js DataLabels plugin so the values display exactly as they do in the PDF.
 - **For stacked bar charts** - when bars show segmented data (like Yes/No responses or On-time/Delayed flights), add `"stacked": true` to chartConfig
 - **For histograms, observe x-axis labels precisely**:
   - If PDF shows "0-10, 10-20, 20-30" → use range labels with `labelType: "range"`
@@ -697,10 +717,4 @@ When converting boxplots from PDF images, follow these steps:
 - `outliers: [0.4, 12.0]`
 
 
-Finally, nomenclature of filenames are subject_unit#_lesson#_type, for example "ap_stats_u2_l5_quiz.json" is for ap stats, unit 2, lesson 5, quiz
-
-**Image File Naming Convention:**
-- Question images: `u{unit}_{lesson}_q{question}.png` (e.g., `u3_l3_q1.png`)
-- Solution images: `u{unit}_{lesson}_q{question}_solution.png` (e.g., `u3_l3_q1_solution.png`)
-- Multiple images for same question: `u{unit}_{lesson}_q{question}a.png`, `u{unit}_{lesson}_q{question}b.png`, etc.
-- Images are stored in `assets/pngs/unit{unit}/` directory
+Finally, nomenclature of filenames are subject_unit#_lesson#_type, for

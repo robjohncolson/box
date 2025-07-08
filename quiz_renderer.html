@@ -2327,6 +2327,137 @@
                         }
                     });
                     chartInstances.push(chart);
+                } else if (chartData.chartType === 'numberline') {
+                    // --------------------------------------------------
+                    // Custom number line (baseline with ticks & labels)
+                    // --------------------------------------------------
+                    const ticksData = Array.isArray(chartData.ticks) && chartData.ticks.length > 0 ? chartData.ticks : [
+                        { x: -2, label: 'a' },
+                        { x: -1, label: 'b' },
+                        { x:  0, label: 'c' },
+                        { x:  1, label: 'd' },
+                        { x:  2, label: 'e' }
+                    ];
+
+                    // Determine horizontal span (add small margin so arrow-heads don't clip)
+                    const xs = ticksData.map(t => t.x);
+                    const minX = Math.min(...xs) - 0.5;
+                    const maxX = Math.max(...xs) + 0.5;
+
+                    // Build baseline dataset (straight line at y = 0)
+                    const baselineDS = {
+                        label: 'Number Line',
+                        type: 'line',
+                        data: [ { x: minX, y: 0 }, { x: maxX, y: 0 } ],
+                        borderColor: getTextColor(),
+                        borderWidth: 2,
+                        pointRadius: 0,
+                        fill: false,
+                        tension: 0
+                    };
+
+                    // Inline plugin to draw ticks, labels, and arrow-heads
+                    const numberLinePlugin = {
+                        id: 'numberLinePlugin',
+                        afterDraw: (chart) => {
+                            const ctx = chart.ctx;
+                            const xScale = chart.scales.x;
+                            const yScale = chart.scales.y;
+                            const y0 = yScale.getPixelForValue(0);
+
+                            ctx.save();
+                            ctx.strokeStyle = getTextColor();
+                            ctx.fillStyle   = getTextColor();
+                            ctx.lineWidth   = 2;
+
+                            // Arrow-heads
+                            const arrowSize = 6;
+                            const leftPx  = xScale.getPixelForValue(minX);
+                            const rightPx = xScale.getPixelForValue(maxX);
+
+                            // Left arrow
+                            ctx.beginPath();
+                            ctx.moveTo(leftPx + arrowSize, y0 - arrowSize);
+                            ctx.lineTo(leftPx, y0);
+                            ctx.lineTo(leftPx + arrowSize, y0 + arrowSize);
+                            ctx.closePath();
+                            ctx.fill();
+
+                            // Right arrow
+                            ctx.beginPath();
+                            ctx.moveTo(rightPx - arrowSize, y0 - arrowSize);
+                            ctx.lineTo(rightPx, y0);
+                            ctx.lineTo(rightPx - arrowSize, y0 + arrowSize);
+                            ctx.closePath();
+                            ctx.fill();
+
+                            // Ticks & labels
+                            const tickHeight = 12; // increased for visibility
+                            ctx.font = '14px sans-serif';
+                            ctx.textAlign = 'center';
+                            ticksData.forEach(tk => {
+                                const xPx = xScale.getPixelForValue(tk.x);
+                                // Tick mark
+                                if (tk.drawTick !== false) {
+                                  ctx.beginPath();
+                                  ctx.moveTo(xPx, y0 - tickHeight);
+                                  ctx.lineTo(xPx, y0 + tickHeight);
+                                  ctx.stroke();
+                                }
+                                // Top label
+                                if (tk.label || tk.topLabel) {
+                                  ctx.textBaseline = 'bottom';
+                                  ctx.fillText(tk.label || tk.topLabel, xPx, y0 - tickHeight - 4);
+                                }
+                                // Bottom label
+                                if (tk.bottomLabel || tk.valueLabel) {
+                                  ctx.textBaseline = 'top';
+                                  ctx.fillText(tk.bottomLabel || tk.valueLabel, xPx, y0 + tickHeight + 4);
+                                }
+                            });
+                            ctx.restore();
+                        }
+                    };
+
+                    const xAxisCfg = chartData.xAxis || {};
+
+                    const chart = new Chart(ctx, {
+                        type: 'line',
+                        data: { datasets: [baselineDS] },
+                        options: {
+                            responsive: true,
+                            maintainAspectRatio: false,
+                            animation: false,
+                            scales: {
+                                x: {
+                                    type: 'linear',
+                                    min: xAxisCfg.min !== undefined ? xAxisCfg.min : minX,
+                                    max: xAxisCfg.max !== undefined ? xAxisCfg.max : maxX,
+                                    ticks: {
+                                        display: false
+                                    },
+                                    grid: { display: false },
+                                    title: {
+                                        display: !!xAxisCfg.title,
+                                        text: xAxisCfg.title || '',
+                                        color: getTextColor()
+                                    }
+                                },
+                                y: {
+                                    min: -1,
+                                    max: 1,
+                                    display: false,
+                                    grid: { display: false }
+                                }
+                            },
+                            plugins: {
+                                legend: { display: false },
+                                datalabels: { display: false }
+                            }
+                        },
+                        plugins: [numberLinePlugin]
+                    });
+                    chartInstances.push(chart);
                 }
             }, 100);
 
