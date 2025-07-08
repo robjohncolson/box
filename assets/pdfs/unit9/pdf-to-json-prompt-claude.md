@@ -717,4 +717,10 @@ When converting boxplots from PDF images, follow these steps:
 - `outliers: [0.4, 12.0]`
 
 
-Finally, nomenclature of filenames are subject_unit#_lesson#_type, for
+Finally, nomenclature of filenames are subject_unit#_lesson#_type, for example "ap_stats_u2_l5_quiz.json" is for ap stats, unit 2, lesson 5, quiz
+
+**Image File Naming Convention:**
+- Question images: `u{unit}_{lesson}_q{question}.png` (e.g., `u3_l3_q1.png`)
+- Solution images: `u{unit}_{lesson}_q{question}_solution.png` (e.g., `u3_l3_q1_solution.png`)
+- Multiple images for same question: `u{unit}_{lesson}_q{question}a.png`, `u{unit}_{lesson}_q{question}b.png`, etc.
+- Images are stored in `assets/pngs/unit{unit}/` directory
