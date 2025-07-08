@@ -1,0 +1,348 @@
+[
+  {
+    "id": "U4-PC-MCQ-B-Q01",
+    "type": "multiple-choice",
+    "prompt": "Given independent events \\(A\\) and \\(B\\) such that \\(P(A) = 0.3\\) and \\(P(B) = 0.5\\), which of the following is a correct statement?",
+    "choices": [
+      { "key": "A", "value": "\\(P(A|B) = 0\\)" },
+      { "key": "B", "value": "\\(P(B|A) = 0.3\\)" },
+      { "key": "C", "value": "\\(P(A|B) = 0.5\\)" },
+      { "key": "D", "value": "\\(P(A \\cup B) = 0.65\\)" },
+      { "key": "E", "value": "\\(P(A \\cup B) = 0.80\\)" }
+    ],
+    "answerKey": "D",
+    "reasoning": "Since events A and B are independent, \\(P(A \\cap B) = [P(A)][P(B)] = (0.3)(0.5) = 0.15\\). Then \\(P(A \\cup B) = P(A) + P(B) - P(A \\cap B) = 0.3 + 0.5 - 0.15 = 0.65\\)."
+  },
+  {
+    "id": "U4-PC-MCQ-B-Q02",
+    "type": "multiple-choice",
+    "prompt": "While investigating customer complaints, the customer relations department of Sonic Air found that 15 percent of the flights arrive early and 25 percent arrive on time. Additionally, 65 percent of the flights are overbooked, and 72 percent are late or not overbooked. One Sonic Air flight will be selected at random. What is the probability that the flight selected will be late and not overbooked?",
+    "choices": [
+      { "key": "A", "value": "0.21" },
+      { "key": "B", "value": "0.23" },
+      { "key": "C", "value": "0.26" },
+      { "key": "D", "value": "0.39" },
+      { "key": "E", "value": "0.72" }
+    ],
+    "answerKey": "B",
+    "reasoning": "If \\(B\\) represents the event that the selected flight is overbooked and \\(L\\) represents the event that the selected flight is late, then \\(P(L \\cup B^c)\\) is the probability that the flight is late or not overbooked, and \\(P(L \\cup B^c) = P(L) + P(B^c) - P(L \\cap B^c)\\). Thus, \\(0.72 = 0.60 + 0.35 - P(L \\cap B^c)\\), so the probability that the flight is late and not overbooked is \\(P(L \\cap B^c) = 0.23\\)."
+  },
+  {
+    "id": "U4-PC-MCQ-B-Q03",
+    "type": "multiple-choice",
+    "prompt": "A hockey all-star game has the Eastern Division all-stars play against the Western Division all-stars. On the Eastern Division team there are 8 United States-born players, 14 Canadian-born players, and 2 European-born players. On the Western Division team there are 12 United States-born players, 8 Canadian-born players, and 4 European-born players. If one player is selected at random from the Eastern Division team and one player is selected at random from the Western Division team, what is the probability that neither player will be a Canadian-born player?",
+    "choices": [
+      { "key": "A", "value": "\\(\\frac{112}{576}\\)" },
+      { "key": "B", "value": "\\(\\frac{160}{576}\\)" },
+      { "key": "C", "value": "\\(\\frac{676}{2304}\\)" },
+      { "key": "D", "value": "\\(\\frac{4}{9}\\)" },
+      { "key": "E", "value": "\\(\\frac{464}{576}\\)" }
+    ],
+    "answerKey": "B",
+    "reasoning": "If \\(E\\) represents the event that a player selected from the Eastern team is Canadian born and \\(W\\) represents the event that a player selected from the Western team is Canadian born, then since \\(E\\) and \\(W\\) are independent, \\(P(E^c \\cap W^c) = [P(E^c)][P(W^c)] = \\left(\\frac{10}{24}\\right)\\left(\\frac{16}{24}\\right) = \\frac{160}{576}\\)."
+  },
+  {
+    "id": "U4-PC-MCQ-B-Q04",
+    "type": "multiple-choice",
+    "prompt": "Let random variable \\(Q\\) represent the number of employees who work at a certain restaurant on a given day. The following table shows the probability distribution of the random variable \\(Q\\).",
+    "attachments": {
+      "table": [
+        ["Number of Employees", "Probability"],
+        ["20", "0.1"],
+        ["21", "0.1"],
+        ["22", "0.1"],
+        ["23", "0.4"],
+        ["24", "0.3"]
+      ]
+    },
+    "choices": [
+      { "key": "A", "value": "The most likely number of employees who work on a given day is 24." },
+      { "key": "B", "value": "The mean number of employees who work on a given day is equal to the median number of employees who work on a given day." },
+      { "key": "C", "value": "The mean number of employees who work on a given day is greater than the median number of employees who work on a given day." },
+      { "key": "D", "value": "The mean number of employees who work on a given day is less than the median number of employees who work on a given day." },
+      { "key": "E", "value": "On a given day, the number of employees who work at the restaurant occurs with equal probabilities." }
+    ],
+    "answerKey": "D",
+    "reasoning": "This claim is best supported by the table because the distribution of random variable \\(Q\\) is skewed to the left (toward lower numbers of employees). In distributions that are skewed to the left, the mean is less than the median."
+  },
+  {
+    "id": "U4-PC-MCQ-B-Q05",
+    "type": "multiple-choice",
+    "prompt": "Let random variable \\(S\\) represent the age of the attendees at a local concert. The following histogram shows the probability distribution of the random variable \\(S\\). Alfonso claims that the distribution of \\(S\\) is symmetric with a mean age of 36. Does the histogram support Alfonso's claim?",
+    "attachments": {
+      "chartType": "histogram",
+      "xLabels": ["32", "33", "34", "35", "36", "37", "38", "39", "40"],
+      "series": [
+        {"name": "Probability", "values": [0.02, 0.04, 0.05, 0.10, 0.12, 0.15, 0.25, 0.20, 0.08]}
+      ],
+      "chartConfig": {
+        "yAxis": {
+          "min": 0.00,
+          "max": 0.25,
+          "tickInterval": 0.05,
+          "title": "Probability"
+        },
+        "xAxis": {
+          "title": "Age of attendee (years)",
+          "labelType": "upperBound"
+        },
+        "gridLines": {
+          "horizontal": false,
+          "vertical": false
+        },
+        "description": "Histogram showing probability distribution of concert attendee ages"
+      }
+    },
+    "choices": [
+      { "key": "A", "value": "Yes, the distribution is symmetric with a mean age of 36." },
+      { "key": "B", "value": "No, the distribution is skewed to the right with a mean age of 36." },
+      { "key": "C", "value": "No, the distribution is skewed to the right with a mean age greater than 36." },
+      { "key": "D", "value": "No, the distribution is skewed to the left with a mean age of 36." },
+      { "key": "E", "value": "No, the distribution is skewed to the left with a mean age greater than 36." }
+    ],
+    "answerKey": "E",
+    "reasoning": "Alfonso's claim is not supported. The histogram displays a longer tail on the left, indicating a left skew. There is more weight to the right of the middle value on the scale, 36, indicating a mean age greater than 36."
+  },
+  {
+    "id": "U4-PC-MCQ-B-Q06",
+    "type": "multiple-choice",
+    "prompt": "Let random variable \\(X\\) represent the number of movies screening at movie theaters in a certain city. The following table shows the cumulative probability distribution of the discrete random variable \\(X\\). Andromeda claims the distribution of \\(X\\) is skewed to the right with mean equal to 4 movies. Is Andromeda's claim supported by the table?",
+    "attachments": {
+      "table": [
+        ["x", "P(X ≤ x)"],
+        ["1", "0.2"],
+        ["2", "0.5"],
+        ["3", "0.6"],
+        ["4", "0.7"],
+        ["5", "0.8"],
+        ["6", "0.9"],
+        ["7", "1.0"]
+      ]
+    },
+    "choices": [
+      { "key": "A", "value": "Yes, the distribution is skewed to the right with mean equal to 4 movies." },
+      { "key": "B", "value": "No, the distribution is skewed to the left with mean greater than 4 movies." },
+      { "key": "C", "value": "No, the distribution is skewed to the left with mean less than 4 movies." },
+      { "key": "D", "value": "No, the distribution is skewed to the right with mean greater than 4 movies." },
+      { "key": "E", "value": "No, the distribution is skewed to the right with mean less than 4 movies." }
+    ],
+    "answerKey": "E",
+    "reasoning": "Andromeda's claim is not supported. The probabilities shown in the table are cumulative; the individual probabilities are 0.2, 0.3, 0.1, 0.1, 0.1, 0.1, and 0.1, indicating a skew to the right. More weight is assigned to the values less than 4 movies, so the mean will be less than 4 movies."
+  },
+  {
+    "id": "U4-PC-MCQ-B-Q07",
+    "type": "multiple-choice",
+    "prompt": "The following table shows the probability distribution for the prize amounts that will be awarded at a school raffle. Let the random variable \\(P\\) represent a randomly selected prize amount. What is the expected value of \\(P\\)?",
+    "attachments": {
+      "table": [
+        ["Prize", "$1", "$5", "$10", "$20", "$50"],
+        ["Probability", "0.60", "0.30", "0.05", "0.04", "0.01"]
+      ]
+    },
+    "choices": [
+      { "key": "A", "value": "$1.00" },
+      { "key": "B", "value": "$3.90" },
+      { "key": "C", "value": "$4.00" },
+      { "key": "D", "value": "$10.00" },
+      { "key": "E", "value": "$17.20" }
+    ],
+    "answerKey": "B",
+    "reasoning": "The expected value is found by adding the products of the amounts and their probabilities. In this case, \\(1(0.6) + 5(0.3) + 10(0.05) + 20(0.04) + 50(0.01) = 3.9\\), or $3.90."
+  },
+  {
+    "id": "U4-PC-MCQ-B-Q08",
+    "type": "multiple-choice",
+    "prompt": "The random variable \\(X\\) takes on the values of 2, 5, \\(n\\), and 15. The probability distribution of \\(X\\) is shown in the following table. The expected value of \\(X\\) is 9.1. What is the value of \\(n\\)?",
+    "attachments": {
+      "table": [
+        ["X", "2", "5", "n", "15"],
+        ["P(X)", "0.1", "0.4", "0.2", "0.3"]
+      ]
+    },
+    "choices": [
+      { "key": "A", "value": "8" },
+      { "key": "B", "value": "8.52" },
+      { "key": "C", "value": "10" },
+      { "key": "D", "value": "12" },
+      { "key": "E", "value": "14.4" }
+    ],
+    "answerKey": "D",
+    "reasoning": "The expected value 9.1 is equal to \\(2(0.1) + 5(0.4) + n(0.2) + 15(0.3)\\). Solving the equation gives \\(n = 12\\)."
+  },
+  {
+    "id": "U4-PC-MCQ-B-Q09",
+    "type": "multiple-choice",
+    "prompt": "A local amusement park has 30 rides that park visitors can go on. The following table shows the relative frequency distribution for the number of rides that a park visitor will typically go on during one day at the park. The table also shows the deviation, or difference, from 21, the mean of the distribution. Which of the following is closest to the standard deviation of the distribution?",
+    "attachments": {
+      "table": [
+        ["Number of rides and attractions", "10", "15", "20", "25", "30"],
+        ["Deviation", "−11", "−6", "−1", "4", "9"],
+        ["Relative frequency", "0.1", "0.2", "0.2", "0.4", "0.1"]
+      ]
+    },
+    "choices": [
+      { "key": "A", "value": "5.83" },
+      { "key": "B", "value": "7.07" },
+      { "key": "C", "value": "7.90" },
+      { "key": "D", "value": "20" },
+      { "key": "E", "value": "34" }
+    ],
+    "answerKey": "A",
+    "reasoning": "The standard deviation is the square root of the sum of the products of the squared deviations and their corresponding probabilities. In this case, \\(\\sigma_x = \\sqrt{\\sum(x - \\mu_x)^2 \\cdot P(x)}\\), which is \\(\\sqrt{121(0.1) + 36(0.2) + 1(0.2) + 16(0.4) + 81(0.1)} = \\sqrt{34}\\), and \\(\\sqrt{34} \\approx 5.83\\)."
+  },
+  {
+    "id": "U4-PC-MCQ-B-Q10",
+    "type": "multiple-choice",
+    "prompt": "The random variable \\(W\\) can take on the values of 0, 1, 2, 3, or 4. The expected value of \\(W\\) is 2.8. Which of the following is the best interpretation of the expected value of random variable \\(W\\)?",
+    "choices": [
+      { "key": "A", "value": "A randomly selected value of \\(W\\) must be equal to 2.8." },
+      { "key": "B", "value": "The values of \\(W\\) vary by about 2.8 units from the mean of the distribution." },
+      { "key": "C", "value": "The mean of a random sample of \\(W\\) values selected from the distribution will be 2.8." },
+      { "key": "D", "value": "A value of \\(W\\) randomly selected from the distribution will be less than 2.8 units of the mean." },
+      { "key": "E", "value": "For values of \\(W\\) repeatedly selected at random from the distribution, the mean of the selected values will approach 2.8." }
+    ],
+    "answerKey": "E",
+    "reasoning": "The expected value of a probability distribution is the long-run average resulting from repeated sampling."
+  },
+  {
+    "id": "U4-PC-MCQ-B-Q11",
+    "type": "multiple-choice",
+    "prompt": "Let the random variable \\(X\\) represent the amount of money won or lost for a player who pays $1 to play a certain carnival game. The following table shows the probability distribution of \\(X\\). Which of the following statements is the best interpretation of the mean of \\(X\\)?",
+    "attachments": {
+      "table": [
+        ["Amount", "−$1", "$1", "$10"],
+        ["Probability", "0.80", "0.15", "0.05"]
+      ]
+    },
+    "choices": [
+      { "key": "A", "value": "In the long run, a player will lose an average of $0.15 per carnival game played." },
+      { "key": "B", "value": "In the long run, a player will gain an average of $0.15 per carnival game played." },
+      { "key": "C", "value": "In the long run, a player will lose an average of $0.80 per carnival game played." },
+      { "key": "D", "value": "In the long run, a player will gain an average of $0.80 per carnival game played." },
+      { "key": "E", "value": "In the long run, players will lose $1 about 80 percent of the time." }
+    ],
+    "answerKey": "A",
+    "reasoning": "The expected value is \\(\\sum xP(x) = −\\$1(0.80) + \\$1(0.15) + \\$10(0.05) = −\\$0.15\\), indicating average loss. So the player can expect to lose an average of $0.15 per carnival game when the game is played many times."
+  },
+  {
+    "id": "U4-PC-MCQ-B-Q12",
+    "type": "multiple-choice",
+    "prompt": "Let the random variable \\(X\\) represent the number of people living in a household in a certain town. The standard deviation of \\(X\\) is 1.8. Which of the following statements is the best interpretation of the standard deviation?",
+    "choices": [
+      { "key": "A", "value": "The number of people living in a randomly selected household is expected to be 1.8 people." },
+      { "key": "B", "value": "The number of people living in a randomly selected household will be 1.8 people away from the mean." },
+      { "key": "C", "value": "On average, the number of people living in a household varies from the mean by about 1.8 people." },
+      { "key": "D", "value": "For a random sample of households, the average number of people per household is expected to be 1.8 people." },
+      { "key": "E", "value": "For a random sample of households, the average number of people per household will be 1.8 people away from the mean." }
+    ],
+    "answerKey": "C",
+    "reasoning": "The standard deviation is the average amount of deviation, or distance, individual households are from the mean for the population."
+  },
+  {
+    "id": "U4-PC-MCQ-B-Q13",
+    "type": "multiple-choice",
+    "prompt": "At a large university, data were collected on the number of sisters and brothers that each student had. Let the random variable \\(X\\) represent the number of sisters and the random variable \\(Y\\) represent the number of brothers. The distribution of \\(X\\) has mean 1.00 and standard deviation 0.94. The distribution of \\(Y\\) has mean 1.07 and standard deviation 1.04. What is the mean of the distribution of \\(X + Y\\)?",
+    "choices": [
+      { "key": "A", "value": "1.98" },
+      { "key": "B", "value": "2.01" },
+      { "key": "C", "value": "2.04" },
+      { "key": "D", "value": "2.0528" },
+      { "key": "E", "value": "2.07" }
+    ],
+    "answerKey": "E",
+    "reasoning": "The mean of \\(X + Y\\) is the sum of the mean of \\(X\\) and the mean of \\(Y\\), which equals \\(1.00 + 1.07 = 2.07\\)."
+  },
+  {
+    "id": "U4-PC-MCQ-B-Q14",
+    "type": "multiple-choice",
+    "prompt": "The following table shows the joint distribution of random variables \\(X\\) and \\(Y\\). Which of the following statements about the random variables \\(X\\) and \\(Y\\) is correct?",
+    "attachments": {
+      "table": [
+        ["", "Y = 1", "Y = 2", "Y = 3", "Y = 4"],
+        ["X = 1", "0.04", "0.03", "0.02", "0.01"],
+        ["X = 2", "0.08", "0.06", "0.04", "0.02"],
+        ["X = 3", "0.12", "0.09", "0.06", "0.03"],
+        ["X = 4", "0.16", "0.12", "0.08", "0.04"]
+      ]
+    },
+    "choices": [
+      { "key": "A", "value": "\\(X\\) and \\(Y\\) are independent because knowing the value of \\(X\\) does not change the probability distribution of \\(Y\\)." },
+      { "key": "B", "value": "\\(X\\) and \\(Y\\) are independent because knowing the value of \\(X\\) changes the probability distribution of \\(Y\\)." },
+      { "key": "C", "value": "\\(X\\) and \\(Y\\) are not independent because knowing the value of \\(X\\) does not change the probability distribution of \\(Y\\)." },
+      { "key": "D", "value": "\\(X\\) and \\(Y\\) are not independent because knowing the value of \\(X\\) changes the probability distribution of \\(Y\\)." },
+      { "key": "E", "value": "The independence of \\(X\\) and \\(Y\\) cannot be determined from the table." }
+    ],
+    "answerKey": "A",
+    "reasoning": "The ratios are the same for each value of \\(X\\) (or \\(Y\\)), and knowing one does not change the value of the other. Therefore, \\(X\\) and \\(Y\\) are independent."
+  },
+  {
+    "id": "U4-PC-MCQ-B-Q15",
+    "type": "multiple-choice",
+    "prompt": "Biologists are analyzing soil to check for the number of worms and grubs in a wildlife preserve. Let the random variable \\(W\\) represent the number of worms found in 1 square foot of soil, and let the random variable \\(G\\) represent the number of grubs found in 1 square foot of soil. The following tables show the probability distributions developed by the biologists for \\(W\\) and \\(G\\). Assume that the distributions of worms and grubs are independent. What are the mean, \\(\\mu\\), and standard deviation, \\(\\sigma\\), for the total number of worms and grubs in 1 square foot of soil?",
+    "attachments": {
+      "table": [
+        ["W", "0", "1", "2", "3", "4", "5", "6"],
+        ["Probability", "0.05", "0.06", "0.18", "0.35", "0.30", "0.05", "0.01"],
+        ["G", "0", "1", "2", "3", "4", "5", "6"],
+        ["Probability", "0.05", "0.21", "0.27", "0.38", "0.05", "0.03", "0.01"]
+      ]
+    },
+    "choices": [
+      { "key": "A", "value": "\\(\\mu = 5\\) and \\(\\sigma = 1.67\\)" },
+      { "key": "B", "value": "\\(\\mu = 5\\) and \\(\\sigma = 2.36\\)" },
+      { "key": "C", "value": "\\(\\mu = 5.28\\) and \\(\\sigma = 1.67\\)" },
+      { "key": "D", "value": "\\(\\mu = 5.28\\) and \\(\\sigma = 2.36\\)" },
+      { "key": "E", "value": "\\(\\mu = 5.28\\) and \\(\\sigma = 2.79\\)" }
+    ],
+    "answerKey": "C",
+    "reasoning": "The mean of distribution \\(W\\), \\(\\mu_W\\), is 2.98, and the standard deviation of distribution \\(W\\), \\(\\sigma_W\\), is 1.21. The mean of distribution \\(G\\), \\(\\mu_G\\), is 2.3 and the standard deviation of distribution \\(G\\), \\(\\sigma_G\\), is 1.15. Therefore, \\(\\mu_{W+G} = \\mu_W + \\mu_G = 2.98 + 2.3 = 5.28\\), and \\(\\sigma^2_{W+G} = \\sigma^2_W + \\sigma^2_G = 1.21^2 + 1.15^2 \\approx 2.79\\), and \\(\\sqrt{2.79} \\approx 1.67\\)."
+  },
+  {
+    "id": "U4-PC-MCQ-B-Q16",
+    "type": "multiple-choice",
+    "prompt": "The distribution of weights of African bush elephants is skewed to the right with mean 6.42 tons and standard deviation 1.07 tons. Let the random variable \\(W\\) represent the weight, in tons, of a randomly selected elephant. The weight is converted to kilograms using the formula \\(Y = 900W\\). Which of the following best describes the distribution of \\(Y\\)?",
+    "choices": [
+      { "key": "A", "value": "Roughly symmetric with mean 5,778 kilograms and standard deviation 1.07 kilograms" },
+      { "key": "B", "value": "Roughly symmetric with mean 5,778 kilograms and standard deviation 963 kilograms" },
+      { "key": "C", "value": "Skewed to the right with mean 906.42 kilograms and standard deviation 1.07 kilograms" },
+      { "key": "D", "value": "Skewed to the right with mean 5,778 kilograms and standard deviation 1.07 kilograms" },
+      { "key": "E", "value": "Skewed to the right with mean 5,778 kilograms and standard deviation 963 kilograms" }
+    ],
+    "answerKey": "E",
+    "reasoning": "The distribution would be right skewed because the original distribution was right skewed, and shape is not affected by the multiplication of a constant. Additionally, both the mean and standard deviation are multiplied by 900."
+  },
+  {
+    "id": "U4-PC-MCQ-B-Q17",
+    "type": "multiple-choice",
+    "prompt": "Julio sells computers at an electronics store. Let the random variable \\(C\\) represent the number of computers that Julio sells in one week. The following table shows the probability distribution of \\(C\\). Julio earns $800 per week, with a commission of $200 per computer sold. What is the expected value of Julio's earnings for one week?",
+    "attachments": {
+      "table": [
+        ["c", "0", "1", "2", "3", "4", "5", "6"],
+        ["P(C = c)", "0.04", "0.08", "0.16", "0.21", "0.30", "0.18", "0.03"]
+      ]
+    },
+    "choices": [
+      { "key": "A", "value": "$3.31" },
+      { "key": "B", "value": "$662" },
+      { "key": "C", "value": "$1,462" },
+      { "key": "D", "value": "$2,848" },
+      { "key": "E", "value": "$3,310" }
+    ],
+    "answerKey": "C",
+    "reasoning": "The expected value of the number of computers Julio sells in a week is \\(\\mu_C = 3.31\\). If Julio's weekly earnings are given by \\(M = 800 + 200C\\), then \\(\\mu_M = a + b\\mu_C = 800 + 200(3.31) = 1,462\\)."
+  },
+  {
+    "id": "U4-PC-MCQ-B-Q18",
+    "type": "multiple-choice",
+    "prompt": "Parker has a part-time job picking apples. Let the random variable \\(A\\) represent the number of baskets of apples picked each day. The distribution of \\(A\\) has mean 4.5 baskets and standard deviation 1.3 baskets. Parker is paid $65 per day plus $5 per basket. What are the mean and standard deviation of Parker's daily pay?",
+    "choices": [
+      { "key": "A", "value": "\\(\\mu = \\$87.50\\) and \\(\\sigma = \\$71.50\\)" },
+      { "key": "B", "value": "\\(\\mu = \\$87.50\\) and \\(\\sigma = \\$6.50\\)" },
+      { "key": "C", "value": "\\(\\mu = \\$22.50\\) and \\(\\sigma = \\$6.50\\)" },
+      { "key": "D", "value": "\\(\\mu = \\$87.50\\) and \\(\\sigma = \\$1.30\\)" },
+      { "key": "E", "value": "\\(\\mu = \\$22.50\\) and \\(\\sigma = \\$71.50\\)" }
+    ],
+    "answerKey": "B",
+    "reasoning": "The mean daily pay is \\(65 + 5(4.5) = \\$87.50\\), and the standard deviation of the daily pay is \\(5(1.3) = \\$6.50\\)."
+  }
+]
