@@ -1,0 +1,290 @@
+{
+  "id": "U4-PC-MCQ-A-Q01",
+  "type": "multiple-choice",
+  "prompt": "A consumer group is investigating the number of flights at a certain airline that are overbooked. They conducted a simulation to estimate the probability of overbooked flights in the next 5 flights. The results of 1,000 trials are shown in the following histogram. Based on the histogram, what is the probability that at least 4 of the next 5 flights at the airline will be overbooked?",
+  "attachments": {
+    "image": "assets/pngs/unit4/u4_pc_q1.png",
+    "imageAlt": "Histogram showing relative frequency of overbooked flights. X-axis shows Number of Overbooked Flights from 0 to 5. Y-axis shows Relative Frequency from 0 to 0.35. Bar heights are approximately: 0 flights = 0.007, 1 flight = 0.049, 2 flights = 0.181, 3 flights = 0.317, 4 flights = 0.332, 5 flights = 0.114",
+    "imageCaption": "Histogram showing the distribution of overbooked flights in simulation results",
+    "chartType": "histogram",
+    "xLabels": ["0", "1", "2", "3", "4", "5"],
+    "series": [
+      {"name": "Relative Frequency", "values": [0.007, 0.049, 0.181, 0.317, 0.332, 0.114]}
+    ],
+    "chartConfig": {
+      "showPointLabels": true,
+      "yAxis": {
+        "min": 0,
+        "max": 0.35,
+        "tickInterval": 0.05,
+        "title": "Relative Frequency"
+      },
+      "xAxis": {
+        "title": "Number of Overbooked Flights",
+        "labelType": "discrete"
+      },
+      "gridLines": {
+        "horizontal": true,
+        "vertical": false
+      },
+      "description": "Histogram showing distribution of overbooked flights with no gaps between bars"
+    },
+    "choices": [
+      { "key": "A", "value": "0.114" },
+      { "key": "B", "value": "0.332" },
+      { "key": "C", "value": "0.446" },
+      { "key": "D", "value": "0.500" },
+      { "key": "E", "value": "0.886" }
+    ]
+  },
+  "answerKey": "C",
+  "reasoning": "To find the probability that at least 4 flights will be overbooked, we need to add the relative frequencies for 4 and 5 overbooked flights. From the histogram: \\( P(X \\geq 4) = P(X = 4) + P(X = 5) = 0.332 + 0.114 = 0.446 \\)."
+}
+
+{
+  "id": "U4-PC-MCQ-A-Q02",
+  "type": "multiple-choice",
+  "prompt": "Consider rolling two number cubes, each of which has its faces numbered from 1 to 6. The cubes will be rolled and the sum of the numbers landing face up will be recorded. Let the event E represent the event of rolling a sum of 5. How many outcomes are in the collection for event E?",
+  "attachments": {
+    "choices": [
+      { "key": "A", "value": "One" },
+      { "key": "B", "value": "Two" },
+      { "key": "C", "value": "Four" },
+      { "key": "D", "value": "Five" },
+      { "key": "E", "value": "Six" }
+    ]
+  },
+  "answerKey": "C",
+  "reasoning": "To get a sum of 5 when rolling two number cubes, we need to find all ordered pairs (first die, second die) that sum to 5. The possible outcomes are: (1,4), (2,3), (3,2), and (4,1). Therefore, there are four outcomes in event E."
+}
+
+{
+  "id": "U4-PC-MCQ-A-Q03",
+  "type": "multiple-choice",
+  "prompt": "In a certain population of birds, about 40 percent of the birds have a wingspan greater than 10 inches. Biologists studying the birds will create a simulation with random numbers to estimate the probability of finding 1 bird in a sample of 6 birds with a wingspan greater than 10 inches. Which of the following assignments of the digits 0 to 9 will model the population?",
+  "attachments": {
+    "choices": [
+      { "key": "A", "value": "Let the even digits represent birds with a wingspan greater than 10 inches and the odd digits represent birds with a wingspan less than or equal to 10 inches." },
+      { "key": "B", "value": "Let the digits 0 and 1 represent birds with a wingspan greater than 10 inches and the remaining digits represent birds with a wingspan less than or equal to 10 inches." },
+      { "key": "C", "value": "Let the digits from 0 to 2 represent birds with a wingspan greater than 10 inches and the remaining digits represent birds with a wingspan less than or equal to 10 inches." },
+      { "key": "D", "value": "Let the digits from 0 to 3 represent birds with a wingspan greater than 10 inches and the remaining digits represent birds with a wingspan less than or equal to 10 inches." },
+      { "key": "E", "value": "Let the digits from 0 to 4 represent birds with a wingspan greater than 10 inches and the remaining digits represent birds with a wingspan less than or equal to 10 inches." }
+    ]
+  },
+  "answerKey": "D",
+  "reasoning": "Since 40% of the birds have a wingspan greater than 10 inches, we need 40% of the digits (0-9) to represent this condition. The digits 0, 1, 2, and 3 represent 4 out of 10 digits, which equals \\( \\frac{4}{10} = 0.40 = 40\\% \\). This correctly models the 40% probability."
+}
+
+{
+  "id": "U4-PC-MCQ-A-Q04",
+  "type": "multiple-choice",
+  "prompt": "Each person in a group of twenty people at a hotel orders one meal chosen from oatmeal, eggs, or pancakes and one hot beverage chosen from coffee or tea. One person will be selected at random from the twenty people. What is the sample space for the meal and beverage for the person selected?",
+  "attachments": {
+    "choices": [
+      { "key": "A", "value": "{(oatmeal, coffee), (oatmeal, tea), (eggs, coffee), (eggs, tea), (pancakes, coffee), (pancakes, tea)}" },
+      { "key": "B", "value": "{(oatmeal, pancakes), (oatmeal, eggs), (eggs, pancakes), (coffee, tea)}" },
+      { "key": "C", "value": "{(coffee, tea, oatmeal), (coffee, tea, eggs), (coffee, tea, pancakes)}" },
+      { "key": "D", "value": "{oatmeal, coffee, pancakes, eggs, tea}" },
+      { "key": "E", "value": "{(oatmeal, eggs, pancakes), (coffee, tea)}" }
+    ]
+  },
+  "answerKey": "A",
+  "reasoning": "The sample space consists of all possible outcomes. Since each person selects one meal from 3 options and one beverage from 2 options, there are \\( 3 \\times 2 = 6 \\) possible combinations. Each outcome is an ordered pair (meal, beverage), giving us the sample space with 6 elements: all possible meal-beverage combinations."
+}
+
+{
+  "id": "U4-PC-MCQ-A-Q05",
+  "type": "multiple-choice",
+  "prompt": "At Mike's favorite coffee shop, the coffee of the day is either a dark roast, a medium roast, or a light roast. From past experience, Mike knows that the probability of the coffee being a light roast is 0.15 and the probability of the coffee being a dark roast is 0.25. What is the probability of the coffee of the day not being a light roast or a dark roast on the next day that Mike visits the coffee shop?",
+  "attachments": {
+    "choices": [
+      { "key": "A", "value": "0.15" },
+      { "key": "B", "value": "0.25" },
+      { "key": "C", "value": "0.40" },
+      { "key": "D", "value": "0.60" },
+      { "key": "E", "value": "0.85" }
+    ]
+  },
+  "answerKey": "D",
+  "reasoning": "Since there are only three types of roast, the probability of medium roast equals \\( 1 - P(\\text{light}) - P(\\text{dark}) = 1 - 0.15 - 0.25 = 0.60 \\). The event 'not being a light roast or a dark roast' is equivalent to 'being a medium roast', so the probability is 0.60."
+}
+
+{
+  "id": "U4-PC-MCQ-A-Q06",
+  "type": "multiple-choice",
+  "prompt": "Amy has 12 brown golf tees, 8 white golf tees, 10 red golf tees, 6 blue golf tees, and 12 green golf tees in her golf bag. If she selects one of the tees from the bag at random, what is the probability that she selects a tee that is not brown or blue?",
+  "attachments": {
+    "choices": [
+      { "key": "A", "value": "\\( \\frac{3}{8} \\)" },
+      { "key": "B", "value": "\\( \\frac{5}{8} \\)" },
+      { "key": "C", "value": "\\( \\frac{21}{32} \\)" },
+      { "key": "D", "value": "\\( \\frac{3}{4} \\)" },
+      { "key": "E", "value": "\\( \\frac{7}{8} \\)" }
+    ]
+  },
+  "answerKey": "B",
+  "reasoning": "Total tees: \\( 12 + 8 + 10 + 6 + 12 = 48 \\). Tees that are not brown or blue: white + red + green = \\( 8 + 10 + 12 = 30 \\). Therefore, the probability is \\( \\frac{30}{48} = \\frac{5}{8} \\)."
+}
+
+{
+  "id": "U4-PC-MCQ-A-Q07",
+  "type": "multiple-choice",
+  "prompt": "A business journal reports that the probability that Internet users in the United States will use a mobile payment app is 0.60. The journal claims this indicates that out of 5 randomly selected Internet users, 3 will use the mobile payment app. Is the business journal interpreting the probability correctly?",
+  "attachments": {
+    "choices": [
+      { "key": "A", "value": "No, because the Internet users are not independent of each other." },
+      { "key": "B", "value": "No, because only 60% of all people use the Internet." },
+      { "key": "C", "value": "No, because 0.60 represents probability in the long run for many Internet users." },
+      { "key": "D", "value": "Yes, because Internet users are selected at random." },
+      { "key": "E", "value": "Yes, because 3 out of 5 is equal to 60%." }
+    ]
+  },
+  "answerKey": "C",
+  "reasoning": "The probability 0.60 represents the long-run relative frequency of mobile payment app usage across many Internet users. It does not guarantee that exactly 3 out of any specific group of 5 users will use the app. Probability describes long-term behavior, not individual outcomes or small samples."
+}
+
+{
+  "id": "U4-PC-MCQ-A-Q08",
+  "type": "multiple-choice",
+  "prompt": "A financial analyst reports that for people who work in the finance industry, the probability that a randomly selected person will have a tattoo is 0.20. Which of the following is the best interpretation of the probability 0.20?",
+  "attachments": {
+    "choices": [
+      { "key": "A", "value": "For all workers in the United States, 20% will work in finance." },
+      { "key": "B", "value": "For all finance workers, 20% will have a tattoo." },
+      { "key": "C", "value": "For all people with tattoos, 20% will work in finance." },
+      { "key": "D", "value": "For a specific group of 5 finance workers, 1 will have a tattoo." },
+      { "key": "E", "value": "For a specific group of 5 people with a tattoo, 1 will work in finance." }
+    ]
+  },
+  "answerKey": "B",
+  "reasoning": "The probability 0.20 represents the long-run relative frequency of having a tattoo among finance workers. This means that in the long run, 20% of finance workers will have a tattoo. The probability describes the conditional probability \\( P(\\text{tattoo}|\\text{finance worker}) = 0.20 \\)."
+}
+
+{
+  "id": "U4-PC-MCQ-A-Q09",
+  "type": "multiple-choice",
+  "prompt": "A certain spinner is divided into 6 sectors of equal size, and the spinner is equally likely to land in any sector. Four of the 6 sectors are shaded, and the remaining sectors are not shaded. Which of the following is the best interpretation of the probability that one spin of the spinner will land in a shaded sector?",
+  "attachments": {
+    "choices": [
+      { "key": "A", "value": "For many spins, the long-run relative frequency with which the spinner will land in a shaded sector is \\( \\frac{1}{3} \\)." },
+      { "key": "B", "value": "For many spins, the long-run relative frequency with which the spinner will land in a shaded sector is \\( \\frac{1}{2} \\)." },
+      { "key": "C", "value": "For many spins, the long-run relative frequency with which the spinner will land in a shaded sector is \\( \\frac{2}{3} \\)." },
+      { "key": "D", "value": "For 6 spins, the spinner will land in a shaded sector 4 times." },
+      { "key": "E", "value": "For 6 spins, the spinner will land in a shaded sector 2 times." }
+    ]
+  },
+  "answerKey": "C",
+  "reasoning": "Since 4 out of 6 equally likely sectors are shaded, the probability of landing in a shaded sector is \\( \\frac{4}{6} = \\frac{2}{3} \\). This represents the long-run relative frequency, meaning that over many spins, approximately \\( \\frac{2}{3} \\) of the outcomes will be in shaded sectors."
+}
+
+{
+  "id": "U4-PC-MCQ-A-Q10",
+  "type": "multiple-choice",
+  "prompt": "At a local elementary school, 35 percent of all students have brown eyes, 45 percent have brown hair, and 60 percent have brown hair or brown eyes. A student will be selected at random from the school. Let \\( E \\) represent the event that the selected person has brown eyes, and let \\( H \\) represent the event that the selected person has brown hair. Are \\( E \\) and \\( H \\) mutually exclusive events?",
+  "attachments": {
+    "choices": [
+      { "key": "A", "value": "Yes, because \\( P(E \\cap H) = 0 \\)." },
+      { "key": "B", "value": "Yes, because \\( P(E \\cap H) = 0.2 \\)." },
+      { "key": "C", "value": "Yes, because \\( P(E \\cap H) = 0.6 \\)." },
+      { "key": "D", "value": "No, because \\( P(E \\cap H) = 0.2 \\)." },
+      { "key": "E", "value": "No, because \\( P(E \\cap H) = 0.6 \\)." }
+    ]
+  },
+  "answerKey": "D",
+  "reasoning": "Using the addition rule: \\( P(E \\cup H) = P(E) + P(H) - P(E \\cap H) \\). Substituting: \\( 0.60 = 0.35 + 0.45 - P(E \\cap H) \\), so \\( P(E \\cap H) = 0.35 + 0.45 - 0.60 = 0.20 \\). Since \\( P(E \\cap H) \\neq 0 \\), the events are not mutually exclusive."
+}
+
+{
+  "id": "U4-PC-MCQ-A-Q11",
+  "type": "multiple-choice",
+  "prompt": "The students at a certain high school have an elective period, where each student chooses an elective from among four options. The following table shows the number of students who selected each elective for the 1,500 students at the high school. One student from the school will be selected at random. What is the probability the selected student chose the art elective and the music elective?",
+  "attachments": {
+    "table": [
+      ["Art", "Music", "Physical Education", "Engineering", "Total"],
+      ["385", "365", "380", "370", "1,500"]
+    ],
+    "choices": [
+      { "key": "A", "value": "0" },
+      { "key": "B", "value": "\\( \\frac{385}{1,500} \\)" },
+      { "key": "C", "value": "\\( \\frac{365}{750} \\)" },
+      { "key": "D", "value": "\\( \\frac{750}{1,500} \\)" },
+      { "key": "E", "value": "\\( \\frac{385}{750} \\)" }
+    ]
+  },
+  "answerKey": "A",
+  "reasoning": "Since the total number of students in all four electives equals the total number of students (1,500), each student chose exactly one elective. Therefore, it is impossible for a student to choose both art and music. The events are mutually exclusive, so \\( P(\\text{art and music}) = 0 \\)."
+}
+
+{
+  "id": "U4-PC-MCQ-A-Q12",
+  "type": "multiple-choice",
+  "prompt": "A survey of people on pizza preferences indicated that 55 percent preferred pepperoni only, 30 percent preferred mushroom only, and 15 percent preferred something other than pepperoni and mushroom. Suppose one person who was surveyed will be selected at random. Let \\( P \\) represent the event that the selected person preferred pepperoni, and let \\( M \\) represent the event that the selected person preferred mushroom. Are \\( P \\) and \\( M \\) mutually exclusive events for the people in this survey?",
+  "attachments": {
+    "choices": [
+      { "key": "A", "value": "Yes, because the joint probability of \\( P \\) and \\( M \\) is greater than 0." },
+      { "key": "B", "value": "Yes, because the joint probability of \\( P \\) and \\( M \\) is greater than 1." },
+      { "key": "C", "value": "Yes, because the joint probability of \\( P \\) and \\( M \\) is equal to 0." },
+      { "key": "D", "value": "No, because the joint probability of \\( P \\) and \\( M \\) is equal to 1." },
+      { "key": "E", "value": "No, because the joint probability of \\( P \\) and \\( M \\) is equal to 0." }
+    ]
+  },
+  "answerKey": "C",
+  "reasoning": "The percentages add to 100%: 55% + 30% + 15% = 100%. Since people preferred 'pepperoni only' or 'mushroom only' or 'something other', no person can prefer both pepperoni and mushroom simultaneously. Therefore, \\( P(P \\cap M) = 0 \\), making the events mutually exclusive."
+}
+
+{
+  "id": "U4-PC-MCQ-A-Q13",
+  "type": "multiple-choice",
+  "prompt": "For the lunch special at a high school cafeteria, students can get either salad or french fries as a side order. The following table shows the number of each side order for the lunch specials purchased on one day, classified by the grade of the student. From those who purchased the lunch special that day, one student will be selected at random. What is the probability that the student selected will be in grade 10 given that the student ordered french fries as the side order?",
+  "attachments": {
+    "table": [
+      ["", "Grade 9", "Grade 10", "Grade 11", "Grade 12", "Total"],
+      ["Salad", "37", "34", "21", "28", "120"],
+      ["French fries", "83", "71", "57", "37", "248"],
+      ["Total", "120", "105", "78", "65", "368"]
+    ],
+    "choices": [
+      { "key": "A", "value": "\\( \\frac{71}{368} \\)" },
+      { "key": "B", "value": "\\( \\frac{105}{368} \\)" },
+      { "key": "C", "value": "\\( \\frac{71}{248} \\)" },
+      { "key": "D", "value": "\\( \\frac{248}{368} \\)" },
+      { "key": "E", "value": "\\( \\frac{71}{105} \\)" }
+    ]
+  },
+  "answerKey": "C",
+  "reasoning": "This is a conditional probability problem. We want \\( P(\\text{Grade 10}|\\text{French fries}) \\). Of the 248 students who ordered french fries, 71 were in grade 10. Therefore, \\( P(\\text{Grade 10}|\\text{French fries}) = \\frac{71}{248} \\)."
+}
+
+{
+  "id": "U4-PC-MCQ-A-Q14",
+  "type": "multiple-choice",
+  "prompt": "A high school theater club has 40 students, of whom 6 are left-handed. Two students from the club will be selected at random, one at a time without replacement. What is the probability that the 2 students selected will both be left-handed?",
+  "attachments": {
+    "choices": [
+      { "key": "A", "value": "\\( \\frac{30}{1,600} \\)" },
+      { "key": "B", "value": "\\( \\frac{30}{1,560} \\)" },
+      { "key": "C", "value": "\\( \\frac{36}{1,600} \\)" },
+      { "key": "D", "value": "\\( \\frac{6}{40} \\)" },
+      { "key": "E", "value": "\\( \\frac{1,156}{1,600} \\)" }
+    ]
+  },
+  "answerKey": "B",
+  "reasoning": "This involves conditional probability without replacement. \\( P(\\text{both left-handed}) = P(\\text{first left-handed}) \\times P(\\text{second left-handed}|\\text{first left-handed}) = \\frac{6}{40} \\times \\frac{5}{39} = \\frac{30}{1,560} \\). After selecting one left-handed student, there are 5 left-handed students remaining out of 39 total students."
+}
+
+{
+  "id": "U4-PC-MCQ-A-Q15",
+  "type": "multiple-choice",
+  "prompt": "At a large high school 40 percent of the students walk to school, 32 percent of the students have been late to school at least once, and 37.5 percent of the students who walk to school have been late to school at least once. One student from the school will be selected at random. What is the probability that the student selected will be one who both walks to school and has been late to school at least once?",
+  "attachments": {
+    "choices": [
+      { "key": "A", "value": "0.12" },
+      { "key": "B", "value": "0.15" },
+      { "key": "C", "value": "0.1875" },
+      { "key": "D", "value": "0.345" },
+      { "key": "E", "value": "0.72" }
+    ]
+  },
+  "answerKey": "B",
+  "reasoning": "Let \\( W \\) = walks to school and \\( L \\) = late at least once. We're given: \\( P(W) = 0.40 \\), \\( P(L) = 0.32 \\), and \\( P(L|W) = 0.375 \\). Using the conditional probability formula: \\( P(L|W) = \\frac{P(L \\cap W)}{P(W)} \\), so \\( P(L \\cap W) = P(L|W) \\times P(W) = 0.375 \\times 0.40 = 0.15 \\)."
+}
