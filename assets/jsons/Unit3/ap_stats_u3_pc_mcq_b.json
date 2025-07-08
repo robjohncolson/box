@@ -1,0 +1,170 @@
+[
+  {
+    "id": "U3-PC-MCQ-B-Q01",
+    "type": "multiple-choice",
+    "prompt": "A company famous for its nacho-flavored corn chips has developed two new formulas, A and B, which they hope their customers will like even more than the original formula. To determine whether customers prefer one of the new formulas over the current nacho flavoring, a sample of 50 customers is obtained. Each customer tastes both formula A and formula B in a randomly assigned order and indicates which one they prefer more. Which of the following best describes this study?",
+    "choices": [
+      { "key": "A", "value": "This study is not well designed because there is no replication. Each customer tasted the formulas only once." },
+      { "key": "B", "value": "This study is not well designed because formulas A and B are not compared with the original formula." },
+      { "key": "C", "value": "This study is not well designed because the sample may not have been randomly selected." },
+      { "key": "D", "value": "This study is not well designed because each customer should taste the two new formulas in the same order." },
+      { "key": "E", "value": "This study is not well designed because there is not enough replication with only 50 customers." }
+    ],
+    "answerKey": "B",
+    "reasoning": "The study is comparative but does not include the control group necessary to meet the intent of the study. The goal is to determine whether customers prefer one of the new formulas over the current nacho flavoring, but the study only compares the two new formulas (A and B) against each other, not against the original formula that serves as the control."
+  },
+  {
+    "id": "U3-PC-MCQ-B-Q02",
+    "type": "multiple-choice",
+    "prompt": "Thirty-six students at a local middle school were randomly selected to participate in a taste test to select a new menu item for a cafeteria. Each student was given a choice between the macaroni and cheese and the Cajun potato barrels. From the sample, 20 students selected macaroni and cheese and 16 students chose the Cajun potato barrels. Each student was asked to rate the item they chose on a scale from 1 (extremely dislike) to 9 (extremely like). Which of the following prevents this study from being a well-designed experiment?",
+    "choices": [
+      { "key": "A", "value": "There was no replication because students did not eat both menu items." },
+      { "key": "B", "value": "The treatments (new menu item) were not randomly assigned to the students." },
+      { "key": "C", "value": "An item that is currently on the menu should have been used as a control." },
+      { "key": "D", "value": "Students should not have been randomly selected." },
+      { "key": "E", "value": "There were no problems, and the study was a well-designed experiment." }
+    ],
+    "answerKey": "B",
+    "reasoning": "Students were allowed to self-select their treatment—the new menu item. Random assignment of treatments to experimental units, a key component of a well-designed study, is lacking. For a proper experiment, treatments must be randomly assigned to participants rather than allowing participants to choose their own treatment."
+  },
+  {
+    "id": "U3-PC-MCQ-B-Q03",
+    "type": "multiple-choice",
+    "prompt": "Diane wanted to demonstrate which pruning technique was best for controlling the growth of certain types of shrubs. She selected ten shrubs of the same type and randomly assigned each one to receive one of ten different pruning methods. Two weeks after pruning, she measured the regrowth, in inches, of the shrubs; the pruning method that minimized regrowth was recommended as the best method. Which of the following best describes why this is not a well-designed experiment?",
+    "choices": [
+      { "key": "A", "value": "The shrubs were not randomly selected." },
+      { "key": "B", "value": "Pruning methods were not randomly assigned to shrubs." },
+      { "key": "C", "value": "Each pruning method was used on only one shrub." },
+      { "key": "D", "value": "Each shrub did not receive all ten pruning methods." },
+      { "key": "E", "value": "Only two treatments should be used in an experiment." }
+    ],
+    "answerKey": "C",
+    "reasoning": "Replication is required in order for an experiment to be well-designed. The experimental units are the ten shrubs, and the treatments are the ten pruning methods. The assignment of treatments to experimental units results in only one shrub for each pruning method, so there is no replication of experimental units in each treatment group. Without replication, it's impossible to distinguish between treatment effects and random variation."
+  },
+  {
+    "id": "U3-PC-MCQ-B-Q04",
+    "type": "multiple-choice",
+    "prompt": "A researcher conducted a study investigating the effect of computer screen time on a person's amount of sleep. The researcher randomly assigned 100 people into four groups. The first group was given 2 hours of computer screen time each day, the second group was given 4 hours each day, the third group was given 6 hours each day, and the fourth group was given 8 hours each day. The study was conducted for one week, and the amount of sleep for each person was measured. What is the explanatory variable in the study?",
+    "choices": [
+      { "key": "A", "value": "The amount of sleep" },
+      { "key": "B", "value": "The amount of computer screen time" },
+      { "key": "C", "value": "The 100 people in the study" },
+      { "key": "D", "value": "The four groups in the study" },
+      { "key": "E", "value": "There is no explanatory variable because the study is observational." }
+    ],
+    "answerKey": "B",
+    "reasoning": "The amount of computer screen time is being manipulated by the researcher. The explanatory variable (also called the independent variable) is the variable that is manipulated or controlled by the researcher to observe its effect on the response variable. In this experiment, the researcher is controlling the amount of screen time to see how it affects sleep, making screen time the explanatory variable."
+  },
+  {
+    "id": "U3-PC-MCQ-B-Q05",
+    "type": "multiple-choice",
+    "prompt": "A researcher randomly selected 30 people to participate in a study to investigate which of two materials, A or B, used in the heels of sneakers will last longer. The researcher is considering two design types for the study.\\n\\nI. Design 1: Randomly assign 15 participants to wear sneakers with material A on their left feet and material B on their right feet. The remaining participants will wear sneakers with material B on their left feet and material A on their right feet.\\n\\nII. Design 2: Randomly assign 15 participants to wear sneakers with material A on both feet and the remaining participants to wear sneakers with material B on both feet.\\n\\nWhich of the following best describes each design?",
+    "choices": [
+      { "key": "A", "value": "Design 1 is a completely randomized design, and design 2 is a matched pairs design." },
+      { "key": "B", "value": "Design 1 is a matched pairs design, and design 2 is a completely randomized design." },
+      { "key": "C", "value": "Design 1 is a matched pairs design, and design 2 is a matched pairs design." },
+      { "key": "D", "value": "Design 1 is a completely randomized design, and design 2 is a completely randomized design." },
+      { "key": "E", "value": "Design 1 is a completely randomized design, and design 2 is a randomized block with materials as blocks." }
+    ],
+    "answerKey": "B",
+    "reasoning": "Design 1 is a matched pairs design because each person is considered a pair and receives both types of materials, with the type of material randomly assigned to the left or right foot. This controls for person-to-person variation. Design 2 is a completely randomized design because the type of material is randomly assigned to each person, with each person receiving only one treatment."
+  },
+  {
+    "id": "U3-PC-MCQ-B-Q06",
+    "type": "multiple-choice",
+    "prompt": "An experiment compared the adhesion of 2 types of paint, A and B, to 3 types of metal, 1, 2, and 3, used in automobiles. Thirty sheets of metal were used in the experiment: 10 of Metal 1, 10 of Metal 2, and 10 of Metal 3. Half of each metal type will receive paint A and the other half will receive paint B. The adhesion of the paints was measured, and the measures were compared. How many experimental units are in the experiment?",
+    "choices": [
+      { "key": "A", "value": "2" },
+      { "key": "B", "value": "3" },
+      { "key": "C", "value": "10" },
+      { "key": "D", "value": "30" },
+      { "key": "E", "value": "60" }
+    ],
+    "answerKey": "D",
+    "reasoning": "This is the number of experimental units. It is the total number of sheets to which the treatments (type of paint) are applied. The experimental units are the individual sheets of metal, and there are 30 sheets total (10 of each metal type), so there are 30 experimental units."
+  },
+  {
+    "id": "U3-PC-MCQ-B-Q07",
+    "type": "multiple-choice",
+    "prompt": "The two graduates with the greatest GPA from each of 14 randomly selected law schools were recruited to investigate a new method of preparation for a law exam. For each school, one student was randomly assigned to prepare using the standard method and the other student was assigned to prepare using the new method. At the end of the preparation, all 28 students were given the same exam, and their scores were recorded. Which of the following best describes why a matched-pairs design is an appropriate design for the investigation?",
+    "choices": [
+      { "key": "A", "value": "Each graduate was randomly assigned to one method." },
+      { "key": "B", "value": "The law schools were randomly selected." },
+      { "key": "C", "value": "Each method served as a block." },
+      { "key": "D", "value": "The sample size was less than 30." },
+      { "key": "E", "value": "Each law school served as a block, and the graduates were paired within each law school and randomly assigned to one of the two methods." }
+    ],
+    "answerKey": "E",
+    "reasoning": "The graduates were matched within the law school they attended, and each pair received both methods (treatments). The matched-pairs design is appropriate because students from the same law school are likely to be more similar to each other than to students from different schools, so pairing within schools controls for school-related factors that might affect exam performance."
+  },
+  {
+    "id": "U3-PC-MCQ-B-Q08",
+    "type": "multiple-choice",
+    "prompt": "A pottery school wants to study whether the glaze of stoneware bowls is affected by the temperature used to harden the bowls. The study will use 3 different types of clay because glaze can affect different clay in different ways. Eight bowls will be made with each clay type for a total of 24 bowls, and 4 different temperatures will be used. What is the best design to use for the study?",
+    "choices": [
+      { "key": "A", "value": "A completely randomized design. Randomly assign temperatures so that 6 bowls are glazed at each temperature." },
+      { "key": "B", "value": "A completely randomized design. Randomly assign temperatures so that 2 bowls of each clay type are glazed at each temperature." },
+      { "key": "C", "value": "A randomized block design. Randomly assign temperatures so that 6 bowls are glazed at each temperature." },
+      { "key": "D", "value": "A randomized block design. Randomly assign temperatures so that 2 bowls of each clay type are glazed at each temperature." },
+      { "key": "E", "value": "A matched pairs design. Randomly assign temperatures so that 2 bowls of each clay type are glazed at each temperature." }
+    ],
+    "answerKey": "D",
+    "reasoning": "Because the clay differs in ways that affect glaze quality, blocking on clay type is better than a completely randomized design. This way, all clay types are tested at all temperatures. The randomized block design controls for the known source of variation (clay type) while still allowing for random assignment of temperatures within each clay type block."
+  },
+  {
+    "id": "U3-PC-MCQ-B-Q09",
+    "type": "multiple-choice",
+    "prompt": "To investigate the effectiveness of an herbal medication for pain relief, a researcher randomly selected 80 patients who were undergoing physical therapy while recovering from an injury. Of the patients, 40 had knee injuries, 16 had arm injuries, and 24 had foot injuries. The researcher will use two treatments for the investigation: the herbal medication and a standard medication. After the patients are on the medication for two weeks, the amount of pain reduction will be measured for each patient. Which of the following best describes why a randomized block design is appropriate for the investigation?",
+    "choices": [
+      { "key": "A", "value": "The 80 patients were selected at random from all patients undergoing physical therapy while recovering from an injury." },
+      { "key": "B", "value": "The sample size was greater than 30." },
+      { "key": "C", "value": "Each patient will be randomly assigned to either the herbal medication or the standard medication." },
+      { "key": "D", "value": "Blocking on injury type will help to separate natural variability from differences due to injury type." },
+      { "key": "E", "value": "Each patient assigned to the herbal medication will be paired with a patient assigned to the standard medication." }
+    ],
+    "answerKey": "D",
+    "reasoning": "The type of injury is a blocking variable, and treatments will be randomly assigned within the blocks. Blocking ensures that units within each block are similar with respect to the blocking variable, and helps to separate natural variability due to the blocking variable. Different injury types may respond differently to pain medication, so blocking on injury type controls for this source of variation."
+  },
+  {
+    "id": "U3-PC-MCQ-B-Q10",
+    "type": "multiple-choice",
+    "prompt": "A professor at a large university plans to conduct a study to compare the effect of online texts versus regular printed texts on student learning. If the findings are to be generalized to all students at the university, which of the following must be part of the design?",
+    "choices": [
+      { "key": "A", "value": "The students in the study should have experience using online and regular texts." },
+      { "key": "B", "value": "The students in the study should be a random sample from the population of students at the university." },
+      { "key": "C", "value": "The students should be allowed to choose which type of text they would like to use so that different learning styles are taken into consideration." },
+      { "key": "D", "value": "The professor should collect data from all students in the population before generalizing results." },
+      { "key": "E", "value": "Only volunteer students should be used in the study because they are more likely to be active participants." }
+    ],
+    "answerKey": "B",
+    "reasoning": "A random sample of students from the university is most likely to be representative of the student population, which allows for generalizing the results. Without a random sample, the results may not be generalizable to the broader university population due to potential selection bias."
+  },
+  {
+    "id": "U3-PC-MCQ-B-Q11",
+    "type": "multiple-choice",
+    "prompt": "A researcher conducted an experiment to investigate the effectiveness of a medicated lotion in treating a skin irritation. A group of 80 people with a history of skin irritation volunteered for the study. Of the 80 people, 40 were randomly assigned the medicated lotion, and the remaining 40 were given a nonmedicated lotion. At the end of one month, the skin irritation had cleared for 36 people (90 percent) using the medicated lotion and 16 people (40 percent) using the nonmedicated lotion. Analysis of the results showed the difference was statistically significant. What can be concluded from the experiment?",
+    "choices": [
+      { "key": "A", "value": "Treating the skin irritation with the medicated lotion will cause the irritation to clear." },
+      { "key": "B", "value": "There was no difference in the effectiveness of the two lotions because 28 people still had the skin irritation." },
+      { "key": "C", "value": "Any conclusion is problematic because the participants were volunteers and were not randomly selected from the population." },
+      { "key": "D", "value": "There is enough evidence to conclude that the medicated lotion is more effective than the nonmedicated lotion in treating the skin irritation." },
+      { "key": "E", "value": "Of the people whose skin irritation cleared, the difference between the two groups was only 20 people, which is too small for a generalization." }
+    ],
+    "answerKey": "D",
+    "reasoning": "Statistical significance means that the differences in results were too large to be attributed to chance alone. Because the treatments were randomly assigned, there is evidence to conclude that the medicated lotion was more effective than the nonmedicated lotion in clearing the skin irritation. The random assignment of treatments allows for causal inference about the effectiveness of the medicated lotion."
+  },
+  {
+    "id": "U3-PC-MCQ-B-Q12",
+    "type": "multiple-choice",
+    "prompt": "The owner of a plant nursery will conduct a study to investigate whether a new fertilizer is more effective than an older fertilizer in helping the growth of young tomato seedlings. The owner selects a simple random sample of 50 young tomato seedlings from all the young tomato seedlings in the nursery. Half of the selected seedlings will be randomly assigned to receive the new fertilizer, and the remaining seedlings will receive the older fertilizer. The growth of the seedlings will be recorded for the next month. What is the main reason in the study for selecting a simple random sample from the population?",
+    "choices": [
+      { "key": "A", "value": "A simple random sample should be used to obtain all experimental units." },
+      { "key": "B", "value": "A simple random sample allows for the random assignment of treatments to experimental units." },
+      { "key": "C", "value": "The simple random sample allows the researcher to establish a causal relationship among the treatments." },
+      { "key": "D", "value": "A simple random sample selected from the population allows the results to be generalized to the population." },
+      { "key": "E", "value": "The study was observational, so a simple random sample was not needed." }
+    ],
+    "answerKey": "D",
+    "reasoning": "A simple random sample is likely to be representative of the population and will allow results to be generalized to the population. The purpose of random sampling is to ensure that the sample is representative of the larger population of interest, which enables generalization of the experimental results to that population."
+  }
+]
