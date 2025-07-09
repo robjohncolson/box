@@ -1283,7 +1283,7 @@
                                         lineWidth: 1,
                                         drawBorder: true,
                                         drawOnChartArea: true,
-                                        drawTicks: true
+                                        drawTicks: !yAxisConfig.hideTicks
                                     },
                                     stacked: isStacked,
                                     ticks: {
@@ -1291,8 +1291,10 @@
                                         maxTicksLimit: yAxisConfig.tickInterval ? undefined : 10,
                                         precision: 2,
                                         color: getTextColor(),
+                                        display: !yAxisConfig.hideTicks,
                                         // Force Chart.js to respect our stepSize by providing a callback
                                         callback: function(value, index, values) {
+                                            if (yAxisConfig.hideTicks) return '';
                                             // If we have a specific tickInterval, ensure we only show ticks at those intervals
                                             if (yAxisConfig.tickInterval) {
                                                 const step = yAxisConfig.tickInterval;
@@ -2125,23 +2127,9 @@
                                         color: getGridColor()
                                     },
                                     ticks: {
-                                        stepSize: xAxisConfig.tickInterval,
-                                        color: getTextColor(),
-                                        // Force Chart.js to respect our stepSize by providing a callback
-                                        callback: function(value, index, values) {
-                                            // If we have a specific tickInterval, ensure we only show ticks at those intervals
-                                            if (xAxisConfig.tickInterval) {
-                                                const step = xAxisConfig.tickInterval;
-                                                const min = xAxisConfig.min !== undefined ? xAxisConfig.min : 0;
-                                                const adjustedValue = value - min;
-                                                if (Math.abs(adjustedValue % step) < 0.000001 || Math.abs(adjustedValue % step - step) < 0.000001) {
-                                                    // Round to mitigate floating-point artifacts
-                                                    return Number(value.toFixed(6));
-                                                }
-                                                return '';
-                                            }
-                                            return value;
-                                        }
+                                        display: !yAxisConfig.hideTicks,
+                                        stepSize: yAxisConfig.tickInterval,
+                                        color: getTextColor()
                                     }
                                 }
                             },
