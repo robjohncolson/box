@@ -1,0 +1,177 @@
+[
+  {
+    "id": "U5-PC-MCQ-C-Q01",
+    "type": "multiple-choice",
+    "prompt": "The mean age of the employees at a large corporation is 35.2 years, and the standard deviation is 9.5 years. A random sample of 4 employees will be selected. What are the mean and standard deviation of the sampling distribution of the sample mean for samples of size 4?",
+    "choices": [
+      { "key": "A", "value": "The mean is 35.2, and the standard deviation is 9.5." },
+      { "key": "B", "value": "The mean is 35.2, and the standard deviation is \\(\\frac{9.5}{4}\\)." },
+      { "key": "C", "value": "The mean is 35.2, and the standard deviation is \\(\\frac{9.5}{2}\\)." },
+      { "key": "D", "value": "The mean is \\(\\frac{35.2}{4}\\), and the standard deviation is \\(\\frac{9.5}{4}\\)." },
+      { "key": "E", "value": "The mean is \\(\\frac{35.2}{2}\\), and the standard deviation is \\(\\frac{9.5}{2}\\)." }
+    ],
+    "answerKey": "C",
+    "reasoning": "The mean of the sampling distribution of the sample mean is equal to the population mean (35.2), and the standard deviation is equal to the population standard deviation divided by the square root of the sample size (\\(\\frac{9.5}{\\sqrt{4}} = \\frac{9.5}{2}\\))."
+  },
+  {
+    "id": "U5-PC-MCQ-C-Q02",
+    "type": "multiple-choice",
+    "prompt": "The distribution of the commute times for the employees at a large company has mean 22.4 minutes and standard deviation 6.8 minutes. A random sample of \\(n\\) employees will be selected and their commute times will be recorded. What is true about the sampling distribution of the sample mean as \\(n\\) increases from 2 to 10?",
+    "choices": [
+      { "key": "A", "value": "The mean increases, and the variance increases." },
+      { "key": "B", "value": "The mean increases, and the variance decreases." },
+      { "key": "C", "value": "The mean does not change, and the variance does not change." },
+      { "key": "D", "value": "The mean does not change, and the variance increases." },
+      { "key": "E", "value": "The mean does not change, and the variance decreases." }
+    ],
+    "answerKey": "E",
+    "reasoning": "The mean remains equal to the population mean (22.4), and the variance decreases as the denominator of the fraction \\(\\frac{\\sigma^2}{n}\\) increases with larger sample size."
+  },
+  {
+    "id": "U5-PC-MCQ-C-Q03",
+    "type": "multiple-choice",
+    "prompt": "The distribution of the number of siblings for students at a large high school is skewed to the right with mean 1.8 siblings and standard deviation 0.7 sibling. A random sample of 100 students from the high school will be selected, and the mean number of siblings in the sample will be calculated. Which of the following describes the sampling distribution of the sample mean for samples of size 100?",
+    "choices": [
+      { "key": "A", "value": "Skewed to the right with standard deviation 0.7 sibling" },
+      { "key": "B", "value": "Skewed to the right with standard deviation less than 0.7 sibling" },
+      { "key": "C", "value": "Skewed to the right with standard deviation greater than 0.7 sibling" },
+      { "key": "D", "value": "Approximately normal with standard deviation 0.7 sibling" },
+      { "key": "E", "value": "Approximately normal with standard deviation less than 0.7 sibling" }
+    ],
+    "answerKey": "E",
+    "reasoning": "The sample size is sufficiently large (greater than or equal to 30), so the sampling distribution is approximately normal by the Central Limit Theorem. The standard deviation is equal to that of the population divided by the square root of the sample size, or \\(\\frac{0.7}{\\sqrt{100}} = \\frac{0.7}{10} = 0.07\\), which is less than 0.7."
+  },
+  {
+    "id": "U5-PC-MCQ-C-Q04",
+    "type": "multiple-choice",
+    "prompt": "The distribution of height for a certain population of women is approximately normal with mean 65 inches and standard deviation 3.5 inches. Consider two different random samples taken from the population, one of size 5 and one of size 85. Which of the following is true about the sampling distributions of the sample mean for the two sample sizes?",
+    "choices": [
+      { "key": "A", "value": "Both distributions are approximately normal with mean 65 and standard deviation 3.5." },
+      { "key": "B", "value": "Both distributions are approximately normal. The mean and standard deviation for size 5 are both less than the mean and standard deviation for size 85." },
+      { "key": "C", "value": "Both distributions are approximately normal with the same mean. The standard deviation for size 5 is greater than that for size 85." },
+      { "key": "D", "value": "Only the distribution for size 85 is approximately normal. Both distributions have mean 65 and standard deviation 3.5." },
+      { "key": "E", "value": "Only the distribution for size 85 is approximately normal. The mean and standard deviation for size 5 are both less than the mean and standard deviation for size 85." }
+    ],
+    "answerKey": "C",
+    "reasoning": "Because the population is approximately normal, normality can be assumed for the sampling distributions regardless of sample size. Both will have mean 65. The standard deviation for size 5 is \\(\\frac{3.5}{\\sqrt{5}} ≈ 1.57\\), which is greater than the standard deviation for size 85, or \\(\\frac{3.5}{\\sqrt{85}} ≈ 0.38\\)."
+  },
+  {
+    "id": "U5-PC-MCQ-C-Q05",
+    "type": "multiple-choice",
+    "prompt": "The distribution of wait times for customers at a certain department of motor vehicles in a large city is skewed to the right with mean 23 minutes and standard deviation 11 minutes. A random sample of 50 customer wait times will be selected. Let \\(\\bar{x}_W\\) represent the sample mean wait time, in minutes. Which of the following is the best interpretation of \\(P(\\bar{x}_W > 25) ≈ 0.10\\)?",
+    "choices": [
+      { "key": "A", "value": "For a random sample of 50 customer wait times, the probability that the total wait time will be greater than 25 minutes is approximately 0.10." },
+      { "key": "B", "value": "For a randomly selected customer from the population, the probability that the total customer wait time will be greater than 25 minutes is approximately 0.10." },
+      { "key": "C", "value": "For a randomly selected customer from the population, the probability that the sample mean customer wait time will be greater than 25 minutes is approximately 0.10." },
+      { "key": "D", "value": "For a random sample of 50 customer wait times, the probability that the sample mean customer wait time will be greater than 23 minutes is approximately 0.10." },
+      { "key": "E", "value": "For a random sample of 50 customer wait times, the probability that the sample mean customer wait time will be greater than 25 minutes is approximately 0.10." }
+    ],
+    "answerKey": "E",
+    "reasoning": "The statement gives a probability of 0.10 for a sample mean being greater than 25 minutes. This correctly interprets the probability statement about the sample mean from a sample of size 50."
+  },
+  {
+    "id": "U5-PC-MCQ-C-Q06",
+    "type": "multiple-choice",
+    "prompt": "A sports magazine reports that the mean number of hot dogs sold by hot dog vendors at a certain sporting event is equal to 150. A random sample of 50 hot dog vendors was selected, and the mean number of hot dogs sold by the vendors at the sporting event was 140. For samples of size 50, which of the following is true about the sampling distribution of the sample mean number of hot dogs sold by hot dog vendors at the sporting event?",
+    "choices": [
+      { "key": "A", "value": "For all random samples of 50 sporting events, the sample mean will be 150 hot dogs." },
+      { "key": "B", "value": "For all random samples of 50 hot dog vendors, the sample mean will be 140 hot dogs." },
+      { "key": "C", "value": "The mean of the sampling distribution of the sample mean is 150 hot dogs." },
+      { "key": "D", "value": "The mean of the sampling distribution of the sample mean is 140 hot dogs." },
+      { "key": "E", "value": "All random samples of 50 hot dog vendors will have a sample mean within 10 hot dogs of the population mean." }
+    ],
+    "answerKey": "C",
+    "reasoning": "The mean of the sampling distribution of the sample mean is equal to the population mean of 150 hot dogs, regardless of what any particular sample mean might be."
+  },
+  {
+    "id": "U5-PC-MCQ-C-Q07",
+    "type": "multiple-choice",
+    "prompt": "A certain company produces fidget spinners with ball bearings made of either plastic or metal. Under standard testing conditions, fidget spinners from this company with plastic bearings spin for an average of 2.7 minutes, while those from this company with metal bearings spin for an average of 4.2 minutes. A random sample of three fidget spinners with plastic bearings is selected from company stock, and each is spun one time under the same standard conditions; let \\(\\bar{x}_1\\) represent the average spinning time for these three spinners. A random sample of seven fidget spinners with metal bearings is selected from company stock, and each is likewise spun one time under standard conditions; let \\(\\bar{x}_2\\) represent the average spinning time for these seven spinners. What is the mean of the sampling distribution of the difference in sample means \\(\\bar{x}_1 - \\bar{x}_2\\)?",
+    "choices": [
+      { "key": "A", "value": "\\(3(2.7) - 7(4.2) = -21.3\\)" },
+      { "key": "B", "value": "\\(3 - 7 = -4\\)" },
+      { "key": "C", "value": "\\(2.7 - 4.2 = -1.5\\)" },
+      { "key": "D", "value": "\\(\\frac{2.7}{3} - \\frac{4.2}{7} = 0.3\\)" },
+      { "key": "E", "value": "\\(4.2 - 2.7 = 1.5\\)" }
+    ],
+    "answerKey": "C",
+    "reasoning": "The mean of the sampling distribution of \\(\\bar{x}_1 - \\bar{x}_2\\) is \\(\\mu_1 - \\mu_2 = 2.7 - 4.2 = -1.5\\)."
+  },
+  {
+    "id": "U5-PC-MCQ-C-Q08",
+    "type": "multiple-choice",
+    "prompt": "A fair six-sided die will be rolled fifteen times, and the numbers that land face up will be recorded. Let \\(\\bar{x}_1\\) represent the average of the numbers that land face up for the first five rolls, and let \\(\\bar{x}_2\\) represent the average of the numbers landing face up for the remaining ten rolls. The mean \\(\\mu\\) and variance \\(\\sigma^2\\) of a single roll are 3.5 and 2.92, respectively. What is the standard deviation of the sampling distribution of the difference in sample means \\(\\bar{x}_1 - \\bar{x}_2\\)?",
+    "choices": [
+      { "key": "A", "value": "\\(2.92 + 2.92\\)" },
+      { "key": "B", "value": "\\(2.92 - 2.92\\)" },
+      { "key": "C", "value": "\\(\\sqrt{\\frac{2.92}{5} + \\frac{2.92}{10}}\\)" },
+      { "key": "D", "value": "\\(\\sqrt{\\frac{2.92^2}{5} + \\frac{2.92^2}{10}}\\)" },
+      { "key": "E", "value": "\\(\\sqrt{\\frac{2.92^2}{5} - \\frac{2.92^2}{10}}\\)" }
+    ],
+    "answerKey": "C",
+    "reasoning": "The standard deviation of the sampling distribution of \\(\\bar{x}_1 - \\bar{x}_2\\) is \\(\\sqrt{\\frac{\\sigma_1^2}{n_1} + \\frac{\\sigma_2^2}{n_2}}\\), where \\(\\sigma_1^2 = \\sigma_2^2 = \\sigma^2 = 2.92\\), the population variance."
+  },
+  {
+    "id": "U5-PC-MCQ-C-Q09",
+    "type": "multiple-choice",
+    "prompt": "Consider two populations of coins, one of pennies and one of quarters. A random sample of 25 pennies was selected, and the mean age of the sample was 32 years. A random sample of 35 quarters was taken, and the mean age of the sample was 19 years. For the sampling distribution of the difference in sample means, have the conditions for normality been met?",
+    "choices": [
+      { "key": "A", "value": "Yes, the conditions for normality have been met because the distributions of age for the two populations are approximately normal." },
+      { "key": "B", "value": "Yes, the conditions for normality have been met because the sample sizes taken from both populations are large enough." },
+      { "key": "C", "value": "No, the conditions for normality have not been met because neither sample size is large enough and no information is given about the distributions of the populations." },
+      { "key": "D", "value": "No, the conditions for normality have not been met because the sample size for the pennies is not large enough and no information is given about the distributions of the populations." },
+      { "key": "E", "value": "No, the conditions for normality have not been met because the sample size for the quarters is not large enough and no information is given about the distributions of the populations." }
+    ],
+    "answerKey": "D",
+    "reasoning": "Information about the distributions of the populations is not known. So, in order to assume normality, both sample sizes should be at least 30. The sample size for pennies (25) does not meet this condition."
+  },
+  {
+    "id": "U5-PC-MCQ-C-Q10",
+    "type": "multiple-choice",
+    "prompt": "For a weekly town council meeting in a certain town, the distribution of the duration of the meeting is approximately normal with mean 53 minutes and standard deviation 2.5 minutes. For a weekly arts council meeting in the same town, the distribution of the duration of the meeting is approximately normal with mean 56 minutes and standard deviation 5.1 minutes. Let \\(\\bar{x}_1\\) represent the average duration, in minutes, of 10 randomly selected town council meetings, and let \\(\\bar{x}_2\\) represent the average duration, in minutes, of 10 randomly selected arts council meetings. Which of the following is the best reason why the sampling distribution of \\(\\bar{x}_1 - \\bar{x}_2\\) can be modeled by a normal distribution?",
+    "choices": [
+      { "key": "A", "value": "The sample sizes are equal." },
+      { "key": "B", "value": "Both sample sizes are large enough to satisfy the normality condition." },
+      { "key": "C", "value": "The population distributions are approximately normal." },
+      { "key": "D", "value": "The population standard deviations are assumed equal." },
+      { "key": "E", "value": "The sample sizes are less than 10% of the corresponding population sizes." }
+    ],
+    "answerKey": "C",
+    "reasoning": "Information was given that the meeting times of both meetings can be modeled with a normal distribution. Therefore, the sampling distribution of the difference in sample means \\(\\bar{x}_1 - \\bar{x}_2\\) can be modeled with a normal distribution."
+  },
+  {
+    "id": "U5-PC-MCQ-C-Q11",
+    "type": "multiple-choice",
+    "prompt": "Child psychologists study the time, in months, that it takes for infant boys and girls to say their first words. For a certain population, the distributions of time for both populations have the same mean and have the same standard deviation, \\(\\mu = 8\\) months and \\(\\sigma = 1.4\\) months. Two independent random samples of infant boys and girls were taken, and the time it took for the infants in each sample to say their first words was recorded. The summary statistics for the number of months are shown in the following table.\n\n| | n | \\(\\bar{x}\\) | s |\n|--|--|--|--|\n| Boys | 40 | 8.1 | 0.8 |\n| Girls | 40 | 7.9 | 0.7 |\n\nRiley, a child psychologist, claims that for all samples of size 40 from the population of infant boys and all samples of size 40 of newborn girls, the mean of the sampling distribution of the difference in sample means (boys minus girls) is 0.2 month. Is Riley correct?",
+    "attachments": {
+      "table": [
+        ["", "n", "\\(\\bar{x}\\)", "s"],
+        ["Boys", "40", "8.1", "0.8"],
+        ["Girls", "40", "7.9", "0.7"]
+      ]
+    },
+    "choices": [
+      { "key": "A", "value": "Yes, the mean is \\(8.1 - 7.9 = 0.2\\) month." },
+      { "key": "B", "value": "No, the mean is \\(0.8 - 0.7 = 0.1\\) month." },
+      { "key": "C", "value": "No, the mean is \\(8 - 8 = 0\\) months." },
+      { "key": "D", "value": "No, the mean is \\(8.1 - 0.8 = 7.3\\) months." },
+      { "key": "E", "value": "No, the mean is \\(7.9 - 0.7 = 7.2\\) months." }
+    ],
+    "answerKey": "C",
+    "reasoning": "Riley's claim is not correct. The mean of all differences in sample means from all samples of size 40 from the population of infant boys and all samples of size 40 of infant girls is equal to the difference in the population means. Since both population means are 8 months, the difference is 0 months."
+  },
+  {
+    "id": "U5-PC-MCQ-C-Q12",
+    "type": "multiple-choice",
+    "prompt": "Recipes for the same type of cookies can vary in terms of ingredients and baking times. From a collection of chocolate chip cookie recipes, a baker randomly selected 5 recipes. From a collection of oatmeal raisin cookie recipes, the baker randomly selected 4 recipes. The mean baking times, in minutes, for each sample were recorded as \\(\\bar{x}_C\\) and \\(\\bar{x}_O\\), respectively. What is the correct unit of measure for the standard deviation of the sampling distribution of \\(\\bar{x}_C - \\bar{x}_O\\)?",
+    "choices": [
+      { "key": "A", "value": "Minutes" },
+      { "key": "B", "value": "Minutes squared" },
+      { "key": "C", "value": "Recipes" },
+      { "key": "D", "value": "Number of Raisins" },
+      { "key": "E", "value": "Number of Chocolate Chips" }
+    ],
+    "answerKey": "A",
+    "reasoning": "The unit for the standard deviation of \\(\\bar{x}_C - \\bar{x}_O\\) is the same as the unit for the standard deviations of the individual samples, which is minutes."
+  }
+]
