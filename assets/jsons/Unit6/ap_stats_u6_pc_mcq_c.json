@@ -1,0 +1,197 @@
+[
+{
+  "id": "U6-PC-MCQ-C-Q01",
+  "type": "multiple-choice",
+  "prompt": "Machines at a factory produce circular washers with a specified diameter. The quality control manager at the factory periodically tests a random sample of washers to be sure that greater than 90 percent of the washers are produced with the specified diameter. The null hypothesis of the test is that the proportion of all washers produced with the specified diameter is equal to 90 percent. The alternative hypothesis is that the proportion of all washers produced with the specified diameter is greater than 90 percent. Which of the following describes a Type I error that could result from the test?",
+  "choices": [
+    { "key": "A", "value": "The test does not provide convincing evidence that the proportion is greater than 90%, but the actual proportion is greater than 90%." },
+    { "key": "B", "value": "The test does not provide convincing evidence that the proportion is greater than 90%, but the actual proportion is equal to 90%." },
+    { "key": "C", "value": "The test provides convincing evidence that the proportion is greater than 90%, but the actual proportion is equal to 90%." },
+    { "key": "D", "value": "The test provides convincing evidence that the proportion is greater than 90%, but the actual proportion is greater than 90%." },
+    { "key": "E", "value": "A Type I error is not possible for this hypothesis test." }
+  ],
+  "answerKey": "C",
+  "reasoning": "A Type I error occurs if a true null hypothesis is rejected. In this case, the actual proportion is 90% (null hypothesis is true), but the test provides convincing evidence that the proportion is greater than 90% (null hypothesis is rejected)."
+},
+{
+  "id": "U6-PC-MCQ-C-Q02",
+  "type": "multiple-choice",
+  "prompt": "At a manufacturing company, the percent of defective items produced on the assembly line is 2%. The company is testing a new assembly line designed to reduce the percent of defective parts. The null and alternative hypotheses of the test are: \\(H_0\\): The percent of defective parts is at least 2%. \\(H_a\\): The percent of defective parts is less than 2%. Which of the following describes a Type II error that could result from the test?",
+  "choices": [
+    { "key": "A", "value": "The test does not provide convincing evidence that the percent is less than 2%, but the actual percent is 3%." },
+    { "key": "B", "value": "The test does not provide convincing evidence that the percent is less than 2%, but the actual percent is 2%." },
+    { "key": "C", "value": "The test does not provide convincing evidence that the percent is less than 2%, but the actual percent is 1%." },
+    { "key": "D", "value": "The test provides convincing evidence that the percent is less than 2%, but the actual percent is 2%." },
+    { "key": "E", "value": "The test provides convincing evidence that the percent is less than 2%, but the actual percent is 1%." }
+  ],
+  "answerKey": "C",
+  "reasoning": "A Type II error occurs if a false null hypothesis is not rejected. In this case, the new assembly line does reduce the percent of defective items (actual percent is 1%, so the null hypothesis is false), but the test fails to detect it (fails to reject the null hypothesis)."
+},
+{
+  "id": "U6-PC-MCQ-C-Q03",
+  "type": "multiple-choice",
+  "prompt": "Which of the following is defined by the significance level of a hypothesis test?",
+  "choices": [
+    { "key": "A", "value": "The standard error" },
+    { "key": "B", "value": "The power of the test" },
+    { "key": "C", "value": "The probability of Type II error" },
+    { "key": "D", "value": "The probability of Type I error" },
+    { "key": "E", "value": "The p-value" }
+  ],
+  "answerKey": "D",
+  "reasoning": "The probability of making a Type I error is given by the significance level \\(\\alpha\\) chosen for the test."
+},
+{
+  "id": "U6-PC-MCQ-C-Q04",
+  "type": "multiple-choice",
+  "prompt": "Consider a hypothesis test in which the significance level is \\(\\alpha = 0.05\\) and the probability of a Type II error is 0.18. What is the power of the test?",
+  "choices": [
+    { "key": "A", "value": "0.95" },
+    { "key": "B", "value": "0.82" },
+    { "key": "C", "value": "0.18" },
+    { "key": "D", "value": "0.13" },
+    { "key": "E", "value": "0.05" }
+  ],
+  "answerKey": "B",
+  "reasoning": "The power is equal to 1 minus the probability of making a Type II error: \\(1 - 0.18 = 0.82\\)."
+},
+{
+  "id": "U6-PC-MCQ-C-Q05",
+  "type": "multiple-choice",
+  "prompt": "If all other factors are held constant, which of the following results in an increase in the probability of a Type II error?",
+  "choices": [
+    { "key": "A", "value": "The true parameter is farther from the value of the null hypothesis." },
+    { "key": "B", "value": "The sample size is increased." },
+    { "key": "C", "value": "The significance level is decreased." },
+    { "key": "D", "value": "The standard error is decreased." },
+    { "key": "E", "value": "The probability of a Type II error cannot be increased, only decreased." }
+  ],
+  "answerKey": "C",
+  "reasoning": "A decrease in the significance level will decrease the probability of a Type I error, which in turn increases the probability of a Type II error."
+},
+{
+  "id": "U6-PC-MCQ-C-Q06",
+  "type": "multiple-choice",
+  "prompt": "If all other factors are held constant, which of the following results in a decrease in the probability of a Type II error?",
+  "choices": [
+    { "key": "A", "value": "The true parameter is closer to the value of the null hypothesis." },
+    { "key": "B", "value": "The sample size is decreased." },
+    { "key": "C", "value": "The significance level is decreased." },
+    { "key": "D", "value": "The standard error is decreased." },
+    { "key": "E", "value": "The probability of a Type II error cannot be decreased, only increased." }
+  ],
+  "answerKey": "D",
+  "reasoning": "A decrease in standard error decreases the variability of the sampling distribution, making differences easier to detect. The decrease in the variability of the sampling distribution results in a decrease in the probability of a Type II error."
+},
+{
+  "id": "U6-PC-MCQ-C-Q07",
+  "type": "multiple-choice",
+  "prompt": "A new drug to treat a certain condition is being tested. The null hypothesis of the test is that the drug is not effective. For the researchers, the more consequential error would be for the drug to be effective, but the test does not detect the effect. Which of the following should the researchers do to avoid the more consequential error?",
+  "choices": [
+    { "key": "A", "value": "Increase the significance level to increase the probability of Type I error." },
+    { "key": "B", "value": "Increase the significance level to decrease the probability of Type I error." },
+    { "key": "C", "value": "Decrease the significance level to increase the probability of Type I error." },
+    { "key": "D", "value": "Decrease the significance level to decrease the probability of Type I error." },
+    { "key": "E", "value": "Decrease the significance level to decrease the standard error." }
+  ],
+  "answerKey": "A",
+  "reasoning": "The researchers want to avoid Type II error (the drug is effective, but the test does not detect that effect). To decrease the probability of Type II error, the researchers can increase the probability of Type I error by increasing the significance level."
+},
+{
+  "id": "U6-PC-MCQ-C-Q08",
+  "type": "multiple-choice",
+  "prompt": "Researchers are testing a new diagnostic tool designed to identify a certain condition. The null hypothesis of the significance test is that the diagnostic tool is not effective in detecting the condition. For the researchers, the more consequential error would be that the diagnostic tool is not effective, but the significance test indicated that it is effective. Which of the following should the researchers do to avoid the more consequential error?",
+  "choices": [
+    { "key": "A", "value": "Increase the significance level to increase the probability of Type I error." },
+    { "key": "B", "value": "Increase the significance level to decrease the probability of Type I error." },
+    { "key": "C", "value": "Decrease the significance level to increase the probability of Type I error." },
+    { "key": "D", "value": "Decrease the significance level to decrease the probability of Type I error." },
+    { "key": "E", "value": "Decrease the significance level to decrease the standard error." }
+  ],
+  "answerKey": "D",
+  "reasoning": "The researchers want to decrease the probability of Type I error, which is thinking that the diagnostic tool is effective, when it really isn't. To decrease the probability of Type I error, the researchers can decrease the significance level."
+},
+{
+  "id": "U6-PC-MCQ-C-Q09",
+  "type": "multiple-choice",
+  "prompt": "At a research facility that designs rocket engines, researchers know that some engines fail to ignite as a result of fuel system error. From a random sample of 40 engines of one design, 14 failed to ignite as a result of fuel system error. From a random sample of 30 engines of a second design, 9 failed to ignite as a result of fuel system error. The researchers want to estimate the difference in the proportion of engine failures for the two designs. Which of the following is the most appropriate method to create the estimate?",
+  "choices": [
+    { "key": "A", "value": "A one-sample z-interval for a sample proportion" },
+    { "key": "B", "value": "A one-sample z-interval for a population proportion" },
+    { "key": "C", "value": "A two-sample z-interval for a population proportion" },
+    { "key": "D", "value": "A two-sample z-interval for a difference in sample proportions" },
+    { "key": "E", "value": "A two-sample z-interval for a difference in population proportions" }
+  ],
+  "answerKey": "E",
+  "reasoning": "Confidence intervals are intended to estimate parameters. In this case, the difference in population proportions is estimated by a z-interval created from the two sample proportions."
+},
+{
+  "id": "U6-PC-MCQ-C-Q10",
+  "type": "multiple-choice",
+  "prompt": "Which of the following indicates that the use of a two-sample z-interval for a difference in population proportions is appropriate? I. Two populations of interest exist. II. The variable of interest is categorical. III. The intent is to estimate a difference in sample proportions.",
+  "choices": [
+    { "key": "A", "value": "I only" },
+    { "key": "B", "value": "II only" },
+    { "key": "C", "value": "III only" },
+    { "key": "D", "value": "I and II only" },
+    { "key": "E", "value": "I, II, and III" }
+  ],
+  "answerKey": "D",
+  "reasoning": "I is correct because the interval estimates a difference in the proportions of two populations. II is correct because a proportion is a summary of the number of successes out of the total number of observations, where each observation is categorized as either success or failure. III is not correct because sample differences do not need to be estimated; they are observed and already known. The intent of the interval is to estimate the difference in population proportions."
+},
+{
+  "id": "U6-PC-MCQ-C-Q11",
+  "type": "multiple-choice",
+  "prompt": "A random sample of 100 people from Country S had 15 people with blue eyes. A separate random sample of 100 people from Country B had 25 people with blue eyes. Assuming all conditions are met, which of the following is a 95 percent confidence interval to estimate the difference in population proportions of people with blue eyes (Country S minus Country B)?",
+  "choices": [
+    { "key": "A", "value": "\\((-0.01, 0.21)\\)" },
+    { "key": "B", "value": "\\((-0.15, -0.05)\\)" },
+    { "key": "C", "value": "\\((-0.19, -0.01)\\)" },
+    { "key": "D", "value": "\\((-0.21, 0.01)\\)" },
+    { "key": "E", "value": "\\((-0.24, 0.04)\\)" }
+  ],
+  "answerKey": "D",
+  "reasoning": "\\(\\left(\\frac{15}{100} - \\frac{25}{100}\\right) \\pm 1.96 \\sqrt{\\frac{\\frac{15}{100}(1-\\frac{15}{100})}{100} + \\frac{\\frac{25}{100}(1-\\frac{25}{100})}{100}}\\) gives the 95% confidence interval \\((-0.21, 0.01)\\)."
+},
+{
+  "id": "U6-PC-MCQ-C-Q12",
+  "type": "multiple-choice",
+  "prompt": "A random sample of 240 adults over the age of 40 found that 144 would use an online dating service. Another random sample of 234 adults age 40 and under showed that 131 would use an online dating service. Assuming all conditions are met, which of the following is the standard error for a 90 percent confidence interval to estimate the difference between the population proportions of adults within each age group who would use an online dating service?",
+  "choices": [
+    { "key": "A", "value": "\\(\\sqrt{\\frac{\\frac{144}{240}(1-\\frac{144}{240})}{240} + \\frac{\\frac{131}{234}(1-\\frac{131}{234})}{234}}\\)" },
+    { "key": "B", "value": "\\(1.65\\sqrt{\\frac{\\frac{144}{240}(1-\\frac{144}{240})}{240} + \\frac{\\frac{131}{234}(1-\\frac{131}{234})}{234}}\\)" },
+    { "key": "C", "value": "\\(1.96\\sqrt{\\frac{\\frac{144}{240}(1-\\frac{144}{240})}{240} + \\frac{\\frac{131}{234}(1-\\frac{131}{234})}{234}}\\)" },
+    { "key": "D", "value": "\\(\\sqrt{\\frac{\\frac{275}{474}(1-\\frac{275}{474})}{474}}\\)" },
+    { "key": "E", "value": "\\(1.65\\sqrt{\\frac{\\frac{275}{474}(1-\\frac{275}{474})}{474}}\\)" }
+  ],
+  "answerKey": "A",
+  "reasoning": "The standard error for a two-sample interval is given by \\(\\sqrt{\\frac{\\hat{p}_1(1-\\hat{p}_1)}{n_1} + \\frac{\\hat{p}_2(1-\\hat{p}_2)}{n_2}}\\)."
+},
+{
+  "id": "U6-PC-MCQ-C-Q13",
+  "type": "multiple-choice",
+  "prompt": "A wildlife biologist is doing research on chronic wasting disease and its impact on the deer populations in northern Colorado. To estimate the difference between the proportions of deer with chronic wasting disease in two different regions, a random sample of 200 deer was obtained from one region and a random sample of 197 deer was obtained from the other region. The biologist checked for the following: \\((200)(0.06) \\geq 10\\), \\((200)(0.94) \\geq 10\\), \\((197)(0.086) \\geq 10\\), \\((197)(0.914) \\geq 10\\). Which of the following conditions for inference was the biologist checking?",
+  "choices": [
+    { "key": "A", "value": "The population of deer within each region is approximately normal." },
+    { "key": "B", "value": "It is reasonable to generalize from the samples to the populations." },
+    { "key": "C", "value": "The samples are independent of each other." },
+    { "key": "D", "value": "The observations within each sample are close to independent." },
+    { "key": "E", "value": "The sampling distribution of the difference in sample proportions is approximately normal." }
+  ],
+  "answerKey": "E",
+  "reasoning": "The number of successes and the number of failures in each sample are checked to show that the sampling distribution of the difference in sample proportions was approximately normal."
+},
+{
+  "id": "U6-PC-MCQ-C-Q14",
+  "type": "multiple-choice",
+  "prompt": "A recent increase in sales of microchips has forced a computer company to buy a new processing machine to help keep up with demand. The builders of the new machine claim that it produces fewer defective microchips than the older machine. From a random sample of 90 microchips produced on the old machine, 5 were found to be defective. From a random sample of 83 microchips produced on the new machine, 3 were found to be defective. The quality control manager wants to construct a confidence interval to estimate the difference between the proportion of defective microchips from the older machine and the proportion of defective microchips from the new machine. Why is it not appropriate to calculate a two-sample z-interval for a difference in proportions?",
+  "choices": [
+    { "key": "A", "value": "The microchips were not randomly assigned to a machine." },
+    { "key": "B", "value": "There is no guarantee that microchips are approximately normally distributed." },
+    { "key": "C", "value": "The normality of the sampling distribution of the difference in sample proportions cannot be established." },
+    { "key": "D", "value": "Both sample proportions are less than 0.10." },
+    { "key": "E", "value": "The sample sizes are not the same." }
+  ],
+  "answerKey": "C",
+  "reasoning": "To establish the normality of the sampling distribution, it is required that the number of successes (and failures) in both samples be at least 10. If finding a defective microchip is defined as success, both samples had fewer than 10 successes (5 < 10 and 3 < 10)."
+}]
