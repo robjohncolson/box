@@ -1,0 +1,219 @@
+[
+  {
+    "id": "U6-PC-MCQ-B-Q01",
+    "type": "multiple-choice",
+    "prompt": "A study reports that 75 percent of young adults in a county get their news from online sources. A sociologist believes that the percentage is actually greater than 75 percent. The sociologist will select a random sample of young adults from around the county to interview. Which of the following is the most appropriate method for investigating the sociologist's belief?",
+    "choices": [
+      { "key": "A", "value": "A one-sample \\(z\\)-test for a difference in population proportions" },
+      { "key": "B", "value": "A one-sample \\(z\\)-test for a sample proportion" },
+      { "key": "C", "value": "A one-sample \\(z\\)-test for a population proportion" },
+      { "key": "D", "value": "A two-sample \\(z\\)-test for a difference in population proportions" },
+      { "key": "E", "value": "A two-sample \\(z\\)-test for a difference in sample proportions" }
+    ],
+    "answerKey": "C",
+    "reasoning": "A one-sample z-test for a population proportion is appropriate to investigate whether the proportion is greater than 0.75. Since the sociologist wants to test whether the true population proportion of young adults who get news from online sources is greater than 75%, this requires comparing a single sample proportion to a hypothesized population proportion value."
+  },
+  {
+    "id": "U6-PC-MCQ-B-Q02",
+    "type": "multiple-choice",
+    "prompt": "A study reported that 28 percent of middle school students in a certain state participate in community service activities. A teacher believes that the rate is greater than 28 percent for the middle school students in the teacher's district. The teacher selected a random sample of middle school students from the district, and the percent of students in the sample who participated in community service activities was found to be 32 percent. Which of the following is the most appropriate method for investigating the teacher's belief?",
+    "choices": [
+      { "key": "A", "value": "A two-sample \\(z\\)-test for a difference in population proportions" },
+      { "key": "B", "value": "A two-sample \\(z\\)-test for a difference in sample proportions" },
+      { "key": "C", "value": "A one-sample \\(z\\)-test for a sample proportion" },
+      { "key": "D", "value": "A one-sample \\(z\\)-test for a population proportion" },
+      { "key": "E", "value": "A one-sample \\(z\\)-test for a difference in population proportions" }
+    ],
+    "answerKey": "D",
+    "reasoning": "A one-sample z-test for a population proportion is appropriate to investigate whether the proportion is greater than 0.28. The teacher wants to test whether the true population proportion of middle school students in their district who participate in community service is greater than the state-wide rate of 28%."
+  },
+  {
+    "id": "U6-PC-MCQ-B-Q03",
+    "type": "multiple-choice",
+    "prompt": "A workers' representative for a large factory believes that more than half the workers at the factory want the opportunity to work more overtime hours. Which of the following are the appropriate hypotheses to test the representative's belief?",
+    "choices": [
+      { "key": "A", "value": "\\(H_0: \\hat{p} = 0.5\\), \\(H_a: \\hat{p} ≠ 0.5\\)" },
+      { "key": "B", "value": "\\(H_0: \\hat{p} = 0.5\\), \\(H_a: \\hat{p} > 0.5\\)" },
+      { "key": "C", "value": "\\(H_0: \\hat{p} = 0.5\\), \\(H_a: \\hat{p} < 0.5\\)" },
+      { "key": "D", "value": "\\(H_0: p = 0.5\\), \\(H_a: p < 0.5\\)" },
+      { "key": "E", "value": "\\(H_0: p = 0.5\\), \\(H_a: p > 0.5\\)" }
+    ],
+    "answerKey": "E",
+    "reasoning": "The null hypothesis is a statement that the proportion is equal to 0.5. The alternative hypothesis is what the representative wants to test: that the proportion is actually greater than 0.5. Since the representative believes MORE than half the workers want overtime, this is a right-tailed test with \\(H_a: p > 0.5\\)."
+  },
+  {
+    "id": "U6-PC-MCQ-B-Q04",
+    "type": "multiple-choice",
+    "prompt": "A manufacturer of cell phone screens is concerned because 12 percent of the screens manufactured using a previous process were rejected at the final inspection and could not be sold. A new process is introduced that is intended to reduce the proportion of rejected screens. After the process has been in place for several months a random sample of 100 screens is selected and inspected. Of the 100 screens 6 are rejected. What are the appropriate hypotheses to investigate whether the new process reduces the population proportion of screens that will be rejected?",
+    "choices": [
+      { "key": "A", "value": "\\(H_0: p = 0.12\\), \\(H_a: p < 0.12\\)" },
+      { "key": "B", "value": "\\(H_0: p = 0.12\\), \\(H_a: p > 0.12\\)" },
+      { "key": "C", "value": "\\(H_0: p = 0.06\\), \\(H_a: p < 0.06\\)" },
+      { "key": "D", "value": "\\(H_0: p = 0.06\\), \\(H_a: p > 0.06\\)" },
+      { "key": "E", "value": "\\(H_0: p = 0.12\\), \\(H_a: p < 0.12\\)" }
+    ],
+    "answerKey": "A",
+    "reasoning": "The null hypothesis is a statement of the population proportion of 0.12. The alternative hypothesis is the belief that the new proportion will be less than the current unacceptable proportion of 0.12. Since the manufacturer wants to show that the new process REDUCES the rejection rate, this is a left-tailed test."
+  },
+  {
+    "id": "U6-PC-MCQ-B-Q05",
+    "type": "multiple-choice",
+    "prompt": "A one-sample \\(z\\)-test for a population proportion \\(p\\) will be conducted. Which of the following conditions checks that the sampling distribution of the sample proportion is approximately normal?",
+    "attachments": {
+      "conditions": [
+        "I. The sample is selected at random.",
+        "II. \\(np_0 ≥ 10\\) and \\(n(1 - p_0) ≥ 10\\) for sample size \\(n\\).",
+        "III. The sample size is less than or equal to 10 percent of the population size."
+      ]
+    },
+    "choices": [
+      { "key": "A", "value": "I only" },
+      { "key": "B", "value": "II only" },
+      { "key": "C", "value": "III only" },
+      { "key": "D", "value": "I and II only" },
+      { "key": "E", "value": "I, II, and III" }
+    ],
+    "answerKey": "B",
+    "reasoning": "To support an assumption of normality, the sample size needs to be sufficiently large (where the number of successes and failures are both at least 10). This is checked by condition II: \\(np_0 ≥ 10\\) and \\(n(1 - p_0) ≥ 10\\). Condition I ensures random sampling, and condition III ensures independence, but only condition II specifically checks the normality assumption."
+  },
+  {
+    "id": "U6-PC-MCQ-B-Q06",
+    "type": "multiple-choice",
+    "prompt": "A newspaper article claims that 92 percent of teens use social media. To investigate the claim, a polling organization selected a random sample of 100 teens, and 96 teens in the sample indicated that they use social media. Given the data, why is it not appropriate to use a one-sample \\(z\\)-test for a proportion to test the newspaper's claim?",
+    "choices": [
+      { "key": "A", "value": "The random sample condition is not met." },
+      { "key": "B", "value": "The sample is more than 10% of the population." },
+      { "key": "C", "value": "The observed number of teens in the sample who do not use social media is less than 10." },
+      { "key": "D", "value": "The expected number of teens in the sample who do not use social media is less than 10." },
+      { "key": "E", "value": "The distribution of the population is not approximately normal." }
+    ],
+    "answerKey": "D",
+    "reasoning": "In checking the expected number of successes, \\(np_0 = (100)(0.92) = 92\\) and \\(92 ≥ 10\\), which meets the normality condition. However, when checking the expected number of failures, \\(n(1 - p_0) = (100)(0.08) = 8\\) and \\(8 < 10\\), which does not meet the normality condition."
+  },
+  {
+    "id": "U6-PC-MCQ-B-Q07",
+    "type": "multiple-choice",
+    "prompt": "A state biologist is investigating whether the proportion of frogs in a certain area that are bullfrogs has increased in the past ten years. The proportion ten years ago was estimated to be 0.20. From a recent random sample of 150 frogs in the area, 36 are bullfrogs. The biologist will conduct a test of \\(H_0: p = 0.20\\) versus \\(H_a: p > 0.20\\). Which of the following is the test statistic for the appropriate test?",
+    "choices": [
+      { "key": "A", "value": "\\(z = \\frac{0.20 - 0.24}{\\sqrt{\\frac{(0.24)(0.76)}{150}}}\\)" },
+      { "key": "B", "value": "\\(z = \\frac{0.20 - 0.24}{\\sqrt{\\frac{(0.20)(0.80)}{150}}}\\)" },
+      { "key": "C", "value": "\\(z = \\frac{0.24 - 0.20}{\\sqrt{\\frac{(0.24)(0.76)}{150}}}\\)" },
+      { "key": "D", "value": "\\(z = \\frac{0.24 - 0.20}{\\sqrt{\\frac{(0.20)(0.80)}{150}}}\\)" },
+      { "key": "E", "value": "\\(z = \\sqrt{\\frac{0.24 - 0.20}{\\frac{(0.20)(0.80)}{150}}}\\)" }
+    ],
+    "answerKey": "D",
+    "reasoning": "The sample proportion is \\(\\hat{p} = \\frac{36}{150} = 0.24\\), and the population proportion is 0.20. The correct test statistic is \\(z = \\frac{\\hat{p} - p_0}{\\sqrt{\\frac{p_0(1-p_0)}{n}}} = \\frac{0.24 - 0.20}{\\sqrt{\\frac{(0.20)(0.80)}{150}}}\\)."
+  },
+  {
+    "id": "U6-PC-MCQ-B-Q08",
+    "type": "multiple-choice",
+    "prompt": "A hypothesis test was conducted to investigate whether the population proportion of students at a certain college who went to the movie theater last weekend is greater than 0.2. A random sample of 100 students at this college resulted in a test statistic of 2.25. Assuming all conditions for inference were met, which of the following is closest to the \\(p\\)-value of the test?",
+    "choices": [
+      { "key": "A", "value": "0.0061" },
+      { "key": "B", "value": "0.0122" },
+      { "key": "C", "value": "0.0244" },
+      { "key": "D", "value": "0.9756" },
+      { "key": "E", "value": "0.9878" }
+    ],
+    "answerKey": "B",
+    "reasoning": "The test is one-sided (right-tailed). Because the alternative hypothesis for this hypothesis test is a greater than inequality, the p-value is the area under the standard normal curve to the right of the test statistic of 2.25. Using the standard normal table, P(Z > 2.25) ≈ 0.0122."
+  },
+  {
+    "id": "U6-PC-MCQ-B-Q09",
+    "type": "multiple-choice",
+    "prompt": "In the United States, 36 percent of the people have a blood type that is A positive. From a random sample of 150 people from Norway, 66 had a blood type that was A positive. Consider a hypothesis test to investigate whether the proportion of people in Norway with a blood type of A positive is different from that in the United States. Which of the following is the standard deviation used to calculate the test statistic for the one-sample \\(z\\)-test?",
+    "choices": [
+      { "key": "A", "value": "\\(\\sqrt{\\frac{(0.24)(0.76)}{150}}\\)" },
+      { "key": "B", "value": "\\(\\sqrt{\\frac{(0.44)(0.56)}{150}}\\)" },
+      { "key": "C", "value": "\\(\\sqrt{\\frac{(0.36)(0.64)}{150}}\\)" },
+      { "key": "D", "value": "\\(\\frac{(0.44)(0.56)}{\\sqrt{150}}\\)" },
+      { "key": "E", "value": "\\(\\frac{(0.36)(0.64)}{\\sqrt{150}}\\)" }
+    ],
+    "answerKey": "C",
+    "reasoning": "The population proportion is \\(p = 0.36\\). The standard deviation of the statistic is given by \\(\\sqrt{\\frac{p_0(1-p_0)}{n}} = \\sqrt{\\frac{(0.36)(0.64)}{150}}\\)."
+  },
+  {
+    "id": "U6-PC-MCQ-B-Q10",
+    "type": "multiple-choice",
+    "prompt": "Molly works for a meat producer, and she needs to determine whether containers of ground beef have the correct fat content. She obtains a random sample of 120 containers of ground beef and finds that 84 percent have the correct fat content. Molly then conducts a hypothesis test of \\(H_0: p = 0.80\\) versus \\(H_a: p ≠ 0.80\\) and calculates a test statistic of 1.10 with a \\(p\\)-value of 0.273. Which of the following best represents the meaning of the \\(p\\)-value?",
+    "choices": [
+      { "key": "A", "value": "If the population proportion is 0.84, the probability of observing a sample proportion of 0.80 is 0.273." },
+      { "key": "B", "value": "If the population proportion is 0.84, the probability of observing a sample proportion of at least 0.04 less than 0.84 is 0.273." },
+      { "key": "C", "value": "If the population proportion is 0.80, the probability of observing a sample proportion within 0.04 of 0.80 is 0.273." },
+      { "key": "D", "value": "If the population proportion is 0.80, the probability of observing a sample proportion at least 0.04 greater than 0.80 is 0.273." },
+      { "key": "E", "value": "If the population proportion is 0.80, the probability of observing a sample proportion of at least 0.84 or at most 0.76 is 0.273." }
+    ],
+    "answerKey": "E",
+    "reasoning": "If the null hypothesis is true and the population mean is 0.80, the probability is 0.273 of obtaining a sample proportion that is at least 0.04 greater than or 0.04 less than 0.80. The test is two-sided because the 'not equal' symbol in the alternative hypothesis means both sides are being tested, so the p-value reflects the area in both tails of the distribution."
+  },
+  {
+    "id": "U6-PC-MCQ-B-Q11",
+    "type": "multiple-choice",
+    "prompt": "Chicken hatcheries employ workers to determine the sex of the baby chicks. The hatcheries claim that the workers are correct 95 percent of the time. An investigator believes the workers' success rate (workers are correct) is actually less than 95 percent of the time. The investigator selects a random sample of chicks and finds that the hatchery workers had a success rate of 0.936. The conditions for inference were checked and verified, and the \\(p\\)-value of the test was given as 0.0322. If the null hypothesis is true, which of the following statements is a correct interpretation of the \\(p\\)-value?",
+    "choices": [
+      { "key": "A", "value": "Of all possible samples of the same size, 3.22% will result in a success rate of 93.6% or less." },
+      { "key": "B", "value": "Of all possible samples of the same size, 3.22% will result in a success rate of 93.6% or more." },
+      { "key": "C", "value": "Of all possible samples of the same size, 3.22% will result in a success rate of 95% or less." },
+      { "key": "D", "value": "Of all possible samples of the same size, 3.22% will result in a success rate of 95% or more." },
+      { "key": "E", "value": "Of all possible samples of the same size, 3.22% will result in a success rate of less than 93.6% or more than 96.4%." }
+    ],
+    "answerKey": "A",
+    "reasoning": "The p-value represents the probability of obtaining a proportion as extreme or more extreme than the sample proportion. The sample proportion is 0.936, and the test is in the direction of the investigator's belief (less than). Since this is a left-tailed test, the p-value represents the probability of getting a sample proportion of 93.6% or less."
+  },
+  {
+    "id": "U6-PC-MCQ-B-Q12",
+    "type": "multiple-choice",
+    "prompt": "In a hypothesis test for a single proportion, which of the following is assumed for the calculation of the \\(p\\)-value?",
+    "choices": [
+      { "key": "A", "value": "The alternative hypothesis is true." },
+      { "key": "B", "value": "The null hypothesis is true." },
+      { "key": "C", "value": "The distribution of the population is approximately normal." },
+      { "key": "D", "value": "The sample proportion is equal to the hypothesized proportion." },
+      { "key": "E", "value": "The sample size is 30 or more." }
+    ],
+    "answerKey": "B",
+    "reasoning": "The calculation of the p-value is done under the assumption that the null hypothesis is true. This is a fundamental principle of hypothesis testing - we assume the null hypothesis is true and then calculate the probability of observing our sample result or something more extreme."
+  },
+  {
+    "id": "U6-PC-MCQ-B-Q13",
+    "type": "multiple-choice",
+    "prompt": "A major credit card company is interested in the proportion of individuals who use a competitor's credit card. Their null hypothesis is \\(H_0: p = 0.65\\), and based on a sample they find a sample proportion of 0.70 and a \\(p\\)-value of 0.053. Is there convincing statistical evidence at the 0.05 level of significance that the true proportion of individuals who use the competitor's card is actually greater than 0.65?",
+    "choices": [
+      { "key": "A", "value": "Yes, because the sample proportion 0.70 is greater than the hypothesized proportion 0.65." },
+      { "key": "B", "value": "Yes, because the \\(p\\)-value 0.053 is greater than the significance level 0.05." },
+      { "key": "C", "value": "No, because the sample proportion 0.70 is greater than the hypothesized proportion 0.65." },
+      { "key": "D", "value": "No, since the sample proportion 0.70 is exactly 0.05 away from the hypothesized proportion 0.65." },
+      { "key": "E", "value": "No, because the \\(p\\)-value 0.053 is greater than the significance level 0.05." }
+    ],
+    "answerKey": "E",
+    "reasoning": "Since the p-value is greater than alpha, which is 0.05, we fail to reject \\(H_0\\) and conclude there is not convincing statistical evidence that the proportion of individuals who use the competitor's card is actually greater than 0.65."
+  },
+  {
+    "id": "U6-PC-MCQ-B-Q14",
+    "type": "multiple-choice",
+    "prompt": "A book club wonders if fewer than 40 percent of students at a local university had read at least one book during the last year. To test the claim, the book club selected a random sample of students at the local university and recorded the number of students who had read at least one book during the last year. The club conducted a test with the hypotheses \\(H_0: p = 0.40\\) versus \\(H_a: p < 0.40\\). The test yielded a \\(p\\)-value of 0.033. Assuming all conditions for inference were met, which of the following is an appropriate conclusion?",
+    "choices": [
+      { "key": "A", "value": "At the significance level \\(α = 0.01\\), the null hypothesis is rejected. There is convincing evidence to support the claim that fewer than 40% of the students at the local university read at least one book last year." },
+      { "key": "B", "value": "At the significance level \\(α = 0.01\\), the null hypothesis is rejected. There is not convincing evidence to support the claim that fewer than 40% of the students at the local university read at least one book last year." },
+      { "key": "C", "value": "At the significance level \\(α = 0.01\\), the null hypothesis is not rejected. There is convincing evidence to support the claim that fewer than 40% of the students at the local university read at least one book last year." },
+      { "key": "D", "value": "At the significance level \\(α = 0.05\\), the null hypothesis is rejected. There is convincing evidence to support the claim that fewer than 40% of the students at the local university read at least one book last year." },
+      { "key": "E", "value": "At the significance level \\(α = 0.05\\), the null hypothesis is rejected. There is not convincing evidence to support the claim that fewer than 40% of the students at the local university read at least one book last year." }
+    ],
+    "answerKey": "D",
+    "reasoning": "The p-value is less than \\(α = 0.05\\), indicating that the null hypothesis should be rejected. There is convincing evidence that the percent of students at the local university who read at least one book last year is less than 40%."
+  },
+  {
+    "id": "U6-PC-MCQ-B-Q15",
+    "type": "multiple-choice",
+    "prompt": "Is the significance level of a hypothesis test equivalent to the probability that the null hypothesis is true?",
+    "choices": [
+      { "key": "A", "value": "No, the significance level is the probability of rejecting the null hypothesis when the null hypothesis is actually true." },
+      { "key": "B", "value": "No, the significance level is the probability of rejecting the null hypothesis when the null hypothesis is actually false." },
+      { "key": "C", "value": "No, the significance level is the probability of failing to reject the null hypothesis when the null hypothesis is actually true." },
+      { "key": "D", "value": "No, the significance level is the probability that the null hypothesis is actually false." },
+      { "key": "E", "value": "Yes, the significance level is the probability that the null hypothesis is actually true." }
+    ],
+    "answerKey": "A",
+    "reasoning": "The significance level is not equivalent to the probability that the null hypothesis is true. The significance level is the probability of rejecting the null hypothesis when it is actually true (Type I error rate). This is a key concept in hypothesis testing that distinguishes between the error rate we control and the actual truth of hypotheses."
+  }
+]
