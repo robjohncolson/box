@@ -1125,8 +1125,11 @@
                     `📊 ${chartData.chartType.toUpperCase()} CHART` : 
                     `📊 ${chartData.chartType.toUpperCase()} CHART`);
             
+            // Allow a chart to request full horizontal space when rendered inside a "multiple-charts-container"
+            const containerStyle = chartData.fullWidth ? 'style="flex:0 0 100%; max-width:100%; width:100%;"' : '';
+            
             let chartHtml = `
-                <div class="chart-container">
+                <div class="chart-container" ${containerStyle}>
                     <div class="chart-title">${chartTitle}</div>
                     ${config.description ? `<div style="font-size: 0.9em; color: #666; text-align: center; margin-bottom: 10px; font-style: italic;">${config.description}</div>` : ''}
                     <div class="chart-canvas">
@@ -1691,6 +1694,9 @@
                     // Find max frequency for y-axis
                     const maxFrequency = Math.max(...Object.values(valueFrequency));
                     
+                    // Allow caller to set dot radius (default 4)
+                    const dotRadius = (config.dotRadius !== undefined ? config.dotRadius : 4);
+                    
                     const chart = new Chart(ctx, {
                         type: 'scatter',
                         data: {
@@ -1699,8 +1705,8 @@
                                 data: dotplotData,
                                 backgroundColor: getScatterPointColor(),
                                 borderColor: getScatterPointColor(),
-                                pointRadius: 6,
-                                pointHoverRadius: 8,
+                                pointRadius: dotRadius,
+                                pointHoverRadius: dotRadius + 2,
                                 showLine: false
                             }]
                         },
@@ -1785,7 +1791,13 @@
                         }
                     });
                      chartInstances.push(chart);
-                
+
+                    // Adjust chart height so stacked dots appear closer (rough heuristic)
+                    const minHeight = 120;
+                    const desiredHeight = Math.max(minHeight, (dotRadius * 2 + 4) * (maxFrequency + 1));
+                    canvas.parentElement.style.height = desiredHeight + 'px';
+                 
+
                 } else if (chartData.chartType === 'boxplot') {
                     const config = chartData.chartConfig || {};
                     const xAxisConfig = config.xAxis || {};

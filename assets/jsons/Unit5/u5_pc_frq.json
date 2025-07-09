@@ -1,0 +1,224 @@
+[
+  {
+    "id": "U5-PC-FRQ-Q01",
+    "type": "free-response",
+    "prompt": "Show all your work. Indicate clearly the methods you use, because you will be scored on the correctness of your methods as well as on the accuracy and completeness of your results and explanations.\n\nResearchers are studying two populations of sea turtles. In population D, 30 percent of the turtles have a shell length greater than 2 feet. In population E, 20 percent of the turtles have a shell length greater than 2 feet. From a random sample of 40 turtles selected from D, 15 had a shell length greater than 2 feet. From a random sample of 60 turtles selected from E, 11 had a shell length greater than 2 feet. Let \\(\\hat{p}_D\\) represent the sample proportion for D, and let \\(\\hat{p}_E\\) represent the sample proportion for E.\n\n(a) What is the value of the difference \\(\\hat{p}_D - \\hat{p}_E\\)? Show your work.\n\n(b) What are the mean and standard deviation of the sampling distribution of the difference in sample proportions \\(\\hat{p}_D - \\hat{p}_E\\)? Show your work and label each value.\n\n(c) Can it be assumed that the sampling distribution of the difference of the sample proportions \\(\\hat{p}_D - \\hat{p}_E\\) is approximately normal? Justify your answer.\n\n(d) Consider your answer in part (a). What is the probability that \\(\\hat{p}_D - \\hat{p}_E\\) is greater than the value found in part (a)? Show your work.",
+    "solution": {
+      "parts": [
+        {
+          "partId": "a",
+          "description": "Calculate the difference between sample proportions",
+          "response": "\\(\\hat{p}_D = \\frac{15}{40} = 0.375\\) and \\(\\hat{p}_E = \\frac{11}{60} \\approx 0.183\\).\n\nThe difference is \\(0.375 - 0.183 = 0.192\\).",
+          "calculations": [
+            "Sample proportion for D: 15/40 = 0.375",
+            "Sample proportion for E: 11/60 ≈ 0.183", 
+            "Difference: 0.375 - 0.183 = 0.192"
+          ]
+        },
+        {
+          "partId": "b",
+          "description": "Find mean and standard deviation of sampling distribution",
+          "response": "The mean of the sampling distribution is \\(\\mu_{\\hat{p}_D - \\hat{p}_E} = p_D - p_E = 0.3 - 0.2 = 0.1\\).\n\nThe standard deviation of the sampling distribution is \\(\\sigma_{\\hat{p}_D - \\hat{p}_E} = \\sqrt{\\frac{(0.3)(0.7)}{40} + \\frac{(0.2)(0.8)}{60}} \\approx 0.089\\).",
+          "calculations": [
+            "Mean = pD - pE = 0.3 - 0.2 = 0.1",
+            "Standard deviation = √[(0.3)(0.7)/40 + (0.2)(0.8)/60] = √[0.00525 + 0.00267] ≈ 0.089"
+          ]
+        },
+        {
+          "partId": "c", 
+          "description": "Check conditions for normality",
+          "response": "The distribution can be assumed approximately normal because \\(n_D p_D = (40)(0.3) = 12\\), \\(n_D(1 - p_D) = (40)(0.7) = 28\\), \\(n_E p_E = (60)(0.2) = 12\\), and \\(n_E(1 - p_E) = (60)(0.8) = 48\\) are each greater than or equal to 10.",
+          "calculations": [
+            "nD × pD = 40 × 0.3 = 12 ≥ 10 ✓",
+            "nD × (1-pD) = 40 × 0.7 = 28 ≥ 10 ✓", 
+            "nE × pE = 60 × 0.2 = 12 ≥ 10 ✓",
+            "nE × (1-pE) = 60 × 0.8 = 48 ≥ 10 ✓"
+          ]
+        },
+        {
+          "partId": "d",
+          "description": "Calculate probability using normal distribution",
+          "response": "The difference between the sample proportions can be assumed to be approximately normal with mean 0.1 and standard deviation 0.089. The observed difference of 0.192 found in part (a) has a z-score of \\(z = \\frac{(\\hat{p}_D - \\hat{p}_E) - \\mu_{\\hat{p}_D - \\hat{p}_E}}{\\sigma_{\\hat{p}_D - \\hat{p}_E}} = \\frac{0.192 - 0.1}{0.089} \\approx 1.03\\). The area under the standard normal curve to the right of 1.03 is about 0.15.\n\nThe probability that \\(\\hat{p}_D - \\hat{p}_E\\) is greater than 0.192 is approximately 0.15.",
+          "calculations": [
+            "z-score = (0.192 - 0.1) / 0.089 ≈ 1.03",
+            "P(Z > 1.03) ≈ 0.15"
+          ]
+        }
+      ],
+      "scoring": {
+        "totalPoints": 4,
+        "rubric": [
+          {
+            "part": "a",
+            "maxPoints": 1,
+            "criteria": [
+              "Essentially correct (E) if the response calculates a difference of 0.192 and shows the work",
+              "Partially correct (P) if the response shows the difference of 0.192 without work OR if the response shows a calculation error in work shown for the individual sample proportions",
+              "Incorrect (I) if the response does not meet the criteria for E or P"
+            ]
+          },
+          {
+            "part": "b", 
+            "maxPoints": 1,
+            "criteria": [
+              "Essentially correct (E) if the response satisfies both components: correct mean is clearly labeled AND there is supporting work, AND correct standard deviation is clearly labeled AND there is supporting work",
+              "Partially correct (P) if the response satisfies only one of the two components",
+              "Incorrect (I) if the response does not meet the criteria for E or P"
+            ]
+          },
+          {
+            "part": "c",
+            "maxPoints": 1, 
+            "criteria": [
+              "Essentially correct (E) if the response checks the four conditions for normality: nDpD ≥ 10, nD(1-pD) ≥ 10, nEpE ≥ 10, nE(1-pE) ≥ 10",
+              "Partially correct (P) if the response includes only two or three of the four conditions",
+              "Incorrect (I) if the response does not meet the criteria for E or P"
+            ]
+          },
+          {
+            "part": "d",
+            "maxPoints": 1,
+            "criteria": [
+              "Essentially correct (E) if the response calculates the correct probability AND shows supporting work",
+              "Partially correct (P) if the response calculates an incorrect value for the probability but demonstrates a reasonable approach",
+              "Incorrect (I) if the response does not meet the criteria for E or P"
+            ],
+            "scoringNotes": "The response in part (d) can be scored E if it follows from incorrect, but reasonable, answers parts (a) and (b). Reasonable approaches include finding the probability less than the difference found in part (a) or reversing the sample estimate and mean of the sampling distribution in the calculation for the z-score."
+          }
+        ]
+      }
+    },
+    "reasoning": "This question tests students' understanding of the sampling distribution of the difference between two sample proportions. It requires calculating sample proportions, understanding the theoretical mean and standard deviation of the difference, checking normality conditions, and using the normal distribution to find probabilities. The key concepts include the fact that the mean of the difference equals the difference of the population proportions, the formula for the standard deviation involves both sample sizes and population proportions, and the normality conditions require each of the four success/failure conditions to be met."
+  },
+  {
+    "id": "U5-PC-FRQ-Q02", 
+    "type": "free-response",
+    "prompt": "Show all your work. Indicate clearly the methods you use, because you will be scored on the correctness of your methods as well as on the accuracy and completeness of your results and explanations.\n\nThe following histogram shows the distribution of house values in a certain city. The mean of the distribution is $403,000 and the standard deviation is $278,000.\n\n(a) Suppose one house from the city will be selected at random. Use the histogram to estimate the probability that the selected house is valued at less than $500,000. Show your work.\n\n(b) Suppose a random sample of 40 houses are selected from the city. Estimate the probability that the mean value of the 40 houses is less than $500,000. Show your work.\n\nTo estimate a population mean μ, the sample mean \\(\\bar{x}\\) is often used as an estimator. However, a different estimator is called the sample midrange, given by the formula \\(\\frac{\\text{sample minimum} + \\text{sample maximum}}{2}\\).\n\n(c) The following table shows the values, in thousands of dollars, of 40 randomly selected houses in the city.\n\n(i) Calculate the sample midrange for the data.\n\n(ii) Explain why the sample midrange might be preferred to the sample mean as an estimator of the population mean.\n\n(d) To investigate the sampling distribution of the sample midrange, a simulation is performed in which 100 random samples of size n = 40 were selected from the population of house values. For each sample, the sample midrange was calculated and recorded on the following dotplot. The mean of the distribution of sample midranges is $617,000 with standard deviation $136,000.\n\nBased on the results of the simulation, explain why the sample mean might be preferred to the sample midrange as an estimator of the population mean.",
+    "attachments": {
+      "table": [
+        ["34", "38", "95", "110", "137", "140", "155", "155", "169", "207"],
+        ["209", "217", "274", "314", "314", "323", "343", "347", "349", "363"],
+        ["369", "373", "388", "389", "397", "416", "448", "450", "483", "487"],
+        ["488", "516", "571", "595", "600", "738", "762", "769", "863", "1,084"]
+      ],
+      "charts": [
+        {
+          "chartType": "histogram",
+          "xLabels": ["0-250", "250-500", "500-750", "750-1000", "1000-1250", "1250-1500", "1500-1750", "1750-2000", "2000-2250", "2250-2500"],
+          "series": [
+            {"name": "Relative Frequency", "values": [0.34, 0.37, 0.18, 0.07, 0.025, 0.0125, 0.00625, 0.003125]}
+          ],
+          "chartConfig": {
+            "yAxis": {"min": 0, "max": 0.40, "tickInterval": 0.05, "title": "Relative Frequency"},
+            "xAxis": {"title": "Value (thousands of dollars)", "labelType": "upperBound"},
+            "gridLines": {"horizontal": true, "vertical": false},
+            "description": "Histogram showing distribution of house values with bars at 0-500, 500-1000, 1000-1500, 1500-2000, 2000-2500 thousand dollars"
+          }
+        },
+        {
+          "chartType": "dotplot",
+          "values": [400, 420, 420, 430, 430, 430, 430, 440, 440, 450, 460, 470, 470, 470, 480, 480, 510, 520, 520, 530, 540, 540, 550, 550, 550, 550, 550, 560, 560, 570, 580, 580, 580, 590, 600, 600, 600, 600, 610, 620, 620, 620, 630, 630, 630, 630, 640, 650, 650, 650, 670, 670, 680, 680, 680, 690, 700, 700, 700, 700, 710, 710, 710, 720, 720, 740, 750, 780, 780, 790, 800, 800, 800, 810, 820, 830, 830, 830, 950, 970, 1070],
+          "fullWidth": true,
+          "chartConfig": {
+            "xAxis": {"min": 400, "max": 1100, "tickInterval": 100, "title": "Sample Midrange (thousands of dollars)"},
+            "gridLines": {"horizontal": false, "vertical": false},
+            "dotRadius": 4,
+            "description": "Dotplot showing distribution of sample midranges from simulation with 100 samples"
+          }
+        }
+      ]
+    },
+    "solution": {
+      "parts": [
+        {
+          "partId": "a",
+          "description": "Estimate probability from histogram",
+          "response": "From the histogram, P(value < 500,000) ≈ 0.34 + 0.37 = 0.71.",
+          "calculations": [
+            "Sum the relative frequencies for the first two bars: 0.34 + 0.37 = 0.71"
+          ]
+        },
+        {
+          "partId": "b",
+          "description": "Use Central Limit Theorem for sample mean",
+          "response": "Because the sample size n = 40 is greater than or equal to 30, the sampling distribution of \\(\\bar{x}\\) is approximately normal with mean μ = μ = 403,000 and standard deviation \\(\\sigma_{\\bar{x}} = \\frac{\\sigma}{\\sqrt{n}} = \\frac{278,000}{\\sqrt{40}} \\approx 43,956\\).\n\n\\(P(\\bar{x} < 500,000) = P\\left(z < \\frac{500,000-403,000}{43,956}\\right) = P(z < 2.21) \\approx 0.986\\)",
+          "calculations": [
+            "Mean of sampling distribution = 403,000",
+            "Standard deviation = 278,000/√40 ≈ 43,956",
+            "z-score = (500,000 - 403,000)/43,956 ≈ 2.21",
+            "P(z < 2.21) ≈ 0.986"
+          ]
+        },
+        {
+          "partId": "c-i",
+          "description": "Calculate sample midrange",
+          "response": "The sample midrange is \\(\\frac{34,000 + 1,084,000}{2} = \\frac{1,118,000}{2} = 559,000\\).",
+          "calculations": [
+            "Minimum value = 34,000",
+            "Maximum value = 1,084,000",
+            "Sample midrange = (34,000 + 1,084,000)/2 = 559,000"
+          ]
+        },
+        {
+          "partId": "c-ii",
+          "description": "Explain advantage of sample midrange",
+          "response": "The sample midrange is much easier to calculate than the sample mean because it uses only 2 values."
+        },
+        {
+          "partId": "d",
+          "description": "Compare sample mean to sample midrange",
+          "response": "Because the mean of the sampling distribution of the sample midrange ($617,000) is much larger than the population mean ($403,000), the sample midrange is a biased estimator of the population mean. Also, the standard deviation of the sampling distribution of the sample midrange ($136,000) is much larger than the standard deviation of the sampling distribution of the sample mean ($43,956), meaning that the sample midrange is a less precise estimator.",
+          "calculations": [
+            "Sample midrange mean: $617,000 vs population mean: $403,000 (bias)",
+            "Sample midrange SD: $136,000 vs sample mean SD: $43,956 (less precision)"
+          ]
+        }
+      ],
+      "scoring": {
+        "totalPoints": 4,
+        "rubric": [
+          {
+            "part": "a",
+            "maxPoints": 1,
+            "criteria": [
+              "Essentially correct (E) if the response gives a probability between 0.68 and 0.74 and shows work that includes the sum of the heights of the first two bars in the histogram",
+              "Partially correct (P) if the response gives a probability between 0.68 and 0.74 but does not show work OR if the response shows correct work but gives a probability that is not between 0.68 and 0.74 AND the probability given is between 0 and 1",
+              "Incorrect (I) if the response does not meet the criteria for E or P, including if the response uses a normal distribution to calculate a probability"
+            ]
+          },
+          {
+            "part": "b",
+            "maxPoints": 1,
+            "criteria": [
+              "Essentially correct (E) if the response satisfies three components: indicates use of a normal distribution with the correct mean ($403,000) and correct standard deviation ($43,956), indicates the correct boundary value and direction, includes a probability consistent with components 1 and 2",
+              "Partially correct (P) if the response satisfies only two of the three components",
+              "Incorrect (I) if the response does not meet the criteria for E or P"
+            ],
+            "scoringNotes": "Components 1 and 2 are satisfied with a well-labeled calculator command or well-labeled normal sketch. Component 1 is satisfied if work is shown for a z-score calculation, but a z-score calculation alone does not satisfy component 3 because it lacks direction."
+          },
+          {
+            "part": "c",
+            "maxPoints": 1,
+            "criteria": [
+              "Essentially correct (E) if the response satisfies both components: provides the correct midrange (either 559,000 or 559) AND states that the sample midrange is easier to calculate than the sample mean or gives another plausible reason",
+              "Partially correct (P) if the response satisfies only one of the components",
+              "Incorrect (I) if the response does not meet the criteria for E or P"
+            ],
+            "scoringNotes": "The answer to part (c-i) does not require units, but the correct inclusion of units should be considered a plus for holistic scoring."
+          },
+          {
+            "part": "d", 
+            "maxPoints": 1,
+            "criteria": [
+              "Essentially correct (E) if the response states that the sample midrange is a biased estimator AND provides numerical evidence (center argument) OR the sample midrange is more variable AND provides numerical evidence (variability argument) OR the distribution of the sample midrange is not approximately normal while the sample mean is (shape argument)",
+              "Partially correct (P) if the response states bias without numerical evidence OR states variability without numerical evidence OR mentions shape without explaining the disadvantage",
+              "Incorrect (I) if the response does not meet the criteria for E or P"
+            ],
+            "scoringNotes": "If a response addresses more than one argument (center, variability, shape), this should be considered a plus for holistic scoring."
+          }
+        ]
+      }
+    },
+    "reasoning": "This question tests multiple concepts including using histograms to estimate probabilities, applying the Central Limit Theorem for sample means, calculating alternative estimators like the sample midrange, and comparing estimator properties (bias and variability). Part (a) requires direct interpretation of a histogram, part (b) applies CLT with proper standardization, part (c) introduces the midrange estimator and its computational advantage, while part (d) uses simulation results to compare estimator properties, emphasizing that the sample mean is unbiased and more precise than the sample midrange."
+  }
+]
