@@ -1,0 +1,170 @@
+[
+  {
+    "id": "U5-PC-MCQ-B-Q01",
+    "type": "multiple-choice",
+    "prompt": "In a certain region of the country, the proportion of the population with blue eyes is currently 17 percent. A random sample of 100 people will be selected from the population. What is the mean of the sampling distribution of the sample proportion of people with blue eyes for samples of size 100?",
+    "choices": [
+      { "key": "A", "value": "0.04" },
+      { "key": "B", "value": "0.17" },
+      { "key": "C", "value": "0.83" },
+      { "key": "D", "value": "3.76" },
+      { "key": "E", "value": "17.0" }
+    ],
+    "answerKey": "B",
+    "reasoning": "The mean of the sampling distribution of the sample proportion is equal to the population proportion. Since the population proportion of people with blue eyes is 17% = 0.17, the mean of the sampling distribution equals 0.17."
+  },
+  {
+    "id": "U5-PC-MCQ-B-Q02",
+    "type": "multiple-choice",
+    "prompt": "At a national convention attended by many educators, about 30 percent of the attendees are from the northeast. Of all the attendees of the national convention, 25 will be selected at random to receive a free book. What are the mean and standard deviation of the sampling distribution of the proportion of attendees from the northeast for samples of size 25?",
+    "choices": [
+      { "key": "A", "value": "The mean is 30 and the standard deviation is \\(\\sqrt{\\frac{30(70)}{25}}\\)." },
+      { "key": "B", "value": "The mean is 30 and the standard deviation is \\(\\sqrt{\\frac{25(5)}{30}}\\)." },
+      { "key": "C", "value": "The mean is 0.3 and the standard deviation is \\(\\sqrt{\\frac{0.3(0.7)}{25}}\\)." },
+      { "key": "D", "value": "The mean is 0.03 and the standard deviation is \\(\\sqrt{\\frac{0.479(0.521)}{210}}\\)." },
+      { "key": "E", "value": "The mean is 7.5 and the standard deviation is \\(\\sqrt{\\frac{7.5(17.5)}{25}}\\)." }
+    ],
+    "answerKey": "C",
+    "reasoning": "The population proportion of attendees from the northeast is \\(p = 0.3\\). For samples of size 25, the mean of the sampling distribution is equal to the population proportion of 0.3, and the standard deviation is given by \\(\\sqrt{\\frac{p(1-p)}{n}} = \\sqrt{\\frac{0.3(0.7)}{25}}\\)."
+  },
+  {
+    "id": "U5-PC-MCQ-B-Q03",
+    "type": "multiple-choice",
+    "prompt": "A sample of manufactured items will be selected from a large population in which 8 percent of the items are defective. Of the following, which is the least value for a sample size that will allow for the sampling distribution of the sample proportion to be assumed approximately normal?",
+    "choices": [
+      { "key": "A", "value": "11" },
+      { "key": "B", "value": "30" },
+      { "key": "C", "value": "100" },
+      { "key": "D", "value": "125" },
+      { "key": "E", "value": "250" }
+    ],
+    "answerKey": "D",
+    "reasoning": "The value of \\(n\\) must be large enough so that both \\(np \\geq 10\\) and \\(n(1-p) \\geq 10\\). If \\(n = 125\\), then \\(np = (125)(0.08) = 10\\) and \\(n(1-p) = (125)(1-0.08) = 115\\), both of which are greater than or equal to 10. Any value less than 125 will result in \\(np\\) having a value less than 10, so 125 is the least value of \\(n\\) to ensure that the sampling distribution of the sample proportion is approximately normal."
+  },
+  {
+    "id": "U5-PC-MCQ-B-Q04",
+    "type": "multiple-choice",
+    "prompt": "According to a recent survey, 47.9 percent of housing units in a large city are rentals. A sample of 210 housing units will be randomly selected. Which of the following must be true for the sampling distribution of the sample proportion of housing units in the large city that are rentals to be approximately normal?",
+    "choices": [
+      { "key": "A", "value": "The distribution of the population must be approximately normal." },
+      { "key": "B", "value": "The sample size must be greater than 30." },
+      { "key": "C", "value": "The sample size must be less than 10 percent of the size of the population." },
+      { "key": "D", "value": "The values of \\(np\\) and \\(n(1-p)\\) must be at least 10." },
+      { "key": "E", "value": "The value of \\(\\sqrt{\\frac{p(1-p)}{n}}\\) must be at least 10." }
+    ],
+    "answerKey": "D",
+    "reasoning": "To assume normality for the sampling distribution of a sample proportion, the values of \\(np\\) and \\(n(1-p)\\) must both be at least 10. This is the success-failure condition for the normal approximation to the binomial distribution."
+  },
+  {
+    "id": "U5-PC-MCQ-B-Q05",
+    "type": "multiple-choice",
+    "prompt": "A manufacturer of computer monitors estimates that 4 percent of all the monitors manufactured have a screen defect. Let \\(p\\) represent the population proportion of all monitors manufactured that have a screen defect. For the sampling distribution of the sample proportion for samples of size 100, \\(\\mu_{\\hat{p}} = 0.04\\). Which of the following is the best interpretation of \\(\\mu_{\\hat{p}} = 0.04\\)?",
+    "choices": [
+      { "key": "A", "value": "For all samples of size 100, the mean of all possible sample proportions of monitors manufactured that have a screen defect is 0.04." },
+      { "key": "B", "value": "For all samples of size 100, the standard deviation of all possible sample proportions of monitors manufactured that have a screen defect is 0.04." },
+      { "key": "C", "value": "For a randomly selected screen monitor, the probability that the selected monitor will have a screen defect is 0.04." },
+      { "key": "D", "value": "For each sample of size 100, the proportion of monitors manufactured that will have a screen defect is 0.04." },
+      { "key": "E", "value": "For a randomly selected screen monitor, the mean number of defects for the monitor will be equal to 4." }
+    ],
+    "answerKey": "A",
+    "reasoning": "\\(\\mu_{\\hat{p}}\\) represents the mean of all possible sample proportions of monitors manufactured that have a screen defect. The notation \\(\\mu_{\\hat{p}}\\) specifically denotes the mean of the sampling distribution of the sample proportion."
+  },
+  {
+    "id": "U5-PC-MCQ-B-Q06",
+    "type": "multiple-choice",
+    "prompt": "A survey of 100 randomly selected dentists in the state of Ohio results in 78% who would recommend the use of a certain toothpaste. The population proportion is known to be \\(p = 0.72\\). For samples of size 100, which of the following best interprets the mean of the sampling distribution of sample proportion of dentists in the state of Ohio who would recommend the use of a certain toothpaste?",
+    "choices": [
+      { "key": "A", "value": "For all random samples of 100 dentists in the state of Ohio, the sample proportion will be 0.72." },
+      { "key": "B", "value": "For all random samples of 100 dentists in the state of Ohio, the sample proportion will be 0.78." },
+      { "key": "C", "value": "The mean of all sample proportions from all random samples of 100 dentists in the state of Ohio is equal to 0.72." },
+      { "key": "D", "value": "The mean of all sample proportions from all random samples of 100 dentists in the state of Ohio is equal to 0.78." },
+      { "key": "E", "value": "The probability that the mean of the sampling distribution of sample proportions is greater than 0.72 is 0.78." }
+    ],
+    "answerKey": "C",
+    "reasoning": "The mean of the sampling distribution of sample proportions is the population proportion, which is 0.72. This fundamental property states that the sampling distribution is centered at the true population parameter."
+  },
+  {
+    "id": "U5-PC-MCQ-B-Q07",
+    "type": "multiple-choice",
+    "prompt": "For two populations of rabbits, R and S, the proportions of rabbits with white markings on their fur are given as \\(p_R\\) and \\(p_S\\), respectively. Suppose that independent random samples of 50 rabbits from R and 100 rabbits from S are selected. Let \\(\\hat{p}_R\\) be the sample proportion of rabbits with white markings from R, and let \\(\\hat{p}_S\\) be the sample proportion of rabbits with white markings from S. What is the standard deviation of the sampling distribution of \\(\\hat{p}_R - \\hat{p}_S\\)?",
+    "choices": [
+      { "key": "A", "value": "\\(p_R - p_S\\)" },
+      { "key": "B", "value": "\\(\\frac{p_R(1-p_R)}{50} + \\frac{p_S(1-p_S)}{100}\\)" },
+      { "key": "C", "value": "\\(\\sqrt{\\frac{p_R(1-p_R)}{100} + \\frac{p_S(1-p_S)}{50}}\\)" },
+      { "key": "D", "value": "\\(\\sqrt{\\frac{p_R(1-p_R)}{50} + \\frac{p_S(1-p_S)}{100}}\\)" },
+      { "key": "E", "value": "\\(\\sqrt{\\frac{p_R(1-p_R)}{50} + \\frac{p_S(1-p_S)}{100}}\\)" }
+    ],
+    "answerKey": "D",
+    "reasoning": "The standard deviation of the difference between two independent sample proportions is \\(\\sqrt{\\frac{p_R(1-p_R)}{n_R} + \\frac{p_S(1-p_S)}{n_S}}\\), where \\(n_R = 50\\) and \\(n_S = 100\\). This formula combines the variances of the two independent sampling distributions."
+  },
+  {
+    "id": "U5-PC-MCQ-B-Q08",
+    "type": "multiple-choice",
+    "prompt": "A study reported that finger rings increase the growth of bacteria on health-care workers' hands. Research suggests that 31 percent of health-care workers who wear rings have bacteria on one or both hands, and 27 percent of health-care workers without rings have bacteria on one or both hands. Suppose that independent random samples of 100 health-care workers wearing rings and 100 health-care workers not wearing rings are selected. What is the standard deviation of the sampling distribution of the difference in the sample proportions (wear rings minus does not wear rings) of health-care workers having bacteria on one or both hands?",
+    "choices": [
+      { "key": "A", "value": "\\(0.31 - 0.27\\)" },
+      { "key": "B", "value": "\\(\\frac{0.31(0.69)}{100} + \\frac{0.27(0.73)}{100}\\)" },
+      { "key": "C", "value": "\\(\\sqrt{\\frac{0.31(0.69)}{100} + \\frac{0.27(0.73)}{100}}\\)" },
+      { "key": "D", "value": "\\(\\sqrt{\\frac{0.31(0.69)}{100}} + \\sqrt{\\frac{0.27(0.73)}{100}}\\)" },
+      { "key": "E", "value": "\\(\\sqrt{\\frac{0.27(0.73)}{100}}\\)" }
+    ],
+    "answerKey": "C",
+    "reasoning": "The standard deviation is \\(\\sigma_{\\hat{p}_1-\\hat{p}_2} = \\sqrt{\\frac{p_1(1-p_1)}{n_1} + \\frac{p_2(1-p_2)}{n_2}} = \\sqrt{\\frac{0.31(0.69)}{100} + \\frac{0.27(0.73)}{100}} \\approx 0.064\\)."
+  },
+  {
+    "id": "U5-PC-MCQ-B-Q09",
+    "type": "multiple-choice",
+    "prompt": "In one city, 75 percent of residents report that they regularly recycle. In a second city, 90 percent of residents report that they regularly recycle. Simple random samples of 75 residents are selected from each city. Which of the following statements is correct about the approximate normality of the sampling distribution of the difference in sample proportions of residents who report that they regularly recycle?",
+    "choices": [
+      { "key": "A", "value": "The sampling distribution is approximately normal because both sample sizes are large enough." },
+      { "key": "B", "value": "The sampling distribution is not approximately normal because although the sample size for the first city is large enough, the sample size for the second city is not large enough." },
+      { "key": "C", "value": "The sampling distribution is not approximately normal because although the sample size for the second city is large enough, the sample size for the first city is not large enough." },
+      { "key": "D", "value": "The sampling distribution is not approximately normal because neither sample size is large enough." },
+      { "key": "E", "value": "There is not enough information provided to determine whether the sampling distribution is approximately normal." }
+    ],
+    "answerKey": "B",
+    "reasoning": "The sample sizes for both cities must be large enough so that \\(n_1p_1 \\geq 10\\), \\(n_1(1-p_1) \\geq 10\\), \\(n_2p_2 \\geq 10\\), and \\(n_2(1-p_2) \\geq 10\\) in order to determine that the distribution of the difference in sample proportions will have an approximate normal distribution. Since \\(n_2(1-p_2) = (75)(0.10) = 7.5\\) and since 7.5 is less than 10, the sample size for the second city is not large enough."
+  },
+  {
+    "id": "U5-PC-MCQ-B-Q10",
+    "type": "multiple-choice",
+    "prompt": "For a certain population of men, 8 percent carry a certain genetic trait. For a certain population of women, 0.5 percent carry the same genetic trait. Let \\(\\hat{p}_1\\) represent the sample proportion of randomly selected men from the population who carry the trait, and let \\(\\hat{p}_2\\) represent the sample proportion of women from the population who carry the trait. For which of the following sample sizes will the sampling distribution of \\(\\hat{p}_1 - \\hat{p}_2\\) be approximately normal?",
+    "choices": [
+      { "key": "A", "value": "30 men and 30 women" },
+      { "key": "B", "value": "125 men and 20 women" },
+      { "key": "C", "value": "150 men and 100 women" },
+      { "key": "D", "value": "200 men and 2,000 women" },
+      { "key": "E", "value": "1,000 men and 1,000 women" }
+    ],
+    "answerKey": "D",
+    "reasoning": "Both sample sizes are large enough, since \\(200(0.08) \\geq 10\\), \\(200(0.92) \\geq 10\\), \\(2,000(0.005) \\geq 10\\), and \\(2,000(0.995) \\geq 10\\). All four conditions for normality are satisfied with these sample sizes."
+  },
+  {
+    "id": "U5-PC-MCQ-B-Q11",
+    "type": "multiple-choice",
+    "prompt": "Researchers in plant growth are investigating the proportions of seedlings that sprout under two environmental settings in a lab experiment. Let \\(\\hat{p}_C\\) represent the sample proportion of seedlings that sprout in garden C, and let \\(\\hat{p}_H\\) represent the sample proportion of seedlings that sprout in garden H. For random samples of 100 garden C seedlings and 100 garden H seedlings, the sampling distribution of the difference between sample proportions has \\(\\sigma_{\\hat{p}_C-\\hat{p}_H} \\approx 0.051\\). Which of the following is the best interpretation of \\(\\sigma_{\\hat{p}_C-\\hat{p}_H} \\approx 0.051\\)?",
+    "choices": [
+      { "key": "A", "value": "For each sample of 100 garden C seedlings and 100 garden H seedlings, the proportion of seedlings that sprout is approximately 0.051." },
+      { "key": "B", "value": "For each sample of 100 garden C seedlings and 100 garden H seedlings, the difference in the proportion of seedlings that sprout is approximately 0.051." },
+      { "key": "C", "value": "For a randomly selected garden setting C seedling and a garden H seedling, the probability that both seedlings sprout is approximately 0.051." },
+      { "key": "D", "value": "For all random samples of 100 garden C seedlings and 100 garden H seedlings, the mean of all possible differences between sample proportions is approximately 0.051." },
+      { "key": "E", "value": "For all random samples of 100 garden C seedlings and 100 garden H seedlings, the average distance of all possible differences between sample proportions from the mean of the sampling distribution is approximately 0.051." }
+    ],
+    "answerKey": "E",
+    "reasoning": "The notation \\(\\sigma_{\\hat{p}_C-\\hat{p}_H}\\) represents the standard deviation of the sampling distribution of the difference between the sample proportions \\(\\hat{p}_C - \\hat{p}_H\\), which is the average distance of all possible differences between sample proportions from the mean of the sampling distribution."
+  },
+  {
+    "id": "U5-PC-MCQ-B-Q12",
+    "type": "multiple-choice",
+    "prompt": "A river runs through a certain city and divides the city into two parts, west and east. The population proportion of residents in the west who are in favor of building a new bridge across the river is known to be \\(p_W = 0.30\\). The population proportion of residents in the east who are in favor of building a new bridge across the river is known to be \\(p_E = 0.20\\). Two random samples of city residents of size 50, one sample from the west and one sample from the east, were taken to investigate opinions on the bridge, where \\(\\hat{p}_W\\) and \\(\\hat{p}_E\\) represent the sample proportions. For samples of size 50 from each population, which of the following is the best interpretation of the mean of the sampling distribution of the difference in the sample proportions (west minus east) of residents from the west and east who are in favor of building the bridge?",
+    "choices": [
+      { "key": "A", "value": "For all random samples of size 50 residents from both populations, the difference between the sample proportion of residents from the west and the sample proportion of residents from the east will be 0.10." },
+      { "key": "B", "value": "For all random samples of size 50 residents from both populations, the difference between the sample proportion of residents from the west and the sample proportion of residents from the east will be 0.13." },
+      { "key": "C", "value": "The mean of the difference of all sample proportions from all random samples of 50 residents from each side of the river is equal to 0.10." },
+      { "key": "D", "value": "The mean of the difference of all sample proportions from all random samples of 50 from each side of the river is equal to 0.13." },
+      { "key": "E", "value": "The probability that the mean of the distribution of the difference between the sample proportion of residents from the west and the sample proportion of residents from the east is greater than 0 is equal to 0.10." }
+    ],
+    "answerKey": "C",
+    "reasoning": "The mean of the sampling distribution of the difference in the sample proportions (west minus east) of residents from the east and west who are in favor of building the bridge is equal to the difference in the population proportions, which is \\(\\mu_{\\hat{p}_W-\\hat{p}_E} = p_W - p_E = 0.10\\)."
+  }
+]
