@@ -1,0 +1,342 @@
+[
+  {
+    "id": "U5-PC-MCQ-A-Q01",
+    "type": "multiple-choice",
+    "prompt": "The distribution of heights for adult men in a certain population is approximately normal with mean 70 inches and standard deviation 4 inches. Which of the following represents the middle 80 percent of the heights?",
+    "choices": [
+      { "key": "A", "value": "50 inches to 73.37 inches" },
+      { "key": "B", "value": "62 inches to 78 inches" },
+      { "key": "C", "value": "64.87 inches to 75.13 inches" },
+      { "key": "D", "value": "66 inches to 74 inches" },
+      { "key": "E", "value": "66.63 inches to 90 inches" }
+    ],
+    "answerKey": "C",
+    "reasoning": "The z-scores associated with the middle 80% are \\(z = -1.28\\) and \\(z = 1.28\\). Substituting the known values into the formula \\(z = \\frac{x-\\mu}{\\sigma}\\) gives \\(-1.28 = \\frac{x-70}{4}\\) and \\(1.28 = \\frac{x-70}{4}\\). Solving for \\(x\\) in both formulas gives the interval 64.87 to 75.13."
+  },
+  {
+    "id": "U5-PC-MCQ-A-Q02",
+    "type": "multiple-choice",
+    "prompt": "The distribution of the amount of water used per wash cycle, in gallons, by a particular brand of dishwasher during a wash cycle is approximately normal with mean 4 gallons and standard deviation 0.2 gallon. Which of the following is closest to the probability that more than 3.75 gallons are used for any wash cycle?",
+    "choices": [
+      { "key": "A", "value": "0.11" },
+      { "key": "B", "value": "0.21" },
+      { "key": "C", "value": "0.34" },
+      { "key": "D", "value": "0.79" },
+      { "key": "E", "value": "0.89" }
+    ],
+    "answerKey": "E",
+    "reasoning": "If \\(x\\) represents the number of gallons of water used for a wash cycle, then \\(P(x > 3.75) = P\\left(\\frac{x-\\mu}{\\sigma} > \\frac{3.75-4}{0.2}\\right) = P(z > -1.25) \\approx 0.89\\)."
+  },
+  {
+    "id": "U5-PC-MCQ-A-Q03",
+    "type": "multiple-choice",
+    "prompt": "The life span of a battery is the amount of time the battery will last. The distribution of life span for a certain type of battery is approximately normal with mean 2.5 hours and standard deviation 0.25 hour. Suppose one battery will be selected at random. Which of the following is closest to the probability that the selected battery will have a life span of at most 2.1 hours?",
+    "choices": [
+      { "key": "A", "value": "0.055" },
+      { "key": "B", "value": "0.110" },
+      { "key": "C", "value": "0.445" },
+      { "key": "D", "value": "0.890" },
+      { "key": "E", "value": "0.945" }
+    ],
+    "answerKey": "A",
+    "reasoning": "If \\(x\\) represents the number of hours the battery will last, then \\(P(x < 2.1) = P\\left(\\frac{x-\\mu}{\\sigma} < \\frac{2.1-2.5}{0.25}\\right) = P(z < -1.6) \\approx 0.055\\). Of the values listed, 0.055 is closest to the probability that the selected battery will have a life span of at most 2.1 hours."
+  },
+  {
+    "id": "U5-PC-MCQ-A-Q04",
+    "type": "multiple-choice",
+    "prompt": "Data were collected on the following variables. Which variable is LEAST likely to be approximated with a normal model?",
+    "choices": [
+      { "key": "A", "value": "The distribution of heights of tomato plants growing at an agricultural center, where most heights cluster around the center and there are some very short and very tall heights" },
+      { "key": "B", "value": "The distribution of times that a certain brand of house paint lasts on a house, where the distribution is symmetric and bell-shaped" },
+      { "key": "C", "value": "The distribution of lengths of the trout living in a certain stream, where the distribution is unimodal and clustered around the center, and the left half is a mirror image of the right half" },
+      { "key": "D", "value": "The distribution of weights of mold samples growing in a laboratory, where the distribution is symmetric, unimodal, and does not have any outliers" },
+      { "key": "E", "value": "The distribution of ages, in years, of all the residents of a town, where the right tail of the distribution is longer than the left" }
+    ],
+    "answerKey": "E",
+    "reasoning": "The distribution of ages of residents is least likely to be approximated with a normal model. The description of the distribution indicates that it is skewed to the right and not bell-shaped."
+  },
+  {
+    "id": "U5-PC-MCQ-A-Q05",
+    "type": "multiple-choice",
+    "prompt": "Felip recorded 75 numerical observations on a certain variable and then calculated the mean \\(\\bar{x}\\) and the standard deviation \\(s\\) for the observations. To help decide whether a normal model is appropriate, he created the following chart.",
+    "attachments": {
+      "chartType": "numberline",
+      "ticks": [
+        { "x": -2.5, "label": "a", "drawTick": false },
+        { "x": -2,   "bottomLabel": "x\u0305 - 2s" },
+        { "x": -1.5, "label": "b", "drawTick": false },
+        { "x": -1,   "bottomLabel": "x\u0305 - s" },
+        { "x": 0,    "label": "c", "drawTick": false },
+        { "x": 1,    "bottomLabel": "x\u0305 + s" },
+        { "x": 1.5,  "label": "d", "drawTick": false },
+        { "x": 2,    "bottomLabel": "x\u0305 + 2s" },
+        { "x": 2.5,  "label": "e", "drawTick": false }
+      ],
+      "xAxis": { "min": -3, "max": 3 },
+      "chartConfig": { "description": "Number line with segment labels a, b, c, d, e above and tick value labels below showing intervals around the mean" }
+    },
+    "choices": [
+      { "key": "A", "value": "1, 31, 11, 31, 1" },
+      { "key": "B", "value": "2, 10, 51, 10, 2" },
+      { "key": "C", "value": "3, 6, 12, 24, 30" },
+      { "key": "D", "value": "40, 20, 10, 4, 1" },
+      { "key": "E", "value": "15, 15, 15, 15, 15" }
+    ],
+    "answerKey": "B",
+    "reasoning": "The counts shown display a symmetric bell shape, with the greatest frequencies clustered in the center. The pattern 2, 10, 51, 10, 2 shows the characteristic bell-shaped distribution with most observations in the center interval and fewer observations in the outer intervals."
+  },
+  {
+    "id": "U5-PC-MCQ-A-Q06",
+    "type": "multiple-choice",
+    "prompt": "The mean and standard deviation of the sample data collected on continuous variable \\(Y\\) are \\(-0.5\\) and \\(0.5\\), respectively. The following table shows the relative frequencies of the data in the given intervals. Based on the table, is it appropriate to use the normal model to approximate the population distribution?",
+    "attachments": {
+      "table": [
+        ["Interval", "Relative Frequency"],
+        ["-2.0 ≤ y < -1.5", "0.25"],
+        ["-1.5 ≤ y < -1.0", "0.15"],
+        ["-1.0 ≤ y < -0.5", "0.10"],
+        ["-0.5 ≤ y < 0", "0.10"],
+        ["0 ≤ y < 0.5", "0.15"],
+        ["0.5 ≤ y < 1.0", "0.25"]
+      ]
+    },
+    "choices": [
+      { "key": "A", "value": "Yes, because the sum of the relative frequencies is 1.00." },
+      { "key": "B", "value": "Yes, because the distribution of relative frequencies indicates a symmetric distribution." },
+      { "key": "C", "value": "No, because the value of 0 is not in the center of the distribution." },
+      { "key": "D", "value": "No, because the distribution of relative frequencies does not indicate a bell shape." },
+      { "key": "E", "value": "No, because the sample size and the population parameters are not known." }
+    ],
+    "answerKey": "D",
+    "reasoning": "Based on the table, there are more values at the ends of the distribution than in the center, indicating a model that is more bimodal than normal. The relative frequencies show higher values (0.25) at the extremes and lower values (0.10) in the center, which is the opposite of what we would expect for a normal distribution."
+  },
+  {
+    "id": "U5-PC-MCQ-A-Q07",
+    "type": "multiple-choice",
+    "prompt": "A recent study reported that 1.5 percent of flights are canceled by major air carriers. Consider a simulation with 50 trials designed to estimate the number of canceled flights from a random sample of size 100, where the probability of success, a canceled flight, is 0.015. Of the following dotplots, which best represents the possible results from the simulation described?",
+    "attachments": {
+      "charts": [
+        {
+          "chartType": "dotplot",
+          "title": "Option A",
+          "values": [0,0,0,0,0,0,1,1,1,1,1,1,2,2,2,2,2,2,3,3,3,3,3,3,3,4,4,4,4,4,4,4,5,5,5,5,5,5,6,6,6,6,6,6,7,7,7,7,7,7],
+          "chartConfig": {
+            "xAxis": { "min": -1, "max": 8, "tickInterval": 1, "title": "Number of Canceled Flights" },
+            "gridLines": { "horizontal": false, "vertical": false },
+            "description": "Uniform distribution from 0 to 7"
+          }
+        },
+        {
+          "chartType": "dotplot",
+          "title": "Option B",
+          "values": [0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,2,2,2,2,2,2,2,2,2,2,2,2,2,3,3,3,3,3,3,4,4,5],
+          "chartConfig": {
+            "xAxis": { "min": -1, "max": 8, "tickInterval": 1, "title": "Number of Canceled Flights" },
+            "gridLines": { "horizontal": false, "vertical": false },
+            "description": "Right-skewed distribution centered around 1-2"
+          }
+        },
+        {
+          "chartType": "dotplot",
+          "title": "Option C",
+          "values": [0,1,1,1,2,2,2,2,2,2,2,3,3,3,3,3,3,3,3,3,3,3,3,3,3,4,4,4,4,4,4,4,4,4,4,4,4,4,4,5,5,5,5,5,5,5,6,6,6,7],
+          "chartConfig": {
+            "xAxis": { "min": -1, "max": 8, "tickInterval": 1, "title": "Number of Canceled Flights" },
+            "gridLines": { "horizontal": false, "vertical": false },
+            "description": "Bell-shaped distribution centered around 3-4"
+          }
+        },
+        {
+          "chartType": "dotplot",
+          "title": "Option D",
+          "values": [0,10,10,10,20,20,20,20,20,20,20,30,30,30,30,30,30,30,30,30,30,30,30,30,30,40,40,40,40,40,40,40,40,40,40,40,40,40,40,50,50,50,50,50,50,50,60,60,60,70],
+          "chartConfig": {
+            "xAxis": { "min": -10, "max": 80, "tickInterval": 10, "title": "Number of Canceled Flights" },
+            "gridLines": { "horizontal": false, "vertical": false },
+            "description": "Bell-shaped distribution centered around 30-40"
+          }
+        },
+        {
+          "chartType": "dotplot",
+          "title": "Option E",
+          "values": [70,70,70,80,80,80,80,80,80,80,80,80,80,90,90,90,90,90,90,90,90,90,90,90,90,90,90,90,90,90,90,90,90,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100],
+          "chartConfig": {
+            "xAxis": { "min": 0, "max": 110, "tickInterval": 10, "title": "Number of Canceled Flights" },
+            "gridLines": { "horizontal": false, "vertical,": false },
+            "description": "Distribution with much higher values"
+          }
+        }
+      ]
+    },
+    "choices": [
+      { "key": "A", "value": "Option A" },
+      { "key": "B", "value": "Option B" },
+      { "key": "C", "value": "Option C" },
+      { "key": "D", "value": "Option D" },
+      { "key": "E", "value": "Option E" }
+    ],
+    "answerKey": "B",
+    "reasoning": "The simulation consists of 50 trials. With a proportion of 0.015 and a sample size of 100, the distribution will be centered at 1.5 flights canceled by major US air carriers. The expected number of canceled flights is \\(np = 100 \\times 0.015 = 1.5\\). Option B shows the appropriate right-skewed distribution centered around 1-2 canceled flights, which matches the expected binomial distribution for this scenario."
+  },
+  {
+    "id": "U5-PC-MCQ-A-Q08",
+    "type": "multiple-choice",
+    "prompt": "An advertisement firm reports that the proportion of consumers who respond favorably to a certain advertisement is 0.70. Three simulations, A, B, and C, were designed to create a sampling distribution of a sample proportion from a population with proportion 0.70. Each simulation consisted of 2,500 trials. For each trial of a simulation, a sample of size \\(n\\) was selected at random, and the sample proportion was recorded. The value of \\(n\\) varied among the simulations. The following histograms summarize the results of the simulations. Which of the following lists the simulations in order from the least sample size \\(n\\) to the greatest sample size \\(n\\)?",
+    "attachments": {
+      "charts": [
+        {
+          "chartType": "histogram",
+          "title": "Simulation A",
+          "xLabels": ["0.45-0.50", "0.50-0.55", "0.55-0.60", "0.60-0.65", "0.65-0.70", "0.70-0.75", "0.75-0.80", "0.80-0.85", "0.85-0.90", "0.90-0.95"],
+          "series": [
+            {"name": "Relative Frequency", "values": [0.01,0.01,0.05, 0.15, 0.25,0.26, 0.16,0.07,0.01,0.005]}
+          ],
+          "chartConfig": {
+            "yAxis": {"min": 0, "max": 0.35, "tickInterval": 0.05, "title": "Relative Frequency", "hideTicks": true},
+            "xAxis": {"title": "Sample Proportion", "labelType": "upperBound"},
+            "gridLines": {"horizontal": true, "vertical": false},
+            "description": "Wide distribution centered at 0.70"
+          }
+        },
+        {
+          "chartType": "histogram",
+          "title": "Simulation B",
+          "xLabels": ["0.675-0.680", "0.680-0.685", "0.685-0.690", "0.690-0.695", "0.695-0.700", "0.700-0.705", "0.705-0.710", "0.710-0.715", "0.715-0.720", "0.720-0.725"],
+          "series": [
+            {"name": "Relative Frequency", "values": [0.005,0.01,0.06, 0.16, 0.25,0.26, 0.15,0.06,0.03,0.005]}
+          ],
+          "chartConfig": {
+            "yAxis": {"min": 0, "max": 0.35, "tickInterval": 0.05, "title": "Relative Frequency", "hideTicks": true},
+            "xAxis": {"title": "Sample Proportion", "labelType": "upperBound"},
+            "gridLines": {"horizontal": true, "vertical": false},
+            "description": "Wide distribution centered at 0.70"
+          }
+        },
+        {
+          "chartType": "histogram",
+          "title": "Simulation C",
+          "xLabels": ["0.60-0.625", "0.625-0.650", "0.650-0.675", "0.675-0.700", "0.700-0.725", "0.725-0.750", "0.750-0.775", "0.775-0.800", "0.800-0.825", "0.825-0.850"],
+          "series": [
+            {"name": "Relative Frequency", "values": [0,0.01,0.06, 0.15, 0.25,0.26, 0.16,0.06,0.03,0.005]}
+          ],
+          "chartConfig": {
+            "yAxis": {"min": 0, "max": 0.35, "tickInterval": 0.05, "title": "Relative Frequency", "hideTicks": true},
+            "xAxis": {"title": "Sample Proportion", "labelType": "upperBound"},
+            "gridLines": {"horizontal": true, "vertical": false},
+            "description": "Wide distribution centered at 0.70"
+          }
+        }
+      ]
+    },
+    "choices": [
+      { "key": "A", "value": "Simulation A, simulation B, simulation C" },
+      { "key": "B", "value": "Simulation A, simulation C, simulation B" },
+      { "key": "C", "value": "Simulation B, simulation A, simulation C" },
+      { "key": "D", "value": "Simulation B, simulation C, simulation A" },
+      { "key": "E", "value": "Simulation C, simulation A, simulation B" }
+    ],
+    "answerKey": "B",
+    "reasoning": "As sample size increases, the variability of the sampling distribution decreases. The least value of \\(n\\) will have the greatest variability, which is simulation A (range 0.50-0.90). The greatest value of \\(n\\) will have the least variability, which is simulation B (range 0.68-0.72). Simulation C has intermediate variability. Therefore, the order from least to greatest sample size is A, C, B."
+  },
+  {
+    "id": "U5-PC-MCQ-A-Q09",
+    "type": "multiple-choice",
+    "prompt": "An online news source reports that the proportion of smartphone owners who use a certain operating system is 0.216. Two simulations will be conducted to create a sampling distribution of the sample proportion from a population with proportion 0.216. Simulation A will consist of 1,000 trials with a sample size of 50. Simulation B will consist of 500 trials with a sample size of 100. Which of the following describes the centers and variabilities that should be apparent in the distributions generated by simulation A and simulation B?",
+    "choices": [
+      { "key": "A", "value": "The centers will be approximately equal, and the variabilities will roughly be equal." },
+      { "key": "B", "value": "The centers will be approximately equal, and the variability of simulation A will be greater than the variability of simulation B." },
+      { "key": "C", "value": "The centers will be approximately equal, and the variability of simulation A will be less than the variability of simulation B." },
+      { "key": "D", "value": "The center of simulation A will be greater than the center of simulation B, and the variabilities will be approximately equal." },
+      { "key": "E", "value": "The center of simulation A will be less than the center of simulation B, and the variability of simulation A will be less than the variability of simulation B." }
+    ],
+    "answerKey": "B",
+    "reasoning": "The means of sampling distributions are equal to the population mean. Both simulations will be centered at 0.216. The standard deviation of simulation A will be greater than that of simulation B, because the sample size for simulation A (n=50) is smaller than that for simulation B (n=100). As sample size increases, variability decreases."
+  },
+  {
+    "id": "U5-PC-MCQ-A-Q10",
+    "type": "multiple-choice",
+    "prompt": "Samples A and B were selected from the same population. The mean of sample A is equal to the mean of the population. Which of the following statements must be true? I. The mean of sample A is a point estimator for the mean of the population. II. The mean of sample B is a point estimator for the mean of the population. III. The mean of sample A is equal to the mean of sample B.",
+    "choices": [
+      { "key": "A", "value": "I only" },
+      { "key": "B", "value": "II only" },
+      { "key": "C", "value": "III only" },
+      { "key": "D", "value": "I and II" },
+      { "key": "E", "value": "II and III" }
+    ],
+    "answerKey": "D",
+    "reasoning": "Statements I and II are true, since any sample mean is a point estimator for the mean of the population from which the sample was drawn. Statement III is not true, since the means of two samples selected from the same population are not necessarily equal due to sampling variability."
+  },
+  {
+    "id": "U5-PC-MCQ-A-Q11",
+    "type": "multiple-choice",
+    "prompt": "The statistic \\(s\\) is used as an estimator for which of the following?",
+    "choices": [
+      { "key": "A", "value": "\\(\\sigma\\)" },
+      { "key": "B", "value": "\\(n\\)" },
+      { "key": "C", "value": "\\(z\\)" },
+      { "key": "D", "value": "\\(\\bar{x}\\)" },
+      { "key": "E", "value": "\\(\\mu\\)" }
+    ],
+    "answerKey": "A",
+    "reasoning": "The value \\(s\\) is the sample standard deviation and is used to estimate the population standard deviation \\(\\sigma\\)."
+  },
+  {
+    "id": "U5-PC-MCQ-A-Q12",
+    "type": "multiple-choice",
+    "prompt": "A certain statistic will be used as an unbiased estimator of a parameter. Let \\(R\\) represent the sampling distribution of the estimator for samples of size 35, and let \\(S\\) represent the sampling distribution of the estimator for samples of size 15. Which of the following must be true about \\(R\\) and \\(S\\)?",
+    "choices": [
+      { "key": "A", "value": "The expected values of \\(R\\) and \\(S\\) will be equal, and the variability of \\(R\\) will be less than the variability of \\(S\\)." },
+      { "key": "B", "value": "The expected values of \\(R\\) and \\(S\\) will be equal, and the variability of \\(R\\) will be equal to the variability of \\(S\\)." },
+      { "key": "C", "value": "The expected values of \\(R\\) and \\(S\\) will be equal, and the variability of \\(R\\) will be greater than the variability of \\(S\\)." },
+      { "key": "D", "value": "The expected value of \\(R\\) will be greater than the expected value of \\(S\\), and the variability of \\(R\\) will be greater than the variability of \\(S\\)." },
+      { "key": "E", "value": "The expected value of \\(R\\) will be greater than the expected value of \\(S\\), and the variability of \\(R\\) will be less than the variability of \\(S\\)." }
+    ],
+    "answerKey": "A",
+    "reasoning": "Because the estimator is unbiased, the expected value of each sampling distribution will equal the population parameter, and will therefore equal each other. Also, as sample size increases, the variability of the sampling distribution decreases. Since R has a larger sample size (35) than S (15), R will have less variability."
+  },
+  {
+    "id": "U5-PC-MCQ-A-Q13",
+    "type": "multiple-choice",
+    "prompt": "Which of the following must be true for an estimator of a population parameter to be unbiased?",
+    "choices": [
+      { "key": "A", "value": "The sampling distribution of the estimator is normal." },
+      { "key": "B", "value": "The expected value of the estimator is equal to the population parameter." },
+      { "key": "C", "value": "The sampling distribution of the estimator is the same shape as the distribution of the population parameter." },
+      { "key": "D", "value": "The variability of the sampling distribution of the estimator is equal to the variability of the population parameter." },
+      { "key": "E", "value": "The variability of the sampling distribution of the estimator is less than the variability of the population parameter." }
+    ],
+    "answerKey": "B",
+    "reasoning": "An unbiased estimator is one in which its value, on average, is equal to the value of the parameter it is intended to estimate. This means the expected value of the estimator must equal the population parameter."
+  },
+  {
+    "id": "U5-PC-MCQ-A-Q14",
+    "type": "multiple-choice",
+    "prompt": "A certain statistic \\(\\hat{b}\\) is being used to estimate a population parameter \\(B\\). The expected value of \\(\\hat{b}\\) is equal to \\(B\\). What property does \\(\\hat{b}\\) exhibit?",
+    "choices": [
+      { "key": "A", "value": "The sampling distribution of \\(\\hat{b}\\) is normal." },
+      { "key": "B", "value": "The sampling distribution of \\(\\hat{b}\\) is binomial." },
+      { "key": "C", "value": "The sampling distribution of \\(\\hat{b}\\) is uniform." },
+      { "key": "D", "value": "\\(\\hat{b}\\) is unbiased." },
+      { "key": "E", "value": "\\(\\hat{b}\\) is biased." }
+    ],
+    "answerKey": "D",
+    "reasoning": "An unbiased estimator is one in which its value, on average, is equal to the value of the parameter it is intended to estimate. Since the expected value of \\(\\hat{b}\\) equals \\(B\\), the estimator \\(\\hat{b}\\) is unbiased."
+  },
+  {
+    "id": "U5-PC-MCQ-A-Q15",
+    "type": "multiple-choice",
+    "prompt": "The following graphs show the sampling distributions for two different point estimators, \\(\\bar{X}\\) and \\(Y\\), of the same population parameter. Which of the following statements is true?",
+    "attachments": {
+      "image": "assets/pngs/Unit5/u5_pc_mcqa_q15.png"
+    },
+    "choices": [
+      { "key": "A", "value": "Both \\(\\bar{X}\\) and \\(Y\\) are unbiased." },
+      { "key": "B", "value": "Both \\(\\bar{X}\\) and \\(Y\\) are biased." },
+      { "key": "C", "value": "\\(\\bar{X}\\) is biased, and \\(Y\\) is unbiased." },
+      { "key": "D", "value": "\\(\\bar{X}\\) is unbiased, and \\(Y\\) is biased." },
+      { "key": "E", "value": "The assessment of bias is not possible, because the sampling distributions display too much variability." }
+    ],
+    "answerKey": "A",
+    "reasoning": "Both estimators are unbiased. Both sampling distributions are centered at the population parameter, which indicates that the expected value of each estimator equals the population parameter."
+  }
+]
