@@ -1,0 +1,176 @@
+[
+  {
+    "id": "U6-PC-FRQ-Q01",
+    "type": "free-response",
+    "prompt": "Show all your work. Indicate clearly the methods you use, because you will be scored on the correctness of your methods as well as on the accuracy and completeness of your results and explanations.\n\nA recent survey collected information on television viewing habits from a random sample of 1,000 people in the United States. Of those sampled, 37 percent indicated that their favorite sport to watch on television was American football.\n\n(a) Construct and interpret a 95 percent confidence interval for the proportion of all people in the United States who would indicate that their favorite sport to watch on television is American football.\n\n(b) Based on your answer to part (a), is it reasonable to believe that 33 percent is the actual percent of people in the United States whose favorite sport to watch on television is American football? Justify your answer.",
+    "solution": {
+      "parts": [
+        {
+          "partId": "a-step1",
+          "description": "Identify the correct procedure with conditions.",
+          "response": "The appropriate procedure is the one-sample z-interval for a population proportion. The sample proportion is \\(\\hat{p} = 0.37\\).\n\nConditions:\n• Data were collected from a random sample as stated.\n• Sample size is large enough: \\(n\\hat{p} = 1,000(0.37) \\geq 10\\) and \\(n(1 - \\hat{p}) = 1,000(0.63) \\geq 10\\)\n• The sampling method was probably conducted without replacement. It is reasonable to assume that the population of people in the United States was greater than 10 times the sample size of 1,000."
+        },
+        {
+          "partId": "a-step2",
+          "description": "Construct the interval.",
+          "response": "For 95% confidence, the correct z-value is 1.96.\n\nThe interval is \\(0.37 \\pm 1.96\\sqrt{\\frac{(0.37)(0.63)}{1,000}} = 0.37 \\pm 0.03\\), or (0.34, 0.40).",
+          "calculations": [
+            "Standard error: \\(\\sqrt{\\frac{\\hat{p}(1-\\hat{p})}{n}} = \\sqrt{\\frac{(0.37)(0.63)}{1,000}} = \\sqrt{\\frac{0.2331}{1,000}} \\approx 0.0153\\)",
+            "Margin of error: \\(1.96 \\times 0.0153 \\approx 0.03\\)",
+            "Confidence interval: \\(0.37 \\pm 0.03 = (0.34, 0.40)\\)"
+          ]
+        },
+        {
+          "partId": "a-step3",
+          "description": "Interpret the interval.",
+          "response": "We are 95% confident that the proportion of all people in the United States who would indicate that American football is their favorite sport to watch on television is between 0.34 and 0.40.\n\nOR\n\nWe are 95% confident that the percent of all people in the United States who would indicate that American football is their favorite sport to watch on television is between 34% and 40%."
+        },
+        {
+          "partId": "b",
+          "description": "Based on your answer to part (a), is it reasonable to believe that 33 percent is the actual percent of people in the United States whose favorite sport to watch on television is American football? Justify your answer.",
+          "response": "It is not reasonable to conclude that the population percent is 33% because 0.33 is not included in the interval (0.34, 0.40)."
+        }
+      ],
+      "scoring": {
+        "totalPoints": 4,
+        "rubric": [
+          {
+            "part": "a-step1",
+            "maxPoints": 1,
+            "criteria": [
+              "The correct interval is identified, either by name or formula",
+              "The random sampling condition is checked",
+              "The sample size conditions are checked"
+            ],
+            "scoringNotes": "Essentially correct (E) if the response satisfies all three components. Partially correct (P) if the response satisfies only two of the three components. Incorrect (I) if the response does not meet the criteria for E or P. Note: Checking the independence condition that \\(n \\leq 10\\%N\\) is not necessary to score an E for scoring step 1, but this should be considered a plus for the purposes of holistic scoring."
+          },
+          {
+            "part": "a-step2",
+            "maxPoints": 1,
+            "criteria": [
+              "Calculates the correct interval with work"
+            ],
+            "scoringNotes": "Essentially correct (E) if the response calculates the correct interval with work. Partially correct (P) if the response calculates the correct interval with no work OR if the response gives an interval with a calculation error or with the wrong z-value. Incorrect (I) if the response does not meet the criteria for E or P."
+          },
+          {
+            "part": "a-step3",
+            "maxPoints": 1,
+            "criteria": [
+              "A reasonable interpretation in context and details about the population the interval represents",
+              "The interpretation is clear that the interval estimates the population proportion",
+              "The interpretation is given with 95% confidence"
+            ],
+            "scoringNotes": "Essentially correct (E) if the response satisfies all three components. Partially correct (P) if the response includes only two of the three components. Incorrect (I) if the response does not meet the criteria for E or P."
+          },
+          {
+            "part": "b",
+            "maxPoints": 1,
+            "criteria": [
+              "A correct conclusion that is consistent with the interval calculated in part (a)",
+              "A correct justification"
+            ],
+            "scoringNotes": "Essentially correct (E) if the response satisfies both components. Partially correct (P) if the response satisfies only one of the two components. Incorrect (I) if the response does not meet the criteria for E or P. Note: The justification must reference the interval."
+          }
+        ]
+      }
+    },
+    "reasoning": "This question tests students' ability to construct and interpret a confidence interval for a population proportion, and to use that interval to assess the plausibility of a particular claim about the parameter value. The solution demonstrates the complete inference process: identifying the appropriate procedure and checking conditions, performing the calculations correctly, interpreting the interval in context, and using the interval to make a decision about a specific claim."
+  },
+  {
+    "id": "U6-PC-FRQ-Q02",
+    "type": "free-response",
+    "prompt": "Show all your work. Indicate clearly the methods you use, because you will be scored on the correctness of your methods as well as on the accuracy and completeness of your results and explanations.\n\nA fair die, with its faces numbered from 1 to 6, is one in which each number is equally likely to land face up when the die is rolled. On a fair die, the probability that the number 6 will land face up is \\(\\frac{1}{6}\\). A group of students wanted to investigate a claim about manipulating a fair die so that it favors one outcome. The claim states that if a fair die is put into an oven and baked at 200°F for 10 minutes, the inside of the die will begin to melt. When the die cools, the inside will be solid again, but with more weight toward the bottom. This shift in weight will cause the face that was up when the die cooled to land up more often that the other faces.\n\nThe students obtained a fair die and baked it according to the preceding directions. The die cooled with the number 6 face up. After the die cooled, they rolled the die 200 times, and the number 6 landed face up 43 times. Let \\(p\\) represent the population proportion of times the number 6 will land face up on the baked die if the die could be rolled an infinite number of times.\n\n(a) Clarke, one of the students, constructed a 95 percent confidence interval for \\(p\\) as \\(0.215 \\pm 0.057\\). Does the interval provide convincing statistical evidence that the number 6 will land face up more often on the baked die than on a fair die? Explain your reasoning.\n\n(b) Aurelia, another student, suggested they conduct a significance test to investigate the claim. She tested the hypotheses \\(H_0: p = \\frac{1}{6}\\) versus \\(H_a: p > \\frac{1}{6}\\) at the significance level of \\(\\alpha = 0.05\\). She obtained a test statistic of \\(z = 1.83\\) with a p-value of 0.033. Do the results of the significance test agree with the results of Clarke's confidence interval in part (a)? Explain your reasoning.\n\n(c) Two standard normal curves are shown below, one for the confidence interval calculated in part (a) and one for the significance test conducted in part (b).\n\n(i) For the confidence interval curve, label the critical values for the 95% confidence level and shade the area that represents values in the outer 5%.\n\n(ii) For the significance test curve, label the critical value for the 5% significance level and shade the area representing the values of \\(z\\) that would lead to a rejection of the null hypothesis in part (b).\n\n(d) Joachim, a third student, noted that the confidence interval in part (a) gives plausible values of the parameter as an interval between two values. He suggested that they develop a one-sided confidence interval because they were only concerned with whether the number 6 was landing face up more often than expected, not less often. The one-sided-interval will determine a value \\(L\\) such that all plausible values of \\(p\\) are greater than \\(L\\). The formula for \\(L\\) is \\(L = \\hat{p} - z^* \\sqrt{\\frac{\\hat{p}(1-\\hat{p})}{n}}\\).\n\n(i) Determine the values of \\(z^*\\) needed to create the one-sided 95 percent confidence interval. Then calculate the value of \\(L\\).\n\n(ii) Do the results of Joachim's one-sided confidence interval agree with results of Aurelia's significance test in part (b)? Explain your reasoning.",
+    "attachments": {
+      "image": "assets/pngs/unit6/u6_pc_q2_curves.png",
+      "imageAlt": "Two standard normal distribution curves side by side. Left curve labeled 'Confidence Interval' shows a bell curve with center at 0. Right curve labeled 'Hypothesis Test' shows a bell curve with center at 0.",
+      "imageCaption": "Standard normal curves for confidence interval and hypothesis test visualization"
+    },
+    "solution": {
+      "parts": [
+        {
+          "partId": "a",
+          "description": "Does the interval provide convincing statistical evidence that the number 6 will land face up more often on the baked die than on a fair die?",
+          "response": "We can be 95% confident that the proportion of times the 6 will land face up on the baked die is between 0.158 and 0.272. Because \\(\\frac{1}{6}\\) (or ≈ 0.1667) is included in the interval, we do not have convincing statistical evidence to support the claim that the 6 will land face up more often than on a fair die."
+        },
+        {
+          "partId": "b",
+          "description": "Do the results of the significance test agree with the results of Clarke's confidence interval in part (a)?",
+          "response": "At the significance level of 0.05, the null hypothesis is rejected, because \\(0.033 < 0.05\\). There is convincing statistical evidence that the proportion of times 6 will land face up in the baked die is greater than \\(\\frac{1}{6}\\). This does not agree with the confidence interval in part (a) which suggested that \\(\\frac{1}{6}\\) was a plausible value for the proportion of times 6 will land face up in the baked die."
+        },
+        {
+          "partId": "c",
+          "description": "Label critical values and shade appropriate areas on the standard normal curves.",
+          "response": "For part (c-i): The values -1.96 and 1.96 should be labeled on the confidence interval curve, with shading in both tails (2.5% in each tail).\n\nFor part (c-ii): The value 1.645 should be labeled on the significance test curve, with shading in the right tail (5% area).",
+          "attachments": {
+            "image": "assets/pngs/unit6/u6_pc_q2_curves_solution.png",
+            "imageAlt": "Two standard normal curves with critical values labeled and appropriate areas shaded. Left curve shows ±1.96 with both tails shaded. Right curve shows 1.645 with right tail shaded.",
+            "imageCaption": "Solution showing properly labeled critical values and shaded rejection regions"
+          }
+        },
+        {
+          "partId": "d-i",
+          "description": "Determine the values needed to create the one-sided 95 percent confidence interval and calculate L.",
+          "response": "Because we want a 95% interval with no upper limit, the critical value is the boundary that separates the smallest 5% from the largest 95% in a standard normal distribution. This value is \\(z^* = -1.645\\). Therefore, the value of L is:\n\n\\(L = \\frac{43}{200} + (-1.645)\\sqrt{\\frac{(\\frac{43}{200})(\\frac{157}{200})}{200}} ≈ 0.1672\\)",
+          "calculations": [
+            "Sample proportion: \\(\\hat{p} = \\frac{43}{200} = 0.215\\)",
+            "Standard error: \\(\\sqrt{\\frac{\\hat{p}(1-\\hat{p})}{n}} = \\sqrt{\\frac{(0.215)(0.785)}{200}} ≈ 0.0291\\)",
+            "\\(L = 0.215 + (-1.645)(0.0291) ≈ 0.215 - 0.0478 ≈ 0.1672\\)"
+          ]
+        },
+        {
+          "partId": "d-ii",
+          "description": "Do the results of Joachim's one-sided confidence interval agree with results of Aurelia's significance test in part (b)?",
+          "response": "According to the one-sided interval, we can be 95% confident that the proportion of times that 6 will land face up is greater than 0.1672. Because the value of \\(\\frac{1}{6} ≈ 0.1667\\) is not contained in the interval (since 0.1667 < 0.1672), the results agree with the significance test in part (b). The one-sided confidence interval is equivalent to a one-sided significance test."
+        }
+      ],
+      "scoring": {
+        "totalPoints": 4,
+        "rubric": [
+          {
+            "part": "a",
+            "maxPoints": 1,
+            "criteria": [
+              "Correct calculation of the endpoints of the interval AND recognition that \\(\\frac{1}{6}\\) is contained in the interval",
+              "States the interval does not support the claim",
+              "Response refers to the parameter (the proportion of times 6 will land face up)"
+            ],
+            "scoringNotes": "Essentially correct (E) if the response satisfies all three components. Partially correct (P) if the student satisfies only two of the three components. Incorrect (I) if the response does not meet the criteria for E or P."
+          },
+          {
+            "part": "b",
+            "maxPoints": 1,
+            "criteria": [
+              "A statement that the null hypothesis will be rejected or that there is convincing evidence for the alternative hypothesis",
+              "Justification for the decision by stating that the p-value is less than \\(\\alpha\\)",
+              "Reference to the parameter (the proportion of times 6 will land face up) in context",
+              "States that results of the significance test do not agree with the results of the confidence interval in part (a)"
+            ],
+            "scoringNotes": "Essentially correct (E) if the response satisfies all four components. Partially correct (P) if the response satisfies only two or three of the four components. Incorrect (I) if the response does not meet the criteria for E or P."
+          },
+          {
+            "part": "c",
+            "maxPoints": 1,
+            "criteria": [
+              "For part (c-i), the values -1.96 and 1.96 are labeled on the confidence interval curve",
+              "For part (c-i), the confidence interval curve has shading in both tails",
+              "For part (c-ii), the value 1.645 (or 1.64 or 1.65) is labeled on the significance test curve",
+              "For part (c-ii) the significance test curve has shading in the right tail"
+            ],
+            "scoringNotes": "Essentially correct (E) if the response satisfies all four components. Partially correct (P) if the response satisfies only two or three of the four components. Incorrect (I) if the response does not meet the criteria for E or P."
+          },
+          {
+            "part": "d",
+            "maxPoints": 1,
+            "criteria": [
+              "In part (d-i), states the correct value for \\(z^* = -1.645\\)",
+              "In part (d-i), states the correct value for L",
+              "In part (d-ii), makes a correct statement about the equivalence of the one-sided confidence interval and the one-sided significance test that is consistent with the value of L calculated in part (d-i)"
+            ],
+            "scoringNotes": "Essentially correct (E) if the response satisfies all three components. Partially correct (P) if the response satisfies only two of the three components. Incorrect (I) if the response does not meet the criteria for E or P."
+          }
+        ]
+      }
+    },
+    "reasoning": "This comprehensive question tests students' understanding of the relationship between confidence intervals and hypothesis tests, including the ability to interpret confidence intervals, conduct significance tests, understand critical values and rejection regions, and recognize the equivalence between one-sided confidence intervals and one-sided significance tests. The question demonstrates how different statistical approaches can lead to different conclusions when applied to the same data, highlighting the importance of choosing the appropriate method for the research question."
+  }
+]

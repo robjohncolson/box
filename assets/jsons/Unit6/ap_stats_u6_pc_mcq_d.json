@@ -1,0 +1,254 @@
+[
+  {
+    "id": "U6-PC-MCQ-D-Q01",
+    "type": "multiple-choice",
+    "prompt": "In a large study designed to compare the risk of cardiovascular disease between smokers and nonsmokers, random samples from each group were selected. The sample proportion of people with CVD was calculated for each group, and a 95 percent confidence interval for the difference (smoker minus nonsmoker) was given as \\((-0.01, 0.04)\\). Which of the following is the best interpretation of the interval?",
+    "choices": [
+      { "key": "A", "value": "We are 95% confident that the difference in proportions for smokers and nonsmokers with CVD in the sample is between -0.01 and 0.04." },
+      { "key": "B", "value": "We are 95% confident that the difference in proportions for smokers and nonsmokers with CVD in the population is between -0.01 and 0.04." },
+      { "key": "C", "value": "We are 95% confident that the proportion of all smokers with CVD is greater than the proportion of all nonsmokers with CVD because the interval contains more positive values." },
+      { "key": "D", "value": "The probability is 0.95 that for all random samples of the same size, the difference in the sample proportions for smokers and nonsmokers with CVD will be between -0.01 and 0.04." },
+      { "key": "E", "value": "The probability is 0.95 that there is no difference in the proportions of smokers and nonsmokers with CVD because 0 is included in the interval." }
+    ],
+    "answerKey": "B",
+    "reasoning": "The confidence interval is a statement of plausible values for the difference in the population proportions along with a level of how confident we are of the estimates. A confidence interval provides an estimate for a population parameter, not a sample statistic."
+  },
+  {
+    "id": "U6-PC-MCQ-D-Q02",
+    "type": "multiple-choice",
+    "prompt": "A research group studying cell phone habits asked the question \"Do you ever use your cell phone to make a payment at a convenience store?\" to people selected from two random samples of cell phone users. One sample consisted of older adults, ages 35 years and older, and the other sample consisted of younger adults, ages 18 years to 34 years. The proportion of people who answered yes in each sample was used to create a 95 percent confidence interval of \\((0.097, 0.125)\\) to estimate the difference (younger minus older) between the population proportions of people who would answer yes to the question. Which of the following is the best description of what is meant by 95 percent confidence?",
+    "choices": [
+      { "key": "A", "value": "In repeated random sampling with the same sample size, approximately 95% of the sample proportions from the younger group will be between 0.097 and 0.125 greater than the sample proportion from the older group." },
+      { "key": "B", "value": "In repeated random sampling with the same sample size, approximately 95% of the intervals constructed from the samples will capture the difference in sample proportions of people who would answer yes to the question." },
+      { "key": "C", "value": "In repeated random sampling with the same sample size, approximately 95% of the intervals constructed from the samples will capture the difference in population proportions of people who would answer yes to the question." },
+      { "key": "D", "value": "The probability is 0.95 that the difference in the sample proportions of people who would answer yes to the question is between 0.097 and 0.125." },
+      { "key": "E", "value": "The probability is 0.95 that the difference in the population proportions of people who would answer yes to the question is between 0.097 and 0.125." }
+    ],
+    "answerKey": "C",
+    "reasoning": "The confidence level is an indication of the percent of intervals that will capture the population parameter if the process is repeated over and over again. In this case, the population difference will be captured by 95% of all possible intervals created from repeated sampling."
+  },
+  {
+    "id": "U6-PC-MCQ-D-Q03",
+    "type": "multiple-choice",
+    "prompt": "Consider a 90 percent confidence interval constructed to estimate the difference between two population proportions. Which of the following is the best interpretation of what is meant by 90 percent confidence?",
+    "choices": [
+      { "key": "A", "value": "The probability that the true difference in population proportions falls within the bounds of the confidence interval is 0.90." },
+      { "key": "B", "value": "For repeated random sampling from the populations with samples of the same size, approximately 90% of the sample proportions will fall within the bounds of the confidence interval." },
+      { "key": "C", "value": "If the sampling process is repeated 10 times, 9 intervals will capture the true difference between the population proportions and 1 interval will not." },
+      { "key": "D", "value": "For repeated random sampling from the populations with samples of the same size, approximately 90% of the confidence intervals constructed will capture the true difference between the population proportions." },
+      { "key": "E", "value": "For repeated random sampling from the populations with samples of the same size, approximately 90% of the confidence intervals constructed will capture the sample difference between the population proportions." }
+    ],
+    "answerKey": "D",
+    "reasoning": "The confidence level is an indication of the percent of intervals that will capture the population parameter for all possible samples of a given size. In this case, if the process was repeated over and over again with samples of the same size, about 90% of the intervals constructed from the respective sample proportions are expected to contain the actual population difference between the proportions."
+  },
+  {
+    "id": "U6-PC-MCQ-D-Q04",
+    "type": "multiple-choice",
+    "prompt": "Surveys were sent to a random sample of owners of all-wheel-drive (AWD) vehicles and to a random sample of owners of front-wheel-drive (FWD) vehicles. The proportion of owners who were satisfied with their vehicles was recorded for each sample. The sample proportions were used to construct the 95 percent confidence interval for a difference in population proportions (FWD minus AWD) for satisfied owners. The interval is given as \\((-0.01, 0.12)\\). A car company believes that the proportion of satisfied owners of AWD vehicles differs from the proportion of satisfied owners of FWD vehicles. Does the confidence interval provide evidence that this belief is plausible?",
+    "choices": [
+      { "key": "A", "value": "No. The interval contains 0." },
+      { "key": "B", "value": "No. Most of the values in the interval are not close to 0." },
+      { "key": "C", "value": "No. The value of 0 is not in the middle of the interval." },
+      { "key": "D", "value": "Yes. The interval does contain 0." },
+      { "key": "E", "value": "Yes. There are more positive values in the interval than negative values." }
+    ],
+    "answerKey": "A",
+    "reasoning": "The confidence interval contains 0, so 0 is a plausible value for the difference in the proportion of owners of AWD vehicles and the proportion of owners of FWD vehicles. Since a difference of 0 is plausible, a belief that they differ is not supported."
+  },
+  {
+    "id": "U6-PC-MCQ-D-Q05",
+    "type": "multiple-choice",
+    "prompt": "A large company offered gym memberships to its employees as part of a program to keep employees healthy. A random sample of employees with a gym membership and a random sample of employees without a gym membership were taken, and the proportion of employees who had taken at least one sick day in the past month was recorded for each sample. A 90 percent confidence interval for the difference in population proportions (membership minus no membership) was found to be \\((-0.13, 0.05)\\). Employees believe that there is no difference in absenteeism between those with a gym membership and those without a gym membership. Does the confidence interval provide evidence that this belief is plausible?",
+    "choices": [
+      { "key": "A", "value": "No. It is likely that employees with a gym membership are absent less often than employees without a gym membership, because -0.13 < 0.05." },
+      { "key": "B", "value": "No. It is likely that employees with a gym membership are absent more often than employees without a gym membership, because the absolute value of -0.13 is greater then 0.05." },
+      { "key": "C", "value": "No. The range of negative values is greater than the range of positive values in the interval, which indicates that employees with a gym membership tend to be absent less often than employees without a gym membership." },
+      { "key": "D", "value": "Yes. The length of the interval is 0.18, which indicates a low probability of a difference." },
+      { "key": "E", "value": "Yes. The value of 0 is contained in the interval, which indicates that no difference is plausible." }
+    ],
+    "answerKey": "E",
+    "reasoning": "The confidence interval supports the belief; 0 is contained in the interval, so a difference of 0 is plausible."
+  },
+  {
+    "id": "U6-PC-MCQ-D-Q06",
+    "type": "multiple-choice",
+    "prompt": "A 90 percent confidence interval for the proportion difference \\(p_1 - p_2\\) was calculated to be \\((0.247, 0.325)\\). Which of the following conclusions is supported by the interval?",
+    "choices": [
+      { "key": "A", "value": "There is evidence to conclude that \\(p_1 > p_2\\) because 0.325 is greater than 0.247." },
+      { "key": "B", "value": "There is evidence to conclude that \\(p_1 < p_2\\) because 0.325 is greater than 0.247." },
+      { "key": "C", "value": "There is evidence to conclude that \\(p_1 > p_2\\) because all values in the interval are positive." },
+      { "key": "D", "value": "There is evidence to conclude that \\(p_1 < p_2\\) because all values in the interval are positive." },
+      { "key": "E", "value": "There is evidence to conclude that \\(p_2 > p_1\\) because 0.247 and 0.325 are both greater than 0.05." }
+    ],
+    "answerKey": "C",
+    "reasoning": "All values in the interval are positive, indicating a positive difference for \\(p_1 - p_2\\). Therefore, we have convincing statistical evidence to support the claim that \\(p_1\\) is greater than \\(p_2\\)."
+  },
+  {
+    "id": "U6-PC-MCQ-D-Q07",
+    "type": "multiple-choice",
+    "prompt": "A yearbook company was investigating whether there is a significant difference between two states in the percents of high school students who order yearbooks. From a random sample of 150 students selected from one state, 70 had ordered a yearbook. From a random sample of 100 students selected from the other state, 65 had ordered a yearbook. Which of the following is the most appropriate method for analyzing the results?",
+    "choices": [
+      { "key": "A", "value": "A one-sample z-test for a sample proportion" },
+      { "key": "B", "value": "A one-sample z-test for a population proportion" },
+      { "key": "C", "value": "A two-sample z-test for a difference in sample proportions" },
+      { "key": "D", "value": "A two-sample z-test for a difference in population proportions" },
+      { "key": "E", "value": "A two-sample z-test for a population proportion" }
+    ],
+    "answerKey": "D",
+    "reasoning": "To determine if a difference in proportions is significant, the two-sample z-test for the difference in population proportions is the most appropriate method for the analysis."
+  },
+  {
+    "id": "U6-PC-MCQ-D-Q08",
+    "type": "multiple-choice",
+    "prompt": "A behavioral scientist investigated whether there is a significant difference in the percentages of men and women who purchase silver-colored cars. The scientist selected a random sample of 50 men and a random sample of 52 women who had recently purchased a new car. Of the men selected, 16 had purchased a silver-colored car. Of the women selected, 9 had purchased a silver-colored car. Which of the following is the most appropriate method for analyzing the results?",
+    "choices": [
+      { "key": "A", "value": "A two-sample z-test for the difference in population proportions" },
+      { "key": "B", "value": "A two-sample z-test for the difference in sample proportions" },
+      { "key": "C", "value": "A one-sample z-test for a sample proportion" },
+      { "key": "D", "value": "A one-sample z-test for a population proportion" },
+      { "key": "E", "value": "A one-sample z-test for a difference in sample proportions" }
+    ],
+    "answerKey": "A",
+    "reasoning": "To determine if a difference in proportions is significant, the two-sample z-test for the difference in population proportions is the most appropriate method for the analysis."
+  },
+  {
+    "id": "U6-PC-MCQ-D-Q09",
+    "type": "multiple-choice",
+    "prompt": "A farmer wants to investigate whether a new pesticide will decrease the proportion of pumpkin plants that are being eaten by bugs in the farmer's pumpkin patches compared to the current pesticide being used. The farmer applied the old pesticide to patch A and the new pesticide to patch B. Let \\(p_A\\) represent the proportion of pumpkin plants eaten by bugs in patch A and \\(p_B\\) represent the proportion of pumpkin plants eaten by bugs in patch B. Assume all conditions for inference were met. Which of the following are the correct null and alternative hypotheses to test whether the new pesticide results in fewer pumpkin plants eaten by bugs?",
+    "choices": [
+      { "key": "A", "value": "\\(H_0: p_A > p_B\\), \\(H_a: p_A = p_B\\)" },
+      { "key": "B", "value": "\\(H_0: p_A = p_B\\), \\(H_a: p_A > p_B\\)" },
+      { "key": "C", "value": "\\(H_0: p_A = p_B\\), \\(H_a: p_A \\neq p_B\\)" },
+      { "key": "D", "value": "\\(H_0: p_A = p_B\\), \\(H_a: p_A \\neq p_B\\)" },
+      { "key": "E", "value": "\\(H_0: p_A = p_B\\), \\(H_a: p_A > p_B\\)" }
+    ],
+    "answerKey": "B",
+    "reasoning": "The null hypothesis is a statement of no difference; that is, \\(p_A = p_B\\). The alternative hypothesis reflects the belief that the patch with the new pesticide, patch B, will have a lower proportion of pumpkin plants being eaten by bugs compared with patch A, which has the old pesticide, or \\(p_A > p_B\\)."
+  },
+  {
+    "id": "U6-PC-MCQ-D-Q10",
+    "type": "multiple-choice",
+    "prompt": "Students at Hereford High School want to investigate whether they have more school spirit than students at Blake High School. To test this hypothesis, the students will select a random sample of students from each school and determine the proportion of the sampled students who wear school colors to their respective pep rallies. Let \\(p_H\\) represent the proportion of Hereford students who wear school colors to their pep rally and \\(p_B\\) represent the proportion of Blake students who wear school colors to their pep rally. Which of the following are the correct null and alternative hypotheses for the investigation?",
+    "choices": [
+      { "key": "A", "value": "\\(H_0: p_H - p_B = 0\\), \\(H_a: p_H - p_B \\neq 0\\)" },
+      { "key": "B", "value": "\\(H_0: p_H - p_B = 0\\), \\(H_a: p_H - p_B > 0\\)" },
+      { "key": "C", "value": "\\(H_0: p_H - p_B = 0\\), \\(H_a: p_H - p_B < 0\\)" },
+      { "key": "D", "value": "\\(H_0: p_H - p_B > 0\\), \\(H_a: p_H - p_B = 0\\)" },
+      { "key": "E", "value": "\\(H_0: p_H - p_B < 0\\), \\(H_a: p_H - p_B = 0\\)" }
+    ],
+    "answerKey": "B",
+    "reasoning": "The null hypothesis is a statement of no difference, that is, \\(p_H = p_B\\), or \\(p_H - p_B = 0\\). The alternative hypothesis should reflect the belief that Hereford has more school spirit, or in this case, that the proportion of Hereford students who wear school colors is greater than the proportion of Blake students, or \\(p_H - p_B > 0\\)."
+  },
+  {
+    "id": "U6-PC-MCQ-D-Q11",
+    "type": "multiple-choice",
+    "prompt": "A potato chip company produces a large number of potato chip bags each day and wants to investigate whether a new packaging machine will lower the proportion of bags that are damaged. The company selected a random sample of 150 bags from the old machine and found that 15 percent of the bags were damaged, then selected a random sample of 200 bags from the new machine and found that 8 percent were damaged. Let \\(\\hat{p}_O\\) represent the sample proportion of bags packaged on the old machine that are damaged, \\(\\hat{p}_N\\) represent the sample proportion of bags packaged on the new machine that are damaged, \\(\\hat{p}_C\\) represent the combined proportion of damaged bags from both machines, and \\(n_O\\) and \\(n_N\\) represent the respective sample sizes for the old machine and new machine. Have the conditions for statistical inference for testing a difference in population proportions been met?",
+    "choices": [
+      { "key": "A", "value": "No, the condition for independence has not been met, because random samples were not selected." },
+      { "key": "B", "value": "No, the condition for independence has not been met, because the sample sizes are too large when compared to the corresponding population sizes." },
+      { "key": "C", "value": "No, the condition that the distribution of \\(\\hat{p}_O - \\hat{p}_N\\) is approximately normal has not been met, because \\(n_N\\hat{p}_C\\) is not greater than or equal to 10." },
+      { "key": "D", "value": "No, the condition that the distribution of \\(\\hat{p}_O - \\hat{p}_N\\) is approximately normal has not been met, because \\(n_O(1 - \\hat{p}_C)\\) is not greater than or equal to 10." },
+      { "key": "E", "value": "All conditions for making statistical inference have been met." }
+    ],
+    "answerKey": "E",
+    "reasoning": "Conditions to check for are independence and normality. The condition for independence has been met, since both samples were random samples and production is likely large enough to assume that the number of potato chip bags in the two populations are both at least 10 times the sample sizes. \\(\\hat{p}_C = \\frac{(150)(0.15)+(200)(0.08)}{150+200} = 0.11\\). Each of \\(n_O(\\hat{p}_C)\\), \\(n_N(\\hat{p}_C)\\), \\(n_O(1-\\hat{p}_C)\\), and \\(n_N(1-\\hat{p}_C)\\) are greater than or equal to 10, so the sampling distribution of the difference of sample proportions is approximately normal."
+  },
+  {
+    "id": "U6-PC-MCQ-D-Q12",
+    "type": "multiple-choice",
+    "prompt": "Two schools are investigating whether there is a difference in the proportion of students who attend the homecoming football game. Both schools have over 2,000 students. School A selected a simple random sample of 100 students and found that 98 attended the homecoming football game. School B selected a simple random sample of 150 students and found that 142 attended the homecoming football game. Let \\(\\hat{p}_c\\) represent the combined sample proportion for the two schools, and let \\(n_A\\) and \\(n_B\\) represent the respective sample sizes. Have the conditions for statistical inference for testing a difference in population proportions been met?",
+    "choices": [
+      { "key": "A", "value": "No, the condition for independence has not been met, because random samples were not selected from both schools." },
+      { "key": "B", "value": "No, the condition for independence has not been met, because the sample sizes are too large when compared to the corresponding population sizes." },
+      { "key": "C", "value": "No, the condition that the distribution of the difference in sample proportions is approximately normal has not been met, because \\(n_A\\hat{p}_c\\) is not greater than or equal to 5." },
+      { "key": "D", "value": "No, the condition that the distribution of the difference in sample proportions is approximately normal has not been met, because \\(n_A(1-\\hat{p}_c)\\) is not greater than or equal to 5." },
+      { "key": "E", "value": "All conditions for making statistical inference have been met." }
+    ],
+    "answerKey": "D",
+    "reasoning": "The combined sample proportion is \\(\\hat{p}_c = \\frac{98+142}{100+150} = 0.96\\) and \\(n_A(1-\\hat{p}_c) = (100)(1-0.96) = 4\\), which is less than 5. The normality condition has not been met."
+  },
+  {
+    "id": "U6-PC-MCQ-D-Q13",
+    "type": "multiple-choice",
+    "prompt": "Researchers studying starfish collected two independent random samples of 40 starfish. One sample came from an ocean area in the north, and the other sample came from an ocean area in the south. Of the 40 starfish from the north, 6 were found to be over 8 inches in length. Of the 40 starfish from the south, 11 were found to be over 8 inches in length. Which of the following is the test statistic for the appropriate test to investigate whether there is a difference in proportion of starfish over 8 inches in length in the two ocean areas (north minus south)?",
+    "choices": [
+      { "key": "A", "value": "\\(\\frac{6-11}{\\sqrt{\\frac{6}{40}+\\frac{11}{40}}}\\)" },
+      { "key": "B", "value": "\\(\\frac{6-11}{\\sqrt{\\frac{0.15}{40}+\\frac{0.275}{40}}}\\)" },
+      { "key": "C", "value": "\\(\\frac{0.15-0.275}{\\sqrt{(0.15)(0.275)(\\frac{1}{40}+\\frac{1}{40})}}\\)" },
+      { "key": "D", "value": "\\(\\frac{0.15-0.275}{\\sqrt{(0.2125)(0.7875)(\\frac{1}{40}+\\frac{1}{40})}}\\)" },
+      { "key": "E", "value": "\\(\\frac{0.15-0.275}{(0.2125)(0.7875)\\sqrt{\\frac{1}{40}+\\frac{1}{40}}}\\)" }
+    ],
+    "answerKey": "D",
+    "reasoning": "The sample proportion from the north is \\(\\frac{6}{40} = 0.15\\), the sample proportion from the south is \\(\\frac{11}{40} = 0.275\\), and the combined (or pooled) proportion is \\(\\hat{p}_c = \\frac{6+11}{40+40} = 0.2125\\). The test statistic for the difference in population proportions is \\(z = \\frac{\\hat{p}_1-\\hat{p}_2}{\\sqrt{\\hat{p}_c(1-\\hat{p}_c)(\\frac{1}{n_1}+\\frac{1}{n_2})}} = \\frac{0.15-0.275}{\\sqrt{(0.2125)(0.7875)(\\frac{1}{40}+\\frac{1}{40})}}\\)."
+  },
+  {
+    "id": "U6-PC-MCQ-D-Q14",
+    "type": "multiple-choice",
+    "prompt": "A week before a state election, a random sample of voters from City J and a random sample of voters from City K were taken. Of the 100 voters selected from City J, 65 indicated they were supporting a certain candidate for state senate. Of the 125 voters selected from City K, 75 indicated they were supporting the candidate. Which of the following is the correct test statistic for a two-sample z-test for a difference in population proportions for the two cities (J minus K) in their support for the candidate?",
+    "choices": [
+      { "key": "A", "value": "\\(\\frac{0.65-0.60}{\\sqrt{(0.65)(0.6)(\\frac{1}{100}+\\frac{1}{125})}}\\)" },
+      { "key": "B", "value": "\\(\\frac{0.65-0.60}{\\sqrt{(0.62)(0.38)(\\frac{1}{100}+\\frac{1}{125})}}\\)" },
+      { "key": "C", "value": "\\(\\frac{0.65-0.60}{\\sqrt{(0.62)(0.38)(\\frac{1}{100+125})}}\\)" },
+      { "key": "D", "value": "\\(\\frac{65-75}{\\sqrt{(0.65)(0.60)(\\frac{1}{100}+\\frac{1}{125})}}\\)" },
+      { "key": "E", "value": "\\(\\frac{65-75}{\\sqrt{\\frac{0.65}{100}+\\frac{0.38}{125}}}\\)" }
+    ],
+    "answerKey": "B",
+    "reasoning": "The sample proportion from City J is \\(\\frac{65}{100} = 0.65\\), the sample proportion from City K is \\(\\frac{75}{125} = 0.60\\), and the combined (or pooled) proportion is \\(\\hat{p}_c = \\frac{65+75}{100+125} \\approx 0.62\\). The test statistic for the difference in population proportions is \\(z = \\frac{\\hat{p}_1-\\hat{p}_2}{\\sqrt{\\hat{p}_c(1-\\hat{p}_c)(\\frac{1}{n_1}+\\frac{1}{n_2})}} = \\frac{0.65-0.60}{\\sqrt{(0.62)(0.38)(\\frac{1}{100}+\\frac{1}{125})}}\\)."
+  },
+  {
+    "id": "U6-PC-MCQ-D-Q15",
+    "type": "multiple-choice",
+    "prompt": "Independent random samples of students were taken from two high schools, R and S, and the proportion of students who drive to school in each sample was recorded. The difference between the two sample proportions (R minus S) was 0.07. Under the assumption that all conditions for inference were met, a hypothesis test was conducted where the alternative hypothesis was the population proportion of students who drive to school for R was greater than that for S. The p-value of the test was 0.114. Which of the following is the correct interpretation of the p-value?",
+    "choices": [
+      { "key": "A", "value": "The probability of selecting a student from high school R who drives to school is 0.07, and the probability of selecting a student from high school S who drives to school is 0.114." },
+      { "key": "B", "value": "If the proportion of all students who drive to school at R is greater than the proportion who drive to school at S, the probability of observing that difference is 0.114." },
+      { "key": "C", "value": "If the proportion of all students who drive to school at R is greater than the proportion who drive to school at S, the probability of observing a sample difference of at least 0.07 is 0.114." },
+      { "key": "D", "value": "If the proportions of all students who drive to school are the same for both high schools, the probability of observing a sample difference of at least 0.07 is 0.114." },
+      { "key": "E", "value": "If the proportions of all students who drive to school are the same for both high schools, the probability of observing a sample difference of 0.114 is 0.07." }
+    ],
+    "answerKey": "D",
+    "reasoning": "The test is in the direction of the right tail since the alternative hypothesis is that the population proportion for R was greater than the population proportion for S. The p-value is the probability of observing a sample difference of at least 0.07 if the proportion of all students who drive to school at R is equal to the proportion who drive to school at S."
+  },
+  {
+    "id": "U6-PC-MCQ-D-Q16",
+    "type": "multiple-choice",
+    "prompt": "Medical researchers are studying a certain genetic trait found in two populations of people, W and X. From an independent random sample of people taken from each population, the difference between the sample proportions of people who carried the trait (W minus X) was 0.22. Under the assumption that all conditions for inference were met, a hypothesis test was conducted using the following hypotheses: \\(H_0: p_W = p_X\\), \\(H_a: p_W > p_X\\). The p-value of the test was 0.03. Which of the following is the correct interpretation of the p-value?",
+    "choices": [
+      { "key": "A", "value": "The probability of selecting a person from population W who carries the trait is 0.22, and the probability of selecting a person from population X who carries the trait is 0.03." },
+      { "key": "B", "value": "If the proportions of all people who carry the trait are the same for both populations, the probability of observing a sample difference of at least 0.22 is 0.03." },
+      { "key": "C", "value": "If the proportions of all people who carry the trait are the same for both populations, the probability of observing a sample difference of 0.22 is 0.03." },
+      { "key": "D", "value": "If the difference in proportions of people who carry the trait between the two populations is actually 0.22, the probability of observing that difference is 0.03." },
+      { "key": "E", "value": "If the difference in proportions of people who carry the trait between the two populations is actually 0.03, the probability of observing that difference is 0.22." }
+    ],
+    "answerKey": "B",
+    "reasoning": "The direction of the test is to the right tail since the alternative hypothesis is that the proportion of people in population W who have the trait is greater than the proportion of people in population X who have the trait. The p-value is the probability of observing a sample difference of at least 0.22 if the proportions of all people who carry the trait are the same for both populations."
+  },
+  {
+    "id": "U6-PC-MCQ-D-Q17",
+    "type": "multiple-choice",
+    "prompt": "Researchers conducted an experiment in which people with a certain condition were given either a drug or a placebo to treat the condition. At the significance level of \\(\\alpha = 0.01\\), a test of the following hypotheses was conducted: \\(H_0: p_D = p_P\\), \\(H_a: p_D > p_P\\). In the hypotheses, \\(p_D\\) represents the proportion of all people who experience an allergic reaction while taking the drug, and \\(p_P\\) represents the proportion of all people who experience an allergic reaction while taking the placebo. All conditions for inference were met, and the resulting p-value was 0.12. Which of the following is the correct decision for the test?",
+    "choices": [
+      { "key": "A", "value": "The p-value is less than \\(\\alpha\\), and the null hypothesis is rejected. There is convincing evidence to support the claim that the proportion of people with an allergic reaction will be greater for those taking the drug than for those taking the placebo." },
+      { "key": "B", "value": "The p-value is less than \\(\\alpha\\), and the null hypothesis is rejected. There is not convincing evidence to support the claim that the proportion of people with an allergic reaction will be greater for those taking the drug than for those taking the placebo." },
+      { "key": "C", "value": "The p-value is greater than \\(\\alpha\\), and the null hypothesis is not rejected. There is not convincing evidence to support the claim that the proportion of people with an allergic reaction will be greater for those taking the drug than for those taking the placebo." },
+      { "key": "D", "value": "The p-value is greater than \\(\\alpha\\), and the null hypothesis is rejected. There is convincing evidence to support the claim that the proportion of people with an allergic reaction will be greater for those taking the drug than for those taking the placebo." },
+      { "key": "E", "value": "The p-value is greater than \\(\\alpha\\), and the null hypothesis is not rejected. There is convincing evidence to support the claim that the proportion of people with an allergic reaction will be greater for those taking the drug than for those taking the placebo." }
+    ],
+    "answerKey": "C",
+    "reasoning": "The claim is not supported. Since \\(0.12 > 0.01\\), the null hypothesis is not rejected. There is not convincing statistical evidence that the proportion of people with an allergic reaction will be greater for those taking the drug than for those taking the placebo."
+  },
+  {
+    "id": "U6-PC-MCQ-D-Q18",
+    "type": "multiple-choice",
+    "prompt": "At many college bookstores, students can decide whether to purchase or to rent a textbook for a class. A study was conducted to investigate whether the percent of rented textbooks for all science classes in the state was greater than the percent of rented textbooks for all literature classes in the state. The following hypothesis test was done at the significance level of \\(\\alpha = 0.05\\): \\(H_0: p_S = p_L\\), \\(H_a: p_S > p_L\\). In the hypotheses, \\(p_S\\) represents the proportion of all science textbooks that are rented, and \\(p_L\\) represents the proportion of all literature textbooks that are rented. All conditions for inference were met, and the resulting p-value was 0.035. Which of the following is the correct decision for the test?",
+    "choices": [
+      { "key": "A", "value": "The p-value is less than \\(\\alpha\\). Since \\(0.035 < 0.05\\), the null hypothesis is rejected, and the claim is supported. There is convincing statistical evidence that the proportion of all science textbooks that are rented is greater than the proportion of all literature textbooks that are rented." },
+      { "key": "B", "value": "The p-value is less than \\(\\alpha\\), and the null hypothesis is rejected. There is not convincing evidence to support the claim that the proportion of all science textbooks that are rented is greater than the proportion of all literature textbooks that are rented." },
+      { "key": "C", "value": "The p-value is less than \\(\\alpha\\), and the null hypothesis is not rejected. There is not convincing evidence to support the claim that the proportion of all science textbooks that are rented is greater than the proportion of all literature textbooks that are rented." },
+      { "key": "D", "value": "The p-value is greater than \\(\\alpha\\), and the null hypothesis is rejected. There is convincing evidence to support the claim that the proportion of all science textbooks that are rented is greater than the proportion of all literature textbooks that are rented." },
+      { "key": "E", "value": "The p-value is greater than \\(\\alpha\\), and the null hypothesis is not rejected. There is not convincing evidence to support the claim that the proportion of all science textbooks that are rented is greater than the proportion of all literature textbooks that are rented." }
+    ],
+    "answerKey": "A",
+    "reasoning": "The claim is supported. Since \\(0.035 < 0.05\\), the null hypothesis is rejected. There is convincing statistical evidence that the proportion of all science textbooks that are rented is greater than the proportion of all literature textbooks that are rented."
+  }
+]
