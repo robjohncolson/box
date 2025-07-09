@@ -1,0 +1,170 @@
+[
+  {
+    "id": "U6-PC-MCQ-A-Q01",
+    "type": "multiple-choice",
+    "prompt": "The manager of a city recreation center wants to estimate the percent of city residents who favor a proposal to build a new dog park. To gather data, the manager will select a random sample of city residents.\n\nWhich of the following is the most appropriate interval for the manager to use for such an estimate?",
+    "choices": [
+      { "key": "A", "value": "A one-sample \\(z\\)-interval for a sample proportion" },
+      { "key": "B", "value": "A one-sample \\(z\\)-interval for a population proportion" },
+      { "key": "C", "value": "A one-sample \\(z\\)-interval for a difference between population proportions" },
+      { "key": "D", "value": "A two-sample \\(z\\)-interval for a difference between sample proportions" },
+      { "key": "E", "value": "A two-sample \\(z\\)-interval for a difference between population proportions" }
+    ],
+    "answerKey": "B",
+    "reasoning": "A \\(z\\)-interval is used to estimate a population proportion for a categorical variable. In this case, the population proportion is the proportion of all city residents who favor the proposal."
+  },
+  {
+    "id": "U6-PC-MCQ-A-Q02",
+    "type": "multiple-choice",
+    "prompt": "Biologists studying horseshoe crabs want to estimate the percent of crabs in a certain area that are longer than 35 centimeters. The biologists will select a random sample of crabs to measure.\n\nWhich of the following is the most appropriate method to use for such an estimate?",
+    "choices": [
+      { "key": "A", "value": "A one-sample \\(z\\)-interval for a population proportion" },
+      { "key": "B", "value": "A one-sample \\(z\\)-interval for a sample proportion" },
+      { "key": "C", "value": "A two-sample \\(z\\)-interval for a population proportion" },
+      { "key": "D", "value": "A two-sample \\(z\\)-interval for a difference between population proportions" },
+      { "key": "E", "value": "A two-sample \\(z\\)-interval for a difference between sample proportions" }
+    ],
+    "answerKey": "A",
+    "reasoning": "A \\(z\\)-interval is used to estimate a population proportion for a categorical variable. In this case, the population proportion is the proportion of all horseshoe crabs in the population area that are longer than 35 centimeters."
+  },
+  {
+    "id": "U6-PC-MCQ-A-Q03",
+    "type": "multiple-choice",
+    "prompt": "A random sample of 500 adults living in a large county was selected and 304 adults from the sample indicated that the unemployment rate was of great concern. What is the standard error of the sample proportion \\(\\hat{p}\\)?",
+    "choices": [
+      { "key": "A", "value": "\\(\\sqrt{\\frac{(0.61)(0.39)}{500}}\\)" },
+      { "key": "B", "value": "\\(\\sqrt{\\frac{(0.61)(0.39)}{304}}\\)" },
+      { "key": "C", "value": "\\(\\sqrt{\\frac{(304)(196)}{500}}\\)" },
+      { "key": "D", "value": "\\(\\frac{(0.304)(0.196)}{\\sqrt{500}}\\)" },
+      { "key": "E", "value": "\\(\\frac{(0.61)(0.39)}{\\sqrt{500}}\\)" }
+    ],
+    "answerKey": "A",
+    "reasoning": "The sample proportion is \\(\\hat{p} = \\frac{304}{500} \\approx 0.61\\), and the standard error of the statistic is given by \\(\\sqrt{\\frac{\\hat{p}(1-\\hat{p})}{n}} = \\sqrt{\\frac{(0.61)(0.39)}{500}}\\)."
+  },
+  {
+    "id": "U6-PC-MCQ-A-Q04",
+    "type": "multiple-choice",
+    "prompt": "Alma is estimating the proportion of students in her school district who, in the past month, read at least 1 book. From a random sample of 50 students, she found that 32 students read at least 1 book last month. Assuming all conditions for inference are met, which of the following defines a 90 percent confidence interval for the proportion of all students in her district who read at least 1 book last month?",
+    "choices": [
+      { "key": "A", "value": "\\(32 \\pm 1.645\\sqrt{\\frac{(32)(18)}{50}}\\)" },
+      { "key": "B", "value": "\\(32 \\pm 1.96\\sqrt{\\frac{(32)(18)}{50}}\\)" },
+      { "key": "C", "value": "\\(0.64 \\pm 1.282\\sqrt{\\frac{(0.64)(0.36)}{50}}\\)" },
+      { "key": "D", "value": "\\(0.64 \\pm 1.645\\sqrt{\\frac{(0.64)(0.36)}{50}}\\)" },
+      { "key": "E", "value": "\\(0.64 \\pm 1.96\\sqrt{\\frac{(0.64)(0.36)}{50}}\\)" }
+    ],
+    "answerKey": "D",
+    "reasoning": "The sample proportion is \\(\\hat{p} = \\frac{32}{50} = 0.64\\), and the \\(z\\)-critical value used for 90 percent confidence is 1.645. The interval is given as \\(0.64 \\pm 1.645\\sqrt{\\frac{(0.64)(0.36)}{50}}\\)."
+  },
+  {
+    "id": "U6-PC-MCQ-A-Q05",
+    "type": "multiple-choice",
+    "prompt": "A town council wants to estimate the proportion of residents who are in favor of a proposal to upgrade the computers in the town library. A random sample of 100 residents was selected, and 97 of those selected indicated that they were in favor of the proposal. Is it appropriate to assume that the sampling distribution of the sample proportion is approximately normal?",
+    "choices": [
+      { "key": "A", "value": "No, because the sample is not large enough to satisfy the normality conditions." },
+      { "key": "B", "value": "No, because the size of the population is not known." },
+      { "key": "C", "value": "Yes, because the sample was selected at random." },
+      { "key": "D", "value": "Yes, because sampling distributions of proportions are modeled with a normal model." },
+      { "key": "E", "value": "Yes, because the sample is large enough to satisfy the normality conditions." }
+    ],
+    "answerKey": "A",
+    "reasoning": "The number of successes (those in favor of the proposal) is greater than or equal to 10. However, because the number of failures, i.e., the number of people who were not in favor of the proposal (3), is less than 10, the conditions for normality are not met."
+  },
+  {
+    "id": "U6-PC-MCQ-A-Q06",
+    "type": "multiple-choice",
+    "prompt": "A marketing representative wants to estimate the proportion of people in a state who like the new design on the packaging of a certain cleaning product. The representative interviewed 100 people at a certain supermarket, and 82 people indicated that they liked the new design. Have the conditions for creating a confidence interval for the population proportion been met?",
+    "choices": [
+      { "key": "A", "value": "Yes, because the sample was selected at random." },
+      { "key": "B", "value": "Yes, because sampling distributions of population proportions are modeled with a normal model." },
+      { "key": "C", "value": "Yes, because the sample is large enough to satisfy the normality conditions." },
+      { "key": "D", "value": "No, because the sample is not large enough to satisfy the normality conditions." },
+      { "key": "E", "value": "No, because the sample may not be representative of all people in the state." }
+    ],
+    "answerKey": "E",
+    "reasoning": "To get a sample that is representative of the population, the representative should select a random sample from all the people in the state, not just people at a single supermarket."
+  },
+  {
+    "id": "U6-PC-MCQ-A-Q07",
+    "type": "multiple-choice",
+    "prompt": "Sue and Javier are working on a statistics project to estimate the proportion of students at their school who have a pet dog. Sue selects a random sample of 81 students from the 2,400 students at their school, and Javier selects a separate random sample of 64 students. They will both construct a 90 percent confidence interval from their estimates. Consider the situation in which the sample proportion from Sue's sample is equal to the sample proportion from Javier's sample. Which of the following statements correctly describes their intervals?",
+    "choices": [
+      { "key": "A", "value": "Javier's interval will have a greater degree of confidence than Sue's interval will." },
+      { "key": "B", "value": "Sue's interval will have a greater degree of confidence than Javier's interval will." },
+      { "key": "C", "value": "The width of Sue's interval will be the same as the width of Javier's interval." },
+      { "key": "D", "value": "The width of Sue's interval will be wider than the width of Javier's interval." },
+      { "key": "E", "value": "The width of Sue's interval will be narrower than the width of Javier's interval." }
+    ],
+    "answerKey": "E",
+    "reasoning": "When all other things remain the same, the width of the confidence interval will decrease as the sample size increases. Sue's sample size is greater than Javier's sample size, so Sue's confidence interval is narrower."
+  },
+  {
+    "id": "U6-PC-MCQ-A-Q08",
+    "type": "multiple-choice",
+    "prompt": "Suppose a 90 percent confidence interval to estimate a population proportion was calculated from a sample proportion of 18 percent and a margin of error of 4 percent. What is the width of the confidence interval?",
+    "choices": [
+      { "key": "A", "value": "2 percent" },
+      { "key": "B", "value": "4 percent" },
+      { "key": "C", "value": "8 percent" },
+      { "key": "D", "value": "16 percent" },
+      { "key": "E", "value": "36 percent" }
+    ],
+    "answerKey": "C",
+    "reasoning": "The width of a confidence interval is twice the value of the margin of error. In this situation, the width of the confidence interval is \\(2(4\\%) = 8\\%\\)."
+  },
+  {
+    "id": "U6-PC-MCQ-A-Q09",
+    "type": "multiple-choice",
+    "prompt": "Suppose a researcher wants to use a confidence interval to estimate an unknown population proportion \\(p\\). Which of the following is not a correct statement?",
+    "choices": [
+      { "key": "A", "value": "The endpoints of the interval can vary with each new sample." },
+      { "key": "B", "value": "The probability that \\(p\\) is in the interval is equal to the level of confidence for the interval." },
+      { "key": "C", "value": "Whether the interval captures \\(p\\) is not known with certainty." },
+      { "key": "D", "value": "The population proportion \\(p\\) is fixed, but the sample proportion \\(\\hat{p}\\) can vary from sample to sample." },
+      { "key": "E", "value": "The interval either does or does not capture \\(p\\)." }
+    ],
+    "answerKey": "B",
+    "reasoning": "This is not a correct statement about the interval. The confidence level is a statement about how certain we are that the interval contains the population parameter. The parameter \\(p\\) is a constant value and is either in the interval or it's not—there is no probability associated with it."
+  },
+  {
+    "id": "U6-PC-MCQ-A-Q10",
+    "type": "multiple-choice",
+    "prompt": "A random sample of 83 residents of a certain town were asked whether they approve of a proposal to improve the town's aging bridges. The 95 percent confidence interval to estimate the proportion of all residents of the town who approve of the proposal was calculated to be \\((0.361, 0.579)\\).\n\nWhich of the following is a correct interpretation of the interval?",
+    "choices": [
+      { "key": "A", "value": "There is a 0.95 probability that the proportion of all residents in the town who favor the proposal will be between 0.361 and 0.579." },
+      { "key": "B", "value": "The probability that 95 percent of the residents in the town will favor the proposal is between 0.361 and 0.579." },
+      { "key": "C", "value": "We are 95 percent confident that any sample of 83 residents will produce a sample proportion between 0.361 and 0.579." },
+      { "key": "D", "value": "We are 95 percent confident that the proportion of all residents in the sample who favor the proposal is between 0.361 and 0.579." },
+      { "key": "E", "value": "We are 95 percent confident that the proportion of all residents in the town who favor the proposal is between 0.361 and 0.579." }
+    ],
+    "answerKey": "E",
+    "reasoning": "The interval is a statement about how confident we are that we have captured the population parameter, which is the proportion of all residents in the town who favor the proposal."
+  },
+  {
+    "id": "U6-PC-MCQ-A-Q11",
+    "type": "multiple-choice",
+    "prompt": "A recent national survey indicated that 73 percent of respondents try to include locally grown foods in their diets. A 95 percent confidence interval for the proportion of all people in the country who try to include locally grown foods in their diets is given as \\((0.70, 0.76)\\).\n\nAssume all conditions for inference were met. Based on the confidence interval, which of the following claims is supported?",
+    "choices": [
+      { "key": "A", "value": "Less than half of all people in the country try to include locally grown foods in their diets." },
+      { "key": "B", "value": "Less than 70 percent of all people in the country try to include locally grown foods in their diets." },
+      { "key": "C", "value": "Less than 75 percent of all people in the country try to include locally grown foods in their diets." },
+      { "key": "D", "value": "Less than 80 percent of all people in the country try to include locally grown foods in their diets." },
+      { "key": "E", "value": "At least 95 percent of all people in the country try to include locally grown foods in their diets." }
+    ],
+    "answerKey": "D",
+    "reasoning": "A claim that the actual percent is less than 80 percent is supported by the interval. The interval represents plausible values for the population proportion, and all values contained in the interval are less than 0.8."
+  },
+  {
+    "id": "U6-PC-MCQ-A-Q12",
+    "type": "multiple-choice",
+    "prompt": "A recent survey of cell phone users indicated that 56 percent of the respondents prefer to use cell phones for texting rather than for making phone calls. A 95 percent confidence interval for the estimate of all cell phone users who prefer to use cell phones for texting has a margin of error of 3 percent.\n\nAssume all conditions for inference have been met. Based on the confidence interval, which of the following claims is supported?",
+    "choices": [
+      { "key": "A", "value": "Less than half of all people prefer texting." },
+      { "key": "B", "value": "More than half of all people prefer texting." },
+      { "key": "C", "value": "At least 60 percent of all people prefer texting." },
+      { "key": "D", "value": "At least 75 percent of all people prefer texting." },
+      { "key": "E", "value": "At least 95 percent of all people prefer texting." }
+    ],
+    "answerKey": "B",
+    "reasoning": "A claim that the actual percent is greater than 50 percent is supported by the interval. The interval represents plausible values for the population proportion and the percentages contained in the interval are from 53 percent to 59 percent \\((56 \\pm 3)\\), which are greater than half."
+  }
+]
