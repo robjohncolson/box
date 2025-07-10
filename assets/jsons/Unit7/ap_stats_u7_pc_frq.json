@@ -1,0 +1,196 @@
+[
+{
+  "id": "U7-PC-FRQ-Q01",
+  "type": "free-response",
+  "prompt": "Show all your work. Indicate clearly the methods you use, because you will be scored on the correctness of your methods as well as on the accuracy and completeness of your results and explanations.\n\nA bank categorizes its customers into one of three groups based on their banking habits. A random sample of customers from each group was selected, and the number of times each customer visited the bank during the past year was recorded. The following table shows the summary statistics.\n\nThe bank manager will investigate whether there is a significant difference in mean numbers of bank visits for the groups. Multiple two-sample \\(t\\)-tests will be conducted, each at the significance level of \\(\\alpha = 0.05\\).\n\n(a) How many \\(t\\)-tests will need to be conducted for the manager's investigation? List the pairs of groups for each test.\n\nThe significance level (\\(\\alpha\\)) of a single hypothesis test is the probability of making a Type I error. The manager wants to know the probability of making a Type I error for multiple \\(t\\)-tests, not just for a single \\(t\\)-test. This probability is called the family error rate for Type I error, which is also known as the family error rate.\n\n(b) A \\(t\\)-test has two possible outcomes: reject or do not reject the null hypothesis. Suppose the null hypothesis is true. If the null hypothesis is rejected, the result is statistically significant, which would be a Type I error; if the null hypothesis is not rejected, the result is not statistically significant, which would not be a Type I error. Let S represent a statistically significant result, and let N represent a result that is not statistically significant.\n\n(i) If \\(P(S) = 0.05\\), what is the value of \\(P(N)\\)?\n\nThe bank manager knows that the investigation will involve conducting multiple two-sample \\(t\\)-tests. The manager begins the investigation by considering two different \\(t\\)-tests as independent, successive trials. The possible outcomes of the trials, N or S, are shown in the following tree diagram.\n\n(ii) The family error rate is the probability of obtaining a significant result for at least one of the \\(t\\)-tests conducted, under the assumption that the null hypothesis is true. Use the tree diagram to determine the family error rate for two \\(t\\)-tests, each conducted at a level of \\(\\alpha = 0.05\\). Show your work.\n\n(c) Determine the family error rate for the number of \\(t\\)-tests identified in part (a), each conducted at a level of \\(\\alpha = 0.05\\). Show your work.",
+  "attachments": {
+    "table": [
+      ["Group", "n", "\\(\\bar{x}\\)", "s"],
+      ["A", "30", "48", "7"],
+      ["B", "30", "51", "8"],
+      ["C", "30", "54", "10"]
+    ],
+    "image": "assets/pngs/unit7/u7_pc_frq_q1bi.png",
+    "imageAlt": "Tree diagram showing possible outcomes N (not significant) and S (significant) for two independent t-tests, with branch combinations NN, SN, NS, and SS",
+    "imageCaption": "Tree diagram illustrating the outcomes for two t-tests used to compute the family error rate"
+  },
+  "solution": {
+    "parts": [
+      {
+        "partId": "a",
+        "description": "How many t-tests will need to be conducted for the manager's investigation? List the pairs of groups for each test.",
+        "response": "Three tests will be needed: A and B, A and C, B and C."
+      },
+      {
+        "partId": "b-i",
+        "description": "If P(S) = 0.05, what is the value of P(N)?",
+        "response": "\\(P(N) = 1 - P(S) = 1 - 0.05 = 0.95\\)"
+      },
+      {
+        "partId": "b-ii",
+        "description": "Use the tree diagram to determine the family error rate for two t-tests, each conducted at a level of α = 0.05. Show your work.",
+        "response": "The probability that at least one statistically significant result will occur equals 1 minus the probability that neither of the two tests give significant results (N and N).\n\nIn other words, \\(P(\\text{at least one S}) = P[(\\text{S and N}) \\text{ or } (\\text{N and S}) \\text{ or } (\\text{S and S})] = 1 - P(\\text{N and N})\\)\n\nFrom the tree, \\(P(\\text{N and N}) = (0.95)^2 = 0.9025\\).\n\nTherefore, the family error rate for two \\(t\\)-tests is \\(1 - 0.9025 = 0.0975\\).\n\nOR\n\nFrom the tree, we can see that at least one significant result is found with outcomes SN, NS, and SS. The sum of those probabilities is \\(P(\\text{S and N}) + P(\\text{N and S}) + P(\\text{S and S}) = (0.05)(0.95) + (0.95)(0.05) + (0.05)(0.05) = 0.0475 + 0.0475 + 0.0025 = 0.0975\\)."
+      },
+      {
+        "partId": "c",
+        "description": "Determine the family error rate for the number of t-tests identified in part (a), each conducted at a level of α = 0.05. Show your work.",
+        "response": "As indicated in part (a), the investigation will have 3 tests: AB, BC, AC. The probability of no significant results is \\(P(\\text{N and N and N}) = (0.95)^3 = 0.857375\\).\n\nTherefore, the family error rate for 3 \\(t\\)-tests is \\(1 - 0.857375 = 0.142625\\), or approximately 14%.",
+        "attachments": {
+          "image": "assets/pngs/unit7/u7_pc_frq_q1c_answer.png",
+          "imageAlt": "Solution diagram illustrating complement probability method and computed family error rate for three t-tests",
+          "imageCaption": "Answer explanation visual for part (c) showing calculation of family error rate for three comparisons"
+        }
+      },
+      {
+        "partId": "d",
+        "description": "The manager wants the family error rate to be close to 0.05. Suggest a single significance level α that could be used for all of the individual t-tests that will bring the family error rate close to 0.05. Show work to support your suggested level.",
+        "response": "**Approach #1**\n\nAnything less than \\(\\alpha = 0.05\\) will reduce the family error rate. Because there are 3 tests, we might try dividing alpha by 3 for a significance level of \\(\\alpha = \\frac{0.05}{3} \\approx 0.017\\). In this case, \\(P(S) = 0.017\\), \\(P(N) = 0.983\\), \\(P(\\text{N and N and N}) = (0.983)^3 \\approx 0.94986\\) and the family error rate would be \\(1 - 0.94986 = 0.05014\\).\n\n**OR**\n\n**Approach #2**\n\n\\(1 - [P(N)]^3 = 0.05\\)\n\\(1 - [1 - P(S)]^3 = 0.05\\)\n\\([1 - P(S)]^3 = 0.95\\)\n\\(1 - P(S) = \\sqrt[3]{0.95}\\)\n\\(1 - P(S) \\approx 0.98305\\)\n\\(P(S) \\approx 0.01695\\)\n\nA suggested significance level is approximately 0.01695. This level will lead to a family error rate of \\(1 - (1 - 0.01695)^3 \\approx 0.04999\\)."
+      }
+    ],
+    "scoring": {
+      "totalPoints": 4,
+      "rubric": [
+        {
+          "part": "a",
+          "maxPoints": 1,
+          "criteria": [
+            "Essentially correct (E) if the response gives the three correct pairings. Stating 3 explicitly is not required.",
+            "Partially correct (P) if the response only answers 3 without the pairings",
+            "Incorrect (I) if the response does not meet the criteria for E or P"
+          ],
+          "scoringNotes": "If the response gives 6 pairings (taking order into account, for example, AB and BA), the response is scored P."
+        },
+        {
+          "part": "b",
+          "maxPoints": 1,
+          "criteria": [
+            "A response of 0.95 is given in part (b-i). (Work does not need to be shown.)",
+            "Value of the family error rate in part (b-ii) is consistent with the answer in part (b-i)",
+            "Work shown on how the family error rate was calculated"
+          ],
+          "scoringNotes": "Essentially correct (E) if the response satisfies all three components. Partially correct (P) if the response satisfies only two of the three components. A response that gives the probability of obtaining a statistically significant result for exactly one of the t-tests (0.095) is scored as partially correct. A response that gives the probability of obtaining a statistically significant result for none of the t-tests (0.9025) is scored as partially correct."
+        },
+        {
+          "part": "c",
+          "maxPoints": 1,
+          "criteria": [
+            "Value for the family error rate that is consistent with the responses from parts (a) and (b-i)",
+            "Work shown on how the value was calculated, for example, a well-labeled tree diagram or the use of a complement"
+          ],
+          "scoringNotes": "Essentially correct (E) if the response satisfies both components. Partially correct (P) if the response satisfies only one of the two components."
+        },
+        {
+          "part": "d",
+          "maxPoints": 1,
+          "criteria": [
+            "Recognition that the significance level for a single test should be less than 0.05",
+            "Work that shows the suggested significance level in the response reduces the family error to roughly 5%"
+          ],
+          "scoringNotes": "Essentially correct (E) if the response satisfies both components. Partially correct (P) if the response satisfies only one of the two components. A response that shows work that is consistent with earlier incorrect results, such as identifying 6 pairs of groups in part (a), can still be scored as essentially correct. A strong response in part (d) can be used in holistic grading to decide to score up."
+        }
+      ]
+    }
+  },
+  "reasoning": "This question tests understanding of multiple testing procedures and family error rates (Type I error inflation). Key concepts include: (1) counting pairwise comparisons using combination formula C(3,2) = 3, (2) understanding complement probability rules for \"at least one\" events, (3) calculating compound probabilities using independence, and (4) applying Bonferroni correction or solving for individual alpha levels that achieve target family error rates. The statistical reasoning involves recognizing that conducting multiple tests increases the overall probability of making at least one Type I error, requiring adjustment of individual significance levels."
+},
+{
+  "id": "U7-PC-FRQ-Q02",
+  "type": "free-response",
+  "prompt": "Show all your work. Indicate clearly the methods you use, because you will be scored on the correctness of your methods as well as on the accuracy and completeness of your results and explanations.\n\nThe following stemplot shows the swimming speeds, in kilometers per hour (km/h), for a random sample of 31 emperor penguins.\n\n(a) The mean of the sample is 9.771 km/h, and the standard deviation is 0.944 km/h. Construct and interpret a 95 percent confidence interval for the mean swimming speed of all emperor penguins in the population.\n\n(b) Can the estimate of the mean swimming speed be generalized to all types of penguins? Explain your reasoning.",
+  "attachments": {
+    "table": [
+      ["Speed (km/h)"],
+      ["7 | 8"],
+      ["8 | 3 4"],
+      ["8 | 6 7 9"],
+      ["9 | 0 0 1 3 4"],
+      ["9 | 5 5 6 7 8 8 9"],
+      ["10 | 0 1 1 2 3"],
+      ["10 | 5 8 8 8"],
+      ["11 | 0 2 3"],
+      ["11 | 5"],
+      ["Key: 7|8 = 7.8"]
+    ]
+  },
+  "solution": {
+    "parts": [
+      {
+        "partId": "a-step1",
+        "description": "Identify the correct procedure with conditions",
+        "response": "The appropriate procedure is the one-sample \\(t\\)-interval for population mean: \\(\\bar{x} ± t^* \\frac{s}{\\sqrt{n}}\\).\n\n**Conditions:**\n• Data were collected from a random sample as stated.\n• The sample size \\(n = 31\\) is large enough to assume that the sampling distribution of the sample mean is approximately normal.\n\nOR\n\nIt can be assumed that the population is roughly normal because the distribution of the sample, as shown in the stemplot, does not have strong skew or outliers.\n• The random sampling condition is checked.",
+        "calculations": [
+          "Sample size: n = 31",
+          "Sample mean: x̄ = 9.771 km/h", 
+          "Sample standard deviation: s = 0.944 km/h",
+          "Confidence level: 95%"
+        ]
+      },
+      {
+        "partId": "a-step2",
+        "description": "Construct the interval",
+        "response": "Since df = n - 1 = 31 - 1 = 30 for 95% confidence and 30 degrees of freedom, the correct \\(t\\)-critical value is \\(t^* = 2.042\\).\n\nThe interval is \\(9.771 ± 2.042 \\frac{0.944}{\\sqrt{31}} = 9.771 ± 0.346\\), which produces the interval (9.425, 10.117).",
+        "calculations": [
+          "Degrees of freedom: df = 31 - 1 = 30",
+          "Critical value: t* = 2.042",
+          "Standard error: s/√n = 0.944/√31 ≈ 0.170",
+          "Margin of error: t* × SE = 2.042 × 0.170 ≈ 0.346",
+          "Confidence interval: 9.771 ± 0.346 = (9.425, 10.117)"
+        ]
+      },
+      {
+        "partId": "a-step3",
+        "description": "Interpret the interval",
+        "response": "We are 95% confident that the mean swimming speed of the population of emperor penguins is between 9.425 kilometers per hour and 10.117 kilometers per hour.\n\nOR\n\nWe are 95% confident that the confidence interval (9.425, 10.117) captures the population mean swimming speed of emperor penguins."
+      },
+      {
+        "partId": "b",
+        "description": "Can the estimate of the mean swimming speed be generalized to all types of penguins? Explain your reasoning.",
+        "response": "It is not reasonable to generalize the estimate of the mean swimming speed to all types of penguins because the sample only consisted of emperor penguins."
+      }
+    ],
+    "scoring": {
+      "totalPoints": 4,
+      "rubric": [
+        {
+          "part": "a-step1",
+          "maxPoints": 1,
+          "criteria": [
+            "The correct interval is identified, either by name or formula",
+            "The sample size condition is checked and indicates the sample size is greater than 30, OR it can be assumed that the population is roughly normal because the distribution of the sample does not have strong skew or outliers",
+            "The random sampling condition is checked"
+          ],
+          "scoringNotes": "Essentially correct (E) if the response satisfies all three components. Partially correct (P) if the response satisfies only two of the three components. A response that checks the 10% condition, that it is reasonable to assume there are more than 10(31) = 310 penguins, can be used in holistic grading to decide to score up."
+        },
+        {
+          "part": "a-step2", 
+          "maxPoints": 1,
+          "criteria": [
+            "Calculates the correct interval with work shown"
+          ],
+          "scoringNotes": "Essentially correct (E) if the response calculates the correct interval with work. Partially correct (P) if the response calculates the correct interval with no work OR if the response gives an interval with a calculation error or with the wrong t-value."
+        },
+        {
+          "part": "a-step3",
+          "maxPoints": 1,
+          "criteria": [
+            "A reasonable interpretation in context is given",
+            "The interpretation is clear that the interval estimates the population mean", 
+            "The interpretation is given with 95% confidence"
+          ],
+          "scoringNotes": "Essentially correct (E) if the response satisfies all three components. Partially correct (P) if the response includes only two of the three conditions."
+        },
+        {
+          "part": "b",
+          "maxPoints": 1,
+          "criteria": [
+            "Identifies that the results cannot be generalized",
+            "A correct justification which indicates that only emperor penguins were sampled"
+          ],
+          "scoringNotes": "Essentially correct (E) if the response satisfies both components. Partially correct (P) if the response satisfies the first component but provides weak justification."
+        }
+      ]
+    }
+  },
+  "reasoning": "This question assesses confidence interval construction and interpretation for a population mean using the t-distribution. Key statistical concepts include: (1) identifying appropriate procedures and checking conditions (random sampling, normality/large sample size), (2) correctly calculating a one-sample t-interval using the formula x̄ ± t*(s/√n), (3) proper interpretation that captures the population parameter with stated confidence level, and (4) understanding limitations of generalizability based on sampling scope. The question emphasizes the distinction between the sample (emperor penguins) and the broader population of interest (all penguins), highlighting that statistical inferences are limited to the population from which the sample was drawn."
+}
+]
