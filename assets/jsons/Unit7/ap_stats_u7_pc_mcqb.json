@@ -1,0 +1,254 @@
+[
+  {
+    "id": "U7-PC-MCQ-B-Q01",
+    "type": "multiple-choice",
+    "prompt": "A marketing executive is investigating whether this year's advertising campaign has resulted in greater mean sales compared with last year's mean sales. The executive collects a random sample of 100 customer orders from a large population of orders and calculates the sample mean and sample standard deviation.\n\nWhich of the following is the appropriate test for the executive's investigation?",
+    "choices": [
+      { "key": "A", "value": "A one-sample \\(z\\)-test for a population mean" },
+      { "key": "B", "value": "A one-sample \\(t\\)-test for a population mean" },
+      { "key": "C", "value": "A one-sample \\(z\\)-test for a population proportion" },
+      { "key": "D", "value": "A two-sample \\(t\\)-test for a difference between means" },
+      { "key": "E", "value": "A matched-pairs \\(t\\)-test for a mean difference" }
+    ],
+    "answerKey": "B",
+    "reasoning": "Because the population standard deviation is unknown and the sample standard deviation will be used to calculate the test statistic, the \\(t\\)-test for a population mean is the appropriate test."
+  },
+  {
+    "id": "U7-PC-MCQ-B-Q02",
+    "type": "multiple-choice",
+    "prompt": "A travel company is investigating whether the average cost of a hotel stay in a certain city has increased over the past year. The company recorded the cost of a one-night stay for a Friday night in January of the current year and in the previous year for 31 hotels selected at random. The difference in cost (current year minus previous year) was calculated for each hotel.\n\nWhich of the following is the appropriate test for the company's investigation?",
+    "choices": [
+      { "key": "A", "value": "A one-sample \\(z\\)-test for a population mean" },
+      { "key": "B", "value": "A one-sample \\(t\\)-test for a sample mean" },
+      { "key": "C", "value": "A one-sample \\(z\\)-test for a population proportion" },
+      { "key": "D", "value": "A matched-pairs \\(t\\)-test for a mean difference" },
+      { "key": "E", "value": "A two-sample \\(t\\)-test for a difference between means" }
+    ],
+    "answerKey": "D",
+    "reasoning": "The 31 hotel costs for the current year and for the previous year are paired by hotel. The appropriate test is a matched-pairs \\(t\\)-test for a mean difference."
+  },
+  {
+    "id": "U7-PC-MCQ-B-Q03",
+    "type": "multiple-choice",
+    "prompt": "A report on a certain fast food restaurant states that \\(\\mu\\), the mean order total, is $9. The manager of the restaurant believes the mean is higher. A random sample of orders will be selected. The sample mean \\(\\bar{x}\\) will be calculated and used in a hypothesis test to investigate the belief.\n\nWhich of the following is the correct set of hypotheses?",
+    "choices": [
+      { "key": "A", "value": "\\(H_0: \\bar{x} = \\$9\\), \\(H_a: \\bar{x} \\neq \\$9\\)" },
+      { "key": "B", "value": "\\(H_0: \\bar{x} = \\$9\\), \\(H_a: \\bar{x} > \\$9\\)" },
+      { "key": "C", "value": "\\(H_0: \\mu = \\$9\\), \\(H_a: \\mu \\neq \\$9\\)" },
+      { "key": "D", "value": "\\(H_0: \\mu = \\$9\\), \\(H_a: \\mu > \\$9\\)" },
+      { "key": "E", "value": "\\(H_0: \\mu = \\$9\\), \\(H_a: \\mu < \\$9\\)" }
+    ],
+    "answerKey": "D",
+    "reasoning": "The null hypothesis is a statement of the current population mean. The alternative hypothesis is a statement of the manager's belief that the mean is higher than $9."
+  },
+  {
+    "id": "U7-PC-MCQ-B-Q04",
+    "type": "multiple-choice",
+    "prompt": "The mean number of sick days per employee taken last year by all employees of a large city was 10.6 days. A city administrator is investigating whether the mean number of sick days this year is different from the mean number of sick days last year. The administrator takes a random sample of 40 employees and finds the mean of the sample to be 12.9. A hypothesis test will be conducted as part of the investigation.\n\nWhich of the following is the correct set of hypotheses?",
+    "choices": [
+      { "key": "A", "value": "\\(H_0: \\mu = 10.6\\), \\(H_a: \\mu > 10.6\\)" },
+      { "key": "B", "value": "\\(H_0: \\mu = 10.6\\), \\(H_a: \\mu \\neq 10.6\\)" },
+      { "key": "C", "value": "\\(H_0: \\mu = 10.6\\), \\(H_a: \\mu < 10.6\\)" },
+      { "key": "D", "value": "\\(H_0: \\mu = 12.9\\), \\(H_a: \\mu \\neq 12.9\\)" },
+      { "key": "E", "value": "\\(H_0: \\mu = 12.9\\), \\(H_a: \\mu < 12.9\\)" }
+    ],
+    "answerKey": "B",
+    "reasoning": "The null hypothesis is a statement that the population mean number of sick days is the same this year as it was last year (equal to 10.6). The alternative hypothesis is a statement that the mean number of sick days this year is different from what it was last year (that is, not equal to 10.6)."
+  },
+  {
+    "id": "U7-PC-MCQ-B-Q05",
+    "type": "multiple-choice",
+    "prompt": "A local convenience store in a large city closes each day at 10 P.M. The owner of the store is investigating whether mean sales will increase by at least $10 per day if the store remains open until 11 P.M. The owner asked the 41 members of a local civic group to estimate the amount of money they might spend during the extra hour. The sample mean was $11.50. The owner will conduct a one-sample \\(t\\)-test for a population mean.\n\nHave the conditions for inference been met?",
+    "choices": [
+      { "key": "A", "value": "Yes, all conditions have been met." },
+      { "key": "B", "value": "No, the sample was not chosen using a random method." },
+      { "key": "C", "value": "No, the sample size is greater than 10 percent of the population." },
+      { "key": "D", "value": "No, the sample size is not large enough to assume normality of the sampling distribution." },
+      { "key": "E", "value": "No, the distribution of the sample is not normal." }
+    ],
+    "answerKey": "B",
+    "reasoning": "The members of the civic group are a convenience sample, not a random sample, so the independence condition cannot be verified."
+  },
+  {
+    "id": "U7-PC-MCQ-B-Q06",
+    "type": "multiple-choice",
+    "prompt": "A consumer group wants to know if an automobile insurance company with thousands of customers has an average insurance payout for all their customers that is greater than $500 per insurance claim. They know that most customers have zero payouts and a few have substantial payouts. The consumer group collects a random sample of 18 customers and computes a mean payout per claim of $579.80 with a standard deviation of $751.30.\n\nIs it appropriate for the consumer group to perform a hypothesis test for the mean payout of all customers?",
+    "choices": [
+      { "key": "A", "value": "Yes, it is appropriate because the population standard deviation is unknown." },
+      { "key": "B", "value": "Yes, it is appropriate because the sample size is large enough, so the condition that the sampling distribution of the sample mean be approximately normal is satisfied." },
+      { "key": "C", "value": "No, it is not appropriate because the sample is more than 10 percent of the population, so a condition for independence is not satisfied." },
+      { "key": "D", "value": "No, it is not appropriate because the standard deviation is greater than the mean payout, so the condition that the sampling distribution of the sample mean be approximately normal is not satisfied." },
+      { "key": "E", "value": "No, it is not appropriate because the distribution of the population is skewed and the sample size is not large enough to satisfy the condition that the sampling distribution of the sample mean be approximately normal." }
+    ],
+    "answerKey": "E",
+    "reasoning": "It is not appropriate to perform the hypothesis test. The distribution of the population is skewed right since most customers have zero payouts and a few customers have large payouts. Because the distribution of the population is skewed, in order to assume that the sampling distribution of sample means is approximately normal, the sample size would need to be greater than 30. Since the sample size is only 18, the normality condition has not been satisfied."
+  },
+  {
+    "id": "U7-PC-MCQ-B-Q07",
+    "type": "multiple-choice",
+    "prompt": "A company that manufactures laptop batteries claims the mean battery life is 16 hours. Assuming the distribution of battery life is approximately normal, a consumer group will conduct a hypothesis test to investigate whether the battery life is less than 16 hours. The group selected a random sample of 14 of the batteries and found an average life of 15.6 hours with a standard deviation of 0.8 hour.\n\nWhich of the following is the correct test statistic for the hypothesis test?",
+    "choices": [
+      { "key": "A", "value": "\\(t = \\frac{15.6 - 16}{0.8}\\)" },
+      { "key": "B", "value": "\\(t = \\frac{16 - 15.6}{0.8}\\)" },
+      { "key": "C", "value": "\\(t = \\frac{15.6 - 16}{\\frac{0.8}{\\sqrt{14}}}\\)" },
+      { "key": "D", "value": "\\(t = \\frac{15.6 - 16}{\\frac{0.8}{\\sqrt{14}}}\\)" },
+      { "key": "E", "value": "\\(t = \\frac{16 - 15.6}{\\frac{0.8}{\\sqrt{14}}}\\)" }
+    ],
+    "answerKey": "D",
+    "reasoning": "The numerator of the test statistic is the sample mean (15.6) minus the hypothesized population mean (16). The denominator of the test statistic is the sample standard deviation divided by the square root of the sample size."
+  },
+  {
+    "id": "U7-PC-MCQ-B-Q08",
+    "type": "multiple-choice",
+    "prompt": "A sociologist studying the difference in ages between husbands and wives obtained a random sample of 55 married couples. The mean of the husbands' ages was 38.5 years with standard deviation 12.6 years. The mean of the wives' ages was 36.9 years with standard deviation 12.4 years. The sociologist calculated the difference between the ages for each couple. The mean difference was 1.6 years with standard deviation 2.1 years. A matched-pairs hypothesis test will be performed to investigate whether the difference is significant.\n\nWhich of the following is the standard error for the test statistic for the hypothesis test?",
+    "choices": [
+      { "key": "A", "value": "\\(\\sqrt{\\frac{12.6^2}{55} + \\frac{12.4^2}{55}}\\)" },
+      { "key": "B", "value": "\\(\\frac{2.1}{\\sqrt{55}}\\)" },
+      { "key": "C", "value": "\\(\\frac{2.1}{\\sqrt{55+55}}\\)" },
+      { "key": "D", "value": "\\(\\frac{12.6-12.4}{\\sqrt{55}}\\)" },
+      { "key": "E", "value": "\\(\\frac{12.6-12.4}{\\sqrt{55+55}}\\)" }
+    ],
+    "answerKey": "B",
+    "reasoning": "The standard error is the denominator of the test statistic: \\(\\frac{s}{\\sqrt{n}}\\). For a matched-pairs test, the denominator of the test statistic is the standard deviation of the paired differences (2.1) divided by the square root of the sample size, which is the number of pairs (55)."
+  },
+  {
+    "id": "U7-PC-MCQ-B-Q09",
+    "type": "multiple-choice",
+    "prompt": "An agency that hires out clerical workers claims its workers can type, on average, at least 60 words per minute (\\(\\mu \\geq 60\\) wpm). To test the claim, a random sample of 50 workers from the agency were given a typing test, and the average typing speed was 58.8 wpm. A one-sample \\(t\\)-test was conducted to investigate whether there is evidence that the mean typing speed of workers from the agency is less than 60 wpm. The resulting \\(p\\)-value was 0.267.\n\nWhich of the following is a correct interpretation of the \\(p\\)-value?",
+    "choices": [
+      { "key": "A", "value": "The probability is 0.267 that the mean typing speed is 60 wpm or more for workers from the agency." },
+      { "key": "B", "value": "The probability is 0.267 that the mean typing speed is 60 wpm or less for workers from the agency." },
+      { "key": "C", "value": "The probability is 0.267 that the mean typing speed is 58.8 wpm or less for workers from the agency." },
+      { "key": "D", "value": "If the mean typing speed of workers from the agency is 60 wpm, the probability of selecting a sample of 50 workers with mean 58.8 wpm or less is 0.267." },
+      { "key": "E", "value": "If the mean typing speed of workers from the agency is less than 60 wpm, the probability of selecting a sample of 50 workers with mean 58.8 wpm or less is 0.267." }
+    ],
+    "answerKey": "D",
+    "reasoning": "If the null hypothesis is true and the mean is 60, the \\(p\\)-value is the probability of obtaining a sample mean of 58.8 or less."
+  },
+  {
+    "id": "U7-PC-MCQ-B-Q10",
+    "type": "multiple-choice",
+    "prompt": "Milk has a pH of 6.7, which is slightly acidic. Cheese makers add a culture to milk to lower the pH, making it more acidic and turning it into cheese. A manufacturer is experimenting with a new culture that claims to produce a pH of 5.2, which is perfect for cheddar cheese. A set of 50 test batches resulted in an average pH of 5.11. A one-sample \\(t\\)-test was conducted to investigate whether there is evidence that the mean pH is different from 5.2. The test resulted in a \\(p\\)-value of 0.018.\n\nWhich of the following is a correct interpretation of the \\(p\\)-value?",
+    "choices": [
+      { "key": "A", "value": "The probability that the true pH is equal to 5.2 is 0.018." },
+      { "key": "B", "value": "The probability that the true pH is different from 5.2 is 0.018." },
+      { "key": "C", "value": "The probability of observing a sample mean of 5.11 or less is 0.018 if the true mean is 5.2." },
+      { "key": "D", "value": "The probability of observing a sample mean of 5.11 or more is 0.018 if the true mean is 5.2." },
+      { "key": "E", "value": "The probability of observing a sample mean of 5.11 or less, or of 5.29 or more, is 0.018 if the true mean is 5.2." }
+    ],
+    "answerKey": "E",
+    "reasoning": "The \\(p\\)-value is calculated with the assumption that the null hypothesis is true. Because the manufacturer is testing a two-sided alternative hypothesis, the \\(p\\)-value needs to be interpreted in both directions. The observed mean of 5.11 is 0.09 units less than the assumed mean of 5.2. Therefore, the interpretation must also take into account the value of 5.29, which is 0.09 units greater than the assumed mean of 5.2."
+  },
+  {
+    "id": "U7-PC-MCQ-B-Q11",
+    "type": "multiple-choice",
+    "prompt": "A recent report indicated that families in a certain country typically spend about $175 per week on groceries. To investigate whether families in a certain city typically spend more than $175 per week, an economist selected a random sample of 500 families in the city and found the sample mean to be $176.24. With all conditions for inference met, a hypothesis test resulted in a \\(p\\)-value of 0.0021.\n\nAt the significance level of \\(\\alpha = 0.05\\), which of the following is a correct conclusion?",
+    "choices": [
+      { "key": "A", "value": "The \\(p\\)-value is less than 0.05, and the null hypothesis is rejected. There is convincing statistical evidence that the mean is greater than $175." },
+      { "key": "B", "value": "The \\(p\\)-value is less than 0.05, and the null hypothesis is not rejected. There is convincing statistical evidence that the mean is greater than $175." },
+      { "key": "C", "value": "The \\(p\\)-value is less than 0.05, and the null hypothesis is not rejected. There is not convincing statistical evidence that the mean is greater than $175." },
+      { "key": "D", "value": "The \\(p\\)-value is greater than 0.05, and the null hypothesis is rejected. There is convincing statistical evidence that the mean is greater than $175." },
+      { "key": "E", "value": "The \\(p\\)-value is greater than 0.05, and the null hypothesis is not rejected. There is not convincing statistical evidence that the mean is greater than $175." }
+    ],
+    "answerKey": "A",
+    "reasoning": "The \\(p\\)-value of 0.0021 is less than the significance level of 0.05, and the correct decision is to reject the null hypothesis. There is convincing statistical evidence to support the alternative hypothesis that the population mean is greater than $175."
+  },
+  {
+    "id": "U7-PC-MCQ-B-Q12",
+    "type": "multiple-choice",
+    "prompt": "In a certain city, the population mean commute time to work was reported as 30 minutes. The director of human resources for a certain company in the city claimed the mean commute time for the company's employees was greater than 30 minutes. The director surveyed 35 randomly selected employees and found that their mean commute time was 31.4 minutes. With all conditions for inference met, a hypothesis test conducted at the significance level \\(\\alpha = 0.05\\) resulted in a \\(p\\)-value of 0.381.\n\nWhich of the following is an appropriate conclusion?",
+    "choices": [
+      { "key": "A", "value": "The director has convincing statistical evidence to conclude that the population mean commute time is greater than 30 minutes." },
+      { "key": "B", "value": "The director has convincing statistical evidence to conclude that the population mean commute time is less than 30 minutes." },
+      { "key": "C", "value": "The director has convincing statistical evidence to conclude that the population mean commute time is 31.4 minutes." },
+      { "key": "D", "value": "The director does not have convincing statistical evidence to conclude that the population mean commute time is greater than 30 minutes." },
+      { "key": "E", "value": "The director does not have convincing statistical evidence to conclude that the population mean commute time is less than 30 minutes." }
+    ],
+    "answerKey": "D",
+    "reasoning": "The \\(p\\)-value of 0.381 is greater than the significance level of 0.05, and the null hypothesis of 30 minutes is not rejected. There is not convincing statistical evidence to support the alternative that the mean commute time is greater than 30 minutes."
+  },
+  {
+    "id": "U7-PC-MCQ-B-Q13",
+    "type": "multiple-choice",
+    "prompt": "An occupational safety officer for a large company is conducting a study to investigate back problems in office workers who use a computer for most of the workday. The study will investigate the difference in back problems for workers who stand and workers who sit. A group of 68 volunteers have agreed to participate in the nine-month study. Half the group is randomly assigned to work while standing, and the other half is assigned to work while sitting. At the end of the study, the mean number of back problems between the two groups will be calculated. The officer will use the results to estimate the difference in the mean number of back problems between those who work while standing and those who work while sitting.\n\nWhich of the following is an appropriate inference procedure for the study?",
+    "choices": [
+      { "key": "A", "value": "A one-sample \\(t\\)-interval for a population mean" },
+      { "key": "B", "value": "A one-sample \\(t\\)-interval for a sample mean" },
+      { "key": "C", "value": "A matched pairs \\(t\\)-interval for a mean difference" },
+      { "key": "D", "value": "A two-sample \\(t\\)-interval for a difference between sample means" },
+      { "key": "E", "value": "A two-sample \\(t\\)-interval for a difference between population means" }
+    ],
+    "answerKey": "E",
+    "reasoning": "The officer wants to estimate the unknown difference in population means. There is a random assignment into two independent groups; each group can be considered a sample from a population. The appropriate procedure is the two-sample \\(t\\)-interval for a difference between population means."
+  },
+  {
+    "id": "U7-PC-MCQ-B-Q14",
+    "type": "multiple-choice",
+    "prompt": "A researcher is investigating whether a new fertilizer affects the yield of tomato plants. As part of an experiment, 20 plants will be randomly assigned the new fertilizer and 20 will be assigned the current fertilizer. The mean number of tomatoes produced per plant will be recorded for each fertilizer, and the difference in the sample means will be calculated.\n\nWhich of the following is the appropriate inference procedure for analyzing the results of the experiment?",
+    "choices": [
+      { "key": "A", "value": "A matched-pairs \\(t\\)-interval for a mean difference" },
+      { "key": "B", "value": "A two-sample \\(t\\)-interval for a difference between sample means" },
+      { "key": "C", "value": "A two-sample \\(t\\)-interval for a difference between population means" },
+      { "key": "D", "value": "A one-sample \\(t\\)-interval for a sample mean" },
+      { "key": "E", "value": "A one-sample \\(t\\)-interval for a population mean" }
+    ],
+    "answerKey": "C",
+    "reasoning": "The plants have been randomly assigned to two groups of fertilizer: new and current. The groups create independent random samples from two populations. The correct procedure is the two-sample \\(t\\)-interval for a difference in population means."
+  },
+  {
+    "id": "U7-PC-MCQ-B-Q15",
+    "type": "multiple-choice",
+    "prompt": "A consumer agency is interested in examining whether there is a difference in two common sealant products used to waterproof residential backyard decks. With cooperation of several builders in the area, they randomly assign 38 newly constructed decks to be treated with Very Clear deck sealant and another 37 newly constructed decks to be treated with Sure Seal deck sealant. After one year of being exposed to similar weather conditions, the decks are rated on a scale of 1 to 100. The mean rating for the decks treated with Very Clear is 89.2 with a standard deviation of 3.1. The mean rating for the decks treated with Sure Seal is 92.4 with a standard deviation of 3.8.\n\nWhich of the following represents the 90 percent confidence interval to estimate the difference (Very Clear minus Sure Seal) in mean ratings for the two deck sealants?",
+    "choices": [
+      { "key": "A", "value": "\\((89.2 - 92.4) \\pm 1.960\\sqrt{\\frac{3.1^2}{38} + \\frac{3.8^2}{37}}\\)" },
+      { "key": "B", "value": "\\((89.2 - 92.4) \\pm 1.688\\sqrt{\\frac{3.1^2}{38} + \\frac{3.8^2}{37}}\\)" },
+      { "key": "C", "value": "\\((89.2 - 92.4) \\pm 1.645\\sqrt{\\frac{3.1^2}{38} + \\frac{3.8^2}{37}}\\)" },
+      { "key": "D", "value": "\\((89.2 - 92.4) \\pm 1.688\\sqrt{\\frac{3.1}{38} + \\frac{3.8}{37}}\\)" },
+      { "key": "E", "value": "\\((89.2 - 92.4) \\pm 1.645\\left(\\frac{3.1}{\\sqrt{38}} + \\frac{3.8}{\\sqrt{37}}\\right)\\)" }
+    ],
+    "answerKey": "B",
+    "reasoning": "This is the correct formula, which includes the correct critical value (using \\(t^*\\) with df = n - 1 = 37 - 1 = 36) multiplied by the correct standard error. The standard error is given by \\(\\sqrt{\\frac{s_1^2}{n_1} + \\frac{s_2^2}{n_2}}\\)."
+  },
+  {
+    "id": "U7-PC-MCQ-B-Q16",
+    "type": "multiple-choice",
+    "prompt": "A researcher is investigating whether a difference exists in the mean weight of green-striped watermelons grown on two different farms: one that uses organic methods and one that uses nonorganic methods. The mean and standard deviation of the weights in a random sample of 43 watermelons from the organic farm were 18 pounds and 2 pounds, respectively. The mean and standard deviation of the weights in a random sample of 40 watermelons from the nonorganic farm were 20 pounds and 1.7 pounds, respectively.\n\nWhich of the following represents the standard error of the difference in the mean weights of watermelons from the two farms?",
+    "choices": [
+      { "key": "A", "value": "\\(2 + 1.7\\)" },
+      { "key": "B", "value": "\\(\\sqrt{\\frac{2^2}{43} + \\frac{1.7^2}{40}}\\)" },
+      { "key": "C", "value": "\\(\\frac{2}{\\sqrt{43}} + \\frac{1.7}{\\sqrt{40}}\\)" },
+      { "key": "D", "value": "\\(\\sqrt{\\frac{2^2}{43} + \\frac{1.7^2}{40}}\\)" },
+      { "key": "E", "value": "\\(\\sqrt{\\frac{2^2+1.7^2}{43+40}}\\)" }
+    ],
+    "answerKey": "D",
+    "reasoning": "The standard error is the square root of the sum of two fractions, where each fraction is the sample variance divided by the sample size. The standard error can be found using the formula \\(\\sqrt{\\frac{s_1^2}{n_1} + \\frac{s_2^2}{n_2}}\\)."
+  },
+  {
+    "id": "U7-PC-MCQ-B-Q17",
+    "type": "multiple-choice",
+    "prompt": "A company director investigated whether there is a difference in the mean number of overtime hours worked each week by employees assigned to two different managers. Each manager, A and B, manages 100 employees. Random samples of 35 employees from manager A and 40 employees from manager B were selected. The number of overtime hours worked was recorded for the 75 employees each week.\n\nHave the conditions been met for inference with a confidence interval for the difference in the population means?",
+    "choices": [
+      { "key": "A", "value": "Yes, all conditions have been met." },
+      { "key": "B", "value": "No, because the data were not collected using a random method." },
+      { "key": "C", "value": "No, because the size of at least one of the samples is greater than 10 percent of the population." },
+      { "key": "D", "value": "No, because the sample sizes are not large enough to assume the distribution of the difference in sample means is normal." },
+      { "key": "E", "value": "No, because the sample sizes are not the same." }
+    ],
+    "answerKey": "C",
+    "reasoning": "The condition for independence is not met because each sample size (35 and 40) is greater than 10 percent of its corresponding population size (100)."
+  },
+  {
+    "id": "U7-PC-MCQ-B-Q18",
+    "type": "multiple-choice",
+    "prompt": "In a certain region, many of the residents are employed by the oil industry. Economists in the region investigated the difference between the salaries of those who work in oil-field jobs and those who work in non-oil-field jobs. Salaries were recorded for a random sample of 84 workers from the 1,200 oil-field workers and a random sample of 72 workers from the 50,000 non-oil-field workers in the region. A 95 percent confidence interval for \\(\\mu_O - \\mu_N\\), where \\(\\mu_O\\) is the mean salary of all jobs of oil-field workers and \\(\\mu_N\\) is the mean salary of all jobs of non-oil-field workers, will be constructed. Have the conditions for inference with a confidence interval been met?",
+    "choices": [
+      { "key": "A", "value": "Yes, all conditions have been met." },
+      { "key": "B", "value": "No, the data were not collected using a random method." },
+      { "key": "C", "value": "No, the size of at least one of the samples is greater than 10 percent of the population." },
+      { "key": "D", "value": "No, the sample sizes are not large enough to assume the distribution of the difference in sample means is normal." },
+      { "key": "E", "value": "No, the sample sizes are not the same." }
+    ],
+    "answerKey": "A",
+    "reasoning": "The conditions for independence have been satisfied. Independent, random samples were collected from each of the two populations (oil-field workers and non-oil-field workers), and each sample size is less than 10 percent of its corresponding population size: \\(84 < 1.10(1,200)\\) and \\(72 < 0.10(50,000)\\). Finally, each sample size is also greater than 30, so the sampling distribution of the difference in sample means can be assumed to be approximately normal."
+  }
+]
