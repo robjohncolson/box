@@ -2175,6 +2175,15 @@
                                             return `Value: ${value}`;
                                         }
                                     }
+                                },
+                                datalabels: {
+                                    display: (ctx) => {
+                                        const cfg = (chartData.chartConfig || {});
+                                        return cfg.showPointLabels === true; // off by default
+                                    },
+                                    color: getTextColor(),
+                                    align: 'top',
+                                    anchor: 'center'
                                 }
                             }
                         },
