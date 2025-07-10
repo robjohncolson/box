@@ -1,0 +1,254 @@
+[
+  {
+    "id": "U7-PC-MCQ-C-Q01",
+    "type": "multiple-choice",
+    "prompt": "A consumer group selected 100 different airplanes at random from each of two large airlines. The mean seat width for the 100 airplanes was calculated for each airline, and the difference in the sample mean widths was calculated. The group used the sample results to construct a 95 percent confidence interval for the difference in population mean widths of seats between the two airlines.\n\nSuppose the consumer group used a sample size of 50 instead of 100 for each airline. When all other things remain the same, what effect would the decrease in sample size have on the interval?",
+    "choices": [
+      { "key": "A", "value": "The width of the confidence interval would decrease." },
+      { "key": "B", "value": "The width of the confidence interval would increase." },
+      { "key": "C", "value": "The width of the confidence interval would remain the same." },
+      { "key": "D", "value": "The level of confidence would increase." },
+      { "key": "E", "value": "The level of confidence would decrease." }
+    ],
+    "answerKey": "B",
+    "reasoning": "A decrease in the sample sizes would increase the margin of error. When sample size decreases, the standard error increases, which leads to a larger margin of error and a wider confidence interval."
+  },
+  {
+    "id": "U7-PC-MCQ-C-Q02",
+    "type": "multiple-choice",
+    "prompt": "Two 95 percent confidence intervals will be constructed to estimate the difference in means of two populations, R and J. One confidence interval, \\(I_{400}\\), will be constructed using samples of size 400 from each of R and J, and the other confidence interval, \\(I_{100}\\), will be constructed using samples of size 100 from each of R and J.\n\nWhen all other things remain the same, which of the following describes the relationship between the two confidence intervals?",
+    "choices": [
+      { "key": "A", "value": "The width of \\(I_{400}\\) will be 4 times the width of \\(I_{100}\\)." },
+      { "key": "B", "value": "The width of \\(I_{400}\\) will be 2 times the width of \\(I_{100}\\)." },
+      { "key": "C", "value": "The width of \\(I_{400}\\) will be equal to the width of \\(I_{100}\\)." },
+      { "key": "D", "value": "The width of \\(I_{400}\\) will be \\(\\frac{1}{2}\\) times the width of \\(I_{100}\\)." },
+      { "key": "E", "value": "The width of \\(I_{400}\\) will be \\(\\frac{1}{4}\\) times the width of \\(I_{100}\\)." }
+    ],
+    "answerKey": "D",
+    "reasoning": "Because the sample sizes are equal when finding \\(I_{100}\\), the margin of error for \\(I_{100}\\) can be expressed as \\(t^* \\sqrt{\\frac{s_R^2 + s_J^2}{100}} = t^* \\frac{\\sqrt{s_R^2 + s_J^2}}{10}\\). Because the sample sizes are equal when finding \\(I_{400}\\), the margin of error for \\(I_{400}\\) can be expressed as \\(t^* \\sqrt{\\frac{s_R^2 + s_J^2}{400}} = t^* \\frac{\\sqrt{s_R^2 + s_J^2}}{20}\\). For \\(I_{100}\\), the denominator is 10, and for \\(I_{400}\\), the denominator is 20. Therefore, the width of \\(I_{400}\\) is \\(10 ÷ 20 = \\frac{1}{2}\\) times the width of \\(I_{100}\\), when all other things (\\(s\\) and \\(t^*\\)) remain the same."
+  },
+  {
+    "id": "U7-PC-MCQ-C-Q03",
+    "type": "multiple-choice",
+    "prompt": "Two ride-sharing companies, A and B, provide service for a certain city. A random sample of 52 trips made by Company A and a random sample of 52 trips made by Company B were selected, and the number of miles traveled for each trip was recorded. The difference between the sample means for the two companies was used to construct the 95 percent confidence interval (1.86, 2.15).\n\nWhich of the following is a correct interpretation of the interval?",
+    "choices": [
+      { "key": "A", "value": "We are 95 percent confident that the difference in sample means for miles traveled by the two companies is between 1.86 miles and 2.15 miles." },
+      { "key": "B", "value": "We are 95 percent confident that the difference in population means for miles traveled by the two companies is between 1.86 miles and 2.15 miles." },
+      { "key": "C", "value": "The probability is 0.95 that the difference in sample means for miles traveled by the two companies is between 1.86 miles and 2.15 miles." },
+      { "key": "D", "value": "The probability is 0.95 that the difference in population means for miles traveled by the two companies is between 1.86 miles and 2.15 miles." },
+      { "key": "E", "value": "About 95 percent of the differences in miles traveled by the two companies are between 1.86 miles and 2.15 miles." }
+    ],
+    "answerKey": "B",
+    "reasoning": "The 95 percent refers to the level of confidence for capturing the difference in population means for miles traveled by the two companies in the interval. Confidence intervals are used to estimate population parameters, not sample statistics."
+  },
+  {
+    "id": "U7-PC-MCQ-C-Q04",
+    "type": "multiple-choice",
+    "prompt": "A civil engineer tested concrete samples to investigate the difference in strength, in newtons per square millimeter (\\(N/mm^2\\)), between concrete hardened for 21 days and concrete hardened for 28 days. The engineer measured the strength from each sample, calculated the difference in the mean strength between the samples, and then constructed the 95 percent confidence interval, (2.9, 3.1), for the difference in mean strengths.\n\nAssuming all conditions for inference were met, which of the following is a correct interpretation of the 95 percent confidence level?",
+    "choices": [
+      { "key": "A", "value": "In repeated samples of the same size, approximately 95 percent of the samples will yield the interval 2.9 to 3.1 \\(N/mm^2\\)." },
+      { "key": "B", "value": "In repeated samples of the same size, approximately 95 percent of the sample means will fall between 2.9 and 3.1 \\(N/mm^2\\)." },
+      { "key": "C", "value": "In repeated samples of the same size, approximately 95 percent of the intervals constructed from the samples will extend from 2.9 to 3.1 \\(N/mm^2\\)." },
+      { "key": "D", "value": "In repeated samples of the same size, approximately 95 percent of the intervals constructed from the samples will capture the population difference in means." },
+      { "key": "E", "value": "In repeated samples of the same size, approximately 95 percent of the intervals constructed from the samples will capture the sample difference in means." }
+    ],
+    "answerKey": "D",
+    "reasoning": "The confidence level of 95 percent refers to the percentage of intervals that will capture the population difference in means if the process is repeated over and over again with samples of the same size."
+  },
+  {
+    "id": "U7-PC-MCQ-C-Q05",
+    "type": "multiple-choice",
+    "prompt": "Donald believes that western commuters drive an average of 10 miles more per day than eastern commuters do. He selects random samples from each group. The western mean is 23.5 miles, and the eastern mean is 19.4 miles. A 95 percent confidence interval to estimate the difference in population means, in miles, is (2.5, 5.7). Which of the following statements is supported by the interval?",
+    "choices": [
+      { "key": "A", "value": "The probability that Donald is correct is 0.05 because 10 is not contained in the interval." },
+      { "key": "B", "value": "The probability that Donald is correct is 0.95 because 10 is not contained in the interval." },
+      { "key": "C", "value": "Donald is likely to be correct because the difference in the sample means is \\(23.5 - 19.4 = 4.1\\) contained in the interval." },
+      { "key": "D", "value": "Donald is likely to be incorrect because 10 is not contained in the interval." },
+      { "key": "E", "value": "Donald is likely to be incorrect because the difference in the sample means was \\(23.5 - 19.4 = 4.1\\) miles." }
+    ],
+    "answerKey": "D",
+    "reasoning": "Because 10 is not contained in the interval, 10 is not a plausible value for the difference in population means. Donald is likely to be incorrect."
+  },
+  {
+    "id": "U7-PC-MCQ-C-Q06",
+    "type": "multiple-choice",
+    "prompt": "Hannah claims that people who live in southern states spend 9 hours more per week outside than do people in northern states. She selects a random sample from each group. The mean number of hours per week that people in southern states spent outside is 18.6, and the mean number of hours per week that people in northern states spent outside is 14.4. A 99 percent confidence interval to estimate the difference in population means (southern minus northern) is (0.4, 8.0).\n\nWhich of the following statements about Hannah's claim is supported by the interval?",
+    "choices": [
+      { "key": "A", "value": "Hannah is likely to be incorrect because the difference in the sample means was \\(18.6 - 14.4 = 4.2\\) hours." },
+      { "key": "B", "value": "Hannah is likely to be incorrect because 9 is not contained in the interval." },
+      { "key": "C", "value": "The probability that Hannah is correct is 0.99 because 9 is not contained in the interval." },
+      { "key": "D", "value": "The probability that Hannah is correct is 0.01 because 9 is not contained in the interval." },
+      { "key": "E", "value": "Hannah is likely to be correct because the difference in the sample means (\\(18.6 - 14.4 = 4.2\\)) is contained in the interval." }
+    ],
+    "answerKey": "B",
+    "reasoning": "Because 9 is not contained in the interval, 9 is not a plausible value for the difference in population means. Hannah is likely to be incorrect."
+  },
+  {
+    "id": "U7-PC-MCQ-C-Q07",
+    "type": "multiple-choice",
+    "prompt": "A study will be conducted to investigate whether there is a difference in the mean weights between two populations of raccoons. Random samples of raccoons will be selected from each population, and the mean sample weight will be calculated for each sample.\n\nWhich of the following is the appropriate test for the study?",
+    "choices": [
+      { "key": "A", "value": "A one-sample \\(z\\)-test for a population proportion" },
+      { "key": "B", "value": "A one-sample \\(t\\)-test for a population mean" },
+      { "key": "C", "value": "A two-sample \\(t\\)-test for a difference between sample means" },
+      { "key": "D", "value": "A two-sample \\(t\\)-test for a difference between population means" },
+      { "key": "E", "value": "A two-sample \\(z\\)-test for a difference between population proportions" }
+    ],
+    "answerKey": "D",
+    "reasoning": "Two random samples are selected, and the difference in the sample means will be calculated. The appropriate test is the two-sample \\(t\\)-test for a difference in population means."
+  },
+  {
+    "id": "U7-PC-MCQ-C-Q08",
+    "type": "multiple-choice",
+    "prompt": "An experiment was conducted to investigate whether there is a difference in mean bag strengths for two different brands of paper sandwich bags. A random sample of 50 bags from each of Brand X and Brand Y was selected. Each bag was held from its rim, and one-ounce weights were dropped into the bag one at a time from the same height until the bag ripped. The number of ounces the bag held before ripping was recorded, and the mean number of ounces for each brand was calculated.\n\nWhich of the following is the appropriate test for the study?",
+    "choices": [
+      { "key": "A", "value": "A matched-pairs \\(t\\)-test for a mean difference" },
+      { "key": "B", "value": "A two-sample \\(t\\)-test for a difference between population means" },
+      { "key": "C", "value": "A two-sample \\(z\\)-test for a difference between population proportions" },
+      { "key": "D", "value": "A two-sample \\(t\\)-test for a difference between sample means" },
+      { "key": "E", "value": "A one-sample \\(z\\)-test for a population proportion" }
+    ],
+    "answerKey": "B",
+    "reasoning": "The difference in the means between the two brands of bags is the question of interest. The appropriate test is the two-sample \\(t\\)-test for a difference in means."
+  },
+  {
+    "id": "U7-PC-MCQ-C-Q09",
+    "type": "multiple-choice",
+    "prompt": "A recent newspaper article claimed that more people read Magazine A than read Magazine B. To test the claim, a study was conducted by a publishing representative in which newsstand operators were selected at random and asked how many of each magazine were sold that day. The representative will conduct a hypothesis test to test whether the mean number of magazines of type A the operators sell, \\(\\mu_A\\), is greater than the mean number of magazines of type B the operators sell, \\(\\mu_B\\). What are the correct null and alternative hypotheses for the test?",
+    "choices": [
+      { "key": "A", "value": "\\(H_0: \\mu_A - \\mu_B = 0\\)\\n\\(H_a: \\mu_A - \\mu_B > 0\\)" },
+      { "key": "B", "value": "\\(H_0: \\mu_A - \\mu_B < 0\\)\\n\\(H_a: \\mu_A - \\mu_B > 0\\)" },
+      { "key": "C", "value": "\\(H_0: \\mu_A - \\mu_B = 0\\)\\n\\(H_a: \\mu_A - \\mu_B \\neq 0\\)" },
+      { "key": "D", "value": "\\(H_0: \\bar{x}_A - \\bar{x}_B = 0\\)\\n\\(H_a: \\bar{x}_A - \\bar{x}_B > 0\\)" },
+      { "key": "E", "value": "\\(H_0: \\mu_B - \\mu_A = 0\\)\\n\\(H_a: \\mu_B - \\mu_A > 0\\)" }
+    ],
+    "answerKey": "A",
+    "reasoning": "The claim that is being tested, that \\(\\mu_A\\) is greater than \\(\\mu_B\\), is the alternative hypothesis. This is equivalent to \\(\\mu_A - \\mu_B > 0\\). The null hypothesis is a statement that there is no difference in the means (that is, that \\(\\mu_A - \\mu_B = 0\\))."
+  },
+  {
+    "id": "U7-PC-MCQ-C-Q10",
+    "type": "multiple-choice",
+    "prompt": "A group of Chemistry students debated which fast-food chain had better quality bags, Fast Food Chain W or Fast Food Chain M. They decided to investigate by selecting a random sample of 25 bags from each fast food restaurant, slowly adding water until each bag began to leak, and recording the volume of water they were able to pour into each bag. They then calculated the mean volume and standard deviation, in ounces, for the two types of bags. Which of the following are the correct null and alternative hypotheses to test whether the mean volume of water the bags from Fast Food Chain W can hold without leaking, \\(\\mu_W\\), is different from that for the bags from Fast Food Chain M, \\(\\mu_M\\)?",
+    "choices": [
+      { "key": "A", "value": "\\(H_0: \\mu_W - \\mu_M = 0\\)\\n\\(H_a: \\mu_W - \\mu_M > 0\\)" },
+      { "key": "B", "value": "\\(H_0: \\mu_W - \\mu_M < 0\\)\\n\\(H_a: \\mu_W - \\mu_M > 0\\)" },
+      { "key": "C", "value": "\\(H_0: \\mu_W - \\mu_M = 0\\)\\n\\(H_a: \\mu_W - \\mu_M \\neq 0\\)" },
+      { "key": "D", "value": "\\(H_0: \\bar{x}_W - \\bar{x}_M = 0\\)\\n\\(H_a: \\bar{x}_W - \\bar{x}_M > 0\\)" },
+      { "key": "E", "value": "\\(H_0: \\mu_W - \\mu_M = 0\\)\\n\\(H_a: \\mu_W - \\mu_M < 0\\)" }
+    ],
+    "answerKey": "C",
+    "reasoning": "The null hypothesis states that the two population means are equal, and the alternative hypothesis states that they are not equal, reflecting the students' belief that the mean volume of water that bags from Chain W can hold is different from that for the bags from Chain M."
+  },
+  {
+    "id": "U7-PC-MCQ-C-Q11",
+    "type": "multiple-choice",
+    "prompt": "A study was conducted to investigate whether the mean numbers of snack bars sold at two airport convenience stores, C and D, were different. For ten randomly selected days, the number of snack bars sold at each store was recorded, and the sample mean number of snack bars for each store was calculated. A two-sample \\(t\\)-test for a difference in means will be conducted.\n\nHave all conditions for inference been met?",
+    "choices": [
+      { "key": "A", "value": "Yes, all conditions have been met." },
+      { "key": "B", "value": "No, the data were not collected using a random method." },
+      { "key": "C", "value": "No, the sample sizes are greater than 10 percent of the population." },
+      { "key": "D", "value": "No, the sample sizes are not large enough to assume normality of the sampling distribution." },
+      { "key": "E", "value": "No, the distribution of the population is known to be skewed." }
+    ],
+    "answerKey": "D",
+    "reasoning": "Because the shape of the population distribution is not known, the sample size (10) should be greater than 30 to support the normality assumption of the sampling distribution of the difference in means."
+  },
+  {
+    "id": "U7-PC-MCQ-C-Q12",
+    "type": "multiple-choice",
+    "prompt": "Two community service groups, J and K, each have less than 100 members. Members of both groups volunteer each month to participate in a community-wide recycling day. A study was conducted to investigate whether the mean number of days per year of participation was different for the two groups. A random sample of 45 members of group J and a random sample of 32 members of group K were selected. The number of recycling days each selected member participated in for the past 12 months was recorded, and the means for both groups were calculated. A two-sample \\(t\\)-test for a difference in means will be conducted.\n\nWhich of the following conditions for inference have been met?\n\nI. The data were collected using a random method.\nII. Each sample size is less than 10 percent of the population size.\nIII. Each sample size is large enough to assume normality of the sampling distribution of the difference in sample means.",
+    "choices": [
+      { "key": "A", "value": "I only" },
+      { "key": "B", "value": "II only" },
+      { "key": "C", "value": "III only" },
+      { "key": "D", "value": "I and III only" },
+      { "key": "E", "value": "I, II, and III" }
+    ],
+    "answerKey": "D",
+    "reasoning": "A random method was used to select the sample, and the size of each sample is greater than 30. However, each sample size is greater than 10 percent of the maximum possible group size (100), so the independence condition is not met."
+  },
+  {
+    "id": "U7-PC-MCQ-C-Q13",
+    "type": "multiple-choice",
+    "prompt": "A two-sample \\(t\\)-test for a difference in means will be conducted to investigate whether the average amount of money spent per customer at Department Store M is different from that at Department Store V. From a random sample of 35 customers at Store M, the average amount spent was $300 with standard deviation $40. From a random sample of 40 customers at Store V, the average amount spent was $290 with standard deviation $35.\n\nAssuming a null hypothesis of no difference in population means, which of the following is the test statistic for the appropriate test to investigate whether there is a difference in population means (Department Store M minus Department Store V)?",
+    "choices": [
+      { "key": "A", "value": "\\(t = \\frac{300-290}{\\sqrt{\\frac{40^2}{35}+\\frac{35^2}{40}}}\\)" },
+      { "key": "B", "value": "\\(t = \\frac{300-290}{\\sqrt{\\frac{40^2+35^2}{35+40}}}\\)" },
+      { "key": "C", "value": "\\(t = \\frac{300-290}{\\sqrt{\\frac{40+35}{35+40}}}\\)" },
+      { "key": "D", "value": "\\(t = \\frac{300-290}{\\sqrt{\\frac{40^2}{35}+\\frac{35^2}{40}}}\\)" },
+      { "key": "E", "value": "\\(t = \\frac{300-290}{\\sqrt{\\frac{40}{35}+\\frac{35}{40}}}\\)" }
+    ],
+    "answerKey": "D",
+    "reasoning": "The numerator is the difference of the sample means, or \\(300 - 290\\). The denominator is the standard error of the statistic, or \\(\\sqrt{\\frac{40^2}{35}+\\frac{35^2}{40}}\\)."
+  },
+  {
+    "id": "U7-PC-MCQ-C-Q14",
+    "type": "multiple-choice",
+    "prompt": "A two-sample \\(t\\)-test will be conducted to investigate whether the mean number of tickets sold for children each day is less at movie theater J than at movie theater K. From a random sample of 50 days at theater J, the average was 75 children tickets with standard deviation 12. From a random sample of 60 days at theater K, the average was 85 children tickets with standard deviation 14.\n\nUnder the assumption that there is no difference in the population means (J minus K), which of the following is the appropriate test statistic for the test?",
+    "choices": [
+      { "key": "A", "value": "\\(t = \\frac{75-85}{\\sqrt{\\frac{12^2}{50}+\\frac{14^2}{60}}}\\)" },
+      { "key": "B", "value": "\\(t = \\frac{75-85}{\\sqrt{\\frac{12^2}{50}+\\frac{14^2}{60}}}\\)" },
+      { "key": "C", "value": "\\(t = \\frac{75-85}{\\sqrt{\\frac{12+14}{50+60}}}\\)" },
+      { "key": "D", "value": "\\(t = \\frac{75-85}{\\sqrt{\\frac{12^2+14^2}{50+60}}}\\)" },
+      { "key": "E", "value": "\\(t = \\frac{75-85}{\\sqrt{\\frac{12^2+14^2}{50+60}}}\\)" }
+    ],
+    "answerKey": "B",
+    "reasoning": "The numerator is the difference between the sample means for J and K, or \\(75 - 85\\). The denominator is the standard error for the difference in sample means, or \\(\\sqrt{\\frac{12^2}{50}+\\frac{14^2}{60}}\\)."
+  },
+  {
+    "id": "U7-PC-MCQ-C-Q15",
+    "type": "multiple-choice",
+    "prompt": "A random sample of monarch butterflies and a random sample of swallowtail butterflies were selected, and the difference in the average flying speed for each sample was calculated. A two-sample \\(t\\)-test for the difference in means was conducted to investigate whether the speed at which monarchs fly, on average, is faster than the speed at which swallowtails fly. All conditions for inference were met, and the \\(p\\)-value was given as 0.072.\n\nWhich of the following is a correct interpretation of the \\(p\\)-value?",
+    "choices": [
+      { "key": "A", "value": "The probability that monarchs fly faster than swallowtails is 0.072." },
+      { "key": "B", "value": "The probability that monarchs and swallowtails fly at the same speed is 0.072." },
+      { "key": "C", "value": "Assuming that monarchs and swallowtails fly at the same speed on average, the probability of observing a difference equal to or greater than the sample difference is 0.072." },
+      { "key": "D", "value": "Assuming that monarchs fly faster than swallowtails on average, the probability of observing a difference equal to or greater than the sample difference is 0.072." },
+      { "key": "E", "value": "Assuming that monarchs fly faster than swallowtails on average, the probability of the monarchs and swallowtails flying at the same speed is 0.072." }
+    ],
+    "answerKey": "C",
+    "reasoning": "The test is right-tailed, so the \\(p\\)-value is the area under the \\(t\\)-curve to the right of the test statistic calculated from the observed difference. A \\(p\\)-value of 0.072 indicates that if there really is no difference in mean flying speeds between monarchs and swallowtails, then a difference as extreme as or more extreme than what was observed will occur about 72 times in 1,000."
+  },
+  {
+    "id": "U7-PC-MCQ-C-Q16",
+    "type": "multiple-choice",
+    "prompt": "Researchers studying two populations of wolves conducted a two-sample \\(t\\)-test for the difference in means to investigate whether the mean weight of the wolves in one population was different from the mean weight of the wolves in the other population. All conditions for inference were met, and the test produced a test statistic of \\(t = 2.771\\) and a \\(p\\)-value of 0.01.\n\nWhich of the following is a correct interpretation of the \\(p\\)-value?",
+    "choices": [
+      { "key": "A", "value": "Assuming that the mean weights of wolves in the populations are equal, the probability of obtaining a test statistic that is greater than 2.771 or less than \\(-2.771\\) is 0.01." },
+      { "key": "B", "value": "Assuming that the mean weights of wolves in the populations are equal, the probability of obtaining a test statistic that is greater than 2.771 is 0.01." },
+      { "key": "C", "value": "Assuming that the mean weights of wolves in the populations are different, the probability of obtaining a test statistic that is greater than 2.771 or less than \\(-2.771\\) is 0.01." },
+      { "key": "D", "value": "Assuming that the mean weights of wolves in the populations are different, the probability of obtaining a test statistic that is greater than 2.771 is 0.01." },
+      { "key": "E", "value": "Assuming that the mean weights of wolves in the populations are different, the probability of obtaining a test statistic that is less than 2.771 is 0.01." }
+    ],
+    "answerKey": "A",
+    "reasoning": "The test is two-sided. The \\(p\\)-value is the combined area under the \\(t\\)-curve to the right of 2.771 and to the left of \\(-2.771\\). The combined area is interpreted as the probability of obtaining a test statistic greater than 2.771 or less than \\(-2.771\\) if the mean weights of the two wolf populations are equal."
+  },
+  {
+    "id": "U7-PC-MCQ-C-Q17",
+    "type": "multiple-choice",
+    "prompt": "A two-sample \\(t\\)-test for a difference in means was conducted to investigate whether there is a statistically significant difference in the average amount of fat found in low-fat yogurt and the average amount of fat found in nonfat yogurt. With all conditions for inference met, the test produced a test statistic of \\(t = 2.201\\) and a \\(p\\)-value of 0.027.\n\nBased on the \\(p\\)-value and a significance level of \\(\\alpha = 0.05\\), which of the following is the correct conclusion?",
+    "choices": [
+      { "key": "A", "value": "Reject the null hypothesis because \\(p < \\alpha\\). The difference in the average amount of fat found in low-fat and nonfat yogurt is not statistically significant." },
+      { "key": "B", "value": "Reject the null hypothesis because \\(p < \\alpha\\). The difference in the average amount of fat found in low-fat and nonfat yogurt is statistically significant." },
+      { "key": "C", "value": "Fail to reject the null hypothesis because \\(p < \\alpha\\). The difference in the average amount of fat found in low-fat and nonfat yogurt is not statistically significant." },
+      { "key": "D", "value": "Fail to reject the null hypothesis because \\(p > \\alpha\\). The difference in the average amount of fat found in low-fat and nonfat yogurt is statistically significant." },
+      { "key": "E", "value": "Fail to reject the null hypothesis because \\(p > \\alpha\\). The difference in the average amount of fat found in low-fat and nonfat yogurt is not statistically significant." }
+    ],
+    "answerKey": "B",
+    "reasoning": "Because \\(0.027 < 0.05\\), the null hypothesis is rejected. Rejection of the null hypothesis indicates that the difference is statistically significant."
+  },
+  {
+    "id": "U7-PC-MCQ-C-Q18",
+    "type": "multiple-choice",
+    "prompt": "A two-sample \\(t\\)-test for a difference in means was conducted to investigate whether the average wait time at a fast food restaurant in Town A was longer than the average wait time at a fast food restaurant in Town B. With all conditions for inference met, the test produced a test statistic of \\(t = 2.42\\) and a \\(p\\)-value of 0.011.\n\nBased on the \\(p\\)-value and a significance level of \\(\\alpha = 0.02\\), which of the following is a correct conclusion?",
+    "choices": [
+      { "key": "A", "value": "There is convincing statistical evidence that the average wait times at the two restaurants are the same." },
+      { "key": "B", "value": "There is convincing statistical evidence that the average wait time at the restaurant in Town A is longer than the average wait time at the restaurant in Town B." },
+      { "key": "C", "value": "There is convincing statistical evidence that the average wait times at the two restaurants are different." },
+      { "key": "D", "value": "There is not convincing statistical evidence that the average wait times at the two restaurants are the same." },
+      { "key": "E", "value": "There is not convincing statistical evidence that the average wait time at the restaurant in Town A is longer than the average wait time at the restaurant in Town B." }
+    ],
+    "answerKey": "B",
+    "reasoning": "The \\(p\\)-value (0.011) is less than the value of \\(\\alpha\\) (0.02), so there is convincing statistical evidence to support the alternative hypothesis."
+  }
+]
