@@ -1,0 +1,198 @@
+[
+  {
+    "id": "U7-PC-MCQ-A-Q01",
+    "type": "multiple-choice",
+    "prompt": "A sociologist is studying the social media habits of high school students in a school district. The sociologist wants to estimate the average total number of minutes spent on social media per day in the population. A random sample of 50 high school students was selected, and they were asked, \"How many minutes per day, on average, do you spend visiting social media sites?\"\n\nWhich of the following is the most appropriate inference procedure for the sociologist to use?",
+    "choices": [
+      { "key": "A", "value": "A one-sample \\(z\\)-interval for a population proportion" },
+      { "key": "B", "value": "A one-sample \\(t\\)-interval for a population mean" },
+      { "key": "C", "value": "A matched-pairs \\(t\\)-interval for a mean difference" },
+      { "key": "D", "value": "A two-sample \\(z\\)-interval for a difference between proportions" },
+      { "key": "E", "value": "A two-sample \\(t\\)-interval for a difference between means" }
+    ],
+    "answerKey": "B",
+    "reasoning": "The sociologist is collecting quantitative data (number of minutes) from one sample to estimate the mean number of minutes for the population. The one-sample \\(t\\)-interval is the most appropriate method for the inference."
+  },
+  {
+    "id": "U7-PC-MCQ-A-Q02",
+    "type": "multiple-choice",
+    "prompt": "To study the effectiveness of a certain adult reading program, researchers will select a random sample of adults who are eligible for the program. The selected adults will be given a pretest before beginning the program and a posttest after completing the program. The difference in the number of correct answers on the pretest and the number of correct answers on the posttest will be recorded for each adult in the sample.\n\nWhich of the following is the most appropriate inference procedure for the researchers to use to analyze the results?",
+    "choices": [
+      { "key": "A", "value": "A one-sample \\(z\\)-interval for a population proportion" },
+      { "key": "B", "value": "A one-sample \\(t\\)-interval for a sample mean difference" },
+      { "key": "C", "value": "A matched-pairs \\(t\\)-interval for a population mean difference" },
+      { "key": "D", "value": "A matched-pairs \\(t\\)-interval for a sample mean difference" },
+      { "key": "E", "value": "A two-sample \\(t\\)-interval for a difference between means" }
+    ],
+    "answerKey": "C",
+    "reasoning": "Two measurements, the pretest and posttest scores, will be recorded for each person in the program. The most appropriate procedure is the matched-pairs \\(t\\)-interval."
+  },
+  {
+    "id": "U7-PC-MCQ-A-Q03",
+    "type": "multiple-choice",
+    "prompt": "A researcher studying the sleep habits of teens will select a random sample of \\(n\\) teens from the population to survey. The researcher will construct a \\(t\\)-interval to estimate the mean number of hours of sleep that teens in the population get each night. Which of the following is true about the \\(t\\)-distribution as the value of \\(n\\) decreases from 40 to 20?",
+    "choices": [
+      { "key": "A", "value": "The center decreases, and the area in the tails of the distribution increases." },
+      { "key": "B", "value": "The center increases, and the area in the tails of the distribution decreases." },
+      { "key": "C", "value": "The center remains constant, and the area in the tails of the distribution remains constant." },
+      { "key": "D", "value": "The center remains constant, and the area in the tails of the distribution decreases." },
+      { "key": "E", "value": "The center remains constant, and the area in the tails of the distribution increases." }
+    ],
+    "answerKey": "E",
+    "reasoning": "As sample size decreases, the center remains constant (0), and the area in the tails of the distribution increases because the shape deviates more from that of the standard normal distribution."
+  },
+  {
+    "id": "U7-PC-MCQ-A-Q04",
+    "type": "multiple-choice",
+    "prompt": "What happens to a \\(t\\)-distribution as the degrees of freedom increase?",
+    "choices": [
+      { "key": "A", "value": "The center increases, and the area in the tails increases." },
+      { "key": "B", "value": "The center increases, and the area in the tails decreases." },
+      { "key": "C", "value": "The center increases, and the area in the tails remains constant." },
+      { "key": "D", "value": "The center remains constant, and the area in the tails increases." },
+      { "key": "E", "value": "The center remains constant, and the area in the tails decreases." }
+    ],
+    "answerKey": "E",
+    "reasoning": "There are many different \\(t\\)-distributions, all of which are centered at 0. As the number of degrees of freedom increases, the area in the tails decreases."
+  },
+  {
+    "id": "U7-PC-MCQ-A-Q05",
+    "type": "multiple-choice",
+    "prompt": "A recent study of 1,215 randomly selected middle school students revealed that the average number of minutes they spent completing homework during the school week was 180 minutes with a standard deviation of 45 minutes. Which of the following is the standard error, in minutes, of the sampling distribution of the mean number of minutes spent on homework per week for all middle school students?",
+    "choices": [
+      { "key": "A", "value": "\\(\\sqrt{\\frac{(45)(55)}{1,215}}\\)" },
+      { "key": "B", "value": "\\(\\frac{45}{1,215}\\)" },
+      { "key": "C", "value": "\\(\\sqrt{\\frac{45}{1,215}}\\)" },
+      { "key": "D", "value": "\\(\\frac{45}{\\sqrt{1,215}}\\)" },
+      { "key": "E", "value": "\\(1.96\\left(\\sqrt{\\frac{45}{1,215}}\\right)\\)" }
+    ],
+    "answerKey": "D",
+    "reasoning": "The standard error is the sample standard deviation divided by the square root of the sample size, given by the formula \\(\\frac{s}{\\sqrt{n}}\\)."
+  },
+  {
+    "id": "U7-PC-MCQ-A-Q06",
+    "type": "multiple-choice",
+    "prompt": "The mean and standard deviation of a random sample of 7 baby orca whales were calculated as 430 pounds and 26.9 pounds, respectively. Assuming all conditions for inference are met, which of the following is a 90 percent confidence interval for the mean weight of all baby orca whales?",
+    "choices": [
+      { "key": "A", "value": "\\(26.9 \\pm 1.895\\left(\\frac{430}{\\sqrt{7}}\\right)\\)" },
+      { "key": "B", "value": "\\(26.9 \\pm 1.943\\left(\\frac{430}{\\sqrt{7}}\\right)\\)" },
+      { "key": "C", "value": "\\(430 \\pm 1.440\\left(\\frac{26.9}{\\sqrt{7}}\\right)\\)" },
+      { "key": "D", "value": "\\(430 \\pm 1.895\\left(\\frac{26.9}{\\sqrt{7}}\\right)\\)" },
+      { "key": "E", "value": "\\(430 \\pm 1.943\\left(\\frac{26.9}{\\sqrt{7}}\\right)\\)" }
+    ],
+    "answerKey": "E",
+    "reasoning": "The appropriate confidence interval formula is \\(\\bar{x} \\pm t^* \\frac{s}{\\sqrt{n}}\\). The point estimate is \\(\\bar{x} = 430\\). With a sample size of 7, there are \\(n - 1 = 7 - 1 = 6\\) degrees of freedom, and the correct critical value \\(t^*\\) with 90% confidence and 6 degrees of freedom is 1.943."
+  },
+  {
+    "id": "U7-PC-MCQ-A-Q07",
+    "type": "multiple-choice",
+    "prompt": "To estimate the average cost of flowers for summer weddings in a certain region, a journalist selected a random sample of 15 summer weddings that were held in the state. A graph of the sample data showed an approximately symmetric distribution with no outliers. The sample mean and standard deviation were $734 and $102, respectively. The journalist will create a 95 percent confidence interval to estimate the population mean. Have all conditions for inference been met?",
+    "choices": [
+      { "key": "A", "value": "Yes, all conditions have been met." },
+      { "key": "B", "value": "No, the 15 weddings in the sample were not selected at random." },
+      { "key": "C", "value": "No, the sample size is not large enough to assume the sampling distribution of sample means is approximately normal." },
+      { "key": "D", "value": "No, because the graphical display is approximately symmetric it cannot be assumed that the sampling distribution of sample means is approximately normal." },
+      { "key": "E", "value": "No, the sample size of 15 is not less than 10 percent of all weddings in the state." }
+    ],
+    "answerKey": "A",
+    "reasoning": "The condition for normality has been met because, although the sample size is small (\\(15 < 30\\)), it is indicated that the graphical display of the sample data is described as approximately symmetric with no outliers; normality of the population, therefore, can be assumed. The condition for independence has also been met because the sample was selected at random and it is reasonable to assume that there are more than \\(15(10) = 150\\) weddings in the state."
+  },
+  {
+    "id": "U7-PC-MCQ-A-Q08",
+    "type": "multiple-choice",
+    "prompt": "At a high school with over 500 students, a counselor wants to estimate the mean number of hours per week that students at the school spend in community service activities. The counselor will survey 20 students in the Environmental Club at the school. The mean number of hours for the 20 students will be used to estimate the population mean.\n\nWhich of the following conditions for inference have not been met?\n\nI. The data are collected using a random sampling method.\nII. The sample size is large enough to assume normality of the distribution of sample means.\nIII. The sample size is less than 10 percent of the population size.",
+    "choices": [
+      { "key": "A", "value": "I only" },
+      { "key": "B", "value": "II only" },
+      { "key": "C", "value": "III only" },
+      { "key": "D", "value": "I and II only" },
+      { "key": "E", "value": "I, II, and III" }
+    ],
+    "answerKey": "D",
+    "reasoning": "Using only students in the Environmental Club does not qualify as being a random sample from the 500 students in this high school. Also, because nothing is known about the population shape or whether the graph of the sample data has strong skew or outliers, the sample size of 20 is not large enough (\\(20 < 30\\)) to assume that the distribution of sample means is approximately normal."
+  },
+  {
+    "id": "U7-PC-MCQ-A-Q09",
+    "type": "multiple-choice",
+    "prompt": "Researchers studying the sticky droplets found on spider webs will measure the widths of a random sample of droplets. From the sample, the researchers will construct a 95 percent confidence interval to estimate the mean width of all such droplets. Which of the following statements about a 95 percent confidence interval for the mean width is correct?",
+    "choices": [
+      { "key": "A", "value": "The interval will be narrower if the researchers increase the level of confidence to 99 percent." },
+      { "key": "B", "value": "The interval will be narrower if the researchers increase the sample size of droplets." },
+      { "key": "C", "value": "The interval will be wider if the researchers decrease the level of confidence to 90 percent." },
+      { "key": "D", "value": "The interval will be wider if the researchers increase the sample size of droplets." },
+      { "key": "E", "value": "The width of the interval will not be affected if the researchers increase or decrease the number of droplets in the sample." }
+    ],
+    "answerKey": "B",
+    "reasoning": "With all else remaining the same, the width of a confidence interval decreases as the sample size increases."
+  },
+  {
+    "id": "U7-PC-MCQ-A-Q10",
+    "type": "multiple-choice",
+    "prompt": "Researchers collected two different samples, X and Y, of temperatures, in degrees Celsius, of the habitat for Florida scrub lizards. The confidence interval \\(36 \\pm 1.66\\) was constructed from sample X, and the confidence interval \\(36 \\pm 1.08\\) was constructed from sample Y. Assume both samples had the same standard deviation. Which of the following statements could explain why the width of the confidence interval constructed from X is greater than the width of the confidence interval constructed from Y?",
+    "choices": [
+      { "key": "A", "value": "The sample size of X is greater than the sample size of Y, and the confidence level is the same for both intervals." },
+      { "key": "B", "value": "The sample size of X is greater than the sample size of Y, and the confidence level used for the interval constructed from X is less than the confidence level used for the interval constructed from Y." },
+      { "key": "C", "value": "The sample size is the same for X and Y, and the confidence level used for the interval constructed from X is less than the confidence level used for the interval constructed from Y." },
+      { "key": "D", "value": "The sample size is the same for X and Y, and the confidence level is the same for both intervals." },
+      { "key": "E", "value": "The sample size is the same for X and Y, and the confidence level used for the interval constructed from X is greater than the confidence level used for the interval constructed from Y." }
+    ],
+    "answerKey": "E",
+    "reasoning": "The formula for the margin of error is \\(t^* \\left(\\frac{s}{\\sqrt{n}}\\right)\\). Both samples have the same sample size and the same standard deviation, so the difference in the two margins of error (1.66 and 1.08) only occurs because of different values of \\(t^*\\). Greater confidence levels have greater values of \\(t^*\\). Since \\(1.66 > 1.08\\), X has a greater margin of error than Y, so X has a greater confidence level."
+  },
+  {
+    "id": "U7-PC-MCQ-A-Q11",
+    "type": "multiple-choice",
+    "prompt": "A linguist at a large university was studying the word length of papers submitted by students enrolled in humanities programs. From a random sample of 25 papers, the linguist counted the number of words used in each paper. The 95 percent confidence interval was calculated to be \\((20,995, 22,905)\\).\n\nAssuming all conditions for inference are met, which of the following is a correct interpretation of the interval?",
+    "choices": [
+      { "key": "A", "value": "We are 95 percent confident that the mean word length for the papers submitted by students in the sample is between 20,995 words and 22,905 words." },
+      { "key": "B", "value": "We are 95 percent confident that the mean word length for all papers submitted by students in humanities programs is between 20,995 words and 22,905 words." },
+      { "key": "C", "value": "The probability is 0.95 that the mean word length for the papers submitted by students in the sample is between 20,995 words and 22,905 words." },
+      { "key": "D", "value": "The probability is 0.95 that the mean word length for all papers submitted by students in humanities programs is between 20,995 words and 22,905 words." },
+      { "key": "E", "value": "For all students in humanities programs who submit papers, 95 percent of the papers are between 20,995 words and 22,905 words." }
+    ],
+    "answerKey": "B",
+    "reasoning": "The percent is how much confidence exists that the interval has captured the population mean, which is the mean word length for all papers by students in humanities programs."
+  },
+  {
+    "id": "U7-PC-MCQ-A-Q12",
+    "type": "multiple-choice",
+    "prompt": "Sociologists studying the behavior of high school freshmen in a certain state collected data from a random sample of freshmen in the population. They constructed the 90 percent confidence interval \\(6.46 \\pm 0.41\\) for the mean number of hours per week spent by freshmen in extracurricular activities.\n\nAssuming all conditions for inference are met, which of the following is a correct interpretation of the interval?",
+    "choices": [
+      { "key": "A", "value": "For all freshmen in the state, 90 percent of the freshmen spend between 6.05 hours and 6.87 hours per week in extracurricular activities." },
+      { "key": "B", "value": "The probability is 0.90 that the mean number of hours spent in extracurricular activities for freshmen in the sample is between 6.05 hours and 6.87 hours per week." },
+      { "key": "C", "value": "The probability is 0.90 that the mean number of hours spent in extracurricular activities for freshmen in the state is between 6.05 hours and 6.87 hours per week." },
+      { "key": "D", "value": "We are 90 percent confident that the mean number of hours spent in extracurricular activities for freshmen in the sample is between 6.05 hours and 6.87 hours per week." },
+      { "key": "E", "value": "We are 90 percent confident that the mean number of hours spent in extracurricular activities for freshmen in the state is between 6.05 hours and 6.87 hours per week." }
+    ],
+    "answerKey": "E",
+    "reasoning": "The percent is how much confidence exists that the interval has captured the population mean."
+  },
+  {
+    "id": "U7-PC-MCQ-A-Q13",
+    "type": "multiple-choice",
+    "prompt": "In certain regions of the country, elk can cause damage to agricultural crops by walking through the fields. One strategy designed to limit elk from crossing a field is to surround the field with a fence. Some elk, however, will still be able to bypass the fence. For a period of one month, the number of elk found crossing a sample of fields with a fence was recorded and used to construct the 95 percent confidence interval \\((2.9, 4.4)\\) for the mean number of elk. Assume that the conditions for inference were checked and verified.\n\nThe interval provides convincing statistical evidence for which of the following claims?",
+    "choices": [
+      { "key": "A", "value": "The mean number of elk to cross a field protected by a fence is 4 per month." },
+      { "key": "B", "value": "The mean number of elk to cross a field protected by a fence is 2 per month." },
+      { "key": "C", "value": "The mean number of elk to cross all fields protected by a fence is greater than 2 per month." },
+      { "key": "D", "value": "The mean number of elk to cross all fields protected by a fence is less than 2 per month." },
+      { "key": "E", "value": "The mean number of elk to cross all fields protected by a fence is equal to 3.65 per month." }
+    ],
+    "answerKey": "C",
+    "reasoning": "The interval \\((2.9, 4.4)\\) gives a range of plausible values for the unknown mean number of elk crossing the field, and all these plausible values are greater than 2, so the interval provides convincing statistical evidence for the claim."
+  },
+  {
+    "id": "U7-PC-MCQ-A-Q14",
+    "type": "multiple-choice",
+    "prompt": "A certain ambulance service wants its average time to transport a patient to the hospital to be 10 minutes. A random sample of 12 transports yielded a 95 percent confidence interval of \\(11.8 \\pm 1.6\\) minutes.\n\nIs the claim that the ambulance service takes an average of 10 minutes to transport a patient to the hospital plausible based on the interval?",
+    "choices": [
+      { "key": "A", "value": "The claim is not plausible because 10 falls within the interval." },
+      { "key": "B", "value": "The claim is not plausible because 10 falls outside of the interval." },
+      { "key": "C", "value": "The claim is plausible because 10 falls within the interval." },
+      { "key": "D", "value": "The claim is plausible because 10 falls outside of the interval." },
+      { "key": "E", "value": "The claim is plausible because 10 falls within 0.95 units of the interval." }
+    ],
+    "answerKey": "B",
+    "reasoning": "The interval extends from 10.2 minutes to 13.4 minutes. All plausible values are greater than 10, so 10 is not a plausible claim."
+  }
+]
