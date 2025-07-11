@@ -1,0 +1,161 @@
+[
+  {
+    "id": "U8-PC-FRQ-Q01",
+    "type": "free-response",
+    "prompt": "Show all your work. Indicate clearly the methods you use, because you will be scored on the correctness of your methods as well as on the accuracy and completeness of your results and explanations.\n\nA marketing director for a beverage company conducted a study to investigate people's soda preferences in two regions of the country. The director selected a random sample of 100 people from the east coast and a random sample of 100 people from the west coast to survey. The responses are summarized in the following table.\n\nDo the data provide convincing statistical evidence, at the level of \\(\\alpha = 0.05\\), that the preferences are different between the two regions of the country? Complete the appropriate inference procedure to support your answer.",
+    "attachments": {
+      "table": [
+        ["", "East Coast", "West Coast"],
+        ["Regular soda", "44", "37"],
+        ["Diet soda", "39", "42"],
+        ["No preference", "17", "21"],
+        ["Total", "100", "100"]
+      ]
+    },
+    "solution": {
+      "parts": [
+        {
+          "partId": "step1",
+          "description": "Appropriate test and hypotheses",
+          "response": "The appropriate test is the chi-square test for homogeneity. The hypotheses are as follows:\n\n\\(H_0\\): There is no difference in soda preference between people from the east coast and people from the west coast\n\n\\(H_a\\): There is a difference in soda preference between people from the east coast and people from the west coast."
+        },
+        {
+          "partId": "step2",
+          "description": "Conditions and calculations",
+          "response": "Conditions:\n\n1) Independence\n   - Two random samples were taken, one from the population of people on the east coast and one from the population of people on the west coast.\n   - The sample size of 100 is less than 10% of the population size for both the east and west coast.\n\n2) Large counts should be used.\n   - All expected counts should be greater than 5\n\nCalculations:\nThe test statistic is \\(\\chi^2 \\approx 1.137\\) with 2 degrees of freedom. The p-value is 0.5663.",
+          "attachments": {
+            "table": [
+              ["", "East Coast", "West Coast"],
+              ["Regular soda", "40.5", "40.5"],
+              ["Diet soda", "40.5", "40.5"],
+              ["No preference", "19", "19"]
+            ]
+          }
+        },
+        {
+          "partId": "step3",
+          "description": "Justification of conclusion",
+          "response": "The p-value of 0.5663 is greater than the significance level of 0.05, so the null hypothesis is not rejected. There is not sufficient statistical evidence to support a claim that the soda preferences are different between people on the east and west coasts of the country."
+        }
+      ],
+      "scoring": {
+        "totalPoints": 4,
+        "rubric": [
+          {
+            "part": "step1",
+            "maxPoints": 1,
+            "criteria": [
+              "The correct test is identified",
+              "The null and alternative hypotheses are stated correctly",
+              "Context is explicitly stated or is implied through labeling of variables"
+            ],
+            "scoringNotes": "Essentially correct (E) if all three components satisfied. Partially correct (P) if only two components satisfied. Incorrect (I) if response does not meet criteria for E or P. Component 1 can be satisfied in scoring step 2 if the correct formula is shown."
+          },
+          {
+            "part": "step2",
+            "maxPoints": 1,
+            "criteria": [
+              "The three conditions are correctly checked",
+              "The correct test statistic is computed",
+              "A p-value consistent with the computed test statistic"
+            ],
+            "scoringNotes": "Essentially correct (E) if all three components satisfied. Partially correct (P) if only two components satisfied. Incorrect (I) if response does not meet criteria for E or P. A response that indicates a single stratified random sample was selected, with coast as strata, satisfies the first condition."
+          },
+          {
+            "part": "step3",
+            "maxPoints": 1,
+            "criteria": [
+              "Explicitly compares the p-value to the significance level",
+              "Provides a correct decision about the null hypothesis that is consistent with the computed p-value",
+              "Gives statement of conclusion in context"
+            ],
+            "scoringNotes": "Essentially correct (E) if all three components satisfied. Partially correct (P) if only two components satisfied. Incorrect (I) if response does not meet criteria for E or P."
+          }
+        ]
+      }
+    },
+    "reasoning": "This is a chi-square test for homogeneity comparing soda preferences between two independent populations (East Coast vs West Coast). The test statistic is approximately 1.137 with 2 degrees of freedom, yielding a p-value of 0.5663. Since this p-value exceeds the significance level of 0.05, we fail to reject the null hypothesis and conclude there is insufficient evidence of a difference in soda preferences between the two regions."
+  },
+  {
+    "id": "U8-PC-FRQ-Q02",
+    "type": "free-response",
+    "prompt": "Show all your work. Indicate clearly the methods you use, because you will be scored on the correctness of your methods as well as on the accuracy and completeness of your results and explanations.\n\nFingerprint analysis and blood grouping are features that do not change through the lifetime of an individual. Fingerprint features appear early in the development of a fetus, and blood types are determined by genetics. Therefore, each is considered an effective tool for identification of individuals. These characteristics are also of interest in the discipline of biological anthropology—a scientific discipline concerned with the biological and behavioral aspects of human beings.\n\nThe relationship between these characteristics was the subject of a study conducted by biological anthropologists with a simple random sample of male students from a certain region with a large student population. Fingerprint patterns are generally classified as loops, whorls, and arches. The four principal blood types are designated as A, B, AB, and O. The table shows the distribution of fingerprint patterns and blood types for the sample. Expected counts are listed in parentheses. The anthropologists were interested in the possible association between the variables.\n\n(a) Is the test for an association in this case a chi-square test of independence, or a chi-square test of homogeneity? Justify your choice.\n\n(b) Identify the conditions for the chi-square inference procedure selected in part (a), and indicate whether the conditions are met.\n\n(c) The resulting chi-square test statistic from the appropriate test is approximately 18.930. What are the degrees of freedom and p-value of the test?\n\n(d) Biological anthropology is concerned with the comparative study of human origin, evolution and diversity. Considering the sampling design in this study, to what population is it reasonable for the researchers to generalize their results?",
+    "attachments": {
+      "table": [
+        ["", "Blood Type", "", "", "", ""],
+        ["", "A", "B", "AB", "O", "Total"],
+        ["Loops", "66 (71.69)", "99 (112.19)", "35 (32.29)", "101 (84.83)", "301"],
+        ["Whorls", "51 (47.16)", "91 (73.80)", "15 (21.24)", "41 (55.80)", "198"],
+        ["Arches", "14 (12.15)", "15 (19.01)", "9 (5.47)", "13 (14.37)", "51"],
+        ["Total", "131", "205", "59", "155", "550"]
+      ]
+    },
+    "solution": {
+      "parts": [
+        {
+          "partId": "a",
+          "description": "Is the test for an association in this case a chi-square test of independence, or a chi-square test of homogeneity? Justify your choice.",
+          "response": "This is a chi-square test of independence; there were two variables measured from a single random sample selected from one population."
+        },
+        {
+          "partId": "b",
+          "description": "Identify the conditions for the chi-square inference procedure selected in part (a), and indicate whether the conditions are met.",
+          "response": "The conditions that must be checked are the following:\n\n1) Independence\n   - Data were collected using a simple random sample.\n   - The sample size is at most 10 percent of the population size when sampling without replacement.\n\n2) Large counts should be used.\n   - All expected counts should be greater than 5.\n\nThe independence condition is met since a random sample was used.\nThe population of male students from the region is likely greater than 10 times the 550 male students in the sample.\nAll expected counts are greater than 5."
+        },
+        {
+          "partId": "c",
+          "description": "The resulting chi-square test statistic from the appropriate test is approximately 18.930. What are the degrees of freedom and p-value of the test?",
+          "response": "The degrees of freedom are equal to the number of rows minus 1 multiplied by the number of columns minus 1. In this case, the degrees of freedom are equal to \\((3-1)(4-1) = 6\\). The p-value for a chi-square test statistic of 18.930 with 6 degrees of freedom is approximately 0.004.\n\nOr\n\nUsing the chi-square table, a chi-square test statistic of 18.930 with 6 degrees of freedom has a p-value between 0.0025 and 0.005."
+        },
+        {
+          "partId": "d",
+          "description": "Biological anthropology is concerned with the comparative study of human origin, evolution and diversity. Considering the sampling design in this study, to what population is it reasonable for the researchers to generalize their results?",
+          "response": "The results can be generalized to male students from the region."
+        }
+      ],
+      "scoring": {
+        "totalPoints": 4,
+        "rubric": [
+          {
+            "part": "a",
+            "maxPoints": 1,
+            "criteria": [
+              "Correctly indicates 'Independence'",
+              "Justifies the choice by referencing the sampling process",
+              "Indicates there was one population of interest OR indicates data was collected using a single random sample"
+            ],
+            "scoringNotes": "Essentially correct (E) if all three components satisfied. Partially correct (P) if two components satisfied. Incorrect (I) if response does not satisfy criteria for E or P."
+          },
+          {
+            "part": "b",
+            "maxPoints": 1,
+            "criteria": [
+              "States that a simple random sample was selected from one population",
+              "States the sample size is likely less than 10 percent of the population size",
+              "States that the condition about expected counts has been met"
+            ],
+            "scoringNotes": "Essentially correct (E) if all three components satisfied. Partially correct (P) if only two components satisfied. Incorrect (I) if response does not satisfy criteria for E or P."
+          },
+          {
+            "part": "c",
+            "maxPoints": 1,
+            "criteria": [
+              "The correct number of degrees of freedom is indicated",
+              "A p-value between 0.0025 and 0.005 is indicated"
+            ],
+            "scoringNotes": "Essentially correct (E) if both components satisfied. Partially correct (P) if only one component satisfied. Incorrect (I) if response does not satisfy criteria for E or P."
+          },
+          {
+            "part": "d",
+            "maxPoints": 1,
+            "criteria": [
+              "States that the results can be generalized to male students from the region"
+            ],
+            "scoringNotes": "Essentially correct (E) if response states results can be generalized to male students from the region. Partially correct (P) if response states results can be generalized to students from the region, but does not mention males specifically. Incorrect (I) if response does not satisfy criteria for E or P."
+          }
+        ]
+      }
+    },
+    "reasoning": "This question tests understanding of chi-square test types and conditions. Part (a) requires recognizing this as a test of independence (two variables measured on one sample) rather than homogeneity (one variable measured across multiple populations). Part (b) tests knowledge of chi-square conditions: independence through random sampling and large expected counts (all > 5). Part (c) requires calculating degrees of freedom as (rows-1)(columns-1) = 6 and finding the corresponding p-value. Part (d) tests understanding that generalization is limited to the population from which the sample was drawn - male students from the specific region studied."
+  }
+]
