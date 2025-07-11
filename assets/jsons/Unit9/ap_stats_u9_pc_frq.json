@@ -1,0 +1,151 @@
+{
+  "id": "U9-PC-FRQ-Q01",
+  "type": "free-response",
+  "prompt": "Show all your work. Indicate clearly the methods you use, because you will be scored on the correctness of your methods as well as on the accuracy and completeness of your results and explanations.\n\nAt a plant that manufactures bars of steel, a machine is used to cut the bars to specific lengths. The machine has a dial that sets the length of the bars to be cut. However, the dial is currently out of alignment and the plant manager is collecting data to assess the situation. All measurements are in millimeters.\n\n(a) Use the following grid to construct a scatterplot in which dial setting is the explanatory variable and output length is the response variable. Based on your graph, does a linear model seem appropriate? Justify your answer.\n\n(b) Use the data to construct a least-squares regression line to predict output length from dial setting.\n\n(c) Assume that all conditions for inference are met. Indicate the hypotheses appropriate to test whether there is a linear relationship between output length and dial setting.\n\n(d) The test statistic for the appropriate test is \\(t = 9.018\\). Do the data provide convincing statistical evidence that there is a linear relationship between output length and dial setting?",
+  "attachments": {
+    "table": [
+      ["Dial Setting", "Output Length"],
+      ["75", "78"],
+      ["77", "79"],
+      ["79", "82"],
+      ["80", "83"],
+      ["81", "85"],
+      ["82", "83"],
+      ["83", "86"],
+      ["85", "88"]
+    ],
+    "chartType": "scatter",
+    "points": [],
+    "chartConfig": {
+      "xAxis": {
+        "min": 74,
+        "max": 86,
+        "tickInterval": 2,
+        "title": "Dial Setting"
+      },
+      "yAxis": {
+        "min": 76,
+        "max": 88,
+        "tickInterval": 2,
+        "title": "Output Length (millimeters)"
+      },
+      "gridLines": {
+        "horizontal": true,
+        "vertical": true
+      },
+      "description": "Empty grid for constructing scatterplot of dial setting vs output length"
+    }
+  },
+  "solution": {
+    "parts": [
+      {
+        "partId": "a",
+        "description": "Use the following grid to construct a scatterplot in which dial setting is the explanatory variable and output length is the response variable. Based on your graph, does a linear model seem appropriate? Justify your answer.",
+        "response": "The relationship between Output Length and Dial Setting appears to be fairly strong and linear. There does not appear to be any substantial curvature nor do there seem to be any outliers, so a linear model seems appropriate in this situation.",
+        "attachments": {
+          "chartType": "scatter",
+          "points": [
+            {"x": 75, "y": 78},
+            {"x": 77, "y": 79},
+            {"x": 79, "y": 82},
+            {"x": 80, "y": 83},
+            {"x": 81, "y": 85},
+            {"x": 82, "y": 83},
+            {"x": 83, "y": 86},
+            {"x": 85, "y": 88}
+          ],
+          "chartConfig": {
+            "xAxis": {
+              "min": 74,
+              "max": 86,
+              "tickInterval": 2,
+              "title": "Dial Setting"
+            },
+            "yAxis": {
+              "min": 76,
+              "max": 88,
+              "tickInterval": 2,
+              "title": "Output Length (millimeters)"
+            },
+            "gridLines": {
+              "horizontal": true,
+              "vertical": true
+            },
+            "description": "Scatterplot showing strong linear relationship between dial setting and output length"
+          }
+        }
+      },
+      {
+        "partId": "b",
+        "description": "Use the data to construct a least-squares regression line to predict output length from dial setting.",
+        "response": "The least-squares regression line, found using technology, is: Predicted Output Length = 2.204 + 1.007(Dial Setting)",
+        "calculations": [
+          "Using technology to calculate least-squares regression",
+          "Slope estimate ≈ 1.007",
+          "Intercept estimate ≈ 2.204",
+          "Equation: ŷ = 2.204 + 1.007x"
+        ]
+      },
+      {
+        "partId": "c",
+        "description": "Assume that all conditions for inference are met. Indicate the hypotheses appropriate to test whether there is a linear relationship between output length and dial setting.",
+        "response": "The hypotheses are as follows:\n\\(H_0\\): The slope of the population regression line relating output length and dial setting is equal to 0.\n\\(H_a\\): The slope of the population regression line relating output length and dial setting is not equal to 0.\n\nAlternatively:\n\\(H_0: \\beta_1 = 0\\)\n\\(H_a: \\beta_1 \\neq 0\\)\n\nOr in context:\n\\(H_0\\): There is not a linear relationship between output length and dial setting in the population.\n\\(H_a\\): There is a linear relationship between output length and dial setting in the population."
+      },
+      {
+        "partId": "d",
+        "description": "The test statistic for the appropriate test is t = 9.018. Do the data provide convincing statistical evidence that there is a linear relationship between output length and dial setting?",
+        "response": "The p-value is 0.0001 based on a t-test with \\(n - 2 = 6\\) degrees of freedom. The p-value is less than any reasonable level of significance (such as 0.05 or 0.01). Reject the null hypothesis. There is statistical evidence to support the claim that there is a linear relationship between output length and dial setting.",
+        "calculations": [
+          "Test statistic: t = 9.018",
+          "Degrees of freedom: n - 2 = 8 - 2 = 6",
+          "p-value = 0.0001",
+          "Compare p-value to α = 0.05: 0.0001 < 0.05"
+        ]
+      }
+    ],
+    "scoring": {
+      "totalPoints": 4,
+      "rubric": [
+        {
+          "part": "a",
+          "maxPoints": 1,
+          "criteria": [
+            "Correctly constructs a scatterplot with dial setting as explanatory variable and output length as response variable",
+            "Indicates, with justification, that a linear model seems appropriate"
+          ],
+          "scoringNotes": "Essentially correct (E) if response correctly constructs scatterplot AND indicates with justification that linear model seems appropriate. Partially correct (P) if fails to accurately construct plot but indicates with justification that linear model seems appropriate, OR constructs appropriate scatterplot but fails to justify that linear model seems appropriate. Incorrect (I) if response does not satisfy criteria for E or P."
+        },
+        {
+          "part": "b",
+          "maxPoints": 1,
+          "criteria": [
+            "Indicates estimate for slope of least-squares regression line is approximately 1",
+            "Indicates estimate for intercept of least-squares regression line is approximately 2.2",
+            "Explanatory and response variables are clearly labeled in the regression line OR variables are clearly defined"
+          ],
+          "scoringNotes": "Essentially correct (E) if response satisfies all three components. Partially correct (P) if response satisfies two of three components OR reverses explanatory and response variables. Incorrect (I) if response does not satisfy criteria for E or P."
+        },
+        {
+          "part": "c",
+          "maxPoints": 1,
+          "criteria": [
+            "Provides null hypothesis that states there is not a linear relationship",
+            "Provides alternative hypothesis that states there is a linear relationship"
+          ],
+          "scoringNotes": "Essentially correct (E) if response satisfies both components. Partially correct (P) if response satisfies one of two components. Incorrect (I) if response does not satisfy criteria for E or P."
+        },
+        {
+          "part": "d",
+          "maxPoints": 1,
+          "criteria": [
+            "Comparison of p-value to predetermined level of significance (0.01 or 0.05) OR comparison of test statistic to critical value",
+            "Correctly rejects the null hypothesis",
+            "States conclusion in context"
+          ],
+          "scoringNotes": "Essentially correct (E) if response satisfies all three components. Partially correct (P) if response satisfies only two of three components. Incorrect (I) if response does not meet criteria for E or P."
+        }
+      ]
+    }
+  },
+  "reasoning": "This question tests students' ability to analyze linear relationships through scatterplots, calculate least-squares regression equations, formulate proper hypotheses for testing linear relationships, and interpret statistical test results. The solution demonstrates the complete process of regression analysis from visual assessment through formal hypothesis testing, emphasizing both computational skills and statistical reasoning in the context of a real manufacturing scenario."
+}
