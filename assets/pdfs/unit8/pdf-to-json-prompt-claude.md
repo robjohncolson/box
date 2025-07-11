@@ -325,6 +325,24 @@ You are tasked with converting AP Statistics quiz questions from uploaded PDF do
       "description": "Normal distribution curve with right-tail shaded to represent P(residual > 8 cm)"
     }
     
+    // NEW ➜ For chi-square distribution curves (right-skewed gamma family):
+    "chartType": "chisquare",
+    "dfList": [1, 3, 6, 10, 20],   // Degrees of freedom for each curve (order matters)
+    "labels": ["A", "B", "C", "D", "E"],  // Optional legend/series labels; default "df = k"
+    "overlay": true,               // true → render ALL curves in one chart (default); false → supply separate charts
+    "chartConfig": {
+      "xAxis": { "min": 0, "max": 35, "tickInterval": 5, "title": "χ²" },
+      "yAxis": { "title": "Density" },        // Usually implicit; include if PDF shows it
+      "gridLines": { "horizontal": false, "vertical": false },
+      "description": "Five chi-square curves with increasing degrees of freedom – skew diminishes as df grows"
+    }
+    
+    // Notes:
+    //  • Omitting dfList and giving a single "df" (number) also works for one curve.
+    //  • The renderer computes the chi-square PDF dynamically via a gamma-function approximation.
+    //  • Provide at least x-axis limits so the curves match the PDF image's window.
+    //  • Use labels when the PDF calls curves A-E, etc.; otherwise they default to "df = 4", etc.
+    
     // For number line diagrams (interval ticks along a single axis):
     "chartType": "numberline",
     "ticks": [
@@ -507,44 +525,6 @@ You are tasked with converting AP Statistics quiz questions from uploaded PDF do
 - **Data type**: Continuous/quantitative variables
 - **Use chartType**: "histogram"
 
-### Grid Line Detection:
-
-**Horizontal Grid Lines:**
-- Look for light lines running horizontally across the chart
-- These help readers align data points with y-axis values
-- Usually present in most statistical charts
-
-**Vertical Grid Lines:**
-- Look for light lines running vertically down the chart
-- These help readers align data points with x-axis categories/values
-- Less common in most statistical charts
-- More often seen in scatter plots and time series
-
-**Important**: Many AP Statistics charts show horizontal grid lines but NOT vertical grid lines. Pay careful attention to what is actually visible in the image.
-
-### Bar Chart Orientation Detection:
-
-**Vertical Bar Charts (standard):**
-- Categories listed horizontally along the bottom (x-axis)
-- Values shown vertically on the left (y-axis)
-- Bars extend upward from the x-axis
-- Use `"xLabels"` for categories and standard axis configuration
-
-**Horizontal Bar Charts:**
-- Categories listed vertically along the left side (y-axis)
-- Values shown horizontally along the bottom (x-axis)
-- Bars extend rightward from the y-axis
-- Use `"yLabels"` for categories and `"orientation": "horizontal"` in chartConfig
-- Swap axis configurations: value axis becomes x-axis, category axis becomes y-axis
-
-**Dotplots (for single or comparative distributions):**
-- **Visual cues**: Dots stacked vertically at each value, showing frequency
-- **X-axis**: Shows the variable values (continuous scale)
-- **Y-axis**: No explicit labels - height represents frequency/count
-- **Data type**: Quantitative variable (single group) or multiple groups of the same variable
-- **Multiple groups**: When comparing groups, list each group as a separate object in a `"series"` array (see Multiple Dotplots under Multiple Charts Strategy)
-- **Use chartType**: "dotplot"
-
 **Scatter Plots (for two variable relationships):**
 - **Visual cues**: Dots scattered across both dimensions
 - **X-axis**: One quantitative variable
@@ -568,6 +548,13 @@ You are tasked with converting AP Statistics quiz questions from uploaded PDF do
   - **Visual identification**: Look for asterisks (*) or dots beyond the whiskers - these are outliers
   - **Fidelity**: This approach ensures exact match to reference images rather than auto-calculated outliers
 - **Use chartType**: "boxplot"
+
+**Chi-Square Distribution Curves (continuous, right-skewed):**
+- **Visual cues**: Starts at x = 0 with vertical line, peaks quickly, long right tail; skew decreases as degrees of freedom (df) increase.
+- **JSON representation**: `chartType: "chisquare"` with `dfList` (or single `df`) to generate one or more curves.
+- **Usage**: Comparing multiple chi-square PDFs (e.g., "Which curve has smallest df?" questions).
+- **Axes**: x-axis positive only; y-axis density often unlabeled; no grid lines by default.
+- **Stacking/overlay**: Use `overlay: true` for one combined chart; otherwise supply separate charts via `charts` array.
 
 ## Multiple Charts Strategy:
 
