@@ -1,0 +1,285 @@
+[
+  {
+    "id": "U8-PC-MCQ-B-Q01",
+    "type": "multiple-choice",
+    "prompt": "\"Snoqualmie\" is a name shared by a waterfall and a tribe of Native Americans. In a study of the cultural importance of the waterfall, two groups of the Snoqualmie tribe were randomly surveyed. One group consisted of Snoqualmie members living less than 25 miles from the waterfall. Another group consisted of Snoqualmie members living more than 25 miles from the waterfall. The researchers asked each member to rate the cultural importance of the waterfall as low, medium, or high. If the distributions of ratings are the same for those Snoqualmie members living less than 25 miles from the waterfall and those living more than 25 miles from the waterfall, which of the following is equal to the expected count of members living less than 25 miles from the waterfall who rated the cultural importance as high?",
+    "attachments": {
+      "table": [
+        ["", "Members Living More Than 25 Miles from the Waterfall", "Members Living Less Than 25 Miles from the Waterfall", "Total"],
+        ["Low", "25", "17", "42"],
+        ["Medium", "8", "21", "29"],
+        ["High", "5", "12", "17"],
+        ["Total", "38", "50", "88"]
+      ]
+    },
+    "choices": [
+      { "key": "A", "value": "\\(\\frac{12}{88}\\)" },
+      { "key": "B", "value": "5" },
+      { "key": "C", "value": "12" },
+      { "key": "D", "value": "\\(\\frac{(17)(38)}{88}\\)" },
+      { "key": "E", "value": "\\(\\frac{(17)(50)}{88}\\)" }
+    ],
+    "answerKey": "E",
+    "reasoning": "The formula for expected count is \\(\\frac{(\\text{row total})(\\text{column total})}{\\text{table total}}\\). The row total is 17, the column total is 50, and the table total is 88. Therefore, the expected count is \\(\\frac{(17)(50)}{88}\\)."
+  },
+  {
+    "id": "U8-PC-MCQ-B-Q02",
+    "type": "multiple-choice",
+    "prompt": "Horseshoe crabs on a beach can be overturned by approaching waves. These \"stranded\" crabs may right themselves by turning over. During a period of many days on an Atlantic Ocean beach, investigators categorized a random sample of crabs as either stranded or not stranded and additionally noted their age category. The researchers wanted to investigate whether there is convincing evidence of an association between becoming stranded and age. If becoming stranded and age are independent in these creatures, which of the following is closest to the expected number of young stranded horseshoe crabs?",
+    "attachments": {
+      "table": [
+        ["Horseshoe Crab Stranded Status", "", "", "", ""],
+        ["", "Young", "Intermediate", "Adult", "Total"],
+        ["Yes", "41", "125", "52", "218"],
+        ["No", "153", "364", "70", "587"],
+        ["Total", "194", "489", "122", "805"]
+      ]
+    },
+    "choices": [
+      { "key": "A", "value": "41" },
+      { "key": "B", "value": "52.54" },
+      { "key": "C", "value": "141.46" },
+      { "key": "D", "value": "194" },
+      { "key": "E", "value": "218" }
+    ],
+    "answerKey": "B",
+    "reasoning": "The expected count is given by \\(\\frac{(\\text{row total})(\\text{column total})}{\\text{table total}}\\). The row total is 218, the column total is 194, and the table total is 805. Therefore, the expected count is \\(\\frac{(218)(194)}{805} ≈ 52.54\\)."
+  },
+  {
+    "id": "U8-PC-MCQ-B-Q03",
+    "type": "multiple-choice",
+    "prompt": "Juvenile ground squirrels respond to predators by making \"alarm calls\" that can alert others to danger. A biologist conducted a study to investigate how squirrels respond to these alarm calls: run to burrow or freeze. The biologist played recordings of alarm calls for three samples of ground squirrels, grouped by age, and observed the squirrels' responses. If ground squirrels at different ages respond to the alarm signals in the same proportions, what would be the expected count for 6- to 15-day-old squirrels that freeze?",
+    "attachments": {
+      "table": [
+        ["", "Run to Burrow", "Freeze", "Total"],
+        ["1 to 5 Days Old", "21", "18", "39"],
+        ["6 to 15 Days Old", "16", "24", "40"],
+        ["16 to 25 Days Old", "12", "7", "19"],
+        ["Total", "49", "49", "98"]
+      ]
+    },
+    "choices": [
+      { "key": "A", "value": "\\(\\frac{24}{40}\\)" },
+      { "key": "B", "value": "\\(\\frac{24}{49}\\)" },
+      { "key": "C", "value": "\\(\\frac{(40)(49)}{98}\\)" },
+      { "key": "D", "value": "\\(\\frac{(19)(49)}{98}\\)" },
+      { "key": "E", "value": "24" }
+    ],
+    "answerKey": "C",
+    "reasoning": "The expected count is calculated using \\(\\frac{(\\text{row total})(\\text{column total})}{\\text{table total}}\\). For 6- to 15-day-old squirrels that freeze, the row total is 40, the column total is 49, and the table total is 98. Therefore, the expected count is \\(\\frac{(40)(49)}{98} = 20\\)."
+  },
+  {
+    "id": "U8-PC-MCQ-B-Q04",
+    "type": "multiple-choice",
+    "prompt": "A study was conducted to investigate whether there are regional differences in peanut butter preference in the United States. The country was divided into 7 geographic regions, and in each region a random sample of peanut butter eaters were asked whether they preferred creamy or crunchy peanut butter. The responses were summarized in a 7-by-2 table of counts for each combination of geographic region and creamy or crunchy peanut butter preference. Which of the following tests is the most appropriate for the investigation?",
+    "choices": [
+      { "key": "A", "value": "A two-sample \\(t\\)-test for a difference between means" },
+      { "key": "B", "value": "A two-sample \\(z\\)-test for a difference between proportions" },
+      { "key": "C", "value": "A chi-square test of homogeneity" },
+      { "key": "D", "value": "A chi-square test of independence" },
+      { "key": "E", "value": "A chi-square goodness-of-fit test" }
+    ],
+    "answerKey": "C",
+    "reasoning": "When comparing distributions to determine whether proportions in each category (for categorical data collected from different populations) are the same, the appropriate test is the chi-square test for homogeneity. Here, we have separate samples from different regions (populations) and want to compare their peanut butter preferences."
+  },
+  {
+    "id": "U8-PC-MCQ-B-Q05",
+    "type": "multiple-choice",
+    "prompt": "The campus bookstore at a local university is interested in finding out whether the textbook preference and the class level (freshman, sophomore, junior, senior) of the student are associated. A random sample of 100 students is obtained, and each student in the sample is asked which textbook he or she prefers: new books, used books, or digital books. The students are also asked whether their class level is freshman, sophomore, junior, or senior. Which of the following is the appropriate test for the investigation?",
+    "choices": [
+      { "key": "A", "value": "A one-sample \\(t\\)-test for a population mean" },
+      { "key": "B", "value": "A two-sample \\(t\\)-test for a difference between means" },
+      { "key": "C", "value": "A chi-square goodness-of-fit test" },
+      { "key": "D", "value": "A chi-square test of homogeneity" },
+      { "key": "E", "value": "A chi-square test of independence" }
+    ],
+    "answerKey": "E",
+    "reasoning": "The data are from a single simple random sample, and the researcher is investigating whether there is an association between the two categorical variables (textbook preference and class level); therefore, a chi-square test of independence is appropriate."
+  },
+  {
+    "id": "U8-PC-MCQ-B-Q06",
+    "type": "multiple-choice",
+    "prompt": "A random sample of 300 United States cell phone users were asked their age and the question \"Do you regularly use your cell phone to text while eating dinner?\" The number responding yes was tabulated separately for young adults (aged 18–29), older adults (aged 30–64), and elderly adults (aged 65 or older). Which of the following would be the appropriate hypotheses to investigate whether the survey provides convincing statistical evidence that there is an association between a person's age-group and regular use of a cell phone to text while eating dinner?",
+    "attachments": {
+      "table": [
+        ["Uses Cell Phone to Text while Eating Dinner", "", "", ""],
+        ["", "Yes", "No", "Total"],
+        ["Young adults", "127", "3", "130"],
+        ["Age Group Older adults", "113", "29", "142"],
+        ["Elderly adults", "15", "13", "28"],
+        ["Total", "255", "45", "300"]
+      ]
+    },
+    "choices": [
+      { "key": "A", "value": "\\(H_0\\): Among adults in the United States population, there is no difference between age-groups in the proportion of individuals who use their cell phone to text while eating dinner.\\n\\(H_a\\): Among adults in the United States population, there is a difference between age-groups in the proportion of individuals who use their cell phone to text while eating dinner." },
+      { "key": "B", "value": "\\(H_0\\): Among adults in the United States population, there is no association between age-group and cell phone usage to text while eating dinner.\\n\\(H_a\\): Among adults in the United States population, there is an association between age-group and cell phone usage to text while eating dinner." },
+      { "key": "C", "value": "\\(H_0\\): For this sample of United States adult cell phone users, there is no association between age-group and cell phone usage to text while eating dinner.\\n\\(H_a\\): For this sample of United States adult cell phone users, there is an association between age-group and cell phone usage to text while eating dinner." },
+      { "key": "D", "value": "\\(H_0\\): The sample proportion of adult cell phone users who used their cell phone for texting while eating dinner is the same in each age-group.\\n\\(H_a\\): The sample proportion of adult cell phone users who used their cell phone for texting while eating dinner differs between at least two age-groups." },
+      { "key": "E", "value": "\\(H_0\\): Among adults in the United States population, there is an association between age-group and cell phone usage to text while eating dinner.\\n\\(H_a\\): Among adults in the United States population, there is no association between age-group and cell phone usage to text while eating dinner." }
+    ],
+    "answerKey": "B",
+    "reasoning": "The hypotheses are appropriate for a test of independence, as they mention association between cell phone texting and age-group and are framed in terms of the population, not the sample. The null hypothesis states there is no association, while the alternative states there is an association."
+  },
+  {
+    "id": "U8-PC-MCQ-B-Q07",
+    "type": "multiple-choice",
+    "prompt": "As a first step in developing a new drug to treat cancer in humans, an initial study of the drug is undertaken in rats. Three hundred rats with cancer are studied, and each is assigned to one of three treatments. One hundred rats are randomly assigned to a high dose of the new drug, 100 are randomly assigned to a low dose, and 100 are randomly assigned to a control group (no drug). After six months, each rat is examined and classified as having developed no tumors, one tumor, or two or more tumors. Which of the following would be an appropriate alternative hypothesis in this study for a chi-square test for homogeneity of tumor response across treatments?",
+    "choices": [
+      { "key": "A", "value": "There is no difference in the distribution of tumor status across the three treatments." },
+      { "key": "B", "value": "There is a difference in the distribution of tumor status across the three treatments." },
+      { "key": "C", "value": "There is no association between tumor status and treatment." },
+      { "key": "D", "value": "There is an association between tumor status and treatment." },
+      { "key": "E", "value": "The proportion of rats with no tumors is the same for each treatment group." }
+    ],
+    "answerKey": "B",
+    "reasoning": "This is an appropriate alternative hypothesis for a chi-square test for homogeneity in this study as it hypothesizes possible differences in the distribution of tumor status across treatments. The test for homogeneity examines whether different populations have the same distribution for a categorical variable."
+  },
+  {
+    "id": "U8-PC-MCQ-B-Q08",
+    "type": "multiple-choice",
+    "prompt": "Data was collected from a simple random sample of 200 cell phone users age 18 or older in the United States. Each user was categorized by age-group and by whether he or she uses a certain cell phone app. Which statement is true about whether the conditions for a chi-square test for independence have been met?",
+    "attachments": {
+      "table": [
+        ["Uses Cell Phone App", "", "", ""],
+        ["", "Yes", "No", "Total"],
+        ["Young Adults", "4 (15.2)", "76 (64.8)", "80"],
+        ["Age-Group Older Adults", "29 (19.38)", "73 (82.62)", "102"],
+        ["Elderly Adults", "5 (3.42)", "13 (14.58)", "18"],
+        ["Total", "38", "162", "200"]
+      ],
+      "description": "Expected cell counts are shown in parentheses."
+    },
+    "choices": [
+      { "key": "A", "value": "All necessary conditions are satisfied to apply a chi-square test for independence between age-group and texting use by cell phone users." },
+      { "key": "B", "value": "The data from the different age-groups are not the result of independent random samples; therefore, the conditions for the test are not met." },
+      { "key": "C", "value": "The total sample size in one or more of the age-groups is too small to meet the conditions of the chi-square test for independence." },
+      { "key": "D", "value": "Not all of the observed cell counts are large enough to satisfy the conditions for the chi-square test for independence." },
+      { "key": "E", "value": "Not all of the expected cell counts are large enough to satisfy the conditions for the chi-square test for independence." }
+    ],
+    "answerKey": "E",
+    "reasoning": "A condition for the chi-square test for independence is that all of the expected cell counts are greater than 5. One expected cell count (for elderly adults responding yes) is 3.42; therefore, this condition is not satisfied."
+  },
+  {
+    "id": "U8-PC-MCQ-B-Q09",
+    "type": "multiple-choice",
+    "prompt": "A manufacturing company with 350 employees is changing the employee health insurance plan to either plan A or plan B. The company wants to know if employees have a preference between the two plans and whether or not preference differs between those employees who have family members covered under the current plan (group 1) and those who do not (group 2). The human resources office takes a simple random sample from each of the two groups, sends information about both plans to the employees in each sample, and asks them whether they prefer plan A or plan B. Which statement is true about whether the conditions for the chi-square test for homogeneity have been met?",
+    "attachments": {
+      "table": [
+        ["", "Plan A", "Plan B", "Total"],
+        ["Yes (group 1)", "40 (32.5)", "20 (27.5)", "60"],
+        ["No (group 2)", "6 (13.5)", "19 (11.5)", "25"],
+        ["Total", "46", "39", "85"]
+      ],
+      "description": "Expected cell counts are shown in parentheses."
+    },
+    "choices": [
+      { "key": "A", "value": "A simple random sample should have been taken from all the employees, and then each employee in the sample should have been asked their plan preference and whether or not they have family members covered under the current health insurance plan." },
+      { "key": "B", "value": "The expected cell counts are not large enough to apply the chi-square test for homogeneity." },
+      { "key": "C", "value": "The total sample size is not large enough to apply the chi-square test for homogeneity." },
+      { "key": "D", "value": "The total sample size is too large to apply the chi-square test for homogeneity." },
+      { "key": "E", "value": "All conditions necessary to apply the chi-square test for homogeneity are satisfied here." }
+    ],
+    "answerKey": "D",
+    "reasoning": "When sampling without replacement, the sample size should not exceed 10 percent of the population size. Here, the sample size of 85 is just over 24 percent of the population of 350 company employees, which violates the 10% condition."
+  },
+  {
+    "id": "U8-PC-MCQ-B-Q10",
+    "type": "multiple-choice",
+    "prompt": "The national society of acupuncturists asked a random sample of 450 adults their opinion about acupuncture being a reasonable form of medicine or not a reasonable form of medicine. Assuming that all conditions for inference have been met, which of the following represents the correct chi-square test statistic and number of degrees of freedom to test whether there is an association between level of education and opinion about acupuncture?",
+    "attachments": {
+      "table": [
+        ["", "High School Graduate or Below", "Some College", "Bachelor's Degree or Higher", "Total"],
+        ["Acupuncture is a reasonable form of medicine", "100", "80", "60", "240"],
+        ["Acupuncture is not a reasonable form of medicine", "60", "70", "80", "210"],
+        ["Total", "160", "150", "140", "450"]
+      ]
+    },
+    "choices": [
+      { "key": "A", "value": "\\(\\chi^2 = \\frac{(100-85.33)^2}{100} + \\frac{(80-80)^2}{80} + \\frac{(60-74.67)^2}{60} + \\frac{(60-74.67)^2}{60} + \\frac{(70-70)^2}{70} + \\frac{(80-65.33)^2}{80}\\) with 2 degrees of freedom" },
+      { "key": "B", "value": "\\(\\chi^2 = \\frac{(100-85.33)^2}{85.33} + \\frac{(80-80)^2}{80} + \\frac{(60-74.67)^2}{74.67} + \\frac{(60-74.67)^2}{74.67} + \\frac{(70-70)^2}{70} + \\frac{(80-65.33)^2}{65.33}\\) with 2 degrees of freedom" },
+      { "key": "C", "value": "\\(\\chi^2 = \\frac{(100-75)^2}{75} + \\frac{(80-75)^2}{75} + \\frac{(60-75)^2}{75} + \\frac{(60-75)^2}{75} + \\frac{(70-75)^2}{75} + \\frac{(80-75)^2}{75}\\) with 6 degrees of freedom" },
+      { "key": "D", "value": "\\(\\chi^2 = \\frac{(100-85.33)^2}{450} + \\frac{(80-80)^2}{450} + \\frac{(60-74.67)^2}{450} + \\frac{(60-74.67)^2}{450} + \\frac{(70-70)^2}{450} + \\frac{(80-65.33)^2}{450}\\) with 6 degrees of freedom" },
+      { "key": "E", "value": "\\(\\chi^2 = \\frac{(100-85.33)^2}{85.33} + \\frac{(80-80)^2}{80} + \\frac{(60-74.67)^2}{74.67} + \\frac{(60-74.67)^2}{74.67} + \\frac{(70-70)^2}{70} + \\frac{(80-65.33)^2}{65.33}\\) with 6 degrees of freedom" }
+    ],
+    "answerKey": "B",
+    "reasoning": "The correct formula for the test statistic of the chi-square test for independence is \\(\\chi^2 = \\sum \\frac{(\\text{observed count} - \\text{expected count})^2}{\\text{expected count}}\\), with the degrees of freedom equal to (number of rows minus 1)(number of columns minus 1) = (2-1)(3-1) = 2."
+  },
+  {
+    "id": "U8-PC-MCQ-B-Q11",
+    "type": "multiple-choice",
+    "prompt": "A state political analyst wanted to see whether there is an association between the region where a person lives and whether the person is in favor of increasing the state gas tax. A random sample of 270 state residents was selected. Which of the following is closest to the \\(p\\)-value of the appropriate test to investigate whether there is an association between the region where a person lives and whether the person is in favor of increasing the state gas tax?",
+    "attachments": {
+      "table": [
+        ["", "Rural", "Urban", "Suburban", "Total"],
+        ["Yes", "38", "42", "51", "131"],
+        ["No", "27", "62", "50", "139"],
+        ["Total", "65", "104", "101", "270"]
+      ]
+    },
+    "choices": [
+      { "key": "A", "value": "0.0644" },
+      { "key": "B", "value": "0.3596" },
+      { "key": "C", "value": "0.4832" },
+      { "key": "D", "value": "0.9356" },
+      { "key": "E", "value": "5.485" }
+    ],
+    "answerKey": "A",
+    "reasoning": "The expected values are 31.54, 50.46, 49.00, 33.46, 53.54, and 52.00. The chi-square test statistic with \\((2-1)(3-1) = 2\\) degrees of freedom is \\(\\chi^2 ≈ 5.485\\). The \\(p\\)-value is \\(P(\\chi^2 ≥ 5.485) ≈ 0.0644\\)."
+  },
+  {
+    "id": "U8-PC-MCQ-B-Q12",
+    "type": "multiple-choice",
+    "prompt": "A chi-square test of independence was conducted to investigate whether there is an association between the location where a person lives in a city (north, south, east, or west) and who the person planned to vote for in the upcoming mayoral election (the incumbent or the challenger). A random sample of 100 potential voters was selected, and the hypothesis test had a chi-square test statistic of \\(\\chi^2 = 9.84\\) with a \\(p\\)-value of 0.02. Which of the following statements is the correct interpretation of the \\(p\\)-value in context?",
+    "choices": [
+      { "key": "A", "value": "There is a 2 percent chance that where a person lives and who that person plans to vote for are independent." },
+      { "key": "B", "value": "There is a 2 percent chance that where a person lives and who that person plans to vote for are dependent." },
+      { "key": "C", "value": "There is a 2 percent chance of making a Type I error." },
+      { "key": "D", "value": "Assuming that the location of where a person lives and who that person plans to vote for are dependent, there is a 2 percent chance of finding a test statistic that is 9.84 or greater." },
+      { "key": "E", "value": "Assuming that the location of where a person lives and who that person plans to vote for are independent, there is a 2 percent chance of finding a test statistic that is 9.84 or greater." }
+    ],
+    "answerKey": "E",
+    "reasoning": "The null hypothesis is that the location of where a person lives in the city and who the person plans to vote for in the upcoming election are independent (no association). Under the assumption that the null hypothesis is true, a \\(p\\)-value of 0.02 means that there is a 2 percent probability of obtaining a test statistic value as extreme as, or more extreme than, a test statistic value of 9.84."
+  },
+  {
+    "id": "U8-PC-MCQ-B-Q13",
+    "type": "multiple-choice",
+    "prompt": "A hypothesis test was conducted to see whether there is an association between a person's income level and his or her education level. A random sample of 225 people was selected, and the appropriate hypothesis test was conducted. The chi-square test statistic and corresponding \\(p\\)-value were approximately 13.36 and 0.01, respectively. Which of the following is the correct interpretation of the \\(p\\)-value in the context of the test?",
+    "choices": [
+      { "key": "A", "value": "Assuming that a person's income level and education level are independent, there is a 1 percent chance of finding a test statistic of 13.36 or greater." },
+      { "key": "B", "value": "Assuming that a person's income level and education level are dependent, there is a 1 percent chance of finding a test statistic of 13.36 or greater." },
+      { "key": "C", "value": "Assuming that a person's income level and education level are independent, there is a 1 percent chance of finding a test statistic of 13.36 or smaller." },
+      { "key": "D", "value": "Assuming that a person's income level and education level are dependent, there is a 1 percent chance of finding a test statistic of 13.36 or smaller." },
+      { "key": "E", "value": "Assuming that a person's income level and education level are independent, there is a 1 percent chance of finding a test statistic of exactly 13.36." }
+    ],
+    "answerKey": "A",
+    "reasoning": "The null hypothesis is that a person's income level and education level are independent (no association). Under the assumption that the null hypothesis is true, a \\(p\\)-value of 0.01 means that there is a 1 percent probability of obtaining a test statistic value of, or more extreme than, 13.36."
+  },
+  {
+    "id": "U8-PC-MCQ-B-Q14",
+    "type": "multiple-choice",
+    "prompt": "A political analyst wanted to see whether there is an association between political affiliation and where a person lives. The analyst took a random sample of 1,250 people in a state and asked them which political party they were affiliated with and what county they lived in. The following are the hypotheses the analyst tested:\\n\\n\\(H_0\\): There is no association between party affiliation and the county in which a person lives.\\n\\(H_a\\): There is an association between party affiliation and the county in which a person lives.\\n\\nThe chi-square test statistic and \\(p\\)-value of the hypothesis test were 19.78 and 0.003 respectively. Which of the following conclusions should be made about political affiliation and where a person lives?",
+    "choices": [
+      { "key": "A", "value": "There is convincing statistical evidence to suggest that political affiliation and where a person lives are independent." },
+      { "key": "B", "value": "There is convincing statistical evidence to suggest that political affiliation and where a person lives are dependent." },
+      { "key": "C", "value": "There is convincing statistical evidence to prove that political affiliation and where a person lives are dependent." },
+      { "key": "D", "value": "There is not convincing statistical evidence to suggest that political affiliation and where a person lives are independent." },
+      { "key": "E", "value": "There is not convincing statistical evidence to suggest that political affiliation and where a person lives are dependent." }
+    ],
+    "answerKey": "B",
+    "reasoning": "The null hypothesis is that there is no association between party affiliation and the county in which a person lives. Since the \\(p\\)-value (0.003) is less than any reasonable level of \\(\\alpha\\), there is sufficient statistical evidence to reject the null hypothesis and conclude the alternative, that party affiliation and the county a person lives in are dependent (associated)."
+  },
+  {
+    "id": "U8-PC-MCQ-B-Q15",
+    "type": "multiple-choice",
+    "prompt": "A college administrator wanted to know if the proportion of students who request online classes, lab classes, or lecture classes was different at two different campuses. At each campus, the administrator took a random sample of 250 students and asked each student which type of class they preferred. The conditions for the appropriate test were verified, and the chi-square test statistic for the test was calculated to be 4.01 with an associated \\(p\\)-value of 0.1347. If the significance level of the test was \\(\\alpha = 0.05\\), what conclusion should the college administrator make about the proportion of students who request online classes, lab classes, or lecture classes at two different campuses?",
+    "choices": [
+      { "key": "A", "value": "There is convincing statistical evidence to suggest that the proportion of students who request certain classes is the same at each campus." },
+      { "key": "B", "value": "There is convincing statistical evidence to suggest that the proportion of students who request certain classes is different at each campus." },
+      { "key": "C", "value": "There is not convincing statistical evidence to suggest that the proportion of students who request certain classes is the same at each campus." },
+      { "key": "D", "value": "There is not convincing statistical evidence to suggest that the proportion of students who request certain classes is different at each campus." },
+      { "key": "E", "value": "There is not convincing statistical evidence to prove that the proportion of students who request certain classes is different at each campus." }
+    ],
+    "answerKey": "D",
+    "reasoning": "The null hypothesis is that the proportion of students who request certain classes is the same at each campus. Since the \\(p\\)-value (0.1347) is greater than \\(\\alpha = 0.05\\), there is insufficient evidence to reject the null hypothesis and conclude the alternative hypothesis, that the proportion of students who request certain classes is different at each campus."
+  }
+] 
