@@ -1,0 +1,229 @@
+[
+  {
+    "id": "U9-PC-MCQ-A-Q01",
+    "type": "multiple-choice",
+    "prompt": "A health professional is investigating whether stress level before a routine practice session can be used to predict the mean stress level before a major figure skating competition. The health professional selected a random sample of 6 figure skaters and measured the stress level before a routine practice session and before a major competition. Each variable was measured as the change in the interval between heartbeats, or heart rate variability. The health professional wants to estimate the mean change in the stress level before a major competition for each unit increase in the stress level before a routine practice. Assuming the conditions for inference have been met, which of the following inference procedures is the most appropriate for such an investigation?",
+    "choices": [
+      { "key": "A", "value": "A matched-pairs \\(t\\)-interval for a mean difference" },
+      { "key": "B", "value": "A two-sample \\(t\\)-interval for a difference between means" },
+      { "key": "C", "value": "A two-sample \\(z\\)-interval for a difference between proportions" },
+      { "key": "D", "value": "A one-sample \\(t\\)-interval for means" },
+      { "key": "E", "value": "A linear regression \\(t\\)-interval for slope" }
+    ],
+    "answerKey": "E",
+    "reasoning": "The health professional is interested in using stress level before a routine practice session to predict the mean stress level before a major competition. A linear regression \\(t\\)-interval for slope is the most appropriate inference procedure when investigating the relationship between two quantitative variables where one is used to predict the other."
+  },
+  {
+    "id": "U9-PC-MCQ-A-Q02",
+    "type": "multiple-choice",
+    "prompt": "The critic rating and audience score for 8 movies are shown in the table. An owner of a movie theater is investigating whether critic rating can be used to predict the mean audience score of movies. Assuming the conditions for inference have been met, which of the following inference procedures is the most appropriate to estimate the mean change in audience score for each 1 point increase in the critic rating?",
+    "attachments": {
+      "table": [
+        ["Critic Rating", "72", "80", "65", "23", "28", "60", "41", "35"],
+        ["Audience Score", "64", "92", "90", "48", "55", "70", "44", "80"]
+      ]
+    },
+    "choices": [
+      { "key": "A", "value": "A one-sample \\(t\\)-test for means" },
+      { "key": "B", "value": "A linear regression \\(t\\)-interval for slope" },
+      { "key": "C", "value": "A two-sample \\(t\\)-interval for a difference between means" },
+      { "key": "D", "value": "A matched-pairs \\(t\\)-interval for a mean difference" },
+      { "key": "E", "value": "A two-sample \\(z\\)-interval for a difference between proportions" }
+    ],
+    "answerKey": "B",
+    "reasoning": "The critic rating is used to predict the mean audience score. A linear regression \\(t\\)-interval for slope is the most appropriate inference procedure when examining the relationship between two quantitative variables and estimating the change in the response variable for each unit increase in the explanatory variable."
+  },
+  {
+    "id": "U9-PC-MCQ-A-Q03",
+    "type": "multiple-choice",
+    "prompt": "Computer output from a least-squares regression analysis based on a sample of size 17 is shown in the table. Assuming all conditions for inference are met, which of the following defines a 95 percent confidence interval for the slope of the least-squares regression line?",
+    "attachments": {
+      "table": [
+        ["Term", "COEF", "SE Coef", "T"],
+        ["Constant", "7.43", "0.59", "12.59"],
+        ["\\(x\\)", "5.65", "1.14", "6.45"]
+      ]
+    },
+    "choices": [
+      { "key": "A", "value": "\\(5.65 \\pm 1.96(1.14)\\)" },
+      { "key": "B", "value": "\\(5.65 \\pm 2.120(1.14)\\)" },
+      { "key": "C", "value": "\\(5.65 \\pm 2.131(1.14)\\)" },
+      { "key": "D", "value": "\\(7.43 \\pm 2.120(0.59)\\)" },
+      { "key": "E", "value": "\\(7.43 \\pm 2.131(0.59)\\)" }
+    ],
+    "answerKey": "C",
+    "reasoning": "The sample slope \\(b_1\\) is the coefficient of the \\(x\\) variable given in the computer output (5.65). The critical value (2.131) is based on the \\(t\\)-distribution with \\(n - 2\\), or 15, degrees of freedom. The standard error of the slope is the standard error coefficient of the \\(x\\) variable given in the computer output (1.14). The 95 percent confidence interval is \\(b_1 \\pm t^*(SE_{b_1}) = 5.65 \\pm 2.131(1.14)\\)."
+  },
+  {
+    "id": "U9-PC-MCQ-A-Q04",
+    "type": "multiple-choice",
+    "prompt": "A regression analysis was conducted to investigate the relationship between the total charge and travel time for a certain car service. Computer output from a linear regression analysis is shown below. The analysis was performed on a sample of 24 observations. Assume that the conditions for inference for the slope of the regression equation have been met. Which of the following defines the margin of error of a 90 percent confidence interval for the slope of the least-squares regression line?",
+    "attachments": {
+      "table": [
+        ["Term", "Coef", "SE Coef"],
+        ["Constant", "-1.55", "0.945"],
+        ["Travel time", "0.22", "0.023"]
+      ]
+    },
+    "choices": [
+      { "key": "A", "value": "\\(1.321(0.945)\\)" },
+      { "key": "B", "value": "\\(1.717(0.945)\\)" },
+      { "key": "C", "value": "\\(1.717(0.22)\\)" },
+      { "key": "D", "value": "\\(1.321(0.023)\\)" },
+      { "key": "E", "value": "\\(1.717(0.023)\\)" }
+    ],
+    "answerKey": "E",
+    "reasoning": "The margin of error of the confidence interval is given by \\(t^*(SE_{b_1})\\). From the computer output, the value of \\(SE_{b_1}\\) is 0.023. The critical value for a 90 percent confidence interval is \\(t^* = 1.717\\), found using technology. The margin of error is therefore \\(1.717(0.023)\\)."
+  },
+  {
+    "id": "U9-PC-MCQ-A-Q05",
+    "type": "multiple-choice",
+    "prompt": "A researcher is investigating the relationship between the length, in centimeters, and weight, in grams, of pineapples. The researcher will select a random sample of 15 pineapples from grocery stores in a region and construct a 95 percent confidence interval for the slope of the population regression line, where length is the explanatory variable and weight is the response variable. When computing a confidence interval for the slope of the population regression line, which of the following is not a condition that must be checked?",
+    "choices": [
+      { "key": "A", "value": "The true relationship between length and weight is linear." },
+      { "key": "B", "value": "The standard deviation for weight does not vary with length." },
+      { "key": "C", "value": "The values of weight are approximately normally distributed at each value of length." },
+      { "key": "D", "value": "The sum of the residuals is zero." },
+      { "key": "E", "value": "The observations are independent." }
+    ],
+    "answerKey": "D",
+    "reasoning": "This is not a condition that must be checked because the sum of the residuals is always zero. This is a mathematical property of the least-squares regression line and does not need to be verified as a condition for inference."
+  },
+  {
+    "id": "U9-PC-MCQ-A-Q06",
+    "type": "multiple-choice",
+    "prompt": "Russell plans on constructing a confidence interval for the slope of a regression line. He creates the residual plot shown to check the conditions for creating the interval. Which of the following conditions appear to be met based on the residual plot?\n\nI. The true relationship between \\(x\\) and \\(y\\) is not linear.\nII. Observations are independent.\nIII. The standard deviation of \\(y\\) does not vary with \\(x\\).",
+    "attachments": {
+      "chartType": "scatter",
+      "points": [
+    { "x": 28, "y": -20.5 },
+    { "x": 43, "y": -17 },
+    { "x": 64, "y": -3.5 },
+    { "x": 85, "y": 5 },
+    { "x": 102, "y": 5 },
+    { "x": 118, "y": 8 },
+    { "x": 132, "y": 13.5 },
+    { "x": 141, "y": 11 },
+    { "x": 147, "y": 14.5 },
+    { "x": 168, "y": 13.5 },
+    { "x": 185, "y": 8 },
+    { "x": 198, "y": 9 },
+    { "x": 205, "y": 5 },
+    { "x": 210, "y": 4.5 },
+    { "x": 228, "y": 0 },
+    { "x": 232, "y": -4 },
+    { "x": 242, "y": -6 },
+    { "x": 255, "y": -17 },
+    { "x": 268, "y": -20.5 }
+  ]
+  ,
+      "chartConfig": {
+        "xAxis": {
+          "min": 0, "max": 300, "tickInterval": 50, "title": "Explanatory Variable"
+        },
+        "yAxis": {
+          "min": -20, "max": 20, "tickInterval": 10, "title": "Residual"
+        },
+        "gridLines": {
+          "horizontal": true,
+          "vertical": false
+        },
+        "referenceLineAtZero": true,
+        "description": "Residual plot showing a clear nonlinear pattern - points curve upward then downward, indicating the relationship between x and y is not linear"
+      }
+    },
+    "choices": [
+      { "key": "A", "value": "I only" },
+      { "key": "B", "value": "II only" },
+      { "key": "C", "value": "III only" },
+      { "key": "D", "value": "I and II only" },
+      { "key": "E", "value": "II and III only" }
+    ],
+    "answerKey": "A",
+    "reasoning": "There is a definite nonlinear pattern in the points of the residual plot, so there is evidence that the relationship between \\(x\\) and \\(y\\) is not linear. Condition I states 'The true relationship between \\(x\\) and \\(y\\) is not linear,' which appears to be met based on the curved pattern visible in the residual plot."
+  },
+  {
+    "id": "U9-PC-MCQ-A-Q07",
+    "type": "multiple-choice",
+    "prompt": "The 98 percent confidence interval \\((-0.248, -0.134)\\) was constructed to estimate the slope of a regression model for a bivariate data set with 20 values. Alice claims that a sample size of 25 will produce a narrower interval, all other things remaining the same. Desmond claims that a sample size of 15 will produce a narrower interval. Which statement is true about the claims made by Alice and Desmond?",
+    "choices": [
+      { "key": "A", "value": "Alice's claim is correct." },
+      { "key": "B", "value": "Desmond's claim is correct." },
+      { "key": "C", "value": "Both Alice's claim and Desmond's claim are correct." },
+      { "key": "D", "value": "Neither Alice's claim nor Desmond's claim is correct." },
+      { "key": "E", "value": "There is not enough information to determine whether the claims are correct." }
+    ],
+    "answerKey": "A",
+    "reasoning": "All other things being the same, an increase in the sample size of a confidence interval to estimate the slope of a regression model will result in a narrower confidence interval. Alice claims a sample size of 25 (larger than 20) will produce a narrower interval, which is correct. Desmond claims a sample size of 15 (smaller than 20) will produce a narrower interval, which is incorrect."
+  },
+  {
+    "id": "U9-PC-MCQ-A-Q08",
+    "type": "multiple-choice",
+    "prompt": "Sasha selected a random sample of bivariate data, with a sample size of 30, and calculated a slope of 3.6 for the sample slope of a regression model. Sasha constructed a 95 percent confidence interval to estimate the slope. Alex claims he can construct a confidence interval that is narrower by changing the sample size but keeping all other things the same. Which of the following sample sizes will make Alex's claim true?",
+    "choices": [
+      { "key": "A", "value": "10" },
+      { "key": "B", "value": "15" },
+      { "key": "C", "value": "20" },
+      { "key": "D", "value": "25" },
+      { "key": "E", "value": "35" }
+    ],
+    "answerKey": "E",
+    "reasoning": "When all other things remain the same, the width of the confidence interval for the slope of a regression model tends to decrease as the sample size increases. Since the original sample size was 30, only a sample size of 35 (larger than 30) will produce a narrower confidence interval."
+  },
+  {
+    "id": "U9-PC-MCQ-A-Q09",
+    "type": "multiple-choice",
+    "prompt": "A business school is conducting a study to investigate whether a students' scores on a placement test can be used to predict students' starting salaries. Based on a random sample of 200 graduates of the business school, a 98 percent confidence interval for the slope of the linear regression line relating placement scores and starting salary is calculated to be \\((315, 336)\\). Assume the conditions for inference are met. Which of the following is a correct interpretation of the confidence interval?",
+    "choices": [
+      { "key": "A", "value": "There is a 98 percent probability that the slope of the population regression line is between $315 per point and $336 per point." },
+      { "key": "B", "value": "Ninety-eight percent of the time, a 10-point increase in placement score will result in an average increase between $3,150 and $3,360 in starting salary." },
+      { "key": "C", "value": "We are 98 percent confident that a 10-point increase in placement score will result in a predicted increase in starting salary of between $3,150 and $3,360." },
+      { "key": "D", "value": "We are 98 percent confident that predicted starting salaries will be between $315,000 and $336,000." },
+      { "key": "E", "value": "We are 98 percent confident that the regression equation can be used to make accurate predictions for placement scores between 315 and 336." }
+    ],
+    "answerKey": "C",
+    "reasoning": "The confidence interval indicates that we are 98 percent confident that the mean predicted increase in starting salary for each additional 1-point increase in placement score is somewhere between $315 and $336. This means that a 10-point increase in placement score will result in a predicted increase in starting salary between $3,150 and $3,360."
+  },
+  {
+    "id": "U9-PC-MCQ-A-Q10",
+    "type": "multiple-choice",
+    "prompt": "Anagha is interested in buying a new Model X car and wants to gather information about how the selling price of the car is related to the year of the model. She randomly selects 24 used Model X cars for sale. For each used car, she records the car's selling price (in dollars) and age (in years). She computes a 96 percent confidence interval to estimate the slope of the regression line relating the age of a used Model X car to its selling price. The resulting confidence interval is given by \\((-5,556, -3,157)\\). Assume that the conditions for inference on the slope of the regression equation are met. Which of the following is the correct interpretation of the confidence interval?",
+    "choices": [
+      { "key": "A", "value": "We are 96 percent confident that a Model X car will have a predicted decrease in selling price of between $3,157 and $5,556." },
+      { "key": "B", "value": "Ninety-six percent of the time, a one-year increase in the age of a Model X car will result in a predicted decrease in selling price of between $3,157 and $5,556." },
+      { "key": "C", "value": "Ninety-six percent of samples of 24 used Model X cars will have an average selling price that is between $3,157 and $5,556 less than the selling price of a new Model X." },
+      { "key": "D", "value": "We are 96 percent confident that any sample of 24 Model X cars will produce a slope of the regression line of between -5,556 and -3,157." },
+      { "key": "E", "value": "We are 96 percent confident that a one-year increase in the age of a Model X car will result in a predicted decrease in selling price of between $3,157 and $5,556." }
+    ],
+    "answerKey": "E",
+    "reasoning": "We are 96 percent confident that the mean predicted decrease in the price of a Model X car will be between $3,157 and $5,556 each year. The confidence interval for the slope represents the change in the response variable (selling price) for each one-unit increase in the explanatory variable (age in years)."
+  },
+  {
+    "id": "U9-PC-MCQ-A-Q11",
+    "type": "multiple-choice",
+    "prompt": "Baseball statisticians studied how often triples (a certain event in a baseball game) occurred in professional games played between 1947 and 2017. A 98 percent confidence interval to estimate the slope of the linear regression line relating the year, \\(x\\), and the mean number of triples per game, \\(y\\), yielded \\((-0.006, -0.002)\\). A check shows that the conditions necessary for inference for the slope of the regression line are met. Based on the confidence interval, which of the following claims is supported?",
+    "choices": [
+      { "key": "A", "value": "The mean number of triples per game is between 0.002 and 0.006." },
+      { "key": "B", "value": "The number of triples per game has increased, on average, per year." },
+      { "key": "C", "value": "There is no linear relationship between the mean number of triples per game and year." },
+      { "key": "D", "value": "There is a negative linear relationship between the mean number of triples per game and year." },
+      { "key": "E", "value": "A conclusion cannot be made about the relationship between year and mean number of triples per game because the values are close to 0." }
+    ],
+    "answerKey": "D",
+    "reasoning": "This claim is supported by the interval. The interval contains plausible values for the slope of the linear regression line relating year and mean number of triples per game. Since all the values in the interval are negative, the interval supports the claim that increases in the year variable are associated with decreases in the mean number of triples per game."
+  },
+  {
+    "id": "U9-PC-MCQ-A-Q12",
+    "type": "multiple-choice",
+    "prompt": "A pharmaceutical company is examining the relationship between dosage of a new pain-relief medication and the time it takes for patients to experience pain relief from a headache. Various dosages ranging from 200 to 1,200 milligrams (\\(x\\)) in 100-milligram increments were given to 41 randomly selected patients, and the time until relief was measured in minutes. A check of the conditions necessary for inference for the slope of a regression line shows that they are met. A 95 percent confidence interval for the slope of the regression line relating the dosage, \\(x\\), to the time until relief, \\(y\\), is given by \\((-4.15, -2.27)\\). Based on the confidence interval, which of the following claims is supported?",
+    "choices": [
+      { "key": "A", "value": "A 100 mg increase in dosage results in a decrease in the time until relief by more than two minutes on average." },
+      { "key": "B", "value": "A 100 mg increase in dosage results in a decrease in the time until relief by more than four minutes on average." },
+      { "key": "C", "value": "There is not a linear relationship between dosage and time until relief." },
+      { "key": "D", "value": "A 100 mg increase in dosage results in an increase in the time until relief by more than two minutes on average." },
+      { "key": "E", "value": "A 100 mg increase in dosage results in an increase in the time until relief by more than four minutes on average." }
+    ],
+    "answerKey": "A",
+    "reasoning": "A claim that the time until relief decreases by more than two minutes, on average, is supported by the interval. The interval represents plausible values for the slope of the regression line, and all values contained in the interval are less than -2, representing a decrease of more than two minutes."
+  }
+]
