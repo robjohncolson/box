@@ -1,0 +1,326 @@
+[
+  {
+    "id": "U9-PC-MCQ-B-Q01",
+    "type": "multiple-choice",
+    "prompt": "A researcher was interested in the relationship between a swimmer's hand length and corresponding time to complete the 100-meter freestyle. The researcher selected a random sample of twenty swimmers from all participants in a swim competition. Assuming all conditions for inference are met, which of the following significance tests should be used to investigate whether there is convincing evidence, at a 5 percent level of significance, that a longer hand length is associated with a decrease in the time to complete the 100-meter freestyle?",
+    "choices": [
+      { "key": "A", "value": "A matched-pairs \\(t\\)-test for a mean difference" },
+      { "key": "B", "value": "A two-sample \\(t\\)-test for a difference between means" },
+      { "key": "C", "value": "A two-sample \\(z\\)-test for a difference between proportions" },
+      { "key": "D", "value": "A chi-square test of independence" },
+      { "key": "E", "value": "A linear regression \\(t\\)-test for slope" }
+    ],
+    "answerKey": "E",
+    "reasoning": "The researcher is interested in investigating whether there is a linear relationship between a swimmer's hand length and corresponding time in the 100-meter freestyle. A linear regression \\(t\\)-test for slope is the most appropriate test for determining if there is a significant linear relationship between two quantitative variables."
+  },
+  {
+    "id": "U9-PC-MCQ-B-Q02",
+    "type": "multiple-choice",
+    "prompt": "A real estate software program gives the estimated values of homes and lists characteristics of the homes. A prospective home buyer used the program to collect a sample of twenty-five homes and recorded the estimated value of the homes and how many bathrooms they contain. The prospective home buyer wants to investigate whether there is an association between the number of bathrooms a home contains and the estimated value of the home. Assuming all conditions for inference are met, which of the following significance tests should be used for the investigation?",
+    "choices": [
+      { "key": "A", "value": "A two-sample \\(z\\)-test for a difference between proportions" },
+      { "key": "B", "value": "A linear regression \\(t\\)-test for slope" },
+      { "key": "C", "value": "A matched pairs \\(t\\)-test for a mean difference" },
+      { "key": "D", "value": "A two-sample \\(t\\)-test for a difference between means" },
+      { "key": "E", "value": "A chi-square test of independence" }
+    ],
+    "answerKey": "B",
+    "reasoning": "The prospective buyer is interested in determining whether there is a linear relationship between the number of bathrooms in a home and the estimated value of the home. A linear regression \\(t\\)-test for slope is the most appropriate test for investigating linear relationships between two quantitative variables."
+  },
+  {
+    "id": "U9-PC-MCQ-B-Q03",
+    "type": "multiple-choice",
+    "prompt": "A sociologist recorded the number of contacts entered in a cell phone and the number of texts sent in a week for 20 cell phone users. The resulting data were used to conduct a hypothesis test to investigate whether there is a linear relationship between the number of contacts and the number of texts sent. What are the correct hypotheses for the test?",
+    "choices": [
+      { "key": "A", "value": "\\(H_0 : \\beta_1 = 0\\)\\n\\(H_a : \\beta_1 \\neq 0\\)" },
+      { "key": "B", "value": "\\(H_0 : \\beta_1 = 0\\)\\n\\(H_a : \\beta_1 > 0\\)" },
+      { "key": "C", "value": "\\(H_0 : \\beta_1 = 0\\)\\n\\(H_a : \\beta_1 < 0\\)" },
+      { "key": "D", "value": "\\(H_0 : \\beta_1 \\neq 0\\)\\n\\(H_a : \\beta_1 = 0\\)" },
+      { "key": "E", "value": "\\(H_0 : b_1 = 0\\)\\n\\(H_a : b_1 \\neq 0\\)" }
+    ],
+    "answerKey": "A",
+    "reasoning": "This is the correct set of hypotheses for investigating whether there is a linear relationship between the number of contacts and the number of texts sent in the population. The null hypothesis is that there is no relationship (\\(\\beta_1 = 0\\)), and the alternative hypothesis is that there is a relationship (\\(\\beta_1 \\neq 0\\))."
+  },
+  {
+    "id": "U9-PC-MCQ-B-Q04",
+    "type": "multiple-choice",
+    "prompt": "A researcher recorded the number of e-mails received in a month and the number of online purchases made during that month for 50 people with an online presence. The resulting data were used to conduct a hypothesis test to investigate whether the slope of the population regression line relating number of e-mails received to number of online purchases is positive. What are the correct hypotheses for the test?",
+    "choices": [
+      { "key": "A", "value": "\\(H_0 : \\beta_1 = 0\\)\\n\\(H_a : \\beta_1 \\neq 0\\)" },
+      { "key": "B", "value": "\\(H_0 : \\beta_1 = 0\\)\\n\\(H_a : \\beta_1 > 0\\)" },
+      { "key": "C", "value": "\\(H_0 : \\beta_1 = 0\\)\\n\\(H_a : \\beta_1 < 0\\)" },
+      { "key": "D", "value": "\\(H_0 : \\beta_1 > 0\\)\\n\\(H_a : \\beta_1 = 0\\)" },
+      { "key": "E", "value": "\\(H_0 : b_1 = 0\\)\\n\\(H_a : b_1 \\neq 0\\)" }
+    ],
+    "answerKey": "B",
+    "reasoning": "This is the correct set of hypotheses for investigating whether the linear relationship between number of e-mails received and number of online purchases is positive in the population. The null hypothesis is that there is no relationship (\\(\\beta_1 = 0\\)), and the alternative hypothesis is that there is a positive relationship (\\(\\beta_1 > 0\\))."
+  },
+  {
+    "id": "U9-PC-MCQ-B-Q05",
+    "type": "multiple-choice",
+    "prompt": "Which of the following scatterplots provides evidence that the condition of equal variance for inference for the slope of a regression line has not been met?",
+  "attachments": {
+    "charts": [
+      {
+        "chartType": "scatter",
+        "title": "Scatterplot A",
+        "points": [
+          { "x": 1.0, "y": 3.2 },
+          { "x": 1.2, "y": 2.8 },
+          { "x": 2.1, "y": 5.3 },
+          { "x": 2.5, "y": 5.0 },
+          { "x": 3.0, "y": 7.3 },
+          { "x": 3.2, "y": 6.7 },
+          { "x": 3.4, "y": 6.6 },
+          { "x": 4.0, "y": 9.6 },
+          { "x": 4.2, "y": 9.0 },
+          { "x": 5.2, "y": 11.7 },
+          { "x": 5.5, "y": 11.2 },
+          { "x": 5.8, "y": 11.5 },
+          { "x": 6.2, "y": 12.6 },
+          { "x": 6.8, "y": 13.3 }
+        ],
+        "chartConfig": {
+          "xAxis": { "min": 0, "max": 8, "tickInterval": 1, "title": "Explanatory Variable" },
+          "yAxis": { "min": 0, "max": 16, "tickInterval": 2, "title": "Response Variable" },
+          "gridLines": { "horizontal": true, "vertical": true },
+          "description": "Scatterplot A showing a positive linear relationship with roughly constant variance."
+        }
+      },
+      {
+        "chartType": "scatter",
+        "title": "Scatterplot B",
+        "points": [
+          { "x": 1.2, "y": 13.4 },
+          { "x": 1.5, "y": 12.9 },
+          { "x": 2.2, "y": 12.7 },
+          { "x": 2.6, "y": 11.5 },
+          { "x": 2.8, "y": 11.3 },
+          { "x": 3.0, "y": 11.8 },
+          { "x": 3.6, "y": 9.3 },
+          { "x": 3.8, "y": 9.0 },
+          { "x": 4.0, "y": 9.7 },
+          { "x": 4.6, "y": 6.7 },
+          { "x": 4.8, "y": 7.0 },
+          { "x": 5.0, "y": 7.4 },
+          { "x": 5.7, "y": 5.1 },
+          { "x": 6.0, "y": 5.0 },
+          { "x": 6.4, "y": 4.2 },
+          { "x": 6.8, "y": 3.0 },
+          { "x": 7.0, "y": 3.3 }
+        ],
+        "chartConfig": {
+          "xAxis": { "min": 0, "max": 8, "tickInterval": 1, "title": "Explanatory Variable" },
+          "yAxis": { "min": 0, "max": 16, "tickInterval": 2, "title": "Response Variable" },
+          "gridLines": { "horizontal": true, "vertical": true },
+          "description": "Scatterplot B showing a negative linear relationship with roughly constant variance."
+        }
+      },
+      {
+        "chartType": "scatter",
+        "title": "Scatterplot C",
+        "points": [
+          { "x": 1.1, "y": 3.3 },
+          { "x": 1.3, "y": 2.8 },
+          { "x": 1.4, "y": 3.7 },
+          { "x": 2.1, "y": 5.8 },
+          { "x": 2.2, "y": 4.4 },
+          { "x": 2.3, "y": 5.0 },
+          { "x": 3.1, "y": 8.6 },
+          { "x": 3.2, "y": 6.7 },
+          { "x": 3.3, "y": 5.0 },
+          { "x": 4.1, "y": 9.0 },
+          { "x": 4.2, "y": 5.8 },
+          { "x": 4.5, "y": 11.6 },
+          { "x": 5.1, "y": 7.9 },
+          { "x": 5.2, "y": 3.8 },
+          { "x": 5.3, "y": 13.9 },
+          { "x": 6.0, "y": 9.6 },
+          { "x": 6.2, "y": 3.8 },
+          { "x": 6.2, "y": 15.8 }
+        ],
+        "chartConfig": {
+          "xAxis": { "min": 0, "max": 7, "tickInterval": 1, "title": "Explanatory Variable" },
+          "yAxis": { "min": 0, "max": 18, "tickInterval": 2, "title": "Response Variable" },
+          "gridLines": { "horizontal": true, "vertical": true },
+          "description": "Scatterplot C showing increasing variability in the response variable as the explanatory variable increases. This violates the equal variance condition (heteroscedasticity)."
+        }
+      },
+      {
+        "chartType": "scatter",
+        "title": "Scatterplot D",
+        "points": [
+          { "x": 1.2, "y": 2.1 },
+          { "x": 1.5, "y": 6.7 },
+          { "x": 1.7, "y": 12.9 },
+          { "x": 2.5, "y": 8.1 },
+          { "x": 3.0, "y": 11.3 },
+          { "x": 3.1, "y": 1.7 },
+          { "x": 3.5, "y": 5.4 },
+          { "x": 3.9, "y": 2.4 },
+          { "x": 4.0, "y": 11.8 },
+          { "x": 4.4, "y": 12.3 },
+          { "x": 5.0, "y": 7.4 },
+          { "x": 5.1, "y": 2.9 },
+          { "x": 6.0, "y": 9.0 },
+          { "x": 6.1, "y": 3.1 },
+          { "x": 6.5, "y": 5.3 },
+          { "x": 6.5, "y": 11.9 },
+          { "x": 7.0, "y": 3.2 },
+          { "x": 7.0, "y": 12.7 }
+        ],
+        "chartConfig": {
+          "xAxis": { "min": 0, "max": 8, "tickInterval": 1, "title": "Explanatory Variable" },
+          "yAxis": { "min": 0, "max": 14, "tickInterval": 2, "title": "Response Variable" },
+          "gridLines": { "horizontal": true, "vertical": true },
+          "description": "Scatterplot D showing no clear linear relationship and a random spread of points."
+        }
+      },
+      {
+        "chartType": "scatter",
+        "title": "Scatterplot E",
+        "points": [
+          { "x": 1.1, "y": 7.8 },
+          { "x": 1.2, "y": 7.8 },
+          { "x": 1.4, "y": 7.8 },
+          { "x": 2.5, "y": 7.8 },
+          { "x": 2.8, "y": 7.8 },
+          { "x": 3.0, "y": 7.8 },
+          { "x": 3.5, "y": 7.8 },
+          { "x": 3.7, "y": 7.8 },
+          { "x": 3.9, "y": 7.8 },
+          { "x": 4.5, "y": 7.8 },
+          { "x": 4.8, "y": 7.8 },
+          { "x": 5.2, "y": 7.8 },
+          { "x": 5.8, "y": 7.8 },
+          { "x": 6.0, "y": 7.8 },
+          { "x": 6.5, "y": 7.8 },
+          { "x": 6.8, "y": 7.8 },
+          { "x": 7.0, "y": 7.8 }
+        ],
+        "chartConfig": {
+          "xAxis": { "min": 0, "max": 8, "tickInterval": 1, "title": "Explanatory Variable" },
+          "yAxis": { "min": 0, "max": 16, "tickInterval": 2, "title": "Response Variable" },
+          "gridLines": { "horizontal": true, "vertical": true },
+          "description": "Scatterplot E showing all points on a horizontal line, indicating no relationship and zero variance in the response variable."
+        }
+      }
+    ],
+    "description": "Five scatterplots showing different variance patterns to assess the equal variance condition for regression inference"
+  },
+    "choices": [
+      { "key": "A", "value": "Scatterplot A" },
+      { "key": "B", "value": "Scatterplot B" },
+      { "key": "C", "value": "Scatterplot C" },
+      { "key": "D", "value": "Scatterplot D" },
+      { "key": "E", "value": "Scatterplot E" }
+    ],
+    "answerKey": "C",
+    "reasoning": "The condition of equal variance appears to not be met in scatterplot C. As the value of the explanatory variable increases, the variability of the response variable increases dramatically, which violates the equal variance assumption needed for regression inference."
+  },
+  {
+    "id": "U9-PC-MCQ-B-Q06",
+    "type": "multiple-choice",
+    "prompt": "A researcher is interested in the relationship between time spent browsing items in an online store and the total amount purchased from the store. The researcher selects a random sample of visitors to the online store and records the time spent browsing and the total amount of their purchase. The researcher will conduct a \\(t\\)-test for the slope of a regression line, where time spent browsing is the explanatory variable and total amount of purchase is the response variable. Which of the following would be an indication that the normality condition has been met?",
+    "choices": [
+      { "key": "A", "value": "A sample size that is less than 30" },
+      { "key": "B", "value": "A histogram of the residuals that is centered at 0 and strongly right skewed" },
+      { "key": "C", "value": "A dotplot of the residuals that is centered at 0, unimodal, and symmetric" },
+      { "key": "D", "value": "A boxplot of the residuals that is centered at 100 and does not provide evidence of skewness or outliers" },
+      { "key": "E", "value": "A scatterplot where total amount of purchase is the explanatory variable and time spent browsing is the response variable" }
+    ],
+    "answerKey": "C",
+    "reasoning": "A dotplot of the residuals is an appropriate graphical display to check for normality. A unimodal, symmetric dotplot centered at 0 is free from strong skewness and outliers, so the normality condition can be assumed to be met."
+  },
+  {
+    "id": "U9-PC-MCQ-B-Q07",
+    "type": "multiple-choice",
+    "prompt": "A seafood-sales manager collected data on the maximum daily temperature, \\(T\\), and the daily revenue from salmon sales, \\(R\\), using sales receipts for 30 days selected at random. Using the data, the manager conducted a regression analysis and found the least-squares regression line to be \\(\\hat{R} = 126 + 2.37T\\). A hypothesis test was conducted to investigate whether there is a linear relationship between maximum daily temperature and the daily revenue from salmon sales. The standard error for the slope of the regression line is \\(SE_{b_1} = 0.65\\). Assuming the conditions for inference have been met, which of the following is closest to the value of the test statistic for the hypothesis test?",
+    "choices": [
+      { "key": "A", "value": "\\(t = 0.274\\)" },
+      { "key": "B", "value": "\\(t = 0.65\\)" },
+      { "key": "C", "value": "\\(t = 1.54\\)" },
+      { "key": "D", "value": "\\(t = 3.65\\)" },
+      { "key": "E", "value": "\\(t = 193.85\\)" }
+    ],
+    "answerKey": "D",
+    "reasoning": "The value of the test statistic is \\(t = \\frac{b_1}{SE_{b_1}} = \\frac{2.37}{0.65} \\approx 3.65\\)."
+  },
+  {
+    "id": "U9-PC-MCQ-B-Q08",
+    "type": "multiple-choice",
+    "prompt": "A company trains its employees with instructional videos and claims that the amount of time, in hours, spent training is linearly related to an increase in productivity. The company selected a random sample of five employees to test its claim. The data were used to create the computer output for a least-squares linear regression, shown in the table.",
+    "attachments": {
+      "table": [
+        ["Variable", "DF", "Estimate", "SE"],
+        ["Intercept", "1", "3.6", "1.1489"],
+        ["Hours", "1", "0.8", "0.3464"]
+      ]
+    },
+    "choices": [
+      { "key": "A", "value": "\\(t = 2.31\\) with 4 degrees of freedom" },
+      { "key": "B", "value": "\\(t = 2.31\\) with 3 degrees of freedom" },
+      { "key": "C", "value": "\\(t = 2.31\\) with 5 degrees of freedom" },
+      { "key": "D", "value": "\\(t = 3.13\\) with 1 degree of freedom" },
+      { "key": "E", "value": "\\(t = 3.13\\) with 3 degrees of freedom" }
+    ],
+    "answerKey": "B",
+    "reasoning": "The test statistic is \\(t = \\frac{b_1}{SE_{b_1}} = \\frac{0.8}{0.3464} \\approx 2.31\\). The number of degrees of freedom is \\(n - 2 = 5 - 2 = 3\\)."
+  },
+  {
+    "id": "U9-PC-MCQ-B-Q09",
+    "type": "multiple-choice",
+    "prompt": "A scientist is interested in whether there is a linear relationship between the amount of mercury in a lake and the surface area of the lake. The scientist collected data on 22 lakes of a similar type selected at random and used the data to test the claim that there is a linear relationship. The following hypotheses were used to test the claim.\\n\\n\\(H_0 : \\beta = 0\\)\\n\\(H_a : \\beta \\neq 0\\)\\n\\nThe test yielded a \\(t\\)-value of 2.086 with a corresponding \\(p\\)-value of 0.05. Which of the following is the correct interpretation of the \\(p\\)-value?",
+    "choices": [
+      { "key": "A", "value": "If there is a linear relationship between the amount of mercury in a lake and the surface area of the lake, the probability of observing a test statistic as extreme as 2.086 or more extreme is 0.05." },
+      { "key": "B", "value": "If there is a linear relationship between the amount of mercury in a lake and the surface area of the lake, the probability of observing a test statistic of 2.086 is 0.05." },
+      { "key": "C", "value": "If there is not a linear relationship between the amount of mercury in a lake and the surface area of the lake, the probability of observing a test statistic of 2.086 or greater is 0.05." },
+      { "key": "D", "value": "If there is not a linear relationship between the amount of mercury in a lake and the surface area of the lake, the probability of observing a test statistic of 2.086 is 0.05." },
+      { "key": "E", "value": "If there is not a linear relationship between the amount of mercury in a lake and the surface area of the lake, the probability of observing a test statistic as extreme as 2.086 or more extreme is 0.05." }
+    ],
+    "answerKey": "E",
+    "reasoning": "The hypothesis test is a two-sided test, because the scientist is interested in whether there is a linear relationship (either a positive or negative relationship). If the null hypothesis is true, the probability of observing a test statistic as extreme as or more extreme than 2.086 is \\(P(t \\leq -2.086) + P(t \\geq 2.086) = 2(0.025) = 0.05\\)."
+  },
+  {
+    "id": "U9-PC-MCQ-B-Q10",
+    "type": "multiple-choice",
+    "prompt": "A mortgage is a type of loan that can be used to purchase a house. A large bank is interested in the relationship between a customers' years of experience in their current job and the mortgage amount for customers with a mortgage. They selected 100 customers with a mortgage at random and used the data to test the claim that there is a negative linear relationship between years of experience in the current job and mortgage amount. The following hypotheses were used to test the claim.\\n\\n\\(H_0 : \\beta_1 = 0\\)\\n\\(H_a : \\beta_1 < 0\\)\\n\\nThe test yielded a \\(t\\)-value of \\(-3.865\\) with a corresponding \\(p\\)-value of 0.0001. Which of the following is the correct interpretation of the \\(p\\)-value?",
+    "choices": [
+      { "key": "A", "value": "If the alternative hypothesis is true, the probability of observing a test statistic of \\(-3.865\\) or smaller is 0.0001." },
+      { "key": "B", "value": "If the alternative hypothesis is true, the probability of observing a test statistic of \\(-3.865\\) or greater is 0.0001." },
+      { "key": "C", "value": "If the null hypothesis is true, the probability of observing a test statistic of \\(-3.865\\) or greater is 0.0001." },
+      { "key": "D", "value": "If the null hypothesis is true, the probability of observing a test statistic of \\(-3.865\\) is 0.0001." },
+      { "key": "E", "value": "If the null hypothesis is true, the probability of observing a test statistic of \\(-3.865\\) or smaller is 0.0001." }
+    ],
+    "answerKey": "E",
+    "reasoning": "The hypothesis test is a one-sided test that is left-tailed, because the bank is interested in testing the claim that there is a negative linear relationship (\\(H_a : \\beta_1 < 0\\)). If the null hypothesis is true, the probability of observing a test statistic as extreme as or more extreme than \\(-3.865\\) is \\(P(t \\leq -3.865) = 0.0001\\)."
+  },
+  {
+    "id": "U9-PC-MCQ-B-Q11",
+    "type": "multiple-choice",
+    "prompt": "A scientist studying local lakes claims that there is a linear relationship between a lake's level of mercury and the lake's depth. The scientist collected data to test the claim at a significance level of \\(\\alpha = 0.01\\). The following hypotheses were tested.\\n\\n\\(H_0 : \\beta_1 = 0\\)\\n\\(H_a : \\beta_1 \\neq 0\\)\\n\\nThe test yielded a \\(t\\)-value of 2.7 and a \\(p\\)-value of 0.012. Which of the following is a correct conclusion about the scientist's claim?",
+    "choices": [
+      { "key": "A", "value": "The null hypothesis is rejected since \\(0.012 > 0.01\\). There is sufficient evidence to suggest that there is a linear relationship between a lake's level of mercury and the lake's depth." },
+      { "key": "B", "value": "The null hypothesis is not rejected since \\(0.012 > 0.01\\). There is sufficient evidence to suggest that there is a linear relationship between a lake's level of mercury and the lake's depth." },
+      { "key": "C", "value": "The null hypothesis is rejected since \\(0.012 > 0.01\\). There is not sufficient evidence to suggest that there is a linear relationship between a lake's level of mercury and the lake's depth." },
+      { "key": "D", "value": "The null hypothesis is not rejected since \\(0.012 > 0.01\\). There is not sufficient evidence to suggest that there is a linear relationship between a lake's level of mercury and the lake's depth." },
+      { "key": "E", "value": "The null hypothesis is accepted since \\(0.012 > 0.01\\). There is sufficient evidence to suggest that there is not a linear relationship between a lake's level of mercury and the lake's depth." }
+    ],
+    "answerKey": "D",
+    "reasoning": "The \\(p\\)-value is correctly compared to the significance level and the conclusion is correctly stated in the context of the alternative hypothesis. Since \\(0.012 > 0.01\\), we fail to reject the null hypothesis and conclude there is not sufficient evidence to suggest a linear relationship."
+  },
+  {
+    "id": "U9-PC-MCQ-B-Q12",
+    "type": "multiple-choice",
+    "prompt": "A state claims that there is a linear relationship between the number of tollbooths open at the same time and the revenue generated by tolls. The state collected data and used the data to test the claim that there is a linear relationship at a significance level of \\(\\alpha = 0.05\\). The state tested the following hypotheses.\\n\\n\\(H_0 : \\beta_1 = 0\\)\\n\\(H_a : \\beta_1 \\neq 0\\)\\n\\nThe test yielded a \\(p\\)-value of 0.03. Which of the following is a correct conclusion about the state's claim?",
+    "choices": [
+      { "key": "A", "value": "The null hypothesis is rejected because \\(0.03 < 0.05\\). There is sufficient evidence to suggest that there is a linear relationship between revenue and the number of tollbooths." },
+      { "key": "B", "value": "The null hypothesis is not rejected because \\(0.03 < 0.05\\). There is sufficient evidence to suggest that there is a linear relationship between revenue and the number of tollbooths." },
+      { "key": "C", "value": "The null hypothesis is rejected because \\(0.03 < 0.05\\). There is not sufficient evidence to suggest that there is a linear relationship between revenue and the number of tollbooths." },
+      { "key": "D", "value": "The null hypothesis is not rejected because \\(0.03 < 0.05\\). There is not sufficient evidence to suggest that there is a linear relationship between revenue and the number of tollbooths." },
+      { "key": "E", "value": "The null hypothesis is accepted because \\(0.03 < 0.05\\). There is sufficient evidence to suggest that there is not a linear relationship between revenue and the number of tollbooths." }
+    ],
+    "answerKey": "A",
+    "reasoning": "The \\(p\\)-value is correctly compared to the significance level, and the conclusion is correctly stated in the context of the alternative hypothesis. Since \\(0.03 < 0.05\\), we reject the null hypothesis and conclude there is sufficient evidence to suggest a linear relationship."
+  }
+]
