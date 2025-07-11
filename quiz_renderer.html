@@ -2336,6 +2336,146 @@
                         }
                     });
                     chartInstances.push(chart);
+                } else if (chartData.chartType === 'chisquare') {
+                    // --- New chi-square distribution rendering ---
+                    const cfg = chartData.chartConfig || {};
+                    const xAxisConfig = cfg.xAxis || {};
+                    const yAxisConfig = cfg.yAxis || {};
+
+                    // Accept list of degrees of freedom or single df
+                    const dfList = Array.isArray(chartData.dfList) && chartData.dfList.length > 0 ?
+                                    chartData.dfList :
+                                    (typeof chartData.df === 'number' ? [chartData.df] : [1]);
+
+                    // Optional labels array; default to "df = k" notation
+                    const labels = Array.isArray(chartData.labels) && chartData.labels.length === dfList.length ?
+                                    chartData.labels : dfList.map(df => `df = ${df}`);
+
+                    const xMin = typeof xAxisConfig.min === 'number' ? xAxisConfig.min : 0;
+                    const xMax = typeof xAxisConfig.max === 'number' ? xAxisConfig.max : Math.max(...dfList) * 3.5;
+                    const numPoints = cfg.numPoints || 120;
+
+                    // Lightweight Lanczos approximation for Gamma function
+                    function gamma(z) {
+                        const p = [
+                            0.99999999999980993,
+                            676.5203681218851,
+                            -1259.1392167224028,
+                            771.32342877765313,
+                            -176.61502916214059,
+                            12.507343278686905,
+                            -0.13857109526572012,
+                            9.9843695780195716e-6,
+                            1.5056327351493116e-7
+                        ];
+                        const g = 7;
+                        if (z < 0.5) {
+                            return Math.PI / (Math.sin(Math.PI * z) * gamma(1 - z));
+                        }
+                        z -= 1;
+                        let x = p[0];
+                        for (let i = 1; i < p.length; i++) {
+                            x += p[i] / (z + i);
+                        }
+                        const t = z + g + 0.5;
+                        return Math.sqrt(2 * Math.PI) * Math.pow(t, z + 0.5) * Math.exp(-t) * x;
+                    }
+
+                    // Chi-square probability density function
+                    function chiSquarePdf(x, k) {
+                        if (x <= 0) return 0;
+                        const coeff = 1 / (Math.pow(2, k / 2) * gamma(k / 2));
+                        return coeff * Math.pow(x, k / 2 - 1) * Math.exp(-x / 2);
+                    }
+
+                    const colorPalette = generateChartColors(dfList.length);
+                    const datasets = dfList.map((df, idx) => {
+                        const pts = [];
+                        for (let i = 0; i <= numPoints; i++) {
+                            const xVal = xMin + (i / numPoints) * (xMax - xMin);
+                            pts.push({ x: xVal, y: chiSquarePdf(xVal, df) });
+                        }
+                        const color = colorPalette[idx % colorPalette.length] || '#36A2EB';
+                        return {
+                            label: labels[idx],
+                            type: 'line',
+                            data: pts,
+                            borderColor: color,
+                            borderWidth: 2,
+                            fill: false,
+                            pointRadius: 0,
+                            tension: 0.15
+                        };
+                    });
+
+                    // Grid line settings (reuse existing pattern)
+                    let showHorizontalGrid = true;
+                    let showVerticalGrid = false;
+                    if (cfg.gridLines !== undefined) {
+                        if (typeof cfg.gridLines === 'boolean') {
+                            showHorizontalGrid = cfg.gridLines;
+                        } else if (typeof cfg.gridLines === 'object') {
+                            showHorizontalGrid = cfg.gridLines.horizontal !== false;
+                            showVerticalGrid = cfg.gridLines.vertical === true;
+                        }
+                    }
+
+                    const chart = new Chart(ctx, {
+                        type: 'line',
+                        data: { datasets },
+                        options: {
+                            responsive: true,
+                            maintainAspectRatio: false,
+                            scales: {
+                                x: {
+                                    type: 'linear',
+                                    position: 'bottom',
+                                    min: xMin,
+                                    max: xMax,
+                                    title: {
+                                        display: true,
+                                        text: xAxisConfig.title || 'χ²',
+                                        color: getTextColor()
+                                    },
+                                    ticks: {
+                                        stepSize: xAxisConfig.tickInterval,
+                                        color: getTextColor()
+                                    },
+                                    grid: {
+                                        display: showVerticalGrid,
+                                        color: getGridColor()
+                                    }
+                                },
+                                y: {
+                                    beginAtZero: true,
+                                    title: {
+                                        display: !!yAxisConfig.title,
+                                        text: yAxisConfig.title || '',
+                                        color: getTextColor()
+                                    },
+                                    ticks: {
+                                        display: yAxisConfig.hideTicks !== true,
+                                        color: getTextColor()
+                                    },
+                                    grid: {
+                                        display: showHorizontalGrid,
+                                        color: getGridColor()
+                                    }
+                                }
+                            },
+                            plugins: {
+                                legend: {
+                                    display: dfList.length > 1,
+                                    labels: { color: getTextColor() }
+                                },
+                                datalabels: {
+                                    display: cfg.showPointLabels === true,
+                                    color: getTextColor()
+                                }
+                            }
+                        }
+                    });
+                    chartInstances.push(chart);
                 } else if (chartData.chartType === 'numberline') {
                     // --------------------------------------------------
                     // Custom number line (baseline with ticks & labels)

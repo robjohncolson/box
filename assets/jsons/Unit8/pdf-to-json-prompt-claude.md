@@ -710,4 +710,4 @@ Finally, nomenclature of filenames are subject_unit#_lesson#_type, for example "
 - Question images: `u{unit}_{lesson}_q{question}.png` (e.g., `u3_l3_q1.png`)
 - Solution images: `u{unit}_{lesson}_q{question}_solution.png` (e.g., `u3_l3_q1_solution.png`)
 - Multiple images for same question: `u{unit}_{lesson}_q{question}a.png`, `u{unit}_{lesson}_q{question}b.png`, etc.
-- Images are stored in `assets/pngs/unit{unit}/` directory
+- Images are stored in `assets/pngs/unit{unit}/
