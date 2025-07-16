@@ -239,6 +239,7 @@ export class QRSyncManager {
   private canvas?: HTMLCanvasElement;
   private context?: CanvasRenderingContext2D;
   private scanInterval?: number;
+  private reconstructedHashes: Set<string> = new Set();
 
   /**
    * Initialize video stream for QR scanning
@@ -320,6 +321,8 @@ export class QRSyncManager {
   addChunk(chunk: QRChunk): void {
     const { blockHash } = chunk;
     
+    if (this.reconstructedHashes.has(blockHash)) return;
+    
     if (!this.pendingChunks.has(blockHash)) {
       this.pendingChunks.set(blockHash, []);
     }
@@ -338,6 +341,7 @@ export class QRSyncManager {
         const reconstructedData = mergeChunks(chunks);
         this.reconstructedBlocks.push(reconstructedData);
         this.pendingChunks.delete(blockHash);
+        this.reconstructedHashes.add(blockHash);
       } catch (error) {
         console.error('Failed to reconstruct block:', error);
       }
@@ -383,6 +387,7 @@ export class QRSyncManager {
     this.stopScanning();
     this.pendingChunks.clear();
     this.reconstructedBlocks = [];
+    this.reconstructedHashes.clear();
   }
 }
 

@@ -1,23 +1,8 @@
 import { beforeAll, describe, expect, it, vi } from 'vitest';
 import { generateKeyPair } from '../src/crypto/secp256k1.js';
 import { keyPairFromMnemonic } from '../src/crypto/keys.js';
-import { 
-  CompletionTransaction, 
-  TransactionBatch,
-  MCQCompletionData,
-  FRQCompletionData,
-  createMCQCompletionTransaction,
-  createFRQCompletionTransaction,
-  createTransactionBatch,
-  validateCompletionTransaction,
-  validateTransactionBatch,
-  validateMCQTransaction,
-  validateFRQTransaction,
-  isMCQTransaction,
-  isFRQTransaction,
-  hashMCQOption,
-  TransactionStore
-} from '../src/tx.js';
+import type { CompletionTransaction, TransactionBatch } from '../src/types/index';
+import { MCQCompletionData, FRQCompletionData, createMCQCompletionTransaction, createFRQCompletionTransaction, createTransactionBatch, validateCompletionTransaction, validateTransactionBatch, validateMCQTransaction, validateFRQTransaction, isMCQTransaction, isFRQTransaction, hashMCQOption, TransactionStore } from '../src/transaction/index';
 import type { KeyPair } from '../src/types/index.js';
 
 describe('Completion Transactions', () => {
@@ -329,7 +314,7 @@ describe('Completion Transactions', () => {
       const batch = createTransactionBatch(transactions, keyPair1.privateKey);
       
       expect(batch.transactions).toHaveLength(4);
-      expect(batch.batchId).toHaveLength(32);
+      expect(batch.batchId).toHaveLength(64);
       expect(batch.batchSignature).toHaveLength(128);
       expect(batch.userPubKey).toBeDefined();
       expect(batch.timestamp).toBeGreaterThan(0);

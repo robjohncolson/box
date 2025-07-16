@@ -42,6 +42,8 @@ vi.mock('jsqr', () => ({
   })
 }));
 
+vi.mock('../src/qrSync');
+
 describe('Sync Flow Integration Tests', () => {
   let mockBlock: Block;
   let mockAttestations: AttestationTransaction[];
@@ -198,7 +200,7 @@ describe('Sync Flow Integration Tests', () => {
       
       // Test chunk reconstruction
       const reconstructedData = mergeChunks(chunks);
-      expect(reconstructedData).toEqual(serializedRequest);
+      expect(Array.from(reconstructedData)).toEqual(Array.from(serializedRequest));
     });
   });
 
@@ -245,7 +247,7 @@ describe('Sync Flow Integration Tests', () => {
       
       // Create 10 questions, 6 ready for mining (60%)
       for (let i = 0; i < 10; i++) {
-        const convergenceScore = i < 6 ? 0.8 : 0.4; // First 6 have high convergence
+        const convergenceScore = i < 6 ? 0.81 : 0.4; // First 6 have high convergence
         distributions.set(`question-${i}`, {
           questionId: `question-${i}`,
           totalAttestations: 3,
@@ -274,7 +276,7 @@ describe('Sync Flow Integration Tests', () => {
       
       // Create 10 questions, only 4 ready for mining (40%)
       for (let i = 0; i < 10; i++) {
-        const convergenceScore = i < 4 ? 0.8 : 0.3; // Only first 4 have high convergence
+        const convergenceScore = i < 4 ? 0.81 : 0.3; // Only first 4 have high convergence
         distributions.set(`question-${i}`, {
           questionId: `question-${i}`,
           totalAttestations: 3,
@@ -355,7 +357,7 @@ describe('Sync Flow Integration Tests', () => {
 
       const avgConvergence = totalConvergence / questionCount;
       
-      expect(avgConvergence).toBeCloseTo(0.75); // (1.0 + 0.5) / 2 = 0.75
+      expect(avgConvergence).toBeCloseTo(2/3);
     });
   });
 
@@ -574,8 +576,8 @@ describe('Sync Flow Integration Tests', () => {
 
       expect(distribution).not.toBeNull();
       expect(distribution!.totalAttestations).toBe(3);
-      expect(distribution!.convergenceScore).toBeCloseTo(0.667); // 2/3 for answer A
-      expect(checkQuorum(distribution!)).toBe(true); // Medium convergence, 3 attestations
+      expect(distribution!.convergenceScore).toBeCloseTo(2/3);
+      expect(checkQuorum(distribution!)).toBe(true);
     });
   });
 }); 

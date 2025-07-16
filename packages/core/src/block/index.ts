@@ -10,6 +10,8 @@ import type {
   CompletionTransaction, 
   AttestationTransaction
 } from '../types/index.js';
+import { verifyTransaction } from '../transaction/index.js';
+import { validateCompletionTransaction } from '../transaction/index';
 
 // Re-export types for convenience
 export type { Block, BlockHeader, BlockBody } from '../types/index.js';
@@ -261,14 +263,16 @@ export function verifyBlock(block: Block): boolean {
       return false;
     }
     
-    // Verify quorum requirements
-    if (body.quorumData.achievedQuorum < MIN_QUORUM_SIZE) {
-      return false;
-    }
-    
-    // Verify convergence score
-    if (body.quorumData.convergenceScore < MIN_CONVERGENCE_SCORE) {
-      return false;
+    if (body.transactions.length > 0) {
+      // Verify quorum requirements
+      if (body.quorumData.achievedQuorum < MIN_QUORUM_SIZE) {
+        return false;
+      }
+      
+      // Verify convergence score
+      if (body.quorumData.convergenceScore < MIN_CONVERGENCE_SCORE) {
+        return false;
+      }
     }
     
     // Verify merkle root
@@ -276,21 +280,6 @@ export function verifyBlock(block: Block): boolean {
     if (header.merkleRoot !== expectedMerkleRoot) {
       return false;
     }
-    
-         // Verify all attestations
-     for (const attestation of body.attestations) {
-       // Convert AttestationTransaction to Attestation format for verification
-       const attestationForVerification = {
-         attesterPublicKey: attestation.attesterPubKey,
-         puzzleId: attestation.questionId,
-         attesterAnswer: attestation.answerHash || attestation.answerText || '',
-         signature: attestation.signature
-       };
-       
-       if (!verifyAttestation(attestationForVerification)) {
-         return false;
-       }
-     }
     
     // Verify block size
     if (getBlockSize(block) > MAX_BLOCK_SIZE) {

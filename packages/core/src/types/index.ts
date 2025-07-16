@@ -117,4 +117,13 @@ export interface CompletionTransaction {
   readonly answerText?: string;
   readonly signature: string;
   readonly timestamp: number;
+}
+
+// Add at the end
+export interface TransactionBatch {
+  transactions: readonly CompletionTransaction[];
+  batchId: string;
+  userPubKey: string;
+  batchSignature: string;
+  timestamp: number;
 } 

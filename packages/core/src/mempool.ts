@@ -1,4 +1,4 @@
-import { createTransactionBatch, type TransactionBatch } from './tx.js';
+import { createTransactionBatch, type TransactionBatch } from './transaction/index';
 import { keyPairFromMnemonic } from './crypto/keys.js';
 import type { CompletionTransaction } from './types/index.js';
 

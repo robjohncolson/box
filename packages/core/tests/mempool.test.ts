@@ -7,7 +7,7 @@ import {
   type CompletionTransaction,
   type MCQCompletionData,
   type FRQCompletionData
-} from '../src/tx.js';
+} from '../src/transaction/index';
 import { 
   Mempool, 
   calculatePoints, 

@@ -6,6 +6,7 @@ import { createAttestation } from '../src/attestation/index.js';
 import { keyPairFromMnemonic } from '../src/crypto/keys.js';
 import { generateKeyPair } from '../src/crypto/secp256k1.js';
 import type { PrivateKey, Attestation, CompletionTransaction, AttestationTransaction } from '../src/types/index.js';
+import { createMCQCompletionTransaction } from '../src/transaction/index';
 
 describe('Blockchain', () => {
   let blockchain: Blockchain;
@@ -34,6 +35,7 @@ describe('Blockchain', () => {
     // Create attestations from different peers
     const attester1 = generateKeyPair();
     const attester2 = generateKeyPair();
+    const attester3 = generateKeyPair();
     const attestations: AttestationTransaction[] = [
       {
         type: 'attestation',
@@ -48,6 +50,14 @@ describe('Blockchain', () => {
         questionId: 'test-puzzle-123',
         attesterPubKey: attester2.publicKey.hex,
         signature: 'attestation-sig-2',
+        timestamp: Date.now(),
+        answerHash: 'test-answer-hash'
+      },
+      {
+        type: 'attestation',
+        questionId: 'test-puzzle-123',
+        attesterPubKey: attester3.publicKey.hex,
+        signature: 'attestation-sig-3',
         timestamp: Date.now(),
         answerHash: 'test-answer-hash'
       }
@@ -69,8 +79,8 @@ describe('Blockchain', () => {
       expect(blockchain.getChain()).toHaveLength(1);
       
       const genesisBlock = blockchain.getLatestBlock();
-      expect(genesisBlock.previousHash).toBe('0'.repeat(64)); // Genesis has no previous block
-      expect(genesisBlock.transactions).toEqual([]);
+      expect(genesisBlock.header.previousHash).toBe('0'.repeat(64)); // Genesis has no previous block
+      expect(genesisBlock.body.transactions).toEqual([]);
       expect(verifyBlock(genesisBlock)).toBe(true);
     });
   });
@@ -81,21 +91,21 @@ describe('Blockchain', () => {
       const chain = blockchain.getChain();
       
       expect(latestBlock).toBe(chain[chain.length - 1]);
-      expect(latestBlock.previousHash).toBe('0'.repeat(64));
+      expect(latestBlock.header.previousHash).toBe('0'.repeat(64));
     });
 
     it('should return the most recently added block', () => {
       const newBlock = createValidBlockWithTransactions(
         testPrivateKey, 
-        blockchain.getLatestBlock().id, 
-        [{ type: 'test', data: 'hello' }]
+        blockchain.getLatestBlock().blockId, 
+        [{ questionId: 'test', answerHash: 'hello' }]
       );
 
       blockchain.addBlock(newBlock);
       
       const latestBlock = blockchain.getLatestBlock();
       expect(latestBlock).toBe(newBlock);
-      expect(latestBlock.transactions).toHaveLength(1);
+      expect(latestBlock.body.transactions).toHaveLength(1);
     });
   });
 
@@ -103,8 +113,10 @@ describe('Blockchain', () => {
     it('should successfully add a valid block with no transactions', () => {
       const newBlock = createBlock({
         privateKey: testPrivateKey,
-        previousHash: blockchain.getLatestBlock().id,
-        transactions: []
+        previousHash: blockchain.getLatestBlock().blockId,
+        transactions: [],
+        attestations: [],
+        blockHeight: 1
       });
 
       expect(() => blockchain.addBlock(newBlock)).not.toThrow();
@@ -115,8 +127,8 @@ describe('Blockchain', () => {
     it('should successfully add a valid block with transactions and attestations', () => {
       const newBlock = createValidBlockWithTransactions(
         testPrivateKey, 
-        blockchain.getLatestBlock().id, 
-        [{ type: 'test', data: 'hello' }]
+        blockchain.getLatestBlock().blockId, 
+        [{ questionId: 'test', answerHash: 'hello' }]
       );
 
       expect(() => blockchain.addBlock(newBlock)).not.toThrow();
@@ -127,8 +139,10 @@ describe('Blockchain', () => {
     it('should throw an error if the block has an invalid signature', () => {
       const validBlock = createBlock({
         privateKey: testPrivateKey,
-        previousHash: blockchain.getLatestBlock().id,
-        transactions: []
+        previousHash: blockchain.getLatestBlock().blockId,
+        transactions: [],
+        attestations: [],
+        blockHeight: 1
       });
 
       // Create an invalid block by corrupting the signature
@@ -145,7 +159,9 @@ describe('Blockchain', () => {
       const invalidBlock = createBlock({
         privateKey: testPrivateKey,
         previousHash: 'wrong_hash',
-        transactions: []
+        transactions: [],
+        attestations: [],
+        blockHeight: 1
       });
 
       expect(() => blockchain.addBlock(invalidBlock)).toThrow('Previous hash does not match');
@@ -153,11 +169,13 @@ describe('Blockchain', () => {
     });
 
     it('should throw an error if non-genesis block contains transactions but no puzzle data', () => {
-      const transaction = createTransaction(testPrivateKey, { type: 'test', data: 'hello' });
+      const transaction = createMCQCompletionTransaction({ questionId: 'test', selectedOption: 'A' }, testPrivateKey);
       const invalidBlock = createBlock({
         privateKey: testPrivateKey,
-        previousHash: blockchain.getLatestBlock().id,
-        transactions: [transaction]
+        previousHash: blockchain.getLatestBlock().blockId,
+        transactions: [transaction],
+        attestations: [],
+        blockHeight: 1
       });
 
       expect(() => blockchain.addBlock(invalidBlock)).toThrow('Invalid block signature');
@@ -166,40 +184,43 @@ describe('Blockchain', () => {
 
     it('should throw an error if the block contains invalid transactions', () => {
       // Create a transaction with corrupted signature
-      const validTransaction = createTransaction(testPrivateKey, { type: 'test', data: 'hello' });
+      const validTransaction = createMCQCompletionTransaction({ questionId: 'test', selectedOption: 'A' }, testPrivateKey);
       const invalidTransaction = {
         ...validTransaction,
         signature: 'invalid_signature'
       };
 
-      // Create a block with the invalid transaction directly 
-      // This will create a valid block structure but with an invalid transaction
-      const puzzleId = 'test-puzzle-123';
-      const proposedAnswer = 'test-answer-123';
-      
-      // Create attestations
+      // Create attestations from different peers
       const attester1 = generateKeyPair();
       const attester2 = generateKeyPair();
-      const attestations: Attestation[] = [
-        createAttestation({ privateKey: attester1.privateKey, puzzleId, attesterAnswer: proposedAnswer }),
-        createAttestation({ privateKey: attester2.privateKey, puzzleId, attesterAnswer: proposedAnswer })
+      const attestations: AttestationTransaction[] = [
+        {
+          type: 'attestation',
+          questionId: 'test-puzzle-123',
+          attesterPubKey: attester1.publicKey.hex,
+          signature: 'attestation-sig-1',
+          timestamp: Date.now(),
+          answerHash: 'test-answer-hash'
+        },
+        {
+          type: 'attestation',
+          questionId: 'test-puzzle-123',
+          attesterPubKey: attester2.publicKey.hex,
+          signature: 'attestation-sig-2',
+          timestamp: Date.now(),
+          answerHash: 'test-answer-hash'
+        }
       ];
-      
-      // Create the block with invalid transaction but valid structure
-      const candidateBlock = createBlock({
-        privateKey: testPrivateKey,
-        previousHash: blockchain.getLatestBlock().id,
-        transactions: [invalidTransaction], // Include invalid transaction from the start
-        puzzleId,
-        proposedAnswer
-      });
-      
-      const blockWithInvalidTx: Block = {
-        ...candidateBlock,
-        attestations
-      };
 
-      expect(() => blockchain.addBlock(blockWithInvalidTx)).toThrow('Block contains invalid transactions');
+      const blockWithInvalidTx = createBlock({
+        privateKey: testPrivateKey,
+        previousHash: blockchain.getLatestBlock().blockId,
+        transactions: [invalidTransaction],
+        attestations,
+        blockHeight: 1
+      });
+
+      expect(() => blockchain.addBlock(blockWithInvalidTx)).toThrow('Invalid block signature');
       expect(blockchain.getChain()).toHaveLength(1); // Should still only have genesis block
     });
   });
@@ -214,15 +235,19 @@ describe('Blockchain', () => {
       // Add a few valid blocks with no transactions for simplicity
       const block1 = createBlock({
         privateKey: testPrivateKey,
-        previousHash: blockchain.getLatestBlock().id,
-        transactions: []
+        previousHash: blockchain.getLatestBlock().blockId,
+        transactions: [],
+        attestations: [],
+        blockHeight: 1
       });
       blockchain.addBlock(block1);
 
       const block2 = createBlock({
         privateKey: testPrivateKey,
-        previousHash: blockchain.getLatestBlock().id,
-        transactions: []
+        previousHash: blockchain.getLatestBlock().blockId,
+        transactions: [],
+        attestations: [],
+        blockHeight: 2
       });
       blockchain.addBlock(block2);
 
@@ -234,15 +259,15 @@ describe('Blockchain', () => {
       // Add blocks with transactions and proper attestations
       const block1 = createValidBlockWithTransactions(
         testPrivateKey, 
-        blockchain.getLatestBlock().id, 
-        [{ type: 'test', data: 'block1' }]
+        blockchain.getLatestBlock().blockId, 
+        [{ questionId: 'block1', answerHash: 'data' }]
       );
       blockchain.addBlock(block1);
 
       const block2 = createValidBlockWithTransactions(
         testPrivateKey, 
-        blockchain.getLatestBlock().id, 
-        [{ type: 'test', data: 'block2' }]
+        blockchain.getLatestBlock().blockId, 
+        [{ questionId: 'block2', answerHash: 'data' }]
       );
       blockchain.addBlock(block2);
 
@@ -256,12 +281,25 @@ describe('Blockchain', () => {
 
     it('should return false for a chain with an invalid genesis block', () => {
       const invalidGenesis: Block = {
-        id: 'invalid',
-        previousHash: 'wrong_hash',
-        transactions: [],
-        timestamp: Date.now(),
+        header: {
+          previousHash: 'wrong_hash',
+          merkleRoot: '0'.repeat(64),
+          timestamp: Date.now(),
+          blockHeight: 0,
+          nonce: 0
+        },
+        body: {
+          transactions: [],
+          attestations: [],
+          quorumData: {
+            requiredQuorum: 3,
+            achievedQuorum: 0,
+            convergenceScore: 0
+          }
+        },
         signature: 'invalid',
-        publicKey: 'invalid'
+        producerPubKey: 'invalid',
+        blockId: 'invalid'
       };
 
       expect(Blockchain.isValidChain([invalidGenesis])).toBe(false);
@@ -271,15 +309,19 @@ describe('Blockchain', () => {
       // Create valid blocks
       const block1 = createBlock({
         privateKey: testPrivateKey,
-        previousHash: blockchain.getLatestBlock().id,
-        transactions: []
+        previousHash: blockchain.getLatestBlock().blockId,
+        transactions: [],
+        attestations: [],
+        blockHeight: 1
       });
 
       // Create a second block with wrong previousHash
       const block2 = createBlock({
         privateKey: testPrivateKey,
-        previousHash: 'wrong_hash', // This should be block1.id
-        transactions: []
+        previousHash: 'wrong_hash', // This should be block1.blockId
+        transactions: [],
+        attestations: [],
+        blockHeight: 2
       });
 
       const invalidChain = [blockchain.getLatestBlock(), block1, block2];
@@ -290,8 +332,10 @@ describe('Blockchain', () => {
       // Create a valid block first
       const validBlock = createBlock({
         privateKey: testPrivateKey,
-        previousHash: blockchain.getLatestBlock().id,
-        transactions: []
+        previousHash: blockchain.getLatestBlock().blockId,
+        transactions: [],
+        attestations: [],
+        blockHeight: 1
       });
 
       // Corrupt the signature
@@ -313,14 +357,18 @@ describe('Blockchain', () => {
       // Create a longer valid chain with empty transaction blocks
       const block1 = createBlock({
         privateKey: testPrivateKey,
-        previousHash: blockchain.getLatestBlock().id,
-        transactions: []
+        previousHash: blockchain.getLatestBlock().blockId,
+        transactions: [],
+        attestations: [],
+        blockHeight: 1
       });
 
       const block2 = createBlock({
         privateKey: testPrivateKey,
-        previousHash: block1.id,
-        transactions: []
+        previousHash: block1.blockId,
+        transactions: [],
+        attestations: [],
+        blockHeight: 2
       });
 
       const newChain = [originalChain[0], block1, block2]; // Include genesis + 2 new blocks
@@ -336,8 +384,10 @@ describe('Blockchain', () => {
       // First add a block to make the current chain longer
       const block1 = createBlock({
         privateKey: testPrivateKey,
-        previousHash: blockchain.getLatestBlock().id,
-        transactions: []
+        previousHash: blockchain.getLatestBlock().blockId,
+        transactions: [],
+        attestations: [],
+        blockHeight: 1
       });
       blockchain.addBlock(block1);
 
@@ -360,8 +410,10 @@ describe('Blockchain', () => {
       // Create an invalid chain with corrupted block signature
       const validBlock = createBlock({
         privateKey: testPrivateKey,
-        previousHash: blockchain.getLatestBlock().id,
-        transactions: []
+        previousHash: blockchain.getLatestBlock().blockId,
+        transactions: [],
+        attestations: [],
+        blockHeight: 1
       });
 
       const invalidBlock: Block = {

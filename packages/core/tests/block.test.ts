@@ -5,6 +5,7 @@ import { Block, BlockHeader, BlockBody, createBlock, mineBlock, verifyBlock, cal
 import { createAttestation } from '../src/attestation/index.js';
 import { Mempool } from '../src/mempool.js';
 import type { PrivateKey, CompletionTransaction, AttestationTransaction } from '../src/types/index.js';
+import { createMCQCompletionTransaction, createFRQCompletionTransaction } from '../src/transaction/index';
 
 describe('Block Structure for Emergent PoK', () => {
   let privateKey: PrivateKey;
@@ -19,22 +20,8 @@ describe('Block Structure for Emergent PoK', () => {
     
     // Create test completion transactions using valid questionIds from mock lessons data
     transactions = [
-      {
-        type: 'completion',
-        questionId: '1-2_q1',  // Valid questionId with 0.5 contribution = 50 points
-        userPubKey: keyPair.publicKey.hex,
-        answerHash: 'hash1',
-        signature: 'sig1',
-        timestamp: Date.now()
-      },
-      {
-        type: 'completion',
-        questionId: '1-3_q1',  // Valid questionId with 0.5 contribution = 50 points
-        userPubKey: keyPair.publicKey.hex,
-        answerText: 'answer2',
-        signature: 'sig2',
-        timestamp: Date.now()
-      }
+      createMCQCompletionTransaction({ questionId: '1-2_q1', selectedOption: 'A' }, privateKey),
+      createFRQCompletionTransaction({ questionId: '1-3_q1', responseText: 'answer2' }, privateKey)
     ];
     
     // Create test attestations with valid signatures
