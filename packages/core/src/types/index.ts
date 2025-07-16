@@ -68,8 +68,35 @@ export interface QuestionDistribution {
   readonly lastUpdated: number;
 }
 
-// Block types  
+// Block types for emergent PoK
+export interface BlockHeader {
+  readonly previousHash: string;
+  readonly merkleRoot: string;
+  readonly timestamp: number;
+  readonly blockHeight: number;
+  readonly nonce: number;
+}
+
+export interface BlockBody {
+  readonly transactions: readonly CompletionTransaction[];
+  readonly attestations: readonly AttestationTransaction[];
+  readonly quorumData: {
+    readonly requiredQuorum: number;
+    readonly achievedQuorum: number;
+    readonly convergenceScore: number;
+  };
+}
+
 export interface Block {
+  readonly header: BlockHeader;
+  readonly body: BlockBody;
+  readonly signature: string;
+  readonly producerPubKey: string;
+  readonly blockId: string;
+}
+
+// Legacy block interface for backward compatibility
+export interface LegacyBlock {
   readonly id: string;
   readonly previousHash: string;
   readonly transactions: readonly Transaction[];
@@ -79,4 +106,15 @@ export interface Block {
   readonly puzzleId?: string;
   readonly proposedAnswer?: string;
   readonly attestations?: Attestation[];
+}
+
+// Completion transaction for mempool
+export interface CompletionTransaction {
+  readonly type: 'completion';
+  readonly questionId: string;
+  readonly userPubKey: string;
+  readonly answerHash?: string;
+  readonly answerText?: string;
+  readonly signature: string;
+  readonly timestamp: number;
 } 

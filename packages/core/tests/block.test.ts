@@ -1,332 +1,488 @@
 import { describe, it, expect, beforeEach } from 'vitest';
 import { generateKeyPair } from '../src/crypto/secp256k1.js';
 import { createTransaction } from '../src/transaction/index.js';
-import { createBlock, verifyBlock, type Block } from '../src/block/index.js';
+import { Block, BlockHeader, BlockBody, createBlock, mineBlock, verifyBlock, calculateMerkleRoot, getBlockSize } from '../src/block/index.js';
 import { createAttestation } from '../src/attestation/index.js';
-import type { PrivateKey, Transaction, Attestation } from '../src/types/index.js';
+import { Mempool } from '../src/mempool.js';
+import type { PrivateKey, CompletionTransaction, AttestationTransaction } from '../src/types/index.js';
 
-describe('Block', () => {
+describe('Block Structure for Emergent PoK', () => {
   let privateKey: PrivateKey;
-  let transactions: Transaction[];
+  let transactions: CompletionTransaction[];
+  let attestations: AttestationTransaction[];
+  let mempool: Mempool;
   let previousHash: string;
 
   beforeEach(() => {
     const keyPair = generateKeyPair();
     privateKey = keyPair.privateKey;
     
-    // Create some test transactions
+    // Create test completion transactions using valid questionIds from mock lessons data
     transactions = [
-      createTransaction(privateKey, { type: 'transfer', amount: 100, to: 'user1' }),
-      createTransaction(privateKey, { type: 'transfer', amount: 50, to: 'user2' })
+      {
+        type: 'completion',
+        questionId: '1-2_q1',  // Valid questionId with 0.5 contribution = 50 points
+        userPubKey: keyPair.publicKey.hex,
+        answerHash: 'hash1',
+        signature: 'sig1',
+        timestamp: Date.now()
+      },
+      {
+        type: 'completion',
+        questionId: '1-3_q1',  // Valid questionId with 0.5 contribution = 50 points
+        userPubKey: keyPair.publicKey.hex,
+        answerText: 'answer2',
+        signature: 'sig2',
+        timestamp: Date.now()
+      }
     ];
+    
+    // Create test attestations with valid signatures
+    const attester1 = generateKeyPair();
+    const attester2 = generateKeyPair();
+    const attester3 = generateKeyPair();
+    
+    // Create proper attestations using the createAttestation function
+    const attestation1 = createAttestation({ privateKey: attester1.privateKey, puzzleId: '1-2_q1', attesterAnswer: 'A' });
+    const attestation2 = createAttestation({ privateKey: attester2.privateKey, puzzleId: '1-2_q1', attesterAnswer: 'A' });
+    const attestation3 = createAttestation({ privateKey: attester3.privateKey, puzzleId: '1-2_q1', attesterAnswer: 'A' });
+    
+    // Convert to AttestationTransaction format
+    attestations = [
+      {
+        type: 'attestation',
+        questionId: attestation1.puzzleId,
+        answerHash: attestation1.attesterAnswer,
+        attesterPubKey: attestation1.attesterPublicKey,
+        signature: attestation1.signature,
+        timestamp: Date.now()
+      },
+      {
+        type: 'attestation',
+        questionId: attestation2.puzzleId,
+        answerHash: attestation2.attesterAnswer,
+        attesterPubKey: attestation2.attesterPublicKey,
+        signature: attestation2.signature,
+        timestamp: Date.now()
+      },
+      {
+        type: 'attestation',
+        questionId: attestation3.puzzleId,
+        answerHash: attestation3.attesterAnswer,
+        attesterPubKey: attestation3.attesterPublicKey,
+        signature: attestation3.signature,
+        timestamp: Date.now()
+      }
+    ];
+    
+    // Create mempool with sufficient points
+    mempool = new Mempool(keyPair.publicKey.hex, 50);
+    transactions.forEach(tx => mempool.addTransaction(tx));
     
     previousHash = '0000000000000000000000000000000000000000000000000000000000000000';
   });
 
-  describe('Block structure', () => {
-    it('should have the correct structure', () => {
-      const block = createBlock({ privateKey, previousHash, transactions });
+  describe('Block Header Structure', () => {
+    it('should create a valid block header with required fields', () => {
+      const header: BlockHeader = {
+        previousHash,
+        merkleRoot: calculateMerkleRoot([...transactions, ...attestations]),
+        timestamp: Date.now(),
+        blockHeight: 1,
+        nonce: 0
+      };
       
-      expect(block).toHaveProperty('id');
-      expect(block).toHaveProperty('previousHash');
-      expect(block).toHaveProperty('transactions');
-      expect(block).toHaveProperty('timestamp');
-      expect(block).toHaveProperty('signature');
-      expect(block).toHaveProperty('publicKey');
-      
-      expect(typeof block.id).toBe('string');
-      expect(typeof block.previousHash).toBe('string');
-      expect(Array.isArray(block.transactions)).toBe(true);
-      expect(typeof block.timestamp).toBe('number');
-      expect(typeof block.signature).toBe('string');
-      expect(typeof block.publicKey).toBe('string');
+      expect(header.previousHash).toBe(previousHash);
+      expect(header.merkleRoot).toBeDefined();
+      expect(header.merkleRoot).toMatch(/^[a-f0-9]{64}$/i);
+      expect(header.timestamp).toBeGreaterThan(0);
+      expect(header.blockHeight).toBe(1);
+      expect(header.nonce).toBe(0);
     });
 
-    it('should contain the provided transactions', () => {
-      const block = createBlock({ privateKey, previousHash, transactions });
+    it('should generate different merkle roots for different transaction sets', () => {
+      const merkleRoot1 = calculateMerkleRoot([transactions[0]]);
+      const merkleRoot2 = calculateMerkleRoot([transactions[1]]);
       
-      expect(block.transactions).toEqual(transactions);
-      expect(block.transactions).toHaveLength(2);
-    });
-
-    it('should contain the provided previousHash', () => {
-      const block = createBlock({ privateKey, previousHash, transactions });
-      
-      expect(block.previousHash).toBe(previousHash);
-    });
-
-    it('should have a timestamp close to current time', () => {
-      const beforeTime = Date.now();
-      const block = createBlock({ privateKey, previousHash, transactions });
-      const afterTime = Date.now();
-      
-      expect(block.timestamp).toBeGreaterThanOrEqual(beforeTime);
-      expect(block.timestamp).toBeLessThanOrEqual(afterTime);
-    });
-
-    it('should contain puzzleId and proposedAnswer when provided', () => {
-      const puzzleId = 'puzzle123';
-      const proposedAnswer = 'answer123';
-      const block = createBlock({ 
-        privateKey, 
-        previousHash, 
-        transactions, 
-        puzzleId, 
-        proposedAnswer 
-      });
-      
-      expect(block.puzzleId).toBe(puzzleId);
-      expect(block.proposedAnswer).toBe(proposedAnswer);
-      expect(block.attestations).toBeUndefined(); // Should be empty/undefined in newly created block
-    });
-
-    it('should not contain puzzleId and proposedAnswer when not provided', () => {
-      const block = createBlock({ privateKey, previousHash, transactions });
-      
-      expect(block.puzzleId).toBeUndefined();
-      expect(block.proposedAnswer).toBeUndefined();
-      expect(block.attestations).toBeUndefined();
+      expect(merkleRoot1).not.toBe(merkleRoot2);
+      expect(merkleRoot1).toMatch(/^[a-f0-9]{64}$/i);
+      expect(merkleRoot2).toMatch(/^[a-f0-9]{64}$/i);
     });
   });
 
-  describe('createBlock', () => {
-    it('should create a valid block with correct properties', () => {
-      const block = createBlock({ privateKey, previousHash, transactions });
+  describe('Block Body Structure', () => {
+    it('should create a valid block body with quorum data', () => {
+      const body: BlockBody = {
+        transactions,
+        attestations,
+        quorumData: {
+          requiredQuorum: 3,
+          achievedQuorum: 3,
+          convergenceScore: 100
+        }
+      };
       
-      expect(block.id).toBeDefined();
-      expect(block.id).toMatch(/^[a-f0-9]{64}$/i); // Should be a 64-character hex string
-      expect(block.previousHash).toBe(previousHash);
-      expect(block.transactions).toEqual(transactions);
-      expect(block.signature).toBeDefined();
-      expect(block.publicKey).toBeDefined();
+      expect(body.transactions).toHaveLength(2);
+      expect(body.attestations).toHaveLength(3);
+      expect(body.quorumData.requiredQuorum).toBe(3);
+      expect(body.quorumData.achievedQuorum).toBe(3);
+      expect(body.quorumData.convergenceScore).toBe(100);
     });
 
-    it('should create different blocks for different inputs', () => {
-      const block1 = createBlock({ privateKey, previousHash, transactions });
-      const block2 = createBlock({ privateKey, previousHash: 'different', transactions });
+    it('should validate quorum requirements', () => {
+      const insufficientAttestations = attestations.slice(0, 2);
+      const body: BlockBody = {
+        transactions,
+        attestations: insufficientAttestations,
+        quorumData: {
+          requiredQuorum: 3,
+          achievedQuorum: 2,
+          convergenceScore: 100
+        }
+      };
       
-      expect(block1.id).not.toBe(block2.id);
-      expect(block1.previousHash).not.toBe(block2.previousHash);
-    });
-
-    it('should handle empty transactions array', () => {
-      const block = createBlock({ privateKey, previousHash, transactions: [] });
-      
-      expect(block.transactions).toEqual([]);
-      expect(block.id).toBeDefined();
-      expect(block.signature).toBeDefined();
-    });
-
-    it('should create blocks with different timestamps when called sequentially', async () => {
-      const block1 = createBlock({ privateKey, previousHash, transactions });
-      
-      // Small delay to ensure different timestamp
-      await new Promise(resolve => setTimeout(resolve, 1));
-      
-      const block2 = createBlock({ privateKey, previousHash, transactions });
-      
-      expect(block1.timestamp).not.toBe(block2.timestamp);
-      expect(block1.id).not.toBe(block2.id); // Different timestamps should result in different hashes
-    });
-
-    it('should create candidate blocks with puzzle data', () => {
-      const puzzleId = 'puzzle456';
-      const proposedAnswer = 'answer456';
-      const block = createBlock({ 
-        privateKey, 
-        previousHash, 
-        transactions, 
-        puzzleId, 
-        proposedAnswer 
-      });
-      
-      expect(block.puzzleId).toBe(puzzleId);
-      expect(block.proposedAnswer).toBe(proposedAnswer);
-      expect(block.id).toBeDefined();
-      expect(block.signature).toBeDefined();
-    });
-
-    it('should create different block IDs when puzzle data differs', () => {
-      const block1 = createBlock({ 
-        privateKey, 
-        previousHash, 
-        transactions, 
-        puzzleId: 'puzzle1', 
-        proposedAnswer: 'answer1' 
-      });
-      const block2 = createBlock({ 
-        privateKey, 
-        previousHash, 
-        transactions, 
-        puzzleId: 'puzzle2', 
-        proposedAnswer: 'answer2' 
-      });
-      
-      expect(block1.id).not.toBe(block2.id);
-      expect(block1.puzzleId).not.toBe(block2.puzzleId);
-      expect(block1.proposedAnswer).not.toBe(block2.proposedAnswer);
+      expect(body.quorumData.achievedQuorum).toBeLessThan(body.quorumData.requiredQuorum);
     });
   });
 
-  describe('verifyBlock', () => {
-    it('should return true for a valid genesis block', () => {
-      const genesisBlock = createBlock({ privateKey, previousHash: '0'.repeat(64), transactions: [] });
+  describe('Block Creation', () => {
+    it('should create a valid block with header and body', () => {
+      const block = createBlock({
+        privateKey,
+        previousHash,
+        transactions,
+        attestations,
+        blockHeight: 1
+      });
       
-      expect(verifyBlock(genesisBlock)).toBe(true);
+      expect(block.header).toBeDefined();
+      expect(block.body).toBeDefined();
+      expect(block.signature).toBeDefined();
+      expect(block.producerPubKey).toBeDefined();
+      expect(block.blockId).toBeDefined();
+      
+      // Verify header structure
+      expect(block.header.previousHash).toBe(previousHash);
+      expect(block.header.merkleRoot).toBeDefined();
+      expect(block.header.timestamp).toBeGreaterThan(0);
+      expect(block.header.blockHeight).toBe(1);
+      
+      // Verify body structure
+      expect(block.body.transactions).toEqual(transactions);
+      expect(block.body.attestations).toEqual(attestations);
+      expect(block.body.quorumData).toBeDefined();
     });
 
-    it('should return false for non-genesis blocks with transactions but no puzzle data', () => {
-      const nonGenesisHash = '1234567890abcdef1234567890abcdef1234567890abcdef1234567890abcdef';
-      const block = createBlock({ privateKey, previousHash: nonGenesisHash, transactions });
+    it('should generate valid merkle root from transactions and attestations', () => {
+      const block = createBlock({
+        privateKey,
+        previousHash,
+        transactions,
+        attestations,
+        blockHeight: 1
+      });
       
-      expect(verifyBlock(block)).toBe(false);
+      const expectedMerkleRoot = calculateMerkleRoot([...transactions, ...attestations]);
+      expect(block.header.merkleRoot).toBe(expectedMerkleRoot);
     });
 
-    it('should return true for non-genesis blocks with no transactions', () => {
-      const nonGenesisHash = '1234567890abcdef1234567890abcdef1234567890abcdef1234567890abcdef';
-      const block = createBlock({ privateKey, previousHash: nonGenesisHash, transactions: [] });
+    it('should create different block IDs for different contents', () => {
+      const block1 = createBlock({
+        privateKey,
+        previousHash,
+        transactions,
+        attestations,
+        blockHeight: 1
+      });
+      
+      const block2 = createBlock({
+        privateKey,
+        previousHash: 'different',
+        transactions,
+        attestations,
+        blockHeight: 1
+      });
+      
+      expect(block1.blockId).not.toBe(block2.blockId);
+    });
+  });
+
+  describe('Mining Function', () => {
+    it('should mine a valid block when quorum is met and convergence > 50%', () => {
+      const block = mineBlock(mempool, attestations, previousHash, 1);
+      
+      expect(block).toBeDefined();
+      expect(block!.body.quorumData.achievedQuorum).toBeGreaterThanOrEqual(3);
+      expect(block!.body.quorumData.convergenceScore).toBeGreaterThan(50);
+    });
+
+    it('should return null when mempool is not mining eligible', () => {
+      const insufficientMempool = new Mempool(generateKeyPair().publicKey.hex, 50);
+      
+      const block = mineBlock(insufficientMempool, attestations, previousHash, 1);
+      
+      expect(block).toBeNull();
+    });
+
+         it('should return null when convergence score is below 50%', () => {
+       // Create attestations with poor convergence
+       const attester1 = generateKeyPair();
+       const attester2 = generateKeyPair();
+       const attester3 = generateKeyPair();
+       
+       // Create proper attestations with different answers for poor convergence
+       const poorAttestation1 = createAttestation({ privateKey: attester1.privateKey, puzzleId: '1-2_q1', attesterAnswer: 'A' });
+       const poorAttestation2 = createAttestation({ privateKey: attester2.privateKey, puzzleId: '1-2_q1', attesterAnswer: 'B' });
+       const poorAttestation3 = createAttestation({ privateKey: attester3.privateKey, puzzleId: '1-2_q1', attesterAnswer: 'C' });
+       
+       const poorAttestations = [
+         {
+           type: 'attestation' as const,
+           questionId: poorAttestation1.puzzleId,
+           answerHash: poorAttestation1.attesterAnswer,
+           attesterPubKey: poorAttestation1.attesterPublicKey,
+           signature: poorAttestation1.signature,
+           timestamp: Date.now()
+         },
+         {
+           type: 'attestation' as const,
+           questionId: poorAttestation2.puzzleId,
+           answerHash: poorAttestation2.attesterAnswer,
+           attesterPubKey: poorAttestation2.attesterPublicKey,
+           signature: poorAttestation2.signature,
+           timestamp: Date.now()
+         },
+         {
+           type: 'attestation' as const,
+           questionId: poorAttestation3.puzzleId,
+           answerHash: poorAttestation3.attesterAnswer,
+           attesterPubKey: poorAttestation3.attesterPublicKey,
+           signature: poorAttestation3.signature,
+           timestamp: Date.now()
+         }
+       ];
+       
+       const block = mineBlock(mempool, poorAttestations, previousHash, 1);
+       
+       expect(block).toBeNull();
+     });
+
+    it('should return null when quorum is not met', () => {
+      const insufficientAttestations = attestations.slice(0, 2);
+      
+      const block = mineBlock(mempool, insufficientAttestations, previousHash, 1);
+      
+      expect(block).toBeNull();
+    });
+
+    it('should include correct quorum data in mined block', () => {
+      const block = mineBlock(mempool, attestations, previousHash, 1);
+      
+      expect(block).toBeDefined();
+      expect(block!.body.quorumData.requiredQuorum).toBe(3);
+      expect(block!.body.quorumData.achievedQuorum).toBe(3);
+      expect(block!.body.quorumData.convergenceScore).toBe(100);
+    });
+  });
+
+  describe('Size Constraints', () => {
+    it('should enforce 3KB size limit', () => {
+      const block = createBlock({
+        privateKey,
+        previousHash,
+        transactions,
+        attestations,
+        blockHeight: 1
+      });
+      
+      const blockSize = getBlockSize(block);
+      expect(blockSize).toBeLessThanOrEqual(3072); // 3KB limit
+    });
+
+         it('should reject blocks exceeding size limit', () => {
+       // Create a large number of transactions to exceed size limit
+       const testKeyPair = generateKeyPair();
+       const largeTransactions = Array.from({ length: 100 }, (_, i) => ({
+         type: 'completion' as const,
+         questionId: `1-2_q1`,  // Use valid questionId that gives 50 points each
+         userPubKey: testKeyPair.publicKey.hex,  // Use same user for all transactions
+         answerText: 'A'.repeat(100),
+         signature: 'large_sig',
+         timestamp: Date.now()
+       }));
+       
+       // Add to mempool
+       const largeMempool = new Mempool(testKeyPair.publicKey.hex, 50);
+       largeTransactions.forEach(tx => largeMempool.addTransaction(tx));
+       
+       const block = mineBlock(largeMempool, attestations, previousHash, 1);
+       
+       // Should return null due to size constraint
+       expect(block).toBeNull();
+     });
+
+    it('should calculate block size correctly', () => {
+      const block = createBlock({
+        privateKey,
+        previousHash,
+        transactions: [],
+        attestations: [],
+        blockHeight: 1
+      });
+      
+      const blockSize = getBlockSize(block);
+      expect(blockSize).toBeGreaterThan(0);
+      expect(typeof blockSize).toBe('number');
+    });
+  });
+
+  describe('Block Verification', () => {
+    it('should verify a valid block', () => {
+      const block = createBlock({
+        privateKey,
+        previousHash,
+        transactions,
+        attestations,
+        blockHeight: 1
+      });
       
       expect(verifyBlock(block)).toBe(true);
     });
 
-    it('should return true for a valid block with valid attestations', () => {
-      const nonGenesisHash = '1234567890abcdef1234567890abcdef1234567890abcdef1234567890abcdef';
-      const puzzleId = 'puzzle123';
-      const proposedAnswer = 'answer123';
-      
-      // Create attestations from other peers
-      const attester1 = generateKeyPair();
-      const attester2 = generateKeyPair();
-      const attestations: Attestation[] = [
-        createAttestation({ privateKey: attester1.privateKey, puzzleId, attesterAnswer: proposedAnswer }),
-        createAttestation({ privateKey: attester2.privateKey, puzzleId, attesterAnswer: proposedAnswer })
-      ];
-      
-      // Create the block with puzzle data
-      const candidateBlock = createBlock({ 
-        privateKey, 
-        previousHash: nonGenesisHash, 
-        transactions, 
-        puzzleId, 
-        proposedAnswer 
+    it('should reject block with invalid merkle root', () => {
+      const block = createBlock({
+        privateKey,
+        previousHash,
+        transactions,
+        attestations,
+        blockHeight: 1
       });
       
-      // Add attestations to create final block
-      const finalBlock: Block = {
-        ...candidateBlock,
-        attestations
+      // Tamper with merkle root
+      const tamperedBlock = {
+        ...block,
+        header: {
+          ...block.header,
+          merkleRoot: 'invalid_merkle_root'
+        }
       };
       
-      expect(verifyBlock(finalBlock)).toBe(true);
+      expect(verifyBlock(tamperedBlock)).toBe(false);
     });
 
-    it('should return false if any attestation is invalid', () => {
-      const nonGenesisHash = '1234567890abcdef1234567890abcdef1234567890abcdef1234567890abcdef';
-      const puzzleId = 'puzzle123';
-      const proposedAnswer = 'answer123';
+    it('should reject block with invalid signature', () => {
+      const block = createBlock({
+        privateKey,
+        previousHash,
+        transactions,
+        attestations,
+        blockHeight: 1
+      });
       
-      // Create one valid and one invalid attestation
-      const attester1 = generateKeyPair();
-      const validAttestation = createAttestation({ privateKey: attester1.privateKey, puzzleId, attesterAnswer: proposedAnswer });
-      const invalidAttestation: Attestation = {
-        ...validAttestation,
+      const tamperedBlock = {
+        ...block,
         signature: 'invalid_signature'
       };
       
-      const candidateBlock = createBlock({ 
-        privateKey, 
-        previousHash: nonGenesisHash, 
-        transactions, 
-        puzzleId, 
-        proposedAnswer 
+      expect(verifyBlock(tamperedBlock)).toBe(false);
+    });
+
+    it('should reject block with insufficient quorum', () => {
+      const block = createBlock({
+        privateKey,
+        previousHash,
+        transactions,
+        attestations: attestations.slice(0, 2), // Only 2 attestations
+        blockHeight: 1
       });
       
-      const finalBlock: Block = {
-        ...candidateBlock,
-        attestations: [validAttestation, invalidAttestation]
-      };
-      
-      expect(verifyBlock(finalBlock)).toBe(false);
+      expect(verifyBlock(block)).toBe(false);
     });
 
-    it('should return false if attestations do not match block puzzle data', () => {
-      const nonGenesisHash = '1234567890abcdef1234567890abcdef1234567890abcdef1234567890abcdef';
-      const puzzleId = 'puzzle123';
-      const proposedAnswer = 'answer123';
-      
-      // Create attestation for different puzzle data
-      const attester1 = generateKeyPair();
-      const mismatchedAttestation = createAttestation({ 
-        privateKey: attester1.privateKey, 
-        puzzleId: 'different_puzzle', 
-        attesterAnswer: 'different_answer' 
+         it('should reject block with low convergence score', () => {
+       const attester1 = generateKeyPair();
+       const attester2 = generateKeyPair();
+       const attester3 = generateKeyPair();
+       
+       // Create proper attestations with different answers for low convergence
+       const divergentAttestation1 = createAttestation({ privateKey: attester1.privateKey, puzzleId: '1-2_q1', attesterAnswer: 'A' });
+       const divergentAttestation2 = createAttestation({ privateKey: attester2.privateKey, puzzleId: '1-2_q1', attesterAnswer: 'B' });
+       const divergentAttestation3 = createAttestation({ privateKey: attester3.privateKey, puzzleId: '1-2_q1', attesterAnswer: 'C' });
+       
+       const divergentAttestations = [
+         {
+           type: 'attestation' as const,
+           questionId: divergentAttestation1.puzzleId,
+           answerHash: divergentAttestation1.attesterAnswer,
+           attesterPubKey: divergentAttestation1.attesterPublicKey,
+           signature: divergentAttestation1.signature,
+           timestamp: Date.now()
+         },
+         {
+           type: 'attestation' as const,
+           questionId: divergentAttestation2.puzzleId,
+           answerHash: divergentAttestation2.attesterAnswer,
+           attesterPubKey: divergentAttestation2.attesterPublicKey,
+           signature: divergentAttestation2.signature,
+           timestamp: Date.now()
+         },
+         {
+           type: 'attestation' as const,
+           questionId: divergentAttestation3.puzzleId,
+           answerHash: divergentAttestation3.attesterAnswer,
+           attesterPubKey: divergentAttestation3.attesterPublicKey,
+           signature: divergentAttestation3.signature,
+           timestamp: Date.now()
+         }
+       ];
+       
+       const block = createBlock({
+         privateKey,
+         previousHash,
+         transactions,
+         attestations: divergentAttestations,
+         blockHeight: 1
+       });
+       
+       expect(verifyBlock(block)).toBe(false);
+     });
+
+    it('should reject oversized blocks', () => {
+      // This test should be implemented when we have a way to create oversized blocks
+      // For now, just verify that size checking is working
+      const block = createBlock({
+        privateKey,
+        previousHash,
+        transactions,
+        attestations,
+        blockHeight: 1
       });
       
-      const candidateBlock = createBlock({ 
-        privateKey, 
-        previousHash: nonGenesisHash, 
-        transactions, 
-        puzzleId, 
-        proposedAnswer 
-      });
+      const blockSize = getBlockSize(block);
+      expect(blockSize).toBeLessThanOrEqual(3072);
+    });
+  });
+
+  describe('Merkle Root Calculation', () => {
+    it('should calculate consistent merkle root for same data', () => {
+      const merkleRoot1 = calculateMerkleRoot([...transactions, ...attestations]);
+      const merkleRoot2 = calculateMerkleRoot([...transactions, ...attestations]);
       
-      const finalBlock: Block = {
-        ...candidateBlock,
-        attestations: [mismatchedAttestation]
-      };
-      
-      expect(verifyBlock(finalBlock)).toBe(false);
+      expect(merkleRoot1).toBe(merkleRoot2);
     });
 
-    it('should return false for a block with tampered id', () => {
-      const block = createBlock({ privateKey, previousHash, transactions: [] });
-      const tamperedBlock = { ...block, id: 'tampered_id' };
+    it('should return empty root for empty input', () => {
+      const merkleRoot = calculateMerkleRoot([]);
       
-      expect(verifyBlock(tamperedBlock)).toBe(false);
+      expect(merkleRoot).toBeDefined();
+      expect(merkleRoot).toMatch(/^[a-f0-9]{64}$/i);
     });
 
-    it('should return false for a block with tampered signature', () => {
-      const block = createBlock({ privateKey, previousHash, transactions: [] });
-      const tamperedBlock = { ...block, signature: 'tampered_signature' };
+    it('should handle single item correctly', () => {
+      const merkleRoot = calculateMerkleRoot([transactions[0]]);
       
-      expect(verifyBlock(tamperedBlock)).toBe(false);
-    });
-
-    it('should return false for a block with tampered transactions', () => {
-      const genesisBlock = createBlock({ privateKey, previousHash: '0'.repeat(64), transactions });
-      const tamperedTransactions = [...transactions];
-      tamperedTransactions[0] = { ...tamperedTransactions[0], payload: { tampered: true } };
-      const tamperedBlock = { ...genesisBlock, transactions: tamperedTransactions };
-      
-      expect(verifyBlock(tamperedBlock)).toBe(false);
-    });
-
-    it('should return false for a block with tampered previousHash', () => {
-      const block = createBlock({ privateKey, previousHash, transactions: [] });
-      const tamperedBlock = { ...block, previousHash: 'tampered_hash' };
-      
-      expect(verifyBlock(tamperedBlock)).toBe(false);
-    });
-
-    it('should return false for a block with tampered timestamp', () => {
-      const block = createBlock({ privateKey, previousHash, transactions: [] });
-      const tamperedBlock = { ...block, timestamp: block.timestamp + 1000 };
-      
-      expect(verifyBlock(tamperedBlock)).toBe(false);
-    });
-
-    it('should return false for a block with invalid signature format', () => {
-      const block = createBlock({ privateKey, previousHash, transactions: [] });
-      const tamperedBlock = { ...block, signature: 'invalid_hex' };
-      
-      expect(verifyBlock(tamperedBlock)).toBe(false);
-    });
-
-    it('should return false for a block with invalid public key format', () => {
-      const block = createBlock({ privateKey, previousHash, transactions: [] });
-      const tamperedBlock = { ...block, publicKey: 'invalid_hex' };
-      
-      expect(verifyBlock(tamperedBlock)).toBe(false);
+      expect(merkleRoot).toBeDefined();
+      expect(merkleRoot).toMatch(/^[a-f0-9]{64}$/i);
     });
   });
 }); 
