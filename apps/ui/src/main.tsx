@@ -3,8 +3,10 @@ import { createRoot } from 'react-dom/client'
 import './index.css'
 import QuizViewer from './components/QuizViewer'
 import AttestModal from './components/AttestModal'
+import Leaderboard from './components/Leaderboard'
 import { generateKeyPair } from '@apstat-chain/core'
 import { Mempool, createMCQCompletionTransaction } from '@apstat-chain/core'
+import { Chain } from '@apstat-chain/core'
 import type { MCQCompletionData } from '@apstat-chain/core'
 
 // Sample data for testing
@@ -34,8 +36,10 @@ const sampleMCQ = {
 function App() {
   const [keyPair, setKeyPair] = useState<any>(null);
   const [mempool, setMempool] = useState<Mempool | null>(null);
+  const [chain, setChain] = useState<Chain | null>(null);
   const [completedQuestions, setCompletedQuestions] = useState<Set<string>>(new Set());
   const [showAttestModal, setShowAttestModal] = useState(false);
+  const [activeTab, setActiveTab] = useState<'quiz' | 'leaderboard'>('quiz');
 
   // Initialize blockchain components
   useEffect(() => {
@@ -45,13 +49,18 @@ function App() {
         const userKeyPair = generateKeyPair();
         setKeyPair(userKeyPair);
 
+        // Create chain instance
+        const chainInstance = new Chain();
+        setChain(chainInstance);
+
         // Create mempool for this user
         const userMempool = new Mempool(userKeyPair.publicKey.hex, 50);
         setMempool(userMempool);
 
         console.log('Blockchain initialized:', {
           publicKey: userKeyPair.publicKey.hex,
-          mempoolThreshold: userMempool.getMiningThreshold()
+          mempoolThreshold: userMempool.getMiningThreshold(),
+          chainHeight: chainInstance.getMetadata().chainHeight
         });
       } catch (error) {
         console.error('Failed to initialize blockchain:', error);
@@ -66,6 +75,7 @@ function App() {
     console.log(`Question ${questionId} completed: ${completed}`);
     
     if (!completed || !keyPair || !mempool) {
+      console.log('Quiz completion skipped:', { completed, hasKeyPair: !!keyPair, hasMempool: !!mempool });
       return;
     }
 
@@ -82,7 +92,12 @@ function App() {
       mempool.addTransaction(transaction);
       
       // Update UI state
-      setCompletedQuestions(prev => new Set(prev).add(questionId));
+      setCompletedQuestions(prev => {
+        const newSet = new Set(prev);
+        newSet.add(questionId);
+        console.log('Updated completed questions:', newSet);
+        return newSet;
+      });
 
       console.log('Transaction created and added to mempool');
       console.log('Mempool status:', {
@@ -90,8 +105,6 @@ function App() {
         totalPoints: mempool.getTotalPoints(),
         miningEligible: mempool.isMiningEligible()
       });
-      console.log('Completed questions:', completedQuestions.size);
-      console.log('Should show button:', completedQuestions.size > 0 && mempool.isMiningEligible());
 
     } catch (error) {
       console.error('Failed to create completion transaction:', error);
@@ -99,8 +112,23 @@ function App() {
   };
 
   // Handle mining triggered from AttestModal
-  const handleMiningTriggered = (blockId: string) => {
+  const handleMiningTriggered = async (blockId: string, block: any) => {
     console.log('Mining triggered! Block ID:', blockId);
+    
+    try {
+      // Actually persist the block to the chain
+      if (chain && block) {
+        const success = await chain.appendBlock(block);
+        if (success) {
+          console.log('Block successfully appended to chain!');
+          console.log('New chain height:', chain.getMetadata().chainHeight);
+        } else {
+          console.error('Failed to append block to chain');
+        }
+      }
+    } catch (error) {
+      console.error('Error appending block:', error);
+    }
     
     // Clear mempool after successful mining
     if (mempool) {
@@ -109,10 +137,13 @@ function App() {
     
     // Close the modal
     setShowAttestModal(false);
+    
+    // Switch to leaderboard tab to show results
+    setActiveTab('leaderboard');
   };
 
   // Create lessons data for AttestModal
-  const lessons = completedQuestions.size > 0 ? [{
+  const lessons = [{
     lessonId: 'U1-L2-Q01',
     questionId: 'U1-L2-Q01',
     questionType: 'mcq' as const,
@@ -125,9 +156,9 @@ function App() {
       'E) Number of siblings'
     ],
     difficultyLevel: 1 as const
-  }] : [];
+  }];
 
-  if (!keyPair || !mempool) {
+  if (!keyPair || !mempool || !chain) {
     return (
       <div className="min-h-screen bg-gray-50 p-8 flex items-center justify-center">
         <div className="text-center">
@@ -141,6 +172,30 @@ function App() {
   return (
     <div className="min-h-screen bg-gray-50 p-8">
       <div className="max-w-4xl mx-auto">
+        {/* Navigation tabs */}
+        <div className="mb-6 flex space-x-4 border-b">
+          <button
+            onClick={() => setActiveTab('quiz')}
+            className={`px-4 py-2 font-medium text-sm border-b-2 ${
+              activeTab === 'quiz' 
+                ? 'border-blue-500 text-blue-600' 
+                : 'border-transparent text-gray-500 hover:text-gray-700'
+            }`}
+          >
+            Quiz
+          </button>
+          <button
+            onClick={() => setActiveTab('leaderboard')}
+            className={`px-4 py-2 font-medium text-sm border-b-2 ${
+              activeTab === 'leaderboard' 
+                ? 'border-blue-500 text-blue-600' 
+                : 'border-transparent text-gray-500 hover:text-gray-700'
+            }`}
+          >
+            Leaderboard
+          </button>
+        </div>
+
         {/* Simple status bar */}
         <div className="mb-6 p-4 bg-white rounded-lg shadow-sm border">
           <div className="flex justify-between items-center text-sm">
@@ -157,62 +212,72 @@ function App() {
             }`}>
               {mempool.isMiningEligible() ? 'Mining Eligible' : 'Collecting Points'}
             </span>
+            <span className="text-gray-600">
+              Chain Height: {chain.getMetadata().chainHeight}
+            </span>
           </div>
         </div>
 
-        {/* Debug info */}
-        <div className="mb-4 p-3 bg-gray-100 rounded text-sm">
-          <p>Debug: Completed questions: {completedQuestions.size}</p>
-          <p>Debug: Mining eligible: {mempool.isMiningEligible().toString()}</p>
-          <p>Debug: Should show button: {(completedQuestions.size > 0 && mempool.isMiningEligible()).toString()}</p>
-        </div>
-
-        {/* Request Attestations Button */}
-        {completedQuestions.size > 0 && mempool.isMiningEligible() && (
-          <div className="mb-6 p-4 bg-blue-50 rounded-lg shadow-sm border border-blue-200">
-            <div className="flex items-center justify-between">
-              <div>
-                <h3 className="font-medium text-blue-900">Ready for Attestation</h3>
-                <p className="text-sm text-blue-700">
-                  You've completed {completedQuestions.size} question(s) and are eligible for mining.
-                  Request attestations from peers to proceed.
-                </p>
-              </div>
-              <button
-                onClick={() => setShowAttestModal(true)}
-                className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
-              >
-                Request Attestations
-              </button>
+        {/* Tab content */}
+        {activeTab === 'quiz' ? (
+          <>
+            {/* Debug info */}
+            <div className="mb-4 p-3 bg-gray-100 rounded text-sm">
+              <p>Debug: Completed questions: {completedQuestions.size}</p>
+              <p>Debug: Mining eligible: {mempool.isMiningEligible().toString()}</p>
+              <p>Debug: Should show button: {(completedQuestions.size > 0 && mempool.isMiningEligible()).toString()}</p>
             </div>
-          </div>
-        )}
 
-        {/* Always show button for testing */}
-        {!completedQuestions.size && (
-          <div className="mb-6 p-4 bg-yellow-50 rounded-lg shadow-sm border border-yellow-200">
-            <div className="flex items-center justify-between">
-              <div>
-                <h3 className="font-medium text-yellow-900">Testing Mode</h3>
-                <p className="text-sm text-yellow-700">
-                  Button hidden because no completed questions. Try answering the quiz again.
-                </p>
+            {/* Request Attestations Button */}
+            {completedQuestions.size > 0 && mempool.isMiningEligible() && (
+              <div className="mb-6 p-4 bg-blue-50 rounded-lg shadow-sm border border-blue-200">
+                <div className="flex items-center justify-between">
+                  <div>
+                    <h3 className="font-medium text-blue-900">Ready for Attestation</h3>
+                    <p className="text-sm text-blue-700">
+                      You've completed {completedQuestions.size} question(s) and are eligible for mining.
+                      Request attestations from peers to proceed.
+                    </p>
+                  </div>
+                  <button
+                    onClick={() => setShowAttestModal(true)}
+                    className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
+                  >
+                    Request Attestations
+                  </button>
+                </div>
               </div>
-              <button
-                onClick={() => setShowAttestModal(true)}
-                className="px-4 py-2 bg-yellow-600 text-white rounded-lg hover:bg-yellow-700 transition-colors"
-              >
-                Test Attestations
-              </button>
-            </div>
-          </div>
-        )}
+            )}
 
-        {/* Quiz component */}
-        <QuizViewer 
-          question={sampleMCQ}
-          onProgress={handleQuizCompletion}
-        />
+            {/* Always show button for testing */}
+            {!completedQuestions.size && (
+              <div className="mb-6 p-4 bg-yellow-50 rounded-lg shadow-sm border border-yellow-200">
+                <div className="flex items-center justify-between">
+                  <div>
+                    <h3 className="font-medium text-yellow-900">Testing Mode</h3>
+                    <p className="text-sm text-yellow-700">
+                      Button hidden because no completed questions. Try answering the quiz again.
+                    </p>
+                  </div>
+                  <button
+                    onClick={() => setShowAttestModal(true)}
+                    className="px-4 py-2 bg-yellow-600 text-white rounded-lg hover:bg-yellow-700 transition-colors"
+                  >
+                    Test Attestations
+                  </button>
+                </div>
+              </div>
+            )}
+
+            {/* Quiz component */}
+            <QuizViewer 
+              question={sampleMCQ}
+              onProgress={handleQuizCompletion}
+            />
+          </>
+        ) : (
+          <Leaderboard chain={chain} />
+        )}
 
         {/* AttestModal */}
         <AttestModal
@@ -230,4 +295,4 @@ createRoot(document.getElementById('root')!).render(
   <StrictMode>
     <App />
   </StrictMode>
-) 
+); 

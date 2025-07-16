@@ -57,7 +57,7 @@ interface AttestModalProps {
     rubricCriteria?: string;
     difficultyLevel: 1 | 2 | 3 | 4 | 5;
   }[];
-  onMiningTriggered: (blockId: string) => void;
+  onMiningTriggered: (blockId: string, block: any) => void;
 }
 
 interface AttestationState {
@@ -324,9 +324,9 @@ const AttestModal = ({ isOpen, onClose, lessons, onMiningTriggered }: AttestModa
         },
         body: {
           transactions: lessons.map(lesson => ({
-            type: 'completion',
+            type: 'completion' as const,
             lessonId: lesson.lessonId,
-            studentPubKey: userKeyPair.publicKey.hex,
+            userPubKey: userKeyPair.publicKey.hex,  // Changed from studentPubKey to userPubKey
             points: 100,
             timestamp: Date.now(),
             signature: `completion-sig-${lesson.lessonId}`
@@ -336,7 +336,7 @@ const AttestModal = ({ isOpen, onClose, lessons, onMiningTriggered }: AttestModa
             requiredQuorum: 3,
             achievedQuorum: state.scannedAttestations.length,
             convergenceScore: Array.from(state.distributions.values())
-              .reduce((sum, dist) => sum + dist.convergenceScore, 0) / state.distributions.size
+              .reduce((sum, dist) => sum + dist.convergenceScore, 0) / state.distributions.size || 0.8
           }
         },
         signature: 'mining-block-signature',
@@ -351,7 +351,7 @@ const AttestModal = ({ isOpen, onClose, lessons, onMiningTriggered }: AttestModa
           mode: 'complete', 
           isLoading: false 
         }));
-        onMiningTriggered(mockBlock.blockId);
+        onMiningTriggered(mockBlock.blockId, mockBlock);
       }, 2000);
     } catch (error) {
       setState(prev => ({ 
