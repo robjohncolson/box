@@ -38,6 +38,36 @@ export interface Attestation {
   readonly signature: string;
 }
 
+// Emergent attestation types
+export interface AttestationTransaction {
+  readonly type: 'attestation';
+  readonly questionId: string;
+  readonly answerHash?: string;      // For MCQs - SHA-256 hash of selected option
+  readonly answerText?: string;      // For FRQs - text-based scoring (1-5 scale)
+  readonly attesterPubKey: string;
+  readonly signature: string;
+  readonly timestamp: number;
+}
+
+export interface QuestionDistribution {
+  readonly questionId: string;
+  readonly totalAttestations: number;
+  readonly mcqDistribution?: {
+    readonly A: number;
+    readonly B: number;
+    readonly C: number;
+    readonly D: number;
+    readonly E?: number;
+  };
+  readonly frqDistribution?: {
+    readonly scores: readonly number[];
+    readonly averageScore: number;
+    readonly standardDeviation: number;
+  };
+  readonly convergenceScore: number;
+  readonly lastUpdated: number;
+}
+
 // Block types  
 export interface Block {
   readonly id: string;

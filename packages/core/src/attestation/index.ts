@@ -1,7 +1,7 @@
 import * as secp256k1 from '@noble/secp256k1';
 import { hash256 } from '../crypto/hashing.js';
 import { sign, verify } from '../crypto/secp256k1.js';
-import type { PrivateKey, PublicKey, Signature } from '../types/index.js';
+import type { PrivateKey, PublicKey, Signature, QuestionDistribution } from '../types/index.js';
 import type { Attestation } from '../types/index.js';
 
 /**
@@ -78,5 +78,164 @@ export function verifyAttestation(attestation: Attestation): boolean {
   } catch (error) {
     // If any parsing or verification fails, the attestation is invalid
     return false;
+  }
+}
+
+/**
+ * Calculate standard deviation for an array of numbers
+ */
+function calculateStandardDeviation(values: number[]): number {
+  if (values.length === 0) return 0;
+  
+  const mean = values.reduce((sum, val) => sum + val, 0) / values.length;
+  const squaredDiffs = values.map(val => Math.pow(val - mean, 2));
+  const variance = squaredDiffs.reduce((sum, val) => sum + val, 0) / values.length;
+  
+  return Math.sqrt(variance);
+}
+
+/**
+ * Update distribution with a new attestation
+ */
+export function updateDistribution(
+  existing: QuestionDistribution | null, 
+  answer: string | number,
+  questionId?: string
+): QuestionDistribution {
+  const now = Date.now();
+  
+  // Handle first attestation
+  if (!existing) {
+    if (!questionId) {
+      throw new Error('Question ID required for new distribution');
+    }
+    
+    if (typeof answer === 'string') {
+      // MCQ attestation
+      const mcqDistribution = { A: 0, B: 0, C: 0, D: 0, E: 0 };
+      mcqDistribution[answer as keyof typeof mcqDistribution] = 1;
+      
+      return {
+        questionId,
+        totalAttestations: 1,
+        mcqDistribution,
+        convergenceScore: 1.0,
+        lastUpdated: now
+      };
+    } else {
+      // FRQ attestation
+      return {
+        questionId,
+        totalAttestations: 1,
+        frqDistribution: {
+          scores: [answer],
+          averageScore: answer,
+          standardDeviation: 0
+        },
+        convergenceScore: 1.0,
+        lastUpdated: now
+      };
+    }
+  }
+  
+  // Update existing distribution
+  const totalAttestations = existing.totalAttestations + 1;
+  
+  if (typeof answer === 'string' && existing.mcqDistribution) {
+    // MCQ update
+    const mcqDistribution = { ...existing.mcqDistribution };
+    mcqDistribution[answer as keyof typeof mcqDistribution] += 1;
+    
+    const convergenceScore = calculateConvergence({
+      ...existing,
+      totalAttestations,
+      mcqDistribution
+    });
+    
+    return {
+      ...existing,
+      totalAttestations,
+      mcqDistribution,
+      convergenceScore,
+      lastUpdated: now
+    };
+  } else if (typeof answer === 'number' && existing.frqDistribution) {
+    // FRQ update
+    const scores = [...existing.frqDistribution.scores, answer];
+    const averageScore = scores.reduce((sum, val) => sum + val, 0) / scores.length;
+    const standardDeviation = calculateStandardDeviation(scores);
+    
+    const frqDistribution = {
+      scores,
+      averageScore,
+      standardDeviation
+    };
+    
+    const convergenceScore = calculateConvergence({
+      ...existing,
+      totalAttestations,
+      frqDistribution
+    });
+    
+    return {
+      ...existing,
+      totalAttestations,
+      frqDistribution,
+      convergenceScore,
+      lastUpdated: now
+    };
+  }
+  
+  throw new Error('Answer type mismatch with existing distribution');
+}
+
+/**
+ * Calculate convergence score for a distribution
+ */
+export function calculateConvergence(distribution: QuestionDistribution): number {
+  if (distribution.totalAttestations === 0) {
+    return 0;
+  }
+  
+  if (distribution.mcqDistribution) {
+    // MCQ convergence: highest percentage
+    const values = Object.values(distribution.mcqDistribution);
+    const max = Math.max(...values);
+    return max / distribution.totalAttestations;
+  }
+  
+  if (distribution.frqDistribution) {
+    // FRQ convergence: based on coefficient of variation (CV)
+    const { averageScore, standardDeviation } = distribution.frqDistribution;
+    if (averageScore === 0) return 0;
+    
+    const cv = standardDeviation / averageScore;
+    return Math.max(0, 1 - cv); // Lower CV = higher convergence
+  }
+  
+  return 0;
+}
+
+/**
+ * Check if distribution meets quorum requirements
+ */
+export function checkQuorum(distribution: QuestionDistribution): boolean {
+  // Always require minimum of 3 attestations
+  if (distribution.totalAttestations < 3) {
+    return false;
+  }
+  
+  const convergence = distribution.convergenceScore;
+  
+  // Progressive quorum based on convergence
+  if (convergence > 0.8) {
+    // High convergence: 3+ attestations
+    return distribution.totalAttestations >= 3;
+  } else if (convergence >= 0.5) {
+    // Medium convergence: 4+ attestations
+    return distribution.totalAttestations >= 4;
+  } else {
+    // Low convergence: 5+ attestations
+    return distribution.totalAttestations >= 5;
   }
 } 
