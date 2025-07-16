@@ -385,6 +385,74 @@ const AttestModal = ({ isOpen, onClose, lessons, onMiningTriggered }: AttestModa
     };
   }, [stopQRRotation]);
 
+  // Development/Testing Functions
+  const simulateAttestationResponses = useCallback(async () => {
+    if (!userKeyPair || lessons.length === 0) return;
+
+    const questionId = lessons[0].questionId;
+    const baseTimestamp = Date.now();
+    
+    const mockResponses = [
+      {
+        type: 'attestation_response' as 'attestation_response',
+        requestId: state.requestId,
+        questionId: questionId,
+        answerHash: 'answer-hash-C',
+        attesterPubKey: '0x1234567890abcdef1234567890abcdef12345678',
+        signature: 'mock-signature-peer1',
+        timestamp: baseTimestamp
+      },
+      {
+        type: 'attestation_response' as 'attestation_response',
+        requestId: state.requestId,
+        questionId: questionId,
+        answerHash: 'answer-hash-C',
+        attesterPubKey: '0xabcdef1234567890abcdef1234567890abcdef12',
+        signature: 'mock-signature-peer2',
+        timestamp: baseTimestamp + 1000
+      },
+      {
+        type: 'attestation_response' as 'attestation_response',
+        requestId: state.requestId,
+        questionId: questionId,
+        answerHash: 'answer-hash-C',
+        attesterPubKey: '0x567890abcdef1234567890abcdef1234567890ab',
+        signature: 'mock-signature-peer3',
+        timestamp: baseTimestamp + 2000
+      }
+    ];
+
+    console.log('🎯 Simulating attestation responses for testing...');
+    
+    for (let i = 0; i < mockResponses.length; i++) {
+      const response = mockResponses[i];
+      console.log(`Processing mock attestation ${i + 1}/3...`);
+      
+      try {
+        await processAttestationResponse(response);
+        console.log(`✅ Mock attestation ${i + 1} processed successfully`);
+      } catch (error) {
+        console.error(`❌ Mock attestation ${i + 1} failed:`, error);
+      }
+      
+      // Wait between processing
+      await new Promise(resolve => setTimeout(resolve, 500));
+    }
+  }, [userKeyPair, lessons, state.requestId, processAttestationResponse]);
+
+  // Expose functions for testing
+  useEffect(() => {
+    if (typeof window !== 'undefined' && process.env.NODE_ENV === 'development') {
+      (window as any).attestModalTest = {
+        simulateAttestationResponses,
+        processAttestationResponse,
+        triggerMining,
+        currentState: state,
+        lessons
+      };
+    }
+  }, [simulateAttestationResponses, processAttestationResponse, triggerMining, state, lessons]);
+
   if (!isOpen) return null;
 
   return (
@@ -404,6 +472,34 @@ const AttestModal = ({ isOpen, onClose, lessons, onMiningTriggered }: AttestModa
           {state.error && (
             <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded">
               {state.error}
+            </div>
+          )}
+
+          {/* Development Testing Panel */}
+          {process.env.NODE_ENV === 'development' && (
+            <div className="bg-blue-50 border border-blue-200 rounded-lg p-3 space-y-2">
+              <div className="text-sm font-medium text-blue-800">🧪 Testing Panel</div>
+              <div className="text-xs text-blue-600">
+                Dev mode only - simulate peer responses
+              </div>
+              <div className="flex space-x-2">
+                <button
+                  onClick={simulateAttestationResponses}
+                  className="px-3 py-1 bg-blue-500 text-white text-xs rounded hover:bg-blue-600"
+                  disabled={state.isLoading}
+                >
+                  Simulate 3 Peers
+                </button>
+                <button
+                  onClick={() => {
+                    console.log('Current state:', state);
+                    console.log('Lessons:', lessons);
+                  }}
+                  className="px-3 py-1 bg-gray-500 text-white text-xs rounded hover:bg-gray-600"
+                >
+                  Log State
+                </button>
+              </div>
             </div>
           )}
 
