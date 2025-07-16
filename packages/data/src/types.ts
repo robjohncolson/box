@@ -57,7 +57,7 @@ export interface ActivityBase {
  */
 export interface VideoActivity extends ActivityBase {
   url: string;                 // Primary AP Classroom URL
-  altUrl: string | null;       // Backup Google Drive URL
+  altUrl: string | undefined;  // Backup Google Drive URL
 }
 
 /**

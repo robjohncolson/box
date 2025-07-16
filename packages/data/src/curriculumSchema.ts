@@ -22,7 +22,7 @@ const OrigamiActivitySchema = z.object({
 });
 
 const QuizActivitySchema = z.object({
-  questionPdf: z.string(),
+  questionPdf: z.string().optional(),
   answersPdf: z.string(),
   quizId: z.string(),
   completed: z.boolean(),

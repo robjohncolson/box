@@ -1,4 +1,3 @@
-import { CurriculumUnit } from '@apstat-chain/data';
 /**
  * Initializes the gateway by providing it with the live BlockchainService instance.
  * This must be called from the main application component.
@@ -10,7 +9,7 @@ export declare const initializeGateway: (service: any) => void;
  * In the future, this could be fetched from a decentralized source.
  * For now, it returns the hardcoded data instantly.
  */
-export declare const getCurriculumData: () => Promise<CurriculumUnit[]>;
+export declare const getCurriculumData: () => Promise<any[]>;
 /**
  * Creates a real transaction on the blockchain via the BlockchainService.
  * This version explicitly maps parameters to the payload to prevent naming conflicts.

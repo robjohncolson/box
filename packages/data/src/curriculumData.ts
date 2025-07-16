@@ -1381,7 +1381,7 @@ export const ALL_UNITS_DATA: CurriculumUnit[] = [
         },
         {
             url: "https://apclassroom.collegeboard.org/d/j9zx3pjmpi?sui=33,4",
-            altUrl: null,
+            altUrl: undefined,
             completed: false,
             completionDate: null
         }

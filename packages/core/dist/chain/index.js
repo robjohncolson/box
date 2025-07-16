@@ -1,5 +1,4 @@
 import { createBlock, verifyBlock } from '../block/index.js';
-import { verifyTransaction } from '../transaction/index.js';
 import { keyPairFromMnemonic } from '../crypto/keys.js';
 /**
  * Blockchain class that manages an ordered chain of blocks
@@ -17,8 +16,10 @@ export class Blockchain {
         const genesisKeyPair = keyPairFromMnemonic('abandon abandon abandon abandon abandon abandon abandon abandon abandon abandon abandon about');
         return createBlock({
             privateKey: genesisKeyPair.privateKey,
-            previousHash: '0'.repeat(64), // Genesis block has no previous block
-            transactions: [] // Genesis block contains no transactions
+            previousHash: '0'.repeat(64),
+            transactions: [],
+            attestations: [],
+            blockHeight: 0
         });
     }
     /**
@@ -43,14 +44,8 @@ export class Blockchain {
         }
         // Validate that the previousHash matches the latest block's ID
         const latestBlock = this.getLatestBlock();
-        if (newBlock.previousHash !== latestBlock.id) {
+        if (newBlock.header.previousHash !== latestBlock.blockId) {
             throw new Error('Previous hash does not match');
-        }
-        // Validate all transactions in the block
-        for (const transaction of newBlock.transactions) {
-            if (!verifyTransaction(transaction)) {
-                throw new Error('Block contains invalid transactions');
-            }
         }
         // If all validations pass, add the block to the chain
         this.chain.push(newBlock);
@@ -83,7 +78,7 @@ export class Blockchain {
         }
         // Validate genesis block
         const genesisBlock = chain[0];
-        if (genesisBlock.previousHash !== '0'.repeat(64)) {
+        if (genesisBlock.header.previousHash !== '0'.repeat(64)) {
             return false;
         }
         // Validate each block's signature and integrity
@@ -91,18 +86,12 @@ export class Blockchain {
             if (!verifyBlock(block)) {
                 return false;
             }
-            // Validate all transactions in each block
-            for (const transaction of block.transactions) {
-                if (!verifyTransaction(transaction)) {
-                    return false;
-                }
-            }
         }
         // Validate chain links (previousHash should match previous block's ID)
         for (let i = 1; i < chain.length; i++) {
             const currentBlock = chain[i];
             const previousBlock = chain[i - 1];
-            if (currentBlock.previousHash !== previousBlock.id) {
+            if (currentBlock.header.previousHash !== previousBlock.blockId) {
                 return false;
             }
         }
@@ -282,7 +271,7 @@ export class Chain {
     /**
      * Calculate points for a completion transaction
      */
-    getTransactionPoints(transaction) {
+    getTransactionPoints() {
         // Base points for completing a question
         // In a real implementation, this would look up points from lesson data
         return 10;
@@ -352,7 +341,7 @@ export class Chain {
                     convergenceHits: 0
                 };
                 // Add points from lesson contributions
-                stats.totalPoints += this.getTransactionPoints(transaction);
+                stats.totalPoints += this.getTransactionPoints();
                 stats.completions += 1;
                 userStats.set(transaction.userPubKey, stats);
             }

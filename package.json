@@ -1,0 +1,11 @@
+{
+  "name": "@apstat-chain/root",
+  "private": true,
+  "workspaces": [
+    "packages/*",
+    "apps/*"
+  ],
+  "scripts": {
+    "build": "npm run build --workspaces --if-present"
+  }
+} 

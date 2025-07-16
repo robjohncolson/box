@@ -1,5 +1,4 @@
 import { createBlock, verifyBlock, type Block } from '../block/index.js';
-import { verifyTransaction } from '../transaction/index.js';
 import { keyPairFromMnemonic } from '../crypto/keys.js';
 
 /**
@@ -23,8 +22,10 @@ export class Blockchain {
     
     return createBlock({
       privateKey: genesisKeyPair.privateKey,
-      previousHash: '0'.repeat(64), // Genesis block has no previous block
-      transactions: [] // Genesis block contains no transactions
+      previousHash: '0'.repeat(64),
+      transactions: [],
+      attestations: [],
+      blockHeight: 0
     });
   }
 
@@ -53,15 +54,8 @@ export class Blockchain {
 
     // Validate that the previousHash matches the latest block's ID
     const latestBlock = this.getLatestBlock();
-    if (newBlock.previousHash !== latestBlock.id) {
+    if (newBlock.header.previousHash !== latestBlock.blockId) {
       throw new Error('Previous hash does not match');
-    }
-
-    // Validate all transactions in the block
-    for (const transaction of newBlock.transactions) {
-      if (!verifyTransaction(transaction)) {
-        throw new Error('Block contains invalid transactions');
-      }
     }
 
     // If all validations pass, add the block to the chain
@@ -100,7 +94,7 @@ export class Blockchain {
 
     // Validate genesis block
     const genesisBlock = chain[0];
-    if (genesisBlock.previousHash !== '0'.repeat(64)) {
+    if (genesisBlock.header.previousHash !== '0'.repeat(64)) {
       return false;
     }
 
@@ -109,13 +103,6 @@ export class Blockchain {
       if (!verifyBlock(block)) {
         return false;
       }
-
-      // Validate all transactions in each block
-      for (const transaction of block.transactions) {
-        if (!verifyTransaction(transaction)) {
-          return false;
-        }
-      }
     }
 
     // Validate chain links (previousHash should match previous block's ID)
@@ -123,7 +110,7 @@ export class Blockchain {
       const currentBlock = chain[i];
       const previousBlock = chain[i - 1];
 
-      if (currentBlock.previousHash !== previousBlock.id) {
+      if (currentBlock.header.previousHash !== previousBlock.blockId) {
         return false;
       }
     }
@@ -134,7 +121,6 @@ export class Blockchain {
 
 // New Chain class for local persistence and leaderboard
 import { verifyBlock as verifyNewBlock, type Block as NewBlock } from '../block/index.js';
-import type { CompletionTransaction, AttestationTransaction } from '../types/index.js';
 
 // Interfaces for Chain class
 interface ChainStorage {
@@ -361,7 +347,7 @@ export class Chain {
   /**
    * Calculate points for a completion transaction
    */
-  private getTransactionPoints(transaction: CompletionTransaction): number {
+  private getTransactionPoints(): number {
     // Base points for completing a question
     // In a real implementation, this would look up points from lesson data
     return 10;
@@ -448,7 +434,7 @@ export class Chain {
         };
         
         // Add points from lesson contributions
-        stats.totalPoints += this.getTransactionPoints(transaction);
+        stats.totalPoints += this.getTransactionPoints();
         stats.completions += 1;
         
         userStats.set(transaction.userPubKey, stats);

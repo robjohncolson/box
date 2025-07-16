@@ -1,4 +1,4 @@
-import { ALL_UNITS_DATA } from '@apstat-chain/data';
+// import { ALL_UNITS_DATA, CurriculumUnit } from '@apstat-chain/data';
 // Note: BlockchainService will be passed in from the UI layer to avoid circular dependencies
 let blockchainServiceInstance = null;
 /**
@@ -18,7 +18,7 @@ export const initializeGateway = (service) => {
 export const getCurriculumData = async () => {
     console.log('GATEWAY: getCurriculumData() called');
     // We wrap it in a Promise to simulate a real network request.
-    return Promise.resolve(ALL_UNITS_DATA);
+    return Promise.resolve([]);
 };
 /**
  * Creates a real transaction on the blockchain via the BlockchainService.

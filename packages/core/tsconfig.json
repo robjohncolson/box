@@ -20,7 +20,10 @@
     "exactOptionalPropertyTypes": true,
     "noImplicitReturns": true,
     "noFallthroughCasesInSwitch": true,
-    "resolveJsonModule": true
+    "resolveJsonModule": true,
+    "paths": {
+      "@apstat-chain/data": ["../data/src/index.ts"]
+    }
   },
   "include": [
     "src/**/*"

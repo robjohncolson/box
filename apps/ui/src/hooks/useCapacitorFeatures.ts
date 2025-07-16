@@ -135,11 +135,11 @@ export const useCapacitorFeatures = (): CapacitorFeatures => {
       }
       
       try {
-        const { Storage } = await import('@capacitor/storage');
-        const result = await Storage.get({ key });
+        const { Preferences } = await import('@capacitor/preferences');
+        const result = await Preferences.get({ key });
         return result.value;
       } catch (error) {
-        console.error('Storage get error:', error);
+        console.error('Preferences get error:', error);
         return null;
       }
     },
@@ -151,10 +151,10 @@ export const useCapacitorFeatures = (): CapacitorFeatures => {
       }
       
       try {
-        const { Storage } = await import('@capacitor/storage');
-        await Storage.set({ key, value });
+        const { Preferences } = await import('@capacitor/preferences');
+        await Preferences.set({ key, value });
       } catch (error) {
-        console.error('Storage set error:', error);
+        console.error('Preferences set error:', error);
       }
     },
 
@@ -165,10 +165,10 @@ export const useCapacitorFeatures = (): CapacitorFeatures => {
       }
       
       try {
-        const { Storage } = await import('@capacitor/storage');
-        await Storage.remove({ key });
+        const { Preferences } = await import('@capacitor/preferences');
+        await Preferences.remove({ key });
       } catch (error) {
-        console.error('Storage remove error:', error);
+        console.error('Preferences remove error:', error);
       }
     },
 
@@ -179,10 +179,10 @@ export const useCapacitorFeatures = (): CapacitorFeatures => {
       }
       
       try {
-        const { Storage } = await import('@capacitor/storage');
-        await Storage.clear();
+        const { Preferences } = await import('@capacitor/preferences');
+        await Preferences.clear();
       } catch (error) {
-        console.error('Storage clear error:', error);
+        console.error('Preferences clear error:', error);
       }
     }
   };

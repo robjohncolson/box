@@ -8,8 +8,7 @@ import type {
   BlockHeader, 
   BlockBody, 
   CompletionTransaction, 
-  AttestationTransaction,
-  QuestionDistribution
+  AttestationTransaction
 } from '../types/index.js';
 
 // Re-export types for convenience

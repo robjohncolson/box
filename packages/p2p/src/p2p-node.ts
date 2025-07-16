@@ -214,7 +214,7 @@ export class P2PNode extends EventEmitter {
   }
 
   private handleBlock(message: BlockMessage, fromPeer: string): void {
-    console.log(`Received block ${message.data.id} from ${fromPeer}`);
+    console.log(`Received block ${message.data.blockId} from ${fromPeer}`);
     const block = this.deserializeBlock(message.data);
     this.emit('block:received', block, fromPeer);
   }
@@ -230,7 +230,7 @@ export class P2PNode extends EventEmitter {
   }
 
   private handleCandidateBlock(message: CandidateBlockMessage, fromPeer: string): void {
-    console.log(`Received candidate block ${message.data.id} from ${fromPeer}`);
+    console.log(`Received candidate block ${message.data.blockId} from ${fromPeer}`);
     const block = this.deserializeBlock(message.data);
     this.emit('candidate-block:received', block);
   }
@@ -394,13 +394,13 @@ export class P2PNode extends EventEmitter {
     };
 
     const connectedPeers = Array.from(this.connections.keys());
-    console.log(`Broadcasting block ${block.id} to ${connectedPeers.length} peers`);
+    console.log(`Broadcasting block ${block.blockId} to ${connectedPeers.length} peers`);
 
     for (const [peerId, conn] of this.connections) {
       try {
         if (conn.open) {
           conn.send(message);
-          console.log(`Sent block ${block.id} to ${peerId}`);
+          console.log(`Sent block ${block.blockId} to ${peerId}`);
         }
       } catch (error) {
         console.error(`Failed to send block to ${peerId}:`, error);
@@ -417,13 +417,13 @@ export class P2PNode extends EventEmitter {
     };
 
     const connectedPeers = Array.from(this.connections.keys());
-    console.log(`Broadcasting candidate block ${block.id} to ${connectedPeers.length} peers`);
+    console.log(`Broadcasting candidate block ${block.blockId} to ${connectedPeers.length} peers`);
 
     for (const [peerId, conn] of this.connections) {
       try {
         if (conn.open) {
           conn.send(message);
-          console.log(`Sent candidate block ${block.id} to ${peerId}`);
+          console.log(`Sent candidate block ${block.blockId} to ${peerId}`);
         }
       } catch (error) {
         console.error(`Failed to send candidate block to ${peerId}:`, error);

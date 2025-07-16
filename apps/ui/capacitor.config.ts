@@ -14,11 +14,6 @@ const config = {
       permissions: ['camera']
     },
     
-    // Local storage for offline blockchain data
-    Storage: {
-      group: 'APStatsChain'
-    },
-    
     // Network status for offline/online detection
     Network: {
       permissions: ['network']

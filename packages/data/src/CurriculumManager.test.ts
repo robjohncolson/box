@@ -22,7 +22,7 @@ const mockCurriculumData: CurriculumUnit[] = [
           },
           {
             url: 'https://example.com/video2', 
-            altUrl: null,
+            altUrl: undefined,
             completed: true,
             completionDate: '2024-01-01T00:00:00.000Z'
           }
@@ -116,7 +116,7 @@ const mockCurriculumData: CurriculumUnit[] = [
         videos: [
           {
             url: 'https://example.com/video3',
-            altUrl: null,
+            altUrl: undefined,
             completed: false,
             completionDate: null
           }
