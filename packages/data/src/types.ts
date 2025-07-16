@@ -97,6 +97,7 @@ export interface CurriculumTopic {
   quizzes: QuizActivity[];     // Assessment materials
   blooket: BlooketActivity;    // Game-based reinforcement
   origami: OrigamiActivity;    // Creative hands-on activity
+  questions?: any[];           // Embedded questions (MCQ/FRQ) - ADR 025
   isCapstone?: boolean;        // Unit-level assessment flag
   current: boolean;            // Navigation state
 }

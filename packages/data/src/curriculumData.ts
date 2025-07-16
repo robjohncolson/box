@@ -1,10 +1,81 @@
 import type { CurriculumUnit } from './types.js';
-
+import { 
+  type CurriculumSchema, 
+  type MCQQuestion, 
+  type FRQQuestion,
+  CurriculumSchemaValidator,
+  generateSampleMCQ,
+  generateSampleFRQ
+} from './curriculumSchema.js';
 /**
  * Complete AP Statistics curriculum data structure
  * Migrated from allUnitsData.js to TypeScript for type safety and modern imports
  * Contains all 9 units with 89 lessons from APStat-SY2526 implementation
+ * Enhanced with embedded questions and Zod validation
  */
+
+// Helper function to generate question hash (simplified for demo)
+function generateQuestionHash(content: string): string {
+  // Simple hash function for demo - in production, use proper crypto hashing
+  let hash = 0;
+  for (let i = 0; i < content.length; i++) {
+    const char = content.charCodeAt(i);
+    hash = ((hash << 5) - hash) + char;
+    hash = hash & hash; // Convert to 32-bit integer
+  }
+  const hashString = Math.abs(hash).toString(16);
+  // Ensure exactly 64 characters by padding or truncating
+  return hashString.padStart(64, '0').substring(0, 64);
+}
+
+// Sample embedded questions for demonstration
+const sampleQuestions: (MCQQuestion | FRQQuestion)[] = [
+  {
+    id: 'U1-L2-Q01',
+    type: 'multiple-choice',
+    prompt: 'Which of the following is a categorical variable?',
+    options: [
+      { key: 'A', value: 'Height in inches' },
+      { key: 'B', value: 'Weight in pounds' },
+      { key: 'C', value: 'Eye color' },
+      { key: 'D', value: 'Temperature in Celsius' },
+      { key: 'E', value: 'Number of siblings' }
+    ],
+    answerKey: 'C',
+    answerHash: generateQuestionHash('C'),
+    reasoning: 'Eye color is a categorical variable because it places individuals into categories.',
+    distributionTracker: {
+      A: [],
+      B: [],
+      C: [],
+      D: [],
+      E: []
+    }
+  },
+  {
+    id: 'U1-L3-Q01',
+    type: 'multiple-choice',
+    prompt: 'A frequency table shows the number of students in each grade level. This is an example of:',
+    options: [
+      { key: 'A', value: 'Quantitative data display' },
+      { key: 'B', value: 'Categorical data display' },
+      { key: 'C', value: 'Bivariate data display' },
+      { key: 'D', value: 'Continuous data display' },
+      { key: 'E', value: 'Time series data display' }
+    ],
+    answerKey: 'B',
+    answerHash: generateQuestionHash('B'),
+    reasoning: 'Grade levels are categories, making this a categorical data display.',
+    distributionTracker: {
+      A: [],
+      B: [],
+      C: [],
+      D: [],
+      E: []
+    }
+  }
+];
+
 export const ALL_UNITS_DATA: CurriculumUnit[] = [
   {
     unitId: 'unit1',
@@ -72,6 +143,7 @@ export const ALL_UNITS_DATA: CurriculumUnit[] = [
                 completionDate: null
             }
         ],
+        questions: [sampleQuestions[0]], // Add embedded questions
         current: false
     },
     {
@@ -106,6 +178,7 @@ export const ALL_UNITS_DATA: CurriculumUnit[] = [
                 completionDate: null
             }
         ],
+        questions: [sampleQuestions[1]], // Add embedded questions
         current: false
     },
     {
@@ -3560,4 +3633,56 @@ export function getTotalItemCounts(allUnitsDataArray = ALL_UNITS_DATA) {
     });
     console.log(`getTotalItemCounts calculated: ${totalVideos} videos, ${totalQuizzes} quizzes`); // Added log
     return { totalVideos, totalQuizzes };
+}
+
+/**
+ * Generate a complete curriculum schema with validation
+ * Combines traditional curriculum structure with embedded questions
+ */
+export function generateUnifiedCurriculumSchema(): CurriculumSchema {
+  // Count total questions across all topics
+  let totalQuestions = 0;
+  const questionHashMap: Record<string, string> = {};
+  
+  ALL_UNITS_DATA.forEach(unit => {
+    unit.topics.forEach(topic => {
+      if (topic.questions && Array.isArray(topic.questions)) {
+        topic.questions.forEach(question => {
+          totalQuestions++;
+          if ('id' in question) {
+            questionHashMap[question.id] = generateQuestionHash(question.id);
+          }
+        });
+      }
+    });
+  });
+  
+  const curriculumSchema: CurriculumSchema = {
+    units: ALL_UNITS_DATA.map(unit => ({
+      unitId: unit.unitId,
+      displayName: unit.displayName,
+      examWeight: unit.examWeight,
+      topics: unit.topics.map(topic => ({
+        id: topic.id,
+        name: topic.name,
+        description: topic.description,
+        videos: topic.videos,
+        blooket: topic.blooket,
+        origami: topic.origami,
+        quizzes: topic.quizzes,
+        questions: topic.questions || [],
+        current: topic.current
+      }))
+    })),
+    metadata: {
+      version: '1.0.0',
+      generatedAt: new Date().toISOString(),
+      totalQuestions,
+      questionHashMap
+    }
+  };
+  
+  // Validate the schema
+  const validated = CurriculumSchemaValidator.parse(curriculumSchema);
+  return validated;
 }

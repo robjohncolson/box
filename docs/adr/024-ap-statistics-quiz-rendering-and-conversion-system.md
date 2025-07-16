@@ -241,11 +241,17 @@ A standalone HTML application with Chart.js integration for rendering and valida
 
 • **Pie Charts** — Percentage tool-tips, color-blind-friendly palettes, legend positioning.
 
-• **Scatter Plots** — Linear scaling, custom axis ranges, point styling, **automatic point labels** via Chart.js DataLabels plugin.
+• **Scatter Plots** — Linear scaling, custom axis ranges, point styling, **optional least-squares regression line**, dashed y = 0 reference line support, and **automatic point labels** via Chart.js DataLabels plugin.
 
-• **Dotplots** — Stacked frequency dots with **drag-to-edit** x-position and **double-click add/remove**; automatic restack & axis rescale, **optional point labels** (counts or explicit labels) powered by DataLabels.
+• **Dotplots** — Stacked frequency dots with **drag-to-edit** x-position and **double-click add/remove**; automatic restack & axis rescale, configurable **dot radius**, and **optional point labels** (counts or explicit labels) powered by DataLabels.
 
 • **Boxplots** — Single or multiple, horizontal or vertical, whisker & outlier support with exact five-number summaries.
+
+• **Normal Distribution Curves** — Dynamically generated bell curves for any mean \(\mu\) and standard deviation \(\sigma\) with optional shaded regions for tail/interval probabilities; axis limits and tick spacing fully configurable.
+
+• **Chi-Square Distribution Curves** — Right-skewed \(\chi^2\) PDFs rendered for one or many degrees of freedom; supports overlaying multiple curves with custom labels, precise axis limits, and grid line controls.
+
+• **Number Line Diagrams** — Baseline with arrow-heads, custom ticks, and separate top/bottom labels to illustrate intervals or sampling distributions (e.g., \(\bar{x} \pm ks\)); tick visibility and labeling fully configurable via `ticks[]` array.
 
 #### Advanced Chart Configuration
 ```javascript
