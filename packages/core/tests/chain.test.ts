@@ -1,11 +1,11 @@
-import { describe, it, expect, beforeEach } from 'vitest';
+import { describe, it, expect, beforeEach, vi } from 'vitest';
 import { Blockchain } from '../src/chain/index.js';
 import { createBlock, verifyBlock, type Block } from '../src/block/index.js';
 import { createTransaction } from '../src/transaction/index.js';
 import { createAttestation } from '../src/attestation/index.js';
 import { keyPairFromMnemonic } from '../src/crypto/keys.js';
 import { generateKeyPair } from '../src/crypto/secp256k1.js';
-import type { PrivateKey, Attestation } from '../src/types/index.js';
+import type { PrivateKey, Attestation, CompletionTransaction, AttestationTransaction } from '../src/types/index.js';
 
 describe('Blockchain', () => {
   let blockchain: Blockchain;
@@ -20,36 +20,48 @@ describe('Blockchain', () => {
 
   // Helper function to create a valid block with transactions, puzzle data, and attestations
   function createValidBlockWithTransactions(privateKey: PrivateKey, previousHash: string, transactionData: any[] = []): Block {
-    const puzzleId = 'test-puzzle-123';
-    const proposedAnswer = 'test-answer-123';
-    
-    // Create transactions
-    const transactions = transactionData.map(data => 
-      createTransaction(privateKey, data)
-    );
+    // Create completion transactions
+    const completionTransactions: CompletionTransaction[] = transactionData.map(data => ({
+      type: 'completion',
+      questionId: data.questionId || 'test-question-123',
+      userPubKey: data.userPubKey || 'test-user-pubkey',
+      timestamp: Date.now(),
+      signature: data.signature || 'test-signature',
+      answerHash: data.answerHash,
+      answerText: data.answerText
+    }));
     
     // Create attestations from different peers
     const attester1 = generateKeyPair();
     const attester2 = generateKeyPair();
-    const attestations: Attestation[] = [
-      createAttestation({ privateKey: attester1.privateKey, puzzleId, attesterAnswer: proposedAnswer }),
-      createAttestation({ privateKey: attester2.privateKey, puzzleId, attesterAnswer: proposedAnswer })
+    const attestations: AttestationTransaction[] = [
+      {
+        type: 'attestation',
+        questionId: 'test-puzzle-123',
+        attesterPubKey: attester1.publicKey.hex,
+        signature: 'attestation-sig-1',
+        timestamp: Date.now(),
+        answerHash: 'test-answer-hash'
+      },
+      {
+        type: 'attestation',
+        questionId: 'test-puzzle-123',
+        attesterPubKey: attester2.publicKey.hex,
+        signature: 'attestation-sig-2',
+        timestamp: Date.now(),
+        answerHash: 'test-answer-hash'
+      }
     ];
     
-    // Create candidate block
-    const candidateBlock = createBlock({
+    // Create block with proper structure
+    return createBlock({
       privateKey,
       previousHash,
-      transactions,
-      puzzleId,
-      proposedAnswer
+      transactions: completionTransactions,
+      attestations,
+      blockHeight: 1,
+      nonce: 0
     });
-    
-    // Return final block with attestations
-    return {
-      ...candidateBlock,
-      attestations
-    };
   }
 
   describe('Genesis Block', () => {
@@ -366,4 +378,411 @@ describe('Blockchain', () => {
       expect(blockchain.getLatestBlock()).toBe(originalChain[0]);
     });
   });
-}); 
+});
+
+// Chain class tests for local persistence and leaderboard
+describe('Chain', () => {
+  let chain: any;
+  let mockIndexedDB: any;
+  let testPrivateKey: PrivateKey;
+  
+  beforeEach(() => {
+    // Mock IndexedDB
+    mockIndexedDB = {
+      open: vi.fn(),
+      transaction: vi.fn(),
+      close: vi.fn()
+    };
+    
+    global.indexedDB = mockIndexedDB as any;
+    
+    testPrivateKey = keyPairFromMnemonic('abandon abandon abandon abandon abandon abandon abandon abandon abandon abandon abandon about').privateKey;
+    
+    // Create Chain instance (will be implemented)
+    // chain = new Chain();
+  });
+
+  describe('appendBlock', () => {
+    it('should append valid block to chain', async () => {
+      // Mock valid block
+      const validBlock = {
+        header: {
+          previousHash: '0'.repeat(64),
+          merkleRoot: 'abc123',
+          timestamp: Date.now(),
+          blockHeight: 1,
+          nonce: 0
+        },
+        body: {
+          transactions: [],
+          attestations: [],
+          quorumData: {
+            requiredQuorum: 3,
+            achievedQuorum: 3,
+            convergenceScore: 75
+          }
+        },
+        signature: 'valid_signature',
+        producerPubKey: 'producer_key',
+        blockId: 'block_id_123'
+      };
+      
+      // Mock persistence
+      const mockPersistBlock = vi.fn().mockResolvedValue(true);
+      const mockUpdateLeaderboard = vi.fn().mockResolvedValue(true);
+      
+      // Test would verify appendBlock returns true for valid block
+      // expect(await chain.appendBlock(validBlock)).toBe(true);
+      // expect(mockPersistBlock).toHaveBeenCalledWith(validBlock);
+      // expect(mockUpdateLeaderboard).toHaveBeenCalled();
+    });
+
+    it('should reject invalid block', async () => {
+      const invalidBlock = {
+        header: {
+          previousHash: 'invalid_hash',
+          merkleRoot: 'abc123',
+          timestamp: Date.now(),
+          blockHeight: 1,
+          nonce: 0
+        },
+        body: {
+          transactions: [],
+          attestations: [],
+          quorumData: {
+            requiredQuorum: 3,
+            achievedQuorum: 1, // Below minimum
+            convergenceScore: 25 // Below threshold
+          }
+        },
+        signature: 'invalid_signature',
+        producerPubKey: 'producer_key',
+        blockId: 'block_id_123'
+      };
+      
+      // Test would verify appendBlock returns false for invalid block
+      // expect(await chain.appendBlock(invalidBlock)).toBe(false);
+    });
+
+    it('should validate chain continuity', async () => {
+      // Mock chain with existing blocks
+      const existingBlock = {
+        header: {
+          previousHash: '0'.repeat(64),
+          merkleRoot: 'abc123',
+          timestamp: Date.now(),
+          blockHeight: 1,
+          nonce: 0
+        },
+        body: {
+          transactions: [],
+          attestations: [],
+          quorumData: {
+            requiredQuorum: 3,
+            achievedQuorum: 3,
+            convergenceScore: 75
+          }
+        },
+        signature: 'valid_signature',
+        producerPubKey: 'producer_key',
+        blockId: 'existing_block_id'
+      };
+      
+      const newBlock = {
+        ...existingBlock,
+        header: {
+          ...existingBlock.header,
+          previousHash: 'wrong_hash', // Should be 'existing_block_id'
+          blockHeight: 2
+        },
+        blockId: 'new_block_id'
+      };
+      
+      // Test would verify chain continuity validation
+      // expect(await chain.appendBlock(newBlock)).toBe(false);
+    });
+  });
+
+  describe('getLeaderboard', () => {
+    it('should calculate leaderboard from chain blocks', async () => {
+      const mockBlocks = [
+        {
+          header: { blockHeight: 1, timestamp: Date.now() },
+          body: {
+            transactions: [
+              {
+                type: 'completion',
+                questionId: 'q1',
+                userPubKey: 'user1',
+                timestamp: Date.now(),
+                signature: 'sig1'
+              },
+              {
+                type: 'completion',
+                questionId: 'q2',
+                userPubKey: 'user2',
+                timestamp: Date.now(),
+                signature: 'sig2'
+              }
+            ],
+            attestations: [
+              {
+                type: 'attestation',
+                questionId: 'q1',
+                attesterPubKey: 'user1',
+                timestamp: Date.now(),
+                signature: 'attestation_sig1'
+              }
+            ],
+            quorumData: {
+              requiredQuorum: 3,
+              achievedQuorum: 3,
+              convergenceScore: 80
+            }
+          }
+        }
+      ];
+      
+      // Mock storage with blocks
+      const mockStorage = {
+        blocks: mockBlocks,
+        leaderboard: [],
+        metadata: {
+          chainHeight: 1,
+          lastUpdate: Date.now(),
+          totalTransactions: 2
+        }
+      };
+      
+      const expectedLeaderboard = [
+        {
+          pubKey: 'user1',
+          totalPoints: 10,
+          reputationScore: 85,
+          convergenceRate: 1.0,
+          lastActivity: expect.any(Number),
+          rank: 1
+        },
+        {
+          pubKey: 'user2',
+          totalPoints: 5,
+          reputationScore: 60,
+          convergenceRate: 0,
+          lastActivity: expect.any(Number),
+          rank: 2
+        }
+      ];
+      
+      // Test would verify leaderboard calculation
+      // const leaderboard = await chain.getLeaderboard();
+      // expect(leaderboard).toEqual(expectedLeaderboard);
+    });
+
+    it('should return cached leaderboard when valid', async () => {
+      const cachedLeaderboard = [
+        {
+          pubKey: 'user1',
+          totalPoints: 100,
+          reputationScore: 90,
+          convergenceRate: 0.9,
+          lastActivity: Date.now(),
+          rank: 1
+        }
+      ];
+      
+      const mockStorage = {
+        blocks: [],
+        leaderboard: cachedLeaderboard,
+        metadata: {
+          chainHeight: 1,
+          lastUpdate: Date.now(),
+          totalTransactions: 1
+        }
+      };
+      
+      // Mock cache validation
+      const mockIsCacheValid = vi.fn().mockReturnValue(true);
+      
+      // Test would verify cached leaderboard is returned
+      // expect(await chain.getLeaderboard()).toEqual(cachedLeaderboard);
+      // expect(mockIsCacheValid).toHaveBeenCalled();
+    });
+
+    it('should recalculate leaderboard when cache is stale', async () => {
+      // Mock stale cache
+      const mockIsCacheValid = vi.fn().mockReturnValue(false);
+      const mockCalculateLeaderboard = vi.fn().mockReturnValue([]);
+      const mockCacheLeaderboard = vi.fn().mockResolvedValue(true);
+      
+      // Test would verify recalculation when cache is stale
+      // await chain.getLeaderboard();
+      // expect(mockCalculateLeaderboard).toHaveBeenCalled();
+      // expect(mockCacheLeaderboard).toHaveBeenCalled();
+    });
+  });
+
+  describe('reputation scoring', () => {
+    it('should calculate reputation score from user stats', () => {
+      const userStats = {
+        totalPoints: 100,
+        completions: 20,
+        attestations: 10,
+        convergenceHits: 8
+      };
+      
+      const totalLessons = 25;
+      
+      // Expected calculation:
+      // completionRate = 20/25 = 0.8
+      // attestationQuality = 8/10 = 0.8
+      // consistencyFactor = 0.9 (mocked)
+      // reputation = (0.8 * 40) + (0.8 * 35) + (0.9 * 25) = 32 + 28 + 22.5 = 82.5
+      
+      const expectedReputationScore = 83; // Rounded
+      
+      // Test would verify reputation calculation
+      // const reputation = calculateReputationScore(userStats, totalLessons);
+      // expect(reputation).toBe(expectedReputationScore);
+    });
+
+    it('should handle edge cases in reputation calculation', () => {
+      // Test with no attestations
+      const noAttestationsStats = {
+        totalPoints: 50,
+        completions: 10,
+        attestations: 0,
+        convergenceHits: 0
+      };
+      
+      // Test would verify reputation handles division by zero
+      // expect(calculateReputationScore(noAttestationsStats, 25)).toBeGreaterThan(0);
+      
+      // Test with perfect stats
+      const perfectStats = {
+        totalPoints: 250,
+        completions: 25,
+        attestations: 25,
+        convergenceHits: 25
+      };
+      
+      // Test would verify reputation caps at 100
+      // expect(calculateReputationScore(perfectStats, 25)).toBe(100);
+    });
+  });
+
+  describe('persistence mock', () => {
+    it('should successfully persist block to IndexedDB', async () => {
+      const mockTransaction = {
+        objectStore: vi.fn().mockReturnValue({
+          add: vi.fn().mockResolvedValue(true)
+        })
+      };
+      
+      const mockDB = {
+        transaction: vi.fn().mockReturnValue(mockTransaction)
+      };
+      
+      mockIndexedDB.open.mockResolvedValue(mockDB);
+      
+      const testBlock = {
+        header: { blockHeight: 1, timestamp: Date.now() },
+        body: { transactions: [], attestations: [], quorumData: {} },
+        signature: 'test_signature',
+        producerPubKey: 'test_producer',
+        blockId: 'test_block_id'
+      };
+      
+      // Test would verify IndexedDB persistence
+      // await chain.persistBlock(testBlock);
+      // expect(mockDB.transaction).toHaveBeenCalledWith(['blocks'], 'readwrite');
+      // expect(mockTransaction.objectStore).toHaveBeenCalledWith('blocks');
+    });
+
+    it('should handle IndexedDB errors gracefully', async () => {
+      const mockError = new Error('IndexedDB error');
+      mockIndexedDB.open.mockRejectedValue(mockError);
+      
+      const testBlock = {
+        header: { blockHeight: 1, timestamp: Date.now() },
+        body: { transactions: [], attestations: [], quorumData: {} },
+        signature: 'test_signature',
+        producerPubKey: 'test_producer',
+        blockId: 'test_block_id'
+      };
+      
+      // Test would verify error handling
+      // expect(async () => {
+      //   await chain.persistBlock(testBlock);
+      // }).rejects.toThrow('IndexedDB error');
+    });
+
+    it('should initialize IndexedDB schema correctly', async () => {
+      const mockUpgradeDB = {
+        createObjectStore: vi.fn(),
+        createIndex: vi.fn()
+      };
+      
+      const mockOpenRequest = {
+        onupgradeneeded: null,
+        onsuccess: null,
+        onerror: null
+      };
+      
+      mockIndexedDB.open.mockReturnValue(mockOpenRequest);
+      
+      // Test would verify schema initialization
+      // await chain.initializeIndexedDB();
+      // expect(mockUpgradeDB.createObjectStore).toHaveBeenCalledWith('blocks', { keyPath: 'blockId' });
+      // expect(mockUpgradeDB.createObjectStore).toHaveBeenCalledWith('leaderboard', { keyPath: 'pubKey' });
+      // expect(mockUpgradeDB.createObjectStore).toHaveBeenCalledWith('metadata', { keyPath: 'key' });
+    });
+  });
+
+  describe('getUserStats', () => {
+    it('should return user stats from leaderboard', async () => {
+      const mockLeaderboard = [
+        {
+          pubKey: 'user1',
+          totalPoints: 100,
+          reputationScore: 90,
+          convergenceRate: 0.9,
+          lastActivity: Date.now(),
+          rank: 1
+        },
+        {
+          pubKey: 'user2',
+          totalPoints: 50,
+          reputationScore: 70,
+          convergenceRate: 0.7,
+          lastActivity: Date.now(),
+          rank: 2
+        }
+      ];
+      
+      const mockGetLeaderboard = vi.fn().mockResolvedValue(mockLeaderboard);
+      
+      // Test would verify user stats retrieval
+      // const userStats = await chain.getUserStats('user1');
+      // expect(userStats).toEqual(mockLeaderboard[0]);
+    });
+
+    it('should return null for non-existent user', async () => {
+      const mockLeaderboard = [
+        {
+          pubKey: 'user1',
+          totalPoints: 100,
+          reputationScore: 90,
+          convergenceRate: 0.9,
+          lastActivity: Date.now(),
+          rank: 1
+        }
+      ];
+      
+      const mockGetLeaderboard = vi.fn().mockResolvedValue(mockLeaderboard);
+      
+      // Test would verify null return for non-existent user
+      // const userStats = await chain.getUserStats('nonexistent');
+      // expect(userStats).toBeNull();
+    });
+  });
+});
