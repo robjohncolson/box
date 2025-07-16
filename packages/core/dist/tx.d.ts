@@ -1,13 +1,4 @@
-import type { PrivateKey } from './types/index.js';
-export interface CompletionTransaction {
-    type: 'completion';
-    questionId: string;
-    answerHash?: string;
-    answerText?: string;
-    userPubKey: string;
-    timestamp: number;
-    signature: string;
-}
+import type { PrivateKey, CompletionTransaction } from './types/index.js';
 export interface TransactionBatch {
     transactions: CompletionTransaction[];
     batchId: string;

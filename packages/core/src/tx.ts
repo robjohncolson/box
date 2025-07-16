@@ -1,18 +1,7 @@
 import { hash256 } from './crypto/hashing.js';
-import { sign, verify } from './crypto/secp256k1.js';
-import type { KeyPair, PrivateKey } from './types/index.js';
+import { sign } from './crypto/secp256k1.js';
+import type { PrivateKey, CompletionTransaction } from './types/index.js';
 import * as secp256k1 from '@noble/secp256k1';
-
-// Core completion transaction interface
-export interface CompletionTransaction {
-  type: 'completion';
-  questionId: string;
-  answerHash?: string;     // For MCQs - hashed selected option
-  answerText?: string;     // For FRQs - raw text response
-  userPubKey: string;
-  timestamp: number;
-  signature: string;
-}
 
 // Batch transaction interface  
 export interface TransactionBatch {

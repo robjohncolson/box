@@ -1,4 +1,5 @@
-import { type CompletionTransaction, type TransactionBatch } from './tx.js';
+import { type TransactionBatch } from './tx.js';
+import type { CompletionTransaction } from './types/index.js';
 export interface ActivityData {
     id: string;
     title: string;

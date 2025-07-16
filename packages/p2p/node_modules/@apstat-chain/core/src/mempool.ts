@@ -1,6 +1,6 @@
-import { createTransactionBatch, type CompletionTransaction, type TransactionBatch } from './tx.js';
+import { createTransactionBatch, type TransactionBatch } from './tx.js';
 import { keyPairFromMnemonic } from './crypto/keys.js';
-import type { PrivateKey } from './types/index.js';
+import type { CompletionTransaction } from './types/index.js';
 
 // Interface for lessons_export.json data structure
 export interface ActivityData {

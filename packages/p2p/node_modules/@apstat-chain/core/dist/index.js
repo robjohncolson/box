@@ -7,5 +7,7 @@ export * from './attestation/index.js';
 export * from './types/index.js';
 export * from './tx.js';
 export { Wallet } from './crypto/Wallet.js';
+// Explicitly re-export from reveals to avoid conflicts
+export { triggerAPReveal, updateReputation, detectFlipFlop, calculateConsistencyScore, getReputationMetrics, isRevealThresholdMet, hashMessage, resetRevealsData } from './reveals.js';
 export * as gateway from './gateway';
 //# sourceMappingURL=index.js.map
