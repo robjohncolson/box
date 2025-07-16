@@ -45,6 +45,12 @@ const mockLessonsData: ActivityData[] = [
         contribution: 0.5
       },
       {
+        id: "U1-L2-Q01",
+        type: "quiz",
+        title: "Quiz: U1-L2-Q01",
+        contribution: 0.5
+      },
+      {
         id: "1-2_blooket",
         type: "blooket",
         title: "Blooket: Topic 1.2",
@@ -183,6 +189,16 @@ export class Mempool {
 
     // Add to entries
     this.entries.push(entry);
+
+    // Temporary debug log
+    console.log('Transaction added to mempool:', {
+      questionId: transaction.questionId,
+      userPubKey: transaction.userPubKey,
+      answerHash: transaction.answerHash,
+      answerText: transaction.answerText,
+      timestamp: transaction.timestamp,
+      points
+    });
   }
 
   /**

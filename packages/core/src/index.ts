@@ -5,7 +5,7 @@ export * from './block/index.js';
 export * from './transaction/index';
 export * from './attestation/index.js';
 export * from './types/index.js';
-export * from './tx.js';
+export * from './mempool.js';
 export { Wallet } from './crypto/Wallet.js';
 
 // Explicitly re-export from reveals to avoid conflicts

@@ -1,6 +1,5 @@
 import * as secp256k1 from '@noble/secp256k1';
 import { hash256 } from '../crypto/hashing.js';
-import { verifyAttestation } from '../attestation/index.js';
 import { Mempool } from '../mempool.js';
 import type { 
   PrivateKey, 
@@ -10,8 +9,6 @@ import type {
   CompletionTransaction, 
   AttestationTransaction
 } from '../types/index.js';
-import { verifyTransaction } from '../transaction/index.js';
-import { validateCompletionTransaction } from '../transaction/index';
 
 // Re-export types for convenience
 export type { Block, BlockHeader, BlockBody } from '../types/index.js';
@@ -232,7 +229,7 @@ export function mineBlock(
   const block = createBlock({
     privateKey,
     previousHash,
-    transactions,
+    transactions: [...transactions],
     attestations,
     blockHeight
   });

@@ -98,4 +98,11 @@ export interface CompletionTransaction {
     readonly signature: string;
     readonly timestamp: number;
 }
+export interface TransactionBatch {
+    transactions: readonly CompletionTransaction[];
+    batchId: string;
+    userPubKey: string;
+    batchSignature: string;
+    timestamp: number;
+}
 //# sourceMappingURL=index.d.ts.map

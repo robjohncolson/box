@@ -1,4 +1,4 @@
-import { createTransactionBatch } from './tx.js';
+import { createTransactionBatch } from './transaction/index';
 import { keyPairFromMnemonic } from './crypto/keys.js';
 // Mock lessons data for testing/development
 // In production, this would be loaded from lessons_export.json
@@ -18,6 +18,12 @@ const mockLessonsData = [
                 id: "1-2_q1",
                 type: "quiz",
                 title: "Quiz: Topic 1.2",
+                contribution: 0.5
+            },
+            {
+                id: "U1-L2-Q01",
+                type: "quiz",
+                title: "Quiz: U1-L2-Q01",
                 contribution: 0.5
             },
             {
@@ -147,6 +153,15 @@ export class Mempool {
         };
         // Add to entries
         this.entries.push(entry);
+        // Temporary debug log
+        console.log('Transaction added to mempool:', {
+            questionId: transaction.questionId,
+            userPubKey: transaction.userPubKey,
+            answerHash: transaction.answerHash,
+            answerText: transaction.answerText,
+            timestamp: transaction.timestamp,
+            points
+        });
     }
     /**
      * Get total accumulated points

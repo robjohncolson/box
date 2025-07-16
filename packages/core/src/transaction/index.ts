@@ -3,7 +3,7 @@ import { hash256 } from '../crypto/hashing.js';
 import type { Transaction, CompletionTransaction, PrivateKey, TransactionBatch } from '../types/index.js';
 
 // Re-export the Transaction type for convenience
-export type { Transaction } from '../types/index.js';
+export type { Transaction, CompletionTransaction, TransactionBatch } from '../types/index.js';
 
 /**
  * Create deterministic JSON string with sorted keys

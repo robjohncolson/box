@@ -104,10 +104,10 @@ export function calculateConsistencyScore(history) {
         }
     }
     // Calculate base consistency score
-    const maxChanges = Math.max(1, history.attestationHistory.length - 1);
-    const baseScore = Math.max(0, 100 - (changes / maxChanges) * 100);
+    const penaltyRatio = changes / history.attestationHistory.length;
+    const baseScore = 100 - (penaltyRatio * 100);
     // Apply exponential penalty for rapid changes
-    const rapidPenalty = rapidChanges * 25; // 25 points per rapid change
+    const rapidPenalty = rapidChanges * 10;
     const finalScore = Math.max(0, baseScore - rapidPenalty);
     return Math.round(finalScore);
 }
@@ -144,7 +144,7 @@ export function updateReputation(userPubKey, attestation) {
     if (isFlipFlop) {
         reputation.flipFlopCount++;
         // Enforce maximum flip-flop limit
-        if (reputation.flipFlopCount > MAX_FLIP_FLOP_LIMIT) {
+        if (reputation.flipFlopCount >= MAX_FLIP_FLOP_LIMIT) {
             throw new Error('Maximum flip-flop limit exceeded');
         }
     }
