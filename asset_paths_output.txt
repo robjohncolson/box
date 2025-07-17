@@ -1,0 +1,122 @@
+Asset Path Search Results
+============================================================
+Search completed on: C:\Users\rober\OneDrive\Desktop\box
+Total matches found: 9
+
+
+============================================================
+File: assets/jsons\Unit3\ap_stats_u3_l3_quiz.json
+Line 7: Found 'assetPath'
+============================================================
+   4       "type": "free-response",
+   5       "prompt": "Show all your work. Indicate clearly the methods you use, because you will be scored on the correctness of your methods as well as on the accuracy and completeness of your results and explanations.\n\nBiologists want to estimate the number of deer living in a certain region. They will use a method known as a hair snare. A hair snare is a length of barbed wire set up near a salt lick, where deer can lick minerals and nutrients from salt deposits. The wire snares hair from the neck of the deer. The hair is collected and sent for analysis.\n\nThe biologists will randomly place 90 salt licks throughout the region. The region consists of 3 areas: the town, the forest, and the lake, as shown in the following diagram.\n\n(a) Two methods have been proposed for choosing where to place the salt licks: a simple random sample or a stratified random sample, with area as strata. Give one reason why the stratified random sample might be the better method for choosing where to place the salt licks.\n\n(b) By using the hair snare method, deer are sampled with replacement. Why is sampling with replacement a problem in this context, and how would the problem impact the estimate of the number of deer living in the region?",
+   6       "attachments": {
+   7 >>>     "image": "assets/pngs/unit3/u3_l3_q1.png",
+   8         "imageAlt": "Map of the study region showing three distinct areas: a town with grid pattern buildings, a forest with trees, and a lake with irregular shoreline",
+   9         "imageCaption": "Study region diagram showing the town, forest, and lake areas where salt licks will be placed"
+  10       },
+
+
+============================================================
+File: assets/jsons\Unit4\ap_stats_u4_pc_mcq_a.json
+Line 6: Found 'assetPath'
+============================================================
+   3       "type": "multiple-choice",
+   4       "prompt": "A consumer group is investigating the number of flights at a certain airline that are overbooked. They conducted a simulation to estimate the probability of overbooked flights in the next 5 flights. The results of 1,000 trials are shown in the following histogram. Based on the histogram, what is the probability that at least 4 of the next 5 flights at the airline will be overbooked?",
+   5       "attachments": {
+   6 >>>     "image": "assets/pngs/unit4/u4_pc_q1.png",
+   7         "imageAlt": "Histogram showing relative frequency of overbooked flights. X-axis shows Number of Overbooked Flights from 0 to 5. Y-axis shows Relative Frequency from 0 to 0.35. Bar heights are approximately: 0 flights = 0.007, 1 flight = 0.049, 2 flights = 0.181, 3 flights = 0.317, 4 flights = 0.332, 5 flights = 0.114",
+   8         "imageCaption": "Histogram showing the distribution of overbooked flights in simulation results",
+   9         "chartType": "histogram",
+
+
+============================================================
+File: assets/jsons\Unit4\u4_pc_frq.json
+Line 95: Found 'assetPath'
+============================================================
+  92           ],
+  93           "images": [
+  94             {
+  95 >>>           "image": "assets/pngs/unit4/u4_pc_frq_q2_b.png",
+  96               "imageAlt": "Golf course diagram showing two approaches from tee to hole: a short hit that lands before a lake, and a long hit that travels over the lake",
+  97               "imageCaption": "Diagram showing Miguel's two approaches to the Water Hole: short hit (lands before lake) and long hit (travels over lake)"
+  98             }
+
+
+============================================================
+File: assets/jsons\Unit5\ap_stats_u5_l4_quiz.json
+Line 49: Found 'assetPath'
+============================================================
+  46         "type": "multiple-choice",
+  47         "prompt": "The following graphs show the sampling distributions for two different point estimators, \\(R\\) and \\(W\\), of the same population parameter. Which of the following statements is true?",
+  48         "attachments": {
+  49 >>>       "image": "assets/pngs/unit5/u5_l4_q4.png",
+  50           "imageAlt": "Two histogram distributions side by side. Left shows 'POINT ESTIMATOR R' with a distribution that appears to be centered to the left of the population parameter arrow. Right shows 'POINT ESTIMATOR W' with a distribution that appears to be centered directly on the population parameter arrow.",
+  51           "imageCaption": "Sampling distributions for point estimators R and W, with population parameter marked by arrows"
+  52         },
+
+
+============================================================
+File: assets/jsons\Unit5\ap_stats_u5_pc_mcq_a.json
+Line 330: Found 'assetPath'
+============================================================
+ 327         "type": "multiple-choice",
+ 328         "prompt": "The following graphs show the sampling distributions for two different point estimators, \\(\\bar{X}\\) and \\(Y\\), of the same population parameter. Which of the following statements is true?",
+ 329         "attachments": {
+ 330 >>>       "image": "assets/pngs/Unit5/u5_pc_mcqa_q15.png"
+ 331         },
+ 332         "choices": [
+ 333           { "key": "A", "value": "Both \\(\\bar{X}\\) and \\(Y\\) are unbiased." },
+
+
+============================================================
+File: assets/jsons\Unit6\ap_stats_u6_frq.json
+Line 84: Found 'assetPath'
+============================================================
+  81         "type": "free-response",
+  82         "prompt": "Show all your work. Indicate clearly the methods you use, because you will be scored on the correctness of your methods as well as on the accuracy and completeness of your results and explanations.\n\nA fair die, with its faces numbered from 1 to 6, is one in which each number is equally likely to land face up when the die is rolled. On a fair die, the probability that the number 6 will land face up is \\(\\frac{1}{6}\\). A group of students wanted to investigate a claim about manipulating a fair die so that it favors one outcome. The claim states that if a fair die is put into an oven and baked at 200°F for 10 minutes, the inside of the die will begin to melt. When the die cools, the inside will be solid again, but with more weight toward the bottom. This shift in weight will cause the face that was up when the die cooled to land up more often that the other faces.\n\nThe students obtained a fair die and baked it according to the preceding directions. The die cooled with the number 6 face up. After the die cooled, they rolled the die 200 times, and the number 6 landed face up 43 times. Let \\(p\\) represent the population proportion of times the number 6 will land face up on the baked die if the die could be rolled an infinite number of times.\n\n(a) Clarke, one of the students, constructed a 95 percent confidence interval for \\(p\\) as \\(0.215 \\pm 0.057\\). Does the interval provide convincing statistical evidence that the number 6 will land face up more often on the baked die than on a fair die? Explain your reasoning.\n\n(b) Aurelia, another student, suggested they conduct a significance test to investigate the claim. She tested the hypotheses \\(H_0: p = \\frac{1}{6}\\) versus \\(H_a: p > \\frac{1}{6}\\) at the significance level of \\(\\alpha = 0.05\\). She obtained a test statistic of \\(z = 1.83\\) with a p-value of 0.033. Do the results of the significance test agree with the results of Clarke's confidence interval in part (a)? Explain your reasoning.\n\n(c) Two standard normal curves are shown below, one for the confidence interval calculated in part (a) and one for the significance test conducted in part (b).\n\n(i) For the confidence interval curve, label the critical values for the 95% confidence level and shade the area that represents values in the outer 5%.\n\n(ii) For the significance test curve, label the critical value for the 5% significance level and shade the area representing the values of \\(z\\) that would lead to a rejection of the null hypothesis in part (b).\n\n(d) Joachim, a third student, noted that the confidence interval in part (a) gives plausible values of the parameter as an interval between two values. He suggested that they develop a one-sided confidence interval because they were only concerned with whether the number 6 was landing face up more often than expected, not less often. The one-sided-interval will determine a value \\(L\\) such that all plausible values of \\(p\\) are greater than \\(L\\). The formula for \\(L\\) is \\(L = \\hat{p} - z^* \\sqrt{\\frac{\\hat{p}(1-\\hat{p})}{n}}\\).\n\n(i) Determine the values of \\(z^*\\) needed to create the one-sided 95 percent confidence interval. Then calculate the value of \\(L\\).\n\n(ii) Do the results of Joachim's one-sided confidence interval agree with results of Aurelia's significance test in part (b)? Explain your reasoning.",
+  83         "attachments": {
+  84 >>>       "image": "assets/pngs/unit6/u6_pc_q2_curves.png",
+  85           "imageAlt": "Two standard normal distribution curves side by side. Left curve labeled 'Confidence Interval' shows a bell curve with center at 0. Right curve labeled 'Hypothesis Test' shows a bell curve with center at 0.",
+  86           "imageCaption": "Standard normal curves for confidence interval and hypothesis test visualization"
+  87         },
+
+
+============================================================
+File: assets/jsons\Unit6\ap_stats_u6_frq.json
+Line 105: Found 'assetPath'
+============================================================
+ 102               "description": "Label critical values and shade appropriate areas on the standard normal curves.",
+ 103               "response": "For part (c-i): The values -1.96 and 1.96 should be labeled on the confidence interval curve, with shading in both tails (2.5% in each tail).\n\nFor part (c-ii): The value 1.645 should be labeled on the significance test curve, with shading in the right tail (5% area).",
+ 104               "attachments": {
+ 105 >>>             "image": "assets/pngs/unit6/u6_pc_q2_curves_solution.png",
+ 106                 "imageAlt": "Two standard normal curves with critical values labeled and appropriate areas shaded. Left curve shows ±1.96 with both tails shaded. Right curve shows 1.645 with right tail shaded.",
+ 107                 "imageCaption": "Solution showing properly labeled critical values and shaded rejection regions"
+ 108               }
+
+
+============================================================
+File: assets/jsons\Unit7\ap_stats_u7_pc_frq.json
+Line 13: Found 'assetPath'
+============================================================
+  10           ["B", "30", "51", "8"],
+  11           ["C", "30", "54", "10"]
+  12         ],
+  13 >>>     "image": "assets/pngs/unit7/u7_pc_frq_q1bi.png",
+  14         "imageAlt": "Tree diagram showing possible outcomes N (not significant) and S (significant) for two independent t-tests, with branch combinations NN, SN, NS, and SS",
+  15         "imageCaption": "Tree diagram illustrating the outcomes for two t-tests used to compute the family error rate"
+  16       },
+
+
+============================================================
+File: assets/jsons\Unit7\ap_stats_u7_pc_frq.json
+Line 39: Found 'assetPath'
+============================================================
+  36             "description": "Determine the family error rate for the number of t-tests identified in part (a), each conducted at a level of α = 0.05. Show your work.",
+  37             "response": "As indicated in part (a), the investigation will have 3 tests: AB, BC, AC. The probability of no significant results is \\(P(\\text{N and N and N}) = (0.95)^3 = 0.857375\\).\n\nTherefore, the family error rate for 3 \\(t\\)-tests is \\(1 - 0.857375 = 0.142625\\), or approximately 14%.",
+  38             "attachments": {
+  39 >>>           "image": "assets/pngs/unit7/u7_pc_frq_q1c_answer.png",
+  40               "imageAlt": "Solution diagram illustrating complement probability method and computed family error rate for three t-tests",
+  41               "imageCaption": "Answer explanation visual for part (c) showing calculation of family error rate for three comparisons"
+  42             }
+
