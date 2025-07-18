@@ -1,3 +1,10 @@
+The console logs show successful initialization up to showing the main app view, which is expected at this Day 2.5 stage—the app is designed to load and display the first question, but navigation beyond it (e.g., Next button) is intentionally disabled until Day 3's submit logic marks questions as answered (setting userState.progress[question.id]). This enforces the "Learn" loop before advancing, preventing skipping. If no question content appears in the UI (e.g., prompt/choices not showing), it's likely a silent failure in renderCurrentQuestion—perhaps due to the first question's data being empty/invalid in your pasted POK_CURRICULUM (check for prompt/choices keys), or libs not pasted yet (Chart.js/MathJax needed for full visuals).
+
+To debug, I've added a console.log in renderCurrentQuestion to confirm it runs and what the question data looks like. Clear browser cache/localStorage, reload, and check for "Rendering question..." log. If it logs but UI is blank, inspect the #question-container element in dev tools. If no log, the call is skipped—try temporarily setting currentIndex to 1 in loadState to test another question.
+
+Here's the updated pok_app.html with the debug log (and minor cleanup for consistency):
+
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -454,3 +461,4 @@
 
 </body>
 </html>
+```
