@@ -1,4 +1,343 @@
-{
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>APStat Chain - MVP</title>
+    <style>
+        /* --- STYLES (Expanded for Day 2) --- */
+        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; line-height: 1.6; background: #f4f4f4; color: #333; margin: 0; padding: 20px; }
+        .container { max-width: 800px; margin: auto; background: #fff; padding: 20px; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+        h1, h2 { color: #005a9c; }
+        button { background: #007bff; color: white; border: none; padding: 10px 15px; border-radius: 5px; cursor: pointer; font-size: 16px; margin: 5px 0; }
+        button:hover { background: #0056b3; }
+        button:disabled { background: #ccc; cursor: not-allowed; }
+        .hidden { display: none; }
+        #identity-screen .mnemonic { background: #e9ecef; padding: 15px; border-radius: 5px; font-family: monospace; font-size: 1.2em; text-align: center; margin: 20px 0; }
+        #app-header { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #ccc; padding-bottom: 10px; margin-bottom: 20px; }
+        
+        /* --- Day 2: Renderer Styles --- */
+        #question-container { border: 1px solid #ddd; padding: 20px; border-radius: 8px; margin-bottom: 20px; }
+        .question-prompt { font-size: 1.2em; margin-bottom: 15px; }
+        .question-meta { font-size: 0.8em; color: #777; margin-bottom: 20px; }
+        .choices-container label { display: block; background: #f8f9fa; border: 1px solid #e9ecef; border-radius: 5px; padding: 10px; margin-bottom: 10px; cursor: pointer; }
+        .choices-container label:hover { background: #e9ecef; }
+        .choices-container input { margin-right: 10px; }
+        .question-image { max-width: 100%; height: auto; border-radius: 5px; margin: 10px 0; }
+        .nav-buttons { text-align: center; }
+        table { border-collapse: collapse; width: 100%; margin: 20px 0; }
+        th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+        th { background-color: #f2f2f2; }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <!-- Screen 1: Identity Creation (Visible on first load) -->
+        <div id="identity-screen">
+            <h1>Welcome to APStat Chain</h1>
+            <p>To begin, we need to generate your unique, decentralized identity. This 4-word phrase is your private key. Keep it secret, keep it safe!</p>
+            <div id="mnemonic-display" class="mnemonic"></div>
+            <button id="generate-mnemonic-btn">Generate New Identity</button>
+            <button id="confirm-identity-btn" class="hidden">Confirm and Start Learning</button>
+        </div>
+
+        <!-- Screen 2: Main Application -->
+        <div id="app-container" class="hidden">
+            <div id="app-header">
+                <h2>APStat Chain</h2>
+                <div id="user-info" style="text-align: right;"></div>
+                <button id="sync-btn">Sync</button>
+            </div>
+            
+            <div id="main-content">
+                <div id="question-renderer">
+                    <div id="question-container">
+                        <!-- Dynamic content will be injected here -->
+                    </div>
+                    <div class="nav-buttons">
+                        <button id="prev-btn">Previous</button>
+                        <button id="next-btn">Next</button>
+                    </div>
+                </div>
+                <div id="leaderboard">
+                    <!-- Leaderboard will go here (Day 9) -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Application Logic Script -->
+    <script type="module">
+        const APStatChain = {
+            state: {
+                wordlist: [],
+                curriculum: null,
+                flatCurriculum: [], // Day 2: A flattened array of all questions
+                identity: null,
+                userState: { // All user-specific progress will be stored here
+                    currentIndex: 0,
+                },
+                chain: [],
+                mempool: [],
+                peers: {}
+            },
+
+            // --- DAY 1: IDENTITY & CRYPTO MODULE ---
+            crypto: {
+                generateMnemonic(wordlist) {
+                    const mnemonic = [];
+                    const usedIndices = new Set();
+                    while (mnemonic.length < 4) {
+                        const idx = Math.floor(Math.random() * wordlist.length);
+                        if (!usedIndices.has(idx)) {
+                            usedIndices.add(idx);
+                            mnemonic.push(wordlist[idx]);
+                        }
+                    }
+                    return mnemonic.join(' ');
+                },
+                async deriveKeyPair(mnemonic) {
+                    const encoder = new TextEncoder();
+                    const data = encoder.encode(mnemonic);
+                    const hashBuffer = await crypto.subtle.digest('SHA-256', data);
+                    const hashArray = Array.from(new Uint8Array(hashBuffer));
+                    const hashHex = hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+                    return {
+                        mnemonic,
+                        privateKey: hashHex,
+                        publicKey: hashHex.slice(0, 32) // Truncated for display and identification
+                    };
+                }
+            },
+
+            // --- DATA LOADING (Modified for embedded data) ---
+            data: {
+                loadData() {
+                    APStatChain.state.wordlist = POK_WORDLIST;
+                    APStatChain.state.curriculum = POK_CURRICULUM;
+                    console.log(`Successfully loaded ${APStatChain.state.wordlist.length} words and ${Object.keys(APStatChain.state.curriculum).length} lessons from embedded variables.`);
+                }
+            },
+            
+            // --- DAY 2: QUESTION RENDERER MODULE ---
+            renderer: {
+                flattenCurriculum() {
+                    const flat = [];
+                    const curriculum = APStatChain.state.curriculum;
+                    for (const lessonKey in curriculum) {
+                        curriculum[lessonKey].forEach(question => {
+                            flat.push({ ...question, lessonKey });
+                        });
+                    }
+                    APStatChain.state.flatCurriculum = flat;
+                    console.log(`Curriculum flattened into ${flat.length} total questions.`);
+                },
+                _renderImage(attachment) {
+                    if (!attachment || !attachment.imageBase64) return '';
+                    const alt = attachment.imageAlt || 'Question related image';
+                    const caption = attachment.imageCaption || '';
+                    return `
+                        <div>
+                            <img src="${attachment.imageBase64}" alt="${alt}" class="question-image">
+                            ${caption ? `<p><em>${caption}</em></p>` : ''}
+                        </div>
+                    `;
+                },
+                _renderTable(tableData) {
+                    if (!tableData || tableData.length === 0) return '';
+                    let tableHTML = '<table>';
+                    tableHTML += '<thead><tr>';
+                    tableData[0].forEach(header => tableHTML += `<th>${header}</th>`);
+                    tableHTML += '</tr></thead>';
+                    tableHTML += '<tbody>';
+                    tableData.slice(1).forEach(row => {
+                        tableHTML += '<tr>';
+                        row.forEach(cell => tableHTML += `<td>${cell}</td>`);
+                        tableHTML += '</tr>';
+                    });
+                    tableHTML += '</tbody></table>';
+                    return tableHTML;
+                },
+                _renderVideo(videoUrl) {
+                    if (!videoUrl) return '';
+                    return `<a href="${videoUrl}" target="_blank" rel="noopener noreferrer">Play Lesson Video (Manual)</a>`;
+                },
+                renderCurrentQuestion() {
+                    const state = APStatChain.state;
+                    const userState = APStatChain.state.userState;
+                    const question = state.flatCurriculum[userState.currentIndex];
+                    const container = document.getElementById('question-container');
+
+                    if (!question) {
+                        container.innerHTML = `<p>Error: Question not found at index ${userState.currentIndex}.</p>`;
+                        return;
+                    }
+
+                    let contentHTML = `
+                        <div class="question-meta">
+                            Question ${userState.currentIndex + 1} of ${state.flatCurriculum.length} | ID: ${question.id} | From: ${question.lessonKey}
+                        </div>
+                        <div class="question-prompt">${question.prompt}</div>
+                    `;
+
+                    if (question.attachments) {
+                        if (question.attachments.imageBase64) contentHTML += this._renderImage(question.attachments);
+                        if (question.attachments.table) contentHTML += this._renderTable(question.attachments.table);
+                    }
+                    
+                    // Add video link if present (assuming question.videoUrl exists in some questions)
+                    if (question.videoUrl) {
+                        contentHTML += this._renderVideo(question.videoUrl);
+                    }
+                    
+                    const choices = question.choices || (question.attachments && question.attachments.choices);
+                    if (question.type === 'multiple-choice' && choices) {
+                        contentHTML += '<div class="choices-container">';
+                        choices.forEach((choice, index) => {
+                            const key = choice.key || String.fromCharCode(65 + index); // Fallback to A, B, C... if no key
+                            const value = choice.value || choice; // Handle if choices are strings
+                            contentHTML += `
+                                <label>
+                                    <input type="radio" name="choice" value="${key}">
+                                    <strong>${key}.</strong> ${value}
+                                </label>
+                            `;
+                        });
+                        contentHTML += '</div>';
+                        contentHTML += `<button id="submit-answer-btn">Submit Answer</button>`;
+                    }
+
+                    container.innerHTML = contentHTML;
+
+                    document.getElementById('prev-btn').disabled = (userState.currentIndex === 0);
+                    document.getElementById('next-btn').disabled = (userState.currentIndex >= state.flatCurriculum.length - 1);
+                }
+            },
+            
+            // --- STATE MANAGEMENT MODULE ---
+            storage: {
+                saveState() {
+                    try {
+                        const stateToSave = {
+                            identity: APStatChain.state.identity,
+                            userState: APStatChain.state.userState,
+                            chain: APStatChain.state.chain,
+                            mempool: APStatChain.state.mempool,
+                            peers: APStatChain.state.peers
+                        };
+                        localStorage.setItem('APStatChainState', JSON.stringify(stateToSave));
+                        console.log("Application state saved.");
+                    } catch (error) { console.error("Failed to save state:", error); }
+                },
+                loadState() {
+                    try {
+                        const savedState = localStorage.getItem('APStatChainState');
+                        if (savedState) {
+                            const parsed = JSON.parse(savedState);
+                            APStatChain.state.identity = parsed.identity;
+                            APStatChain.state.userState = parsed.userState || { currentIndex: 0 };
+                            APStatChain.state.chain = parsed.chain || [];
+                            APStatChain.state.mempool = parsed.mempool || [];
+                            APStatChain.state.peers = parsed.peers || {};
+                            console.log("Application state loaded from localStorage.");
+                            return true;
+                        }
+                        return false;
+                    } catch (error) {
+                        console.error("Failed to load state:", error);
+                        localStorage.removeItem('APStatChainState');
+                        return false;
+                    }
+                }
+            },
+
+            // --- UI Module ---
+            ui: {
+                showApp() {
+                    document.getElementById('identity-screen').classList.add('hidden');
+                    document.getElementById('app-container').classList.remove('hidden');
+                    const publicKey = APStatChain.state.identity.publicKey;
+                    document.getElementById('user-info').innerText = `ID: ${publicKey.substring(0, 10)}...`;
+                    console.log("Navigated to main app view.");
+                },
+                showIdentityScreen() {
+                    document.getElementById('identity-screen').classList.remove('hidden');
+                    document.getElementById('app-container').classList.add('hidden');
+                    console.log("Navigated to identity screen.");
+                },
+                displayMnemonic(mnemonic) {
+                    document.getElementById('mnemonic-display').textContent = mnemonic;
+                    document.getElementById('confirm-identity-btn').classList.remove('hidden');
+                },
+                bindNavEvents() {
+                    document.getElementById('prev-btn').addEventListener('click', () => {
+                        if (APStatChain.state.userState.currentIndex > 0) {
+                            APStatChain.state.userState.currentIndex--;
+                            APStatChain.storage.saveState();
+                            APStatChain.renderer.renderCurrentQuestion();
+                        }
+                    });
+                    document.getElementById('next-btn').addEventListener('click', () => {
+                        if (APStatChain.state.userState.currentIndex < APStatChain.state.flatCurriculum.length - 1) {
+                            APStatChain.state.userState.currentIndex++;
+                            APStatChain.storage.saveState();
+                            APStatChain.renderer.renderCurrentQuestion();
+                        }
+                    });
+                }
+            },
+
+            // --- INITIALIZATION ---
+            init() {
+                console.log("APStat Chain Initializing...");
+                this.data.loadData();
+
+                const stateExists = this.storage.loadState();
+
+                if (stateExists && this.state.identity) {
+                    console.log("Existing identity found. Loading main application.");
+                    this.ui.showApp();
+                    this.renderer.flattenCurriculum();
+                    this.renderer.renderCurrentQuestion();
+                    this.ui.bindNavEvents();
+                } else {
+                    console.log("No identity found. Starting identity creation flow.");
+                    this.ui.showIdentityScreen();
+                    
+                    document.getElementById('generate-mnemonic-btn').addEventListener('click', () => {
+                        const newMnemonic = this.crypto.generateMnemonic(this.state.wordlist);
+                        this.ui.displayMnemonic(newMnemonic);
+                    });
+                    
+                    document.getElementById('confirm-identity-btn').addEventListener('click', async () => {
+                        const mnemonic = document.getElementById('mnemonic-display').textContent;
+                        if(mnemonic) {
+                            this.state.identity = await this.crypto.deriveKeyPair(mnemonic);
+                            console.log("New identity created:", this.state.identity);
+                            this.storage.saveState();
+                            this.ui.showApp();
+                            this.renderer.flattenCurriculum();
+                            this.renderer.renderCurrentQuestion();
+                            this.ui.bindNavEvents();
+                        }
+                    });
+                }
+            }
+        };
+
+        // Start the application
+        APStatChain.init();
+    </script>
+    
+    <!-- Data Island (Embedded Data) -->
+    <script>
+        const POK_WORDLIST = [
+          "analysis", "approximation", "assessment", "association", "assumption", "average", "bias", "biased", "bimodal", "binomial", "bivariate", "boxplot", "boxplots", "calculation", "categorical", "causal", "causation", "census", "center", "central", "chance", "classification", "cluster", "coefficient", "collection", "combination", "combinations", "comparative", "comparison", "complement", "computation", "conclusion", "condition", "conditional", "confidence", "confounding", "contingency", "continuous", "control", "correlation", "count", "data", "decision", "degrees", "density", "dependent", "design", "deviation", "diagram", "discrete", "distribution", "distributions", "dotplot", "dotplots", "effect", "error", "estimate", "estimation", "estimator", "evaluation", "evidence", "expected", "experiment", "experimental", "explanatory", "extrapolation", "factor", "factors", "fraction", "frequencies", "frequency", "function", "generalizability", "generalization", "generalize", "goodness", "graph", "graphic", "graphical", "graphs", "group", "histogram", "histograms", "homogeneity", "homoscedasticity", "hypotheses", "hypothesis", "hypothesize", "independence", "independent", "inference", "influence", "intercept", "interquartile", "interval", "intervals", "investigation", "joint", "level", "levels", "leverage", "linear", "linearity", "linearly", "logarithm", "margin", "matched", "mean", "measurement", "median", "medians", "midrange", "minimum", "mode", "model", "multiple", "negative", "nonlinear", "nonresponse", "normal", "normality", "normally", "null", "numeric", "numerical", "observation", "observational", "observations", "outcome", "outcomes", "outlier", "outliers", "overestimation", "overrepresentation", "paired", "parameter", "parameters", "participant", "participants", "percent", "percentage", "percentile", "placebo", "plausibility", "plot", "plots", "point", "poll", "pooled", "population", "populations", "positive", "power", "precision", "predict", "predicted", "probabilities", "probability", "proportion", "proportions", "prospective", "quadratic", "quantitative", "quartile", "quartiles", "random", "randomization", "randomized", "randomly", "range", "rate", "ratio", "regression", "reject", "rejection", "relationship", "relative", "replication", "representation", "representative", "research", "residual", "residuals", "response", "risk", "sample", "sampled", "samples", "sampling", "scatter", "scatterplot", "scatterplots", "selection", "significance", "significant", "significantly", "simulation", "simulations", "skew", "skewed", "skewness", "slope", "spread", "sqrt", "square", "squared", "standard", "standardization", "standardized", "statistic", "statistical", "statistically", "statistician", "statisticians", "statistics", "stemplot", "strata", "stratification", "stratified", "stratum", "strength", "strong", "subject", "subjects", "summary", "survey", "symmetric", "symmetry", "table", "test", "tests", "theorem", "theoretical", "theory", "treatment", "trend", "trial", "trials", "unbiased", "undercoverage", "underestimate", "underrepresentation", "uniform", "unimodal", "unit", "validity", "variability", "variable", "variables", "variance", "variances", "variation", "visualization", "weighted", "width", "yield", "zero"
+        ];
+        // Architect's Note: The full pok_curriculum.json content is pasted here.
+        const POK_CURRICULUM = {
+            
     "unit1-1-2": [
         {
             "id": "U1-L2-Q01",
@@ -31056,4 +31395,9 @@
             "reasoning": "A claim that the time until relief decreases by more than two minutes, on average, is supported by the interval. The interval represents plausible values for the slope of the regression line, and all values contained in the interval are less than -2, representing a decrease of more than two minutes."
         }
     ]
-}
+
+        };
+    </script>
+
+</body>
+</html>

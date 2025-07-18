@@ -135,14 +135,22 @@ def quiz_id_to_json_filename(quiz_id):
         lesson_num = match.group(2)
         return f'ap_stats_u{unit_num}_l{lesson_num}_quiz.json'
     
-    # Handle capstone quizzes
+    # Handle capstone quizzes - expanded possible names
     match = re.match(r'(\d+)-capstone_q\d+', quiz_id)
     if match:
         unit_num = match.group(1)
-        # Look for various capstone patterns
+        # Comprehensive list of capstone patterns
         possible_names = [
             f'ap_stats_u{unit_num}_pc_frq.json',
             f'ap_stats_u{unit_num}_pc_mcq.json',
+            f'ap_stats_u{unit_num}_pc_mcq_a.json',
+            f'ap_stats_u{unit_num}_pc_mcq_b.json',
+            f'ap_stats_u{unit_num}_pc_mcqa.json',
+            f'ap_stats_u{unit_num}_pc_mcqb.json',
+            f'ap_stats_u{unit_num}_pc_mcqc.json',
+            f'u{unit_num}_pc_mcq_a.json',
+            f'u{unit_num}_pc_mcq_b.json',
+            f'u{unit_num}_pc_mcq_c.json',
             f'ap_stats_u{unit_num}_capstone.json'
         ]
         return possible_names
@@ -158,13 +166,15 @@ def find_json_file(base_dir, filename_or_list):
     else:
         filenames = filename_or_list
     
+    found_files = []
+    
     for filename in filenames:
         # Search in all Unit subdirectories
         for root, dirs, files in os.walk(assets_dir):
             if filename in files:
-                return os.path.join(root, filename)
+                found_files.append(os.path.join(root, filename))
     
-    return None
+    return found_files if found_files else None
 
 def strip_all_comments(content):
     """Remove all JavaScript-style comments from content."""
@@ -185,8 +195,30 @@ def load_and_process_json(file_path):
         # Strip all comments globally
         content = strip_all_comments(content)
         
-        # Find all JSON objects using proper brace counting
-        # Look for complete { ... } blocks with proper nesting
+        # Handle both array format and individual object format
+        content = content.strip()
+        
+        # If content starts with [, it's an array
+        if content.startswith('['):
+            try:
+                # Try to parse as a complete JSON array
+                json_array = json.loads(content)
+                mcq_questions = []
+                
+                for item in json_array:
+                    if isinstance(item, dict) and item.get('type') == 'multiple-choice':
+                        mcq_questions.append(item)
+                        print(f"      Array item: MCQ question '{item.get('id', 'unknown')}' added")
+                    else:
+                        print(f"      Array item: Skipped (type: {item.get('type', 'unknown') if isinstance(item, dict) else 'non-dict'})")
+                
+                print(f"    Total MCQ questions extracted from array: {len(mcq_questions)}")
+                return mcq_questions
+                
+            except json.JSONDecodeError:
+                print(f"    Failed to parse as JSON array, falling back to brace counting")
+        
+        # Fall back to brace counting for individual objects
         json_blocks = []
         brace_count = 0
         current_block = ""
@@ -322,6 +354,58 @@ def create_unit_lesson_key(unit_id, quiz_id):
     
     return f"{unit_id}-unknown"
 
+def deduplicate_mcqs(mcq_list):
+    """Remove duplicate MCQs based on their 'id' field."""
+    seen_ids = set()
+    unique_mcqs = []
+    
+    for mcq in mcq_list:
+        mcq_id = mcq.get('id')
+        if mcq_id and mcq_id not in seen_ids:
+            seen_ids.add(mcq_id)
+            unique_mcqs.append(mcq)
+        elif mcq_id:
+            print(f"        Duplicate MCQ found and removed: {mcq_id}")
+    
+    return unique_mcqs
+
+def collect_capstone_files_for_unit(unit_id, base_dir):
+    """Collect all unique capstone files for a given unit."""
+    unit_match = re.search(r'(\d+)', unit_id)
+    if not unit_match:
+        return []
+    
+    unit_num = unit_match.group(1)
+    
+    # Comprehensive list of capstone patterns
+    possible_names = [
+        f'ap_stats_u{unit_num}_pc_frq.json',
+        f'ap_stats_u{unit_num}_pc_mcq.json',
+        f'ap_stats_u{unit_num}_pc_mcq_a.json',
+        f'ap_stats_u{unit_num}_pc_mcq_b.json',
+        f'ap_stats_u{unit_num}_pc_mcqa.json',
+        f'ap_stats_u{unit_num}_pc_mcqb.json',
+        f'ap_stats_u{unit_num}_pc_mcqc.json',
+        f'u{unit_num}_pc_mcq_a.json',
+        f'u{unit_num}_pc_mcq_b.json',
+        f'u{unit_num}_pc_mcq_c.json',
+        f'ap_stats_u{unit_num}_capstone.json'
+    ]
+    
+    # Find all existing files
+    found_files = find_json_file(base_dir, possible_names)
+    if not found_files:
+        return []
+    
+    # Deduplicate paths (in case same file is found multiple times)
+    unique_files = list(set(found_files))
+    
+    print(f"    [CAPSTONE] Found {len(unique_files)} unique capstone files for {unit_id}")
+    for file_path in unique_files:
+        print(f"      {os.path.basename(file_path)}")
+    
+    return unique_files
+
 def main():
     """Main function to process curriculum data."""
     # Get base directory (assume current directory or prompt user)
@@ -346,6 +430,14 @@ def main():
     
     # Process each unit
     curriculum_data = {}
+    capstone_stats = {
+        'files_found': 0,
+        'mcqs_found': 0,
+        'units_processed': []
+    }
+    
+    # Track processed capstone units to avoid reprocessing
+    processed_capstone_units = set()
     
     for unit in units_data:
         unit_id = unit.get('unitId', '')
@@ -365,39 +457,106 @@ def main():
                 
                 print(f"  Processing quiz: {quiz_id}")
                 
-                # Convert quiz_id to JSON filename
-                json_filename = quiz_id_to_json_filename(quiz_id)
-                if not json_filename:
-                    print(f"    Could not determine JSON filename for {quiz_id}")
-                    continue
+                # Check if this is a capstone quiz
+                is_capstone = 'capstone' in quiz_id
                 
-                # Find the JSON file
-                json_file_path = find_json_file(base_dir, json_filename)
-                if not json_file_path:
-                    print(f"    JSON file not found for {quiz_id}")
-                    continue
+                if is_capstone:
+                    # For capstone quizzes, process all files for this unit only once
+                    if unit_id in processed_capstone_units:
+                        print(f"    [CAPSTONE] Already processed capstone for {unit_id}, skipping")
+                        continue
+                    
+                    print(f"    [CAPSTONE] Processing capstone files for {unit_id}")
+                    processed_capstone_units.add(unit_id)
+                    
+                    # Collect all unique capstone files for this unit
+                    capstone_files = collect_capstone_files_for_unit(unit_id, base_dir)
+                    
+                    if not capstone_files:
+                        print(f"    [CAPSTONE] No capstone files found for {unit_id}")
+                        continue
+                    
+                    # Process all capstone files and collect MCQs
+                    all_capstone_mcqs = []
+                    
+                    for file_path in capstone_files:
+                        capstone_stats['files_found'] += 1
+                        print(f"    [CAPSTONE] Processing file: {os.path.basename(file_path)}")
+                        
+                        # Load and process JSON
+                        mcq_questions = load_and_process_json(file_path)
+                        
+                        if mcq_questions:
+                            # Process attachments for each MCQ
+                            processed_mcqs = []
+                            for mcq in mcq_questions:
+                                processed_mcq = process_mcq_attachments(mcq, base_dir)
+                                processed_mcqs.append(processed_mcq)
+                            
+                            all_capstone_mcqs.extend(processed_mcqs)
+                            print(f"    [CAPSTONE] Added {len(processed_mcqs)} MCQs from {os.path.basename(file_path)}")
+                        else:
+                            print(f"    [CAPSTONE] No MCQ questions found in {os.path.basename(file_path)}")
+                    
+                    # Deduplicate MCQs by ID
+                    unique_mcqs = deduplicate_mcqs(all_capstone_mcqs)
+                    print(f"    [CAPSTONE] Unique MCQs after dedupe: {len(unique_mcqs)}")
+                    
+                    if unique_mcqs:
+                        # Create capstone key and store data
+                        capstone_key = f"{unit_id}-capstone"
+                        curriculum_data[capstone_key] = unique_mcqs
+                        capstone_stats['mcqs_found'] += len(unique_mcqs)
+                        
+                        unit_match = re.search(r'(\d+)', unit_id)
+                        unit_num = unit_match.group(1) if unit_match else unit_id
+                        if unit_num not in capstone_stats['units_processed']:
+                            capstone_stats['units_processed'].append(unit_num)
+                        
+                        print(f"    [CAPSTONE] Added {len(unique_mcqs)} unique MCQs to key: {capstone_key}")
                 
-                print(f"    Found JSON: {json_file_path}")
-                
-                # Load and process JSON
-                mcq_questions = load_and_process_json(json_file_path)
-                if not mcq_questions:
-                    print(f"    No MCQ questions found in {json_file_path}")
-                    continue
-                
-                # Process attachments for each MCQ
-                processed_mcqs = []
-                for mcq in mcq_questions:
-                    processed_mcq = process_mcq_attachments(mcq, base_dir)
-                    processed_mcqs.append(processed_mcq)
-                
-                # Create key and store data
-                key = create_unit_lesson_key(unit_id, quiz_id)
-                if key not in curriculum_data:
-                    curriculum_data[key] = []
-                
-                curriculum_data[key].extend(processed_mcqs)
-                print(f"    Added {len(processed_mcqs)} MCQs to key: {key}")
+                else:
+                    # Regular lesson quiz processing
+                    # Convert quiz_id to JSON filename
+                    json_filename = quiz_id_to_json_filename(quiz_id)
+                    if not json_filename:
+                        print(f"    Could not determine JSON filename for {quiz_id}")
+                        continue
+                    
+                    # Find the JSON file(s)
+                    json_file_paths = find_json_file(base_dir, json_filename)
+                    if not json_file_paths:
+                        print(f"    JSON file(s) not found for {quiz_id}")
+                        continue
+                    
+                    # Process all found files
+                    all_mcqs = []
+                    
+                    for json_file_path in json_file_paths:
+                        print(f"    Found JSON: {json_file_path}")
+                        
+                        # Load and process JSON
+                        mcq_questions = load_and_process_json(json_file_path)
+                        
+                        if mcq_questions:
+                            # Process attachments for each MCQ
+                            processed_mcqs = []
+                            for mcq in mcq_questions:
+                                processed_mcq = process_mcq_attachments(mcq, base_dir)
+                                processed_mcqs.append(processed_mcq)
+                            
+                            all_mcqs.extend(processed_mcqs)
+                        else:
+                            print(f"    No MCQ questions found in {json_file_path}")
+                    
+                    if all_mcqs:
+                        # Create key and store data
+                        key = create_unit_lesson_key(unit_id, quiz_id)
+                        if key not in curriculum_data:
+                            curriculum_data[key] = []
+                        
+                        curriculum_data[key].extend(all_mcqs)
+                        print(f"    Added {len(all_mcqs)} MCQs to key: {key}")
     
     # Write output file
     output_file = os.path.join(base_dir, 'pok_curriculum.json')
@@ -412,10 +571,17 @@ def main():
         total_questions = sum(len(questions) for questions in curriculum_data.values())
         print(f"Total MCQ questions: {total_questions}")
         
+        # Print capstone statistics
+        print(f"\n=== CAPSTONE STATISTICS ===")
+        print(f"Capstone files processed: {capstone_stats['files_found']}")
+        print(f"Capstone MCQs found: {capstone_stats['mcqs_found']}")
+        print(f"Units with capstone data: {sorted(capstone_stats['units_processed'])}")
+        
         # Print key distribution
         print("\nKey distribution:")
         for key, questions in sorted(curriculum_data.items()):
-            print(f"  {key}: {len(questions)} questions")
+            capstone_marker = " [CAPSTONE]" if "capstone" in key else ""
+            print(f"  {key}: {len(questions)} questions{capstone_marker}")
         
     except Exception as e:
         print(f"Error writing output file: {e}")
