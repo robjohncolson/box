@@ -1695,14 +1695,22 @@
             
             const normalizedAnswer = (answerKey || '').toString().trim().toUpperCase();
             let choicesHtml = '<div class="choices">';
-            choices.forEach(choice => {
-                const isCorrect = choice.key.toString().trim().toUpperCase() === normalizedAnswer;
-                choicesHtml += `
-                    <div class="choice ${isCorrect ? 'correct-choice' : ''}">
-                        <span class="choice-key">${choice.key}.</span> ${choice.value}
-                    </div>
-                `;
-            });
+                choices.forEach(choice => {
+    const isCorrect = choice.key.toString().trim().toUpperCase() === normalizedAnswer;
+    
+    // The unique ID for this radio button
+    const inputId = `choice-${choice.key}`; 
+    
+    choicesHtml += `
+        <div class="choice ${isCorrect ? 'correct-choice' : ''}">
+            <label for="${inputId}">
+                <input type="radio" name="answer" id="${inputId}" value="${choice.key}">
+                <span class="choice-key">${choice.key}.</span>
+                ${choice.value}
+            </label>
+        </div>
+    `;
+});
             choicesHtml += '</div>';
             
             return choicesHtml;
