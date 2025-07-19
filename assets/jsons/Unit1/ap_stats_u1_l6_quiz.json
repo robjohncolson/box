@@ -1,809 +1,131 @@
-[
-  {
-    "id": "U1-PC-MCQ-A-Q01",
-    "type": "multiple-choice",
-    "prompt": "Data are collected on the 35 students in a college history course. Which of the following is not a variable for the data set?",
-    "choices": [
-      {
-        "key": "A",
-        "value": "Student birth month"
-      },
-      {
-        "key": "B", 
-        "value": "Political affiliation of student"
-      },
-      {
-        "key": "C",
-        "value": "Student age"
-      },
-      {
-        "key": "D",
-        "value": "Student address"
-      },
-      {
-        "key": "E",
-        "value": "Number of students in the data set"
-      }
-    ],
-    "answerKey": "E",
-    "reasoning": "A variable is a characteristic that can vary from student to student. The number of students in the data set is a single, fixed value (35), not a variable that changes between individual students."
-  },
-  {
-    "id": "U1-PC-MCQ-A-Q02", 
-    "type": "multiple-choice",
-    "prompt": "A local ice-cream shop sells ice-cream cones for $2.00, and customers can choose from the following options.\n\nIce-cream flavor\nType of cone: sugar or waffle\nChocolate dipped for an additional $0.50\nSprinkles for an additional $0.50\n\nWhich of the following is a quantitative variable?",
-    "choices": [
-      {
-        "key": "A",
-        "value": "Ice-cream flavor"
-      },
-      {
-        "key": "B",
-        "value": "Type of cone"
-      },
-      {
-        "key": "C", 
-        "value": "Chocolate dipped or not"
-      },
-      {
-        "key": "D",
-        "value": "Sprinkles or not"
-      },
-      {
-        "key": "E",
-        "value": "The total cost of the cone"
-      }
-    ],
-    "answerKey": "E",
-    "reasoning": "A quantitative variable is one that takes on numerical values for a measured or counted quantity. The total cost of the cone is a quantitative variable since it can assume different numerical values representing the cost of each cone. The total cost could be $2.00 (ice cream in cone only), $2.50 (ice cream with sprinkles only or ice-cream cone with chocolate only), or $3.00 (ice-cream cone that is both chocolate dipped and has sprinkles)."
-  },
-  {
-    "id": "U1-PC-MCQ-A-Q03",
-    "type": "multiple-choice", 
-    "prompt": "The following table shows data collected about the thirty-third through fortieth presidents of the United States. All variables reported in the table are categorical.\n\nWhich of the variables in the table could have been reported differently such that the variable would be classified as quantitative?",
-    "attachments": {
-      "table": [
-        ["Name", "Political Party", "Eye Color", "Age at Inauguration", "Dominant Hand"],
-        ["Harry S. Truman", "Democrat", "Blue", "Typical", "Left"],
-        ["Dwight D. Eisenhower", "Republican", "Blue", "Typical", "Right"],
-        ["John F. Kennedy", "Democrat", "Blue", "Typical", "Right"],
-        ["Lyndon B. Johnson", "Democrat", "Brown", "Typical", "Right"],
-        ["Richard Nixon", "Republican", "Brown", "Typical", "Right"],
-        ["Gerald Ford", "Republican", "Blue", "Typical", "Both"],
-        ["Jimmy Carter", "Democrat", "Hazel", "Younger", "Right"],
-        ["Ronald Reagan", "Republican", "Blue", "Older", "Left"]
-      ]
+{
+  "id": "U1-L6-Q01",
+  "type": "multiple-choice",
+  "prompt": "Which of the following statements is true about a distribution that appears to have a gap when displayed as a histogram?",
+  "choices": [
+    {
+      "key": "A",
+      "value": "The distribution must have an outlier."
     },
-    "choices": [
-      {
-        "key": "A",
-        "value": "Name"
-      },
-      {
-        "key": "B",
-        "value": "Political Party"
-      },
-      {
-        "key": "C",
-        "value": "Eye color"
-      },
-      {
-        "key": "D",
-        "value": "Age at inauguration"
-      },
-      {
-        "key": "E",
-        "value": "Dominant hand"
-      }
-    ],
-    "answerKey": "D",
-    "reasoning": "Age at inauguration could have been measured as a number of years, making it a quantitative variable instead of the categorical descriptions (Typical, Younger, Older) shown in the table."
-  },
-  {
-    "id": "U1-PC-MCQ-A-Q04",
-    "type": "multiple-choice",
-    "prompt": "Students in a class were asked to choose their favorite school subject. The following frequency table summarizes the responses.\n\nWhich of the following statements is supported by the frequency table?",
-    "attachments": {
-      "table": [
-        ["School Subject", "Frequency"],
-        ["Math", "7"],
-        ["English", "5"],
-        ["Science", "4"],
-        ["Social Studies", "2"],
-        ["Other", "2"]
-      ]
+    {
+      "key": "B",
+      "value": "The distribution has a region between two data values where no data were observed."
     },
-    "choices": [
-      {
-        "key": "A",
-        "value": "More students chose math as their favorite subject than the combined number of students who chose English and science."
-      },
-      {
-        "key": "B",
-        "value": "Fewer students chose math as their favorite subject than the combined number of students who chose science and social studies."
-      },
-      {
-        "key": "C",
-        "value": "The total number of students in the class is less than 20."
-      },
-      {
-        "key": "D",
-        "value": "Seventy percent of the students chose math as their favorite subject."
-      },
-      {
-        "key": "E",
-        "value": "Less than half of the students chose math as their favorite subject."
-      }
-    ],
-    "answerKey": "E",
-    "reasoning": "Thirty-five percent of the students chose math as their favorite subject (7 out of 20 total students = 7/20 = 0.35 = 35%), which is less than half (50%)."
-  },
-  {
-    "id": "U1-PC-MCQ-A-Q05",
-    "type": "multiple-choice",
-    "prompt": "A group of first-grade students were asked to name their favorite color. The responses are shown in the following frequency table.\n\nWhich of the following statements is supported by the frequency table?",
-    "attachments": {
-      "table": [
-        ["Color", "Frequency"],
-        ["Red", "15"],
-        ["Blue", "30"],
-        ["Green", "8"],
-        ["Yellow", "12"],
-        ["Purple", "25"]
-      ]
+    {
+      "key": "C",
+      "value": "The distribution is approximately normal."
     },
-    "choices": [
-      {
-        "key": "A",
-        "value": "More students chose purple than any other color."
-      },
-      {
-        "key": "B",
-        "value": "Twice as many students chose blue as chose red."
-      },
-      {
-        "key": "C",
-        "value": "Yellow was chosen by the least number of students."
-      },
-      {
-        "key": "D",
-        "value": "The total number of student responses is 80."
-      },
-      {
-        "key": "E",
-        "value": "The combined number of students who chose green and yellow is greater than the number of students who chose purple."
-      }
-    ],
-    "answerKey": "B",
-    "reasoning": "The number of students who chose red is 15, and 30 students chose blue. Since 30 is twice 15, the statement 'Twice as many students chose blue as chose red' is supported by the data in the table."
-  },
-  {
-    "id": "U1-PC-MCQ-A-Q06",
-    "type": "multiple-choice",
-    "prompt": "The following relative frequency table shows reasons given by high school students for their last absence from school.\n\nWhich of the following statements is not supported by the relative frequency table?",
-    "attachments": {
-      "table": [
-        ["Reason", "Relative Frequency"],
-        ["Illness", "0.57"],
-        ["Overslept", "0.20"],
-        ["College visit", "0.16"],
-        ["Did not finish assignment", "0.07"]
-      ]
+    {
+      "key": "D",
+      "value": "The distribution cannot be symmetric."
     },
-    "choices": [
+    {
+      "key": "E",
+      "value": "The distribution must be bimodal."
+    }
+  ],
+  "answerKey": "B"
+}
+
+{
+  "id": "U1-L6-Q02",
+  "type": "multiple-choice",
+  "prompt": "If the interval size is decreased from $200 to $100, which of the following must remain the same on the new histogram?",
+  "attachments": {
+    "chartType": "histogram",
+    "xLabels": ["200", "400", "600", "800", "1000", "1200"],
+    "series": [
       {
-        "key": "A",
-        "value": "More than half the students were absent because of illness."
-      },
-      {
-        "key": "B",
-        "value": "More than one-third of the students were absent because of oversleeping or college visits."
-      },
-      {
-        "key": "C",
-        "value": "The reason given the least number of times was did not finish assignment."
-      },
-      {
-        "key": "D",
-        "value": "Only 7 students were absent because they did not finish an assignment."
-      },
-      {
-        "key": "E",
-        "value": "Less than one-fourth of the students were absent because they overslept."
+        "name": "Number of Students",
+        "values": [4, 6, 9, 7, 3, 1]
       }
     ],
-    "answerKey": "D",
-    "reasoning": "The statement is not supported by the relative frequency table. The proportion of students who gave a reason of did not finish assignment is 0.07, meaning that 7% of the total number of students gave this reason. The number of students giving this reason is 0.07T, but this number cannot be determined because T (the total number of students) is not known."
+    "chartConfig": {
+      "yAxis": {
+        "min": 0,
+        "max": 10,
+        "tickInterval": 1,
+        "title": "Number of Students"
+      },
+      "xAxis": {
+        "title": "Amount Spent (Dollars)",
+        "labelType": "upperBound",
+        "labels": [200, 400, 600, 800, 1000, 1200]
+      },
+      "gridLines": {
+        "horizontal": false,
+        "vertical": false
+      },
+      "description": "Histogram showing spending distribution with upper bound labels"
+    }
   },
-  {
-    "id": "U1-PC-MCQ-A-Q07",
-    "type": "multiple-choice",
-    "prompt": "Residents from five districts of a city were asked whether they were in favor of a city proposal to create new bike lanes in the roads. The following bar chart shows the relative frequency in each district of those who responded that they were in favor of the proposal.\n\nWhich of the following statements is supported by the bar chart?",
-    "attachments": {
-      "chartType": "bar",
-      "xLabels": ["District 1", "District 2", "District 3", "District 4", "District 5"],
-      "series": [
-        {
-          "name": "In Favor of Proposal",
-          "values": [0.4, 0.71, 0.56, 0.64, 0.46]
-        }
-      ],
-      "chartConfig": {
-        "yAxis": {
-          "min": 0,
-          "max": 0.8,
-          "tickInterval": 0.1,
-          "title": "Relative Frequency"
-        },
-        "xAxis": {
-          "title": "In Favor of Proposal"
-        },
-        "gridLines": {
-          "horizontal": true,
-          "vertical": false
-        },
-        "description": "Bar chart showing relative frequency of residents in favor of bike lane proposal by district"
-      }
+  "choices": [
+    {
+      "key": "A",
+      "value": "The heights of the bars"
     },
-    "choices": [
-      {
-        "key": "A",
-        "value": "District 2 has the greatest number of residents who are in favor of the proposal."
-      },
-      {
-        "key": "B",
-        "value": "District 1 has the least number of residents who are in favor of the proposal."
-      },
-      {
-        "key": "C",
-        "value": "All districts show at least 60% of residents in favor of the proposal."
-      },
-      {
-        "key": "D",
-        "value": "In 3 districts, less than half of the residents were in favor of the proposal."
-      },
-      {
-        "key": "E",
-        "value": "District 2 has the greatest percentage of residents who are in favor of the proposal."
-      }
-    ],
-    "answerKey": "E",
-    "reasoning": "The bars represent percentages, and District 2 has the highest bar (around 71%), indicating it has the greatest percentage of residents who are in favor of the proposal."
-  },
-  {
-    "id": "U1-PC-MCQ-A-Q08",
-    "type": "multiple-choice",
-    "prompt": "The following bar chart shows the average price per gallon of gasoline for each month in 2004.\n\nWhich of the following statements is not supported by the bar chart?",
-    "attachments": {
-      "chartType": "bar",
-      "xLabels": ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
-      "series": [
-        {
-          "name": "Price per Gallon",
-          "values": [1.6, 1.7, 1.8, 1.9, 2.0, 2.05, 1.95, 2.0, 1.95, 2.05, 2.0, 1.9]
-        }
-      ],
-      "chartConfig": {
-        "yAxis": {
-          "min": 0,
-          "max": 2.50,
-          "tickInterval": 0.50,
-          "title": "Price per Gallon"
-        },
-        "xAxis": {
-          "title": "Month"
-        },
-        "gridLines": {
-          "horizontal": true,
-          "vertical": false
-        },
-        "description": "Bar chart showing average price per gallon of gasoline for each month in 2004"
-      }
+    {
+      "key": "B",
+      "value": "The widths of the bars"
     },
-    "choices": [
-      {
-        "key": "A",
-        "value": "The gas price was highest in June and October."
-      },
-      {
-        "key": "B",
-        "value": "The gas price increased each month from January through June."
-      },
-      {
-        "key": "C",
-        "value": "All months had gas prices greater than $1.50 per gallon."
-      },
-      {
-        "key": "D",
-        "value": "The gas price was lowest in February."
-      },
-      {
-        "key": "E",
-        "value": "The September gas price was higher than the January gas price."
-      }
-    ],
-    "answerKey": "D",
-    "reasoning": "The statement is not supported by the bar chart. January has the lowest bar in the bar chart, not February."
-  },
-  {
-    "id": "U1-PC-MCQ-A-Q09",
-    "type": "multiple-choice",
-    "prompt": "The following bar chart shows the number of wins for four middle-school basketball teams. Each team played 12 games.\n\nWhich of the following statements is not supported by the bar chart?",
-    "attachments": {
-      "chartType": "bar",
-      "xLabels": ["A", "B", "C", "D"],
-      "series": [
-        {
-          "name": "Frequency",
-          "values": [9, 6, 7, 4]
-        }
-      ],
-      "chartConfig": {
-        "yAxis": {
-          "min": 0,
-          "max": 10,
-          "tickInterval": 1,
-          "title": "Frequency"
-        },
-        "xAxis": {
-          "title": "Team"
-        },
-        "gridLines": {
-          "horizontal": true,
-          "vertical": false
-        },
-        "description": "Bar chart showing number of wins for four middle-school basketball teams"
-      }
+    {
+      "key": "C",
+      "value": "The number of bars"
     },
-    "choices": [
-      {
-        "key": "A",
-        "value": "Team A won 75% of its games."
-      },
-      {
-        "key": "B",
-        "value": "Team B won 60% of its games."
-      },
-      {
-        "key": "C",
-        "value": "Team C won 7 games."
-      },
-      {
-        "key": "D",
-        "value": "Team D won less than half its games."
-      },
-      {
-        "key": "E",
-        "value": "Team C won 2 fewer games than Team A."
-      }
-    ],
-    "answerKey": "B",
-    "reasoning": "The statement is not supported by the bar chart. Team B won 6 games, and 6 out of 12 is 50%, not 60%."
-  },
-  {
-    "id": "U1-PC-MCQ-A-Q10",
-    "type": "multiple-choice",
-    "prompt": "The following table shows the numbers of students in grades 7 and 8 at a middle school who are participating in extracurricular activities.\n\nWhich of the following statements is supported by the table?",
-    "attachments": {
-      "table": [
-        ["", "Band", "Chorus", "Chess Club", "Drama Club", "School Newspaper"],
-        ["Grade 7", "15", "22", "8", "16", "10"],
-        ["Grade 8", "16", "20", "10", "25", "15"]
-      ]
+    {
+      "key": "D",
+      "value": "The sum of the frequencies"
     },
-    "choices": [
-      {
-        "key": "A",
-        "value": "Each activity has more grade 8 students than grade 7 students."
+    {
+      "key": "E",
+      "value": "The shape of the distribution"
+    }
+  ],
+  "answerKey": "D"
+}
+
+{
+  "id": "U1-L6-Q03",
+  "type": "multiple-choice",
+  "prompt": "Which of the following statements is the best description of the distribution of scores?",
+  "attachments": {
+    "chartType": "dotplot",
+    "values": [55, 60, 60, 60, 60, 65, 65, 65, 70, 70, 70, 70, 75, 75, 80, 85, 90, 95],
+    "chartConfig": {
+      "xAxis": {
+        "min": 50,
+        "max": 100,
+        "tickInterval": 5,
+        "title": "Score"
       },
-      {
-        "key": "B",
-        "value": "The number of students in Band is less than the number of students in the Chess Club."
+      "gridLines": {
+        "horizontal": false,
+        "vertical": false
       },
-      {
-        "key": "C",
-        "value": "The total number of grade 7 students is greater than the total number of grade 8 students."
-      },
-      {
-        "key": "D",
-        "value": "The number of students in the Drama Club is more than twice the number of students in the School Newspaper."
-      },
-      {
-        "key": "E",
-        "value": "The activity with the greatest number of students is Chorus."
-      }
-    ],
-    "answerKey": "E",
-    "reasoning": "The total number of students in Chorus is 42 (22 + 20), which is greater than the other totals: Band (31), Chess Club (18), Drama Club (41), and School Newspaper (25)."
+      "description": "Dotplot showing distribution of scores with dots stacked vertically"
+    }
   },
-  {
-    "id": "U1-PC-MCQ-A-Q11",
-    "type": "multiple-choice",
-    "prompt": "A group of middle school students were asked which school subject was their favorite. The results are displayed by grade of student in the following bar chart.\n\nWhich of the following statements is supported by the bar chart?",
-    "attachments": {
-      "chartType": "bar",
-      "xLabels": ["Language Arts", "Math", "Science", "Social Studies", "Art"],
-      "series": [
-        {
-          "name": "Grade 7",
-          "values": [25, 30, 55, 15, 5]
-        },
-        {
-          "name": "Grade 8", 
-          "values": [35, 20, 40, 25, 16]
-        }
-      ],
-      "chartConfig": {
-        "yAxis": {
-          "min": 0,
-          "max": 60,
-          "tickInterval": 10,
-          "title": "Number of Students"
-        },
-        "xAxis": {
-          "title": "School Subject"
-        },
-        "gridLines": {
-          "horizontal": true,
-          "vertical": false
-        },
-        "description": "Bar chart showing favorite school subjects by grade level"
-      }
+  "choices": [
+    {
+      "key": "A",
+      "value": "The distribution is roughly symmetric."
     },
-    "choices": [
-      {
-        "key": "A",
-        "value": "For students who chose art, the number of grade 8 students was at least 100% greater than the number of grade 7 students."
-      },
-      {
-        "key": "B",
-        "value": "For students who chose social studies, the number of grade 8 students was at least 100% greater than the number of grade 7 students."
-      },
-      {
-        "key": "C",
-        "value": "For students who chose science, the number of grade 8 students was at least 50% less than the number of grade 7 students."
-      },
-      {
-        "key": "D",
-        "value": "For students who chose math, the number of grade 8 students was at least 50% less than the number of grade 7 students."
-      },
-      {
-        "key": "E",
-        "value": "For students who chose language arts, the number of grade 8 students was at least 100% greater than the number of grade 7 students."
-      }
-    ],
-    "answerKey": "A",
-    "reasoning": "The grade 7 bar for art extends to at most 8 students. A 100% increase would reach 16 students, and the grade 8 bar extends to at least 16 students."
-  },
-  {
-    "id": "U1-PC-MCQ-A-Q12",
-    "type": "multiple-choice",
-    "prompt": "Just before graduation, a random sample of high school seniors were asked what their plans were for the coming year. A year after graduation, those same individuals were asked what their main activity was in the year since graduation. Their responses are shown in the following bar chart.\n\nWhich of the following statements is supported by the bar chart?",
-    "attachments": {
-      "chartType": "bar",
-      "xLabels": ["Work", "College", "Tech School", "Other"],
-      "series": [
-        {
-          "name": "Before",
-          "values": [0.27, 0.52, 0.16, 0.05]
-        },
-        {
-          "name": "After",
-          "values": [0.34, 0.49, 0.09, 0.08]
-        }
-      ],
-      "chartConfig": {
-        "yAxis": {
-          "min": 0.0,
-          "max": 0.8,
-          "tickInterval": 0.1,
-          "title": "Relative Frequency"
-        },
-        "xAxis": {
-          "title": "Activity"
-        },
-        "gridLines": {
-          "horizontal": true,
-          "vertical": false
-        },
-        "description": "Bar chart comparing planned vs actual activities of high school graduates"
-      }
+    {
+      "key": "B",
+      "value": "The distribution is roughly uniform."
     },
-    "choices": [
-      {
-        "key": "A",
-        "value": "The percentage of students who selected Work as their main activity increased after graduation."
-      },
-      {
-        "key": "B",
-        "value": "The percentage of students who selected College as their main activity increased after graduation."
-      },
-      {
-        "key": "C",
-        "value": "Before graduation, there is no activity that greater than 50% of the students selected."
-      },
-      {
-        "key": "D",
-        "value": "Before graduation, the percentage of students who selected Tech School as their main activity was greater than the percentage who selected Work as their main activity."
-      },
-      {
-        "key": "E",
-        "value": "After graduation, the percentage of students who selected College as their main activity was twice the percentage of those who selected Work as their main activity."
-      }
-    ],
-    "answerKey": "A",
-    "reasoning": "The bars for Work increased from below 0.3 to above 0.3, showing an increase in the percentage of students who selected Work as their main activity after graduation."
-  },
-  {
-    "id": "U1-PC-MCQ-A-Q13",
-    "type": "multiple-choice",
-    "prompt": "Which of the following variables for data about a track team is a discrete variable?",
-    "choices": [
-      {
-        "key": "A",
-        "value": "The height of a team member"
-      },
-      {
-        "key": "B",
-        "value": "The weight of a team member"
-      },
-      {
-        "key": "C",
-        "value": "The number of times that a team member finished first in a race"
-      },
-      {
-        "key": "D",
-        "value": "The time recorded for the last race that was run by a team member"
-      },
-      {
-        "key": "E",
-        "value": "The time recorded for a one-mile race by a team member"
-      }
-    ],
-    "answerKey": "C",
-    "reasoning": "The number of times that a team member finished first in a race is a count and is a discrete number. Discrete variables can only take on specific, countable values (like 0, 1, 2, 3 wins), while continuous variables can take on any value within a range."
-  },
-  {
-    "id": "U1-PC-MCQ-A-Q14",
-    "type": "multiple-choice",
-    "prompt": "The traffic engineer for a large city is conducting a study on traffic flow at a certain intersection near the city administration building. The engineer will collect data on different variables related to the intersection each day for ten days. Of the following variables, which will be measured using continuous data?",
-    "choices": [
-      {
-        "key": "A",
-        "value": "The number of cars passing through the intersection in one hour"
-      },
-      {
-        "key": "B",
-        "value": "The number of pedestrians crossing the intersection in one hour"
-      },
-      {
-        "key": "C",
-        "value": "The number of bicyclists crossing the intersection in one hour"
-      },
-      {
-        "key": "D",
-        "value": "The number of food trucks that park within four blocks of the intersection"
-      },
-      {
-        "key": "E",
-        "value": "The number of minutes for a car to get from the intersection to the administration building"
-      }
-    ],
-    "answerKey": "E",
-    "reasoning": "The number of minutes is a continuous variable. Between any two minutes, fractions of a minute can always be recorded. Time measurements are continuous because they can take on any value within a range (like 2.5 minutes, 2.53 minutes, etc.)."
-  },
-  {
-    "id": "U1-PC-MCQ-A-Q15",
-    "type": "multiple-choice",
-    "prompt": "The following dotplot shows the number of strokes taken by 20 professional golfers competing at an 18-hole golf course.\n\nWhich of the following best describes the type of variable represented in the dotplot?",
-    "attachments": {
-      "chartType": "dotplot",
-      "values": [64, 64, 65, 65, 65, 66, 66, 67, 67, 67, 67, 67, 68, 68, 68, 69, 69],
-      "chartConfig": {
-        "xAxis": {
-          "min": 62,
-          "max": 70,
-          "tickInterval": 1,
-          "title": "Number of Strokes"
-        },
-        "gridLines": {
-          "horizontal": false,
-          "vertical": false
-        },
-        "description": "Dotplot showing the number of strokes taken by 20 professional golfers competing at an 18-hole golf course"
-      }
+    {
+      "key": "C",
+      "value": "The distribution is skewed left."
     },
-    "choices": [
-      {
-        "key": "A",
-        "value": "Quantitative and discrete"
-      },
-      {
-        "key": "B",
-        "value": "Quantitative and continuous"
-      },
-      {
-        "key": "C",
-        "value": "Categorical and discrete"
-      },
-      {
-        "key": "D",
-        "value": "Categorical and continuous"
-      },
-      {
-        "key": "E",
-        "value": "Quantitative and categorical"
-      }
-    ],
-    "answerKey": "A",
-    "reasoning": "The number of strokes is a whole number, making it quantitative (numerical) and discrete (can only take on specific countable values like 64, 65, 66, etc.)."
-  },
-  {
-    "id": "U1-PC-MCQ-A-Q16",
-    "type": "multiple-choice",
-    "prompt": "Relative humidity is a measure, expressed as a percentage, of the amount of water vapor present in air. The following histogram summarizes the relative humidity, at noon, for a random sample of 100 days for a certain city.\n\nBased on the histogram, which of the following is the best description of the distribution?",
-    "attachments": {
-      "chartType": "histogram",
-      "xLabels": ["40", "45", "50", "55", "60", "65", "70", "75", "80", "85", "90", "95"],
-      "series": [
-        {
-          "name": "Relative Frequency",
-          "values": [0.02, 0.0, 0.0, 0.11, 0.14, 0.18, 0.17, 0.10, 0.08, 0.06, 0.0, 0.0]
-        }
-      ],
-      "chartConfig": {
-        "yAxis": {
-          "min": 0,
-          "max": 0.20,
-          "tickInterval": 0.02,
-          "title": "Relative Frequency"
-        },
-        "xAxis": {
-          "title": "Relative Humidity (percent)",
-          "labelType": "upperBound"
-        },
-        "gridLines": {
-          "horizontal": true,
-          "vertical": false
-        },
-        "description": "Histogram showing relative humidity distribution for 100 days"
-      }
+    {
+      "key": "D",
+      "value": "The distribution is skewed right."
     },
-    "choices": [
-      {
-        "key": "A",
-        "value": "The distribution displays a gap with a potential outlier located between 40% and 45%."
-      },
-      {
-        "key": "B",
-        "value": "The distribution displays a gap with potential outliers located between 90% and 95%."
-      },
-      {
-        "key": "C",
-        "value": "The distribution displays a gap with potential outliers located between 70% and 75%."
-      },
-      {
-        "key": "D",
-        "value": "The distribution displays two clusters with no apparent outliers."
-      },
-      {
-        "key": "E",
-        "value": "The distribution is uniform."
-      }
-    ],
-    "answerKey": "A",
-    "reasoning": "There are no observed data values between 45% relative humidity and 55% relative humidity, so there is a gap displayed in the distribution. The value located between 40% and 45% is unusually small when compared with the other data values. The value is a potential outlier; to test that it is an outlier would require using the 1.5 × IQR rule or using the two standard deviations rule."
-  },
-  {
-    "id": "U1-PC-MCQ-A-Q17",
-    "type": "multiple-choice",
-    "prompt": "The occupancy rate of a motel is the percentage of rooms that are occupied on a particular night. The histogram shown summarizes the occupancy rates for a random sample of 100 nights for a motel. Based on the histogram, which of the following best describes the shape of the distribution of occupancy rates?",
-    "attachments": {
-      "chartType": "histogram",
-      "xLabels": ["0.65", "0.70", "0.75", "0.80", "0.85", "0.90", "0.95"],
-      "series": [
-        {
-          "name": "Relative Frequency",
-          "values": [0.30, 0.27, 0.23, 0.05, 0.08, 0.05, 0.02]
-        }
-      ],
-      "chartConfig": {
-        "yAxis": {
-          "min": 0,
-          "max": 0.35,
-          "tickInterval": 0.05,
-          "title": "Relative Frequency"
-        },
-        "xAxis": {
-          "title": "Motel Occupancy Rate",
-          "labelType": "upperBound"
-        },
-        "gridLines": {
-          "horizontal": true,
-          "vertical": false
-        },
-        "description": "Histogram showing occupancy rates for a random sample of 100 nights for a motel"
-      }
-    },
-    "choices": [
-      {
-        "key": "A",
-        "value": "Skewed to the left"
-      },
-      {
-        "key": "B",
-        "value": "Skewed to the right"
-      },
-      {
-        "key": "C",
-        "value": "Symmetric"
-      },
-      {
-        "key": "D",
-        "value": "Bimodal"
-      },
-      {
-        "key": "E",
-        "value": "Uniform"
-      }
-    ],
-    "answerKey": "B",
-    "reasoning": "The distribution of occupancy rates is skewed to the right because the right tail is longer than the left tail. The majority of data is concentrated on the left side with a longer tail extending to the right."
-  },
-  {
-    "id": "U1-PC-MCQ-A-Q18",
-    "type": "multiple-choice",
-    "prompt": "The diameter, in centimeters (cm), of each tree in a random sample of trees in a forest was measured. The histogram shown summarizes the diameters.\n\nWhich of the following is the best description of the distribution?",
-    "attachments": {
-      "chartType": "histogram",
-      "xLabels": ["0", "5", "10", "15", "20", "25", "30", "35", "40", "45", "50", "55"],
-      "series": [
-        {
-          "name": "Frequency",
-          "values": [5, 20, 28, 22, 6, 0, 0, 0, 5, 10, 6, 0]
-        }
-      ],
-      "chartConfig": {
-        "yAxis": {
-          "min": 0,
-          "max": 30,
-          "tickInterval": 5,
-          "title": "Frequency"
-        },
-        "xAxis": {
-          "title": "Tree Diameter (cm)",
-          "labelType": "upperBound"
-        },
-        "gridLines": {
-          "horizontal": false,
-          "vertical": false
-        },
-        "description": "Histogram showing tree diameter distribution in a forest sample"
-      }
-    },
-    "choices": [
-      {
-        "key": "A",
-        "value": "The distribution consists of two clusters and a gap."
-      },
-      {
-        "key": "B",
-        "value": "The distribution is approximately normal."
-      },
-      {
-        "key": "C",
-        "value": "The distribution is symmetric with a skew to the right."
-      },
-      {
-        "key": "D",
-        "value": "The distribution is skewed to the left."
-      },
-      {
-        "key": "E",
-        "value": "The distribution is uniform."
-      }
-    ],
-    "answerKey": "A",
-    "reasoning": "The best description indicates the noticeable gap between 25 cm and 40 cm. A cluster is a concentration of data. Based on the histogram, there appears to be two clusters of data: one cluster from 0-25 cm and another cluster from 40-55 cm, with a clear gap in between."
-  }
-  ]
+    {
+      "key": "E",
+      "value": "The distribution is bimodal."
+    }
+  ],
+  "answerKey": "D"
+}

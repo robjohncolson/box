@@ -120,38 +120,16 @@
     <!-- ======================================================= -->
     <script>
         // PLACEHOLDER FOR POK_WORDLIST data
-        const POK_WORDLIST = ["mean", "median", "mode", "variance", "regression", "sample", "population", "standard", "deviation", "probability", "hypothesis", "null", "alternative", "z-score", "t-score", "chi-square", "correlation", "causation", "bias", "random", "independent", "dependent", "variable", "categorical", "quantitative", "distribution", "normal", "skewed", "bimodal", "uniform", "outlier", "quartile", "interquartile", "range", "census", "survey", "experiment", "observational", "study", "control", "group", "treatment", "placebo", "double-blind", "significant", "p-value", "alpha", "level", "confidence", "interval", "margin", "error", "parameter", "statistic", "sampling", "residual", "plot", "scatterplot", "boxplot", "histogram", "dotplot", "stemplot", "contingency", "table", "two-way", "conditional", "marginal", "joint", "expected", "observed",
-        "count", "proportion", "percentage", "frequency", "relative", "cumulative", "density", "curve", "empirical", "rule", "chebyshev", "inequality", "central", "limit", "theorem", "law", "large", "numbers", "unbiased", "estimator", "robust", "power", "type-i", "type-ii", "error", "rejection", "region", "critical", "value", "degrees", "freedom", "goodness-of-fit", "test", "homogeneity", "independence", "association", "slope", "intercept", "least-squares", "line", "extrapolation", "lurking", "confounding", "strata", "cluster", "block", "design", "replication", "simulation", "bootstrap", "permutation", "inference", "anova", "F-statistic", "paired", "unpaired", "matched", "geometric", "binomial", "poisson", "bernoulli", "trial", "success", "failure", "mutually", "exclusive", "disjoint", "union", "intersection", "complement", "venn", "diagram", "tree", "sample-space", "event", "outcome", "with-replacement", "without-replacement",
-        "srs", "stratified", "systematic", "multistage", "convenience", "voluntary", "response", "undercoverage", "nonresponse", "response-bias", "wording", "questions", "influential", "point", "leverage", "coefficient", "determination", "r-squared", "standard-error", "prediction", "interval", "one-sided", "two-sided", "alternative", "tails", "satterthwaite", "approximation", "pooled", "variance", "continuity", "correction", "normal-approximation", "inverse", "transform", "method", "monte-carlo", "markov", "chain", "bayesian", "prior", "posterior", "likelihood", "credible", "interval", "beta", "gamma", "distribution", "conjugate", "prior", "odds", "ratio", "log-odds", "logit", "probit", "link", "function", "generalized", "linear", "model", "glm", "aic", "bic", "model-selection", "cross-validation", "overfitting", "underfitting", "regularization", "lasso", "ridge", "elastic-net", "principal", "component", "analysis", "pca", "factor", "analysis", "cluster-analysis", "k-means", "hierarchical", "dendrogram", "time-series", "autocorrelation", "stationarity", "moving-average", "arma", "arima", "survival", "analysis", "kaplan-meier", "cox", "proportional-hazards", "censored", "data", "imputation", "missing", "values", "robust-regression", "nonparametric", "mann-whitney", "wilcoxon", "kruskal-wallis", "spearman", "rank", "correlation"];
+        const POK_WORDLIST =[
+  "analysis", "approximation", "assessment", "association", "assumption", "average", "bias", "biased", "bimodal", "binomial", "bivariate", "boxplot", "boxplots", "calculation", "categorical", "causal", "causation", "census", "center", "central", "chance", "classification", "cluster", "coefficient", "collection", "combination", "combinations", "comparative", "comparison", "complement", "computation", "conclusion", "condition", "conditional", "confidence", "confounding", "contingency", "continuous", "control", "correlation", "count", "data", "decision", "degrees", "density", "dependent", "design", "deviation", "diagram", "discrete", "distribution", "distributions", "dotplot", "dotplots", "effect", "error", "estimate", "estimation", "estimator", "evaluation", "evidence", "expected", "experiment", "experimental", "explanatory", "extrapolation", "factor", "factors", "fraction", "frequencies", "frequency", "function", "generalizability", "generalization", "generalize", "goodness", "graph", "graphic", "graphical", "graphs", "group", "histogram", "histograms", "homogeneity", "homoscedasticity", "hypotheses", "hypothesis", "hypothesize", "independence", "independent", "inference", "influence", "intercept", "interquartile", "interval", "intervals", "investigation", "joint", "level", "levels", "leverage", "linear", "linearity", "linearly", "logarithm", "margin", "matched", "mean", "measurement", "median", "medians", "midrange", "minimum", "mode", "model", "multiple", "negative", "nonlinear", "nonresponse", "normal", "normality", "normally", "null", "numeric", "numerical", "observation", "observational", "observations", "outcome", "outcomes", "outlier", "outliers", "overestimation", "overrepresentation", "paired", "parameter", "parameters", "participant", "participants", "percent", "percentage", "percentile", "placebo", "plausibility", "plot", "plots", "point", "poll", "pooled", "population", "populations", "positive", "power", "precision", "predict", "predicted", "probabilities", "probability", "proportion", "proportions", "prospective", "quadratic", "quantitative", "quartile", "quartiles", "random", "randomization", "randomized", "randomly", "range", "rate", "ratio", "regression", "reject", "rejection", "relationship", "relative", "replication", "representation", "representative", "research", "residual", "residuals", "response", "risk", "sample", "sampled", "samples", "sampling", "scatter", "scatterplot", "scatterplots", "selection", "significance", "significant", "significantly", "simulation", "simulations", "skew", "skewed", "skewness", "slope", "spread", "sqrt", "square", "squared", "standard", "standardization", "standardized", "statistic", "statistical", "statistically", "statistician", "statisticians", "statistics", "stemplot", "strata", "stratification", "stratified", "stratum", "strength", "strong", "subject", "subjects", "summary", "survey", "symmetric", "symmetry", "table", "test", "tests", "theorem", "theoretical", "theory", "treatment", "trend", "trial", "trials", "unbiased", "undercoverage", "underestimate", "underrepresentation", "uniform", "unimodal", "unit", "validity", "variability", "variable", "variables", "variance", "variances", "variation", "visualization", "weighted", "width", "yield", "zero"
+];
 
-        // PLACEHOLDER FOR POK_CURRICULUM data
-        // It's crucial this data is in the format the application expects.
-        // For testing, let's add the first 3 questions from the original context.
-        const POK_CURRICULUM = [
-            // U1-L2-Q01.json
-            {
-              "id": "U1-L2-Q01", "type": "multiple-choice", "prompt": "The following table shows data for the 8 longest roller coasters in the world as of 2015. Which of the following variables is categorical?",
-              "attachments": { "table": [ ["Length (feet)", "Type", "Speed (miles per hour)", "Height (feet)", "Drop (feet)", "Continent"], ["8,133", "Steel", "95", "318", "310", "Asia"], ["7,442", "Steel", "50", "107", "102", "Europe"], ["7,359", "Wood", "65", "110", "135", "North America"], ["6,709", "Steel", "81", "259", "230", "Asia"], ["6,602", "Steel", "95", "325", "320", "North America"], ["6,595", "Steel", "93", "310", "300", "North America"], ["6,562", "Steel", "149", "171", "168", "Asia"], ["6,442", "Wood", "67", "163", "154", "North America"] ], "choices": [ { "key": "A", "value": "Length" }, { "key": "B", "value": "Type" }, { "key": "C", "value": "Speed" }, { "key": "D", "value": "Height" }, { "key": "E", "value": "Drop" } ] },
-              "answerKey": "B"
-            },
-            // U1-L2-Q02.json
-            {
-              "id": "U1-L2-Q02", "type": "multiple-choice", "prompt": "Which of the following questions about cars in a school parking lot will allow for the collection of a set of categorical data?",
-              "attachments": { "choices": [ { "key": "A", "value": "How many blue cars are in the lot?" }, { "key": "B", "value": "What are the gas mileages, in miles per gallon, of the cars in the lot?" }, { "key": "C", "value": "What are the weights, in pounds, of the cars in the lot?" }, { "key": "D", "value": "What is the number of cars in the lot with out-of-state license plates?" }, { "key": "E", "value": "What are the colors of the cars in the lot?" } ] },
-              "answerKey": "E"
-            },
-            // U1-L2-Q03.json
-            {
-              "id": "U1-L2-Q03", "type": "multiple-choice", "prompt": "Data were collected on 100 United States coins minted in 2018. Which of the following represents a quantitative variable for the data collected?",
-              "attachments": { "choices": [ { "key": "A", "value": "The type of metal used in the coin" }, { "key": "B", "value": "The value of the coin" }, { "key": "C", "value": "The color of the coin" }, { "key": "D", "value": "The person depicted on the face of the coin" }, { "key": "E", "value": "The location where the coin was minted" } ] },
-              "answerKey": "B"
-            }
-        ];
+
     </script>
     <!-- ======================================================= -->
     <!-- END OF THE NEW SCRIPT BLOCK                             -->
     <!-- ======================================================= -->
-
+    <script src="pok_curriculum.js"></script>
 
     <script>
         // Assuming existing APStatChain structure from pok_app.html
@@ -161,7 +139,7 @@
 
         var APStatChain = {
             // Existing properties assumed from pok_app.html (e.g., questions, state management, crypto, mempool)
-            questions: [], // Placeholder: questions loaded via existing logic
+            questions: POK_CURRICULUM, // Placeholder: questions loaded via existing logic
             state: {
                 currentIndex: 0,
                 theme: 'light'
@@ -1712,7 +1690,7 @@
             // Re-render if we have data
             APStatChain.renderer.renderCurrentQuestion();
         },
-                renderChoices: function(choices, container, isMultipleChoice) {
+                renderChoices: function(choices, answerKey) {
             if (!choices || !Array.isArray(choices)) return '';
             
             const normalizedAnswer = (answerKey || '').toString().trim().toUpperCase();
@@ -1909,25 +1887,25 @@
                 _generateQuestionHTML: function(adaptedQuestion, index) {
             const questionNumber = index + 1;
             let questionHtml = `
-                <div class="quiz-container" data-question-number="${questionNumber}" data-question-id="${question.id || ''}">
+                <div class="quiz-container" data-question-number="${questionNumber}" data-question-id="${adaptedQuestion.id || ''}">
                     <div class="question-header">Question ${questionNumber}</div>
-                    <div class="question-id">ID: ${question.id || 'N/A'}</div>
-                    <div class="question-id">Type: ${question.type || 'N/A'}</div>
+                    <div class="question-id">ID: ${adaptedQuestion.id || 'N/A'}</div>
+                    <div class="question-id">Type: ${adaptedQuestion.type || 'N/A'}</div>
                     
                     <div class="question-prompt">
-                        ${question.prompt || 'No prompt provided'}
+                        ${adaptedQuestion.prompt || 'No prompt provided'}
                     </div>
             `;
 
             // Handle attachments
-            if (question.attachments) {
+            if (adaptedQuestion.attachments) {
                 // Render image if present
-                if (question.attachments.image) {
-                    const imageAlt = question.attachments.imageAlt || 'Question diagram';
-                    const imageCaption = question.attachments.imageCaption || '';
+                if (adaptedQuestion.attachments.image) {
+                    const imageAlt = adaptedQuestion.attachments.imageAlt || 'Question diagram';
+                    const imageCaption = adaptedQuestion.attachments.imageCaption || '';
                     questionHtml += `
                         <div class="image-container">
-                            <img src="${question.attachments.image}" 
+                            <img src="${adaptedQuestion.attachments.image}" 
                                  alt="${imageAlt}" 
                                  class="question-image" 
                                  loading="lazy" 
@@ -1938,9 +1916,9 @@
                 }
                 
                 // Render multiple images if present
-                if (question.attachments.images && Array.isArray(question.attachments.images)) {
+                if (adaptedQuestion.attachments.images && Array.isArray(adaptedQuestion.attachments.images)) {
                     questionHtml += '<div class="images-container">';
-                    question.attachments.images.forEach((img, imgIndex) => {
+                    adaptedQuestion.attachments.images.forEach((img, imgIndex) => {
                         const imageAlt = img.imageAlt || `Question diagram ${imgIndex + 1}`;
                         const imageCaption = img.imageCaption || '';
                         questionHtml += `
@@ -1958,46 +1936,46 @@
                 }
                 
                 // Render multiple charts if present
-                if (question.attachments.charts && Array.isArray(question.attachments.charts)) {
+                if (adaptedQuestion.attachments.charts && Array.isArray(adaptedQuestion.attachments.charts)) {
                     questionHtml += '<div class="multiple-charts-container">';
-                    question.attachments.charts.forEach((chart, chartIndex) => {
-                        questionHtml += (chart, `${question.id}-chart-${chartIndex}`);
+                    adaptedQuestion.attachments.charts.forEach((chart, chartIndex) => {
+                        questionHtml += (chart, `${adaptedQuestion.id}-chart-${chartIndex}`);
                     });
                     questionHtml += '</div>';
                 }
                 // Render single chart if present
-                else if (question.attachments.chartType) {
-                    questionHtml += (question.attachments, question.id);
+                else if (adaptedQuestion.attachments.chartType) {
+                    questionHtml += (adaptedQuestion.attachments, adaptedQuestion.id);
                 }
                 
                 // Render table if present
-                if (question.attachments.table) {
-                    questionHtml += renderTable(question.attachments.table);
+                if (adaptedQuestion.attachments.table) {
+                    questionHtml += this.renderTable(adaptedQuestion.attachments.table);
                 }
                 
                 // Render choices if present (in attachments)
-                if (question.attachments.choices) {
-                    questionHtml += renderChoices(question.attachments.choices, question.answerKey);
+                if (adaptedQuestion.attachments.choices) {
+                    questionHtml += this.renderChoices(adaptedQuestion.attachments.choices, adaptedQuestion.answerKey);
                 }
             }
 
             // Handle choices at top level (new format)
-            if (question.choices) {
-                questionHtml += renderChoices(question.choices, question.answerKey);
+            if (adaptedQuestion.choices) {
+                questionHtml += this.renderChoices(adaptedQuestion.choices, adaptedQuestion.answerKey);
             }
 
             // Render reasoning/explanation if present
-            if (question.reasoning) {
+            if (adaptedQuestion.reasoning) {
                 questionHtml += `
                     <div class="reasoning">
-                        <strong>Explanation:</strong> ${question.reasoning}
+                        <strong>Explanation:</strong> ${adaptedQuestion.reasoning}
                     </div>
                 `;
             }
 
             // Render solution if present (for free response questions)
-            if (question.solution) {
-                questionHtml += renderSolution(question.solution, question.id);
+            if (adaptedQuestion.solution) {
+                questionHtml += this.renderSolution(adaptedQuestion.solution, adaptedQuestion.id);
             }
 
             questionHtml += '</div>';

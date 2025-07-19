@@ -1,189 +1,119 @@
 [
-{
-  "id": "U1-L9-Q01",
-  "type": "multiple-choice",
-  "prompt": "One statistic calculated for pitchers in baseball is called the earned run average, or ERA. Based on the boxplots, which of the following statistics is the same for both leagues?",
-  "attachments": {
-    "chartType": "boxplot",
-    "chartConfig": {
-      "orientation": "horizontal",
-      "xAxis": {
-        "min": 0.0,
-        "max": 12.5,
-        "tickInterval": 2.5,
-        "title": "ERA"
-      },
-      "boxplotData": [
+  {
+    "id": "U1-L9-Q01",
+    "type": "multiple-choice",
+    "prompt": "One statistic calculated for pitchers in baseball is called the earned run average, or \\(ERA\\). Based on the boxplots, which of the following statistics is the same for both leagues?",
+    "attachments": {
+      "chartType": "boxplot",
+      "chartConfig": {
+        "orientation": "horizontal",
+        "xAxis": {
+          "min": 0,
+          "max": 12.5,
+          "tickInterval": 2.5,
+          "title": "ERA"
+        },
+        "boxplotData": [
+          {
+            "name": "League A",
+            "Q1": 2.5,
+            "Q3": 5.0,
+            "median": 3.5,
+            "whiskerMin": 1.5,
+            "whiskerMax": 7.5,
+            "outliers": [0.8, 10.2]
+          },
+          {
+            "name": "League B",
+            "Q1": 2.5,
+            "Q3": 5.0,
+            "median": 4.0,
+            "whiskerMin": 1.2,
+            "whiskerMax": 8.5,
+            "outliers": [0.4, 12.0]
+          }
+        ],
+        "gridLines": {
+          "horizontal": false,
+          "vertical": false
+        },
+        "description": "Boxplots comparing ERA for pitchers in leagues A and B, showing outliers marked with asterisks"
+      }
+    },
+    "choices": [
+      { "key": "A", "value": "The range" },
+      { "key": "B", "value": "The interquartile range" },
+      { "key": "C", "value": "The median" },
+      { "key": "D", "value": "The minimum" },
+      { "key": "E", "value": "The maximum" }
+    ],
+    "answerKey": "B",
+    "reasoning": "The interquartile range is equal to the length of the box in a boxplot. Both boxes appear to have the same length. The \\(IQR = Q3 - Q1\\), and by visual inspection of the boxplots, both League A and League B have boxes of the same width, indicating identical interquartile ranges despite having different medians, ranges, minimums, and maximums."
+  },
+  {
+    "id": "U1-L9-Q02",
+    "type": "multiple-choice",
+    "prompt": "One way to measure the duration of subterranean disturbances such as earthquakes and mining is to calculate the root-mean-square time. Based on the histograms, which of the following correctly compares the two distributions?",
+    "attachments": {
+      "charts": [
         {
-          "name": "League B",
-          "Q1": 3,
-          "Q3": 5.0,
-          "median": 3.75,
-          "whiskerMin": 1.2,
-          "whiskerMax": 7.2,
-          "outliers": [0, 8, 9, 11, 12.5]
+          "chartType": "histogram",
+          "title": "Earthquake Disturbances",
+          "xLabels": ["0.2", "0.4", "0.6", "0.8", "1.0", "1.2", "1.4"],
+          "series": [
+            {"name": "Earthquake Disturbances", "values": [0.35, 0.20, 0.10, 0.10, 0.08, 0.07, 0.06]}
+          ],
+          "chartConfig": {
+            "yAxis": {"min": 0.0, "max": 0.40, "tickInterval": 0.05, "title": "Relative Frequency"},
+            "xAxis": {"title": "Root Mean Square Time", "labelType": "upperBound"},
+            "gridLines": {"horizontal": true, "vertical": false}
+          }
         },
         {
-          "name": "League A",
-          "Q1": 3,
-          "Q3": 5.0,
-          "median": 4.3,
-          "whiskerMin": 1.2,
-          "whiskerMax": 7.4,
-          "outliers": [8, 9]
+          "chartType": "histogram", 
+          "title": "Mining Disturbances",
+          "xLabels": ["0.2", "0.4", "0.6", "0.8", "1.0", "1.2", "1.4"],
+          "series": [
+            {"name": "Mining Disturbances", "values": [0.0, 0.22, 0.35, 0.25, 0.10, 0.08, 0.0]}
+          ],
+          "chartConfig": {
+            "yAxis": {"min": 0.0, "max": 0.40, "tickInterval": 0.05, "title": "Relative Frequency"},
+            "xAxis": {"title": "Root Mean Square Time", "labelType": "upperBound"},
+            "gridLines": {"horizontal": true, "vertical": false}
+          }
         }
       ],
-      "gridLines": {
-        "horizontal": false,
-        "vertical": false
-      },
-      "description": "Boxplots comparing ERA for pitchers in leagues A and B, showing outliers marked with asterisks"
-    }
-  },
-  "choices": [
-    {
-      "key": "A",
-      "value": "The range"
+      "description": "Histograms showing the distributions of root-mean-square times for earthquake and mining disturbances"
     },
-    {
-      "key": "B",
-      "value": "The interquartile range"
-    },
-    {
-      "key": "C",
-      "value": "The median"
-    },
-    {
-      "key": "D",
-      "value": "The minimum"
-    },
-    {
-      "key": "E",
-      "value": "The maximum"
-    }
-  ],
-  "answerKey": "B"
-},
-{
-  "id": "U1-L9-Q02",
-  "type": "multiple-choice",
-  "prompt": "One way to measure the duration of subterranean disturbances such as earthquakes and mining is to calculate the root-mean-square time. The following histograms summarize the distributions of the root-mean-square times for two sources of disturbances. Based on the histograms, which of the following correctly compares the two distributions?",
-  "attachments": {
-    "charts": [
-      {
-        "chartType": "histogram",
-        "title": "Earthquake Disturbances",
-        "xLabels": ["0 - 0.2", "0.2 - 0.4", "0.4 - 0.6", "0.6 - 0.8", "0.8 - 1.0", "1.0 - 1.2", "1.2 - 1.4", "1.4 - 1.6"],
-        "series": [
-          {
-            "name": "Earthquake Disturbances",
-            "values": [0.35, 0.20, 0.10, 0.10, 0.0875, 0.075, 0.0625, 0.025]
-          }
-        ],
-        "chartConfig": {
-          "yAxis": {
-            "min": 0.0,
-            "max": 0.40,
-            "tickInterval": 0.05,
-            "title": "Relative Frequency"
-          },
-          "xAxis": {
-            "title": "Root Mean Square Time",
-            "labelType": "range",
-          },
-          "gridLines": {
-            "horizontal": true,
-            "vertical": false
-          }
-        }
-      },
-      {
-        "chartType": "histogram",
-        "title": "Mining Disturbances",
-        "xLabels": ["0 - 0.2", "0.2 - 0.4", "0.4 - 0.6", "0.6 - 0.8", "0.8 - 1.0", "1.0 - 1.2", "1.2 - 1.4", "1.4 - 1.6"],
-        "series": [
-          {
-            "name": "Mining Disturbances",
-            "values": [0.0, 0, 0.22, 0.35, 0.24, 0.09, 0.11, 0.0]
-          }
-        ],
-        "chartConfig": {
-          "yAxis": {
-            "min": 0.0,
-            "max": 0.40,
-            "tickInterval": 0.05,
-            "title": "Relative Frequency"
-          },
-          "xAxis": {
-            "title": "Root Mean Square Time",
-            "labelType": "range",
-          },
-          "gridLines": {
-            "horizontal": true,
-            "vertical": false
-          }
-        }
-      }
+    "choices": [
+      { "key": "A", "value": "The median of the earthquake disturbances is equal to the median of the mining disturbances." },
+      { "key": "B", "value": "The median of the earthquake disturbances is less than the median of the mining disturbances." },
+      { "key": "C", "value": "The range of the earthquake disturbances is equal to the range of the mining disturbances." },
+      { "key": "D", "value": "The range of the earthquake disturbances is less than the range of the mining disturbances." },
+      { "key": "E", "value": "The mode of the earthquake disturbances is equal to the mode of the mining disturbances." }
     ],
-    "description": "Histograms showing distributions of root-mean-square times for earthquake and mining disturbances"
+    "answerKey": "B",
+    "reasoning": "The median is located at the fiftieth percentile of a distribution. To determine the bar in which the median is located, the relative frequencies of the bars are added until the sum first exceeds 0.5. For earthquake disturbances: 0.35 + 0.20 = 0.55, so the median is located in the interval between 0.2 and 0.4. For mining disturbances: 0.0 + 0.22 + 0.35 = 0.57, so the median is located in the interval between 0.6 and 0.8. Therefore, the median of the earthquake disturbances must be less than the median of the mining disturbances."
   },
-  "choices": [
-    {
-      "key": "A",
-      "value": "The median of the earthquake disturbances is equal to the median of the mining disturbances."
+  {
+    "id": "U1-L9-Q03",
+    "type": "multiple-choice",
+    "prompt": "The following table shows summary statistics for the number of hours a group of students spent playing video games last Monday and last Saturday. Based on the summary statistics, which of the following gives the best comparison of the range and the interquartile range (\\(IQR\\)) of the two days?",
+    "attachments": {
+      "table": [
+        ["Day", "Minimum", "Q1", "Median", "Q3", "Maximum"],
+        ["Monday", "0", "1", "2", "4", "12"],
+        ["Saturday", "1", "4", "6", "8", "18"]
+      ]
     },
-    {
-      "key": "B",
-      "value": "The median of the earthquake disturbances is less than the median of the mining disturbances."
-    },
-    {
-      "key": "C",
-      "value": "The range of the earthquake disturbances is equal to the range of the mining disturbances."
-    },
-    {
-      "key": "D",
-      "value": "The range of the earthquake disturbances is less than the range of the mining disturbances."
-    },
-    {
-      "key": "E",
-      "value": "The mode of the earthquake disturbances is equal to the mode of the mining disturbances."
-    }
-  ],
-  "answerKey": "B"
-},
-{
-  "id": "U1-L9-Q03",
-  "type": "multiple-choice",
-  "prompt": "Based on the summary statistics, which of the following gives the best comparison of the range and the interquartile range (IQR) of the two days?",
-  "attachments": {
-    "table": [
-      ["Day", "Minimum", "Q1", "Median", "Q3", "Maximum"],
-      ["Monday", "0", "1", "2", "4", "12"],
-      ["Saturday", "1", "4", "6", "8", "18"]
-    ]
-  },
-  "choices": [
-    {
-      "key": "A",
-      "value": "The range and IQR of hours played on Monday are both greater than the range and IQR of hours played on Saturday."
-    },
-    {
-      "key": "B",
-      "value": "The range and IQR of hours played on Monday are both less than the range and IQR of hours played on Saturday."
-    },
-    {
-      "key": "C",
-      "value": "The range and IQR of hours played on Monday are both equal to the range and IQR of hours played on Saturday."
-    },
-    {
-      "key": "D",
-      "value": "The range of hours played on Monday is greater than the range of hours played on Saturday, and the IQR of hours played on Monday is less than the IQR of hours played on Saturday."
-    },
-    {
-      "key": "E",
-      "value": "The range of hours played on Monday is less than the range of hours played on Saturday, and the IQR of hours played on Monday is greater than the IQR of hours played on Saturday."
-    }
-  ],
-  "answerKey": "B"
-}
+    "choices": [
+      { "key": "A", "value": "The range and \\(IQR\\) of hours played on Monday are both greater than the range and \\(IQR\\) of hours played on Saturday." },
+      { "key": "B", "value": "The range and \\(IQR\\) of hours played on Monday are both less than the range and \\(IQR\\) of hours played on Saturday." },
+      { "key": "C", "value": "The range and \\(IQR\\) of hours played on Monday are both equal to the range and \\(IQR\\) of hours played on Saturday." },
+      { "key": "D", "value": "The range of hours played on Monday is greater than the range of hours played on Saturday, and the \\(IQR\\) of hours played on Monday is less than the \\(IQR\\) of hours played on Saturday." },
+      { "key": "E", "value": "The range of hours played on Monday is less than the range of hours played on Saturday, and the \\(IQR\\) of hours played on Monday is greater than the \\(IQR\\) of hours played on Saturday." }
+    ],
+    "answerKey": "B",
+    "reasoning": "The range (maximum minus minimum) is calculated as follows: Monday range = 12 - 0 = 12 hours, Saturday range = 18 - 1 = 17 hours. The \\(IQR\\) (\\(Q3\\) minus \\(Q1\\)) is calculated as follows: Monday \\(IQR\\) = 4 - 1 = 3 hours, Saturday \\(IQR\\) = 8 - 4 = 4 hours. Therefore, both the range and \\(IQR\\) of hours played on Monday are less than the corresponding statistics for Saturday."
+  }
 ]
