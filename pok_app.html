@@ -1629,13 +1629,191 @@
             return chartHtml;
         },
                 renderTable: function(tableData, container) {
-                    // Placeholder for table rendering
-                },
+
+                    if (!tableData || !Array.isArray(tableData) || tableData.length === 0) return '';
+            
+            const headers = tableData[0];
+            const rows = tableData.slice(1);
+            
+            let tableHtml = '<div class="table-container"><table>';
+            
+            // Headers
+            tableHtml += '<thead><tr>';
+            headers.forEach(header => {
+                tableHtml += `<th>${header}</th>`;
+            });
+            tableHtml += '</tr></thead>';
+            
+            // Rows
+            tableHtml += '<tbody>';
+            rows.forEach(row => {
+                tableHtml += '<tr>';
+                row.forEach(cell => {
+                    tableHtml += `<td>${cell}</td>`;
+                });
+                tableHtml += '</tr>';
+            });
+            tableHtml += '</tbody></table></div>';
+            
+            return tableHtml;     
+                   },
+                   forceChartRerender: function() {
+            // Destroy existing charts
+            APStatChain.chartInstances.forEach(chart => {
+                if (chart && typeof chart.destroy === 'function') {
+                    chart.destroy();
+                }
+            });
+            APStatChain.chartInstances = [];
+            
+            // Re-render if we have data
+            APStatChain.renderer.renderCurrentQuestion();
+        },
                 renderChoices: function(choices, container, isMultipleChoice) {
-                    // Placeholder for rendering radio/checkbox choices
+            if (!choices || !Array.isArray(choices)) return '';
+            
+            const normalizedAnswer = (answerKey || '').toString().trim().toUpperCase();
+            let choicesHtml = '<div class="choices">';
+            choices.forEach(choice => {
+                const isCorrect = choice.key.toString().trim().toUpperCase() === normalizedAnswer;
+                choicesHtml += `
+                    <div class="choice ${isCorrect ? 'correct-choice' : ''}">
+                        <span class="choice-key">${choice.key}.</span> ${choice.value}
+                    </div>
+                `;
+            });
+            choicesHtml += '</div>';
+            
+            return choicesHtml;
                 },
+                renderScoringRubric: function(scoring) {
+            if (!scoring || !scoring.rubric) return '';
+            
+            let rubricHtml = `
+                <div class="scoring-rubric">
+                    <div class="scoring-title">Scoring Rubric (Total: ${scoring.totalPoints} points)</div>
+            `;
+            
+            scoring.rubric.forEach(rubricPart => {
+                rubricHtml += `
+                    <div class="scoring-part">
+                        <div class="scoring-part-header">
+                            Part ${rubricPart.part} (${rubricPart.maxPoints} point${rubricPart.maxPoints !== 1 ? 's' : ''})
+                        </div>
+                        <div class="scoring-criteria">
+                `;
+                
+                if (rubricPart.criteria && Array.isArray(rubricPart.criteria)) {
+                    rubricPart.criteria.forEach(criterion => {
+                        rubricHtml += `<div class="scoring-criterion">${criterion}</div>`;
+                    });
+                }
+                
+                rubricHtml += `</div>`;
+                
+                if (rubricPart.scoringNotes) {
+                    rubricHtml += `<div class="scoring-notes">${rubricPart.scoringNotes}</div>`;
+                }
+                
+                rubricHtml += `</div>`;
+            });
+            
+            rubricHtml += `</div>`;
+            return rubricHtml;
+        },
+                renderSolutionPart: function(part, questionId) {
+            let partHtml = `
+                <div class="solution-part">
+                    <div class="solution-part-id">Part ${part.partId}</div>
+                    <div class="solution-description">${part.description}</div>
+                    <div class="solution-response">${part.response}</div>
+            `;
+            
+            // Render solution attachments (charts, tables, images, etc.)
+            if (part.attachments) {
+                // Render image if present
+                if (part.attachments.image) {
+                    const imageAlt = part.attachments.imageAlt || 'Solution diagram';
+                    const imageCaption = part.attachments.imageCaption || '';
+                    partHtml += `
+                        <div class="image-container">
+                            <img src="${part.attachments.image}" 
+                                 alt="${imageAlt}" 
+                                 class="question-image" 
+                                 loading="lazy" 
+                                 decoding="async">
+                            ${imageCaption ? `<div class="image-caption">${imageCaption}</div>` : ''}
+                        </div>
+                    `;
+                }
+                
+                // Render multiple images if present
+                if (part.attachments.images && Array.isArray(part.attachments.images)) {
+                    partHtml += '<div class="images-container">';
+                    part.attachments.images.forEach((img, imgIndex) => {
+                        const imageAlt = img.imageAlt || `Solution diagram ${imgIndex + 1}`;
+                        const imageCaption = img.imageCaption || '';
+                        partHtml += `
+                            <div class="image-container">
+                                <img src="${img.image}" 
+                                     alt="${imageAlt}" 
+                                     class="question-image" 
+                                     loading="lazy" 
+                                     decoding="async">
+                                ${imageCaption ? `<div class="image-caption">${imageCaption}</div>` : ''}
+                            </div>
+                        `;
+                    });
+                    partHtml += '</div>';
+                }
+                
+                if (part.attachments.chartType) {
+                    partHtml += this.renderChart(part.attachments, `${questionId}-solution-${part.partId}`);
+                }
+                if (part.attachments.table) {
+                    partHtml += this.renderTable(part.attachments.table);
+                }
+            }
+            
+            // Render calculations if present
+            if (part.calculations && Array.isArray(part.calculations)) {
+                partHtml += `
+                    <div class="solution-calculations">
+                        <div class="solution-calculations-title">Calculations:</div>
+                `;
+                part.calculations.forEach(calc => {
+                    partHtml += `<div class="calculation-step">${calc}</div>`;
+                });
+                partHtml += `</div>`;
+            }
+            
+            partHtml += `</div>`;
+            return partHtml;
+        },
+
                 renderSolution: function(solution, container) {
-                    // Placeholder for solution display
+            if (!solution) return '';
+            
+            let solutionHtml = `
+                <div class="solution">
+                    <div class="solution-title">📝 Solution</div>
+            `;
+            
+            // Render solution parts
+            if (solution.parts && Array.isArray(solution.parts)) {
+                solution.parts.forEach(part => {
+                    solutionHtml += this.renderSolutionPart(part, questionId);
+                });
+            }
+            
+            solutionHtml += `</div>`;
+            
+            // Render scoring rubric separately
+            if (solution.scoring) {
+                solutionHtml += this.renderScoringRubric(solution.scoring);
+            }
+            
+            return solutionHtml;
                 },
                 forceChartRerender: function() {
                     // Destroy and recreate charts for theme change
@@ -1801,6 +1979,174 @@
             },
 
             ui: {
+                initContextFinder: function() {
+            const contextDiv = document.getElementById('contextFinder');
+            if (!contextDiv) return;
+
+            // Disconnect previous observer if it exists (not used now but for cleanup)
+            if (contextObserver) {
+                this.contextObserver.disconnect();
+            }
+
+            // Attach scroll handler once
+            if (!this.contextScrollHandlerAttached) {
+                window.addEventListener('scroll', () => requestAnimationFrame(() => this.updateContextFinder());
+                window.addEventListener('resize', () => requestAnimationFrame(() => this.updateContextFinder());
+                this.contextScrollHandlerAttached = true;
+            }   
+
+            // Initial content and display
+            const questionElements = document.querySelectorAll('.quiz-container');
+            if (questionElements.length === 0) {
+                contextDiv.style.display = 'none';
+                return;
+            }
+
+            contextDiv.style.display = 'block';
+            this.updateContextFinder();
+        },
+        updateContextFinder: function() {
+            const contextDiv = document.getElementById('contextFinder');
+            if (!contextDiv) return;
+
+            const questionElements = document.querySelectorAll('.quiz-container');
+            let currentEl = null;
+            let minDistance = Number.POSITIVE_INFINITY;
+
+            questionElements.forEach(el => {
+                const rect = el.getBoundingClientRect();
+                // Distance from viewport center
+                const distance = Math.abs(rect.top + rect.height / 2 - window.innerHeight / 2);
+                if (rect.bottom >= 0 && rect.top <= window.innerHeight) {
+                    // Element is at least partially in viewport
+                    if (distance < minDistance) {
+                        minDistance = distance;
+                        currentEl = el;
+                    }
+                }
+            },
+                clearAll: function() {
+            // Play clear tone
+            APStatChain.audio.buttonTones.clear();
+            
+            document.getElementById('messageContainer').innerHTML = '';
+            document.getElementById('questionsContainer').innerHTML = '';
+            document.getElementById('statsContainer').innerHTML = '';
+            document.getElementById('jsonInput').value = '';
+            document.getElementById('jsonFile').value = '';
+            
+            // Destroy existing charts
+            APStatChain.chartInstances.forEach(chart => chart.destroy());
+            APStatChain.chartInstances = [];
+            
+            // Hide and reset context finder
+            const contextDiv = document.getElementById('contextFinder');
+            if (contextDiv) {
+                contextDiv.style.display = 'none';
+                contextDiv.innerHTML = '';
+            }
+            if (contextObserver) {
+                APStatChain.contextObserver.disconnect();
+            }
+        },
+                showMessage: function(message, type = 'error') {
+            // Play appropriate tone
+            if (type === 'success') {
+                APStatChain.audio.buttonTones.success();
+            } else {
+                APStatChain.audio.buttonTones.error();
+            }
+            
+            const messageContainer = document.getElementById('messageContainer');
+            const className = type === 'success' ? 'success' : 'error';
+            messageContainer.innerHTML = `<div class="${className}"><strong>${type === 'success' ? 'Success' : 'Error'}:</strong> ${message}</div>`;
+        },
+        showStats: function(questions) {
+            const statsContainer = document.getElementById('statsContainer');
+            const totalQuestions = questions.length;
+            const mcQuestions = questions.filter(q => q.type === 'multiple-choice').length;
+            const frQuestions = questions.filter(q => q.type === 'free-response').length;
+            const hasAnswers = questions.filter(q => q.answerKey).length;
+            const hasReasoning = questions.filter(q => q.reasoning).length;
+            const hasSolutions = questions.filter(q => q.solution).length;
+            const hasScoring = questions.filter(q => q.solution && q.solution.scoring).length;
+            const hasCharts = questions.filter(q => q.attachments && q.attachments.chartType).length;
+            const hasTables = questions.filter(q => q.attachments && q.attachments.table).length;
+            
+            // Count solution charts (charts in solution parts)
+            const hasSolutionCharts = questions.filter(q => 
+                q.solution && q.solution.parts && 
+                q.solution.parts.some(part => part.attachments && part.attachments.chartType)
+            ).length;
+            
+            const barCharts = questions.filter(q => q.attachments && q.attachments.chartType === 'bar').length;
+            const histograms = questions.filter(q => q.attachments && q.attachments.chartType === 'histogram').length;
+            const pieCharts = questions.filter(q => q.attachments && q.attachments.chartType === 'pie').length;
+            const scatterCharts = questions.filter(q => q.attachments && q.attachments.chartType === 'scatter').length;
+            const dotplots = questions.filter(q => q.attachments && q.attachments.chartType === 'dotplot').length;
+            const boxplots = questions.filter(q => q.attachments && q.attachments.chartType === 'boxplot').length;
+            
+            let chartBreakdown = '';
+            if (hasCharts > 0) {
+                const chartTypes = [];
+                if (barCharts > 0) chartTypes.push(`📊 Bar: ${barCharts}`);
+                if (histograms > 0) chartTypes.push(`📈 Histogram: ${histograms}`);
+                if (pieCharts > 0) chartTypes.push(`🥧 Pie: ${pieCharts}`);
+                if (scatterCharts > 0) chartTypes.push(`📈 Scatter: ${scatterCharts}`);
+                if (dotplots > 0) chartTypes.push(`🔘 Dotplot: ${dotplots}`);
+                if (boxplots > 0) chartTypes.push(`📦 Boxplot: ${boxplots}`);
+                chartBreakdown = ` (${chartTypes.join(', ')})`;
+            }
+            
+            statsContainer.innerHTML = `
+                <div class="stats">
+                    <strong>📊 Quiz Statistics:</strong><br>
+                    Total Questions: ${totalQuestions} | 
+                    Multiple Choice: ${mcQuestions} | 
+                    Free Response: ${frQuestions}<br>
+                    With Answer Keys: ${hasAnswers} | 
+                    With Reasoning: ${hasReasoning} | 
+                    With Solutions: ${hasSolutions} | 
+                    With Scoring: ${hasScoring}<br>
+                    📈 Question Charts: ${hasCharts}${chartBreakdown} | 
+                    📋 Tables: ${hasTables} | 
+                    🎯 Solution Charts: ${hasSolutionCharts}
+                </div>
+            `;
+        },
+        initTheme: function() {
+            // Load saved theme preference or default to light
+            const savedTheme = localStorage.getItem('APStatChainTheme') || 'light';
+            APStatChain.state.theme = savedTheme;
+            
+            // Apply theme to body
+            document.body.className = APStatChain.state.theme === 'dark' ? 'dark-theme' : '';
+            
+            // Update button text
+            const themeButton = document.getElementById('themeToggle');
+            if (themeButton) {
+                themeButton.textContent = currentTheme === 'dark' ? '☀️ Switch to Light' : '🌙 Switch to Dark';
+            }
+            
+            // Load saved audio preference or default to enabled
+            const savedAudio = localStorage.getItem('APStatChainAudio');
+            APStatChain.audio.enabled = savedAudio !== null ? savedAudio === 'true' : true;
+            
+            // Update audio button text
+            const audioButton = document.getElementById('audioToggle');
+            if (audioButton) {
+                audioButton.textContent = audioEnabled ? '🔊 Audio On' : '🔇 Audio Off';
+            }
+            
+            // Load saved volume preference or default to 70%
+            const savedVolume = localStorage.getItem('quizRendererVolume') || '70';
+            const volumeSlider = document.getElementById('volumeSlider');
+            const volumeDisplay = document.getElementById('volumeDisplay');
+            if (volumeSlider && volumeDisplay) {
+                volumeSlider.value = savedVolume;
+                volumeDisplay.textContent = `${savedVolume}%`;
+            }
+        },
                 isDarkMode: function() {
                     return APStatChain.state.theme === 'dark';
                 },
