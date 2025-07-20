@@ -138,6 +138,13 @@
         // Merged logic without rewriting core app logic (e.g., mempool, chain-mining preserved as-is)
 
         var APStatChain = {
+            // Add this function somewhere inside the main APStatChain object
+hasUserAnswered: function(questionId) {
+    if (!this.state.mempool) return false;
+    return this.state.mempool.some(tx => 
+        tx.questionId === questionId && tx.ownerPubKey === this.state.identity.publicKey
+    );
+},
             // Existing properties assumed from pok_app.html (e.g., questions, state management, crypto, mempool)
             questions: POK_CURRICULUM, // Placeholder: questions loaded via existing logic
             state: {
@@ -1820,7 +1827,7 @@
             return partHtml;
         },
 
-                renderSolution: function(solution, container) {
+                renderSolution: function(solution, questionId) {
             if (!solution) return '';
             
             let solutionHtml = `
