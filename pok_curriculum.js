@@ -1,332 +1,5 @@
 const POK_CURRICULUM = [
   {
-    "id": "U1-L10-Q01",
-    "type": "multiple-choice",
-    "prompt": "The distribution of the number of transactions per day at a certain automated teller machine (ATM) is approximately normal with a mean of 80 transactions and a standard deviation of 10 transactions. Which of the following represents the parameters of the distribution?",
-    "answerKey": "D",
-    "reasoning": "The values provided in the question represent known parameter values for the distribution, and the correct symbols for these values are μ (for the population mean) and σ (for the population standard deviation).",
-    "attachments": {
-      "choices": [
-        {
-          "key": "A",
-          "value": "x̄ = 80; s = 10"
-        },
-        {
-          "key": "B",
-          "value": "x̄ = 80; s² = 10"
-        },
-        {
-          "key": "C",
-          "value": "x̄ = 80; σ = 10"
-        },
-        {
-          "key": "D",
-          "value": "μ = 80; σ = 10"
-        },
-        {
-          "key": "E",
-          "value": "μ = 80; s = 10"
-        }
-      ]
-    }
-  },
-  {
-    "id": "U1-L10-Q02",
-    "type": "multiple-choice",
-    "prompt": "At a small coffee shop, the distribution of the number of seconds it takes for a cashier to process an order is approximately normal with mean 276 seconds and standard deviation 38 seconds. Which of the following is closest to the proportion of orders that are processed in less than 240 seconds?",
-    "answerKey": "A",
-    "reasoning": "The correct z-score is z = (240-276)/38 = -0.95. The area under the standard normal curve to the left of that value is approximately 0.17.",
-    "attachments": {
-      "choices": [
-        {
-          "key": "A",
-          "value": "0.17"
-        },
-        {
-          "key": "B",
-          "value": "0.25"
-        },
-        {
-          "key": "C",
-          "value": "0.36"
-        },
-        {
-          "key": "D",
-          "value": "0.83"
-        },
-        {
-          "key": "E",
-          "value": "0.95"
-        }
-      ]
-    }
-  },
-  {
-    "id": "U1-L10-Q03",
-    "type": "multiple-choice",
-    "prompt": "A researcher is studying a group of field mice. The distribution of the weight of field mice is approximately normal with mean 25 grams and standard deviation 4 grams. Which of the following is closest to the proportion of field mice with a weight greater than 33 grams?",
-    "answerKey": "A",
-    "reasoning": "The z-score associated with a weight of 33 grams is z = (33-25)/4 = 2. The area under the curve to the right of z = 2 in a standard normal distribution is approximately 0.023.",
-    "attachments": {
-      "choices": [
-        {
-          "key": "A",
-          "value": "0.023"
-        },
-        {
-          "key": "B",
-          "value": "0.046"
-        },
-        {
-          "key": "C",
-          "value": "0.954"
-        },
-        {
-          "key": "D",
-          "value": "0.977"
-        },
-        {
-          "key": "E",
-          "value": "1.000"
-        }
-      ]
-    }
-  },
-  {
-    "id": "U1-L10-Q04",
-    "type": "free-response",
-    "prompt": "Show all your work. Indicate clearly the methods you use, because you will be scored on the correctness of your methods as well as on the accuracy and completeness of your results and explanations.\n\nThe following frequency table summarizes the total amounts, in dollars, for 91 orders from a food truck during a certain day.\n\n(a-i) Use the data in the table to create a histogram showing the distribution of the amounts of the orders.\n(a-ii) Describe the shape of the distribution of amounts.\n(b) Identify a possible amount for the median of the distribution. Justify your answer.",
-    "solution": {
-      "parts": [
-        {
-          "partId": "a-i",
-          "description": "Use the data in the table to create a histogram showing the distribution of the amounts of the orders.",
-          "response": "Create a histogram with 6 bars representing the frequency data from the table. The x-axis shows the amount ranges and the y-axis shows the frequency values.",
-          "attachments": {
-            "chartType": "histogram",
-            "xLabels": [
-              "0-5",
-              "5-10",
-              "10-15",
-              "15-20",
-              "20-25",
-              "25-30"
-            ],
-            "series": [
-              {
-                "name": "Frequency",
-                "values": [
-                  8,
-                  14,
-                  25,
-                  27,
-                  12,
-                  5
-                ]
-              }
-            ],
-            "chartConfig": {
-              "yAxis": {
-                "min": 0,
-                "max": 30,
-                "tickInterval": 5,
-                "title": "Frequency"
-              },
-              "xAxis": {
-                "title": "Amounts (in dollars)",
-                "labelType": "range"
-              },
-              "gridLines": {
-                "horizontal": true,
-                "vertical": false
-              },
-              "description": "Histogram showing distribution of order amounts with no gaps between bars"
-            }
-          }
-        },
-        {
-          "partId": "a-ii",
-          "description": "Describe the shape of the distribution of amounts.",
-          "response": "The distribution of the amounts of the orders appears to be roughly symmetric and mound shaped or approximately normal."
-        },
-        {
-          "partId": "b",
-          "description": "Identify a possible amount for the median of the distribution. Justify your answer.",
-          "response": "The median could be any value from $10 up to but not including $15. In a distribution of 91 values, the median value is the 46th value when all 91 values are ordered. The frequency of the first three bars sums to 47: 8 + 14 + 25 = 47. The 46th value corresponds to a value in the third bar of the histogram.",
-          "calculations": [
-            "Total values: 91",
-            "Median position: (91+1)/2 = 46th value",
-            "Cumulative frequency through $0-5: 8",
-            "Cumulative frequency through $5-10: 8 + 14 = 22",
-            "Cumulative frequency through $10-15: 8 + 14 + 25 = 47",
-            "Since 46 < 47, the 46th value falls in the $10-15 interval"
-          ]
-        }
-      ],
-      "scoring": {
-        "totalPoints": 4,
-        "rubric": [
-          {
-            "part": "a-i",
-            "maxPoints": 2,
-            "criteria": [
-              "The histogram contains six bars with approximately correct heights of the bars",
-              "The horizontal axis is labeled with correct numbers and a correct verbal description",
-              "The vertical axis is labeled with correct numbers and a correct verbal description"
-            ],
-            "scoringNotes": "Essentially correct (E) if the response contains all components. Partially correct (P) if the response satisfies 3 of the 4 components. Incorrect (I) if the response does not satisfy the criteria for E or P."
-          },
-          {
-            "part": "a-ii",
-            "maxPoints": 1,
-            "criteria": [
-              "The shape of the distribution is described as roughly symmetric and mound shaped or approximately normal"
-            ]
-          },
-          {
-            "part": "b",
-            "maxPoints": 1,
-            "criteria": [
-              "Response correctly identifies a value for the median that is contained within the interval from $10 up to but not including $15 AND provides a reasonable justification for how the median was determined"
-            ],
-            "scoringNotes": "Essentially correct (E) if both criteria met. Partially correct (P) if identifies correct interval BUT provides weak justification. Incorrect (I) if response does not satisfy criteria for E or P."
-          }
-        ]
-      }
-    },
-    "reasoning": "This question tests students' ability to construct and interpret histograms, describe distribution shapes, and calculate medians from grouped data. The key concepts include histogram construction, shape description using statistical vocabulary, and understanding median position in ordered data.",
-    "attachments": {
-      "table": [
-        [
-          "Amount",
-          "Frequency"
-        ],
-        [
-          "$0 up to but not including $5",
-          "8"
-        ],
-        [
-          "$5 up to but not including $10",
-          "14"
-        ],
-        [
-          "$10 up to but not including $15",
-          "25"
-        ],
-        [
-          "$15 up to but not including $20",
-          "27"
-        ],
-        [
-          "$20 up to but not including $25",
-          "12"
-        ],
-        [
-          "$25 up to but not including $30",
-          "5"
-        ]
-      ]
-    }
-  },
-  {
-    "id": "U1-L10-Q05",
-    "type": "multiple-choice",
-    "prompt": "Shalise competed in a jigsaw puzzle competition where participants are timed on how long they take to complete puzzles of various sizes. Shalise completed a small puzzle in 75 minutes and a large jigsaw puzzle in 140 minutes. For all participants, the distribution of completion time for the small puzzle was approximately normal with mean 60 minutes and standard deviation 15 minutes. The distribution of completion time for the large puzzle was approximately normal with mean 180 minutes and standard deviation 40 minutes.\n\nApproximately what percent of the participants had finishing times greater than Shalise's for each puzzle?",
-    "answerKey": "B",
-    "reasoning": "According to the empirical rule, approximately 68% of the completion times are within one standard deviation of the mean of 60 minutes for the smaller puzzle. By symmetry, 16% of the remaining completion times are less than 45 minutes and 16% of the completion times are greater than 75 minutes. For the large puzzle, the empirical rule guarantees that approximately 68% of the times will be within 1 standard deviation of the mean of 180 minutes. By symmetry, 16% of the remaining times are less than 140 minutes, and 16% of the times are greater than 220 minutes. Therefore 84% of the times will be greater than Shalise's time of 140 minutes on the large puzzle.",
-    "attachments": {
-      "choices": [
-        {
-          "key": "A",
-          "value": "16% on the small puzzle and 16% on the large puzzle"
-        },
-        {
-          "key": "B",
-          "value": "16% on the small puzzle and 84% on the large puzzle"
-        },
-        {
-          "key": "C",
-          "value": "32% on the small puzzle and 68% on the large puzzle"
-        },
-        {
-          "key": "D",
-          "value": "84% on the small puzzle and 84% on the large puzzle"
-        },
-        {
-          "key": "E",
-          "value": "84% on the small puzzle and 16% on the large puzzle"
-        }
-      ]
-    }
-  },
-  {
-    "id": "U1-L10-Q06",
-    "type": "free-response",
-    "prompt": "Show all your work. Indicate clearly the methods you use, because you will be scored on the correctness of your methods as well as on the accuracy and completeness of your results and explanations.\n\nKathy and her brother Clay recently ran in a local marathon. The distribution of finishing time for women was approximately normal with mean 259 minutes and standard deviation 32 minutes. The distribution of finishing time for men was approximately normal with mean 242 minutes and standard deviation 29 minutes.\n\n(a) The finishing time for Clay was 289 minutes. Calculate and interpret the standardized score for Clay's marathon time. Show your work.\n(b) The finishing time for Kathy was 272 minutes. What proportion of women who ran the marathon had a finishing time less than Kathy's? Show your work.\n(c) The standard deviation of finishing time is greater for women than for men. What does this indicate about the finishing times of the women who ran the marathon compared to the finishing times of the men who ran the marathon?",
-    "reasoning": "Part (a): Clay's finishing time was 289 minutes and the distribution of finishing time for men had a mean of 242 minutes and a standard deviation of 29 minutes. The standardized score for Clay's marathon time is: z = (289-242)/29 ≈ 1.62. Clay's finishing time is 1.62 standard deviations greater than the men's mean finishing time. Part (b): Kathy's finishing time was 272 minutes and the distribution of finishing time for women had a mean of 259 minutes and a standard deviation of 32 minutes. The standardized score for Kathy's marathon time is: z = (272-259)/32 ≈ 0.41. Using technology or the standard normal table, the proportion of women who ran the marathon with a finishing time less than Kathy is approximately 0.66. Part (c): Since the standard deviation for women's times is greater than the standard deviation for men's times, there is more variability in the women's times than in the men's times. This indicates that, on average, women's times are further away from the women's mean marathon time than the average distance men's times are away from the men's mean marathon time."
-  },
-  {
-    "id": "U1-L10-Q07",
-    "type": "multiple-choice",
-    "prompt": "For a certain online store, the distribution of number of purchases per hour is approximately normal with mean 1,200 purchases and standard deviation 200 purchases. For what proportion of hours will the number of purchases at the online store exceed 1,400?",
-    "answerKey": "C",
-    "reasoning": "By the empirical rule, 68% of the number of purchases in an hour will be between 1,000 and 1,400, so 100% - 68% = 32% of the number of purchases in an hour will fall outside of the interval. Since the normal distribution is symmetric around the mean, half of 32%, which is 16%, of the number of purchases in an hour will exceed 1,400.",
-    "attachments": {
-      "choices": [
-        {
-          "key": "A",
-          "value": "68%"
-        },
-        {
-          "key": "B",
-          "value": "32%"
-        },
-        {
-          "key": "C",
-          "value": "16%"
-        },
-        {
-          "key": "D",
-          "value": "5%"
-        },
-        {
-          "key": "E",
-          "value": "2.5%"
-        }
-      ]
-    }
-  },
-  {
-    "id": "U1-L10-Q08",
-    "type": "multiple-choice",
-    "prompt": "The distribution of lengths of salmon from a certain river is approximately normal with standard deviation 3.5 inches. If 10 percent of salmon are longer than 30 inches, which of the following is closest to the mean of the distribution?",
-    "answerKey": "A",
-    "attachments": {
-      "choices": [
-        {
-          "key": "A",
-          "value": "26 inches"
-        },
-        {
-          "key": "B",
-          "value": "28 inches"
-        },
-        {
-          "key": "C",
-          "value": "30 inches"
-        },
-        {
-          "key": "D",
-          "value": "33 inches"
-        },
-        {
-          "key": "E",
-          "value": "34 inches"
-        }
-      ]
-    }
-  },
-  {
     "id": "U1-L2-Q01",
     "type": "multiple-choice",
     "prompt": "The following table shows data for the 8 longest roller coasters in the world as of 2015. Which of the following variables is categorical?",
@@ -1923,6 +1596,333 @@ const POK_CURRICULUM = [
         {
           "key": "E",
           "value": "The range of hours played on Monday is less than the range of hours played on Saturday, and the \\(IQR\\) of hours played on Monday is greater than the \\(IQR\\) of hours played on Saturday."
+        }
+      ]
+    }
+  },
+  {
+    "id": "U1-L10-Q01",
+    "type": "multiple-choice",
+    "prompt": "The distribution of the number of transactions per day at a certain automated teller machine (ATM) is approximately normal with a mean of 80 transactions and a standard deviation of 10 transactions. Which of the following represents the parameters of the distribution?",
+    "answerKey": "D",
+    "reasoning": "The values provided in the question represent known parameter values for the distribution, and the correct symbols for these values are μ (for the population mean) and σ (for the population standard deviation).",
+    "attachments": {
+      "choices": [
+        {
+          "key": "A",
+          "value": "x̄ = 80; s = 10"
+        },
+        {
+          "key": "B",
+          "value": "x̄ = 80; s² = 10"
+        },
+        {
+          "key": "C",
+          "value": "x̄ = 80; σ = 10"
+        },
+        {
+          "key": "D",
+          "value": "μ = 80; σ = 10"
+        },
+        {
+          "key": "E",
+          "value": "μ = 80; s = 10"
+        }
+      ]
+    }
+  },
+  {
+    "id": "U1-L10-Q02",
+    "type": "multiple-choice",
+    "prompt": "At a small coffee shop, the distribution of the number of seconds it takes for a cashier to process an order is approximately normal with mean 276 seconds and standard deviation 38 seconds. Which of the following is closest to the proportion of orders that are processed in less than 240 seconds?",
+    "answerKey": "A",
+    "reasoning": "The correct z-score is z = (240-276)/38 = -0.95. The area under the standard normal curve to the left of that value is approximately 0.17.",
+    "attachments": {
+      "choices": [
+        {
+          "key": "A",
+          "value": "0.17"
+        },
+        {
+          "key": "B",
+          "value": "0.25"
+        },
+        {
+          "key": "C",
+          "value": "0.36"
+        },
+        {
+          "key": "D",
+          "value": "0.83"
+        },
+        {
+          "key": "E",
+          "value": "0.95"
+        }
+      ]
+    }
+  },
+  {
+    "id": "U1-L10-Q03",
+    "type": "multiple-choice",
+    "prompt": "A researcher is studying a group of field mice. The distribution of the weight of field mice is approximately normal with mean 25 grams and standard deviation 4 grams. Which of the following is closest to the proportion of field mice with a weight greater than 33 grams?",
+    "answerKey": "A",
+    "reasoning": "The z-score associated with a weight of 33 grams is z = (33-25)/4 = 2. The area under the curve to the right of z = 2 in a standard normal distribution is approximately 0.023.",
+    "attachments": {
+      "choices": [
+        {
+          "key": "A",
+          "value": "0.023"
+        },
+        {
+          "key": "B",
+          "value": "0.046"
+        },
+        {
+          "key": "C",
+          "value": "0.954"
+        },
+        {
+          "key": "D",
+          "value": "0.977"
+        },
+        {
+          "key": "E",
+          "value": "1.000"
+        }
+      ]
+    }
+  },
+  {
+    "id": "U1-L10-Q04",
+    "type": "free-response",
+    "prompt": "Show all your work. Indicate clearly the methods you use, because you will be scored on the correctness of your methods as well as on the accuracy and completeness of your results and explanations.\n\nThe following frequency table summarizes the total amounts, in dollars, for 91 orders from a food truck during a certain day.\n\n(a-i) Use the data in the table to create a histogram showing the distribution of the amounts of the orders.\n(a-ii) Describe the shape of the distribution of amounts.\n(b) Identify a possible amount for the median of the distribution. Justify your answer.",
+    "solution": {
+      "parts": [
+        {
+          "partId": "a-i",
+          "description": "Use the data in the table to create a histogram showing the distribution of the amounts of the orders.",
+          "response": "Create a histogram with 6 bars representing the frequency data from the table. The x-axis shows the amount ranges and the y-axis shows the frequency values.",
+          "attachments": {
+            "chartType": "histogram",
+            "xLabels": [
+              "0-5",
+              "5-10",
+              "10-15",
+              "15-20",
+              "20-25",
+              "25-30"
+            ],
+            "series": [
+              {
+                "name": "Frequency",
+                "values": [
+                  8,
+                  14,
+                  25,
+                  27,
+                  12,
+                  5
+                ]
+              }
+            ],
+            "chartConfig": {
+              "yAxis": {
+                "min": 0,
+                "max": 30,
+                "tickInterval": 5,
+                "title": "Frequency"
+              },
+              "xAxis": {
+                "title": "Amounts (in dollars)",
+                "labelType": "range"
+              },
+              "gridLines": {
+                "horizontal": true,
+                "vertical": false
+              },
+              "description": "Histogram showing distribution of order amounts with no gaps between bars"
+            }
+          }
+        },
+        {
+          "partId": "a-ii",
+          "description": "Describe the shape of the distribution of amounts.",
+          "response": "The distribution of the amounts of the orders appears to be roughly symmetric and mound shaped or approximately normal."
+        },
+        {
+          "partId": "b",
+          "description": "Identify a possible amount for the median of the distribution. Justify your answer.",
+          "response": "The median could be any value from $10 up to but not including $15. In a distribution of 91 values, the median value is the 46th value when all 91 values are ordered. The frequency of the first three bars sums to 47: 8 + 14 + 25 = 47. The 46th value corresponds to a value in the third bar of the histogram.",
+          "calculations": [
+            "Total values: 91",
+            "Median position: (91+1)/2 = 46th value",
+            "Cumulative frequency through $0-5: 8",
+            "Cumulative frequency through $5-10: 8 + 14 = 22",
+            "Cumulative frequency through $10-15: 8 + 14 + 25 = 47",
+            "Since 46 < 47, the 46th value falls in the $10-15 interval"
+          ]
+        }
+      ],
+      "scoring": {
+        "totalPoints": 4,
+        "rubric": [
+          {
+            "part": "a-i",
+            "maxPoints": 2,
+            "criteria": [
+              "The histogram contains six bars with approximately correct heights of the bars",
+              "The horizontal axis is labeled with correct numbers and a correct verbal description",
+              "The vertical axis is labeled with correct numbers and a correct verbal description"
+            ],
+            "scoringNotes": "Essentially correct (E) if the response contains all components. Partially correct (P) if the response satisfies 3 of the 4 components. Incorrect (I) if the response does not satisfy the criteria for E or P."
+          },
+          {
+            "part": "a-ii",
+            "maxPoints": 1,
+            "criteria": [
+              "The shape of the distribution is described as roughly symmetric and mound shaped or approximately normal"
+            ]
+          },
+          {
+            "part": "b",
+            "maxPoints": 1,
+            "criteria": [
+              "Response correctly identifies a value for the median that is contained within the interval from $10 up to but not including $15 AND provides a reasonable justification for how the median was determined"
+            ],
+            "scoringNotes": "Essentially correct (E) if both criteria met. Partially correct (P) if identifies correct interval BUT provides weak justification. Incorrect (I) if response does not satisfy criteria for E or P."
+          }
+        ]
+      }
+    },
+    "reasoning": "This question tests students' ability to construct and interpret histograms, describe distribution shapes, and calculate medians from grouped data. The key concepts include histogram construction, shape description using statistical vocabulary, and understanding median position in ordered data.",
+    "attachments": {
+      "table": [
+        [
+          "Amount",
+          "Frequency"
+        ],
+        [
+          "$0 up to but not including $5",
+          "8"
+        ],
+        [
+          "$5 up to but not including $10",
+          "14"
+        ],
+        [
+          "$10 up to but not including $15",
+          "25"
+        ],
+        [
+          "$15 up to but not including $20",
+          "27"
+        ],
+        [
+          "$20 up to but not including $25",
+          "12"
+        ],
+        [
+          "$25 up to but not including $30",
+          "5"
+        ]
+      ]
+    }
+  },
+  {
+    "id": "U1-L10-Q05",
+    "type": "multiple-choice",
+    "prompt": "Shalise competed in a jigsaw puzzle competition where participants are timed on how long they take to complete puzzles of various sizes. Shalise completed a small puzzle in 75 minutes and a large jigsaw puzzle in 140 minutes. For all participants, the distribution of completion time for the small puzzle was approximately normal with mean 60 minutes and standard deviation 15 minutes. The distribution of completion time for the large puzzle was approximately normal with mean 180 minutes and standard deviation 40 minutes.\n\nApproximately what percent of the participants had finishing times greater than Shalise's for each puzzle?",
+    "answerKey": "B",
+    "reasoning": "According to the empirical rule, approximately 68% of the completion times are within one standard deviation of the mean of 60 minutes for the smaller puzzle. By symmetry, 16% of the remaining completion times are less than 45 minutes and 16% of the completion times are greater than 75 minutes. For the large puzzle, the empirical rule guarantees that approximately 68% of the times will be within 1 standard deviation of the mean of 180 minutes. By symmetry, 16% of the remaining times are less than 140 minutes, and 16% of the times are greater than 220 minutes. Therefore 84% of the times will be greater than Shalise's time of 140 minutes on the large puzzle.",
+    "attachments": {
+      "choices": [
+        {
+          "key": "A",
+          "value": "16% on the small puzzle and 16% on the large puzzle"
+        },
+        {
+          "key": "B",
+          "value": "16% on the small puzzle and 84% on the large puzzle"
+        },
+        {
+          "key": "C",
+          "value": "32% on the small puzzle and 68% on the large puzzle"
+        },
+        {
+          "key": "D",
+          "value": "84% on the small puzzle and 84% on the large puzzle"
+        },
+        {
+          "key": "E",
+          "value": "84% on the small puzzle and 16% on the large puzzle"
+        }
+      ]
+    }
+  },
+  {
+    "id": "U1-L10-Q06",
+    "type": "free-response",
+    "prompt": "Show all your work. Indicate clearly the methods you use, because you will be scored on the correctness of your methods as well as on the accuracy and completeness of your results and explanations.\n\nKathy and her brother Clay recently ran in a local marathon. The distribution of finishing time for women was approximately normal with mean 259 minutes and standard deviation 32 minutes. The distribution of finishing time for men was approximately normal with mean 242 minutes and standard deviation 29 minutes.\n\n(a) The finishing time for Clay was 289 minutes. Calculate and interpret the standardized score for Clay's marathon time. Show your work.\n(b) The finishing time for Kathy was 272 minutes. What proportion of women who ran the marathon had a finishing time less than Kathy's? Show your work.\n(c) The standard deviation of finishing time is greater for women than for men. What does this indicate about the finishing times of the women who ran the marathon compared to the finishing times of the men who ran the marathon?",
+    "reasoning": "Part (a): Clay's finishing time was 289 minutes and the distribution of finishing time for men had a mean of 242 minutes and a standard deviation of 29 minutes. The standardized score for Clay's marathon time is: z = (289-242)/29 ≈ 1.62. Clay's finishing time is 1.62 standard deviations greater than the men's mean finishing time. Part (b): Kathy's finishing time was 272 minutes and the distribution of finishing time for women had a mean of 259 minutes and a standard deviation of 32 minutes. The standardized score for Kathy's marathon time is: z = (272-259)/32 ≈ 0.41. Using technology or the standard normal table, the proportion of women who ran the marathon with a finishing time less than Kathy is approximately 0.66. Part (c): Since the standard deviation for women's times is greater than the standard deviation for men's times, there is more variability in the women's times than in the men's times. This indicates that, on average, women's times are further away from the women's mean marathon time than the average distance men's times are away from the men's mean marathon time."
+  },
+  {
+    "id": "U1-L10-Q07",
+    "type": "multiple-choice",
+    "prompt": "For a certain online store, the distribution of number of purchases per hour is approximately normal with mean 1,200 purchases and standard deviation 200 purchases. For what proportion of hours will the number of purchases at the online store exceed 1,400?",
+    "answerKey": "C",
+    "reasoning": "By the empirical rule, 68% of the number of purchases in an hour will be between 1,000 and 1,400, so 100% - 68% = 32% of the number of purchases in an hour will fall outside of the interval. Since the normal distribution is symmetric around the mean, half of 32%, which is 16%, of the number of purchases in an hour will exceed 1,400.",
+    "attachments": {
+      "choices": [
+        {
+          "key": "A",
+          "value": "68%"
+        },
+        {
+          "key": "B",
+          "value": "32%"
+        },
+        {
+          "key": "C",
+          "value": "16%"
+        },
+        {
+          "key": "D",
+          "value": "5%"
+        },
+        {
+          "key": "E",
+          "value": "2.5%"
+        }
+      ]
+    }
+  },
+  {
+    "id": "U1-L10-Q08",
+    "type": "multiple-choice",
+    "prompt": "The distribution of lengths of salmon from a certain river is approximately normal with standard deviation 3.5 inches. If 10 percent of salmon are longer than 30 inches, which of the following is closest to the mean of the distribution?",
+    "answerKey": "A",
+    "attachments": {
+      "choices": [
+        {
+          "key": "A",
+          "value": "26 inches"
+        },
+        {
+          "key": "B",
+          "value": "28 inches"
+        },
+        {
+          "key": "C",
+          "value": "30 inches"
+        },
+        {
+          "key": "D",
+          "value": "33 inches"
+        },
+        {
+          "key": "E",
+          "value": "34 inches"
         }
       ]
     }
@@ -12122,609 +12122,6 @@ const POK_CURRICULUM = [
     }
   },
   {
-    "id": "U4-L10-Q01",
-    "type": "multiple-choice",
-    "prompt": "According to a recent survey, 31 percent of the residents of a certain state who are age 25 years or older have a bachelor's degree. A random sample of 50 residents of the state, age 25 years or older, will be selected. Let the random variable \\(B\\) represent the number in the sample who have a bachelor's degree. What is the probability that \\(B\\) will equal 40?",
-    "answerKey": "A",
-    "reasoning": "This is a binomial probability problem where we define success as selecting a person with a bachelor's degree and failure as selecting a person without the degree. The random variable \\(B\\) has a binomial distribution with \\(n = 50\\) trials, probability of success \\(p = 0.31\\), and probability of failure \\(q = 0.69\\). The probability of exactly 40 out of 50 people having a degree is given by the binomial probability formula: \\(P(B = 40) = \\binom{50}{40}(0.31)^{40}(0.69)^{10}\\).",
-    "attachments": {
-      "choices": [
-        {
-          "key": "A",
-          "value": "\\(\\binom{50}{40}(0.31)^{40}(0.69)^{10}\\)"
-        },
-        {
-          "key": "B",
-          "value": "\\(\\binom{50}{40}(0.69)^{40}(0.31)^{10}\\)"
-        },
-        {
-          "key": "C",
-          "value": "\\(\\binom{40}{10}(0.31)^{40}(0.69)^{10}\\)"
-        },
-        {
-          "key": "D",
-          "value": "\\(\\binom{40}{10}(0.69)^{40}(0.31)^{10}\\)"
-        },
-        {
-          "key": "E",
-          "value": "\\(40(0.31)^{50}\\)"
-        }
-      ]
-    }
-  },
-  {
-    "id": "U4-L10-Q02",
-    "type": "multiple-choice",
-    "prompt": "According to a recent survey, 81 percent of adults in a certain state have graduated from high school. If 15 adults from the state are selected at random, what is the probability that 5 of them have not graduated from high school?",
-    "answerKey": "D",
-    "reasoning": "Let \\(X\\) represent the number of adults selected who have not graduated from high school. Random variable \\(X\\) has a binomial distribution with \\(n = 15\\) trials. The probability of 'success' (not graduating) is \\(p = 1 - 0.81 = 0.19\\), and the probability of 'failure' (graduating) is \\(q = 0.81\\). The probability that exactly 5 adults have not graduated from high school is \\(P(X = 5) = \\binom{15}{5}(0.19)^{5}(0.81)^{10}\\).",
-    "attachments": {
-      "choices": [
-        {
-          "key": "A",
-          "value": "\\(\\binom{20}{15}(0.19)^{15}(0.81)^{5}\\)"
-        },
-        {
-          "key": "B",
-          "value": "\\(\\binom{10}{5}(0.19)^{15}(0.81)^{15}\\)"
-        },
-        {
-          "key": "C",
-          "value": "\\(\\binom{10}{5}(0.81)^{5}(0.19)^{10}\\)"
-        },
-        {
-          "key": "D",
-          "value": "\\(\\binom{15}{5}(0.19)^{5}(0.81)^{10}\\)"
-        },
-        {
-          "key": "E",
-          "value": "\\(\\binom{15}{5}(0.81)^{5}(0.19)^{10}\\)"
-        }
-      ]
-    }
-  },
-  {
-    "id": "U4-L10-Q03",
-    "type": "multiple-choice",
-    "prompt": "An experiment was conducted in which planks of wood painted red and green were shown to pigeons to investigate a pigeon's ability to select a certain color. Pigeons could accurately select the color of the plank of wood 20 percent of the time. A simulation was conducted in which a trial consisted of a pigeon being shown eight planks of wood and its number of successes being recorded. This process was repeated many times, and the results are shown in the histogram. Based on the results of the simulation, which of the following is closest to the probability that there were at most three successes in a trial?",
-    "answerKey": "E",
-    "reasoning": "To find the probability of at most three successes, we need to sum the probabilities for 0, 1, 2, and 3 successes. From the histogram, these bars have heights of approximately 0.17, 0.35, 0.29, and 0.13 respectively. The sum is 0.17 + 0.35 + 0.29 + 0.13 = 0.94, which corresponds to answer choice E.",
-    "attachments": {
-      "chartType": "histogram",
-      "xLabels": [
-        "0",
-        "1",
-        "2",
-        "3",
-        "4",
-        "5",
-        "6",
-        "7",
-        "8"
-      ],
-      "series": [
-        {
-          "name": "Probability",
-          "values": [
-            0.16,
-            0.34,
-            0.29,
-            0.15,
-            0.05,
-            0.02,
-            0,
-            0,
-            0
-          ]
-        }
-      ],
-      "chartConfig": {
-        "yAxis": {
-          "min": 0,
-          "max": 0.4,
-          "tickInterval": 0.05,
-          "title": "Probability"
-        },
-        "xAxis": {
-          "title": "Number of Successes",
-          "labelType": "upperBound"
-        },
-        "gridLines": {
-          "horizontal": true,
-          "vertical": false
-        },
-        "description": "Histogram showing the distribution of number of successes in trials of 8 attempts"
-      },
-      "choices": [
-        {
-          "key": "A",
-          "value": "0.06"
-        },
-        {
-          "key": "B",
-          "value": "0.15"
-        },
-        {
-          "key": "C",
-          "value": "0.21"
-        },
-        {
-          "key": "D",
-          "value": "0.79"
-        },
-        {
-          "key": "E",
-          "value": "0.94"
-        }
-      ]
-    }
-  },
-  {
-    "id": "U4-L11-Q01",
-    "type": "multiple-choice",
-    "prompt": "In a certain region, 94 percent of the people have a certain characteristic in their blood. Suppose a group of 45 people from the region are selected at random. Let the random variable \\(B\\) represent the number of people in the sample without the characteristic. Random variable \\(B\\) follows a binomial distribution with a mean of 2.7 people. Which of the following is the best interpretation of the mean?",
-    "answerKey": "A",
-    "reasoning": "For the random variable \\(B\\), the mean number of people without the characteristic is equal to 2.7 for all possible groups of 45 people. The mean of a binomial distribution represents the expected value across all possible samples of the same size, not what happens in every individual sample or in a sequential selection process.",
-    "attachments": {
-      "choices": [
-        {
-          "key": "A",
-          "value": "For all groups of 45 people, the average number of people without the characteristic is 2.7."
-        },
-        {
-          "key": "B",
-          "value": "Every group of 45 people will have 2.7 people with the characteristic."
-        },
-        {
-          "key": "C",
-          "value": "Every group of 45 people will have 2.7 people without the characteristic."
-        },
-        {
-          "key": "D",
-          "value": "On average, 2.7 people are selected until finding someone with the characteristic."
-        },
-        {
-          "key": "E",
-          "value": "On average, 2.7 people are selected until finding someone without the characteristic."
-        }
-      ]
-    }
-  },
-  {
-    "id": "U4-L11-Q02",
-    "type": "multiple-choice",
-    "prompt": "A company that ships crystal bowls claims that bowls arrive undamaged in 95 percent of the shipments. Let the random variable \\(G\\) represent the number of shipments with undamaged bowls in 25 randomly selected shipments. Random variable \\(G\\) follows a binomial distribution with a mean of 23.75 shipments and a standard deviation of approximately 1.09 shipments. Which of the following is the best interpretation of the mean?",
-    "answerKey": "E",
-    "reasoning": "For the random variable \\(G\\), the mean number of undamaged bowls is equal to 23.75 for all possible shipments of size 25. The mean represents the expected value across all possible samples, not what happens in every individual shipment.",
-    "attachments": {
-      "choices": [
-        {
-          "key": "A",
-          "value": "Every shipment of 25 bowls will have 23.75 undamaged bowls."
-        },
-        {
-          "key": "B",
-          "value": "Every shipment of 25 bowls will have 23.75 damaged bowls."
-        },
-        {
-          "key": "C",
-          "value": "On average, the company receives 23.75 shipments before receiving the first shipment with a damaged bowl."
-        },
-        {
-          "key": "D",
-          "value": "For all possible shipments of size 25, the average number of damaged shipments is equal to 23.75."
-        },
-        {
-          "key": "E",
-          "value": "For all possible shipments of size 25, the average number of undamaged shipments is equal to 23.75."
-        }
-      ]
-    }
-  },
-  {
-    "id": "U4-L11-Q03",
-    "type": "multiple-choice",
-    "prompt": "According to 2015 census data, 42.7 percent of Colorado residents were born in Colorado. If a sample of 250 Colorado residents is selected at random, what is the standard deviation of the number of residents in the sample who were born in Colorado?",
-    "answerKey": "B",
-    "reasoning": "Let random variable \\(C\\) represent the number of people from a sample of 250 who were born in Colorado. The random variable has a binomial distribution. The standard deviation of a binomial random variable is \\(\\sqrt{np(1-p)} = \\sqrt{250(0.427)(0.573)} \\approx 7.82\\).",
-    "attachments": {
-      "choices": [
-        {
-          "key": "A",
-          "value": "6.75"
-        },
-        {
-          "key": "B",
-          "value": "7.82"
-        },
-        {
-          "key": "C",
-          "value": "10.33"
-        },
-        {
-          "key": "D",
-          "value": "11.97"
-        },
-        {
-          "key": "E",
-          "value": "61.17"
-        }
-      ]
-    }
-  },
-  {
-    "id": "U4-L11-Q04",
-    "type": "multiple-choice",
-    "prompt": "A certain factory that manufactures office chairs has a quality control process to identify defective chairs. The binomial random variable \\(D\\) represents the number of chairs in a sample of chairs that are defective. The mean of \\(D\\) is 10 chairs and the standard deviation is 3 chairs. Based on the distribution of \\(D\\), which of the following would be an accurate interpretation of the value 0.1?",
-    "answerKey": "E",
-    "reasoning": "The mean of 10 indicates \\(np = 10\\), and the standard deviation of 3 indicates \\(\\sqrt{np(1-p)} = \\sqrt{10(1-p)} = 3\\). Solving for \\(p\\) gives \\(p = 0.1\\), which is the probability of success, that is, identifying a defective chair.",
-    "attachments": {
-      "choices": [
-        {
-          "key": "A",
-          "value": "The total number of defective chairs made"
-        },
-        {
-          "key": "B",
-          "value": "The total number of non-defective chairs made"
-        },
-        {
-          "key": "C",
-          "value": "The relative frequency of the sample size to the population of chairs"
-        },
-        {
-          "key": "D",
-          "value": "The probability of identifying a non-defective chair"
-        },
-        {
-          "key": "E",
-          "value": "The probability of identifying a defective chair"
-        }
-      ]
-    }
-  },
-  {
-    "id": "U4-L11-Q05",
-    "type": "multiple-choice",
-    "prompt": "In 2014, 85 percent of households in the United States had a computer. For a randomly selected sample of 200 households in 2014, let the random variable \\(C\\) represent the number of households in the sample that had a computer. What are the mean and standard deviation of \\(C\\)?",
-    "answerKey": "D",
-    "reasoning": "Random variable \\(C\\) has a binomial distribution. The mean of the random variable is \\(np = 200(0.85) = 170\\), and the standard deviation of the random variable is \\(\\sqrt{np(1-p)} = \\sqrt{200(0.85)(0.15)} = 5.05\\).",
-    "attachments": {
-      "choices": [
-        {
-          "key": "A",
-          "value": "The mean is 85 households, and the standard deviation is 0.36 household."
-        },
-        {
-          "key": "B",
-          "value": "The mean is 144.5 households, and the standard deviation is 5.05 households."
-        },
-        {
-          "key": "C",
-          "value": "The mean is 144.5 households, and the standard deviation is 13.04 households."
-        },
-        {
-          "key": "D",
-          "value": "The mean is 170 households, and the standard deviation is 5.05 households."
-        },
-        {
-          "key": "E",
-          "value": "The mean is 170 households, and the standard deviation is 0.36 household."
-        }
-      ]
-    }
-  },
-  {
-    "id": "U4-L11-Q06",
-    "type": "multiple-choice",
-    "prompt": "According to a survey about how workers get to work in Wyoming, 77 percent of workers get to work by driving alone, 11 percent get to work by carpooling, 4 percent get to work by walking, and 8 percent get to work by other means of transportation. Suppose a sample of 200 Wyoming workers is selected at random. Let the random variable \\(D\\) represent the number of workers in the sample who get to work by driving alone. What is the expected value of \\(D\\)?",
-    "answerKey": "E",
-    "reasoning": "The expected value of a random variable is the mean of the distribution. \\(D\\) is a binomial random variable whose mean is \\(np = 200(0.77) = 154\\) workers.",
-    "attachments": {
-      "choices": [
-        {
-          "key": "A",
-          "value": "8"
-        },
-        {
-          "key": "B",
-          "value": "16"
-        },
-        {
-          "key": "C",
-          "value": "22"
-        },
-        {
-          "key": "D",
-          "value": "46"
-        },
-        {
-          "key": "E",
-          "value": "154"
-        }
-      ]
-    }
-  },
-  {
-    "id": "U4-L12-Q01",
-    "type": "multiple-choice",
-    "prompt": "In a certain board game, a player rolls two fair six-sided dice until the player rolls doubles (where the value on each die is the same). The probability of rolling doubles with one roll of two fair six-sided dice is \\(\\frac{1}{6}\\). What is the probability that it takes three rolls until the player rolls doubles?",
-    "answerKey": "D",
-    "reasoning": "Let the discrete random variable \\(X\\) represent the number of rolls it takes until the player rolls doubles. The random variable \\(X\\) has a geometric distribution, where \\(P(X = 3) = \\left(\\frac{1}{6}\\right)\\left(\\frac{5}{6}\\right)^2\\). In a geometric distribution, the probability of success on the \\(k\\)th trial is \\(p(1-p)^{k-1}\\), where \\(p = \\frac{1}{6}\\) is the probability of success (rolling doubles) and we need exactly 3 trials, so we have 2 failures followed by 1 success.",
-    "attachments": {
-      "choices": [
-        {
-          "key": "A",
-          "value": "\\(\\left(\\frac{1}{6}\\right)^3\\)"
-        },
-        {
-          "key": "B",
-          "value": "\\(\\left(\\frac{5}{6}\\right)^3\\)"
-        },
-        {
-          "key": "C",
-          "value": "\\(\\left(\\frac{1}{6}\\right)\\left(\\frac{5}{6}\\right)^3\\)"
-        },
-        {
-          "key": "D",
-          "value": "\\(\\left(\\frac{1}{6}\\right)\\left(\\frac{5}{6}\\right)^2\\)"
-        },
-        {
-          "key": "E",
-          "value": "\\(\\left(\\frac{5}{6}\\right)\\left(\\frac{1}{6}\\right)^2\\)"
-        }
-      ]
-    }
-  },
-  {
-    "id": "U4-L12-Q02",
-    "type": "multiple-choice",
-    "prompt": "The transaction history at an electronic goods store indicates that 21 percent of customers purchase the extended warranty when they buy an eligible item. Suppose customers who buy eligible items are chosen at random, one at a time, until one is found who purchased the extended warranty. Let the random variable \\(X\\) represent the number of customers it takes to find one who purchased the extended warranty. Assume customers' decisions on whether to purchase the extended warranty are independent. Which of the following is closest to the probability that \\(X > 3\\); that is, the probability that it takes more than 3 customers who buy an eligible item to find one who purchased the extended warranty?",
-    "answerKey": "C",
-    "reasoning": "The random variable \\(X\\) is geometric with \\(p = 0.21\\). Therefore, \\(P(X > 3) = 1 - P(X ≤ 3) = 1 - [0.21 + 0.79(0.21) + 0.79^2(0.21)] ≈ 0.493\\). This uses the complement rule and the cumulative probability formula for a geometric distribution.",
-    "attachments": {
-      "choices": [
-        {
-          "key": "A",
-          "value": "0.131"
-        },
-        {
-          "key": "B",
-          "value": "0.390"
-        },
-        {
-          "key": "C",
-          "value": "0.493"
-        },
-        {
-          "key": "D",
-          "value": "0.507"
-        },
-        {
-          "key": "E",
-          "value": "0.624"
-        }
-      ]
-    }
-  },
-  {
-    "id": "U4-L12-Q03",
-    "type": "multiple-choice",
-    "prompt": "Of all the fish in a certain river, 20 percent are salmon. Once a year, people can purchase a fishing license that allows them to catch up to 8 fish. Assume each catch is independent. Which of the following represents the probability of needing to catch 8 fish to get the first salmon?",
-    "answerKey": "D",
-    "reasoning": "Let random variable \\(X\\) represent the number of fish caught to get the first salmon. Random variable \\(X\\) has a geometric distribution with \\(p = 0.2\\). Thus, \\(P(X = 8) = 0.2(0.8)^7\\). This follows the geometric probability formula where we need 7 failures (non-salmon) followed by 1 success (salmon) on the 8th trial.",
-    "attachments": {
-      "choices": [
-        {
-          "key": "A",
-          "value": "0.2"
-        },
-        {
-          "key": "B",
-          "value": "\\(\\frac{1}{0.2}\\)"
-        },
-        {
-          "key": "C",
-          "value": "\\(0.2^8\\)"
-        },
-        {
-          "key": "D",
-          "value": "\\(0.2(0.8)^7\\)"
-        },
-        {
-          "key": "E",
-          "value": "\\(0.8(0.2)^7\\)"
-        }
-      ]
-    }
-  },
-  {
-    "id": "U4-L12-Q04",
-    "type": "multiple-choice",
-    "prompt": "According to a recent survey, 47 percent of the people living in a certain region carry a certain genetic trait. People from the region will be selected at random one at a time until someone is found who carries the genetic trait. Let the random variable \\(G\\) represent the number of people selected to find one person who carries the genetic trait. On average, how many people from the region will need to be selected to find one person who carries the genetic trait?",
-    "answerKey": "E",
-    "reasoning": "Random variable \\(G\\) has a geometric distribution. The expected value, or mean, of random variable \\(G\\) is \\(\\mu_G = \\frac{1}{p} = \\frac{1}{0.47} ≈ 2.13\\) people. The mean of a geometric distribution is the reciprocal of the success probability.",
-    "attachments": {
-      "choices": [
-        {
-          "key": "A",
-          "value": "0.47"
-        },
-        {
-          "key": "B",
-          "value": "0.69"
-        },
-        {
-          "key": "C",
-          "value": "1.55"
-        },
-        {
-          "key": "D",
-          "value": "2.00"
-        },
-        {
-          "key": "E",
-          "value": "2.13"
-        }
-      ]
-    }
-  },
-  {
-    "id": "U4-L12-Q05",
-    "type": "multiple-choice",
-    "prompt": "Let \\(S\\) represent the number of randomly selected adults in a community surveyed to find someone with a certain genetic trait. The random variable \\(S\\) follows a geometric distribution with mean 4.66. Which of the following is a correct interpretation of the mean?",
-    "answerKey": "B",
-    "reasoning": "The mean of a probability distribution is the long-run average of the values selected from many repetitions. This is the correct interpretation of what a mean represents in probability theory - it's the expected value over many trials, not the value of any single trial or sample.",
-    "attachments": {
-      "choices": [
-        {
-          "key": "A",
-          "value": "A value randomly selected from the distribution of \\(S\\) is expected to be 4.66."
-        },
-        {
-          "key": "B",
-          "value": "In repeated sampling from the distribution of \\(S\\), the average of the values will approach 4.66."
-        },
-        {
-          "key": "C",
-          "value": "For a sample of values randomly selected from the distribution of \\(S\\), the average of the sample will be 4.66."
-        },
-        {
-          "key": "D",
-          "value": "The probability is 0.66 that a value randomly selected from the distribution of \\(S\\) will be close to the mean."
-        },
-        {
-          "key": "E",
-          "value": "For a sample of values randomly selected from the distribution of \\(S\\), the average of the sample will vary from the population mean by no more than 4.66."
-        }
-      ]
-    }
-  },
-  {
-    "id": "U4-L12-Q06",
-    "type": "multiple-choice",
-    "prompt": "Let \\(W\\) represent the number of attempted experiments to get one experiment that is not successful. The random variable \\(W\\) has a geometric distribution with mean 4 and standard deviation 3.5. Which of the following is the best interpretation of the standard deviation?",
-    "answerKey": "C",
-    "reasoning": "The standard deviation is a measure of typical variability about the mean, on average. In this case, the values of \\(W\\) typically vary by about 3.5, on average, from the mean of 4 attempted experiments. Standard deviation measures how much individual values typically deviate from the mean.",
-    "attachments": {
-      "choices": [
-        {
-          "key": "A",
-          "value": "A single value randomly selected from the distribution of \\(W\\) will vary from 4 by 3.5 attempted experiments."
-        },
-        {
-          "key": "B",
-          "value": "A single value randomly selected from the distribution of \\(W\\) will vary from 3.5 by 4 attempted experiments."
-        },
-        {
-          "key": "C",
-          "value": "Values of \\(W\\) typically vary from 4 by about 3.5 attempted experiments, on average."
-        },
-        {
-          "key": "D",
-          "value": "Values of \\(W\\) typically vary from 3.5 by about 4 attempted experiments, on average."
-        },
-        {
-          "key": "E",
-          "value": "The standard deviation of a random sample of values selected from the distribution of \\(W\\) will be 3.5 attempted experiments."
-        }
-      ]
-    }
-  },
-  {
-    "id": "U4-L12-Q07",
-    "type": "multiple-choice",
-    "prompt": "In which of the following should the random variable \\(X\\) not be modeled with a geometric distribution?",
-    "answerKey": "D",
-    "reasoning": "This is not a geometric setting. The selections are not independent because of sampling without replacement from a small population. Therefore, the probability \\(p\\) will change with each selection. For a geometric distribution, we need independent trials with constant probability of success, which is violated when sampling without replacement.",
-    "attachments": {
-      "choices": [
-        {
-          "key": "A",
-          "value": "According to a recent study, approximately 8% of adults in the country have a master's degree. Let \\(X\\) represent the number of randomly selected adults in the country surveyed to find someone with a master's degree."
-        },
-        {
-          "key": "B",
-          "value": "Suppose it is known that 5% of the light bulbs manufactured at a particular company are defective. Let \\(X\\) represent the number of randomly selected light bulbs that are inspected to find one defective light bulb."
-        },
-        {
-          "key": "C",
-          "value": "A particular basketball player is known to consistently make 90% of her free throws, and the outcomes of her free-throw attempts are independent. Let \\(X\\) represent the number of attempted free-throws to get one missed free-throw."
-        },
-        {
-          "key": "D",
-          "value": "In a bag of 30 different colored candies, about 20% are red. One candy will be selected one at a time without replacement, and its color will be recorded. Let \\(X\\) represent the number of candies selected before red is selected."
-        },
-        {
-          "key": "E",
-          "value": "It is believed that about 40% of people in the country have purchased a certain product. Let \\(X\\) represent the number of people randomly selected to find the first one who has purchased the product."
-        }
-      ]
-    }
-  },
-  {
-    "id": "U4-L12-Q08",
-    "type": "multiple-choice",
-    "prompt": "The random variable \\(W\\) has a geometric distribution with \\(p = 0.25\\). Approximately how far do the values of \\(W\\) typically vary, on average, from the mean of the distribution?",
-    "answerKey": "D",
-    "reasoning": "The standard deviation of random variable \\(W\\) is \\(\\sigma_W = \\frac{\\sqrt{1-p}}{p} = \\frac{\\sqrt{0.75}}{0.25} ≈ 3.46\\). For a geometric distribution, the standard deviation formula is \\(\\frac{\\sqrt{1-p}}{p}\\), which measures the typical variation from the mean.",
-    "attachments": {
-      "choices": [
-        {
-          "key": "A",
-          "value": "1.73"
-        },
-        {
-          "key": "B",
-          "value": "2.00"
-        },
-        {
-          "key": "C",
-          "value": "3.00"
-        },
-        {
-          "key": "D",
-          "value": "3.46"
-        },
-        {
-          "key": "E",
-          "value": "4.00"
-        }
-      ]
-    }
-  },
-  {
-    "id": "U4-L12-Q09",
-    "type": "multiple-choice",
-    "prompt": "A recent report indicated that 22 percent of the households in a certain community speak a language other than English at home. A reporter will randomly select a household from the community until the first household that speaks a language other than English at home is selected. Let random variable \\(Q\\) represent the number of attempts needed until the first household that speaks a language other than English at home is selected. The random variable \\(Q\\) has a geometric distribution with \\(p = 0.22\\). Which of the following is closest to the variance of the random variable?",
-    "answerKey": "E",
-    "reasoning": "The variance of random variable \\(Q\\) is \\((\\sigma_Q)^2 = \\left[\\frac{\\sqrt{1-p}}{p}\\right]^2 = \\left[\\frac{\\sqrt{0.78}}{0.22}\\right]^2 ≈ 16.1157\\). For a geometric distribution, the variance is \\(\\frac{1-p}{p^2}\\), which equals \\(\\frac{0.78}{(0.22)^2} ≈ 16.1157\\).",
-    "attachments": {
-      "choices": [
-        {
-          "key": "A",
-          "value": "0.0484"
-        },
-        {
-          "key": "B",
-          "value": "3.5454"
-        },
-        {
-          "key": "C",
-          "value": "4.0144"
-        },
-        {
-          "key": "D",
-          "value": "4.5455"
-        },
-        {
-          "key": "E",
-          "value": "16.1157"
-        }
-      ]
-    }
-  },
-  {
     "id": "U4-L2-Q01",
     "type": "multiple-choice",
     "prompt": "An online customer service department estimates that about 15 percent of callers have to wait more than 8 minutes to have their calls answered by a person. The department conducted a simulation of 1,000 trials to estimate the probabilities that a certain number of callers out of the next 10 callers will have to wait more than 8 minutes to have their calls answered. The simulation is shown in the following histogram. Based on the simulation, what is the probability that at most 2 of the next 10 callers will have to wait more than 8 minutes to have their calls answered?",
@@ -14226,6 +13623,609 @@ const POK_CURRICULUM = [
         {
           "key": "E",
           "value": "The mean is 31, and the standard deviation is 13."
+        }
+      ]
+    }
+  },
+  {
+    "id": "U4-L10-Q01",
+    "type": "multiple-choice",
+    "prompt": "According to a recent survey, 31 percent of the residents of a certain state who are age 25 years or older have a bachelor's degree. A random sample of 50 residents of the state, age 25 years or older, will be selected. Let the random variable \\(B\\) represent the number in the sample who have a bachelor's degree. What is the probability that \\(B\\) will equal 40?",
+    "answerKey": "A",
+    "reasoning": "This is a binomial probability problem where we define success as selecting a person with a bachelor's degree and failure as selecting a person without the degree. The random variable \\(B\\) has a binomial distribution with \\(n = 50\\) trials, probability of success \\(p = 0.31\\), and probability of failure \\(q = 0.69\\). The probability of exactly 40 out of 50 people having a degree is given by the binomial probability formula: \\(P(B = 40) = \\binom{50}{40}(0.31)^{40}(0.69)^{10}\\).",
+    "attachments": {
+      "choices": [
+        {
+          "key": "A",
+          "value": "\\(\\binom{50}{40}(0.31)^{40}(0.69)^{10}\\)"
+        },
+        {
+          "key": "B",
+          "value": "\\(\\binom{50}{40}(0.69)^{40}(0.31)^{10}\\)"
+        },
+        {
+          "key": "C",
+          "value": "\\(\\binom{40}{10}(0.31)^{40}(0.69)^{10}\\)"
+        },
+        {
+          "key": "D",
+          "value": "\\(\\binom{40}{10}(0.69)^{40}(0.31)^{10}\\)"
+        },
+        {
+          "key": "E",
+          "value": "\\(40(0.31)^{50}\\)"
+        }
+      ]
+    }
+  },
+  {
+    "id": "U4-L10-Q02",
+    "type": "multiple-choice",
+    "prompt": "According to a recent survey, 81 percent of adults in a certain state have graduated from high school. If 15 adults from the state are selected at random, what is the probability that 5 of them have not graduated from high school?",
+    "answerKey": "D",
+    "reasoning": "Let \\(X\\) represent the number of adults selected who have not graduated from high school. Random variable \\(X\\) has a binomial distribution with \\(n = 15\\) trials. The probability of 'success' (not graduating) is \\(p = 1 - 0.81 = 0.19\\), and the probability of 'failure' (graduating) is \\(q = 0.81\\). The probability that exactly 5 adults have not graduated from high school is \\(P(X = 5) = \\binom{15}{5}(0.19)^{5}(0.81)^{10}\\).",
+    "attachments": {
+      "choices": [
+        {
+          "key": "A",
+          "value": "\\(\\binom{20}{15}(0.19)^{15}(0.81)^{5}\\)"
+        },
+        {
+          "key": "B",
+          "value": "\\(\\binom{10}{5}(0.19)^{15}(0.81)^{15}\\)"
+        },
+        {
+          "key": "C",
+          "value": "\\(\\binom{10}{5}(0.81)^{5}(0.19)^{10}\\)"
+        },
+        {
+          "key": "D",
+          "value": "\\(\\binom{15}{5}(0.19)^{5}(0.81)^{10}\\)"
+        },
+        {
+          "key": "E",
+          "value": "\\(\\binom{15}{5}(0.81)^{5}(0.19)^{10}\\)"
+        }
+      ]
+    }
+  },
+  {
+    "id": "U4-L10-Q03",
+    "type": "multiple-choice",
+    "prompt": "An experiment was conducted in which planks of wood painted red and green were shown to pigeons to investigate a pigeon's ability to select a certain color. Pigeons could accurately select the color of the plank of wood 20 percent of the time. A simulation was conducted in which a trial consisted of a pigeon being shown eight planks of wood and its number of successes being recorded. This process was repeated many times, and the results are shown in the histogram. Based on the results of the simulation, which of the following is closest to the probability that there were at most three successes in a trial?",
+    "answerKey": "E",
+    "reasoning": "To find the probability of at most three successes, we need to sum the probabilities for 0, 1, 2, and 3 successes. From the histogram, these bars have heights of approximately 0.17, 0.35, 0.29, and 0.13 respectively. The sum is 0.17 + 0.35 + 0.29 + 0.13 = 0.94, which corresponds to answer choice E.",
+    "attachments": {
+      "chartType": "histogram",
+      "xLabels": [
+        "0",
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7",
+        "8"
+      ],
+      "series": [
+        {
+          "name": "Probability",
+          "values": [
+            0.16,
+            0.34,
+            0.29,
+            0.15,
+            0.05,
+            0.02,
+            0,
+            0,
+            0
+          ]
+        }
+      ],
+      "chartConfig": {
+        "yAxis": {
+          "min": 0,
+          "max": 0.4,
+          "tickInterval": 0.05,
+          "title": "Probability"
+        },
+        "xAxis": {
+          "title": "Number of Successes",
+          "labelType": "upperBound"
+        },
+        "gridLines": {
+          "horizontal": true,
+          "vertical": false
+        },
+        "description": "Histogram showing the distribution of number of successes in trials of 8 attempts"
+      },
+      "choices": [
+        {
+          "key": "A",
+          "value": "0.06"
+        },
+        {
+          "key": "B",
+          "value": "0.15"
+        },
+        {
+          "key": "C",
+          "value": "0.21"
+        },
+        {
+          "key": "D",
+          "value": "0.79"
+        },
+        {
+          "key": "E",
+          "value": "0.94"
+        }
+      ]
+    }
+  },
+  {
+    "id": "U4-L11-Q01",
+    "type": "multiple-choice",
+    "prompt": "In a certain region, 94 percent of the people have a certain characteristic in their blood. Suppose a group of 45 people from the region are selected at random. Let the random variable \\(B\\) represent the number of people in the sample without the characteristic. Random variable \\(B\\) follows a binomial distribution with a mean of 2.7 people. Which of the following is the best interpretation of the mean?",
+    "answerKey": "A",
+    "reasoning": "For the random variable \\(B\\), the mean number of people without the characteristic is equal to 2.7 for all possible groups of 45 people. The mean of a binomial distribution represents the expected value across all possible samples of the same size, not what happens in every individual sample or in a sequential selection process.",
+    "attachments": {
+      "choices": [
+        {
+          "key": "A",
+          "value": "For all groups of 45 people, the average number of people without the characteristic is 2.7."
+        },
+        {
+          "key": "B",
+          "value": "Every group of 45 people will have 2.7 people with the characteristic."
+        },
+        {
+          "key": "C",
+          "value": "Every group of 45 people will have 2.7 people without the characteristic."
+        },
+        {
+          "key": "D",
+          "value": "On average, 2.7 people are selected until finding someone with the characteristic."
+        },
+        {
+          "key": "E",
+          "value": "On average, 2.7 people are selected until finding someone without the characteristic."
+        }
+      ]
+    }
+  },
+  {
+    "id": "U4-L11-Q02",
+    "type": "multiple-choice",
+    "prompt": "A company that ships crystal bowls claims that bowls arrive undamaged in 95 percent of the shipments. Let the random variable \\(G\\) represent the number of shipments with undamaged bowls in 25 randomly selected shipments. Random variable \\(G\\) follows a binomial distribution with a mean of 23.75 shipments and a standard deviation of approximately 1.09 shipments. Which of the following is the best interpretation of the mean?",
+    "answerKey": "E",
+    "reasoning": "For the random variable \\(G\\), the mean number of undamaged bowls is equal to 23.75 for all possible shipments of size 25. The mean represents the expected value across all possible samples, not what happens in every individual shipment.",
+    "attachments": {
+      "choices": [
+        {
+          "key": "A",
+          "value": "Every shipment of 25 bowls will have 23.75 undamaged bowls."
+        },
+        {
+          "key": "B",
+          "value": "Every shipment of 25 bowls will have 23.75 damaged bowls."
+        },
+        {
+          "key": "C",
+          "value": "On average, the company receives 23.75 shipments before receiving the first shipment with a damaged bowl."
+        },
+        {
+          "key": "D",
+          "value": "For all possible shipments of size 25, the average number of damaged shipments is equal to 23.75."
+        },
+        {
+          "key": "E",
+          "value": "For all possible shipments of size 25, the average number of undamaged shipments is equal to 23.75."
+        }
+      ]
+    }
+  },
+  {
+    "id": "U4-L11-Q03",
+    "type": "multiple-choice",
+    "prompt": "According to 2015 census data, 42.7 percent of Colorado residents were born in Colorado. If a sample of 250 Colorado residents is selected at random, what is the standard deviation of the number of residents in the sample who were born in Colorado?",
+    "answerKey": "B",
+    "reasoning": "Let random variable \\(C\\) represent the number of people from a sample of 250 who were born in Colorado. The random variable has a binomial distribution. The standard deviation of a binomial random variable is \\(\\sqrt{np(1-p)} = \\sqrt{250(0.427)(0.573)} \\approx 7.82\\).",
+    "attachments": {
+      "choices": [
+        {
+          "key": "A",
+          "value": "6.75"
+        },
+        {
+          "key": "B",
+          "value": "7.82"
+        },
+        {
+          "key": "C",
+          "value": "10.33"
+        },
+        {
+          "key": "D",
+          "value": "11.97"
+        },
+        {
+          "key": "E",
+          "value": "61.17"
+        }
+      ]
+    }
+  },
+  {
+    "id": "U4-L11-Q04",
+    "type": "multiple-choice",
+    "prompt": "A certain factory that manufactures office chairs has a quality control process to identify defective chairs. The binomial random variable \\(D\\) represents the number of chairs in a sample of chairs that are defective. The mean of \\(D\\) is 10 chairs and the standard deviation is 3 chairs. Based on the distribution of \\(D\\), which of the following would be an accurate interpretation of the value 0.1?",
+    "answerKey": "E",
+    "reasoning": "The mean of 10 indicates \\(np = 10\\), and the standard deviation of 3 indicates \\(\\sqrt{np(1-p)} = \\sqrt{10(1-p)} = 3\\). Solving for \\(p\\) gives \\(p = 0.1\\), which is the probability of success, that is, identifying a defective chair.",
+    "attachments": {
+      "choices": [
+        {
+          "key": "A",
+          "value": "The total number of defective chairs made"
+        },
+        {
+          "key": "B",
+          "value": "The total number of non-defective chairs made"
+        },
+        {
+          "key": "C",
+          "value": "The relative frequency of the sample size to the population of chairs"
+        },
+        {
+          "key": "D",
+          "value": "The probability of identifying a non-defective chair"
+        },
+        {
+          "key": "E",
+          "value": "The probability of identifying a defective chair"
+        }
+      ]
+    }
+  },
+  {
+    "id": "U4-L11-Q05",
+    "type": "multiple-choice",
+    "prompt": "In 2014, 85 percent of households in the United States had a computer. For a randomly selected sample of 200 households in 2014, let the random variable \\(C\\) represent the number of households in the sample that had a computer. What are the mean and standard deviation of \\(C\\)?",
+    "answerKey": "D",
+    "reasoning": "Random variable \\(C\\) has a binomial distribution. The mean of the random variable is \\(np = 200(0.85) = 170\\), and the standard deviation of the random variable is \\(\\sqrt{np(1-p)} = \\sqrt{200(0.85)(0.15)} = 5.05\\).",
+    "attachments": {
+      "choices": [
+        {
+          "key": "A",
+          "value": "The mean is 85 households, and the standard deviation is 0.36 household."
+        },
+        {
+          "key": "B",
+          "value": "The mean is 144.5 households, and the standard deviation is 5.05 households."
+        },
+        {
+          "key": "C",
+          "value": "The mean is 144.5 households, and the standard deviation is 13.04 households."
+        },
+        {
+          "key": "D",
+          "value": "The mean is 170 households, and the standard deviation is 5.05 households."
+        },
+        {
+          "key": "E",
+          "value": "The mean is 170 households, and the standard deviation is 0.36 household."
+        }
+      ]
+    }
+  },
+  {
+    "id": "U4-L11-Q06",
+    "type": "multiple-choice",
+    "prompt": "According to a survey about how workers get to work in Wyoming, 77 percent of workers get to work by driving alone, 11 percent get to work by carpooling, 4 percent get to work by walking, and 8 percent get to work by other means of transportation. Suppose a sample of 200 Wyoming workers is selected at random. Let the random variable \\(D\\) represent the number of workers in the sample who get to work by driving alone. What is the expected value of \\(D\\)?",
+    "answerKey": "E",
+    "reasoning": "The expected value of a random variable is the mean of the distribution. \\(D\\) is a binomial random variable whose mean is \\(np = 200(0.77) = 154\\) workers.",
+    "attachments": {
+      "choices": [
+        {
+          "key": "A",
+          "value": "8"
+        },
+        {
+          "key": "B",
+          "value": "16"
+        },
+        {
+          "key": "C",
+          "value": "22"
+        },
+        {
+          "key": "D",
+          "value": "46"
+        },
+        {
+          "key": "E",
+          "value": "154"
+        }
+      ]
+    }
+  },
+  {
+    "id": "U4-L12-Q01",
+    "type": "multiple-choice",
+    "prompt": "In a certain board game, a player rolls two fair six-sided dice until the player rolls doubles (where the value on each die is the same). The probability of rolling doubles with one roll of two fair six-sided dice is \\(\\frac{1}{6}\\). What is the probability that it takes three rolls until the player rolls doubles?",
+    "answerKey": "D",
+    "reasoning": "Let the discrete random variable \\(X\\) represent the number of rolls it takes until the player rolls doubles. The random variable \\(X\\) has a geometric distribution, where \\(P(X = 3) = \\left(\\frac{1}{6}\\right)\\left(\\frac{5}{6}\\right)^2\\). In a geometric distribution, the probability of success on the \\(k\\)th trial is \\(p(1-p)^{k-1}\\), where \\(p = \\frac{1}{6}\\) is the probability of success (rolling doubles) and we need exactly 3 trials, so we have 2 failures followed by 1 success.",
+    "attachments": {
+      "choices": [
+        {
+          "key": "A",
+          "value": "\\(\\left(\\frac{1}{6}\\right)^3\\)"
+        },
+        {
+          "key": "B",
+          "value": "\\(\\left(\\frac{5}{6}\\right)^3\\)"
+        },
+        {
+          "key": "C",
+          "value": "\\(\\left(\\frac{1}{6}\\right)\\left(\\frac{5}{6}\\right)^3\\)"
+        },
+        {
+          "key": "D",
+          "value": "\\(\\left(\\frac{1}{6}\\right)\\left(\\frac{5}{6}\\right)^2\\)"
+        },
+        {
+          "key": "E",
+          "value": "\\(\\left(\\frac{5}{6}\\right)\\left(\\frac{1}{6}\\right)^2\\)"
+        }
+      ]
+    }
+  },
+  {
+    "id": "U4-L12-Q02",
+    "type": "multiple-choice",
+    "prompt": "The transaction history at an electronic goods store indicates that 21 percent of customers purchase the extended warranty when they buy an eligible item. Suppose customers who buy eligible items are chosen at random, one at a time, until one is found who purchased the extended warranty. Let the random variable \\(X\\) represent the number of customers it takes to find one who purchased the extended warranty. Assume customers' decisions on whether to purchase the extended warranty are independent. Which of the following is closest to the probability that \\(X > 3\\); that is, the probability that it takes more than 3 customers who buy an eligible item to find one who purchased the extended warranty?",
+    "answerKey": "C",
+    "reasoning": "The random variable \\(X\\) is geometric with \\(p = 0.21\\). Therefore, \\(P(X > 3) = 1 - P(X ≤ 3) = 1 - [0.21 + 0.79(0.21) + 0.79^2(0.21)] ≈ 0.493\\). This uses the complement rule and the cumulative probability formula for a geometric distribution.",
+    "attachments": {
+      "choices": [
+        {
+          "key": "A",
+          "value": "0.131"
+        },
+        {
+          "key": "B",
+          "value": "0.390"
+        },
+        {
+          "key": "C",
+          "value": "0.493"
+        },
+        {
+          "key": "D",
+          "value": "0.507"
+        },
+        {
+          "key": "E",
+          "value": "0.624"
+        }
+      ]
+    }
+  },
+  {
+    "id": "U4-L12-Q03",
+    "type": "multiple-choice",
+    "prompt": "Of all the fish in a certain river, 20 percent are salmon. Once a year, people can purchase a fishing license that allows them to catch up to 8 fish. Assume each catch is independent. Which of the following represents the probability of needing to catch 8 fish to get the first salmon?",
+    "answerKey": "D",
+    "reasoning": "Let random variable \\(X\\) represent the number of fish caught to get the first salmon. Random variable \\(X\\) has a geometric distribution with \\(p = 0.2\\). Thus, \\(P(X = 8) = 0.2(0.8)^7\\). This follows the geometric probability formula where we need 7 failures (non-salmon) followed by 1 success (salmon) on the 8th trial.",
+    "attachments": {
+      "choices": [
+        {
+          "key": "A",
+          "value": "0.2"
+        },
+        {
+          "key": "B",
+          "value": "\\(\\frac{1}{0.2}\\)"
+        },
+        {
+          "key": "C",
+          "value": "\\(0.2^8\\)"
+        },
+        {
+          "key": "D",
+          "value": "\\(0.2(0.8)^7\\)"
+        },
+        {
+          "key": "E",
+          "value": "\\(0.8(0.2)^7\\)"
+        }
+      ]
+    }
+  },
+  {
+    "id": "U4-L12-Q04",
+    "type": "multiple-choice",
+    "prompt": "According to a recent survey, 47 percent of the people living in a certain region carry a certain genetic trait. People from the region will be selected at random one at a time until someone is found who carries the genetic trait. Let the random variable \\(G\\) represent the number of people selected to find one person who carries the genetic trait. On average, how many people from the region will need to be selected to find one person who carries the genetic trait?",
+    "answerKey": "E",
+    "reasoning": "Random variable \\(G\\) has a geometric distribution. The expected value, or mean, of random variable \\(G\\) is \\(\\mu_G = \\frac{1}{p} = \\frac{1}{0.47} ≈ 2.13\\) people. The mean of a geometric distribution is the reciprocal of the success probability.",
+    "attachments": {
+      "choices": [
+        {
+          "key": "A",
+          "value": "0.47"
+        },
+        {
+          "key": "B",
+          "value": "0.69"
+        },
+        {
+          "key": "C",
+          "value": "1.55"
+        },
+        {
+          "key": "D",
+          "value": "2.00"
+        },
+        {
+          "key": "E",
+          "value": "2.13"
+        }
+      ]
+    }
+  },
+  {
+    "id": "U4-L12-Q05",
+    "type": "multiple-choice",
+    "prompt": "Let \\(S\\) represent the number of randomly selected adults in a community surveyed to find someone with a certain genetic trait. The random variable \\(S\\) follows a geometric distribution with mean 4.66. Which of the following is a correct interpretation of the mean?",
+    "answerKey": "B",
+    "reasoning": "The mean of a probability distribution is the long-run average of the values selected from many repetitions. This is the correct interpretation of what a mean represents in probability theory - it's the expected value over many trials, not the value of any single trial or sample.",
+    "attachments": {
+      "choices": [
+        {
+          "key": "A",
+          "value": "A value randomly selected from the distribution of \\(S\\) is expected to be 4.66."
+        },
+        {
+          "key": "B",
+          "value": "In repeated sampling from the distribution of \\(S\\), the average of the values will approach 4.66."
+        },
+        {
+          "key": "C",
+          "value": "For a sample of values randomly selected from the distribution of \\(S\\), the average of the sample will be 4.66."
+        },
+        {
+          "key": "D",
+          "value": "The probability is 0.66 that a value randomly selected from the distribution of \\(S\\) will be close to the mean."
+        },
+        {
+          "key": "E",
+          "value": "For a sample of values randomly selected from the distribution of \\(S\\), the average of the sample will vary from the population mean by no more than 4.66."
+        }
+      ]
+    }
+  },
+  {
+    "id": "U4-L12-Q06",
+    "type": "multiple-choice",
+    "prompt": "Let \\(W\\) represent the number of attempted experiments to get one experiment that is not successful. The random variable \\(W\\) has a geometric distribution with mean 4 and standard deviation 3.5. Which of the following is the best interpretation of the standard deviation?",
+    "answerKey": "C",
+    "reasoning": "The standard deviation is a measure of typical variability about the mean, on average. In this case, the values of \\(W\\) typically vary by about 3.5, on average, from the mean of 4 attempted experiments. Standard deviation measures how much individual values typically deviate from the mean.",
+    "attachments": {
+      "choices": [
+        {
+          "key": "A",
+          "value": "A single value randomly selected from the distribution of \\(W\\) will vary from 4 by 3.5 attempted experiments."
+        },
+        {
+          "key": "B",
+          "value": "A single value randomly selected from the distribution of \\(W\\) will vary from 3.5 by 4 attempted experiments."
+        },
+        {
+          "key": "C",
+          "value": "Values of \\(W\\) typically vary from 4 by about 3.5 attempted experiments, on average."
+        },
+        {
+          "key": "D",
+          "value": "Values of \\(W\\) typically vary from 3.5 by about 4 attempted experiments, on average."
+        },
+        {
+          "key": "E",
+          "value": "The standard deviation of a random sample of values selected from the distribution of \\(W\\) will be 3.5 attempted experiments."
+        }
+      ]
+    }
+  },
+  {
+    "id": "U4-L12-Q07",
+    "type": "multiple-choice",
+    "prompt": "In which of the following should the random variable \\(X\\) not be modeled with a geometric distribution?",
+    "answerKey": "D",
+    "reasoning": "This is not a geometric setting. The selections are not independent because of sampling without replacement from a small population. Therefore, the probability \\(p\\) will change with each selection. For a geometric distribution, we need independent trials with constant probability of success, which is violated when sampling without replacement.",
+    "attachments": {
+      "choices": [
+        {
+          "key": "A",
+          "value": "According to a recent study, approximately 8% of adults in the country have a master's degree. Let \\(X\\) represent the number of randomly selected adults in the country surveyed to find someone with a master's degree."
+        },
+        {
+          "key": "B",
+          "value": "Suppose it is known that 5% of the light bulbs manufactured at a particular company are defective. Let \\(X\\) represent the number of randomly selected light bulbs that are inspected to find one defective light bulb."
+        },
+        {
+          "key": "C",
+          "value": "A particular basketball player is known to consistently make 90% of her free throws, and the outcomes of her free-throw attempts are independent. Let \\(X\\) represent the number of attempted free-throws to get one missed free-throw."
+        },
+        {
+          "key": "D",
+          "value": "In a bag of 30 different colored candies, about 20% are red. One candy will be selected one at a time without replacement, and its color will be recorded. Let \\(X\\) represent the number of candies selected before red is selected."
+        },
+        {
+          "key": "E",
+          "value": "It is believed that about 40% of people in the country have purchased a certain product. Let \\(X\\) represent the number of people randomly selected to find the first one who has purchased the product."
+        }
+      ]
+    }
+  },
+  {
+    "id": "U4-L12-Q08",
+    "type": "multiple-choice",
+    "prompt": "The random variable \\(W\\) has a geometric distribution with \\(p = 0.25\\). Approximately how far do the values of \\(W\\) typically vary, on average, from the mean of the distribution?",
+    "answerKey": "D",
+    "reasoning": "The standard deviation of random variable \\(W\\) is \\(\\sigma_W = \\frac{\\sqrt{1-p}}{p} = \\frac{\\sqrt{0.75}}{0.25} ≈ 3.46\\). For a geometric distribution, the standard deviation formula is \\(\\frac{\\sqrt{1-p}}{p}\\), which measures the typical variation from the mean.",
+    "attachments": {
+      "choices": [
+        {
+          "key": "A",
+          "value": "1.73"
+        },
+        {
+          "key": "B",
+          "value": "2.00"
+        },
+        {
+          "key": "C",
+          "value": "3.00"
+        },
+        {
+          "key": "D",
+          "value": "3.46"
+        },
+        {
+          "key": "E",
+          "value": "4.00"
+        }
+      ]
+    }
+  },
+  {
+    "id": "U4-L12-Q09",
+    "type": "multiple-choice",
+    "prompt": "A recent report indicated that 22 percent of the households in a certain community speak a language other than English at home. A reporter will randomly select a household from the community until the first household that speaks a language other than English at home is selected. Let random variable \\(Q\\) represent the number of attempts needed until the first household that speaks a language other than English at home is selected. The random variable \\(Q\\) has a geometric distribution with \\(p = 0.22\\). Which of the following is closest to the variance of the random variable?",
+    "answerKey": "E",
+    "reasoning": "The variance of random variable \\(Q\\) is \\((\\sigma_Q)^2 = \\left[\\frac{\\sqrt{1-p}}{p}\\right]^2 = \\left[\\frac{\\sqrt{0.78}}{0.22}\\right]^2 ≈ 16.1157\\). For a geometric distribution, the variance is \\(\\frac{1-p}{p^2}\\), which equals \\(\\frac{0.78}{(0.22)^2} ≈ 16.1157\\).",
+    "attachments": {
+      "choices": [
+        {
+          "key": "A",
+          "value": "0.0484"
+        },
+        {
+          "key": "B",
+          "value": "3.5454"
+        },
+        {
+          "key": "C",
+          "value": "4.0144"
+        },
+        {
+          "key": "D",
+          "value": "4.5455"
+        },
+        {
+          "key": "E",
+          "value": "16.1157"
         }
       ]
     }
@@ -20780,624 +20780,6 @@ const POK_CURRICULUM = [
     }
   },
   {
-    "id": "U6-L10-Q01",
-    "type": "multiple-choice",
-    "prompt": "A study was conducted to investigate whether a new drug could significantly reduce pain in people with arthritis. From a group of 500 people with arthritis, 250 were randomly assigned to receive the drug (group 1) and the remaining people were assigned a placebo (group 2). After one month of treatment, 225 people in group 1 reported pain relief and 150 people in group 2 reported pain relief. Let \\( \\hat{p}_c \\) represent the combined (or pooled) sample proportion for the two samples. Have the conditions for inference for testing the difference in population proportions been met?",
-    "answerKey": "E",
-    "reasoning": "The condition for independence has been met since treatments were randomly assigned to patients and the population of arthritis patients is likely large enough to assume that the number of patients in the two populations are both at least 10 times the sample sizes. Also, \\( \\hat{p}_c = \\frac{(250)(\\frac{225}{250}) + (250)(\\frac{150}{250})}{250+250} = 0.75 \\), and for both samples, \\( 250(0.75) \\) and \\( 250(0.25) \\) are greater than or equal to 10. It can be assumed that the sampling distribution of the difference in sample proportions is approximately normal.",
-    "attachments": {
-      "choices": [
-        {
-          "key": "A",
-          "value": "No. The people in the study were not selected at random."
-        },
-        {
-          "key": "B",
-          "value": "No. The number of people in the study was too large compared with the size of the population."
-        },
-        {
-          "key": "C",
-          "value": "No. The normality of the sampling distribution cannot be assumed because \\( \\hat{p}_c \\) times each sample size is not sufficiently large."
-        },
-        {
-          "key": "D",
-          "value": "No. The normality of the sampling distribution cannot be assumed because \\( 1 - \\hat{p}_c \\) times each sample size is not sufficiently large."
-        },
-        {
-          "key": "E",
-          "value": "Yes. All conditions for inference have been met."
-        }
-      ]
-    }
-  },
-  {
-    "id": "U6-L10-Q02",
-    "type": "multiple-choice",
-    "prompt": "Researchers were investigating whether there is a significant difference between two medications, R and S, designed to reduce fleas found on cats. From a sample of 300 cat owners, the researchers randomly assigned 150 cat owners to use medication R on their cats and the remaining cat owners to use medication S. For the cats using medication R, 88 percent had no fleas. For the cats using medication S, 90 percent had no fleas. Which of the following is the most appropriate method for analyzing the results?",
-    "answerKey": "A",
-    "reasoning": "To determine whether a difference in proportions is significant, the two-sample z-test for a difference in population proportions is the most appropriate method for the analysis.",
-    "attachments": {
-      "choices": [
-        {
-          "key": "A",
-          "value": "A two-sample z-test for a difference in population proportions"
-        },
-        {
-          "key": "B",
-          "value": "A two-sample z-test for a difference in sample proportions"
-        },
-        {
-          "key": "C",
-          "value": "A one-sample z-test for a sample proportion"
-        },
-        {
-          "key": "D",
-          "value": "A one-sample z-test for a population proportion"
-        },
-        {
-          "key": "E",
-          "value": "A one-sample z-test for a difference in sample proportions"
-        }
-      ]
-    }
-  },
-  {
-    "id": "U6-L10-Q03",
-    "type": "multiple-choice",
-    "prompt": "The police in a certain city are investigating whether the proportion of minor traffic accidents is greater on Friday nights than on Sunday nights. As part of the investigation, they select a random sample of police calls from Friday nights and a random sample of police calls from Sunday nights. From both samples, they record the sample proportion of calls that involved minor traffic accidents. Let \\( p_F \\) represent the proportion of all Friday night calls, and let \\( p_S \\) represent the proportion of all Sunday night calls. Which of the following are the correct hypotheses for the investigation?",
-    "answerKey": "D",
-    "reasoning": "The null hypothesis is a statement of no difference; that is, \\( p_F = p_S \\). The alternative hypothesis reflects the belief that the proportion is greater on Friday nights, or \\( p_F > p_S \\).",
-    "attachments": {
-      "choices": [
-        {
-          "key": "A",
-          "value": "\\( H_0: p_F = p_S \\), \\( H_a: p_F \\neq p_S \\)"
-        },
-        {
-          "key": "B",
-          "value": "\\( H_0: p_F \\neq p_S \\), \\( H_a: p_F = p_S \\)"
-        },
-        {
-          "key": "C",
-          "value": "\\( H_0: p_F = p_S \\), \\( H_a: p_F < p_S \\)"
-        },
-        {
-          "key": "D",
-          "value": "\\( H_0: p_F = p_S \\), \\( H_a: p_F > p_S \\)"
-        },
-        {
-          "key": "E",
-          "value": "\\( H_0: p_F > p_S \\), \\( H_a: p_F = p_S \\)"
-        }
-      ]
-    }
-  },
-  {
-    "id": "U6-L10-Q04",
-    "type": "multiple-choice",
-    "prompt": "Market researchers wanted to know whether the placement of a new product on a supermarket shelf significantly increases the percent of shoppers who will buy the product. At Supermarket X, a new product was placed on the top shelf, and at Supermarket Y, the product was placed one shelf below the top shelf. To observe buying habits, the researchers selected a random sample of 364 shoppers at X and another random sample of 327 shoppers at Y. Of the selected shoppers at X, 15 bought the product, and of the selected shoppers at Y, 19 bought the product. Which of the following is the most appropriate method for analyzing the results?",
-    "answerKey": "B",
-    "reasoning": "To determine whether a difference in proportions is significant, a two-sample z-test for the difference in population proportions is the most appropriate method for the analysis.",
-    "attachments": {
-      "choices": [
-        {
-          "key": "A",
-          "value": "A two-sample z-test for a difference in sample proportions"
-        },
-        {
-          "key": "B",
-          "value": "A two-sample z-test for a difference in population proportions"
-        },
-        {
-          "key": "C",
-          "value": "A one-sample z-test for a sample proportion"
-        },
-        {
-          "key": "D",
-          "value": "A one-sample z-test for a population proportion"
-        },
-        {
-          "key": "E",
-          "value": "A one-sample z-test for a difference in sample proportions"
-        }
-      ]
-    }
-  },
-  {
-    "id": "U6-L10-Q05",
-    "type": "multiple-choice",
-    "prompt": "Polydactyl cats are cats with extra toes. A researcher believes that the proportion of the population of polydactyl cats in region A is greater than the proportion in region B. Let \\( p_A \\) represent the population proportion of polydactyl cats in region A, and let \\( p_B \\) represent the population proportion of polydactyl cats in region B. Which of the following are the appropriate hypotheses to test the researcher's belief?",
-    "answerKey": "B",
-    "reasoning": "The null hypothesis is a statement of no difference, or that the population proportions are equal; \\( p_A = p_B \\). The alternative hypothesis is a statement of the researcher's belief that the proportion in region A is greater than that of region B, or \\( p_A - p_B > 0 \\).",
-    "attachments": {
-      "choices": [
-        {
-          "key": "A",
-          "value": "\\( H_0: p_A - p_B = 0 \\), \\( H_a: p_A - p_B \\neq 0 \\)"
-        },
-        {
-          "key": "B",
-          "value": "\\( H_0: p_A - p_B = 0 \\), \\( H_a: p_A - p_B > 0 \\)"
-        },
-        {
-          "key": "C",
-          "value": "\\( H_0: p_A - p_B = 0 \\), \\( H_a: p_A - p_B < 0 \\)"
-        },
-        {
-          "key": "D",
-          "value": "\\( H_0: p_A - p_B = 0 \\), \\( H_a: p_A - p_B \\neq 0 \\)"
-        },
-        {
-          "key": "E",
-          "value": "\\( H_0: p_A - p_B = 0 \\), \\( H_a: p_A - p_B > 0 \\)"
-        }
-      ]
-    }
-  },
-  {
-    "id": "U6-L10-Q06",
-    "type": "multiple-choice",
-    "prompt": "Two locations of a fast-food restaurant, Location Q and Location W, were in a certain town with a large number of residents. A nutritionist investigated whether the proportion of orders that contained a salad was different at the two locations. The nutritionist obtained a random sample of orders from the Location Q restaurant and a random sample of orders from the Location W restaurant. Of the 215 Location Q orders, 27 contained a salad; of the 175 Location W orders, 14 contained a salad. Let \\( \\hat{p}_c \\) represent the combined sample proportion, and let \\( n_Q \\) and \\( n_W \\) represent the respective sample sizes for Locations Q and W. Have the conditions for inference for testing a difference in population proportions been met?",
-    "answerKey": "E",
-    "reasoning": "Both samples are described as random, and it is reasonable to assume that the total number of orders in both populations is at least 10 times the sample size. The combined sample proportion is \\( \\hat{p}_c = \\frac{27+14}{215+175} \\approx 0.11 \\). Each of \\( n_Q(\\hat{p}_c) \\), \\( n_W(\\hat{p}_c) \\), \\( n_Q(1 - \\hat{p}_c) \\), and \\( n_W(1 - \\hat{p}_c) \\) is greater than or equal to 10, so the sampling distribution of the difference in sample proportions is approximately normal.",
-    "attachments": {
-      "choices": [
-        {
-          "key": "A",
-          "value": "No, the condition for independence has not been met because random samples were not selected from each location."
-        },
-        {
-          "key": "B",
-          "value": "No, the condition for independence has not been met because the sample sizes are too large when compared to the corresponding population sizes."
-        },
-        {
-          "key": "C",
-          "value": "No, the condition that the sampling distribution of the difference in sample proportions is approximately normal has not been met because \\( n_W(\\hat{p}_c) \\) is not greater than 10."
-        },
-        {
-          "key": "D",
-          "value": "No, the condition that the sampling distribution of the difference in sample proportions is approximately normal has not been met because \\( n_Q(1 - \\hat{p}_c) \\) is not greater than 10."
-        },
-        {
-          "key": "E",
-          "value": "Yes, all conditions for making statistical inference have been met."
-        }
-      ]
-    }
-  },
-  {
-    "id": "U6-L10-Q07",
-    "type": "multiple-choice",
-    "prompt": "A local school board wanted to investigate whether their approval ratings had changed during the past year. The board selected random samples of voters at both the beginning and the end of the year, and each time the voters were asked whether they approve of the school board. Let \\( p_1 \\) represent the proportion of voters who approved of the school board at the beginning of the year and \\( p_2 \\) represent the proportion of voters who approved of the school board at the end of the year. Which of the following are the correct null and alternative hypotheses for the school board's investigation?",
-    "answerKey": "A",
-    "reasoning": "The null hypothesis is a statement of no difference, or that \\( p_1 = p_2 \\). The alternative hypothesis is a statement of the board's belief that the proportion of voters who approved of the school board at the end of the year has changed, or \\( p_1 \\neq p_2 \\).",
-    "attachments": {
-      "choices": [
-        {
-          "key": "A",
-          "value": "\\( H_0: p_1 = p_2 \\), \\( H_a: p_1 \\neq p_2 \\)"
-        },
-        {
-          "key": "B",
-          "value": "\\( H_0: p_1 \\neq p_2 \\), \\( H_a: p_1 = p_2 \\)"
-        },
-        {
-          "key": "C",
-          "value": "\\( H_0: p_1 = p_2 \\), \\( H_a: p_1 < p_2 \\)"
-        },
-        {
-          "key": "D",
-          "value": "\\( H_0: p_1 = p_2 \\), \\( H_a: p_1 > p_2 \\)"
-        },
-        {
-          "key": "E",
-          "value": "\\( H_0: p_1 > p_2 \\), \\( H_a: p_1 = p_2 \\)"
-        }
-      ]
-    }
-  },
-  {
-    "id": "U6-L10-Q08",
-    "type": "multiple-choice",
-    "prompt": "To investigate whether there is a significant difference between two regions of a state in the percent of voters who intend to vote for the incumbent governor in the next election, a polling agency interviewed 300 randomly selected voters from the north of the state and 400 randomly selected voters from the south of the state. Of those interviewed, 200 from the north and 325 from the south indicated they intended to vote for the incumbent governor in the next election. Which of the following is the most appropriate method for analyzing the results?",
-    "answerKey": "E",
-    "reasoning": "To determine if a difference in proportions is significant, the two-sample z-test for the difference in population proportions is the most appropriate method for the analysis.",
-    "attachments": {
-      "choices": [
-        {
-          "key": "A",
-          "value": "A one-sample z-test for a sample proportion"
-        },
-        {
-          "key": "B",
-          "value": "A one-sample z-test for a population proportion"
-        },
-        {
-          "key": "C",
-          "value": "A two-sample z-test for a sample proportion"
-        },
-        {
-          "key": "D",
-          "value": "A two-sample z-test for a difference in sample proportions"
-        },
-        {
-          "key": "E",
-          "value": "A two-sample z-test for a difference in population proportions"
-        }
-      ]
-    }
-  },
-  {
-    "id": "U6-L10-Q09",
-    "type": "multiple-choice",
-    "prompt": "A fitness center piloted two new programs to help people reduce stress levels and maintain a healthy lifestyle. After one month, 112 of the 125 people who volunteered for a program in mindfulness reported a reduction in stress levels, and 110 of the 135 people who volunteered for a yoga program reported a reduction in stress levels. The fitness center wants to investigate whether there is a significant difference between the proportions of all people in the two programs who would report reductions in stress levels. Have the conditions for inference been met?",
-    "answerKey": "A",
-    "reasoning": "The people in the samples volunteered for the program and were not randomly assigned to either program. Because they volunteered for the program of their choice, there are possible confounding variables that would prevent the fitness center from generalizing from cause (the program) to effect (reduced stress levels).",
-    "attachments": {
-      "choices": [
-        {
-          "key": "A",
-          "value": "No, because the samples were not selected or assigned using a random method."
-        },
-        {
-          "key": "B",
-          "value": "No, because the sizes of the samples are too large compared to the size of the population."
-        },
-        {
-          "key": "C",
-          "value": "No, because the normality of the sampling distribution cannot be assumed; the number of people who experienced stress relief is not large enough."
-        },
-        {
-          "key": "D",
-          "value": "No, because the normality of the sampling distribution cannot be assumed; the number of people who did not experience stress relief is not large enough."
-        },
-        {
-          "key": "E",
-          "value": "Yes, because all conditions for making statistical inference have been met."
-        }
-      ]
-    }
-  },
-  {
-    "id": "U6-L11-Q01",
-    "type": "multiple-choice",
-    "prompt": "A factory manager selected a random sample of parts produced on an old assembly line and a random sample of parts produced on a new assembly line. The difference between the sample proportion of defective parts made on the old assembly line and the sample proportion of defective parts made on the new assembly line (old minus new) was 0.006. Under the assumption that all conditions for inference were met, a hypothesis test was conducted with the alternative hypothesis being the proportion of defective parts made on the old assembly line is greater than that of the new assembly line. The \\(p\\)-value of the test was 0.018.\n\nWhich of the following is the correct interpretation of the \\(p\\)-value?",
-    "answerKey": "D",
-    "reasoning": "The direction of the test is to the right of 0.006, because the alternative hypothesis is that the proportion of defective parts on the old line is greater than the proportion of defective parts on the new line. The test is in the direction of the right tail. The \\(p\\)-value is the probability of observing a sample difference of at least 0.006 if the null hypothesis of no difference is true.",
-    "attachments": {
-      "choices": [
-        {
-          "key": "A",
-          "value": "If there is a difference of 0.018 in the proportions of all defective parts made on the two assembly lines, the probability of observing that difference is 0.006."
-        },
-        {
-          "key": "B",
-          "value": "If there is a difference of 0.006 in the proportions of all defective parts made on the two assembly lines, the probability of observing that difference is 0.018."
-        },
-        {
-          "key": "C",
-          "value": "If there is no difference in the proportions of all defective parts made on the two assembly lines, the probability of observing a difference equal to 0.006 is 0.018."
-        },
-        {
-          "key": "D",
-          "value": "If there is no difference in the proportions of all defective parts made on the two assembly lines, the probability of observing a difference of at least 0.006 is 0.018."
-        },
-        {
-          "key": "E",
-          "value": "If there is no difference in the proportions of all defective parts made on the two assembly lines, the probability of observing a difference of at most 0.006 is 0.018."
-        }
-      ]
-    }
-  },
-  {
-    "id": "U6-L11-Q02",
-    "type": "multiple-choice",
-    "prompt": "Market researchers interviewed a random sample of 60 men and a random sample of 55 women about their preferences for different color designs for the packaging of a certain product. Of those interviewed, 23 men and 28 women preferred color design X.\n\nWhich of the following is the correct test statistic for a two-sample \\(z\\)-test for a difference in population proportions for men and women (men minus women) in their preference for color design X?",
-    "answerKey": "E",
-    "reasoning": "The sample proportion for men is \\(\\frac{23}{60} \\approx 0.38\\), the sample proportion for women is \\(\\frac{28}{55} \\approx 0.51\\), and the combined (or pooled) proportion is \\(\\frac{23+28}{60+55} \\approx 0.44\\). The test statistic for the difference in population proportions is \\(z = \\frac{0.38 - 0.51}{\\sqrt{(0.44)(0.56)\\left(\\frac{1}{60} + \\frac{1}{55}\\right)}}\\).",
-    "attachments": {
-      "choices": [
-        {
-          "key": "A",
-          "value": "\\(z = \\frac{0.51 - 0.38}{\\sqrt{(0.44)(0.56)\\left(\\frac{1}{55} + \\frac{1}{60}\\right)}}\\)"
-        },
-        {
-          "key": "B",
-          "value": "\\(z = \\frac{23 - 28}{\\sqrt{(0.38)(0.51)\\left(\\frac{1}{60+55}\\right)}}\\)"
-        },
-        {
-          "key": "C",
-          "value": "\\(z = \\frac{23 - 28}{\\sqrt{(0.44)(0.56)\\left(\\frac{1}{60} + \\frac{1}{55}\\right)}}\\)"
-        },
-        {
-          "key": "D",
-          "value": "\\(z = \\frac{0.38 - 0.51}{\\sqrt{(0.44)(0.56)\\left(\\frac{1}{60+55}\\right)}}\\)"
-        },
-        {
-          "key": "E",
-          "value": "\\(z = \\frac{0.38 - 0.51}{\\sqrt{(0.44)(0.56)\\left(\\frac{1}{60} + \\frac{1}{55}\\right)}}\\)"
-        }
-      ]
-    }
-  },
-  {
-    "id": "U6-L11-Q03",
-    "type": "multiple-choice",
-    "prompt": "To investigate whether there is a difference in opinion on a certain proposal between two voting districts, A and B, two independent random samples were taken. From district A, 35 of the 50 voters selected were in favor of the proposal, and from district B, 36 of the 60 voters selected were in favor of the proposal.\n\nWhich of the following is the test statistic for the appropriate test to investigate whether there is a difference in the proportion of voters who are in favor of the proposal between the two districts (district A minus district B)?",
-    "answerKey": "C",
-    "reasoning": "The sample proportion from district A is \\(\\frac{35}{50} = 0.7\\), the sample proportion from district B is \\(\\frac{36}{60} = 0.6\\), and the combined (or pooled) proportion is \\(\\frac{35+36}{50+60} \\approx 0.65\\). The test statistic for the difference in population proportions is \\(\\frac{0.7 - 0.6}{\\sqrt{(0.65)(0.35)\\left(\\frac{1}{50} + \\frac{1}{60}\\right)}}\\).",
-    "attachments": {
-      "choices": [
-        {
-          "key": "A",
-          "value": "\\(\\frac{35 - 36}{\\sqrt{\\frac{35}{50} + \\frac{36}{60}}}\\)"
-        },
-        {
-          "key": "B",
-          "value": "\\(\\frac{35 - 36}{\\sqrt{\\frac{35}{50} + \\frac{36}{60}}}\\)"
-        },
-        {
-          "key": "C",
-          "value": "\\(\\frac{0.7 - 0.6}{\\sqrt{(0.65)(0.35)\\left(\\frac{1}{50} + \\frac{1}{60}\\right)}}\\)"
-        },
-        {
-          "key": "D",
-          "value": "\\(\\frac{0.7 - 0.6}{\\sqrt{(0.7)(0.6)\\left(\\frac{1}{50+60}\\right)}}\\)"
-        },
-        {
-          "key": "E",
-          "value": "\\(\\left(0.7\\right)\\left(0.6\\right)\\sqrt{\\frac{1}{50} + \\frac{1}{60}}\\)"
-        }
-      ]
-    }
-  },
-  {
-    "id": "U6-L11-Q04",
-    "type": "multiple-choice",
-    "prompt": "A sociologist studying teen behavior took independent random samples of students from two high schools, F and G. Of the 80 students selected from High School F, 36 indicated they had seen a certain movie. Of the 72 students selected from High School G, 18 indicated they had seen the movie.\n\nWhich of the following is the test statistic for the appropriate test to investigate whether there is a difference in population proportions (High School F minus High School G)?",
-    "answerKey": "A",
-    "reasoning": "The sample proportion from High School F is \\(\\frac{36}{80} = 0.45\\), the sample proportion from High School G is \\(\\frac{18}{72} = 0.25\\), and the combined (or pooled) proportion is \\(\\frac{36+18}{80+72} \\approx 0.36\\). The test statistic for the difference in population proportions is \\(\\frac{0.45 - 0.25}{\\sqrt{(0.36)(0.64)\\left(\\frac{1}{80} + \\frac{1}{72}\\right)}}\\).",
-    "attachments": {
-      "choices": [
-        {
-          "key": "A",
-          "value": "\\(\\frac{0.45 - 0.25}{\\sqrt{(0.36)(0.64)\\left(\\frac{1}{80} + \\frac{1}{72}\\right)}}\\)"
-        },
-        {
-          "key": "B",
-          "value": "\\(\\frac{0.45 - 0.25}{\\sqrt{(0.36)(0.64)\\left(\\frac{1}{80+72}\\right)}}\\)"
-        },
-        {
-          "key": "C",
-          "value": "\\(\\left(0.45\\right)\\left(0.25\\right)\\sqrt{\\frac{1}{80} + \\frac{1}{72}}\\)"
-        },
-        {
-          "key": "D",
-          "value": "\\(\\frac{36 - 18}{\\sqrt{\\frac{0.45}{80} + \\frac{0.25}{72}}}\\)"
-        },
-        {
-          "key": "E",
-          "value": "\\(\\frac{36 - 18}{\\sqrt{\\frac{0.45-0.25}{80+72}}}\\)"
-        }
-      ]
-    }
-  },
-  {
-    "id": "U6-L11-Q05",
-    "type": "multiple-choice",
-    "prompt": "Because library books are read many times, glue is often applied to the spine of a book to keep the pages tight. A glue is considered successful if a book lasts at least 6 months before needing to be reglued. Two brands of glue, G and K, were tested to determine whether there was a difference in the proportion of books lasting at least 6 months. Let \\(p_G\\) represent the proportion of books lasting at least 6 months when glued with G, and let \\(p_K\\) represent the proportion of books lasting at least 6 months when glued with K. The following hypothesis test was conducted at the significance level of \\(\\alpha = 0.01\\).\n\n\\(H_0: p_G = p_K\\)\n\\(H_a: p_G \\neq p_K\\)\n\nAll conditions for inference were met, and the resulting \\(p\\)-value was 0.006. Which of the following is the correct decision for the test?",
-    "answerKey": "B",
-    "reasoning": "Since \\(0.006 < 0.01\\), the null hypothesis is rejected. There is convincing statistical evidence that the proportion of books lasting at least 6 months when glued with G is different from the proportion of books lasting at least 6 months when glued with K.",
-    "attachments": {
-      "choices": [
-        {
-          "key": "A",
-          "value": "The \\(p\\)-value is less than \\(\\alpha\\), and the null hypothesis is rejected. There is not convincing evidence to support the claim that the proportion of books lasting at least 6 months when glued with G is different from the proportion of books lasting at least 6 months when glued with K."
-        },
-        {
-          "key": "B",
-          "value": "The \\(p\\)-value is less than \\(\\alpha\\), and the null hypothesis is rejected. There is convincing evidence to support the claim that the proportion of books lasting at least 6 months when glued with G is different from the proportion of books lasting at least 6 months when glued with K."
-        },
-        {
-          "key": "C",
-          "value": "The \\(p\\)-value is less than \\(\\alpha\\), and the null hypothesis is not rejected. There is not convincing evidence to support the claim that the proportion of books lasting at least 6 months when glued with G is different from the proportion of books lasting at least 6 months when glued with K."
-        },
-        {
-          "key": "D",
-          "value": "The \\(p\\)-value is greater than \\(\\alpha\\), and the null hypothesis is rejected. There is convincing evidence to support the claim that the proportion of books lasting at least 6 months when glued with G is different from the proportion of books lasting at least 6 months when glued with K."
-        },
-        {
-          "key": "E",
-          "value": "The \\(p\\)-value is greater than \\(\\alpha\\), and the null hypothesis is not rejected. There is not convincing evidence to support the claim that the proportion of books lasting at least 6 months when glued with G is different from the proportion of books lasting at least 6 months when glued with K."
-        }
-      ]
-    }
-  },
-  {
-    "id": "U6-L11-Q06",
-    "type": "multiple-choice",
-    "prompt": "Market researchers selected a random sample of people from region A and a random sample of people from region B. The researchers asked the people in the samples whether they had tried a new product. The difference between the sample proportions (B minus A) of people in the regions who indicated they had tried the new product was 0.15. Under the assumption that all conditions for inference were met, a hypothesis test was conducted with the alternative hypothesis being that the population proportion of B is greater than that of A. The \\(p\\)-value of the test was 0.34.\n\nWhich of the following is the correct interpretation of the \\(p\\)-value?",
-    "answerKey": "C",
-    "reasoning": "The direction of the test is to the right of 0.15, because the researchers hypothesize that the proportion in region B is greater than the proportion in region A. The \\(p\\)-value is the probability of observing a sample difference of at least 0.15 if the null hypothesis is true.",
-    "attachments": {
-      "choices": [
-        {
-          "key": "A",
-          "value": "If the difference in proportions of people who have tried the new product between the two populations is actually 0.15, the probability of observing that difference is 0.34."
-        },
-        {
-          "key": "B",
-          "value": "If the difference in proportions of people who have tried the new product between the two populations is actually 0.34, the probability of observing that difference is 0.15."
-        },
-        {
-          "key": "C",
-          "value": "If the proportions of all people who have tried the new product is the same for both regions, the probability of observing a difference of at least 0.15 is 0.34."
-        },
-        {
-          "key": "D",
-          "value": "If the proportions of all people who have tried the new product is the same for both regions, the probability of observing a difference of at most 0.15 is 0.34."
-        },
-        {
-          "key": "E",
-          "value": "If the proportions of all people who have tried the new product is the same for both regions, the probability of observing a difference equal to 0.15 is 0.34."
-        }
-      ]
-    }
-  },
-  {
-    "id": "U6-L11-Q07",
-    "type": "free-response",
-    "prompt": "A random sample of 100 people from region A and a random sample of 100 people from region B were surveyed about their grocery-shopping habits. From the region A sample, 16 percent of the people indicated that they shop for groceries online. From the region B sample, 24 percent of the people indicated that they shop for groceries online.\n\nAt the significance level of \\(\\alpha = 0.05\\), do the data provide convincing statistical evidence that there is a difference between the two regions for the population proportions of people who shop online for groceries? Complete the appropriate inference procedure to support your answer.",
-    "solution": {
-      "parts": [
-        {
-          "partId": "step1",
-          "description": "Appropriate test and hypothesis",
-          "response": "The appropriate test is the two-sample z-test for a difference in proportions.\n\nLet \\(p_A\\) represent the proportion of all people from region A who shop online for groceries.\nLet \\(p_B\\) represent the proportion of all people from region B who shop online for groceries.\n\nThe hypotheses are as follows:\n\\(H_0: p_A = p_B\\) (or \\(p_A - p_B = 0\\))\n\\(H_a: p_A \\neq p_B\\) (or \\(p_A - p_B \\neq 0\\))"
-        },
-        {
-          "partId": "step2",
-          "description": "Conditions and calculations",
-          "response": "Conditions:\n• Data were collected from random samples as stated.\n• The sampling method was probably conducted without replacement. It is reasonable to assume that the population of people in each region was greater than 10 times the sample size of 100.\n• Both sample sizes are large enough:\n  \\(n_A\\hat{p}_C = 100(0.20) \\geq 10\\)\n  \\(n_A(1 - \\hat{p}_C) = 100(0.80) \\geq 10\\)\n  \\(n_B\\hat{p}_C = 100(0.20) \\geq 10\\)\n  \\(n_B(1 - \\hat{p}_C) = 100(0.80) \\geq 10\\)\n\nThe combined (or pooled) proportion is \\(\\hat{p}_C = \\frac{100(0.16)+100(0.24)}{100+100} = 0.20\\).\n\nCalculations:\nThe test statistic is \\(z = \\frac{0.16-0.24}{\\sqrt{(0.20)(0.80)\\left(\\frac{1}{100} + \\frac{1}{100}\\right)}} \\approx -1.41\\).\n\nThe p-value is \\(2[P(z \\leq -1.41)] \\approx 0.1585\\)."
-        },
-        {
-          "partId": "step3",
-          "description": "Justification of conclusion",
-          "response": "The p-value of 0.1585 is greater than the significance level of 0.05. We fail to reject the null hypothesis. The data do not provide sufficient evidence to conclude that the proportions of all people who shop for groceries online is different between the two regions A and B."
-        }
-      ],
-      "scoring": {
-        "totalPoints": 4,
-        "rubric": [
-          {
-            "part": "step1",
-            "maxPoints": 1,
-            "criteria": [
-              "The correct test is identified",
-              "The null and alternative hypotheses are stated correctly",
-              "Context is explicitly stated or is implied through labeling of variables"
-            ],
-            "scoringNotes": "Essentially correct (E) if the response satisfies all three components. Partially correct (P) if the response satisfies only two of the three components. Incorrect (I) if the response does not meet the criteria for E or P."
-          },
-          {
-            "part": "step2",
-            "maxPoints": 2,
-            "criteria": [
-              "The three conditions are checked",
-              "The correct test statistic is computed",
-              "A p-value consistent with the computed test statistic"
-            ],
-            "scoringNotes": "Essentially correct (E) if the response satisfies all three components. Partially correct (P) if the response satisfies only two of the three components. Incorrect (I) if the response does not meet the criteria for E or P."
-          },
-          {
-            "part": "step3",
-            "maxPoints": 1,
-            "criteria": [
-              "Explicitly compares the p-value to the significance level",
-              "Correct decision about the null hypothesis that is consistent with the computed p-value",
-              "Statement of conclusion in context"
-            ],
-            "scoringNotes": "Essentially correct (E) if the response satisfies all three components. Partially correct (P) if the response includes only two of the three conditions. Incorrect (I) if the response does not meet the criteria for E or P."
-          }
-        ]
-      }
-    },
-    "reasoning": "This question tests the student's ability to conduct a complete two-sample z-test for the difference in proportions, including proper hypothesis setup, condition checking, calculations, and interpretation of results in context."
-  },
-  {
-    "id": "U6-L11-Q08",
-    "type": "multiple-choice",
-    "prompt": "Maria has two routes, E and W, she can take when commuting to work. Both routes go through a railroad crossing, and sometimes she needs to stop at the crossing to allow trains to pass. She claims that the proportion of times she needs to stop when taking route E is different from the proportion of times she needs to stop when taking route W. She conducted the following hypothesis test at the significance level of \\(\\alpha = 0.10\\).\n\n\\(H_0: p_E = p_W\\)\n\\(H_a: p_E \\neq p_W\\)\n\nIn the hypotheses, \\(p_E\\) represents the proportion of times she needs to stop at the crossing when using route E, and \\(p_W\\) represents the proportion of times she needs to stop at the crossing when using route W.\n\nAll conditions for inference were met, and the resulting \\(p\\)-value was 0.37. Which of the following is the correct decision for the test?",
-    "answerKey": "D",
-    "reasoning": "The claim is not supported. Since \\(0.37 > 0.10\\), the null hypothesis is not rejected. There is not convincing statistical evidence that the proportion of times she needs to stop at the crossing is different for the different routes.",
-    "attachments": {
-      "choices": [
-        {
-          "key": "A",
-          "value": "The \\(p\\)-value is less than \\(\\alpha\\), and the null hypothesis is rejected. There is convincing evidence to support the claim that the proportion of times she needs to stop at the crossing is different for the different routes."
-        },
-        {
-          "key": "B",
-          "value": "The \\(p\\)-value is greater than \\(\\alpha\\), and the null hypothesis is not rejected. There is convincing evidence to support the claim that the proportion of times she needs to stop at the crossing is the same for the different routes."
-        },
-        {
-          "key": "C",
-          "value": "The \\(p\\)-value is greater than \\(\\alpha\\), and the null hypothesis is rejected. There is not convincing evidence to support the claim that the proportion of times she needs to stop at the crossing is different for the different routes."
-        },
-        {
-          "key": "D",
-          "value": "The \\(p\\)-value is greater than \\(\\alpha\\), and the null hypothesis is not rejected. There is not convincing evidence to support the claim that the proportion of times she needs to stop at the crossing is different for the different routes."
-        },
-        {
-          "key": "E",
-          "value": "The \\(p\\)-value is greater than \\(\\alpha\\), and the null hypothesis is rejected. There is convincing evidence to support the claim that the proportion of times she needs to stop at the crossing is different for the different routes."
-        }
-      ]
-    }
-  },
-  {
-    "id": "U6-L11-Q09",
-    "type": "multiple-choice",
-    "prompt": "Biologists were studying the proportions of cats that had spotted markings on their fur in two populations of cats, C and F. An independent random sample of cats was taken from each population, and the difference between the sample proportions of cats with the spotted markings (C minus F) was 0.62. Under the assumption that all conditions for inference were met, a hypothesis test was conducted with the alternative hypothesis being that the population proportions are not equal. The \\(p\\)-value of the test was 0.01.\n\nWhich of the following is the correct interpretation of the \\(p\\)-value?",
-    "answerKey": "A",
-    "reasoning": "The test is two-sided, so the \\(p\\)-value refers to the union of area in both tails. It is the probability of observing a sample difference of at least 0.62 or of at most −0.62 if the null hypothesis is true.",
-    "attachments": {
-      "choices": [
-        {
-          "key": "A",
-          "value": "If the proportions of all cats with spotted markings is the same for both populations, the probability of observing a sample difference of at least 0.62 or at most −0.62 is 0.01."
-        },
-        {
-          "key": "B",
-          "value": "If the proportions of all cats with spotted markings is the same for both populations, the probability of observing a sample difference of at least 0.62 is 0.01."
-        },
-        {
-          "key": "C",
-          "value": "If the proportions of all cats with spotted markings is the same for both populations, the probability of observing a sample difference of at most −0.62 is 0.01."
-        },
-        {
-          "key": "D",
-          "value": "If the difference in proportions of cats with spotted markings between the two populations is actually 0.62, the probability of observing that difference is 0.01."
-        },
-        {
-          "key": "E",
-          "value": "If the difference in proportions of cats with spotted markings between the two populations is actually 0.01, the probability of observing that difference is 0.62."
-        }
-      ]
-    }
-  },
-  {
-    "id": "U6-L11-Q10",
-    "type": "multiple-choice",
-    "prompt": "A political scientist claims that negative advertising on television affects younger voters more than it affects older voters. To test this claim, the scientist obtained data from two random samples of voters categorized into two age-groups, older and younger. The null hypothesis was that there was no difference in the proportions of voters in the two age-groups who would be affected by negative ads. The alternative hypothesis was that the proportion of younger voters affected would be greater than the proportion of older voters affected.\n\nAssuming all conditions for inference were met, the scientist conducted the test at a significance level of \\(\\alpha = 0.05\\). The resulting \\(p\\)-value was 0.206. Which of the following is the correct decision for the test?",
-    "answerKey": "E",
-    "reasoning": "The claim is not supported. Since \\(0.206 > 0.05\\), the null hypothesis is not rejected. There is not convincing statistical evidence that the proportion of younger voters affected by negative ads is greater than the proportion of older voters affected by negative ads.",
-    "attachments": {
-      "choices": [
-        {
-          "key": "A",
-          "value": "The \\(p\\)-value is less than \\(\\alpha\\), and the null hypothesis is rejected. There is convincing evidence to support the claim that younger voters are more affected by negative ads than are older voters."
-        },
-        {
-          "key": "B",
-          "value": "The \\(p\\)-value is less than \\(\\alpha\\), and the null hypothesis is rejected. There is not convincing evidence to support the claim that younger voters are more affected by negative ads than are older voters."
-        },
-        {
-          "key": "C",
-          "value": "The \\(p\\)-value is greater than \\(\\alpha\\), and the null hypothesis is not rejected. There is convincing evidence to support the claim that younger voters are more affected by negative ads than are older voters."
-        },
-        {
-          "key": "D",
-          "value": "The \\(p\\)-value is greater than \\(\\alpha\\), and the null hypothesis is rejected. There is convincing evidence to support the claim that younger voters are more affected by negative ads than are older voters."
-        },
-        {
-          "key": "E",
-          "value": "The \\(p\\)-value is greater than \\(\\alpha\\), and the null hypothesis is not rejected. There is not convincing evidence to support the claim that younger voters are more affected by negative ads than are older voters."
-        }
-      ]
-    }
-  },
-  {
     "id": "U6-Q01",
     "type": "multiple-choice",
     "prompt": "A local arts council has 200 members. The council president wanted to estimate the percent of its members who have had experience in writing grants. The president randomly selected 30 members and surveyed the selected members on their grant-writing experience. Of the 30 selected members, 12 indicated that they did have the experience. Have the conditions for inference with a one-sample \\(z\\)-interval been met?",
@@ -23641,6 +23023,624 @@ const POK_CURRICULUM = [
         {
           "key": "E",
           "value": "Yes. The value of 0 is contained in the interval, which indicates that a difference in the proportion of customers who will indicate satisfaction with their calls is plausible."
+        }
+      ]
+    }
+  },
+  {
+    "id": "U6-L10-Q01",
+    "type": "multiple-choice",
+    "prompt": "A study was conducted to investigate whether a new drug could significantly reduce pain in people with arthritis. From a group of 500 people with arthritis, 250 were randomly assigned to receive the drug (group 1) and the remaining people were assigned a placebo (group 2). After one month of treatment, 225 people in group 1 reported pain relief and 150 people in group 2 reported pain relief. Let \\( \\hat{p}_c \\) represent the combined (or pooled) sample proportion for the two samples. Have the conditions for inference for testing the difference in population proportions been met?",
+    "answerKey": "E",
+    "reasoning": "The condition for independence has been met since treatments were randomly assigned to patients and the population of arthritis patients is likely large enough to assume that the number of patients in the two populations are both at least 10 times the sample sizes. Also, \\( \\hat{p}_c = \\frac{(250)(\\frac{225}{250}) + (250)(\\frac{150}{250})}{250+250} = 0.75 \\), and for both samples, \\( 250(0.75) \\) and \\( 250(0.25) \\) are greater than or equal to 10. It can be assumed that the sampling distribution of the difference in sample proportions is approximately normal.",
+    "attachments": {
+      "choices": [
+        {
+          "key": "A",
+          "value": "No. The people in the study were not selected at random."
+        },
+        {
+          "key": "B",
+          "value": "No. The number of people in the study was too large compared with the size of the population."
+        },
+        {
+          "key": "C",
+          "value": "No. The normality of the sampling distribution cannot be assumed because \\( \\hat{p}_c \\) times each sample size is not sufficiently large."
+        },
+        {
+          "key": "D",
+          "value": "No. The normality of the sampling distribution cannot be assumed because \\( 1 - \\hat{p}_c \\) times each sample size is not sufficiently large."
+        },
+        {
+          "key": "E",
+          "value": "Yes. All conditions for inference have been met."
+        }
+      ]
+    }
+  },
+  {
+    "id": "U6-L10-Q02",
+    "type": "multiple-choice",
+    "prompt": "Researchers were investigating whether there is a significant difference between two medications, R and S, designed to reduce fleas found on cats. From a sample of 300 cat owners, the researchers randomly assigned 150 cat owners to use medication R on their cats and the remaining cat owners to use medication S. For the cats using medication R, 88 percent had no fleas. For the cats using medication S, 90 percent had no fleas. Which of the following is the most appropriate method for analyzing the results?",
+    "answerKey": "A",
+    "reasoning": "To determine whether a difference in proportions is significant, the two-sample z-test for a difference in population proportions is the most appropriate method for the analysis.",
+    "attachments": {
+      "choices": [
+        {
+          "key": "A",
+          "value": "A two-sample z-test for a difference in population proportions"
+        },
+        {
+          "key": "B",
+          "value": "A two-sample z-test for a difference in sample proportions"
+        },
+        {
+          "key": "C",
+          "value": "A one-sample z-test for a sample proportion"
+        },
+        {
+          "key": "D",
+          "value": "A one-sample z-test for a population proportion"
+        },
+        {
+          "key": "E",
+          "value": "A one-sample z-test for a difference in sample proportions"
+        }
+      ]
+    }
+  },
+  {
+    "id": "U6-L10-Q03",
+    "type": "multiple-choice",
+    "prompt": "The police in a certain city are investigating whether the proportion of minor traffic accidents is greater on Friday nights than on Sunday nights. As part of the investigation, they select a random sample of police calls from Friday nights and a random sample of police calls from Sunday nights. From both samples, they record the sample proportion of calls that involved minor traffic accidents. Let \\( p_F \\) represent the proportion of all Friday night calls, and let \\( p_S \\) represent the proportion of all Sunday night calls. Which of the following are the correct hypotheses for the investigation?",
+    "answerKey": "D",
+    "reasoning": "The null hypothesis is a statement of no difference; that is, \\( p_F = p_S \\). The alternative hypothesis reflects the belief that the proportion is greater on Friday nights, or \\( p_F > p_S \\).",
+    "attachments": {
+      "choices": [
+        {
+          "key": "A",
+          "value": "\\( H_0: p_F = p_S \\), \\( H_a: p_F \\neq p_S \\)"
+        },
+        {
+          "key": "B",
+          "value": "\\( H_0: p_F \\neq p_S \\), \\( H_a: p_F = p_S \\)"
+        },
+        {
+          "key": "C",
+          "value": "\\( H_0: p_F = p_S \\), \\( H_a: p_F < p_S \\)"
+        },
+        {
+          "key": "D",
+          "value": "\\( H_0: p_F = p_S \\), \\( H_a: p_F > p_S \\)"
+        },
+        {
+          "key": "E",
+          "value": "\\( H_0: p_F > p_S \\), \\( H_a: p_F = p_S \\)"
+        }
+      ]
+    }
+  },
+  {
+    "id": "U6-L10-Q04",
+    "type": "multiple-choice",
+    "prompt": "Market researchers wanted to know whether the placement of a new product on a supermarket shelf significantly increases the percent of shoppers who will buy the product. At Supermarket X, a new product was placed on the top shelf, and at Supermarket Y, the product was placed one shelf below the top shelf. To observe buying habits, the researchers selected a random sample of 364 shoppers at X and another random sample of 327 shoppers at Y. Of the selected shoppers at X, 15 bought the product, and of the selected shoppers at Y, 19 bought the product. Which of the following is the most appropriate method for analyzing the results?",
+    "answerKey": "B",
+    "reasoning": "To determine whether a difference in proportions is significant, a two-sample z-test for the difference in population proportions is the most appropriate method for the analysis.",
+    "attachments": {
+      "choices": [
+        {
+          "key": "A",
+          "value": "A two-sample z-test for a difference in sample proportions"
+        },
+        {
+          "key": "B",
+          "value": "A two-sample z-test for a difference in population proportions"
+        },
+        {
+          "key": "C",
+          "value": "A one-sample z-test for a sample proportion"
+        },
+        {
+          "key": "D",
+          "value": "A one-sample z-test for a population proportion"
+        },
+        {
+          "key": "E",
+          "value": "A one-sample z-test for a difference in sample proportions"
+        }
+      ]
+    }
+  },
+  {
+    "id": "U6-L10-Q05",
+    "type": "multiple-choice",
+    "prompt": "Polydactyl cats are cats with extra toes. A researcher believes that the proportion of the population of polydactyl cats in region A is greater than the proportion in region B. Let \\( p_A \\) represent the population proportion of polydactyl cats in region A, and let \\( p_B \\) represent the population proportion of polydactyl cats in region B. Which of the following are the appropriate hypotheses to test the researcher's belief?",
+    "answerKey": "B",
+    "reasoning": "The null hypothesis is a statement of no difference, or that the population proportions are equal; \\( p_A = p_B \\). The alternative hypothesis is a statement of the researcher's belief that the proportion in region A is greater than that of region B, or \\( p_A - p_B > 0 \\).",
+    "attachments": {
+      "choices": [
+        {
+          "key": "A",
+          "value": "\\( H_0: p_A - p_B = 0 \\), \\( H_a: p_A - p_B \\neq 0 \\)"
+        },
+        {
+          "key": "B",
+          "value": "\\( H_0: p_A - p_B = 0 \\), \\( H_a: p_A - p_B > 0 \\)"
+        },
+        {
+          "key": "C",
+          "value": "\\( H_0: p_A - p_B = 0 \\), \\( H_a: p_A - p_B < 0 \\)"
+        },
+        {
+          "key": "D",
+          "value": "\\( H_0: p_A - p_B = 0 \\), \\( H_a: p_A - p_B \\neq 0 \\)"
+        },
+        {
+          "key": "E",
+          "value": "\\( H_0: p_A - p_B = 0 \\), \\( H_a: p_A - p_B > 0 \\)"
+        }
+      ]
+    }
+  },
+  {
+    "id": "U6-L10-Q06",
+    "type": "multiple-choice",
+    "prompt": "Two locations of a fast-food restaurant, Location Q and Location W, were in a certain town with a large number of residents. A nutritionist investigated whether the proportion of orders that contained a salad was different at the two locations. The nutritionist obtained a random sample of orders from the Location Q restaurant and a random sample of orders from the Location W restaurant. Of the 215 Location Q orders, 27 contained a salad; of the 175 Location W orders, 14 contained a salad. Let \\( \\hat{p}_c \\) represent the combined sample proportion, and let \\( n_Q \\) and \\( n_W \\) represent the respective sample sizes for Locations Q and W. Have the conditions for inference for testing a difference in population proportions been met?",
+    "answerKey": "E",
+    "reasoning": "Both samples are described as random, and it is reasonable to assume that the total number of orders in both populations is at least 10 times the sample size. The combined sample proportion is \\( \\hat{p}_c = \\frac{27+14}{215+175} \\approx 0.11 \\). Each of \\( n_Q(\\hat{p}_c) \\), \\( n_W(\\hat{p}_c) \\), \\( n_Q(1 - \\hat{p}_c) \\), and \\( n_W(1 - \\hat{p}_c) \\) is greater than or equal to 10, so the sampling distribution of the difference in sample proportions is approximately normal.",
+    "attachments": {
+      "choices": [
+        {
+          "key": "A",
+          "value": "No, the condition for independence has not been met because random samples were not selected from each location."
+        },
+        {
+          "key": "B",
+          "value": "No, the condition for independence has not been met because the sample sizes are too large when compared to the corresponding population sizes."
+        },
+        {
+          "key": "C",
+          "value": "No, the condition that the sampling distribution of the difference in sample proportions is approximately normal has not been met because \\( n_W(\\hat{p}_c) \\) is not greater than 10."
+        },
+        {
+          "key": "D",
+          "value": "No, the condition that the sampling distribution of the difference in sample proportions is approximately normal has not been met because \\( n_Q(1 - \\hat{p}_c) \\) is not greater than 10."
+        },
+        {
+          "key": "E",
+          "value": "Yes, all conditions for making statistical inference have been met."
+        }
+      ]
+    }
+  },
+  {
+    "id": "U6-L10-Q07",
+    "type": "multiple-choice",
+    "prompt": "A local school board wanted to investigate whether their approval ratings had changed during the past year. The board selected random samples of voters at both the beginning and the end of the year, and each time the voters were asked whether they approve of the school board. Let \\( p_1 \\) represent the proportion of voters who approved of the school board at the beginning of the year and \\( p_2 \\) represent the proportion of voters who approved of the school board at the end of the year. Which of the following are the correct null and alternative hypotheses for the school board's investigation?",
+    "answerKey": "A",
+    "reasoning": "The null hypothesis is a statement of no difference, or that \\( p_1 = p_2 \\). The alternative hypothesis is a statement of the board's belief that the proportion of voters who approved of the school board at the end of the year has changed, or \\( p_1 \\neq p_2 \\).",
+    "attachments": {
+      "choices": [
+        {
+          "key": "A",
+          "value": "\\( H_0: p_1 = p_2 \\), \\( H_a: p_1 \\neq p_2 \\)"
+        },
+        {
+          "key": "B",
+          "value": "\\( H_0: p_1 \\neq p_2 \\), \\( H_a: p_1 = p_2 \\)"
+        },
+        {
+          "key": "C",
+          "value": "\\( H_0: p_1 = p_2 \\), \\( H_a: p_1 < p_2 \\)"
+        },
+        {
+          "key": "D",
+          "value": "\\( H_0: p_1 = p_2 \\), \\( H_a: p_1 > p_2 \\)"
+        },
+        {
+          "key": "E",
+          "value": "\\( H_0: p_1 > p_2 \\), \\( H_a: p_1 = p_2 \\)"
+        }
+      ]
+    }
+  },
+  {
+    "id": "U6-L10-Q08",
+    "type": "multiple-choice",
+    "prompt": "To investigate whether there is a significant difference between two regions of a state in the percent of voters who intend to vote for the incumbent governor in the next election, a polling agency interviewed 300 randomly selected voters from the north of the state and 400 randomly selected voters from the south of the state. Of those interviewed, 200 from the north and 325 from the south indicated they intended to vote for the incumbent governor in the next election. Which of the following is the most appropriate method for analyzing the results?",
+    "answerKey": "E",
+    "reasoning": "To determine if a difference in proportions is significant, the two-sample z-test for the difference in population proportions is the most appropriate method for the analysis.",
+    "attachments": {
+      "choices": [
+        {
+          "key": "A",
+          "value": "A one-sample z-test for a sample proportion"
+        },
+        {
+          "key": "B",
+          "value": "A one-sample z-test for a population proportion"
+        },
+        {
+          "key": "C",
+          "value": "A two-sample z-test for a sample proportion"
+        },
+        {
+          "key": "D",
+          "value": "A two-sample z-test for a difference in sample proportions"
+        },
+        {
+          "key": "E",
+          "value": "A two-sample z-test for a difference in population proportions"
+        }
+      ]
+    }
+  },
+  {
+    "id": "U6-L10-Q09",
+    "type": "multiple-choice",
+    "prompt": "A fitness center piloted two new programs to help people reduce stress levels and maintain a healthy lifestyle. After one month, 112 of the 125 people who volunteered for a program in mindfulness reported a reduction in stress levels, and 110 of the 135 people who volunteered for a yoga program reported a reduction in stress levels. The fitness center wants to investigate whether there is a significant difference between the proportions of all people in the two programs who would report reductions in stress levels. Have the conditions for inference been met?",
+    "answerKey": "A",
+    "reasoning": "The people in the samples volunteered for the program and were not randomly assigned to either program. Because they volunteered for the program of their choice, there are possible confounding variables that would prevent the fitness center from generalizing from cause (the program) to effect (reduced stress levels).",
+    "attachments": {
+      "choices": [
+        {
+          "key": "A",
+          "value": "No, because the samples were not selected or assigned using a random method."
+        },
+        {
+          "key": "B",
+          "value": "No, because the sizes of the samples are too large compared to the size of the population."
+        },
+        {
+          "key": "C",
+          "value": "No, because the normality of the sampling distribution cannot be assumed; the number of people who experienced stress relief is not large enough."
+        },
+        {
+          "key": "D",
+          "value": "No, because the normality of the sampling distribution cannot be assumed; the number of people who did not experience stress relief is not large enough."
+        },
+        {
+          "key": "E",
+          "value": "Yes, because all conditions for making statistical inference have been met."
+        }
+      ]
+    }
+  },
+  {
+    "id": "U6-L11-Q01",
+    "type": "multiple-choice",
+    "prompt": "A factory manager selected a random sample of parts produced on an old assembly line and a random sample of parts produced on a new assembly line. The difference between the sample proportion of defective parts made on the old assembly line and the sample proportion of defective parts made on the new assembly line (old minus new) was 0.006. Under the assumption that all conditions for inference were met, a hypothesis test was conducted with the alternative hypothesis being the proportion of defective parts made on the old assembly line is greater than that of the new assembly line. The \\(p\\)-value of the test was 0.018.\n\nWhich of the following is the correct interpretation of the \\(p\\)-value?",
+    "answerKey": "D",
+    "reasoning": "The direction of the test is to the right of 0.006, because the alternative hypothesis is that the proportion of defective parts on the old line is greater than the proportion of defective parts on the new line. The test is in the direction of the right tail. The \\(p\\)-value is the probability of observing a sample difference of at least 0.006 if the null hypothesis of no difference is true.",
+    "attachments": {
+      "choices": [
+        {
+          "key": "A",
+          "value": "If there is a difference of 0.018 in the proportions of all defective parts made on the two assembly lines, the probability of observing that difference is 0.006."
+        },
+        {
+          "key": "B",
+          "value": "If there is a difference of 0.006 in the proportions of all defective parts made on the two assembly lines, the probability of observing that difference is 0.018."
+        },
+        {
+          "key": "C",
+          "value": "If there is no difference in the proportions of all defective parts made on the two assembly lines, the probability of observing a difference equal to 0.006 is 0.018."
+        },
+        {
+          "key": "D",
+          "value": "If there is no difference in the proportions of all defective parts made on the two assembly lines, the probability of observing a difference of at least 0.006 is 0.018."
+        },
+        {
+          "key": "E",
+          "value": "If there is no difference in the proportions of all defective parts made on the two assembly lines, the probability of observing a difference of at most 0.006 is 0.018."
+        }
+      ]
+    }
+  },
+  {
+    "id": "U6-L11-Q02",
+    "type": "multiple-choice",
+    "prompt": "Market researchers interviewed a random sample of 60 men and a random sample of 55 women about their preferences for different color designs for the packaging of a certain product. Of those interviewed, 23 men and 28 women preferred color design X.\n\nWhich of the following is the correct test statistic for a two-sample \\(z\\)-test for a difference in population proportions for men and women (men minus women) in their preference for color design X?",
+    "answerKey": "E",
+    "reasoning": "The sample proportion for men is \\(\\frac{23}{60} \\approx 0.38\\), the sample proportion for women is \\(\\frac{28}{55} \\approx 0.51\\), and the combined (or pooled) proportion is \\(\\frac{23+28}{60+55} \\approx 0.44\\). The test statistic for the difference in population proportions is \\(z = \\frac{0.38 - 0.51}{\\sqrt{(0.44)(0.56)\\left(\\frac{1}{60} + \\frac{1}{55}\\right)}}\\).",
+    "attachments": {
+      "choices": [
+        {
+          "key": "A",
+          "value": "\\(z = \\frac{0.51 - 0.38}{\\sqrt{(0.44)(0.56)\\left(\\frac{1}{55} + \\frac{1}{60}\\right)}}\\)"
+        },
+        {
+          "key": "B",
+          "value": "\\(z = \\frac{23 - 28}{\\sqrt{(0.38)(0.51)\\left(\\frac{1}{60+55}\\right)}}\\)"
+        },
+        {
+          "key": "C",
+          "value": "\\(z = \\frac{23 - 28}{\\sqrt{(0.44)(0.56)\\left(\\frac{1}{60} + \\frac{1}{55}\\right)}}\\)"
+        },
+        {
+          "key": "D",
+          "value": "\\(z = \\frac{0.38 - 0.51}{\\sqrt{(0.44)(0.56)\\left(\\frac{1}{60+55}\\right)}}\\)"
+        },
+        {
+          "key": "E",
+          "value": "\\(z = \\frac{0.38 - 0.51}{\\sqrt{(0.44)(0.56)\\left(\\frac{1}{60} + \\frac{1}{55}\\right)}}\\)"
+        }
+      ]
+    }
+  },
+  {
+    "id": "U6-L11-Q03",
+    "type": "multiple-choice",
+    "prompt": "To investigate whether there is a difference in opinion on a certain proposal between two voting districts, A and B, two independent random samples were taken. From district A, 35 of the 50 voters selected were in favor of the proposal, and from district B, 36 of the 60 voters selected were in favor of the proposal.\n\nWhich of the following is the test statistic for the appropriate test to investigate whether there is a difference in the proportion of voters who are in favor of the proposal between the two districts (district A minus district B)?",
+    "answerKey": "C",
+    "reasoning": "The sample proportion from district A is \\(\\frac{35}{50} = 0.7\\), the sample proportion from district B is \\(\\frac{36}{60} = 0.6\\), and the combined (or pooled) proportion is \\(\\frac{35+36}{50+60} \\approx 0.65\\). The test statistic for the difference in population proportions is \\(\\frac{0.7 - 0.6}{\\sqrt{(0.65)(0.35)\\left(\\frac{1}{50} + \\frac{1}{60}\\right)}}\\).",
+    "attachments": {
+      "choices": [
+        {
+          "key": "A",
+          "value": "\\(\\frac{35 - 36}{\\sqrt{\\frac{35}{50} + \\frac{36}{60}}}\\)"
+        },
+        {
+          "key": "B",
+          "value": "\\(\\frac{35 - 36}{\\sqrt{\\frac{35}{50} + \\frac{36}{60}}}\\)"
+        },
+        {
+          "key": "C",
+          "value": "\\(\\frac{0.7 - 0.6}{\\sqrt{(0.65)(0.35)\\left(\\frac{1}{50} + \\frac{1}{60}\\right)}}\\)"
+        },
+        {
+          "key": "D",
+          "value": "\\(\\frac{0.7 - 0.6}{\\sqrt{(0.7)(0.6)\\left(\\frac{1}{50+60}\\right)}}\\)"
+        },
+        {
+          "key": "E",
+          "value": "\\(\\left(0.7\\right)\\left(0.6\\right)\\sqrt{\\frac{1}{50} + \\frac{1}{60}}\\)"
+        }
+      ]
+    }
+  },
+  {
+    "id": "U6-L11-Q04",
+    "type": "multiple-choice",
+    "prompt": "A sociologist studying teen behavior took independent random samples of students from two high schools, F and G. Of the 80 students selected from High School F, 36 indicated they had seen a certain movie. Of the 72 students selected from High School G, 18 indicated they had seen the movie.\n\nWhich of the following is the test statistic for the appropriate test to investigate whether there is a difference in population proportions (High School F minus High School G)?",
+    "answerKey": "A",
+    "reasoning": "The sample proportion from High School F is \\(\\frac{36}{80} = 0.45\\), the sample proportion from High School G is \\(\\frac{18}{72} = 0.25\\), and the combined (or pooled) proportion is \\(\\frac{36+18}{80+72} \\approx 0.36\\). The test statistic for the difference in population proportions is \\(\\frac{0.45 - 0.25}{\\sqrt{(0.36)(0.64)\\left(\\frac{1}{80} + \\frac{1}{72}\\right)}}\\).",
+    "attachments": {
+      "choices": [
+        {
+          "key": "A",
+          "value": "\\(\\frac{0.45 - 0.25}{\\sqrt{(0.36)(0.64)\\left(\\frac{1}{80} + \\frac{1}{72}\\right)}}\\)"
+        },
+        {
+          "key": "B",
+          "value": "\\(\\frac{0.45 - 0.25}{\\sqrt{(0.36)(0.64)\\left(\\frac{1}{80+72}\\right)}}\\)"
+        },
+        {
+          "key": "C",
+          "value": "\\(\\left(0.45\\right)\\left(0.25\\right)\\sqrt{\\frac{1}{80} + \\frac{1}{72}}\\)"
+        },
+        {
+          "key": "D",
+          "value": "\\(\\frac{36 - 18}{\\sqrt{\\frac{0.45}{80} + \\frac{0.25}{72}}}\\)"
+        },
+        {
+          "key": "E",
+          "value": "\\(\\frac{36 - 18}{\\sqrt{\\frac{0.45-0.25}{80+72}}}\\)"
+        }
+      ]
+    }
+  },
+  {
+    "id": "U6-L11-Q05",
+    "type": "multiple-choice",
+    "prompt": "Because library books are read many times, glue is often applied to the spine of a book to keep the pages tight. A glue is considered successful if a book lasts at least 6 months before needing to be reglued. Two brands of glue, G and K, were tested to determine whether there was a difference in the proportion of books lasting at least 6 months. Let \\(p_G\\) represent the proportion of books lasting at least 6 months when glued with G, and let \\(p_K\\) represent the proportion of books lasting at least 6 months when glued with K. The following hypothesis test was conducted at the significance level of \\(\\alpha = 0.01\\).\n\n\\(H_0: p_G = p_K\\)\n\\(H_a: p_G \\neq p_K\\)\n\nAll conditions for inference were met, and the resulting \\(p\\)-value was 0.006. Which of the following is the correct decision for the test?",
+    "answerKey": "B",
+    "reasoning": "Since \\(0.006 < 0.01\\), the null hypothesis is rejected. There is convincing statistical evidence that the proportion of books lasting at least 6 months when glued with G is different from the proportion of books lasting at least 6 months when glued with K.",
+    "attachments": {
+      "choices": [
+        {
+          "key": "A",
+          "value": "The \\(p\\)-value is less than \\(\\alpha\\), and the null hypothesis is rejected. There is not convincing evidence to support the claim that the proportion of books lasting at least 6 months when glued with G is different from the proportion of books lasting at least 6 months when glued with K."
+        },
+        {
+          "key": "B",
+          "value": "The \\(p\\)-value is less than \\(\\alpha\\), and the null hypothesis is rejected. There is convincing evidence to support the claim that the proportion of books lasting at least 6 months when glued with G is different from the proportion of books lasting at least 6 months when glued with K."
+        },
+        {
+          "key": "C",
+          "value": "The \\(p\\)-value is less than \\(\\alpha\\), and the null hypothesis is not rejected. There is not convincing evidence to support the claim that the proportion of books lasting at least 6 months when glued with G is different from the proportion of books lasting at least 6 months when glued with K."
+        },
+        {
+          "key": "D",
+          "value": "The \\(p\\)-value is greater than \\(\\alpha\\), and the null hypothesis is rejected. There is convincing evidence to support the claim that the proportion of books lasting at least 6 months when glued with G is different from the proportion of books lasting at least 6 months when glued with K."
+        },
+        {
+          "key": "E",
+          "value": "The \\(p\\)-value is greater than \\(\\alpha\\), and the null hypothesis is not rejected. There is not convincing evidence to support the claim that the proportion of books lasting at least 6 months when glued with G is different from the proportion of books lasting at least 6 months when glued with K."
+        }
+      ]
+    }
+  },
+  {
+    "id": "U6-L11-Q06",
+    "type": "multiple-choice",
+    "prompt": "Market researchers selected a random sample of people from region A and a random sample of people from region B. The researchers asked the people in the samples whether they had tried a new product. The difference between the sample proportions (B minus A) of people in the regions who indicated they had tried the new product was 0.15. Under the assumption that all conditions for inference were met, a hypothesis test was conducted with the alternative hypothesis being that the population proportion of B is greater than that of A. The \\(p\\)-value of the test was 0.34.\n\nWhich of the following is the correct interpretation of the \\(p\\)-value?",
+    "answerKey": "C",
+    "reasoning": "The direction of the test is to the right of 0.15, because the researchers hypothesize that the proportion in region B is greater than the proportion in region A. The \\(p\\)-value is the probability of observing a sample difference of at least 0.15 if the null hypothesis is true.",
+    "attachments": {
+      "choices": [
+        {
+          "key": "A",
+          "value": "If the difference in proportions of people who have tried the new product between the two populations is actually 0.15, the probability of observing that difference is 0.34."
+        },
+        {
+          "key": "B",
+          "value": "If the difference in proportions of people who have tried the new product between the two populations is actually 0.34, the probability of observing that difference is 0.15."
+        },
+        {
+          "key": "C",
+          "value": "If the proportions of all people who have tried the new product is the same for both regions, the probability of observing a difference of at least 0.15 is 0.34."
+        },
+        {
+          "key": "D",
+          "value": "If the proportions of all people who have tried the new product is the same for both regions, the probability of observing a difference of at most 0.15 is 0.34."
+        },
+        {
+          "key": "E",
+          "value": "If the proportions of all people who have tried the new product is the same for both regions, the probability of observing a difference equal to 0.15 is 0.34."
+        }
+      ]
+    }
+  },
+  {
+    "id": "U6-L11-Q07",
+    "type": "free-response",
+    "prompt": "A random sample of 100 people from region A and a random sample of 100 people from region B were surveyed about their grocery-shopping habits. From the region A sample, 16 percent of the people indicated that they shop for groceries online. From the region B sample, 24 percent of the people indicated that they shop for groceries online.\n\nAt the significance level of \\(\\alpha = 0.05\\), do the data provide convincing statistical evidence that there is a difference between the two regions for the population proportions of people who shop online for groceries? Complete the appropriate inference procedure to support your answer.",
+    "solution": {
+      "parts": [
+        {
+          "partId": "step1",
+          "description": "Appropriate test and hypothesis",
+          "response": "The appropriate test is the two-sample z-test for a difference in proportions.\n\nLet \\(p_A\\) represent the proportion of all people from region A who shop online for groceries.\nLet \\(p_B\\) represent the proportion of all people from region B who shop online for groceries.\n\nThe hypotheses are as follows:\n\\(H_0: p_A = p_B\\) (or \\(p_A - p_B = 0\\))\n\\(H_a: p_A \\neq p_B\\) (or \\(p_A - p_B \\neq 0\\))"
+        },
+        {
+          "partId": "step2",
+          "description": "Conditions and calculations",
+          "response": "Conditions:\n• Data were collected from random samples as stated.\n• The sampling method was probably conducted without replacement. It is reasonable to assume that the population of people in each region was greater than 10 times the sample size of 100.\n• Both sample sizes are large enough:\n  \\(n_A\\hat{p}_C = 100(0.20) \\geq 10\\)\n  \\(n_A(1 - \\hat{p}_C) = 100(0.80) \\geq 10\\)\n  \\(n_B\\hat{p}_C = 100(0.20) \\geq 10\\)\n  \\(n_B(1 - \\hat{p}_C) = 100(0.80) \\geq 10\\)\n\nThe combined (or pooled) proportion is \\(\\hat{p}_C = \\frac{100(0.16)+100(0.24)}{100+100} = 0.20\\).\n\nCalculations:\nThe test statistic is \\(z = \\frac{0.16-0.24}{\\sqrt{(0.20)(0.80)\\left(\\frac{1}{100} + \\frac{1}{100}\\right)}} \\approx -1.41\\).\n\nThe p-value is \\(2[P(z \\leq -1.41)] \\approx 0.1585\\)."
+        },
+        {
+          "partId": "step3",
+          "description": "Justification of conclusion",
+          "response": "The p-value of 0.1585 is greater than the significance level of 0.05. We fail to reject the null hypothesis. The data do not provide sufficient evidence to conclude that the proportions of all people who shop for groceries online is different between the two regions A and B."
+        }
+      ],
+      "scoring": {
+        "totalPoints": 4,
+        "rubric": [
+          {
+            "part": "step1",
+            "maxPoints": 1,
+            "criteria": [
+              "The correct test is identified",
+              "The null and alternative hypotheses are stated correctly",
+              "Context is explicitly stated or is implied through labeling of variables"
+            ],
+            "scoringNotes": "Essentially correct (E) if the response satisfies all three components. Partially correct (P) if the response satisfies only two of the three components. Incorrect (I) if the response does not meet the criteria for E or P."
+          },
+          {
+            "part": "step2",
+            "maxPoints": 2,
+            "criteria": [
+              "The three conditions are checked",
+              "The correct test statistic is computed",
+              "A p-value consistent with the computed test statistic"
+            ],
+            "scoringNotes": "Essentially correct (E) if the response satisfies all three components. Partially correct (P) if the response satisfies only two of the three components. Incorrect (I) if the response does not meet the criteria for E or P."
+          },
+          {
+            "part": "step3",
+            "maxPoints": 1,
+            "criteria": [
+              "Explicitly compares the p-value to the significance level",
+              "Correct decision about the null hypothesis that is consistent with the computed p-value",
+              "Statement of conclusion in context"
+            ],
+            "scoringNotes": "Essentially correct (E) if the response satisfies all three components. Partially correct (P) if the response includes only two of the three conditions. Incorrect (I) if the response does not meet the criteria for E or P."
+          }
+        ]
+      }
+    },
+    "reasoning": "This question tests the student's ability to conduct a complete two-sample z-test for the difference in proportions, including proper hypothesis setup, condition checking, calculations, and interpretation of results in context."
+  },
+  {
+    "id": "U6-L11-Q08",
+    "type": "multiple-choice",
+    "prompt": "Maria has two routes, E and W, she can take when commuting to work. Both routes go through a railroad crossing, and sometimes she needs to stop at the crossing to allow trains to pass. She claims that the proportion of times she needs to stop when taking route E is different from the proportion of times she needs to stop when taking route W. She conducted the following hypothesis test at the significance level of \\(\\alpha = 0.10\\).\n\n\\(H_0: p_E = p_W\\)\n\\(H_a: p_E \\neq p_W\\)\n\nIn the hypotheses, \\(p_E\\) represents the proportion of times she needs to stop at the crossing when using route E, and \\(p_W\\) represents the proportion of times she needs to stop at the crossing when using route W.\n\nAll conditions for inference were met, and the resulting \\(p\\)-value was 0.37. Which of the following is the correct decision for the test?",
+    "answerKey": "D",
+    "reasoning": "The claim is not supported. Since \\(0.37 > 0.10\\), the null hypothesis is not rejected. There is not convincing statistical evidence that the proportion of times she needs to stop at the crossing is different for the different routes.",
+    "attachments": {
+      "choices": [
+        {
+          "key": "A",
+          "value": "The \\(p\\)-value is less than \\(\\alpha\\), and the null hypothesis is rejected. There is convincing evidence to support the claim that the proportion of times she needs to stop at the crossing is different for the different routes."
+        },
+        {
+          "key": "B",
+          "value": "The \\(p\\)-value is greater than \\(\\alpha\\), and the null hypothesis is not rejected. There is convincing evidence to support the claim that the proportion of times she needs to stop at the crossing is the same for the different routes."
+        },
+        {
+          "key": "C",
+          "value": "The \\(p\\)-value is greater than \\(\\alpha\\), and the null hypothesis is rejected. There is not convincing evidence to support the claim that the proportion of times she needs to stop at the crossing is different for the different routes."
+        },
+        {
+          "key": "D",
+          "value": "The \\(p\\)-value is greater than \\(\\alpha\\), and the null hypothesis is not rejected. There is not convincing evidence to support the claim that the proportion of times she needs to stop at the crossing is different for the different routes."
+        },
+        {
+          "key": "E",
+          "value": "The \\(p\\)-value is greater than \\(\\alpha\\), and the null hypothesis is rejected. There is convincing evidence to support the claim that the proportion of times she needs to stop at the crossing is different for the different routes."
+        }
+      ]
+    }
+  },
+  {
+    "id": "U6-L11-Q09",
+    "type": "multiple-choice",
+    "prompt": "Biologists were studying the proportions of cats that had spotted markings on their fur in two populations of cats, C and F. An independent random sample of cats was taken from each population, and the difference between the sample proportions of cats with the spotted markings (C minus F) was 0.62. Under the assumption that all conditions for inference were met, a hypothesis test was conducted with the alternative hypothesis being that the population proportions are not equal. The \\(p\\)-value of the test was 0.01.\n\nWhich of the following is the correct interpretation of the \\(p\\)-value?",
+    "answerKey": "A",
+    "reasoning": "The test is two-sided, so the \\(p\\)-value refers to the union of area in both tails. It is the probability of observing a sample difference of at least 0.62 or of at most −0.62 if the null hypothesis is true.",
+    "attachments": {
+      "choices": [
+        {
+          "key": "A",
+          "value": "If the proportions of all cats with spotted markings is the same for both populations, the probability of observing a sample difference of at least 0.62 or at most −0.62 is 0.01."
+        },
+        {
+          "key": "B",
+          "value": "If the proportions of all cats with spotted markings is the same for both populations, the probability of observing a sample difference of at least 0.62 is 0.01."
+        },
+        {
+          "key": "C",
+          "value": "If the proportions of all cats with spotted markings is the same for both populations, the probability of observing a sample difference of at most −0.62 is 0.01."
+        },
+        {
+          "key": "D",
+          "value": "If the difference in proportions of cats with spotted markings between the two populations is actually 0.62, the probability of observing that difference is 0.01."
+        },
+        {
+          "key": "E",
+          "value": "If the difference in proportions of cats with spotted markings between the two populations is actually 0.01, the probability of observing that difference is 0.62."
+        }
+      ]
+    }
+  },
+  {
+    "id": "U6-L11-Q10",
+    "type": "multiple-choice",
+    "prompt": "A political scientist claims that negative advertising on television affects younger voters more than it affects older voters. To test this claim, the scientist obtained data from two random samples of voters categorized into two age-groups, older and younger. The null hypothesis was that there was no difference in the proportions of voters in the two age-groups who would be affected by negative ads. The alternative hypothesis was that the proportion of younger voters affected would be greater than the proportion of older voters affected.\n\nAssuming all conditions for inference were met, the scientist conducted the test at a significance level of \\(\\alpha = 0.05\\). The resulting \\(p\\)-value was 0.206. Which of the following is the correct decision for the test?",
+    "answerKey": "E",
+    "reasoning": "The claim is not supported. Since \\(0.206 > 0.05\\), the null hypothesis is not rejected. There is not convincing statistical evidence that the proportion of younger voters affected by negative ads is greater than the proportion of older voters affected by negative ads.",
+    "attachments": {
+      "choices": [
+        {
+          "key": "A",
+          "value": "The \\(p\\)-value is less than \\(\\alpha\\), and the null hypothesis is rejected. There is convincing evidence to support the claim that younger voters are more affected by negative ads than are older voters."
+        },
+        {
+          "key": "B",
+          "value": "The \\(p\\)-value is less than \\(\\alpha\\), and the null hypothesis is rejected. There is not convincing evidence to support the claim that younger voters are more affected by negative ads than are older voters."
+        },
+        {
+          "key": "C",
+          "value": "The \\(p\\)-value is greater than \\(\\alpha\\), and the null hypothesis is not rejected. There is convincing evidence to support the claim that younger voters are more affected by negative ads than are older voters."
+        },
+        {
+          "key": "D",
+          "value": "The \\(p\\)-value is greater than \\(\\alpha\\), and the null hypothesis is rejected. There is convincing evidence to support the claim that younger voters are more affected by negative ads than are older voters."
+        },
+        {
+          "key": "E",
+          "value": "The \\(p\\)-value is greater than \\(\\alpha\\), and the null hypothesis is not rejected. There is not convincing evidence to support the claim that younger voters are more affected by negative ads than are older voters."
         }
       ]
     }

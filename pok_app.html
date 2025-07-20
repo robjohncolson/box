@@ -4,7 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>APStat Chain</title>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.9.1/dist/chart.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2"></script>
     <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" async></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jsQR/1.4.0/jsQR.min.js"></script>
@@ -51,14 +52,6 @@
         .dark th, .dark td {
             border-color: #444;
         }
-        .volume-control {
-            display: flex;
-            align-items: center;
-            margin-top: 10px;
-        }
-        .volume-control input {
-            margin: 0 10px;
-        }
         .choice {
             margin: 10px 0;
         }
@@ -76,6 +69,15 @@
         .dark .reasoning, .dark .solution {
             border-color: #444;
         }
+        textarea {
+            width: 100%;
+            height: 200px;
+            margin: 10px 0;
+        }
+        .instructional-note {
+            font-style: italic;
+            margin: 10px 0;
+        }
     </style>
 </head>
 <body>
@@ -89,17 +91,12 @@
         <div id="peers">Peers Seen: 0</div>
         
         <button id="themeToggle">Toggle Dark Mode</button>
-        <button id="audioToggle">🔊 Audio On</button>
-        <div class="volume-control">
-            <p>🔊 Volume:</p>
-            <input type="range" id="volumeSlider" min="0" max="100" value="70">
-            <span id="volumeValue">70%</span>
-        </div>
         
         <div id="messageContainer"></div>
         <div id="statsContainer"></div>
         <div id="questionsContainer"></div>
         <button id="submit-answer">Submit Answer</button>
+        <button id="test-attest">Test Attest Q5</button>
         
         <nav>
             <button id="prev">Previous</button>
@@ -118,10 +115,16 @@
     <div id="contextFinder" class="context-finder" style="display:none;"></div>
 
     <script>
-        // Fake curriculum for testing
+        // Register ChartDataLabels plugin
+        Chart.register(ChartDataLabels);
+
+        const MASTER_CONFIG = { showSolutions: false };
+
+        // Updated curriculum with new schema
         const POK_CURRICULUM = [
             {
-                id: 1,
+                id: 'U1-L10-Q01',
+                type: 'multiple-choice',
                 prompt: 'What is the mean of 1, 2, 3?',
                 attachments: {
                     choices: [{key: 'A', value: '1'}, {key: 'B', value: '2'}, {key: 'C', value: '3'}],
@@ -131,8 +134,9 @@
                 solution: 'Detailed calculation: sum = 6, n=3, mean=2.'
             },
             {
-                id: 2,
-                prompt: 'What is the median of 1, 2, 3?',
+                id: 'U1-PC-MCQ-A-Q01',
+                type: 'multiple-choice',
+                prompt: 'PC question: What is the median of 1, 2, 3?',
                 attachments: {
                     choices: [{key: 'A', value: '1'}, {key: 'B', value: '2'}, {key: 'C', value: '3'}],
                     answerKey: 'B'
@@ -140,20 +144,30 @@
                 reasoning: 'Sorted: 1,2,3, median=2.'
             },
             {
-                id: 3,
+                id: 'U1-FRQ-01',
+                type: 'free-response',
+                prompt: 'Describe the sampling distribution of the sample mean for a sample size of n=30 from a population with mean μ=50 and standard deviation σ=10.',
+                solution: {
+                    parts: [{ partId: 'a', response: 'The sampling distribution is approximately normal with mean 50 and standard error 10/sqrt(30) ≈ 1.826.' }]
+                }
+            },
+            {
+                id: 'U1-L15-Q01',
+                type: 'multiple-choice',
                 prompt: 'Interpret this bar chart.',
                 attachments: {
                     chartType: 'bar',
                     labels: ['A', 'B', 'C'],
                     series: [{ data: [10, 20, 30], backgroundColor: ['red', 'green', 'blue'] }]
-                }
+                },
+                reasoning: 'Bar chart shows increasing values.'
             },
             {
-                id: 4,
-                prompt: 'Interpret this scatter plot.',
-                attachments: {
-                    chartType: 'scatter',
-                    series: [{ values: [[1,2], [3,4], [5,6]] }]  // Will be adapted to points
+                id: 'U1-FRQ-02',
+                type: 'free-response',
+                prompt: 'Explain the Central Limit Theorem.',
+                solution: {
+                    parts: [{ partId: 'a', response: 'The CLT states...' }]
                 }
             }
         ];
@@ -166,7 +180,6 @@
             },
             chartInstances: [],
 
-            // Added hasUserAnswered as per fixes
             hasUserAnswered: function(questionId) {
                 if (!this.state || !this.state.mempool || !this.state.identity) {
                     console.warn('hasUserAnswered called before state initialized');
@@ -181,13 +194,20 @@
                 );
             },
 
-            // Fake crypto for testing
+            getUserAnswer: function(questionId) {
+                const normalizedQuestionId = String(questionId);
+                const tx = this.state.mempool.find(tx => 
+                    String(tx.questionId) === normalizedQuestionId && 
+                    tx.ownerPubKey === this.state.identity.publicKey
+                );
+                return tx ? tx.answer : null;
+            },
+
             crypto: {
                 generateMnemonic: function() {
                     return 'test mnemonic ' + Math.random().toString(36).substring(2);
                 },
                 deriveKeyPair: async function(mnemonic) {
-                    // Fake key pair
                     return {
                         publicKey: 'pub_' + Math.random().toString(36).substring(2),
                         privateKey: 'priv_' + Math.random().toString(36).substring(2)
@@ -196,9 +216,6 @@
             },
 
             renderer: {
-                renderQuestion: function(question, index) {
-                    // Deprecated, use renderCurrentQuestion
-                },
                 renderChart: function(attachment, containerId) {
                     if (typeof Chart === 'undefined') {
                         console.error('Chart.js library not loaded');
@@ -219,25 +236,35 @@
                         const ctx = canvas.getContext('2d');
                         let config = null;
                         
+                        const commonPlugins = {
+                            legend: { labels: { color: this.getTextColor() } },
+                            datalabels: {
+                                color: this.getTextColor(),
+                                formatter: (value) => value,
+                                anchor: 'end',
+                                align: 'end'
+                            }
+                        };
+                        
+                        const commonOptions = {
+                            scales: {
+                                x: { grid: { color: this.getGridColor() } },
+                                y: { grid: { color: this.getGridColor() } }
+                            },
+                            plugins: commonPlugins,
+                            color: this.getTextColor()
+                        };
+                        
                         switch (attachment.chartType) {
                             case 'bar':
                             case 'histogram':
                                 config = {
-                                    type: attachment.chartType === 'histogram' ? 'bar' : 'bar', // Histogram as bar for simplicity
+                                    type: 'bar',
                                     data: {
                                         labels: attachment.labels || [],
                                         datasets: attachment.series || []
                                     },
-                                    options: {
-                                        scales: {
-                                            x: { grid: { color: this.getGridColor() } },
-                                            y: { grid: { color: this.getGridColor() } }
-                                        },
-                                        plugins: {
-                                            legend: { labels: { color: this.getTextColor() } }
-                                        },
-                                        color: this.getTextColor()
-                                    }
+                                    options: commonOptions
                                 };
                                 break;
                             case 'pie':
@@ -251,10 +278,18 @@
                                         }]
                                     },
                                     options: {
+                                        ...commonOptions,
                                         plugins: {
-                                            legend: { labels: { color: this.getTextColor() } }
-                                        },
-                                        color: this.getTextColor()
+                                            ...commonPlugins,
+                                            datalabels: {
+                                                color: '#000',
+                                                formatter: (value, ctx) => {
+                                                    let sum = ctx.dataset.data.reduce((a, b) => a + b, 0);
+                                                    let percentage = Math.round((value / sum) * 100) + '%';
+                                                    return percentage;
+                                                }
+                                            }
+                                        }
                                     }
                                 };
                                 break;
@@ -267,13 +302,7 @@
                                             pointBackgroundColor: this.getScatterPointColor()
                                         }]
                                     },
-                                    options: {
-                                        scales: {
-                                            x: { grid: { color: this.getGridColor() } },
-                                            y: { grid: { color: this.getGridColor() } }
-                                        },
-                                        color: this.getTextColor()
-                                    }
+                                    options: commonOptions
                                 };
                                 break;
                         }
@@ -282,7 +311,7 @@
                             const chart = new Chart(ctx, config);
                             APStatChain.chartInstances.push(chart);
                         }
-                    }, 0); // Use arrow function to preserve this
+                    }, 0);
                 },
                 renderTable: function(tableData) {
                     if (!tableData || !Array.isArray(tableData.rows)) return '';
@@ -291,7 +320,7 @@
                     if (tableData.headers) {
                         html += '<thead><tr>' + tableData.headers.map(h => `<th>${h}</th>`).join('') + '</tr></thead>';
                     }
-                    html += '<tbody>${tableData.rows.map(row => `<tr>${row.map(cell => `<td>${cell}</td>`).join('')}</tr>`).join('')}</tbody>';
+                    html += '<tbody>' + tableData.rows.map(row => `<tr>${row.map(cell => `<td>${cell}</td>`).join('')}</tr>`).join('') + '</tbody>';
                     html += '</table>';
                     return html;
                 },
@@ -306,43 +335,74 @@
                         const isCorrect = choice.key.toString().trim().toUpperCase() === normalizedAnswer;
                         const inputId = `choice-${choice.key}-${questionId}`;
                         const disabledAttr = isAnswered ? 'disabled' : '';
-                        const correctClass = isCorrect && isAnswered ? 'correct-choice' : '';
+                        const correctClass = isCorrect && isAnswered ? ' correct-choice' : '';
                         
                         html += `
                             <div class="choice${correctClass}">
                                 <label for="${inputId}">
                                     <input type="radio" name="answer" id="${inputId}" value="${choice.key}" ${disabledAttr}>
-                                    <span class="choice-key"}>${choice.key}.</span>
+                                    <span class="choice-key">${choice.key}.</span>
                                     ${choice.value}
                                 </label>
                             </div>
                         `;
-                    }));
+                    });
                     html += '</div>';
                     return html;
                 },
                 renderSolution: function(solution) {
-                    return `<div class="solution"><strong>Solution:</strong> ${solution}</div>`;
+                    let html = '<div class="solution"><strong>Solution:</strong>';
+                    if (typeof solution === 'string') {
+                        html += ` ${solution}`;
+                    } else if (solution.parts && Array.isArray(solution.parts)) {
+                        solution.parts.forEach((part, i) => {
+                            html += this.renderSolutionPart(part, i);
+                        });
+                    }
+                    if (solution.rubric) {
+                        html += this.renderScoringRubric(solution.rubric);
+                    }
+                    html += '</div>';
+                    return html;
                 },
-                forceChartRerender: function() {
-                    APStatChain.chartInstances.forEach(chart => chart.destroy());
-                    APStatChain.chartInstances = [];
-                    this.initializeCharts(APStatChain.state.currentIndex);
+                renderSolutionPart: function(part, partIndex) {
+                    let html = `<div class="solution-part"><strong>Part ${String.fromCharCode(97 + partIndex)}:</strong> ${part.text || part.response || ''}</div>`;
+                    if (part.chartType) {
+                        const chartId = `solution-chart-${partIndex}`;
+                        html += `<div class="chart-container"><canvas id="${chartId}"></canvas></div>`;
+                        setTimeout(() => {
+                            this.renderChart(part, chartId);
+                        }, 0);
+                    }
+                    return html;
+                },
+                renderScoringRubric: function(rubric) {
+                    let html = '<div class="rubric"><h4>Scoring Rubric</h4><ul>';
+                    rubric.forEach(item => {
+                        html += `<li>${item.points} points: ${item.description}</li>`;
+                    });
+                    html += '</ul></div>';
+                    return html;
                 },
                 generateChartColors: function(numColors) {
-                    const colors = ['#ff6384', '#36a2eb', '#ffce56', '# etc.];
-                    const darkColors = ['#cf3c4f', '#2270b5', '#c39300', etc.];
-                    const base = APStatChain.ui.isDarkMode() ? darkColors : colors;
+                    const lightColors = ['#ff6384', '#36a2eb', '#ffce56', '#4bc0c0', '#9966ff'];
+                    const darkColors = ['#cf3c4f', '#2270b5', '#c39300', '#2e8b8b', '#6633cc'];
+                    const base = APStatChain.ui.isDarkMode() ? darkColors : lightColors;
                     return Array.from({length: numColors}, (_, i) => base[i % base.length]);
                 },
                 getGridColor: function() {
-                    return APStatChain.ui.isDarkMode() ? '#444444' : '#ddd';
+                    return APStatChain.ui.isDarkMode() ? '#444444' : '#dddddd';
                 },
                 getScatterPointColor: function() {
                     return APStatChain.ui.isDarkMode() ? '#ffffff' : '#000000';
                 },
                 getTextColor: function() {
                     return APStatChain.ui.isDarkMode() ? '#ffffff' : '#000000';
+                },
+                forceChartRerender: function() {
+                    APStatChain.chartInstances.forEach(chart => chart.destroy());
+                    APStatChain.chartInstances = [];
+                    this.initializeCharts(APStatChain.state.currentIndex);
                 },
                 adaptQuestionFormat: function(pokQuestion) {
                     const adapted = JSON.parse(JSON.stringify(pokQuestion));
@@ -373,33 +433,51 @@
                 },
                 _generateQuestionHTML: function(adaptedQuestion, index) {
                     let html = `<div class="question">
-                        <h2>Question ${index + 1}</h2>
+                        <h2>Question ${index + 1} (${adaptedQuestion.id})</h2>
                         <p>${adaptedQuestion.prompt || ''}</p>
                     `;
                     
                     if (adaptedQuestion.attachments) {
                         const att = adaptedQuestion.attachments;
                         if (att.chartType) {
-                            html += `<div class="chart-container"><canvas id="chart-${adaptedQuestion.id}"></canvas></div>`;
+                            const chartId = `chart-${adaptedQuestion.id}`;
+                            html += `<div class="chart-container"><canvas id="${chartId}"></canvas></div>`;
                         }
                         if (att.table) {
                             html += this.renderTable(att.table);
                         }
-                        if (att.choices) {
+                        if (adaptedQuestion.type === 'multiple-choice' && att.choices) {
                             html += this.renderChoices(att.choices, att.answerKey, adaptedQuestion.id);
                         }
                     }
                     
-                    if (adaptedQuestion.reasoning && APStatChain.hasUserAnswered(adaptedQuestion.id)) {
+                    if (adaptedQuestion.type === 'free-response') {
+                        const isAnswered = APStatChain.hasUserAnswered(adaptedQuestion.id);
+                        const userAnswer = APStatChain.getUserAnswer(adaptedQuestion.id);
+                        const responseText = userAnswer && typeof userAnswer === 'object' && userAnswer.textResponse ? userAnswer.textResponse : '';
+                        const readonlyAttr = isAnswered ? 'readonly' : '';
+                        const disabledAttr = isAnswered ? 'disabled' : '';
+                        
                         html += `
-                            <div class="reasoning">
-                                <strong>Explanation:</strong> ${adaptedQuestion.reasoning}
-                            </div>
+                            <textarea id="frq-response-box" ${readonlyAttr}>${responseText}</textarea>
+                            <p class="instructional-note">Note: Any required graphs or tables must be created separately for in-person attestation.</p>
+                            <button id="log-frq-attempt" ${disabledAttr}>Log Attempt & Prepare for Attestation</button>
+                            <button id="get-tutor-help" ${disabledAttr}>Get Tutoring Help from Grok</button>
                         `;
                     }
                     
-                    if (adaptedQuestion.solution && APStatChain.hasUserAnswered(adaptedQuestion.id)) {
-                        html += this.renderSolution(adaptedQuestion.solution);
+                    if (APStatChain.ui.shouldShowExplanation(adaptedQuestion)) {
+                        if (adaptedQuestion.reasoning) {
+                            html += `
+                                <div class="reasoning">
+                                    <strong>Explanation:</strong> ${adaptedQuestion.reasoning}
+                                </div>
+                            `;
+                        }
+                        
+                        if (adaptedQuestion.solution) {
+                            html += this.renderSolution(adaptedQuestion.solution);
+                        }
                     }
                     
                     html += `</div>`;
@@ -415,7 +493,8 @@
                     }
                 },
                 renderCurrentQuestion: function() {
-                    const index = this.state.currentIndex, question = this.questions[index];
+                    const index = APStatChain.state.currentIndex;
+                    const question = APStatChain.questions[index];
                     if (!question) return;
                     
                     const adaptedQuestion = this.adaptQuestionFormat(question);
@@ -424,17 +503,20 @@
                     
                     document.getElementById('questionsContainer').innerHTML = questionHTML;
                     
-                    // Post-render
                     if (typeof MathJax !== 'undefined') {
                         MathJax.typesetPromise().catch(err => console.error(err));
                     }
                     this.initializeCharts(index);
                     
-                    // Update button states
                     const submitBtn = document.getElementById('submit-answer');
                     const isAnswered = APStatChain.hasUserAnswered(question.id);
-                    submitBtn.disabled = isAnswered;
-                    submitBtn.textContent = isAnswered ? 'Answered' : 'Submit Answer';
+                    if (question.type === 'free-response') {
+                        submitBtn.style.display = 'none';
+                    } else {
+                        submitBtn.style.display = 'block';
+                        submitBtn.disabled = isAnswered;
+                        submitBtn.textContent = isAnswered ? 'Answered' : 'Submit Answer';
+                    }
                     
                     APStatChain.ui.updateHUD();
                 }
@@ -455,13 +537,17 @@
                     const current = APStatChain.state.currentIndex + 1;
                     document.getElementById('progress').innerHTML = `Question ${current} of ${total}`;
                     
-                    const answered = APStatChain.state.mempool.length;
-                    document.getElementById('my-progress').innerHTML = `My Progress: ${answered} Answered / 0} Mined`;
-                    // TODO: Mined logic out of scope
+                    const answered = APStatChain.state.mempool ? APStatChain.state.mempool.length : 0;
+                    document.getElementById('my-progress').innerHTML = `My Progress: ${answered} Answered / 0 Mined`;
                     
-                    // Update nav buttons
                     document.getElementById('prev').disabled = (APStatChain.state.currentIndex === 0);
                     document.getElementById('next').disabled = (APStatChain.state.currentIndex >= total - 1) || !APStatChain.hasUserAnswered(APStatChain.questions[APStatChain.state.currentIndex].id);
+                },
+                shouldShowExplanation: function(question) {
+                    return MASTER_CONFIG.showSolutions &&
+                           !question.id.includes('-PC-') &&
+                           question.type !== 'free-response' &&
+                           APStatChain.hasUserAnswered(question.id);
                 },
                 bindNavEvents: function() {
                     document.getElementById('prev').addEventListener('click', async () => {
@@ -506,33 +592,38 @@
                         APStatChain.sync.startScanner();
                     });
                     
-                    document.getElementById('audioToggle').addEventListener('click', () => {
-                        APStatChain.audio.enabled = !APStatChain.audio.enabled;
-                        const btn = document.getElementById('audioToggle');
-                        btn.textContent = APStatChain.audio.enabled ? '🔊 Audio On' : '🔈 Audio Off';
+                    document.getElementById('test-attest').addEventListener('click', () => {
+                        APStatChain.sync.startAttestationFlow('U1-L5-Q01');
                     });
-                    
-                    document.getElementById('volumeSlider').addEventListener('input', (e) => {
-                        const volume = e.target.value / 100;
-                        if (APStatChain.audio.masterGain) {
-                            APStatChain.audio.masterGain.gain.value = volume;
-                        }
-                        document.getElementById('volumeValue').textContent = `${e.target.value}%`;
-                    });
-                }
-            },
 
-            audio: {
-                context: null,
-                enabled: true,
-                masterGain: null,
-                playTone: function(frequency, duration) {
-                    if (!this.enabled || !this.context) return;
-                    const oscillator = this.context.createOscillator();
-                    oscillator.frequency.value = frequency;
-                    oscillator.connect(this.masterGain);
-                    oscillator.start();
-                    setTimeout(() => oscillator.stop(), duration);
+                    // Event delegation for dynamic buttons
+                    document.addEventListener('click', async (e) => {
+                        if (e.target.id === 'log-frq-attempt') {
+                            const question = APStatChain.questions[APStatChain.state.currentIndex];
+                            if (APStatChain.hasUserAnswered(question.id)) return;
+                            
+                            const userText = document.getElementById('frq-response-box').value;
+                            if (!userText.trim()) {
+                                alert('Please enter your response');
+                                return;
+                            }
+                            await APStatChain.mempool.createTransaction(question.id, { textResponse: userText });
+                            APStatChain.renderer.renderCurrentQuestion();
+                            await APStatChain.saveState();
+                        } else if (e.target.id === 'get-tutor-help') {
+                            const question = APStatChain.questions[APStatChain.state.currentIndex];
+                            const userText = document.getElementById('frq-response-box').value;
+                            const promptStr = `Tutor me on this AP Statistics question... Here is the question: ${question.prompt}. Here is my attempt: ${userText}. For your reference, here is the official solution: ${JSON.stringify(question.solution)}.`;
+                            
+                            navigator.clipboard.writeText(promptStr).then(() => {
+                                window.open('https://grok.com', '_blank');
+                                document.getElementById('messageContainer').innerHTML = 'Prompt copied! Just paste (Ctrl+V) into the new tab to begin.';
+                                setTimeout(() => {
+                                    document.getElementById('messageContainer').innerHTML = '';
+                                }, 5000);
+                            }).catch(err => console.error('Failed to copy: ', err));
+                        }
+                    });
                 }
             },
 
@@ -565,6 +656,13 @@
                         };
                         scan();
                     }).catch(err => console.error(err));
+                },
+                startAttestationFlow: function(questionId) {
+                    if (confirm('Attest to this answer?')) {
+                        APStatChain.mempool.createTransaction(questionId, 'ATTESTED');
+                        APStatChain.renderer.renderCurrentQuestion();
+                        APStatChain.saveState();
+                    }
                 }
             },
 
@@ -572,7 +670,7 @@
                 createTransaction: async function(questionId, answer) {
                     const tx = {
                         questionId,
-                        answer,
+                        answer, // string or object
                         ownerPubKey: APStatChain.state.identity.publicKey,
                         timestamp: Date.now()
                     };
@@ -629,11 +727,6 @@
                             document.body.classList.add('dark');
                         }
                     }
-                    
-                    this.audio.context = new (window.AudioContext || window.webkitAudioContext)();
-                    this.audio.masterGain = this.audio.context.createGain();
-                    this.audio.masterGain.gain.value = 0.7;
-                    this.audio.masterGain.connect(this.audio.context.destination);
                     
                     this.ui.bindNavEvents();
                     
