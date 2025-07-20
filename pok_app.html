@@ -97,7 +97,6 @@
         <div id="statsContainer"></div>
         <div id="questionsContainer"></div>
         <button id="submit-answer">Submit Answer</button>
-        <button id="test-attest">Test Attest Q5</button>
         
         <nav>
             <button id="prev">Previous</button>
@@ -217,15 +216,19 @@
             },
 
             renderer: {
-                renderChart: function(attachment, containerId) {
-                    if (typeof Chart === 'undefined') {
-                        console.error('Chart.js library not loaded');
-                        const container = document.getElementById(containerId);
-                        if (container) {
-                            container.outerHTML = '<div class="chart-error">Chart library failed to load. Please refresh the page.</div>';
-                        }
-                        return;
-                    }
+                plugins: {
+                                legend: { display: false },
+                                datalabels: { display: false }
+                            }
+                        },
+                        plugins: [numberLinePlugin]
+                    });
+                    chartInstances.push(chart);
+                }
+            }, 100);
+
+            return chartHtml;
+        },
                     
                     setTimeout(() => {
                         const canvas = document.getElementById(containerId);
@@ -314,17 +317,34 @@
                         }
                     }, 0);
                 },
-                renderTable: function(tableData) {
-                    if (!tableData || !Array.isArray(tableData.rows)) return '';
-                    
-                    let html = '<table>';
-                    if (tableData.headers) {
-                        html += '<thead><tr>' + tableData.headers.map(h => `<th>${h}</th>`).join('') + '</tr></thead>';
-                    }
-                    html += '<tbody>' + tableData.rows.map(row => `<tr>${row.map(cell => `<td>${cell}</td>`).join('')}</tr>`).join('') + '</tbody>';
-                    html += '</table>';
-                    return html;
-                },
+                function renderTable(tableData) {
+            if (!tableData || !Array.isArray(tableData) || tableData.length === 0) return '';
+            
+            const headers = tableData[0];
+            const rows = tableData.slice(1);
+            
+            let tableHtml = '<div class="table-container"><table>';
+            
+            // Headers
+            tableHtml += '<thead><tr>';
+            headers.forEach(header => {
+                tableHtml += `<th>${header}</th>`;
+            });
+            tableHtml += '</tr></thead>';
+            
+            // Rows
+            tableHtml += '<tbody>';
+            rows.forEach(row => {
+                tableHtml += '<tr>';
+                row.forEach(cell => {
+                    tableHtml += `<td>${cell}</td>`;
+                });
+                tableHtml += '</tr>';
+            });
+            tableHtml += '</tbody></table></div>';
+            
+            return tableHtml;
+        },
                 renderChoices: function(choices, answerKey, questionId) {
                     if (!choices || !Array.isArray(choices)) return '';
                     
@@ -351,40 +371,134 @@
                     html += '</div>';
                     return html;
                 },
-                renderSolution: function(solution) {
-                    let html = '<div class="solution"><strong>Solution:</strong>';
-                    if (typeof solution === 'string') {
-                        html += ` ${solution}`;
-                    } else if (solution.parts && Array.isArray(solution.parts)) {
-                        solution.parts.forEach((part, i) => {
-                            html += this.renderSolutionPart(part, i);
-                        });
-                    }
-                    if (solution.rubric) {
-                        html += this.renderScoringRubric(solution.rubric);
-                    }
-                    html += '</div>';
-                    return html;
-                },
-                renderSolutionPart: function(part, partIndex) {
-                    let html = `<div class="solution-part"><strong>Part ${String.fromCharCode(97 + partIndex)}:</strong> ${part.text || part.response || ''}</div>`;
-                    if (part.chartType) {
-                        const chartId = `solution-chart-${partIndex}`;
-                        html += `<div class="chart-container"><canvas id="${chartId}"></canvas></div>`;
-                        setTimeout(() => {
-                            this.renderChart(part, chartId);
-                        }, 0);
-                    }
-                    return html;
-                },
-                renderScoringRubric: function(rubric) {
-                    let html = '<div class="rubric"><h4>Scoring Rubric</h4><ul>';
-                    rubric.forEach(item => {
-                        html += `<li>${item.points} points: ${item.description}</li>`;
+                function renderSolution(solution, questionId) {
+            if (!solution) return '';
+            
+            let solutionHtml = `
+                <div class="solution">
+                    <div class="solution-title">📝 Solution</div>
+            `;
+            
+            // Render solution parts
+            if (solution.parts && Array.isArray(solution.parts)) {
+                solution.parts.forEach(part => {
+                    solutionHtml += renderSolutionPart(part, questionId);
+                });
+            }
+            
+            solutionHtml += `</div>`;
+            
+            // Render scoring rubric separately
+            if (solution.scoring) {
+                solutionHtml += renderScoringRubric(solution.scoring);
+            }
+            
+            return solutionHtml;
+        },
+        function renderSolutionPart(part, questionId) {
+            let partHtml = `
+                <div class="solution-part">
+                    <div class="solution-part-id">Part ${part.partId}</div>
+                    <div class="solution-description">${part.description}</div>
+                    <div class="solution-response">${part.response}</div>
+            `;
+            
+            // Render solution attachments (charts, tables, images, etc.)
+            if (part.attachments) {
+                // Render image if present
+                if (part.attachments.image) {
+                    const imageAlt = part.attachments.imageAlt || 'Solution diagram';
+                    const imageCaption = part.attachments.imageCaption || '';
+                    partHtml += `
+                        <div class="image-container">
+                            <img src="${part.attachments.image}" 
+                                 alt="${imageAlt}" 
+                                 class="question-image" 
+                                 loading="lazy" 
+                                 decoding="async">
+                            ${imageCaption ? `<div class="image-caption">${imageCaption}</div>` : ''}
+                        </div>
+                    `;
+                }
+                
+                // Render multiple images if present
+                if (part.attachments.images && Array.isArray(part.attachments.images)) {
+                    partHtml += '<div class="images-container">';
+                    part.attachments.images.forEach((img, imgIndex) => {
+                        const imageAlt = img.imageAlt || `Solution diagram ${imgIndex + 1}`;
+                        const imageCaption = img.imageCaption || '';
+                        partHtml += `
+                            <div class="image-container">
+                                <img src="${img.image}" 
+                                     alt="${imageAlt}" 
+                                     class="question-image" 
+                                     loading="lazy" 
+                                     decoding="async">
+                                ${imageCaption ? `<div class="image-caption">${imageCaption}</div>` : ''}
+                            </div>
+                        `;
                     });
-                    html += '</ul></div>';
-                    return html;
-                },
+                    partHtml += '</div>';
+                }
+                
+                if (part.attachments.chartType) {
+                    partHtml += renderChart(part.attachments, `${questionId}-solution-${part.partId}`);
+                }
+                if (part.attachments.table) {
+                    partHtml += renderTable(part.attachments.table);
+                }
+            }
+            
+            // Render calculations if present
+            if (part.calculations && Array.isArray(part.calculations)) {
+                partHtml += `
+                    <div class="solution-calculations">
+                        <div class="solution-calculations-title">Calculations:</div>
+                `;
+                part.calculations.forEach(calc => {
+                    partHtml += `<div class="calculation-step">${calc}</div>`;
+                });
+                partHtml += `</div>`;
+            }
+            
+            partHtml += `</div>`;
+            return partHtml;
+        },
+        function renderScoringRubric(scoring) {
+            if (!scoring || !scoring.rubric) return '';
+            
+            let rubricHtml = `
+                <div class="scoring-rubric">
+                    <div class="scoring-title">Scoring Rubric (Total: ${scoring.totalPoints} points)</div>
+            `;
+            
+            scoring.rubric.forEach(rubricPart => {
+                rubricHtml += `
+                    <div class="scoring-part">
+                        <div class="scoring-part-header">
+                            Part ${rubricPart.part} (${rubricPart.maxPoints} point${rubricPart.maxPoints !== 1 ? 's' : ''})
+                        </div>
+                        <div class="scoring-criteria">
+                `;
+                
+                if (rubricPart.criteria && Array.isArray(rubricPart.criteria)) {
+                    rubricPart.criteria.forEach(criterion => {
+                        rubricHtml += `<div class="scoring-criterion">${criterion}</div>`;
+                    });
+                }
+                
+                rubricHtml += `</div>`;
+                
+                if (rubricPart.scoringNotes) {
+                    rubricHtml += `<div class="scoring-notes">${rubricPart.scoringNotes}</div>`;
+                }
+                
+                rubricHtml += `</div>`;
+            });
+            
+            rubricHtml += `</div>`;
+            return rubricHtml;
+        },
                 generateChartColors: function(numColors) {
                     const lightColors = ['#ff6384', '#36a2eb', '#ffce56', '#4bc0c0', '#9966ff'];
                     const darkColors = ['#cf3c4f', '#2270b5', '#c39300', '#2e8b8b', '#6633cc'];
