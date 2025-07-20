@@ -147,6 +147,30 @@ Script aborted.""")
     questions = []
     seen_ids = {}  # id to first filename
 
+    attachment_keys = [
+        'choices',
+        'table',
+        'image',
+        'imageBase64',
+        'imageAlt',
+        'imageCaption',
+        'images',
+        'chartType',
+        'charts',
+        'series',
+        'chartConfig',
+        'points',
+        'values',
+        'ticks',
+        'mean',
+        'sd',
+        'shade',
+        'df',
+        'dfList',
+        'labels',
+        'overlay'
+    ]
+
     for file_path in json_files:
         filename = file_path.relative_to(assets_dir).as_posix()
         print(f"Processing file: {filename}...")
@@ -154,7 +178,7 @@ Script aborted.""")
         try:
             text = file_path.read_text(encoding='utf-8')
         except Exception as e:
-            print(f"Warning: Failed to read file '{filename}': {str(e)}")
+            print(f"Warning: Failed to read file '{filename}' : {str(e)}")
             continue
 
         # Remove comments
@@ -177,6 +201,15 @@ Script aborted.""")
                 print(f"Warning: Skipping invalid object (missing or empty 'id' or 'type') in '{filename}': {block[:100]}...")
                 continue
 
+            # Apply transformation for attachments
+            attachments = data.pop('attachments', {} )
+            for key in attachment_keys:
+                if key in data:
+                    attachments[key] = data.pop(key)
+
+            if attachments:
+                data['attachments'] = attachments
+
             id_ = data['id']
             if id_ in seen_ids:
                 first_file = seen_ids[id_]
@@ -198,7 +231,7 @@ Please check that your 'assets/jsons/' directory contains valid .json files.
 """)
 
     # Write the output
-    js_content = "const POK_CURRICULUM = " + json.dumps(questions, indent=2, ensure_ascii=False) + ";\n"
+    js_content = "const POK_CURRICULUM = " + json.dumps(questions, indent=2, ensure_ascii=False) + ";"
     with open(output_path, 'w', encoding='utf-8') as f:
         f.write(js_content)
 

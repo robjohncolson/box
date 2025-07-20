@@ -4,19 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>APStat Chain</title>
-    <!-- Kept CDN links for functionality (as per strategy: Functionality First, Offline Second) -->
-    <!-- Assumed common CDNs based on typical requirements for charts, math rendering, QR handling -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" async></script>
-    <!-- For generating QR codes -->
-<script src="https://cdn.jsdelivr.net/npm/qrcode-generator/qrcode.js"></script> 
-<!-- For scanning QR codes -->
-<script src="https://cdn.jsdelivr.net/npm/jsqr/dist/jsQR.js"></script>
-    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jsQR/1.4.0/jsQR.min.js"></script> -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jsQR/1.4.0/jsQR.min.js"></script>
     <style>
-        /* Transplanted entire <style> block from quiz_renderer.html */
-        /* Since exact content not provided in input, using representative styles for quiz rendering, dark mode, charts, etc. based on typical implementations */
         body {
             font-family: Arial, sans-serif;
             background-color: #ffffff;
@@ -67,37 +59,48 @@
         .volume-control input {
             margin: 0 10px;
         }
-        /* Additional styles for theming charts would be here (e.g., grid colors, text colors) */
+        .choice {
+            margin: 10px 0;
+        }
+        .correct-choice {
+            background-color: #d4edda;
+        }
+        .dark .correct-choice {
+            background-color: #2b5329;
+        }
+        .reasoning, .solution {
+            margin-top: 20px;
+            padding: 10px;
+            border: 1px solid #ddd;
+        }
+        .dark .reasoning, .dark .solution {
+            border-color: #444;
+        }
     </style>
 </head>
 <body>
     <div class="container">
         <h1>🧮 APStat Chain</h1>
         
-        <!-- Blockchain HUD from pok_app.html (adjusted IDs and content) -->
         <div id="progress">Question 1 of 738</div>
         <div id="my-progress">My Progress: 0 Answered / 0 Mined</div>
         <div id="score">My Score: 0</div>
         <div id="class-average">Projected Class Average: 0</div>
         <div id="peers">Peers Seen: 0</div>
         
-        <!-- UI Controls from quiz_renderer.html -->
         <button id="themeToggle">Toggle Dark Mode</button>
         <button id="audioToggle">🔊 Audio On</button>
-        <!-- volume slider -->
         <div class="volume-control">
             <p>🔊 Volume:</p>
             <input type="range" id="volumeSlider" min="0" max="100" value="70">
             <span id="volumeValue">70%</span>
         </div>
         
-        <!-- Core Content -->
         <div id="messageContainer"></div>
         <div id="statsContainer"></div>
         <div id="questionsContainer"></div>
-        <button id="submit-answer">Submit Answer</button> <!-- Added as per event listener needs -->
+        <button id="submit-answer">Submit Answer</button>
         
-        <!-- Navigation & Sync -->
         <nav>
             <button id="prev">Previous</button>
             <button id="next">Next</button>
@@ -114,1773 +117,243 @@
 
     <div id="contextFinder" class="context-finder" style="display:none;"></div>
 
-    
-    <!-- ======================================================= -->
-    <!-- ADD THIS ENTIRE SCRIPT BLOCK HERE                       -->
-    <!-- ======================================================= -->
     <script>
-        // PLACEHOLDER FOR POK_WORDLIST data
-        const POK_WORDLIST =[
-  "analysis", "approximation", "assessment", "association", "assumption", "average", "bias", "biased", "bimodal", "binomial", "bivariate", "boxplot", "boxplots", "calculation", "categorical", "causal", "causation", "census", "center", "central", "chance", "classification", "cluster", "coefficient", "collection", "combination", "combinations", "comparative", "comparison", "complement", "computation", "conclusion", "condition", "conditional", "confidence", "confounding", "contingency", "continuous", "control", "correlation", "count", "data", "decision", "degrees", "density", "dependent", "design", "deviation", "diagram", "discrete", "distribution", "distributions", "dotplot", "dotplots", "effect", "error", "estimate", "estimation", "estimator", "evaluation", "evidence", "expected", "experiment", "experimental", "explanatory", "extrapolation", "factor", "factors", "fraction", "frequencies", "frequency", "function", "generalizability", "generalization", "generalize", "goodness", "graph", "graphic", "graphical", "graphs", "group", "histogram", "histograms", "homogeneity", "homoscedasticity", "hypotheses", "hypothesis", "hypothesize", "independence", "independent", "inference", "influence", "intercept", "interquartile", "interval", "intervals", "investigation", "joint", "level", "levels", "leverage", "linear", "linearity", "linearly", "logarithm", "margin", "matched", "mean", "measurement", "median", "medians", "midrange", "minimum", "mode", "model", "multiple", "negative", "nonlinear", "nonresponse", "normal", "normality", "normally", "null", "numeric", "numerical", "observation", "observational", "observations", "outcome", "outcomes", "outlier", "outliers", "overestimation", "overrepresentation", "paired", "parameter", "parameters", "participant", "participants", "percent", "percentage", "percentile", "placebo", "plausibility", "plot", "plots", "point", "poll", "pooled", "population", "populations", "positive", "power", "precision", "predict", "predicted", "probabilities", "probability", "proportion", "proportions", "prospective", "quadratic", "quantitative", "quartile", "quartiles", "random", "randomization", "randomized", "randomly", "range", "rate", "ratio", "regression", "reject", "rejection", "relationship", "relative", "replication", "representation", "representative", "research", "residual", "residuals", "response", "risk", "sample", "sampled", "samples", "sampling", "scatter", "scatterplot", "scatterplots", "selection", "significance", "significant", "significantly", "simulation", "simulations", "skew", "skewed", "skewness", "slope", "spread", "sqrt", "square", "squared", "standard", "standardization", "standardized", "statistic", "statistical", "statistically", "statistician", "statisticians", "statistics", "stemplot", "strata", "stratification", "stratified", "stratum", "strength", "strong", "subject", "subjects", "summary", "survey", "symmetric", "symmetry", "table", "test", "tests", "theorem", "theoretical", "theory", "treatment", "trend", "trial", "trials", "unbiased", "undercoverage", "underestimate", "underrepresentation", "uniform", "unimodal", "unit", "validity", "variability", "variable", "variables", "variance", "variances", "variation", "visualization", "weighted", "width", "yield", "zero"
-];
-
-
-    </script>
-    <!-- ======================================================= -->
-    <!-- END OF THE NEW SCRIPT BLOCK                             -->
-    <!-- ======================================================= -->
-    <script src="pok_curriculum.js"></script>
-
-    <script>
-        // Assuming existing APStatChain structure from pok_app.html
-        // All transplanted elements are namespaced as per Step 3
-        // Deleted any prior APStatChain.renderer functions (assuming they existed)
-        // Merged logic without rewriting core app logic (e.g., mempool, chain-mining preserved as-is)
+        // Fake curriculum for testing
+        const POK_CURRICULUM = [
+            {
+                id: 1,
+                prompt: 'What is the mean of 1, 2, 3?',
+                attachments: {
+                    choices: [{key: 'A', value: '1'}, {key: 'B', value: '2'}, {key: 'C', value: '3'}],
+                    answerKey: 'B'
+                },
+                reasoning: 'The mean is (1+2+3)/3 = 2.',
+                solution: 'Detailed calculation: sum = 6, n=3, mean=2.'
+            },
+            {
+                id: 2,
+                prompt: 'What is the median of 1, 2, 3?',
+                attachments: {
+                    choices: [{key: 'A', value: '1'}, {key: 'B', value: '2'}, {key: 'C', value: '3'}],
+                    answerKey: 'B'
+                },
+                reasoning: 'Sorted: 1,2,3, median=2.'
+            },
+            {
+                id: 3,
+                prompt: 'Interpret this bar chart.',
+                attachments: {
+                    chartType: 'bar',
+                    labels: ['A', 'B', 'C'],
+                    series: [{ data: [10, 20, 30], backgroundColor: ['red', 'green', 'blue'] }]
+                }
+            },
+            {
+                id: 4,
+                prompt: 'Interpret this scatter plot.',
+                attachments: {
+                    chartType: 'scatter',
+                    series: [{ values: [[1,2], [3,4], [5,6]] }]  // Will be adapted to points
+                }
+            }
+        ];
 
         var APStatChain = {
-            // Add this function somewhere inside the main APStatChain object
-hasUserAnswered: function(questionId) {
-    if (!this.state.mempool) return false;
-    return this.state.mempool.some(tx => 
-        tx.questionId === questionId && tx.ownerPubKey === this.state.identity.publicKey
-    );
-},
-            // Existing properties assumed from pok_app.html (e.g., questions, state management, crypto, mempool)
-            questions: POK_CURRICULUM, // Placeholder: questions loaded via existing logic
+            questions: [],
             state: {
                 currentIndex: 0,
                 theme: 'light'
-                // Other state like answered, mined, etc.
             },
-            chartInstances: [], // Moved from global as per plan
+            chartInstances: [],
+
+            // Added hasUserAnswered as per fixes
+            hasUserAnswered: function(questionId) {
+                if (!this.state || !this.state.mempool || !this.state.identity) {
+                    console.warn('hasUserAnswered called before state initialized');
+                    return false;
+                }
+                
+                const normalizedQuestionId = String(questionId);
+                
+                return this.state.mempool.some(tx => 
+                    String(tx.questionId) === normalizedQuestionId && 
+                    tx.ownerPubKey === this.state.identity.publicKey
+                );
+            },
+
+            // Fake crypto for testing
+            crypto: {
+                generateMnemonic: function() {
+                    return 'test mnemonic ' + Math.random().toString(36).substring(2);
+                },
+                deriveKeyPair: async function(mnemonic) {
+                    // Fake key pair
+                    return {
+                        publicKey: 'pub_' + Math.random().toString(36).substring(2),
+                        privateKey: 'priv_' + Math.random().toString(36).substring(2)
+                    };
+                }
+            },
 
             renderer: {
-                // Transplanted and namespaced functions from quiz_renderer.html
                 renderQuestion: function(question, index) {
-                    // Placeholder for transplanted renderQuestion logic
-                    // Would generate full question HTML including prompt, attachments, choices
+                    // Deprecated, use renderCurrentQuestion
                 },
-                renderChart: function(chartData, questionId) {
-                    const chartId = `chart-${questionId}`;
-            const config = chartData.chartConfig || {};// Use the chart's title if available, otherwise use the chart type
-            const chartTitle = chartData.title ? 
-                chartData.title : 
-                (config.description ? 
-                    `📊 ${chartData.chartType.toUpperCase()} CHART` : 
-                    `📊 ${chartData.chartType.toUpperCase()} CHART`);
-            
-            // Allow a chart to request full horizontal space when rendered inside a "multiple-charts-container"
-            const containerStyle = chartData.fullWidth ? 'style="flex:0 0 100%; max-width:100%; width:100%;"' : '';
-            
-            let chartHtml = `
-                <div class="chart-container" ${containerStyle}>
-                    <div class="chart-title">${chartTitle}</div>
-                    ${config.description ? `<div style="font-size: 0.9em; color: #666; text-align: center; margin-bottom: 10px; font-style: italic;">${config.description}</div>` : ''}
-                    <div class="chart-canvas">
-                        <canvas id="${chartId}"></canvas>
-                    </div>
-                </div>
-            `;
-
-            // Return HTML first, then we'll create the chart after the DOM is updated
-            setTimeout(() => {
-                const canvas = document.getElementById(chartId);
-                if (!canvas) return;
-
-                const ctx = canvas.getContext('2d');
-                
-                if (chartData.chartType === 'bar' || chartData.chartType === 'histogram') {
-                    // Ensure every segment in a stacked / segmented bar gets its own visually distinct color
-                    // 1. Compute one shared palette sized to the total number of series.
-                    // 2. Pick the palette entry matching the series index (wrap-around safety for very large N).
-                    const colorPalette = APStatChain.renderer.this.generateChartColors(chartData.series.length);
-
-                    const datasets = chartData.series.map((series, index) => {
-                        const color = colorPalette[index % colorPalette.length] || '#36A2EB';
-                        return {
-                            label: series.name,
-                            data: series.values,
-                            backgroundColor: color,
-                            borderColor: color,
-                            borderWidth: 1
-                        };
-                    });
-
-                    // Use chartConfig if available, otherwise use defaults
-                    const yAxisConfig = config.yAxis || {};
-                    const xAxisConfig = config.xAxis || {};
-                    
-                    // Handle grid lines - support both old and new formats
-                    let showHorizontalGrid = true;
-                    let showVerticalGrid = false;
-                    
-                    if (config.gridLines !== undefined) {
-                        if (typeof config.gridLines === 'boolean') {
-                            // Old format: gridLines: true/false
-                            showHorizontalGrid = config.gridLines;
-                            showVerticalGrid = false;
-                        } else if (typeof config.gridLines === 'object') {
-                            // New format: gridLines: {horizontal: true, vertical: false}
-                            showHorizontalGrid = config.gridLines.horizontal !== false;
-                            showVerticalGrid = config.gridLines.vertical === true;
+                renderChart: function(attachment, containerId) {
+                    if (typeof Chart === 'undefined') {
+                        console.error('Chart.js library not loaded');
+                        const container = document.getElementById(containerId);
+                        if (container) {
+                            container.outerHTML = '<div class="chart-error">Chart library failed to load. Please refresh the page.</div>';
                         }
+                        return;
                     }
                     
-                    // Configure bar spacing - gaps for bar charts, no gaps for histograms
-                    const isHistogram = chartData.chartType === 'histogram';
-                    const categoryPercentage = isHistogram ? 1.0 : 0.8;
-                    const barPercentage = isHistogram ? 1.0 : 0.9;
-
-                    // NEW: Detect orientation for bar charts (default to vertical)
-                    const orientation = config.orientation || 'vertical';
-                    const isHorizontalBar = orientation === 'horizontal';
-
-                    // NEW: Detect if bars should be stacked (applies only to bar charts)
-                    const isStacked = config.stacked === true || config.stacked === 'true';
-
-                    // Handle labels based on orientation - support both xLabels and yLabels
-                    let displayLabels = isHorizontalBar ? (chartData.yLabels || chartData.xLabels) : (chartData.xLabels || chartData.yLabels);
-
-                    // Preserve existing labelType overrides
-                    if (xAxisConfig.labelType === 'upperBound' && xAxisConfig.labels) {
-                        displayLabels = xAxisConfig.labels;
-                    } else if (xAxisConfig.labelType === 'range' && chartData.xLabels) {
-                        displayLabels = chartData.xLabels;
-                    } else if (xAxisConfig.labelType === 'lowerBound') {
-                        displayLabels = xAxisConfig.labels || chartData.xLabels;
-                    }
-
-                    const chart = new Chart(ctx, {
-                        type: 'bar',
-                        data: {
-                            labels: displayLabels,
-                            datasets: datasets
-                        },
-                        options: {
-                            indexAxis: isHorizontalBar ? 'y' : 'x',
-                            responsive: true,
-                            maintainAspectRatio: false,
-                            categoryPercentage: categoryPercentage,
-                            barPercentage: barPercentage,
-                            scales: isHorizontalBar ? {
-                                x: {
-                                    beginAtZero: xAxisConfig.min !== undefined ? (xAxisConfig.min === 0) : true,
-                                    min: xAxisConfig.min,
-                                    max: xAxisConfig.max,
-                                    title: {
-                                        display: true,
-                                        text: xAxisConfig.title || 'Value',
-                                        color: this.getTextColor()
-                                    },
-                                    grid: {
-                                        display: showVerticalGrid,
-                                        color: this.getGridColor()
-                                    },
-                                    stacked: isStacked,
-                                    ticks: {
-                                        stepSize: xAxisConfig.tickInterval,
-                                        maxTicksLimit: xAxisConfig.tickInterval ? undefined : 10,
-                                        precision: 2,
-                                        color: this.getTextColor(),
-                                        // Force Chart.js to respect our stepSize by providing a callback
-                                        callback: function(value, index, values) {
-                                            // If we have a specific tickInterval, ensure we only show ticks at those intervals
-                                            if (xAxisConfig.tickInterval) {
-                                                const step = xAxisConfig.tickInterval;
-                                                const min = xAxisConfig.min !== undefined ? xAxisConfig.min : 0;
-                                                const adjustedValue = value - min;
-                                                if (Math.abs(adjustedValue % step) < 0.000001 || Math.abs(adjustedValue % step - step) < 0.000001) {
-                                                    // Round to mitigate floating-point artifacts
-                                                    return Number(value.toFixed(6));
-                                                }
-                                                return '';
-                                            }
-                                            return value;
-                                        }
-                                    }
-                                },
-                                y: {
-                                    title: {
-                                        display: true,
-                                        text: yAxisConfig.title || 'Category',
-                                        color: this.getTextColor()
-                                    },
-                                    grid: {
-                                        display: showHorizontalGrid,
-                                        color: this.getGridColor()
-                                    },
-                                    ticks: {
-                                        color: this.getTextColor()
-                                    },
-                                    offset: true
-                                }
-                            } : {
-                                y: {
-                                    beginAtZero: yAxisConfig.min !== undefined ? (yAxisConfig.min === 0) : true,
-                                    min: yAxisConfig.min,
-                                    max: yAxisConfig.max,
-                                    title: {
-                                        display: true,
-                                        text: yAxisConfig.title || 'Value',
-                                        color: this.getTextColor()
-                                    },
-                                    grid: {
-                                        display: showHorizontalGrid,
-                                        color: this.getGridColor(),
-                                        lineWidth: 1,
-                                        drawBorder: true,
-                                        drawOnChartArea: true,
-                                        drawTicks: !yAxisConfig.hideTicks
-                                    },
-                                    stacked: isStacked,
-                                    ticks: {
-                                        stepSize: yAxisConfig.tickInterval,
-                                        maxTicksLimit: yAxisConfig.tickInterval ? undefined : 10,
-                                        precision: 2,
-                                        color: this.getTextColor(),
-                                        display: !yAxisConfig.hideTicks,
-                                        // Force Chart.js to respect our stepSize by providing a callback
-                                        callback: function(value, index, values) {
-                                            if (yAxisConfig.hideTicks) return '';
-                                            // If we have a specific tickInterval, ensure we only show ticks at those intervals
-                                            if (yAxisConfig.tickInterval) {
-                                                const step = yAxisConfig.tickInterval;
-                                                const min = yAxisConfig.min !== undefined ? yAxisConfig.min : 0;
-                                                const adjustedValue = value - min;
-                                                if (Math.abs(adjustedValue % step) < 0.000001 || Math.abs(adjustedValue % step - step) < 0.000001) {
-                                                    // Round to mitigate floating-point artifacts
-                                                    return Number(value.toFixed(6));
-                                                }
-                                                return '';
-                                            }
-                                            return value;
-                                        }
-                                    }
-                                },
-                                x: {
-                                    title: {
-                                        display: true,
-                                        text: xAxisConfig.title || 'Category',
-                                        color: this.getTextColor()
-                                    },
-                                    grid: {
-                                        display: showVerticalGrid,
-                                        color: this.getGridColor()
-                                    },
-                                    stacked: isStacked,
-                                    ticks: {
-                                        color: this.getTextColor()
-                                    },
-                                    offset: true
-                                }
-                            },
-                            plugins: {
-                                legend: {
-                                    display: datasets.length > 1,
-                                    labels: {
-                                        color: this.getTextColor()
-                                    }
-                                },
-                                // Enable data labels for bar/histogram charts when requested via chartConfig.showPointLabels
-                                datalabels: {
-                                    display: config.showPointLabels === true,
-                                    color: this.getTextColor(),
-                                    anchor: isHorizontalBar ? 'center' : 'end',
-                                    align: isHorizontalBar ? 'right' : 'top',
-                                    formatter: (value) => value
-                                }
-                            }
+                    setTimeout(() => {
+                        const canvas = document.getElementById(containerId);
+                        if (!canvas) {
+                            console.error(`Canvas element ${containerId} not found`);
+                            return;
                         }
-                    });
-                    APStatChain.chartInstances.push(chart);
-                
-                } else if (chartData.chartType === 'pie') {
-                    const seriesData = chartData.series[0].values;
-                    const labels = seriesData.map(item => item.name);
-                    const values = seriesData.map(item => item.value);
-                    
-                    const chart = new Chart(ctx, {
-                        type: 'pie',
-                        data: {
-                            labels: labels,
-                            datasets: [{
-                                data: values,
-                                backgroundColor: APStatChain.renderer.this.generateChartColors(values.length),
-                                borderWidth: 2,
-                                borderColor: APStatChain.ui.isDarkMode() ? '#2d2d2d' : '#fff'
-                            }]
-                        },
-                        options: {
-                            responsive: true,
-                            maintainAspectRatio: false,
-                            plugins: {
-                                legend: {
-                                    position: 'bottom',
-                                    labels: {
-                                        padding: 20,
-                                        usePointStyle: true,
-                                        color: this.getTextColor()
-                                    }
-                                },
-                                // Optional data labels for pie charts (percentages) when chartConfig.showPointLabels is true
-                                datalabels: {
-                                    display: (config.showPointLabels === true),
-                                    color: this.getTextColor(),
-                                    formatter: function(value, context) {
-                                        const total = values.reduce((a, b) => a + b, 0);
-                                        const percentage = ((value / total) * 100).toFixed(1);
-                                        return percentage + '%';
-                                    }
-                                },
-                                tooltip: {
-                                    callbacks: {
-                                        label: function(context) {
-                                            const total = values.reduce((a, b) => a + b, 0);
-                                            const percentage = ((context.parsed / total) * 100).toFixed(1);
-                                            return `${context.label}: ${context.parsed} (${percentage}%)`;
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    });
-                    APStatChain.chartInstances.push(chart);
-                
-                } else if (chartData.chartType === 'scatter') {
-                    const config = chartData.chartConfig || {};
-                    const xAxisConfig = config.xAxis || {};
-                    const yAxisConfig = config.yAxis || {};
-                    
-                    // Handle grid lines - support both old and new formats
-                    let showHorizontalGrid = true;
-                    let showVerticalGrid = true; // Scatter plots often show both grids
-                    
-                    if (config.gridLines !== undefined) {
-                        if (typeof config.gridLines === 'boolean') {
-                            // Old format: gridLines: true/false
-                            showHorizontalGrid = config.gridLines;
-                            showVerticalGrid = config.gridLines;
-                        } else if (typeof config.gridLines === 'object') {
-                            // New format: gridLines: {horizontal: true, vertical: false}
-                            showHorizontalGrid = config.gridLines.horizontal === true;
-                            showVerticalGrid = config.gridLines.vertical === true;
-                        }
-                    }
-                    
-                    // Build primary dataset (scatter points)
-                    const datasets = [{
-                        label: 'Data Points',
-                        data: chartData.points,
-                        backgroundColor: this.getScatterPointColor(),
-                        borderColor: this.getScatterPointColor(),
-                        pointRadius: 4,
-                        pointHoverRadius: 6
-                    }];
-
-                    // Determine if we should render point labels
-                    const hasPointLabels = (chartData.points || []).some(pt => pt.label !== undefined);
-
-                    // --------------------------------------------------
-                    // Optional regression line (least-squares)            <-- ADD
-                    // --------------------------------------------------
-                    if (config.regressionLine) {
-                        const pts = chartData.points || [];
-                        if (Array.isArray(pts) && pts.length >= 2) {
-                            // Compute least-squares slope and intercept
-                            let sumX = 0, sumY = 0, sumXY = 0, sumXX = 0;
-                            pts.forEach(p => {
-                                sumX += p.x;
-                                sumY += p.y;
-                                sumXY += p.x * p.y;
-                                sumXX += p.x * p.x;
-                            });
-                            const n = pts.length;
-                            const denominator = n * sumXX - sumX * sumX;
-                            if (denominator !== 0) {
-                                const slope = (n * sumXY - sumX * sumY) / denominator;
-                                const intercept = (sumY - slope * sumX) / n;
-
-                                // Determine the horizontal span for the line
-                                let minX = typeof xAxisConfig.min === 'number' ? xAxisConfig.min : undefined;
-                                let maxX = typeof xAxisConfig.max === 'number' ? xAxisConfig.max : undefined;
-                                if (minX === undefined || maxX === undefined) {
-                                    const xs = pts.map(p => p.x);
-                                    if (minX === undefined) minX = Math.min(...xs);
-                                    if (maxX === undefined) maxX = Math.max(...xs);
-                                }
-
-                                // Style overrides (optional)
-                                const regColor = config.regressionLineColor || this.getTextColor();
-                                const regDash  = config.regressionLineDash  || [];
-
-                                datasets.push({
-                                    label: 'Regression Line',
-                                    type: 'line',
-                                    data: [
-                                        { x: minX, y: slope * minX + intercept },
-                                        { x: maxX, y: slope * maxX + intercept }
-                                    ],
-                                    borderColor: regColor,
-                                    borderDash: regDash,
-                                    borderWidth: 2,
-                                    fill: false,
-                                    pointRadius: 0,
-                                    tension: 0,
-                                    order: 0
-                                });
-                            }
-                        }
-                    }
-
-                    // --------------------------------------------------
-                    // Optional reference line at y = 0 (useful for residual plots)
-                    // --------------------------------------------------
-                    if (config.referenceLineAtZero) {
-                        // Determine horizontal span of the scatter data (fallback to axis min/max)
-                        let minX = typeof xAxisConfig.min === 'number' ? xAxisConfig.min : undefined;
-                        let maxX = typeof xAxisConfig.max === 'number' ? xAxisConfig.max : undefined;
-                        if (minX === undefined || maxX === undefined) {
-                            const xs = chartData.points.map(p => p.x);
-                            if (minX === undefined) minX = Math.min(...xs);
-                            if (maxX === undefined) maxX = Math.max(...xs);
-                        }
-
-                        datasets.push({
-                            label: 'Reference Line y = 0',
-                            type: 'line',
-                            data: [
-                                { x: minX, y: 0 },
-                                { x: maxX, y: 0 }
-                            ],
-                            borderColor: '#CC0000',
-                            borderDash: [6, 4],
-                            borderWidth: 2,
-                            fill: false,
-                            pointRadius: 0,
-                            order: 0
-                        });
-                    }
-
-                    const chart = new Chart(ctx, {
-                        type: 'scatter',
-                        data: {
-                            datasets: datasets
-                        },
-                        options: {
-                            responsive: true,
-                            maintainAspectRatio: false,
-                            scales: {
-                                x: {
-                                    type: 'linear',
-                                    position: 'bottom',
-                                    min: xAxisConfig.min,
-                                    max: xAxisConfig.max,
-                                    title: {
-                                        display: true,
-                                        text: xAxisConfig.title || 'X Variable',
-                                        color: this.getTextColor()
+                        
+                        const ctx = canvas.getContext('2d');
+                        let config = null;
+                        
+                        switch (attachment.chartType) {
+                            case 'bar':
+                            case 'histogram':
+                                config = {
+                                    type: attachment.chartType === 'histogram' ? 'bar' : 'bar', // Histogram as bar for simplicity
+                                    data: {
+                                        labels: attachment.labels || [],
+                                        datasets: attachment.series || []
                                     },
-                                    grid: {
-                                        display: showVerticalGrid,
-                                        color: this.getGridColor()
-                                    },
-                                    ticks: {
-                                        stepSize: xAxisConfig.tickInterval,
-                                        color: this.getTextColor(),
-                                        // Force Chart.js to respect our stepSize by providing a callback
-                                        callback: function(value, index, values) {
-                                            // If we have a specific tickInterval, ensure we only show ticks at those intervals
-                                            if (xAxisConfig.tickInterval) {
-                                                const step = xAxisConfig.tickInterval;
-                                                const min = xAxisConfig.min !== undefined ? xAxisConfig.min : 0;
-                                                const adjustedValue = value - min;
-                                                if (Math.abs(adjustedValue % step) < 0.000001 || Math.abs(adjustedValue % step - step) < 0.000001) {
-                                                    // Round to mitigate floating-point artifacts
-                                                    return Number(value.toFixed(6));
-                                                }
-                                                return '';
-                                            }
-                                            return value;
-                                        }
-                                    }
-                                },
-                                y: {
-                                    min: yAxisConfig.min,
-                                    max: yAxisConfig.max,
-                                    title: {
-                                        display: true,
-                                        text: yAxisConfig.title || 'Y Variable',
-                                        color: this.getTextColor()
-                                    },
-                                    grid: {
-                                        display: showHorizontalGrid,
-                                        color: this.getGridColor()
-                                    },
-                                    ticks: {
-                                        stepSize: yAxisConfig.tickInterval,
-                                        color: this.getTextColor(),
-                                        // Force Chart.js to respect our stepSize by providing a callback
-                                        callback: function(value, index, values) {
-                                            // If we have a specific tickInterval, ensure we only show ticks at those intervals
-                                            if (yAxisConfig.tickInterval) {
-                                                const step = yAxisConfig.tickInterval;
-                                                const min = yAxisConfig.min !== undefined ? yAxisConfig.min : 0;
-                                                const adjustedValue = value - min;
-                                                if (Math.abs(adjustedValue % step) < 0.000001 || Math.abs(adjustedValue % step - step) < 0.000001) {
-                                                    // Round to mitigate floating-point artifacts
-                                                    return Number(value.toFixed(6));
-                                                }
-                                                return '';
-                                            }
-                                            return value;
-                                        }
-                                    }
-                                }
-                            },
-                            plugins: {
-                                legend: {
-                                    display: false
-                                },
-                                datalabels: {
-                                    display: (ctx) => {
-                                        const d = ctx.dataset.data[ctx.dataIndex];
-                                        // Show label if point has 'label' or global chartConfig requests labels
-                                        return (d && d.label !== undefined) || config.showPointLabels === true;
-                                    },
-                                    align: 'top',
-                                    anchor: 'center',
-                                    color: this.getTextColor(),
-                                    formatter: (value) => {
-                                        // If value has explicit label use that, otherwise display y
-                                        if (value.label !== undefined) return value.label;
-                                        if (config.showPointLabels === true) {
-                                            return `(${value.x}, ${value.y})`;
-                                        }
-                                        return '';
-                                    },
-                                    font: {
-                                        size: 12
-                                    }
-                                }
-                            }
-                        }
-                    });
-                    APStatChain.chartInstances.push(chart);
-
-                    // Add point label plugin AFTER chart creation to ensure meta is available
-                    if (false && (hasPointLabels || config.showPointLabels)) {
-                        // Create inline plugin specific to this chart instance
-                        const labelPlugin = {
-                            id: 'scatterPointLabels',
-                            afterDatasetsDraw: (c) => {
-                                if (c !== chart) return; // Only draw for this chart instance
-                                const ctx = c.ctx;
-                                ctx.save();
-                                c.data.datasets.forEach((ds, dsi) => {
-                                    // Only annotate the point dataset (assumed first) or explicitly marked datasets
-                                    if (dsi !== 0) return;
-                                    const meta = c.getDatasetMeta(dsi);
-                                    meta.data.forEach((elem, idx) => {
-                                        const pointData = ds.data[idx];
-                                        const lbl = pointData && pointData.label;
-                                        if (lbl === undefined) return;
-                                        const {x, y} = elem.getCenterPoint();
-                                        ctx.fillStyle = this.getTextColor();
-                                        ctx.font = '12px sans-serif';
-                                        ctx.textAlign = 'center';
-                                        ctx.textBaseline = 'bottom';
-                                        ctx.fillText(lbl, x, y - 6);
-                                    });
-                                });
-                                ctx.restore();
-                            }
-                        };
-                        chart.options.plugins = chart.options.plugins || [];
-                        chart.options.plugins.push(labelPlugin);
-                        chart.update();
-                    }
-                
-                } else if (chartData.chartType === 'dotplot') {
-                    const config = chartData.chartConfig || {};
-                    const xAxisConfig = config.xAxis || {};
-                    
-                    // Handle grid lines - dotplots typically have no grid lines
-                    let showHorizontalGrid = false;
-                    let showVerticalGrid = false;
-                    
-                    if (config.gridLines !== undefined) {
-                        if (typeof config.gridLines === 'boolean') {
-                            showHorizontalGrid = config.gridLines;
-                            showVerticalGrid = config.gridLines;
-                        } else if (typeof config.gridLines === 'object') {
-                            showHorizontalGrid = config.gridLines.horizontal === true;
-                            showVerticalGrid = config.gridLines.vertical === true;
-                        }
-                    }
-                    
-                    // Convert raw values to frequency data for dotplot
-                    const valueFrequency = {};
-                    chartData.values.forEach(value => {
-                        valueFrequency[value] = (valueFrequency[value] || 0) + 1;
-                    });
-                    
-                    // Create stacked dots data
-                    const dotplotData = [];
-                    for (const [value, frequency] of Object.entries(valueFrequency)) {
-                        for (let i = 1; i <= frequency; i++) {
-                            dotplotData.push({
-                                x: parseFloat(value),
-                                y: i
-                            });
-                        }
-                    }
-                    
-                    // Find max frequency for y-axis
-                    const maxFrequency = Math.max(...Object.values(valueFrequency));
-                    
-                    // Allow caller to set dot radius (default 4)
-                    const dotRadius = (config.dotRadius !== undefined ? config.dotRadius : 4);
-                    
-                    const chart = new Chart(ctx, {
-                        type: 'scatter',
-                        data: {
-                            datasets: [{
-                                label: 'Data Points',
-                                data: dotplotData,
-                                backgroundColor: this.getScatterPointColor(),
-                                borderColor: this.getScatterPointColor(),
-                                pointRadius: dotRadius,
-                                pointHoverRadius: dotRadius + 2,
-                                showLine: false
-                            }]
-                        },
-                        options: {
-                            responsive: true,
-                            maintainAspectRatio: false,
-                            scales: {
-                                x: {
-                                    type: 'linear',
-                                    position: 'bottom',
-                                    min: xAxisConfig.min,
-                                    max: xAxisConfig.max,
-                                    title: {
-                                        display: true,
-                                        text: xAxisConfig.title || 'Value',
-                                        color: this.getTextColor()
-                                    },
-                                    grid: {
-                                        display: showVerticalGrid,
-                                        color: this.getGridColor()
-                                    },
-                                    ticks: {
-                                        stepSize: xAxisConfig.tickInterval,
-                                        color: this.getTextColor(),
-                                        // Force Chart.js to respect our stepSize by providing a callback
-                                        callback: function(value, index, values) {
-                                            // If we have a specific tickInterval, ensure we only show ticks at those intervals
-                                            if (xAxisConfig.tickInterval) {
-                                                const step = xAxisConfig.tickInterval;
-                                                const min = xAxisConfig.min !== undefined ? xAxisConfig.min : 0;
-                                                const adjustedValue = value - min;
-                                                if (Math.abs(adjustedValue % step) < 0.000001 || Math.abs(adjustedValue % step - step) < 0.000001) {
-                                                    // Round to mitigate floating-point artifacts
-                                                    return Number(value.toFixed(6));
-                                                }
-                                                return '';
-                                            }
-                                            return value;
-                                        }
-                                    }
-                                },
-                                y: {
-                                    type: 'linear',
-                                    min: 0,
-                                    max: maxFrequency + 1,
-                                    title: {
-                                        display: false  // Dotplots don't typically show y-axis labels
-                                    },
-                                    grid: {
-                                        display: showHorizontalGrid,
-                                        color: this.getGridColor()
-                                    },
-                                    ticks: {
-                                        display: false,  // Hide y-axis tick labels
-                                        stepSize: 1
-                                    }
-                                }
-                            },
-                            plugins: {
-                                legend: {
-                                    display: false
-                                },
-                                datalabels: {
-                                    display: () => config.showPointLabels === true,
-                                    align: 'top',
-                                    anchor: 'center',
-                                    color: this.getTextColor(),
-                                    formatter: (value) => value.y,
-                                    font: { size: 12 }
-                                },
-                                tooltip: {
-                                    callbacks: {
-                                        title: function(context) {
-                                            return `Value: ${context[0].parsed.x}`;
+                                    options: {
+                                        scales: {
+                                            x: { grid: { color: this.getGridColor() } },
+                                            y: { grid: { color: this.getGridColor() } }
                                         },
-                                        label: function(context) {
-                                            return `Count: ${valueFrequency[context.parsed.x]}`;
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    });
-                     APStatChain.chartInstances.push(chart);
-
-                    // Adjust chart height so stacked dots appear closer (rough heuristic)
-                    const minHeight = 120;
-                    const desiredHeight = Math.max(minHeight, (dotRadius * 2 + 4) * (maxFrequency + 1));
-                    canvas.parentElement.style.height = desiredHeight + 'px';
-                 
-
-                } else if (chartData.chartType === 'boxplot') {
-                    const config = chartData.chartConfig || {};
-                    const xAxisConfig = config.xAxis || {};
-                    const boxplotData = config.boxplotData || {};
-                    
-                    // Handle grid lines
-                    let showHorizontalGrid = false;
-                    let showVerticalGrid = false;
-                    
-                    if (config.gridLines !== undefined) {
-                        if (typeof config.gridLines === 'boolean') {
-                            showHorizontalGrid = config.gridLines;
-                            showVerticalGrid = config.gridLines;
-                        } else if (typeof config.gridLines === 'object') {
-                            showHorizontalGrid = config.gridLines.horizontal === true;
-                            showVerticalGrid = config.gridLines.vertical === true;
-                        }
-                    }
-                    
-                    // Handle multiple boxplots (array) or single boxplot (object)
-                    const boxplots = Array.isArray(boxplotData) ? boxplotData : [boxplotData];
-                    
-                    // Check orientation from config (default to horizontal)
-                    const orientation = config.orientation || 'horizontal';
-                    const isHorizontal = orientation === 'horizontal';
-                    
-                    // Find overall min/max for axis scaling
-                    let overallMin = Infinity;
-                    let overallMax = -Infinity;
-                    
-                    boxplots.forEach(boxplot => {
-                        const { Q1, Q3, median, min, max, whiskerMin, whiskerMax, outliers } = boxplot;
-                        
-                        // Support both old format (min/max) and new format (whiskerMin/whiskerMax + outliers)
-                        const actualWhiskerMin = whiskerMin !== undefined ? whiskerMin : min;
-                        const actualWhiskerMax = whiskerMax !== undefined ? whiskerMax : max;
-                        const actualOutliers = outliers || [];
-                        
-                        // Calculate overall range including outliers
-                        const allValues = [actualWhiskerMin, actualWhiskerMax, ...actualOutliers];
-                        overallMin = Math.min(overallMin, Math.min(...allValues));
-                        overallMax = Math.max(overallMax, Math.max(...allValues));
-                                         });
-                    
-                    // Create boxplot visualization with orientation support
-                    let datasets = [];
-                    
-                    // Generate colors for multiple boxplots
-                    const boxplotColors = APStatChain.renderer.this.generateChartColors(boxplots.length);
-                    
-                    boxplots.forEach((boxplot, index) => {
-                        const { Q1, Q3, median, min, max, whiskerMin, whiskerMax, outliers, name } = boxplot;
-                        
-                        // Support both old format (min/max) and new format (whiskerMin/whiskerMax + outliers)
-                        const actualWhiskerMin = whiskerMin !== undefined ? whiskerMin : min;
-                        const actualWhiskerMax = whiskerMax !== undefined ? whiskerMax : max;
-                        const actualOutliers = outliers || [];
-                        
-                        // Calculate position for multiple boxplots
-                        const boxplotSpacing = 0.8; // Space between boxplots
-                        const yPos = isHorizontal ? (index - (boxplots.length - 1) / 2) * boxplotSpacing : 0;
-                        const xPos = !isHorizontal ? (index - (boxplots.length - 1) / 2) * boxplotSpacing : 0;
-                        
-                        const color = boxplotColors[index];
-                        const boxplotName = name || `Boxplot ${index + 1}`;
-                        
-                        if (isHorizontal) {
-                            // Horizontal boxplot
-                            datasets.push(
-                                // Median line (vertical in horizontal boxplot)
-                                {
-                                    label: `${boxplotName} Median`,
-                                    data: [{ x: median, y: yPos - 0.2 }, { x: median, y: yPos + 0.2 }],
-                                    backgroundColor: color,
-                                    borderColor: color,
-                                    borderWidth: 3,
-                                    pointRadius: 0,
-                                    showLine: true,
-                                    type: 'line'
-                                },
-                                // Lower whisker (horizontal)
-                                {
-                                    label: `${boxplotName} Lower Whisker`,
-                                    data: [{ x: actualWhiskerMin, y: yPos }, { x: Q1, y: yPos }],
-                                    backgroundColor: color,
-                                    borderColor: color,
-                                    borderWidth: 2,
-                                    pointRadius: 0,
-                                    showLine: true,
-                                    type: 'line'
-                                },
-                                // Upper whisker (horizontal)
-                                {
-                                    label: `${boxplotName} Upper Whisker`,
-                                    data: [{ x: Q3, y: yPos }, { x: actualWhiskerMax, y: yPos }],
-                                    backgroundColor: color,
-                                    borderColor: color,
-                                    borderWidth: 2,
-                                    pointRadius: 0,
-                                    showLine: true,
-                                    type: 'line'
-                                },
-                                // Whisker caps (vertical)
-                                {
-                                    label: `${boxplotName} Lower Cap`,
-                                    data: [
-                                        { x: actualWhiskerMin, y: yPos - 0.1 },
-                                        { x: actualWhiskerMin, y: yPos + 0.1 }
-                                    ],
-                                    backgroundColor: color,
-                                    borderColor: color,
-                                    borderWidth: 2,
-                                    pointRadius: 0,
-                                    showLine: true,
-                                    type: 'line'
-                                },
-                                {
-                                    label: `${boxplotName} Upper Cap`,
-                                    data: [
-                                        { x: actualWhiskerMax, y: yPos - 0.1 },
-                                        { x: actualWhiskerMax, y: yPos + 0.1 }
-                                    ],
-                                    backgroundColor: color,
-                                    borderColor: color,
-                                    borderWidth: 2,
-                                    pointRadius: 0,
-                                    showLine: true,
-                                    type: 'line'
-                                }
-                            );
-                            
-                            // Add outliers if any
-                            if (actualOutliers.length > 0) {
-                                const outlierData = actualOutliers.map(outlierValue => ({ x: outlierValue, y: yPos }));
-                                datasets.push({
-                                    label: `${boxplotName} Outliers`,
-                                    data: outlierData,
-                                    backgroundColor: color,
-                                    borderColor: color,
-                                    borderWidth: 2,
-                                    pointRadius: 5,
-                                    showLine: false,
-                                    type: 'scatter'
-                                });
-                            }
-                        } else {
-                            // Vertical boxplot
-                            datasets.push(
-                                // Median line (horizontal in vertical boxplot)
-                                {
-                                    label: `${boxplotName} Median`,
-                                    data: [{ x: xPos - 0.2, y: median }, { x: xPos + 0.2, y: median }],
-                                    backgroundColor: color,
-                                    borderColor: color,
-                                    borderWidth: 3,
-                                    pointRadius: 0,
-                                    showLine: true,
-                                    type: 'line'
-                                },
-                                // Lower whisker (vertical)
-                                {
-                                    label: `${boxplotName} Lower Whisker`,
-                                    data: [{ x: xPos, y: actualWhiskerMin }, { x: xPos, y: Q1 }],
-                                    backgroundColor: color,
-                                    borderColor: color,
-                                    borderWidth: 2,
-                                    pointRadius: 0,
-                                    showLine: true,
-                                    type: 'line'
-                                },
-                                // Upper whisker (vertical)
-                                {
-                                    label: `${boxplotName} Upper Whisker`,
-                                    data: [{ x: xPos, y: Q3 }, { x: xPos, y: actualWhiskerMax }],
-                                    backgroundColor: color,
-                                    borderColor: color,
-                                    borderWidth: 2,
-                                    pointRadius: 0,
-                                    showLine: true,
-                                    type: 'line'
-                                },
-                                // Whisker caps (horizontal)
-                                {
-                                    label: `${boxplotName} Lower Cap`,
-                                    data: [
-                                        { x: xPos - 0.1, y: actualWhiskerMin },
-                                        { x: xPos + 0.1, y: actualWhiskerMin }
-                                    ],
-                                    backgroundColor: color,
-                                    borderColor: color,
-                                    borderWidth: 2,
-                                    pointRadius: 0,
-                                    showLine: true,
-                                    type: 'line'
-                                },
-                                {
-                                    label: `${boxplotName} Upper Cap`,
-                                    data: [
-                                        { x: xPos - 0.1, y: actualWhiskerMax },
-                                        { x: xPos + 0.1, y: actualWhiskerMax }
-                                    ],
-                                    backgroundColor: color,
-                                    borderColor: color,
-                                    borderWidth: 2,
-                                    pointRadius: 0,
-                                    showLine: true,
-                                    type: 'line'
-                                }
-                            );
-                            
-                            // Add outliers if any
-                            if (actualOutliers.length > 0) {
-                                const outlierData = actualOutliers.map(outlierValue => ({ x: xPos, y: outlierValue }));
-                                datasets.push({
-                                    label: `${boxplotName} Outliers`,
-                                    data: outlierData,
-                                    backgroundColor: color,
-                                    borderColor: color,
-                                    borderWidth: 2,
-                                    pointRadius: 5,
-                                    showLine: false,
-                                    type: 'scatter'
-                                });
-                            }
-                        }
-                    }); // End of boxplots.forEach
-                    
-                    // High DPI canvas resize for crisp rendering
-                    const dpr = window.devicePixelRatio || 1;
-                    const parentRect = canvas.parentElement.getBoundingClientRect();
-                    const displayWidth = parentRect.width;
-                    const displayHeight = parentRect.height;
-                    canvas.width = displayWidth * dpr;
-                    canvas.height = displayHeight * dpr;
-                    canvas.style.width = displayWidth + 'px';
-                    canvas.style.height = displayHeight + 'px';
-                    // Do NOT manually scale ctx – Chart.js handles DPR internally
-                    
-                    const chart = new Chart(ctx, {
-                        type: 'scatter',
-                        data: {
-                            datasets: datasets
-                        },
-                        options: {
-                            responsive: true,
-                            maintainAspectRatio: false,
-                            scales: isHorizontal ? {
-                                x: {
-                                    type: 'linear',
-                                    position: 'bottom',
-                                    min: xAxisConfig.min || (overallMin - 2),
-                                    max: xAxisConfig.max || (overallMax + 2),
-                                    title: {
-                                        display: true,
-                                        text: xAxisConfig.title || 'Value',
-                                        color: this.getTextColor()
-                                    },
-                                    grid: {
-                                        display: showVerticalGrid,
-                                        color: this.getGridColor()
-                                    },
-                                    ticks: {
-                                        stepSize: xAxisConfig.tickInterval,
-                                        color: this.getTextColor(),
-                                        // Force Chart.js to respect our stepSize by providing a callback
-                                        callback: function(value, index, values) {
-                                            // If we have a specific tickInterval, ensure we only show ticks at those intervals
-                                            if (xAxisConfig.tickInterval) {
-                                                const step = xAxisConfig.tickInterval;
-                                                const min = xAxisConfig.min !== undefined ? xAxisConfig.min : 0;
-                                                const adjustedValue = value - min;
-                                                if (Math.abs(adjustedValue % step) < 0.000001 || Math.abs(adjustedValue % step - step) < 0.000001) {
-                                                    // Round to mitigate floating-point artifacts
-                                                    return Number(value.toFixed(6));
-                                                }
-                                                return '';
-                                            }
-                                            return value;
-                                        }
-                                    }
-                                },
-                                y: {
-                                    type: 'linear',
-                                    min: -(boxplots.length) * 0.5,
-                                    max: (boxplots.length) * 0.5,
-                                    display: boxplots.length > 1,  // Show y-axis labels for multiple boxplots
-                                    title: {
-                                        display: boxplots.length > 1,
-                                        text: 'Groups',
-                                        color: this.getTextColor()
-                                    },
-                                    ticks: {
-                                        display: boxplots.length > 1,
-                                        color: this.getTextColor(),
-                                        callback: function(value, index) {
-                                            const boxplotIndex = Math.round(value + (boxplots.length - 1) / 2);
-                                            if (boxplotIndex >= 0 && boxplotIndex < boxplots.length) {
-                                                return boxplots[boxplotIndex].name || `Group ${boxplotIndex + 1}`;
-                                            }
-                                            return '';
-                                        }
-                                    }
-                                }
-                            } : {
-                                x: {
-                                    type: 'linear',
-                                    min: -(boxplots.length) * 0.5,
-                                    max: (boxplots.length) * 0.5,
-                                    display: boxplots.length > 1,  // Show x-axis labels for multiple boxplots
-                                    title: {
-                                        display: boxplots.length > 1,
-                                        text: 'Groups',
-                                        color: this.getTextColor()
-                                    },
-                                    ticks: {
-                                        display: boxplots.length > 1,
-                                        color: this.getTextColor(),
-                                        callback: function(value, index) {
-                                            const boxplotIndex = Math.round(value + (boxplots.length - 1) / 2);
-                                            if (boxplotIndex >= 0 && boxplotIndex < boxplots.length) {
-                                                return boxplots[boxplotIndex].name || `Group ${boxplotIndex + 1}`;
-                                            }
-                                            return '';
-                                        }
-                                    }
-                                },
-                                y: {
-                                    type: 'linear',
-                                    position: 'left',
-                                    min: xAxisConfig.min || (overallMin - 2),
-                                    max: xAxisConfig.max || (overallMax + 2),
-                                    title: {
-                                        display: true,
-                                        text: xAxisConfig.title || 'Value',
-                                        color: this.getTextColor()
-                                    },
-                                    grid: {
-                                        display: showHorizontalGrid,
-                                        color: this.getGridColor()
-                                    },
-                                    ticks: {
-                                        display: !yAxisConfig.hideTicks,
-                                        stepSize: yAxisConfig.tickInterval,
-                                        color: this.getTextColor()
-                                    }
-                                }
-                            },
-                            plugins: {
-                                legend: {
-                                    display: false
-                                },
-                                tooltip: {
-                                    callbacks: {
-                                        title: function(context) {
-                                            const dataset = context[0].dataset;
-                                            return dataset.label;
+                                        plugins: {
+                                            legend: { labels: { color: this.getTextColor() } }
                                         },
-                                        label: function(context) {
-                                            const dataset = context.dataset;
-                                            
-                                            if (dataset.label.includes('Median')) {
-                                                const value = isHorizontal ? context.parsed.x : context.parsed.y;
-                                                return `Median: ${value}`;
-                                            } else if (dataset.label.includes('Outliers')) {
-                                                const value = isHorizontal ? context.parsed.x : context.parsed.y;
-                                                return `Outlier: ${value}`;
-                                            } else if (dataset.label.includes('Whisker')) {
-                                                const value = isHorizontal ? context.parsed.x : context.parsed.y;
-                                                return `Whisker endpoint: ${value}`;
-                                            } else if (dataset.label.includes('Cap')) {
-                                                const value = isHorizontal ? context.parsed.x : context.parsed.y;
-                                                return `Whisker cap: ${value}`;
-                                            }
-                                            const value = isHorizontal ? context.parsed.x : context.parsed.y;
-                                            return `Value: ${value}`;
-                                        }
-                                    }
-                                },
-                                datalabels: {
-                                    display: (ctx) => {
-                                        const cfg = (chartData.chartConfig || {});
-                                        return cfg.showPointLabels === true; // off by default
-                                    },
-                                    color: this.getTextColor(),
-                                    align: 'top',
-                                    anchor: 'center'
-                                }
-                            }
-                        },
-                        plugins: [{
-                            id: 'boxplotBox',
-                            afterDraw: function(chart) {
-                                const ctx = chart.ctx;
-                                const chartArea = chart.chartArea;
-                                ctx.save();
-                                
-                                // Draw boxes for each boxplot
-                                const boxplotSpacing = 0.8; // Space between boxplots
-                                boxplots.forEach((boxplot, index) => {
-                                    const { Q1, Q3, name } = boxplot;
-                                    const color = boxplotColors[index];
-                                    
-                                    // Set fill and stroke styles
-                                    ctx.fillStyle = color + '33'; // Add transparency
-                                    ctx.strokeStyle = color;
-                                    ctx.lineWidth = 2;
-                                    
-                                    if (isHorizontal) {
-                                        const xScale = chart.scales.x;
-                                        const yScale = chart.scales.y;
-                                        const boxHeight = 30;
-                                        const yPos = (index - (boxplots.length - 1) / 2) * boxplotSpacing;
-                                        const centerY = yScale.getPixelForValue(yPos);
-                                        const q1X = xScale.getPixelForValue(Q1);
-                                        const q3X = xScale.getPixelForValue(Q3);
-                                        ctx.fillRect(q1X, centerY - boxHeight/2, q3X - q1X, boxHeight);
-                                        ctx.strokeRect(q1X, centerY - boxHeight/2, q3X - q1X, boxHeight);
-                                    } else {
-                                        const xScale = chart.scales.x;
-                                        const yScale = chart.scales.y;
-                                        const boxWidth = 30;
-                                        const xPos = (index - (boxplots.length - 1) / 2) * boxplotSpacing;
-                                        const centerX = xScale.getPixelForValue(xPos);
-                                        const q1Y = yScale.getPixelForValue(Q1);
-                                        const q3Y = yScale.getPixelForValue(Q3);
-                                        ctx.fillRect(centerX - boxWidth/2, q3Y, boxWidth, q1Y - q3Y);
-                                        ctx.strokeRect(centerX - boxWidth/2, q3Y, boxWidth, q1Y - q3Y);
-                                    }
-                                });
-                                
-                                ctx.restore();
-                            }
-                        }]
-                    });
-                    APStatChain.chartInstances.push(chart);
-                } else if (chartData.chartType === 'normal') {
-                    // --------------------------------------------------
-                    // Normal distribution curve with optional shaded region
-                    // --------------------------------------------------
-                    const mean = (typeof chartData.mean === 'number') ? chartData.mean : 0;
-                    const sd   = (typeof chartData.sd   === 'number' && chartData.sd > 0) ? chartData.sd : 1;
-                    const shade = chartData.shade || null; // {lower: number|null, upper: number|null}
-
-                    const config        = chartData.chartConfig || {};
-                    const xAxisConfig   = config.xAxis || {};
-                    const yAxisConfig   = config.yAxis || {};
-
-                    const xMin = (typeof xAxisConfig.min === 'number') ? xAxisConfig.min : mean - 3 * sd;
-                    const xMax = (typeof xAxisConfig.max === 'number') ? xAxisConfig.max : mean + 3 * sd;
-                    const tickInterval = (typeof xAxisConfig.tickInterval === 'number') ? xAxisConfig.tickInterval : sd;
-
-                    const pdf = (x) => (1 / (sd * Math.sqrt(2 * Math.PI))) * Math.exp(-0.5 * Math.pow((x - mean) / sd, 2));
-
-                    const numPoints = 120;
-                    const curvePoints = [];
-                    const shadePoints = [];
-
-                    const peakY = pdf(mean);
-
-                    for (let i = 0; i <= numPoints; i++) {
-                        const x = xMin + (i / numPoints) * (xMax - xMin);
-                        const rawY = pdf(x);
-                        const y = rawY / peakY; // scale
-                        curvePoints.push({ x, y });
-
-                        if (shade) {
-                            const inLower = (shade.lower == null) || (x >= shade.lower);
-                            const inUpper = (shade.upper == null) || (x <= shade.upper);
-                            shadePoints.push({ x, y: (inLower && inUpper) ? y : null });
-                        }
-                    }
-
-                    const datasets = [{
-                        label: 'Normal Curve',
-                        type: 'line',
-                        data: curvePoints,
-                        borderColor: this.getTextColor(),
-                        borderWidth: 2,
-                        fill: false,
-                        pointRadius: 0,
-                        tension: 0.15
-                    }];
-
-                    if (shade) {
-                        const shadeColor = APStatChain.ui.isDarkMode() ? 'rgba(200,200,200,0.35)' : 'rgba(0,0,0,0.25)';
-                        datasets.push({
-                            label: 'Shaded Region',
-                            type: 'line',
-                            data: shadePoints,
-                            borderColor: 'transparent',
-                            backgroundColor: shadeColor,
-                            fill: 'origin',
-                            pointRadius: 0,
-                            tension: 0.15,
-                            borderWidth: 0
-                        });
-                    }
-
-                    const chart = new Chart(ctx, {
-                        type: 'line',
-                        data: { datasets },
-                        options: {
-                            responsive: true,
-                            maintainAspectRatio: false,
-                            scales: {
-                                x: {
-                                    type: 'linear',
-                                    position: 'bottom',
-                                    min: xMin,
-                                    max: xMax,
-                                    ticks: {
-                                        stepSize: tickInterval,
-                                        color: this.getTextColor()
-                                    },
-                                    title: {
-                                        display: true,
-                                        text: xAxisConfig.title || 'Value',
-                                        color: this.getTextColor()
-                                    },
-                                    grid: { display: false }
-                                },
-                                y: {
-                                    beginAtZero: true,
-                                    display: false,
-                                    min: 0,
-                                    title: {
-                                        display: !!yAxisConfig.title,
-                                        text: yAxisConfig.title || '',
-                                        color: this.getTextColor()
-                                    },
-                                    grid: { display: false },
-                                    ticks: { display: false }
-                                }
-                            },
-                            plugins: { legend: { display: false }, datalabels: { display: false } }
-                        }
-                    });
-                    APStatChain.chartInstances.push(chart);
-                } else if (chartData.chartType === 'chisquare') {
-                    // --- New chi-square distribution rendering ---
-                    const cfg = chartData.chartConfig || {};
-                    const xAxisConfig = cfg.xAxis || {};
-                    const yAxisConfig = cfg.yAxis || {};
-
-                    // Accept list of degrees of freedom or single df
-                    const dfList = Array.isArray(chartData.dfList) && chartData.dfList.length > 0 ?
-                                    chartData.dfList :
-                                    (typeof chartData.df === 'number' ? [chartData.df] : [1]);
-
-                    // Optional labels array; default to "df = k" notation
-                    const labels = Array.isArray(chartData.labels) && chartData.labels.length === dfList.length ?
-                                    chartData.labels : dfList.map(df => `df = ${df}`);
-
-                    const xMin = typeof xAxisConfig.min === 'number' ? xAxisConfig.min : 0;
-                    const xMax = typeof xAxisConfig.max === 'number' ? xAxisConfig.max : Math.max(...dfList) * 3.5;
-                    const numPoints = cfg.numPoints || 120;
-
-                    // Lightweight Lanczos approximation for Gamma function
-                    function gamma(z) {
-                        const p = [
-                            0.99999999999980993,
-                            676.5203681218851,
-                            -1259.1392167224028,
-                            771.32342877765313,
-                            -176.61502916214059,
-                            12.507343278686905,
-                            -0.13857109526572012,
-                            9.9843695780195716e-6,
-                            1.5056327351493116e-7
-                        ];
-                        const g = 7;
-                        if (z < 0.5) {
-                            return Math.PI / (Math.sin(Math.PI * z) * gamma(1 - z));
-                        }
-                        z -= 1;
-                        let x = p[0];
-                        for (let i = 1; i < p.length; i++) {
-                            x += p[i] / (z + i);
-                        }
-                        const t = z + g + 0.5;
-                        return Math.sqrt(2 * Math.PI) * Math.pow(t, z + 0.5) * Math.exp(-t) * x;
-                    }
-
-                    // Chi-square probability density function
-                    function chiSquarePdf(x, k) {
-                        if (x <= 0) return 0;
-                        const coeff = 1 / (Math.pow(2, k / 2) * gamma(k / 2));
-                        return coeff * Math.pow(x, k / 2 - 1) * Math.exp(-x / 2);
-                    }
-
-                    const colorPalette = APStatChain.renderer.this.generateChartColors(dfList.length);
-                    const datasets = dfList.map((df, idx) => {
-                        const pts = [];
-                        for (let i = 0; i <= numPoints; i++) {
-                            const xVal = xMin + (i / numPoints) * (xMax - xMin);
-                            pts.push({ x: xVal, y: chiSquarePdf(xVal, df) });
-                        }
-                        const color = colorPalette[idx % colorPalette.length] || '#36A2EB';
-                        return {
-                            label: labels[idx],
-                            type: 'line',
-                            data: pts,
-                            borderColor: color,
-                            borderWidth: 2,
-                            fill: false,
-                            pointRadius: 0,
-                            tension: 0.15
-                        };
-                    });
-
-                    // Grid line settings (reuse existing pattern)
-                    let showHorizontalGrid = true;
-                    let showVerticalGrid = false;
-                    if (cfg.gridLines !== undefined) {
-                        if (typeof cfg.gridLines === 'boolean') {
-                            showHorizontalGrid = cfg.gridLines;
-                        } else if (typeof cfg.gridLines === 'object') {
-                            showHorizontalGrid = cfg.gridLines.horizontal !== false;
-                            showVerticalGrid = cfg.gridLines.vertical === true;
-                        }
-                    }
-
-                    const chart = new Chart(ctx, {
-                        type: 'line',
-                        data: { datasets },
-                        options: {
-                            responsive: true,
-                            maintainAspectRatio: false,
-                            scales: {
-                                x: {
-                                    type: 'linear',
-                                    position: 'bottom',
-                                    min: xMin,
-                                    max: xMax,
-                                    title: {
-                                        display: true,
-                                        text: xAxisConfig.title || 'χ²',
-                                        color: this.getTextColor()
-                                    },
-                                    ticks: {
-                                        stepSize: xAxisConfig.tickInterval,
-                                        color: this.getTextColor()
-                                    },
-                                    grid: {
-                                        display: showVerticalGrid,
-                                        color: this.getGridColor()
-                                    }
-                                },
-                                y: {
-                                    beginAtZero: true,
-                                    title: {
-                                        display: !!yAxisConfig.title,
-                                        text: yAxisConfig.title || '',
-                                        color: this.getTextColor()
-                                    },
-                                    ticks: {
-                                        display: yAxisConfig.hideTicks !== true,
-                                        color: this.getTextColor()
-                                    },
-                                    grid: {
-                                        display: showHorizontalGrid,
-                                        color: this.getGridColor()
-                                    }
-                                }
-                            },
-                            plugins: {
-                                legend: {
-                                    display: dfList.length > 1,
-                                    labels: { color: this.getTextColor() }
-                                },
-                                datalabels: {
-                                    display: cfg.showPointLabels === true,
-                                    color: this.getTextColor()
-                                }
-                            }
-                        }
-                    });
-                    APStatChain.chartInstances.push(chart);
-                } else if (chartData.chartType === 'numberline') {
-                    // --------------------------------------------------
-                    // Custom number line (baseline with ticks & labels)
-                    // --------------------------------------------------
-                    const ticksData = Array.isArray(chartData.ticks) && chartData.ticks.length > 0 ? chartData.ticks : [
-                        { x: -2, label: 'a' },
-                        { x: -1, label: 'b' },
-                        { x:  0, label: 'c' },
-                        { x:  1, label: 'd' },
-                        { x:  2, label: 'e' }
-                    ];
-
-                    // Determine horizontal span (add small margin so arrow-heads don't clip)
-                    const xs = ticksData.map(t => t.x);
-                    const minX = Math.min(...xs) - 0.5;
-                    const maxX = Math.max(...xs) + 0.5;
-
-                    // Build baseline dataset (straight line at y = 0)
-                    const baselineDS = {
-                        label: 'Number Line',
-                        type: 'line',
-                        data: [ { x: minX, y: 0 }, { x: maxX, y: 0 } ],
-                        borderColor: this.getTextColor(),
-                        borderWidth: 2,
-                        pointRadius: 0,
-                        fill: false,
-                        tension: 0
-                    };
-
-                    // Inline plugin to draw ticks, labels, and arrow-heads
-                    const numberLinePlugin = {
-                        id: 'numberLinePlugin',
-                        afterDraw: (chart) => {
-                            const ctx = chart.ctx;
-                            const xScale = chart.scales.x;
-                            const yScale = chart.scales.y;
-                            const y0 = yScale.getPixelForValue(0);
-
-                            ctx.save();
-                            ctx.strokeStyle = this.getTextColor();
-                            ctx.fillStyle   = this.getTextColor();
-                            ctx.lineWidth   = 2;
-
-                            // Arrow-heads
-                            const arrowSize = 6;
-                            const leftPx  = xScale.getPixelForValue(minX);
-                            const rightPx = xScale.getPixelForValue(maxX);
-
-                            // Left arrow
-                            ctx.beginPath();
-                            ctx.moveTo(leftPx + arrowSize, y0 - arrowSize);
-                            ctx.lineTo(leftPx, y0);
-                            ctx.lineTo(leftPx + arrowSize, y0 + arrowSize);
-                            ctx.closePath();
-                            ctx.fill();
-
-                            // Right arrow
-                            ctx.beginPath();
-                            ctx.moveTo(rightPx - arrowSize, y0 - arrowSize);
-                            ctx.lineTo(rightPx, y0);
-                            ctx.lineTo(rightPx - arrowSize, y0 + arrowSize);
-                            ctx.closePath();
-                            ctx.fill();
-
-                            // Ticks & labels
-                            const tickHeight = 12; // increased for visibility
-                            ctx.font = '14px sans-serif';
-                            ctx.textAlign = 'center';
-                            ticksData.forEach(tk => {
-                                const xPx = xScale.getPixelForValue(tk.x);
-                                // Tick mark
-                                if (tk.drawTick !== false) {
-                                  ctx.beginPath();
-                                  ctx.moveTo(xPx, y0 - tickHeight);
-                                  ctx.lineTo(xPx, y0 + tickHeight);
-                                  ctx.stroke();
-                                }
-                                // Top label
-                                if (tk.label || tk.topLabel) {
-                                  ctx.textBaseline = 'bottom';
-                                  ctx.fillText(tk.label || tk.topLabel, xPx, y0 - tickHeight - 4);
-                                }
-                                // Bottom label
-                                if (tk.bottomLabel || tk.valueLabel) {
-                                  ctx.textBaseline = 'top';
-                                  ctx.fillText(tk.bottomLabel || tk.valueLabel, xPx, y0 + tickHeight + 4);
-                                }
-                            });
-                            ctx.restore();
-                        }
-                    };
-
-                    const xAxisCfg = chartData.xAxis || {};
-
-                    const chart = new Chart(ctx, {
-                        type: 'line',
-                        data: { datasets: [baselineDS] },
-                        options: {
-                            responsive: true,
-                            maintainAspectRatio: false,
-                            animation: false,
-                            scales: {
-                                x: {
-                                    type: 'linear',
-                                    min: xAxisCfg.min !== undefined ? xAxisCfg.min : minX,
-                                    max: xAxisCfg.max !== undefined ? xAxisCfg.max : maxX,
-                                    ticks: {
-                                        display: false
-                                    },
-                                    grid: { display: false },
-                                    title: {
-                                        display: !!xAxisCfg.title,
-                                        text: xAxisCfg.title || '',
                                         color: this.getTextColor()
                                     }
-                                },
-                                y: {
-                                    min: -1,
-                                    max: 1,
-                                    display: false,
-                                    grid: { display: false }
-                                }
-                            },
-                            plugins: {
-                                legend: { display: false },
-                                datalabels: { display: false }
-                            }
-                        },
-                        plugins: [numberLinePlugin]
-                    });
-                    APStatChain.chartInstances.push(chart);
-                }
-            }, 100);
-
-            return chartHtml;
-        },
-                renderTable: function(tableData, container) {
-
-                    if (!tableData || !Array.isArray(tableData) || tableData.length === 0) return '';
-            
-            const headers = tableData[0];
-            const rows = tableData.slice(1);
-            
-            let tableHtml = '<div class="table-container"><table>';
-            
-            // Headers
-            tableHtml += '<thead><tr>';
-            headers.forEach(header => {
-                tableHtml += `<th>${header}</th>`;
-            });
-            tableHtml += '</tr></thead>';
-            
-            // Rows
-            tableHtml += '<tbody>';
-            rows.forEach(row => {
-                tableHtml += '<tr>';
-                row.forEach(cell => {
-                    tableHtml += `<td>${cell}</td>`;
-                });
-                tableHtml += '</tr>';
-            });
-            tableHtml += '</tbody></table></div>';
-            
-            return tableHtml;     
-                   },
-                   forceChartRerender: function() {
-            // Destroy existing charts
-            APStatChain.chartInstances.forEach(chart => {
-                if (chart && typeof chart.destroy === 'function') {
-                    chart.destroy();
-                }
-            });
-            APStatChain.chartInstances = [];
-            
-            // Re-render if we have data
-            APStatChain.renderer.renderCurrentQuestion();
-        },
-                renderChoices: function(choices, answerKey) {
-            if (!choices || !Array.isArray(choices)) return '';
-            
-            const normalizedAnswer = (answerKey || '').toString().trim().toUpperCase();
-            let choicesHtml = '<div class="choices">';
-                choices.forEach(choice => {
-    const isCorrect = choice.key.toString().trim().toUpperCase() === normalizedAnswer;
-    
-    // The unique ID for this radio button
-    const inputId = `choice-${choice.key}`; 
-    
-    choicesHtml += `
-        <div class="choice ${isCorrect ? 'correct-choice' : ''}">
-            <label for="${inputId}">
-                <input type="radio" name="answer" id="${inputId}" value="${choice.key}">
-                <span class="choice-key">${choice.key}.</span>
-                ${choice.value}
-            </label>
-        </div>
-    `;
-});
-            choicesHtml += '</div>';
-            
-            return choicesHtml;
+                                };
+                                break;
+                            case 'pie':
+                                config = {
+                                    type: 'pie',
+                                    data: {
+                                        labels: attachment.labels || [],
+                                        datasets: [{
+                                            data: attachment.values || [],
+                                            backgroundColor: this.generateChartColors((attachment.values || []).length)
+                                        }]
+                                    },
+                                    options: {
+                                        plugins: {
+                                            legend: { labels: { color: this.getTextColor() } }
+                                        },
+                                        color: this.getTextColor()
+                                    }
+                                };
+                                break;
+                            case 'scatter':
+                                config = {
+                                    type: 'scatter',
+                                    data: {
+                                        datasets: [{
+                                            data: attachment.points || [],
+                                            pointBackgroundColor: this.getScatterPointColor()
+                                        }]
+                                    },
+                                    options: {
+                                        scales: {
+                                            x: { grid: { color: this.getGridColor() } },
+                                            y: { grid: { color: this.getGridColor() } }
+                                        },
+                                        color: this.getTextColor()
+                                    }
+                                };
+                                break;
+                        }
+                        
+                        if (config) {
+                            const chart = new Chart(ctx, config);
+                            APStatChain.chartInstances.push(chart);
+                        }
+                    }, 0); // Use arrow function to preserve this
                 },
-                renderScoringRubric: function(scoring) {
-            if (!scoring || !scoring.rubric) return '';
-            
-            let rubricHtml = `
-                <div class="scoring-rubric">
-                    <div class="scoring-title">Scoring Rubric (Total: ${scoring.totalPoints} points)</div>
-            `;
-            
-            scoring.rubric.forEach(rubricPart => {
-                rubricHtml += `
-                    <div class="scoring-part">
-                        <div class="scoring-part-header">
-                            Part ${rubricPart.part} (${rubricPart.maxPoints} point${rubricPart.maxPoints !== 1 ? 's' : ''})
-                        </div>
-                        <div class="scoring-criteria">
-                `;
-                
-                if (rubricPart.criteria && Array.isArray(rubricPart.criteria)) {
-                    rubricPart.criteria.forEach(criterion => {
-                        rubricHtml += `<div class="scoring-criterion">${criterion}</div>`;
-                    });
-                }
-                
-                rubricHtml += `</div>`;
-                
-                if (rubricPart.scoringNotes) {
-                    rubricHtml += `<div class="scoring-notes">${rubricPart.scoringNotes}</div>`;
-                }
-                
-                rubricHtml += `</div>`;
-            });
-            
-            rubricHtml += `</div>`;
-            return rubricHtml;
-        },
-                renderSolutionPart: function(part, questionId) {
-            let partHtml = `
-                <div class="solution-part">
-                    <div class="solution-part-id">Part ${part.partId}</div>
-                    <div class="solution-description">${part.description}</div>
-                    <div class="solution-response">${part.response}</div>
-            `;
-            
-            // Render solution attachments (charts, tables, images, etc.)
-            if (part.attachments) {
-                // Render image if present
-                if (part.attachments.image) {
-                    const imageAlt = part.attachments.imageAlt || 'Solution diagram';
-                    const imageCaption = part.attachments.imageCaption || '';
-                    partHtml += `
-                        <div class="image-container">
-                            <img src="${part.attachments.image}" 
-                                 alt="${imageAlt}" 
-                                 class="question-image" 
-                                 loading="lazy" 
-                                 decoding="async">
-                            ${imageCaption ? `<div class="image-caption">${imageCaption}</div>` : ''}
-                        </div>
-                    `;
-                }
-                
-                // Render multiple images if present
-                if (part.attachments.images && Array.isArray(part.attachments.images)) {
-                    partHtml += '<div class="images-container">';
-                    part.attachments.images.forEach((img, imgIndex) => {
-                        const imageAlt = img.imageAlt || `Solution diagram ${imgIndex + 1}`;
-                        const imageCaption = img.imageCaption || '';
-                        partHtml += `
-                            <div class="image-container">
-                                <img src="${img.image}" 
-                                     alt="${imageAlt}" 
-                                     class="question-image" 
-                                     loading="lazy" 
-                                     decoding="async">
-                                ${imageCaption ? `<div class="image-caption">${imageCaption}</div>` : ''}
+                renderTable: function(tableData) {
+                    if (!tableData || !Array.isArray(tableData.rows)) return '';
+                    
+                    let html = '<table>';
+                    if (tableData.headers) {
+                        html += '<thead><tr>' + tableData.headers.map(h => `<th>${h}</th>`).join('') + '</tr></thead>';
+                    }
+                    html += '<tbody>${tableData.rows.map(row => `<tr>${row.map(cell => `<td>${cell}</td>`).join('')}</tr>`).join('')}</tbody>';
+                    html += '</table>';
+                    return html;
+                },
+                renderChoices: function(choices, answerKey, questionId) {
+                    if (!choices || !Array.isArray(choices)) return '';
+                    
+                    const isAnswered = APStatChain.hasUserAnswered(questionId);
+                    const normalizedAnswer = (answerKey || '').toString().trim().toUpperCase();
+                    
+                    let html = '<div class="choices">';
+                    choices.forEach(choice => {
+                        const isCorrect = choice.key.toString().trim().toUpperCase() === normalizedAnswer;
+                        const inputId = `choice-${choice.key}-${questionId}`;
+                        const disabledAttr = isAnswered ? 'disabled' : '';
+                        const correctClass = isCorrect && isAnswered ? 'correct-choice' : '';
+                        
+                        html += `
+                            <div class="choice${correctClass}">
+                                <label for="${inputId}">
+                                    <input type="radio" name="answer" id="${inputId}" value="${choice.key}" ${disabledAttr}>
+                                    <span class="choice-key"}>${choice.key}.</span>
+                                    ${choice.value}
+                                </label>
                             </div>
                         `;
-                    });
-                    partHtml += '</div>';
-                }
-                
-                if (part.attachments.chartType) {
-                    partHtml += this.renderChart(part.attachments, `${questionId}-solution-${part.partId}`);
-                }
-                if (part.attachments.table) {
-                    partHtml += this.renderTable(part.attachments.table);
-                }
-            }
-            
-            // Render calculations if present
-            if (part.calculations && Array.isArray(part.calculations)) {
-                partHtml += `
-                    <div class="solution-calculations">
-                        <div class="solution-calculations-title">Calculations:</div>
-                `;
-                part.calculations.forEach(calc => {
-                    partHtml += `<div class="calculation-step">${calc}</div>`;
-                });
-                partHtml += `</div>`;
-            }
-            
-            partHtml += `</div>`;
-            return partHtml;
-        },
-
-                renderSolution: function(solution, questionId) {
-            if (!solution) return '';
-            
-            let solutionHtml = `
-                <div class="solution">
-                    <div class="solution-title">📝 Solution</div>
-            `;
-            
-            // Render solution parts
-            if (solution.parts && Array.isArray(solution.parts)) {
-                solution.parts.forEach(part => {
-                    solutionHtml += this.renderSolutionPart(part, questionId);
-                });
-            }
-            
-            solutionHtml += `</div>`;
-            
-            // Render scoring rubric separately
-            if (solution.scoring) {
-                solutionHtml += this.renderScoringRubric(solution.scoring);
-            }
-            
-            return solutionHtml;
+                    }));
+                    html += '</div>';
+                    return html;
+                },
+                renderSolution: function(solution) {
+                    return `<div class="solution"><strong>Solution:</strong> ${solution}</div>`;
                 },
                 forceChartRerender: function() {
-                    // Destroy and recreate charts for theme change
                     APStatChain.chartInstances.forEach(chart => chart.destroy());
                     APStatChain.chartInstances = [];
-                    // Re-render current question charts
+                    this.initializeCharts(APStatChain.state.currentIndex);
                 },
-                generateChartColors: function() {
-                    // Return theme-aware colors
+                generateChartColors: function(numColors) {
+                    const colors = ['#ff6384', '#36a2eb', '#ffce56', '# etc.];
+                    const darkColors = ['#cf3c4f', '#2270b5', '#c39300', etc.];
+                    const base = APStatChain.ui.isDarkMode() ? darkColors : colors;
+                    return Array.from({length: numColors}, (_, i) => base[i % base.length]);
                 },
                 getGridColor: function() {
-                    return APStatChain.ui.isDarkMode() ? '#444' : '#ddd';
+                    return APStatChain.ui.isDarkMode() ? '#444444' : '#ddd';
                 },
                 getScatterPointColor: function() {
-                    return APStatChain.ui.isDarkMode() ? '#fff' : '#000';
+                    return APStatChain.ui.isDarkMode() ? '#ffffff' : '#000000';
                 },
                 getTextColor: function() {
-                    return APStatChain.ui.isDarkMode() ? '#fff' : '#000';
+                    return APStatChain.ui.isDarkMode() ? '#ffffff' : '#000000';
                 },
                 adaptQuestionFormat: function(pokQuestion) {
-                    const adapted = JSON.parse(JSON.stringify(pokQuestion)); // Deep clone
+                    const adapted = JSON.parse(JSON.stringify(pokQuestion));
                     
                     if (pokQuestion.attachments) {
-                        // Handle dotplot special case
                         if (pokQuestion.attachments.chartType === 'dotplot' && 
                             pokQuestion.attachments.series && 
                             pokQuestion.attachments.series[0]) {
                             adapted.attachments.values = pokQuestion.attachments.series[0].values;
                         }
                         
-                        // Handle scatter plot special case
                         if (pokQuestion.attachments.chartType === 'scatter' && 
                             pokQuestion.attachments.series && 
                             pokQuestion.attachments.series[0]) {
@@ -1889,7 +362,6 @@ hasUserAnswered: function(questionId) {
                             );
                         }
                         
-                        // Add any missing properties the renderer expects
                         if (pokQuestion.attachments.chartConfig && 
                             pokQuestion.attachments.chartConfig.yAxis) {
                             adapted.attachments.chartConfig.yAxis.hideTicks = 
@@ -1900,294 +372,75 @@ hasUserAnswered: function(questionId) {
                     return adapted;
                 },
                 _generateQuestionHTML: function(adaptedQuestion, index) {
-            const questionNumber = index + 1;
-            let questionHtml = `
-                <div class="quiz-container" data-question-number="${questionNumber}" data-question-id="${adaptedQuestion.id || ''}">
-                    <div class="question-header">Question ${questionNumber}</div>
-                    <div class="question-id">ID: ${adaptedQuestion.id || 'N/A'}</div>
-                    <div class="question-id">Type: ${adaptedQuestion.type || 'N/A'}</div>
-                    
-                    <div class="question-prompt">
-                        ${adaptedQuestion.prompt || 'No prompt provided'}
-                    </div>
-            `;
-
-            // Handle attachments
-            if (adaptedQuestion.attachments) {
-                // Render image if present
-                if (adaptedQuestion.attachments.image) {
-                    const imageAlt = adaptedQuestion.attachments.imageAlt || 'Question diagram';
-                    const imageCaption = adaptedQuestion.attachments.imageCaption || '';
-                    questionHtml += `
-                        <div class="image-container">
-                            <img src="${adaptedQuestion.attachments.image}" 
-                                 alt="${imageAlt}" 
-                                 class="question-image" 
-                                 loading="lazy" 
-                                 decoding="async">
-                            ${imageCaption ? `<div class="image-caption">${imageCaption}</div>` : ''}
-                        </div>
+                    let html = `<div class="question">
+                        <h2>Question ${index + 1}</h2>
+                        <p>${adaptedQuestion.prompt || ''}</p>
                     `;
-                }
-                
-                // Render multiple images if present
-                if (adaptedQuestion.attachments.images && Array.isArray(adaptedQuestion.attachments.images)) {
-                    questionHtml += '<div class="images-container">';
-                    adaptedQuestion.attachments.images.forEach((img, imgIndex) => {
-                        const imageAlt = img.imageAlt || `Question diagram ${imgIndex + 1}`;
-                        const imageCaption = img.imageCaption || '';
-                        questionHtml += `
-                            <div class="image-container">
-                                <img src="${img.image}" 
-                                     alt="${imageAlt}" 
-                                     class="question-image" 
-                                     loading="lazy" 
-                                     decoding="async">
-                                ${imageCaption ? `<div class="image-caption">${imageCaption}</div>` : ''}
+                    
+                    if (adaptedQuestion.attachments) {
+                        const att = adaptedQuestion.attachments;
+                        if (att.chartType) {
+                            html += `<div class="chart-container"><canvas id="chart-${adaptedQuestion.id}"></canvas></div>`;
+                        }
+                        if (att.table) {
+                            html += this.renderTable(att.table);
+                        }
+                        if (att.choices) {
+                            html += this.renderChoices(att.choices, att.answerKey, adaptedQuestion.id);
+                        }
+                    }
+                    
+                    if (adaptedQuestion.reasoning && APStatChain.hasUserAnswered(adaptedQuestion.id)) {
+                        html += `
+                            <div class="reasoning">
+                                <strong>Explanation:</strong> ${adaptedQuestion.reasoning}
                             </div>
                         `;
-                    });
-                    questionHtml += '</div>';
-                }
-                
-                // Render multiple charts if present
-                if (adaptedQuestion.attachments.charts && Array.isArray(adaptedQuestion.attachments.charts)) {
-                    questionHtml += '<div class="multiple-charts-container">';
-                    adaptedQuestion.attachments.charts.forEach((chart, chartIndex) => {
-                        questionHtml += (chart, `${adaptedQuestion.id}-chart-${chartIndex}`);
-                    });
-                    questionHtml += '</div>';
-                }
-                // Render single chart if present
-                else if (adaptedQuestion.attachments.chartType) {
-                    questionHtml += (adaptedQuestion.attachments, adaptedQuestion.id);
-                }
-                
-                // Render table if present
-                if (adaptedQuestion.attachments.table) {
-                    questionHtml += this.renderTable(adaptedQuestion.attachments.table);
-                }
-                
-                // Render choices if present (in attachments)
-                if (adaptedQuestion.attachments.choices) {
-                    questionHtml += this.renderChoices(adaptedQuestion.attachments.choices, adaptedQuestion.answerKey);
-                }
-            }
-
-            // Handle choices at top level (new format)
-            if (adaptedQuestion.choices) {
-                questionHtml += this.renderChoices(adaptedQuestion.choices, adaptedQuestion.answerKey);
-            }
-
-            // Render reasoning/explanation if present
-            if (adaptedQuestion.reasoning) {
-                questionHtml += `
-                    <div class="reasoning">
-                        <strong>Explanation:</strong> ${adaptedQuestion.reasoning}
-                    </div>
-                `;
-            }
-
-            // Render solution if present (for free response questions)
-            if (adaptedQuestion.solution) {
-                questionHtml += this.renderSolution(adaptedQuestion.solution, adaptedQuestion.id);
-            }
-
-            questionHtml += '</div>';
-            return questionHtml;
+                    }
+                    
+                    if (adaptedQuestion.solution && APStatChain.hasUserAnswered(adaptedQuestion.id)) {
+                        html += this.renderSolution(adaptedQuestion.solution);
+                    }
+                    
+                    html += `</div>`;
+                    return html;
+                },
+                initializeCharts: function(index) {
+                    const question = APStatChain.questions[index];
+                    if (!question || !question.attachments) return;
+                    
+                    const att = question.attachments;
+                    if (att.chartType) {
+                        this.renderChart(att, `chart-${question.id}`);
+                    }
                 },
                 renderCurrentQuestion: function() {
-                    // Main entry point as per Step 6
-                    const question = APStatChain.questions[APStatChain.state.currentIndex];
-                    if (!question) return; // Safety check
-
+                    const index = this.state.currentIndex, question = this.questions[index];
+                    if (!question) return;
+                    
                     const adaptedQuestion = this.adaptQuestionFormat(question);
-
-                    const questionHTML = this._generateQuestionHTML(adaptedQuestion, APStatChain.state.currentIndex);
-
+                    
+                    const questionHTML = this._generateQuestionHTML(adaptedQuestion, index);
+                    
                     document.getElementById('questionsContainer').innerHTML = questionHTML;
-
-                    // Post-render: Refresh MathJax if needed
-                    if (typeof MathJax !== 'undefined') MathJax.typeset();
-
+                    
+                    // Post-render
+                    if (typeof MathJax !== 'undefined') {
+                        MathJax.typesetPromise().catch(err => console.error(err));
+                    }
+                    this.initializeCharts(index);
+                    
+                    // Update button states
+                    const submitBtn = document.getElementById('submit-answer');
+                    const isAnswered = APStatChain.hasUserAnswered(question.id);
+                    submitBtn.disabled = isAnswered;
+                    submitBtn.textContent = isAnswered ? 'Answered' : 'Submit Answer';
+                    
                     APStatChain.ui.updateHUD();
                 }
             },
 
             ui: {
-                initContextFinder: function() {
-            const contextDiv = document.getElementById('contextFinder');
-            if (!contextDiv) return;
-
-            // Disconnect previous observer if it exists (not used now but for cleanup)
-            if (contextObserver) {
-                this.contextObserver.disconnect();
-            }
-
-            // Attach scroll handler once
-            if (!this.contextScrollHandlerAttached) {
-                window.addEventListener('scroll', () => requestAnimationFrame(() => this.updateContextFinder()));
-                window.addEventListener('resize', () => requestAnimationFrame(() => this.updateContextFinder()));
-                this.contextScrollHandlerAttached = true;
-            }   
-
-            // Initial content and display
-            const questionElements = document.querySelectorAll('.quiz-container');
-            if (questionElements.length === 0) {
-                contextDiv.style.display = 'none';
-                return;
-            }
-
-            contextDiv.style.display = 'block';
-            this.updateContextFinder();
-        },
-        updateContextFinder: function() {
-            const contextDiv = document.getElementById('contextFinder');
-            if (!contextDiv) return;
-
-            const questionElements = document.querySelectorAll('.quiz-container');
-            let currentEl = null;
-            let minDistance = Number.POSITIVE_INFINITY;
-
-            questionElements.forEach(el => {
-                const rect = el.getBoundingClientRect();
-                // Distance from viewport center
-                const distance = Math.abs(rect.top + rect.height / 2 - window.innerHeight / 2);
-                if (rect.bottom >= 0 && rect.top <= window.innerHeight) {
-                    // Element is at least partially in viewport
-                    if (distance < minDistance) {
-                        minDistance = distance;
-                        currentEl = el;
-                    }
-                }
-            });
-
-            if (currentEl) {
-                currentEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
-            }
-        },
-            clearAll: function() {
-            // Play clear tone
-            APStatChain.audio.buttonTones.clear();
-            
-            document.getElementById('messageContainer').innerHTML = '';
-            document.getElementById('questionsContainer').innerHTML = '';
-            document.getElementById('statsContainer').innerHTML = '';
-            document.getElementById('jsonInput').value = '';
-            document.getElementById('jsonFile').value = '';
-            
-            // Destroy existing charts
-            APStatChain.chartInstances.forEach(chart => chart.destroy());
-            APStatChain.chartInstances = [];
-            
-            // Hide and reset context finder
-            const contextDiv = document.getElementById('contextFinder');
-            if (contextDiv) {
-                contextDiv.style.display = 'none';
-                contextDiv.innerHTML = '';
-            }
-            if (contextObserver) {
-                APStatChain.contextObserver.disconnect();
-            }
-        },
-                showMessage: function(message, type = 'error') {
-            // Play appropriate tone
-            if (type === 'success') {
-                APStatChain.audio.buttonTones.success();
-            } else {
-                APStatChain.audio.buttonTones.error();
-            }
-            
-            const messageContainer = document.getElementById('messageContainer');
-            const className = type === 'success' ? 'success' : 'error';
-            messageContainer.innerHTML = `<div class="${className}"><strong>${type === 'success' ? 'Success' : 'Error'}:</strong> ${message}</div>`;
-        },
-        showStats: function(questions) {
-            const statsContainer = document.getElementById('statsContainer');
-            const totalQuestions = questions.length;
-            const mcQuestions = questions.filter(q => q.type === 'multiple-choice').length;
-            const frQuestions = questions.filter(q => q.type === 'free-response').length;
-            const hasAnswers = questions.filter(q => q.answerKey).length;
-            const hasReasoning = questions.filter(q => q.reasoning).length;
-            const hasSolutions = questions.filter(q => q.solution).length;
-            const hasScoring = questions.filter(q => q.solution && q.solution.scoring).length;
-            const hasCharts = questions.filter(q => q.attachments && q.attachments.chartType).length;
-            const hasTables = questions.filter(q => q.attachments && q.attachments.table).length;
-            
-            // Count solution charts (charts in solution parts)
-            const hasSolutionCharts = questions.filter(q => 
-                q.solution && q.solution.parts && 
-                q.solution.parts.some(part => part.attachments && part.attachments.chartType)
-            ).length;
-            
-            const barCharts = questions.filter(q => q.attachments && q.attachments.chartType === 'bar').length;
-            const histograms = questions.filter(q => q.attachments && q.attachments.chartType === 'histogram').length;
-            const pieCharts = questions.filter(q => q.attachments && q.attachments.chartType === 'pie').length;
-            const scatterCharts = questions.filter(q => q.attachments && q.attachments.chartType === 'scatter').length;
-            const dotplots = questions.filter(q => q.attachments && q.attachments.chartType === 'dotplot').length;
-            const boxplots = questions.filter(q => q.attachments && q.attachments.chartType === 'boxplot').length;
-            
-            let chartBreakdown = '';
-            if (hasCharts > 0) {
-                const chartTypes = [];
-                if (barCharts > 0) chartTypes.push(`📊 Bar: ${barCharts}`);
-                if (histograms > 0) chartTypes.push(`📈 Histogram: ${histograms}`);
-                if (pieCharts > 0) chartTypes.push(`🥧 Pie: ${pieCharts}`);
-                if (scatterCharts > 0) chartTypes.push(`📈 Scatter: ${scatterCharts}`);
-                if (dotplots > 0) chartTypes.push(`🔘 Dotplot: ${dotplots}`);
-                if (boxplots > 0) chartTypes.push(`📦 Boxplot: ${boxplots}`);
-                chartBreakdown = ` (${chartTypes.join(', ')})`;
-            }
-            
-            statsContainer.innerHTML = `
-                <div class="stats">
-                    <strong>📊 Quiz Statistics:</strong><br>
-                    Total Questions: ${totalQuestions} | 
-                    Multiple Choice: ${mcQuestions} | 
-                    Free Response: ${frQuestions}<br>
-                    With Answer Keys: ${hasAnswers} | 
-                    With Reasoning: ${hasReasoning} | 
-                    With Solutions: ${hasSolutions} | 
-                    With Scoring: ${hasScoring}<br>
-                    📈 Question Charts: ${hasCharts}${chartBreakdown} | 
-                    📋 Tables: ${hasTables} | 
-                    🎯 Solution Charts: ${hasSolutionCharts}
-                </div>
-            `;
-        },
-        initTheme: function() {
-            // Load saved theme preference or default to light
-            const savedTheme = localStorage.getItem('APStatChainTheme') || 'light';
-            APStatChain.state.theme = savedTheme;
-            
-            // Apply theme to body
-            document.body.className = APStatChain.state.theme === 'dark' ? 'dark-theme' : '';
-            
-            // Update button text
-            const themeButton = document.getElementById('themeToggle');
-            if (themeButton) {
-                themeButton.textContent = currentTheme === 'dark' ? '☀️ Switch to Light' : '🌙 Switch to Dark';
-            }
-            
-            // Load saved audio preference or default to enabled
-            const savedAudio = localStorage.getItem('APStatChainAudio');
-            APStatChain.audio.enabled = savedAudio !== null ? savedAudio === 'true' : true;
-            
-            // Update audio button text
-            const audioButton = document.getElementById('audioToggle');
-            if (audioButton) {
-                audioButton.textContent = audioEnabled ? '🔊 Audio On' : '🔇 Audio Off';
-            }
-            
-            // Load saved volume preference or default to 70%
-            const savedVolume = localStorage.getItem('quizRendererVolume') || '70';
-            const volumeSlider = document.getElementById('volumeSlider');
-            const volumeDisplay = document.getElementById('volumeDisplay');
-            if (volumeSlider && volumeDisplay) {
-                volumeSlider.value = savedVolume;
-                volumeDisplay.textContent = `${savedVolume}%`;
-            }
-        },
                 isDarkMode: function() {
                     return APStatChain.state.theme === 'dark';
                 },
@@ -2195,22 +448,22 @@ hasUserAnswered: function(questionId) {
                     APStatChain.state.theme = APStatChain.state.theme === 'light' ? 'dark' : 'light';
                     document.body.classList.toggle('dark', APStatChain.ui.isDarkMode());
                     localStorage.setItem('APStatChainTheme', APStatChain.state.theme);
-                    APStatChain.renderer.forceChartRerender(); // Re-render charts for theme
+                    APStatChain.renderer.forceChartRerender();
                 },
                 updateHUD: function() {
-                    // Update progress, score, etc. based on state
-                    document.getElementById('progress').innerHTML = `Question ${APStatChain.state.currentIndex + 1} of ${APStatChain.questions.length || 738}`;
-                    // Similarly update my-progress, score, etc. (assuming state has data)
+                    const total = APStatChain.questions.length;
+                    const current = APStatChain.state.currentIndex + 1;
+                    document.getElementById('progress').innerHTML = `Question ${current} of ${total}`;
+                    
+                    const answered = APStatChain.state.mempool.length;
+                    document.getElementById('my-progress').innerHTML = `My Progress: ${answered} Answered / 0} Mined`;
+                    // TODO: Mined logic out of scope
+                    
+                    // Update nav buttons
+                    document.getElementById('prev').disabled = (APStatChain.state.currentIndex === 0);
+                    document.getElementById('next').disabled = (APStatChain.state.currentIndex >= total - 1) || !APStatChain.hasUserAnswered(APStatChain.questions[APStatChain.state.currentIndex].id);
                 },
                 bindNavEvents: function() {
-                    document.getElementById('next').addEventListener('click', async () => {
-                        if (APStatChain.state.currentIndex < APStatChain.questions.length - 1) {
-                            APStatChain.state.currentIndex++;
-                            APStatChain.renderer.renderCurrentQuestion();
-                            await APStatChain.saveState();
-                        }
-                    });
-
                     document.getElementById('prev').addEventListener('click', async () => {
                         if (APStatChain.state.currentIndex > 0) {
                             APStatChain.state.currentIndex--;
@@ -2218,41 +471,51 @@ hasUserAnswered: function(questionId) {
                             await APStatChain.saveState();
                         }
                     });
-
+                    
+                    document.getElementById('next').addEventListener('click', async () => {
+                        if (APStatChain.state.currentIndex < APStatChain.questions.length - 1 && APStatChain.hasUserAnswered(APStatChain.questions[APStatChain.state.currentIndex].id)) {
+                            APStatChain.state.currentIndex++;
+                            APStatChain.renderer.renderCurrentQuestion();
+                            await APStatChain.saveState();
+                        }
+                    });
+                    
                     document.getElementById('submit-answer').addEventListener('click', async () => {
+                        const question = APStatChain.questions[APStatChain.state.currentIndex];
+                        if (APStatChain.hasUserAnswered(question.id)) return;
+                        
                         const selected = document.querySelector('input[name="answer"]:checked');
                         if (!selected) {
                             alert('Please select an answer');
                             return;
                         }
-                        const question = APStatChain.questions[APStatChain.state.currentIndex];
                         await APStatChain.mempool.createTransaction(question.id, selected.value);
                         APStatChain.renderer.renderCurrentQuestion();
                         await APStatChain.saveState();
                     });
-
+                    
                     document.getElementById('themeToggle').addEventListener('click', () => {
                         APStatChain.ui.toggleTheme();
                     });
-
+                    
                     document.getElementById('generate-qr').addEventListener('click', () => {
                         APStatChain.sync.generateQR();
                     });
-
+                    
                     document.getElementById('scan-qr').addEventListener('click', () => {
                         APStatChain.sync.startScanner();
                     });
-
-                    // Additional for audio (not in plan but from renderer UI)
+                    
                     document.getElementById('audioToggle').addEventListener('click', () => {
                         APStatChain.audio.enabled = !APStatChain.audio.enabled;
-                        // Update button text if needed
+                        const btn = document.getElementById('audioToggle');
+                        btn.textContent = APStatChain.audio.enabled ? '🔊 Audio On' : '🔈 Audio Off';
                     });
-
+                    
                     document.getElementById('volumeSlider').addEventListener('input', (e) => {
-                        // Set volume
+                        const volume = e.target.value / 100;
                         if (APStatChain.audio.masterGain) {
-                            APStatChain.audio.masterGain.gain.value = e.target.value / 100;
+                            APStatChain.audio.masterGain.gain.value = volume;
                         }
                         document.getElementById('volumeValue').textContent = `${e.target.value}%`;
                     });
@@ -2260,234 +523,130 @@ hasUserAnswered: function(questionId) {
             },
 
             audio: {
-                successPool: [261.63, 329.63, 392.00, 523.25, 659.25, 783.99], // C major notes C4–G5
-                errorPool: [164.81, 196.00, 246.94, 329.63, 392.00, 493.88], // E minor notes E3–B4
                 context: null,
                 enabled: true,
                 masterGain: null,
-                playTone: function(frequency, duration = 0.3, type = 'sine', volume = 1, detuneCents = 8) {
-            if (!this.enabled) return;
+                playTone: function(frequency, duration) {
+                    if (!this.enabled || !this.context) return;
+                    const oscillator = this.context.createOscillator();
+                    oscillator.frequency.value = frequency;
+                    oscillator.connect(this.masterGain);
+                    oscillator.start();
+                    setTimeout(() => oscillator.stop(), duration);
+                }
+            },
 
-            const ctx = this.context;
-            if (!ctx || !this.masterGain) return;
-
-            try {
-                const now = ctx.currentTime;
-
-                // Gain envelope (ADSR)
-                const gainNode = ctx.createGain();
-                gainNode.gain.setValueAtTime(0.0001, now);
-                gainNode.gain.linearRampToValueAtTime(volume, now + 0.02);               // Attack
-                gainNode.gain.linearRampToValueAtTime(volume * 0.7, now + duration * 0.6); // Decay/Sustain
-                gainNode.gain.exponentialRampToValueAtTime(0.0001, now + duration);       // Release
-
-                gainNode.connect(this.masterGain);
-
-                // Introduce slight random pitch offset for uniqueness (±15 cents)
-                const jitterCents = (Math.random() * 30) - 15;
-                const primaryFreq = frequency * Math.pow(2, jitterCents / 1200);
-
-                // Primary oscillator
-                const osc1 = ctx.createOscillator();
-                osc1.type = type;
-                osc1.frequency.setValueAtTime(primaryFreq, now);
-
-                // Secondary oscillator (slightly detuned) for a richer sound
-                const osc2 = ctx.createOscillator();
-                osc2.type = type;
-                osc2.frequency.setValueAtTime(primaryFreq * Math.pow(2, detuneCents / 1200), now);
-
-                osc1.connect(gainNode);
-                osc2.connect(gainNode);
-
-                osc1.start(now);
-                osc2.start(now);
-
-                osc1.stop(now + duration);
-                osc2.stop(now + duration);
-
-                // Mark explicit sound time so generic handler can avoid double playback
-                lastExplicitSound = Date.now();
-
-            } catch (e) {
-                console.warn('Audio playback failed:', e);
-            }
-                },
-                toggleAudio: function() {
-            this.enabled = !this.enabled;
-            
-            // Save preference to localStorage
-            localStorage.setItem('quizRendererAudio', this.enabled);
-            
-            // Update button text
-            const audioButton = document.getElementById('audioToggle');
-            audioButton.textContent = this.enabled ? '🔊 Audio On' : '🔇 Audio Off';
-            
-            // Play a test tone if audio was just enabled
-            if (this.enabled) {
-                // Quick test tone to confirm audio is working
-                setTimeout(() => this.playTone(440, 0.1, 'sine', 0.08), 100);
-            }
-            
-            // Show feedback message without playing tone (since we're toggling audio)
-            const messageContainer = document.getElementById('messageContainer');
-            messageContainer.innerHTML = `<div class="success"><strong>Success:</strong> Audio feedback ${this.enabled ? 'enabled' : 'disabled'}.</div>`;
-        },
-        playChord: function(frequencies, duration = 0.3, type = 'sine', volume = 0.08) {
-            frequencies.forEach(freq => {
-                this.playTone(freq, duration, type, volume);
-            });
-        },
-        playMelody: function(notes, noteDuration = 0.2, gap = 0.05, type = 'sine', volume = 0.12) {
-            let offset = 0;
-            notes.forEach(freq => {
-                setTimeout(() => this.playTone(freq, noteDuration, type, volume), offset * 1000);
-                offset += noteDuration + gap;
-            });
-        },
-        
-        pickRandomDistinct: function(pool, count = 2) {
-            const copy = [...pool];
-            const selected = [];
-            for (let i = 0; i < count && copy.length > 0; i++) {
-                const idx = Math.floor(Math.random() * copy.length);
-                selected.push(copy.splice(idx, 1)[0]);
-            }
-            return selected;
-        },
-        playRandomSuccess: function() {
-            const notes = this.pickRandomDistinct(this.successPool, 2).sort((a,b) => a-b); // ascending
-            this.playMelody(notes, 0.14, 0.03, 'triangle', 0.14);
-        },
-        playRandomError: function() {
-            const notes = this.pickRandomDistinct(errorPool, 2).sort((a,b) => b-a); // descending
-            this.playMelody(notes, 0.22, 0.05, 'sine', 0.08);
-        },
-        adjustVolume: function(value) {
-            // Save volume to localStorage
-            localStorage.setItem('quizRendererVolume', value);
-            
-            // Update volume display
-            const volumeDisplay = document.getElementById('volumeDisplay');
-            volumeDisplay.textContent = `${value}%`;
-            
-            // Update master gain if audio context exists
-            if (this.masterGain) {
-                this.masterGain.gain.setValueAtTime(parseFloat(value) / 100, this.context.currentTime);
-            }
-            
-            // Play a test tone to give immediate feedback
-            if (this.enabled && parseFloat(value) > 0) {
-                setTimeout(() => this.playTone(523.25, 0.12, 'triangle', 0.15), 50);
-            }
-        },
-        buttonTones: {
-            load: () => APStatChain.audio.playMelody([523.25, 659.25], 0.15, 0.03, 'triangle', 0.14),       // "ding-dong" load tone
-            loadText: () => APStatChain.audio.playMelody([659.25, 783.99], 0.15, 0.03, 'triangle', 0.14),  // higher variant
-            clear: () => APStatChain.audio.playChord([392.00, 196.00], 0.35, 'square', 0.12),              // deep boom for clear
-            theme: () => APStatChain.audio.playChord([261.63, 329.63, 392.00, 523.25], 0.2, 'sawtooth', 0.10), // richer theme chord
-            success: () => APStatChain.audio.playRandomSuccess(),
-            error: () => APStatChain.audio.playRandomError()
-        }
-        },
-
-            // Assumed existing from pok_app.html (not rewritten)
             sync: {
                 generateQR: function() {
-                    // Existing logic + use of QRCode library
-                    const stateData = JSON.stringify(APStatChain.state); // Or relevant sync data
-                    // new QRCode(document.getElementById('qr-code'), stateData);
-                    // Clear previous QR code
-document.getElementById('qr-code').innerHTML = "";
-// Create new one
-const typeNumber = 0; // 0 for auto-detect
-const errorCorrectionLevel = 'M';
-const qr = qrcode(typeNumber, errorCorrectionLevel);
-qr.addData(stateData);
-qr.make();
-document.getElementById('qr-code').innerHTML = qr.createImgTag(4); // 4 = module size
+                    const stateData = JSON.stringify(APStatChain.state);
+                    new QRCode(document.getElementById('qr-code'), stateData);
                 },
                 startScanner: function() {
-                    // Existing logic + use of jsQR
                     const video = document.getElementById('video');
                     navigator.mediaDevices.getUserMedia({ video: { facingMode: 'environment' } }).then(stream => {
                         video.srcObject = stream;
                         video.play();
-                        // Scanning loop with jsQR on canvas
                         const canvas = document.getElementById('canvas');
                         const ctx = canvas.getContext('2d');
-                        function scan() {
+                        const scan = () => {
                             if (video.readyState === video.HAVE_ENOUGH_DATA) {
-                                canvas.height = video.videoHeight;
                                 canvas.width = video.videoWidth;
+                                canvas.height = video.videoHeight;
                                 ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
                                 const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
                                 const code = jsQR(imageData.data, imageData.width, imageData.height);
                                 if (code) {
-                                    // Process scanned data, e.g., merge state
                                     console.log('Scanned:', code.data);
-                                    // Stop scanning
                                     stream.getTracks().forEach(track => track.stop());
                                     return;
                                 }
                             }
                             requestAnimationFrame(scan);
-                        }
+                        };
                         scan();
-                    });
+                    }).catch(err => console.error(err));
                 }
             },
 
-            // Assumed existing from pok_app.html (not rewritten)
             mempool: {
                 createTransaction: async function(questionId, answer) {
-                    // Existing transaction creation logic (crypto, etc.)
-                    // Placeholder
-                    console.log(`Transaction for question ${questionId}: answer ${answer}`);
+                    const tx = {
+                        questionId,
+                        answer,
+                        ownerPubKey: APStatChain.state.identity.publicKey,
+                        timestamp: Date.now()
+                    };
+                    APStatChain.state.mempool.push(tx);
+                    console.log('Transaction created:', tx);
                 }
             },
 
-            // Assumed existing saveState
             saveState: async function() {
-                // Save to localStorage
                 localStorage.setItem('APStatChainState', JSON.stringify(APStatChain.state));
             },
 
-            init: function() {
-                // Merged from pok_app init + quiz_renderer window.onload logic
-                // Load theme
-                const savedTheme = localStorage.getItem('APStatChainTheme');
-                if (savedTheme) {
-                    APStatChain.state.theme = savedTheme;
-                    if (savedTheme === 'dark') {
-                        document.body.classList.add('dark');
+            init: async function() {
+                try {
+                    APStatChain.questions = POK_CURRICULUM;
+                    
+                    const savedState = localStorage.getItem('APStatChainState');
+                    
+                    if (savedState) {
+                        this.state = JSON.parse(savedState);
+                        
+                        if (!this.state.identity || !this.state.identity.publicKey) {
+                            throw new Error('Invalid saved state - missing identity');
+                        }
+                    } else {
+                        console.log("Creating new user identity...");
+                        const mnemonic = this.crypto.generateMnemonic();
+                        const keyPair = await this.crypto.deriveKeyPair(mnemonic);
+                        
+                        if (!keyPair) {
+                            throw new Error('Failed to generate key pair');
+                        }
+                        
+                        this.state = {
+                            identity: {
+                                mnemonic: mnemonic,
+                                publicKey: keyPair.publicKey,
+                                privateKey: keyPair.privateKey
+                            },
+                            currentIndex: 0,
+                            mempool: [],
+                            chain: [],
+                            peers: new Set(),
+                            theme: 'light'
+                        };
+                        
+                        await this.saveState();
                     }
+                    
+                    const savedTheme = localStorage.getItem('APStatChainTheme');
+                    if (savedTheme) {
+                        this.state.theme = savedTheme;
+                        if (savedTheme === 'dark') {
+                            document.body.classList.add('dark');
+                        }
+                    }
+                    
+                    this.audio.context = new (window.AudioContext || window.webkitAudioContext)();
+                    this.audio.masterGain = this.audio.context.createGain();
+                    this.audio.masterGain.gain.value = 0.7;
+                    this.audio.masterGain.connect(this.audio.context.destination);
+                    
+                    this.ui.bindNavEvents();
+                    
+                    this.renderer.renderCurrentQuestion();
+                    
+                } catch (e) {
+                    console.error('Initialization failed:', e);
+                    alert('Failed to initialize application. Please refresh the page.');
                 }
-
-                // Load other state
-                const savedState = localStorage.getItem('APStatChainState');
-                if (savedState) {
-                    APStatChain.state = JSON.parse(savedState);
-                }
-
-                // Setup audio
-                APStatChain.audio.context = new (window.AudioContext || window.webkitAudioContext)();
-                APStatChain.audio.masterGain = APStatChain.audio.context.createGain();
-                APStatChain.audio.masterGain.gain.value = 0.7; // Default volume
-                APStatChain.audio.masterGain.connect(APStatChain.audio.context.destination);
-
-                // Bind events
-                APStatChain.ui.bindNavEvents();
-
-                // Initial render
-                APStatChain.renderer.renderCurrentQuestion();
             }
         };
 
-        // Replace window.onload with this (as per Step 3)
-        window.addEventListener('load', APStatChain.init);
-
-        // Clean up: Removed file loading UI, duplicate listeners as per Step 7
+        window.addEventListener('load', () => APStatChain.init());
     </script>
 </body>
 </html>
